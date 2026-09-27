@@ -43,7 +43,8 @@ class MatchReport:
         self.f.markdown("SHAP local explanation:")
         shap_values = dict(self.row[(self.row.index.str.startswith("SHAP")) & (self.row.values != 0)])
         shap_df = self.get_shap_table(shap_values)
-        self.f.table(shap_df)
+        # st.dataframe работает моментально и позволяет скроллить данные
+        self.f.dataframe(shap_df, use_container_width=True)
 
 class FixtureReport(MatchReport):
     def __init__(self, row):
