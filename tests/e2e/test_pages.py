@@ -37,7 +37,7 @@ def test_date_navigation_moves_one_day(app, predicted_day):
     app.open(f"?date={day}")
     app.button("›").click()
     app.wait()
-    assert f"date={day.fromordinal(day.toordinal() + 1)}" in app.page.url
+    expect(app.page).to_have_url(re.compile(f"date={day.fromordinal(day.toordinal() + 1)}"))
     app.assert_healthy()
 
 
