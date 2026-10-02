@@ -18,7 +18,7 @@ class App:
         return self
 
     def nav(self, title: str) -> "App":
-        self.page.get_by_role("link", name=title, exact=True).first.click()
+        self.page.locator("header").get_by_role("link", name=title).first.click()
         self.wait()
         return self
 
