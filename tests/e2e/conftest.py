@@ -1,3 +1,4 @@
+import os
 import socket
 import subprocess
 import sys
@@ -21,6 +22,10 @@ def _free_port() -> int:
 
 @pytest.fixture(scope="session")
 def base_url():
+    external = os.environ.get("E2E_BASE_URL")
+    if external:                       # e.g. a deployed app
+        yield external.rstrip("/")
+        return
     port = _free_port()
     proc = subprocess.Popen([sys.executable, "-m", "streamlit", "run", "app.py", "--server.port", str(port),
                              "--server.headless", "true"], cwd=ROOT,
