@@ -1,0 +1,15 @@
+{
+  "active": "prod_20261002",
+  "versions": {
+    "backtest_2526": {
+      "role": "backtest",
+      "created": "2026-10-02T13:48:18",
+      "trained_to": "2025-06-01"
+    },
+    "prod_20261002": {
+      "role": "production",
+      "created": "2026-10-02T13:48:18",
+      "trained_to": "2026-05-31"
+    }
+  }
+}
