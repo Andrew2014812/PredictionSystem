@@ -1,58 +1,27 @@
+"""Web interface entry point.
+
+    streamlit run app.py
+"""
+import logging
+
 import streamlit as st
-import pandas as pd
-import numpy as np
 
-from src.utils.config import Config as cfg
-from src.frontend.data import load_data, aggregate_df, aggregate_by_date
-from src.frontend.metrics import get_metrics, metric_dashboard
-from src.frontend.match_report import ResultReport, FixtureReport
+logging.basicConfig(level=logging.WARNING)
 
+st.set_page_config(page_title="Football Prediction System", page_icon="⚽", layout="wide",
+                   initial_sidebar_state="collapsed")
 
-METRICS = ["Finished Games",
-           "Accuracy (%)",
-           "ROI (%)"]
+PAGES = [
+    st.Page("views/matches.py", title="Matches", icon=":material/sports_soccer:",
+            url_path="matches", default=True),
+    st.Page("views/match_details.py", title="Match Details", icon=":material/insights:",
+            url_path="match", visibility="hidden"),
+    st.Page("views/history.py", title="Prediction History", icon=":material/history:", url_path="history"),
+    st.Page("views/leagues.py", title="Leagues", icon=":material/emoji_events:", url_path="leagues"),
+    st.Page("views/teams.py", title="Teams", icon=":material/groups:", url_path="teams"),
+    st.Page("views/analytics.py", title="Analytics", icon=":material/monitoring:", url_path="analytics"),
+    st.Page("views/model_analysis.py", title="Model Analysis", icon=":material/model_training:",
+            url_path="models"),
+]
 
-
-# ---- MAIN -------
-st.title("Football Prediction Web App")
-selected_leagues = st.multiselect("Select league: ", cfg.LEAGUES.keys())
-df = load_data(selected_leagues)
-
-# ---- DISPLAY METRICS DASHBOARD -------
-agg_df = aggregate_df(df)
-overall_metrics = get_metrics(agg_df)
-c = st.container()
-metric_dashboard(c, "Stats:", overall_metrics[METRICS].loc[0,:])
-
-# ---- DISPLAY METRICS TABLE -------
-agg_df = aggregate_df(df, "Predicted result").reset_index().sort_values("PRED_RESULT_NUM", ascending=False)
-metrics_table = get_metrics(agg_df)[["Predicted result"] + METRICS]
-st.table(metrics_table)
-
-# ---- DISPLAY ROLLING-28D METRICS -------
-st.subheader("Stats over time:")
-rlng = st.slider("Moving average rollup (days):", 1, 28, 14)
-agg_df = aggregate_by_date(df, "F_DATE", rlng)
-date_metrics = get_metrics(agg_df, fmt=False)
-st.line_chart(date_metrics[METRICS[1:]])
-
-# ---- RESULTS -------
-c = st.container()
-res_c = c.columns(3)
-res_c[0].header("Results:")
-n_games = res_c[-1].selectbox("Select how many games to show:", [25, 50, 100, "All"])
-dates = (df.head(n_games) if n_games != "All" else df).F_DATE.unique()
-results = df.loc[df.F_DATE.isin(dates),:]
-
-# ---- DISPLAY DATE METRICS -------
-for date, date_df in list(results.groupby("F_DATE"))[::-1]:
-    pretty_date = date.strftime("%d %b")
-    date_metrics = get_metrics(aggregate_df(date_df))[METRICS].loc[0,:]
-    c = st.container()
-    metric_dashboard(c, pretty_date, date_metrics)
-
-    # ---- DISPLAY MATCHES -------
-    for idx, row in date_df.iterrows():
-        res = row['F_RESULT']
-        report = ResultReport if res else FixtureReport
-        title = report(row).render()
+st.navigation(PAGES, position="top").run()
