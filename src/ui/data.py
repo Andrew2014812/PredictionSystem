@@ -83,9 +83,7 @@ def _card_markets(_mtime_key: float) -> pd.DataFrame:
     wide = sub.pivot_table(index="match_id", columns="key",
                            values=["probability", "odds"], aggfunc="first")
     wide.columns = [f"{k}_{'p' if v == 'probability' else 'odds'}" for v, k in wide.columns]
-    src = sub.pivot_table(index="match_id", columns="key", values="odds_source", aggfunc="first")
-    src.columns = [f"{c}_src" for c in src.columns]
-    return wide.join(src)
+    return wide
 
 
 def card_markets() -> pd.DataFrame:
@@ -116,6 +114,13 @@ def model_versions() -> dict:
 
 def active_version() -> str | None:
     return registry.active_version()
+
+
+def data_status() -> dict:
+    from ..storage import LocalStorage
+    from .. import config
+    store = LocalStorage(config.DATA_DIR)
+    return store.read_json("data_status.json") if store.exists("data_status.json") else {}
 
 
 def match_dates() -> np.ndarray:
