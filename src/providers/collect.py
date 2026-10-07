@@ -173,6 +173,11 @@ def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
 
     toa = TheOddsApi()
     if toa.available:
+        stored = load_api_odds()
+        recent_cut = pd.Timestamp(now) - pd.Timedelta(hours=config.ODDS_API_REFRESH_HOURS)
+        recent = set(stored.loc[(stored["provider"] == PROVIDER_TOA)
+                                & (pd.to_datetime(stored["collected_at"]) > recent_cut), "match_id"]) \
+            if not stored.empty else set()
         for lg in enabled_leagues():
             if not lg.odds_api_key:
                 continue
@@ -192,8 +197,10 @@ def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
                 live_rows.append({**row, "provider": PROVIDER_TOA, "provider_fixture_id": ev["provider_fixture_id"]})
                 if row["kickoff"] <= window_end:
                     soon.append((ev["provider_fixture_id"], row["match_id"]))
-            if not soon:
-                continue                                                      # no credits for idle leagues
+            if not soon or all(match_id in recent for _, match_id in soon):
+                # no credits for idle leagues, nor for prices refreshed recently (the
+                # stored odds survive between CI runs, the raw-response cache does not)
+                continue
             priced = {e["id"]: e for e in toa.odds(lg.odds_api_key)}
             for fixture_id, match_id in soon:
                 if fixture_id in priced:

@@ -172,3 +172,41 @@ def test_api_cache_avoids_repeated_requests(tmp_path, monkeypatch):
     assert "secret" not in json.dumps(stored)                        # API keys are never written to disk
     assert cache.get("https://api.example/odds", {"league": 1, "apiKey": "other"}, 3600) is not None
     assert cache.get("https://api.example/odds", {"league": 1}, -1) is None   # expired
+
+
+def test_collect_spends_odds_credits_only_when_prices_are_stale(tmp_path, monkeypatch):
+    from datetime import datetime, timedelta
+    from zoneinfo import ZoneInfo
+
+    from src.providers import collect as col
+    from src.storage import LocalStorage
+
+    monkeypatch.setattr(col, "live_storage", LocalStorage(tmp_path / "live"))
+    monkeypatch.setattr(col, "odds_storage", LocalStorage(tmp_path / "odds"))
+    monkeypatch.setattr(col, "api_storage", LocalStorage(tmp_path / "api"))
+    monkeypatch.setattr(col.ApiFootball, "available", property(lambda self: False))
+    kickoff = datetime.now(ZoneInfo("UTC")) + timedelta(hours=20)
+    event = {"id": "ev1", "commence_time": kickoff.strftime("%Y-%m-%dT%H:%M:%SZ"),
+             "home_team": "Arsenal", "away_team": "Chelsea"}
+    calls = []
+
+    class FakeOddsApi:
+        available = True
+        credits_used = 0
+
+        def events(self, sport_key):
+            return [event] if sport_key == "soccer_epl" else []
+
+        def odds(self, sport_key):
+            calls.append(sport_key)
+            self.credits_used += 2
+            return [{**event, "bookmakers": [{"key": "williamhill", "title": "William Hill", "markets": [
+                {"key": "h2h", "outcomes": [{"name": "Arsenal", "price": 2.0}, {"name": "Chelsea", "price": 3.6},
+                                            {"name": "Draw", "price": 3.4}]}]}]}]
+
+    monkeypatch.setattr(col, "TheOddsApi", FakeOddsApi)
+    matches = pd.DataFrame({"league": ["E0"], "season": [2026], "home_team": ["Arsenal"], "away_team": ["Chelsea"]})
+    first = col.collect(matches)
+    assert calls == ["soccer_epl"] and first["odds_rows"] == 3 and first["live_rows"] == 1
+    second = col.collect(matches)                 # prices are fresh -> no new request
+    assert calls == ["soccer_epl"] and second["odds_rows"] == 0
