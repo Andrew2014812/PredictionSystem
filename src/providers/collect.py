@@ -27,7 +27,7 @@ from ..storage import LocalStorage
 from . import aliases
 from .api_football import ApiFootball, parse_fixture, parse_odds
 from .schema import ODDS_COLUMNS, empty_odds, odds_frame
-from .the_odds_api import TheOddsApi, parse_event, parse_event_odds, parse_score
+from .the_odds_api import TheOddsApi, parse_event, parse_event_odds
 
 log = logging.getLogger(__name__)
 
@@ -114,24 +114,39 @@ def _save_odds(records: list[dict]) -> int:
     return len(new)
 
 
+def _odds_records(match_id: str, provider: str, fixture_id: str, rows, now) -> list[dict]:
+    return [{"match_id": match_id, "provider": provider, "provider_fixture_id": fixture_id,
+             "bookmaker": bookmaker, "market": market, "line": line, "selection": selection,
+             "odds": price, "collected_at": now}
+            for market, line, selection, price, bookmaker in rows]
+
+
 def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
-    """Fetch fixtures / results / odds from every configured provider."""
+    """Fetch fixtures / results / odds from every configured provider.
+
+    1. API-Football ``/fixtures`` for yesterday, today and tomorrow (all leagues,
+       one request per day): fresh final scores and near fixtures.
+    2. The Odds API ``/events`` per league (free): fixtures of the coming week.
+    3. The Odds API ``/odds`` (h2h + totals) for leagues with a match in the next
+       ODDS_API_WINDOW_HOURS, at most once per ODDS_API_REFRESH_HOURS.
+    Odds are stored only for matches that have not started.
+    """
     today = today or date.today()
     now = datetime.now(ZoneInfo("Europe/London")).replace(tzinfo=None)   # kick-off times are UK time
+    window_end = pd.Timestamp(now) + pd.Timedelta(hours=config.ODDS_API_WINDOW_HOURS)
     resolve = TeamResolver(matches)
-    summary = {"api_football": "no key", "the_odds_api": "no key", "live_rows": 0, "odds_rows": 0}
+    summary = {"api_football": "no key", "the_odds_api": "no key"}
     live_rows: list[dict] = []
     odds_records: list[dict] = []
-    upcoming_ids: dict[str, str] = {}          # match_id -> league (to know which leagues lack odds)
-    leagues_with_odds: set[str] = set()
 
     af = ApiFootball()
     if af.available:
-        fixture_ids: dict[str, str] = {}       # provider fixture id -> match_id
         days = [today + timedelta(days=d) for d in range(-config.API_FIXTURE_DAYS_BACK,
                                                           config.API_FIXTURE_DAYS_AHEAD + 1)]
+        fixture_ids: dict[str, str] = {}
+        upcoming_leagues: set[str] = set()
         for day in days:
-            for item in af.fixtures(day, max_age=900 if day >= today - timedelta(days=1) else 6 * 3600):
+            for item in af.fixtures(day, max_age=900):
                 fx = parse_fixture(item)
                 if fx is None or fx["cancelled"]:
                     continue
@@ -144,32 +159,26 @@ def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
                 live_rows.append(row)
                 fixture_ids[fx["provider_fixture_id"]] = row["match_id"]
                 if not row["played"] and row["kickoff"] > pd.Timestamp(now):
-                    upcoming_ids[row["match_id"]] = row["league"]
-        season = config.current_season(today)
-        for lg in enabled_leagues():
-            if not lg.api_football_id or lg.code not in set(upcoming_ids.values()):
-                continue
-            for item in af.odds(lg.api_football_id, season):
-                fixture_id, rows = parse_odds(item)
-                match_id = fixture_ids.get(fixture_id)
-                if match_id not in upcoming_ids:
-                    continue                     # only pre-match prices of known upcoming fixtures
-                for market, line, selection, price, bookmaker in rows:
-                    odds_records.append({"match_id": match_id, "provider": PROVIDER_AF,
-                                         "provider_fixture_id": fixture_id, "bookmaker": bookmaker,
-                                         "market": market, "line": line, "selection": selection,
-                                         "odds": price, "collected_at": now})
-                    leagues_with_odds.add(lg.code)
-        summary["api_football"] = f"ok, {af.cache.requests_today()} requests today"
+                    upcoming_leagues.add(row["league"])
+        if config.API_FOOTBALL_ODDS:                  # paid plans only (current-season odds)
+            season = config.current_season(today)
+            for lg in enabled_leagues():
+                if not lg.api_football_id or lg.code not in upcoming_leagues:
+                    continue
+                for item in af.odds(lg.api_football_id, season):
+                    fixture_id, rows = parse_odds(item)
+                    if fixture_id in fixture_ids:
+                        odds_records += _odds_records(fixture_ids[fixture_id], PROVIDER_AF, fixture_id, rows, now)
+        summary["api_football"] = f"{af.cache.requests_today()} requests today"
 
     toa = TheOddsApi()
     if toa.available:
         for lg in enabled_leagues():
-            if not lg.odds_api_key or lg.code in leagues_with_odds:
+            if not lg.odds_api_key:
                 continue
-            if af.available and lg.code not in set(upcoming_ids.values()):
-                continue                         # nothing upcoming in this league
-            for event in toa.odds(lg.odds_api_key):
+            events = {e["id"]: e for e in toa.events(lg.odds_api_key)}       # free
+            soon = []
+            for event in events.values():
                 ev = parse_event(event, lg.odds_api_key)
                 if ev is None:
                     continue
@@ -177,31 +186,20 @@ def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
                 away = resolve(PROVIDER_TOA, ev["league"], ev["away_name"])
                 if not home or not away:
                     continue
-                kickoff = pd.Timestamp(f"{ev['date']} {ev['time']}")
-                if kickoff <= pd.Timestamp(now):
+                row = _canonical({**ev, "played": False}, home, away)
+                if row["kickoff"] <= pd.Timestamp(now):
                     continue
-                match_id = make_match_id(ev["league"], pd.Timestamp(ev["date"]), home, away)
-                if not af.available:             # The Odds API is then also the fixture source
-                    live_rows.append({**_canonical({**ev, "played": False}, home, away),
-                                      "provider": PROVIDER_TOA, "provider_fixture_id": ev["provider_fixture_id"]})
-                for market, line, selection, price, bookmaker in parse_event_odds(event):
-                    odds_records.append({"match_id": match_id, "provider": PROVIDER_TOA,
-                                         "provider_fixture_id": ev["provider_fixture_id"], "bookmaker": bookmaker,
-                                         "market": market, "line": line, "selection": selection,
-                                         "odds": price, "collected_at": now})
-            if not af.available:                 # fresh results when API-Football is not configured
-                for event in toa.scores(lg.odds_api_key):
-                    ev, score = parse_event(event, lg.odds_api_key), parse_score(event)
-                    if ev is None or score is None:
-                        continue
-                    home = resolve(PROVIDER_TOA, ev["league"], ev["home_name"])
-                    away = resolve(PROVIDER_TOA, ev["league"], ev["away_name"])
-                    if home and away:
-                        live_rows.append({**_canonical({**ev, "played": True, "home_goals": score[0],
-                                                        "away_goals": score[1]}, home, away),
-                                          "provider": PROVIDER_TOA,
-                                          "provider_fixture_id": ev["provider_fixture_id"]})
-        summary["the_odds_api"] = f"ok, {toa.credits_used} credits this run"
+                live_rows.append({**row, "provider": PROVIDER_TOA, "provider_fixture_id": ev["provider_fixture_id"]})
+                if row["kickoff"] <= window_end:
+                    soon.append((ev["provider_fixture_id"], row["match_id"]))
+            if not soon:
+                continue                                                      # no credits for idle leagues
+            priced = {e["id"]: e for e in toa.odds(lg.odds_api_key)}
+            for fixture_id, match_id in soon:
+                if fixture_id in priced:
+                    odds_records += _odds_records(match_id, PROVIDER_TOA, fixture_id,
+                                                  parse_event_odds(priced[fixture_id]), now)
+        summary["the_odds_api"] = f"{toa.credits_used} credits this run"
 
     summary["live_rows"] = _save_live(live_rows)
     summary["odds_rows"] = _save_odds(odds_records)
@@ -209,6 +207,8 @@ def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
         api_storage.write_csv("unmatched_teams.csv",
                               pd.DataFrame(sorted(resolve.unmatched), columns=["provider", "league", "name"]))
         summary["unmatched_teams"] = len(resolve.unmatched)
+    elif api_storage.exists("unmatched_teams.csv"):
+        api_storage.path("unmatched_teams.csv").unlink()
     log.info("providers: %s", summary)
     return summary
 

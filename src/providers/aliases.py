@@ -132,6 +132,20 @@ TEAM_ALIASES: dict[str, str] = {
     "trabzonspor": "Trabzonspor", "istanbul basaksehir": "Buyuksehyr", "basaksehir": "Buyuksehyr",
     "olympiakos piraeus": "Olympiakos", "olympiacos": "Olympiakos", "panathinaikos": "Panathinaikos",
     "aek athens": "AEK", "paok": "PAOK", "aris": "Aris",
+    # names seen in The Odds API feeds
+    "cercle brugge ksv": "Cercle Brugge", "leuven": "Oud-Heverlee Leuven",
+    "dynamo dresden": "Dresden", "energie cottbus": "Cottbus",
+    "oldham athletic": "Oldham", "york city": "York",
+    "rodez af": "Rodez", "lavallois": "Laval", "usl dunkerque": "Dunkerque",
+    "ae kifisia": "Kifisia", "aris thessaloniki": "Aris", "atromitos athens": "Atromitos",
+    "levadiakos": "Levadeiakos", "paok thessaloniki": "PAOK", "panetolikos agrinio": "Panetolikos",
+    "volos": "Volos NFC", "atalanta bc": "Atalanta", "inter milan": "Inter",
+    "catanzaro 1929": "Catanzaro", "ado den haag": "Den Haag", "twente enschede": "Twente",
+    "cs maritimo": "Maritimo", "vitoria": "Guimaraes", "falkirk f c": "Falkirk",
+    "real racing santander": "Santander", "ad ceuta": "Ceuta", "celta fortuna": "Celta B",
+    "real sociedad b": "Sociedad B", "amed": "Amedspor", "erzurum bb": "Erzurumspor",
+    "gazisehir gaziantep": "Gaziantep", "goztepe": "Goztep", "torku konyaspor": "Konyaspor",
+    "caykur rizespor": "Rizespor",
 }
 
 

@@ -55,12 +55,22 @@ def api_key(name: str) -> str | None:
 API_FOOTBALL_URL = "https://v3.football.api-sports.io"
 API_FOOTBALL_BOOKMAKER = 8          # Bet365 — same bookmaker as the Football-Data prices
 API_FOOTBALL_DAILY_LIMIT = 100      # free plan
+# The free API-Football plan only serves fixtures from yesterday to tomorrow and
+# odds of seasons 2022-2024, so current-season odds come from The Odds API.
+API_FOOTBALL_ODDS = False
+API_FIXTURE_DAYS_BACK = 1           # fresh results of yesterday and today
+API_FIXTURE_DAYS_AHEAD = 1          # fixtures of tomorrow
+
 ODDS_API_URL = "https://api.the-odds-api.com/v4"
-ODDS_API_REGIONS = "uk"
 ODDS_API_BOOKMAKERS = ("williamhill", "skybet", "paddypower", "unibet_uk", "betfair_sb_uk")
-ODDS_API_MAX_CREDITS_PER_RUN = 20   # free plan: 500 credits / month
-API_FIXTURE_DAYS_BACK = 2           # refresh results of the last N days
-API_FIXTURE_DAYS_AHEAD = 3          # fixtures / odds for the next N days
+# Free plan: 500 credits / month. /events is free (fixtures for the week),
+# /odds costs one credit per market. h2h + totals = 2 credits per league,
+# requested only for leagues with a match in the next ODDS_API_WINDOW_HOURS
+# and at most once per ODDS_API_REFRESH_HOURS.
+ODDS_API_MARKETS = ("h2h", "totals")
+ODDS_API_WINDOW_HOURS = 48
+ODDS_API_REFRESH_HOURS = 20
+ODDS_API_MAX_CREDITS_PER_RUN = 40
 
 # ---------------------------------------------------------------------------
 # Seasons

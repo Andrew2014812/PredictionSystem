@@ -2,8 +2,9 @@
 
 Endpoints used (query parameter ``apiKey``):
 
-* ``GET /sports/{sport}/odds?regions=uk&markets=h2h,totals,spreads&oddsFormat=decimal&bookmakers=...``
-  — cost = number of markets × regions (bookmakers count as one region);
+* ``GET /sports/{sport}/events`` — upcoming fixtures, free (0 credits);
+* ``GET /sports/{sport}/odds?markets=h2h,totals&oddsFormat=decimal&bookmakers=...``
+  — cost = number of markets (the bookmaker list counts as one region);
 * ``GET /sports/{sport}/scores?daysFrom=3`` — completed matches, cost 2.
 
 Featured soccer markets map to: h2h -> 1X2, totals -> total goals,
@@ -24,7 +25,7 @@ log = logging.getLogger(__name__)
 
 PROVIDER = "the_odds_api"
 UK = ZoneInfo("Europe/London")
-MARKETS = ("h2h", "totals", "spreads")
+MARKETS = ("h2h", "totals", "spreads")          # every market the parser understands
 
 
 class TheOddsApi:
@@ -38,20 +39,30 @@ class TheOddsApi:
         return bool(self.key)
 
     def _get(self, path: str, params: dict, cost: int, max_age: float):
-        if self.credits_used + cost > config.ODDS_API_MAX_CREDITS_PER_RUN:
-            log.warning("The Odds API credit cap for this run reached; skipping %s", path)
-            return None
         cached = self.cache.get(f"{config.ODDS_API_URL}/{path}", params, max_age)
         if cached is not None:
             return cached
+        if self.credits_used + cost > config.ODDS_API_MAX_CREDITS_PER_RUN:
+            log.warning("The Odds API credit cap for this run reached; skipping %s", path)
+            return None
         self.credits_used += cost
         return fetch_json(self.cache, f"{config.ODDS_API_URL}/{path}", {**params, "apiKey": self.key}, {},
                           max_age, cost_header="x-requests-last", remaining_header="x-requests-remaining")
 
-    def odds(self, sport_key: str, max_age: float = 3 * 3600) -> list[dict]:
-        params = {"markets": ",".join(MARKETS), "oddsFormat": "decimal",
+    def events(self, sport_key: str, max_age: float = 3 * 3600) -> list[dict]:
+        """Upcoming fixtures of a league (free endpoint)."""
+        return self._get(f"sports/{sport_key}/events", {}, 0, max_age) or []
+
+    def odds(self, sport_key: str, max_age: float = config.ODDS_API_REFRESH_HOURS * 3600) -> list[dict]:
+        params = {"markets": ",".join(config.ODDS_API_MARKETS), "oddsFormat": "decimal",
                   "bookmakers": ",".join(config.ODDS_API_BOOKMAKERS)}
-        return self._get(f"sports/{sport_key}/odds", params, len(MARKETS), max_age) or []
+        return self._get(f"sports/{sport_key}/odds", params, len(config.ODDS_API_MARKETS), max_age) or []
+
+    def is_cached(self, sport_key: str) -> bool:
+        params = {"markets": ",".join(config.ODDS_API_MARKETS), "oddsFormat": "decimal",
+                  "bookmakers": ",".join(config.ODDS_API_BOOKMAKERS)}
+        return self.cache.get(f"{config.ODDS_API_URL}/sports/{sport_key}/odds", params,
+                              config.ODDS_API_REFRESH_HOURS * 3600) is not None
 
     def scores(self, sport_key: str, days_from: int = 3, max_age: float = 1800) -> list[dict]:
         return self._get(f"sports/{sport_key}/scores", {"daysFrom": days_from}, 2, max_age) or []
