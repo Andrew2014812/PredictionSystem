@@ -5,9 +5,8 @@ from src import config
 from src.markets.distributions import (corners_distribution, outcome_probabilities, prob_over,
                                        reconcile_with_1x2, score_matrix)
 from src.markets.markets import corner_markets, goal_markets, selection_won
-from src.markets.odds import fit_market_score_matrix, price
+from src.markets.odds import PricedSelection, price
 from src.markets.recommendation import main_prediction, risk_prediction
-from src.markets.odds import PricedSelection
 
 
 def _by_key(sels):
@@ -40,8 +39,13 @@ def test_market_probabilities_are_consistent():
     # handicap +0 would equal 1X2; -1 home win is "win by 2+" and smaller than a home win
     assert p[("HANDICAP_-1", "H")] < p[("1X2", "H")]
     for line in config.HANDICAP_LINES:
-        total = sum(p[(f"HANDICAP_{line:+d}", s)] for s in "HDA")
+        sels = "HA" if line % 1 else "HDA"
+        assert (f"HANDICAP_{line:+g}", "D") in p or line % 1
+        total = sum(p[(f"HANDICAP_{line:+g}", s)] for s in sels)
         assert total == pytest.approx(1.0)
+    # half line -0.5 is exactly "home win"; +0.5 home is "home or draw"
+    assert p[("HANDICAP_-0.5", "H")] == pytest.approx(p[("1X2", "H")])
+    assert p[("HANDICAP_+0.5", "H")] == pytest.approx(p[("DOUBLE_CHANCE", "1X")])
 
 
 def test_exact_scores_are_top_cells_in_order():
@@ -68,36 +72,36 @@ def test_corner_distribution_and_lines():
     ("TOTAL_2.5", "UNDER", 2, 1, None, False), ("BTTS", "YES", 2, 0, None, False),
     ("EXACT_SCORE", "2-1", 2, 1, None, True), ("HANDICAP_-1", "D", 2, 1, None, True),
     ("HANDICAP_-1", "H", 3, 1, None, True), ("HANDICAP_+1", "A", 0, 2, None, True),
+    ("HANDICAP_+1", "D", 0, 1, None, True), ("HANDICAP_-2", "D", 2, 0, None, True),
+    # half lines: two outcomes, no draw after the handicap
+    ("HANDICAP_-0.5", "H", 1, 0, None, True), ("HANDICAP_-0.5", "A", 1, 1, None, True),
+    ("HANDICAP_+0.5", "H", 1, 1, None, True), ("HANDICAP_-1.5", "H", 2, 1, None, False),
+    ("HANDICAP_-1.5", "A", 2, 1, None, True), ("HANDICAP_+2.5", "H", 0, 2, None, True),
     ("CORNERS_9.5", "OVER", 1, 1, 11, True), ("CORNERS_9.5", "OVER", 1, 1, None, None),
 ])
 def test_settlement_rules(market, selection, hg, ag, corners, expected):
     assert selection_won(market, selection, hg, ag, corners) is expected
 
 
-def test_odds_sources_are_separated():
-    match = {"odds_home": 2.0, "odds_draw": 3.4, "odds_away": 3.8, "odds_over25": 1.9, "odds_under25": 1.95}
+def test_only_real_prices_are_attached():
     sels = goal_markets(score_matrix(1.5, 1.1)) + corner_markets(corners_distribution(10, None))
-    base = {(s.market, s.selection): s.probability for s in sels}
-    priced = {(s.market, s.selection): s for s in
-              price(sels, match, fit_market_score_matrix(match), base, score_matrix(1.4, 1.1), base)}
-    assert priced[("1X2", "H")].odds_source == "market" and priced[("1X2", "H")].odds == 2.0
-    assert priced[("TOTAL_2.5", "OVER")].odds_source == "market"
-    assert priced[("BTTS", "YES")].odds_source == "derived"
-    assert priced[("CORNERS_9.5", "OVER")].odds_source == "simulated"
+    real = {("1X2", "H"): {"odds": 2.0, "bookmaker": "Bet365", "provider": "football_data"},
+            ("TOTAL_2.5", "OVER"): {"odds": 1.9, "bookmaker": "Bet365", "provider": "football_data"}}
+    priced = {(s.market, s.selection): s for s in price(sels, real)}
     s = priced[("1X2", "H")]
-    assert s.fair_odds == pytest.approx(1 / s.probability)
-    assert s.ev == pytest.approx(s.probability * 2.0 - 1)
+    assert s.odds == 2.0 and s.bookmaker == "Bet365" and s.ev == pytest.approx(s.probability * 2.0 - 1)
+    # nothing is derived or simulated: every other selection has no price and no EV
+    others = [p for k, p in priced.items() if k not in real]
+    assert others and all(p.odds is None and p.ev is None and not p.has_odds for p in others)
 
 
-def test_without_any_odds_everything_is_simulated():
-    sels = goal_markets(score_matrix(1.5, 1.1))
-    base = {(s.market, s.selection): s.probability for s in sels}
-    priced = price(sels, {}, None, base, score_matrix(1.4, 1.1), {})
-    assert {s.odds_source for s in priced} == {"simulated"}
+def test_no_odds_at_all():
+    priced = price(goal_markets(score_matrix(1.5, 1.1)), None)
+    assert not any(p.has_odds for p in priced)
 
 
-def _ps(market, selection, p, odds, source="market"):
-    return PricedSelection(market, selection, p, odds, source)
+def _ps(market, selection, p, odds=None):
+    return PricedSelection(market, selection, p, odds, "Bet365" if odds else None)
 
 
 def test_main_prediction_prefers_value_over_probability():
@@ -108,10 +112,24 @@ def test_main_prediction_prefers_value_over_probability():
     assert main.kind == "value" and (main.pick.market, main.pick.selection) == ("1X2", "H")
 
 
-def test_main_prediction_falls_back_to_confidence():
-    sels = [_ps("1X2", "H", 0.50, 1.80), _ps("TOTAL_2.5", "OVER", 0.58, 1.60)]
+def test_main_prediction_without_value_is_the_most_reliable_probable_selection():
+    sels = [_ps("1X2", "H", 0.50, 1.80), _ps("TOTAL_2.5", "OVER", 0.58, 1.60), _ps("BTTS", "YES", 0.60)]
     main = main_prediction(sels)
-    assert main.kind == "confidence" and main.pick.market == "TOTAL_2.5"
+    # BTTS 0.60 x 0.95 = 0.57 < TOTAL 0.58 x 1.0
+    assert main.kind == "model" and main.pick.market == "TOTAL_2.5"
+
+
+def test_main_prediction_exists_without_any_odds():
+    sels = [_ps("1X2", "H", 0.48), _ps("1X2", "D", 0.27), _ps("1X2", "A", 0.25), _ps("TOTAL_2.5", "UNDER", 0.55)]
+    main = main_prediction(sels)
+    assert main is not None and main.pick.ev is None
+    assert main.pick.market == "TOTAL_2.5"
+
+
+def test_main_prediction_ignores_near_certain_selections():
+    sels = [_ps("TOTAL_1.5", "OVER", 0.92), _ps("1X2", "H", 0.40), _ps("1X2", "A", 0.30), _ps("1X2", "D", 0.30)]
+    main = main_prediction(sels)
+    assert main.pick.market == "1X2" and main.pick.selection == "H"      # falls back to most probable 1X2
 
 
 def test_risk_prediction_rules():
@@ -119,3 +137,4 @@ def test_risk_prediction_rules():
     assert risk_prediction([_ps("1X2", "A", 0.20, 6.0)]) is None        # probability too low
     assert risk_prediction([_ps("1X2", "A", 0.30, 3.2)]) is None        # EV below threshold
     assert risk_prediction([_ps("EXACT_SCORE", "2-1", 0.30, 9.0)]) is None
+    assert risk_prediction([_ps("1X2", "A", 0.40)]) is None            # no real odds -> no risk prediction

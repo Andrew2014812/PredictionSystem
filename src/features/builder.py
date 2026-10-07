@@ -30,11 +30,14 @@ FORM_STATS = ("gf", "ga", "shots_for", "shots_against", "sot_for", "sot_against"
               "corners_for", "corners_against")
 FREQ_STATS = ("btts", "over15", "over25", "over35", "clean_sheet", "failed_to_score")
 FREQ_WINDOW = 10
+VENUE_FORM_WINDOW = 5
+VENUE_FORM_STATS = ("gf", "ga", "shots_for", "corners_for", "corners_against")
 
 ID_COLUMNS = ["match_id", "league", "country", "season", "date", "time", "kickoff",
               "home_team", "away_team", "played"]
 TARGET_COLUMNS = ["result", "home_goals", "away_goals", "total_corners"]
-ODDS_COLUMNS = ["odds_home", "odds_draw", "odds_away", "odds_over25", "odds_under25"]
+ODDS_COLUMNS = ["odds_home", "odds_draw", "odds_away", "odds_over25", "odds_under25",
+                "odds_ah_line", "odds_ah_home", "odds_ah_away"]
 MATCH_STAT_COLUMNS = ["home_shots", "away_shots", "home_sot", "away_sot", "home_corners",
                       "away_corners", "home_yellows", "away_yellows", "home_reds", "away_reds"]
 
@@ -47,6 +50,7 @@ class FeatureBuilder:
     def __init__(self):
         self.windows = config.FORM_WINDOWS
         self.history = TeamHistory(max(self.windows))
+        self.venue_history = TeamHistory(VENUE_FORM_WINDOW)   # keyed by (country, team, venue)
         self.tables = SeasonTables()
         self.h2h = HeadToHead(config.H2H_WINDOW)
         self.prior = LeaguePrior(config.LEAGUE_PRIOR_WINDOW)
@@ -98,6 +102,23 @@ class FeatureBuilder:
             for stat in FORM_STATS:
                 out[f"{side}_form{k}_{stat}"] = mean[IDX[stat]]
 
+        # Recent matches at the same venue (home team at home, away team away).
+        venue_rows = self.venue_history.window((*team_key, venue), VENUE_FORM_WINDOW)
+        if venue_rows:
+            mean = nanmean_rows(venue_rows)
+            for stat in VENUE_FORM_STATS:
+                out[f"{side}_venue_form5_{stat}"] = mean[IDX[stat]]
+
+        # Corner dominance and attacking pressure over the last 10 matches.
+        cf, ca = out.get(f"{side}_form10_corners_for"), out.get(f"{side}_form10_corners_against")
+        if cf is not None and ca is not None and cf == cf and ca == ca:
+            out[f"{side}_form10_corner_diff"] = cf - ca
+            if cf + ca > 0:
+                out[f"{side}_form10_corner_share"] = cf / (cf + ca)
+        sf, sa = out.get(f"{side}_form10_shots_for"), out.get(f"{side}_form10_shots_against")
+        if sf is not None and sa is not None and sf == sf and sa == sa and sf + sa > 0:
+            out[f"{side}_form10_shot_share"] = sf / (sf + sa)
+
         freq_rows = self.history.window(team_key, FREQ_WINDOW)
         if freq_rows:
             mean = nanmean_rows(freq_rows)
@@ -105,8 +126,8 @@ class FeatureBuilder:
                 out[f"{side}_freq_{stat}"] = mean[IDX[stat]]
 
         # Trend = recent level (last 5) minus season level.
-        for stat, name in (("gf", "scoring"), ("ga", "conceding"),
-                           ("shots_for", "shots"), ("corners_for", "corners")):
+        for stat, name in (("gf", "scoring"), ("ga", "conceding"), ("shots_for", "shots"),
+                           ("corners_for", "corners"), ("corners_against", "corners_conceded")):
             recent = out.get(f"{side}_form5_{stat}")
             season_level = out.get(f"{side}_season_{stat}")
             if recent is not None and season_level is not None:
@@ -224,8 +245,10 @@ class FeatureBuilder:
         self.tables.add(key, match["home_team"], match["away_team"], home_rec, away_rec)
         self.history.add((match["country"], match["home_team"]), match["date"], home_rec)
         self.history.add((match["country"], match["away_team"]), match["date"], away_rec)
+        self.venue_history.add((match["country"], match["home_team"], "home"), match["date"], home_rec)
+        self.venue_history.add((match["country"], match["away_team"], "away"), match["date"], away_rec)
         self.h2h.add(match["country"], match["home_team"], match["away_team"], hg, ag)
-        self.prior.add(match["league"], hg, ag, s["home_corners"] + s["away_corners"])
+        self.prior.add(match["league"], hg, ag, s["home_corners"], s["away_corners"])
 
     # -- driver -------------------------------------------------------------
     def build(self, matches: pd.DataFrame) -> pd.DataFrame:

@@ -1,323 +1,228 @@
-# Football Prediction System
+# FootPredict
 
-Information system for predicting the outcomes of football matches with machine
-learning. Diploma project: *«Інформаційна система прогнозування результатів
-спортивних подій на основі машинного навчання»*.
+Football prediction website built on machine learning. Diploma project:
+*«Інформаційна система прогнозування результатів спортивних подій на основі машинного навчання»*.
 
-The system does more than say "home / draw / away". It:
+FootPredict:
 
-* turns historical Football-Data results into pre-match features without data leakage;
-* trains four specialised **XGBoost** models (result, home goals, away goals, corners);
-* derives probabilities for 1X2, double chance, total goals, BTTS, exact score,
-  European handicap and total corners from those models;
-* compares the probabilities with market odds (kept separate from the ML part) and
-  picks a **main** and an optional **risk** prediction per match;
-* explains every prediction with **SHAP** in plain language and as a detailed chart;
-* stores every prediction, settles it after the match and reports profit / ROI;
-* shows everything in a multi-page Streamlit web interface.
+* turns historical Football-Data results into leak-free pre-match features;
+* trains four specialised **XGBoost** models (match result, home goals, away goals, total corners);
+* derives consistent probabilities for 1X2, double chance, totals, BTTS, exact score, handicap and corners;
+* attaches **real bookmaker odds only** (never derived or simulated prices) and computes expected value;
+* picks one **Main prediction** per match and, when it qualifies, an optional **Risk prediction**;
+* explains every prediction with **SHAP** in plain language (EN / UA);
+* stores every prediction, settles it after the match and reports profit / ROI of the Main strategy;
+* runs as a multi-page Streamlit website with an English / Ukrainian switch and dark / light theme.
+
+Live: <https://football-prediction-diploma.streamlit.app>
 
 ---
 
 ## Architecture
 
 ```
-Football-Data CSV (results + fixtures)
-        │  src/data/download.py
-        ▼
-Cleaning, match identity, deduplication           src/data/cleaning.py, dataset.py
-        ▼
-Pre-match features (day-by-day, leak-free)        src/features/builder.py, state.py
-        ▼
-Feature sets per model                            src/features/sets.py
-        ▼
-4 × XGBoost (Hyperopt on a validation season)     src/modelling/
-        ▼
-Probabilities: P(H/D/A), λ_home, λ_away, μ_corners
-        ▼
-Distributions → markets                           src/markets/distributions.py, markets.py
-        ▼
-Odds layer: market / derived / simulated, EV      src/markets/odds.py
-        ▼
-Main & risk prediction rules                      src/markets/recommendation.py
-        ▼
-Prediction store (snapshots, markets, picks)      src/prediction/
-        ▼
-Settlement → profit / ROI analytics               src/prediction/store.py, src/analytics/
-        ▼
-SHAP explanations (on demand)                     src/explain/
-        ▼
-Streamlit UI                                      app.py, views/, src/ui/
+Football-Data CSV (history, Bet365 prices)      API-Football / The Odds API (fresh fixtures, results, odds)
+        │  src/data/                                   │  src/providers/  (cached, quota-aware)
+        └──────────────► unified match table ◄─────────┘   team-name aliases, no fuzzy matching
+                               │
+                 leak-free pre-match features            src/features/
+                               │
+            4 × XGBoost  (Hyperopt on the validation season)     src/modelling/
+                               │   + draw-aware decision rule (chosen on validation)
+          P(H/D/A), λ_home, λ_away, μ_corners
+                               │
+     score matrix (Poisson, aligned with 1X2) → markets           src/markets/
+                               │
+          real odds → EV → Main / Risk prediction                 src/markets/odds.py, recommendation.py
+                               │
+     prediction store → settlement → Main profit / ROI            src/prediction/, src/analytics/
+                               │
+             SHAP explanation (on demand, per model version)      src/explain/
+                               │
+                     Streamlit UI (EN / UA, dark / light)         app.py, views/, src/ui/
 ```
 
-```
-app.py                      Streamlit entry point (navigation)
-views/                      pages: matches, match_details, history, leagues, teams, analytics, model_analysis
-scripts/                    command-line entry points (update data, build features, retrain, daily pipeline)
-src/config.py               all settings: paths, seasons, thresholds, market lines
-src/leagues.py              league registry (one line per division)
-src/storage.py              LocalStorage: CSV / Parquet / joblib / JSON under local_data/
-src/data/                   download, normalisation, deduplication
-src/features/               feature builder, feature sets, human-readable names
-src/modelling/              tasks, preprocessing, Hyperopt training, evaluation, model registry
-src/markets/                score / corner distributions, markets, odds, recommendations
-src/prediction/             prediction engine, prediction store and settlement
-src/explain/                SHAP explanations and plain-language summaries
-src/analytics/              team / league statistics, ROI statistics
-src/ui/                     theme, cached data access, UI components
-tests/                      unit tests; tests/e2e browser tests (Playwright)
-local_data/                 data: results/, fixtures/, processed/, models/, predictions/
-```
-
-## Data source
-
-[Football-Data.co.uk](https://www.football-data.co.uk) — free CSV files with results,
-match statistics (shots, shots on target, corners, fouls, cards) and bookmaker odds.
-
-* Historical results: `local_data/results/<season>/<division>.csv` (e.g. `2526/E0.csv`).
-* Future fixtures: `local_data/fixtures/fixtures.csv` (teams, date, time, odds — no result).
-
-All 22 main divisions are registered in `src/leagues.py` (England 1–5, Scotland 1–4,
-Spain 1–2, Italy 1–2, Germany 1–2, France 1–2, Netherlands, Belgium, Portugal,
-Turkey, Greece). Adding a division is one `League(...)` line; nothing else in the
-code refers to specific league codes. When a league lacks some statistic (e.g. the
-English National League has no corner data) the affected market is shown as
-*unavailable* for that league instead of being invented.
-
-### Match identity and deduplication
-
-`match_id = league + date + home team + away team`. Kick-off time is not part of the
-identity because Football-Data occasionally reports different times for the same match
-in fixtures and results, and a club never plays two league matches on one day.
-Only true duplicates (same id) are removed; a played row wins over a fixture row. The
-same pairing in another season, or a second meeting in the same season, stays.
-A fixture replaced by a result published under another date (rescheduled match) is
-dropped as stale.
-
-## Feature engineering and leakage protection
-
-Matches are processed **day by day**: features of every match on day *D* are read from
-the state built from matches *before D*; only then are the played matches of *D* added.
-So a match never sees its own result, simultaneous matches of a round do not see each
-other, and future fixtures get features but never update tables, form or targets.
-Tests in `tests/test_features.py` check exactly these properties.
-
-| Group | Examples |
+| Path | Content |
 |---|---|
-| League table (season, reset each season) | games, points, points/game, goal difference, position, relative position |
-| Season statistics | goals for / against, shots, shots on target, corners for / against, fouls, cards |
-| Home / away | home team's home record, away team's away record |
-| Form (last 5 / 10 / 15, across seasons) | win / draw / loss rates, PPG, goals, conceded, GD, shots, SoT, corners |
-| Event frequencies (last 10) | BTTS, over 1.5 / 2.5 / 3.5, clean sheets, failed to score |
-| Trends | last 5 minus season average: scoring, conceding, shots, corners |
-| Rest days | days since previous match (capped at 30), difference |
-| Head-to-head (last 5 meetings before the match) | wins / draws / losses, goals, BTTS rate, over 2.5 rate |
-| Derived | attack vs defence, position / points / form gaps, corner volume |
-| League context | running league averages (goals, corners, draw rate) |
+| `app.py` | entry point: brand, navigation, language and theme switches |
+| `views/` | pages: matches, match details, history, leagues, teams, analytics, model analysis |
+| `scripts/` | `run_pipeline.py` (daily update), `retrain_models.py`, `update_data.py`, `build_features.py`, `migrate_real_odds.py` |
+| `src/config.py` | all settings (paths, seasons, API, markets, recommendation thresholds) |
+| `src/leagues.py` | league registry with provider ids, season calendar and full-support flag |
+| `src/data/` | Football-Data download, normalisation, match identity, deduplication |
+| `src/providers/` | API-Football, The Odds API, Football-Data prices, aliases, cache, collection |
+| `src/features/` | feature builder, feature sets per model, human-readable names (EN / UA) |
+| `src/modelling/` | tasks, preprocessing, Hyperopt training, draw decision rule, evaluation, registry |
+| `src/markets/` | distributions, markets, real-odds layer, main / risk rules |
+| `src/prediction/` | prediction engine, prediction store, settlement |
+| `src/explain/` | SHAP and the plain-language explanation |
+| `src/analytics/` | team / league statistics, profit and ROI |
+| `src/ui/` | theme (CSS variables), translations, components, cached data access |
+| `tests/` | unit tests; `tests/e2e/` Playwright browser tests |
+| `local_data/` | results, fixtures, live results, odds, features, models, predictions |
 
-**Missing data.** Missing values stay `NaN` — XGBoost learns a default direction for
-missing values at every split, which is exactly the right behaviour for "no H2H yet",
-"fewer than 15 matches", "start of the season" or "no corner data". Rows are not
-dropped, and counters such as `h_form15_n`, `h2h_n` and `h_season_games` tell the model
-how much history stands behind the other numbers.
+## Data sources
 
-**Encoding.** The only categorical feature is the league. A scikit-learn
-`OneHotEncoder(handle_unknown="ignore")` is fitted on the training rows and saved
-inside each model bundle, so training, validation, test and live prediction always
-produce the same columns in the same order; an unknown league becomes an all-zero block.
+**Football-Data** ([football-data.co.uk](https://www.football-data.co.uk)) is the historical source for the
+models: results with shots, shots on target, corners, fouls and cards, plus real **Bet365** prices for 1X2,
+total goals 2.5 and the Asian handicap column (only half lines ±0.5 / ±1.5 / ±2.5 are used — they are
+equivalent to a 2-way handicap without refunds).
 
-**Odds are not features.** Bookmaker odds are kept only as market information. The
-feature builder already computes margin-free implied probabilities (`market_prob_*`);
-switching `USE_ODDS_FEATURES = True` in `src/config.py` adds them to every model's
-feature set without any other change.
+**API providers** fix Football-Data's publishing delay and add real odds for more markets:
 
-## Machine-learning models
+| Provider | Used for | Free plan | Calls per daily run |
+|---|---|---|---|
+| [API-Football](https://www.api-football.com) (api-sports.io, v3) | fixtures and final scores of the last 2 days and next 3 days, Bet365 odds for 1X2, totals, BTTS, double chance, exact score, European handicap, half-line Asian handicap, corners | 100 requests / day | 6 fixture requests (one per day, all leagues) + 1–2 odds pages per league with upcoming matches ≈ 25–45 |
+| [The Odds API](https://the-odds-api.com) (v4) | additional real odds (h2h, totals, spreads) for leagues API-Football did not price; fixtures and scores if API-Football is not configured | 500 credits / month | 3 credits per league request, capped at 20 credits per run |
 
-| Model | Algorithm | Target | Objective | Hyperopt metric | Output |
-|---|---|---|---|---|---|
-| Result | `XGBClassifier` | H / D / A | `multi:softprob` | log loss | P(home), P(draw), P(away) |
-| Home goals | `XGBRegressor` | home goals | `count:poisson` | Poisson deviance | λ_home |
-| Away goals | `XGBRegressor` | away goals | `count:poisson` | Poisson deviance | λ_away |
-| Corners | `XGBRegressor` | total corners | `count:poisson` | Poisson deviance | μ_corners |
+Priority when several providers price the same selection: API-Football → The Odds API → Football-Data.
+Responses are cached in `local_data/api/` with a quota log; the website never calls an API — it only reads
+files written by the pipeline. A provider name that cannot be mapped to a Football-Data team name is skipped
+and written to `local_data/api/unmatched_teams.csv`; add it to `src/providers/aliases.py`.
 
-Every model has its own feature set (`src/features/sets.py`): the result model leans
-on table, form and strength gaps; the goal models on attack / defence, shots and
-scoring frequencies; the corner model on corner statistics and shot volume.
+### Supported leagues — full support only
 
-*Why log loss for the classifier?* All markets and the EV calculation consume
-probabilities. Log loss rewards well-calibrated probabilities, while accuracy and
-macro F1 only look at the most likely class.
-*Why Poisson deviance for the regressors?* Their predictions are used as Poisson
-rates; Poisson deviance is the proper loss for count targets.
+21 divisions: England 1–4, Scotland 1–4, Spain 1–2, Italy 1–2, Germany 1–2, France 1–2, Netherlands,
+Belgium, Portugal, Turkey, Greece. Every enabled league has several seasons of results with shots, shots on
+target, corners and cards (tested in `tests/test_rules.py`), so every model and market works.
 
-### Temporal evaluation
+Not included: the English National League (only ≈5 % of matches have corner statistics) and the 16 extra
+Football-Data leagues (Argentina, Austria, Brazil, China, Denmark, Finland, Ireland, Japan, Mexico, Norway,
+Poland, Romania, Russia, Sweden, Switzerland, USA), whose files contain goals and closing 1X2 odds only — no
+shots, corners or cards. The registry already supports calendar-year seasons (`calendar="calendar_year"`)
+should a complete source for such leagues become available.
 
-| Period | Seasons (current season 2026/27) | Use |
-|---|---|---|
-| Train | 2021/22 – 2023/24 | fitting during Hyperopt |
-| Validation | 2024/25 | Hyperopt objective + early stopping only |
-| Test | 2025/26 | final evaluation, never used for tuning |
-| Current | 2026/27 | out-of-sample live predictions |
+## Features and leakage protection
 
-The split moves automatically with the calendar (`season_split` in
-`src/modelling/pipeline.py`). Hyperopt (TPE) runs 30 trials for the classifier and 20
-for each regressor with early stopping on the validation season. Two model versions are
-saved:
+Matches are processed **day by day**: the features of every match on day *D* come from matches before *D*;
+only then are the results of *D* added. Future fixtures and API rows get features but never update tables,
+form or targets. Groups: league table, season statistics, home / away, form 5 / 10 / 15, venue form,
+event frequencies, trends, rest days, head-to-head, attack-vs-defence and strength gaps, corner pressure
+(corner and shot shares), league context. Missing values stay `NaN` (XGBoost handles them natively).
+Odds are **not** model inputs (`USE_ODDS_FEATURES = False`).
 
-* `backtest_<season>` — fitted on train + validation, evaluated on test; its predictions
-  of the test season fill the history as *backtest*;
-* `prod_<date>` — the same parameters refitted on all completed seasons; it predicts
-  the current season.
+## Models
 
-Model Analysis also reports two reference forecasts on the test season: the naive
-class-frequency forecast and the bookmaker's implied probabilities (for comparison only).
+| Model | Algorithm | Target | Objective | Hyperopt metric |
+|---|---|---|---|---|
+| Result | `XGBClassifier` | H / D / A | `multi:softprob` | log loss |
+| Home goals | `XGBRegressor` | home goals | `count:poisson` | Poisson deviance |
+| Away goals | `XGBRegressor` | away goals | `count:poisson` | Poisson deviance |
+| Corners | `XGBRegressor` | total corners | `count:poisson` + negative-binomial dispersion | Poisson deviance |
 
-## Prediction markets
+Temporal evaluation (current season 2026/27): **train** 2021/22–2023/24, **validation** 2024/25 (Hyperopt,
+early stopping, every design decision), **test** 2025/26 (evaluated once), **current** season predicted
+out-of-sample. Two model sets are saved: the evaluation model (train + validation, scored on test, fills the
+test-season history) and the production model (all completed seasons).
 
-All goal markets come from **one score matrix**:
+### Draws
 
-1. `P(i, j) = Pois(i; λ_home) · Pois(j; λ_away)` for 0–10 goals each;
-2. the home-win / draw / away-win regions of the matrix are rescaled to the
-   classifier's probabilities (independent Poisson misprices draws, the classifier is
-   trained on exactly that target), keeping the score shape inside each region.
+The classifier's draw probabilities are well calibrated, but a draw is rarely the single most likely outcome,
+so a plain arg-max almost never predicts one. Options compared on the validation season only: draw class
+weights (better recall, worse log loss), temperature / vector scaling (no gain), blending with the Poisson
+outcome probabilities (negligible gain) and a **decision rule**. The decision rule was chosen: probabilities
+(log loss, Brier) stay unchanged, the named outcome is `argmax(P(H), m·P(D), P(A))`, with `m` chosen on
+validation as the highest-macro-F1 value whose predicted draw share does not exceed the training draw share.
 
-From that matrix:
+### Corners
 
-* **1X2** — the three regions (equal to the classifier output);
-* **Double chance** — 1X = P(H)+P(D), X2 = P(D)+P(A), 12 = P(H)+P(A);
-* **Total goals** over / under 1.5, 2.5, 3.5 — sums over cells with `i + j > line`;
-* **BTTS** — sum over cells with `i > 0 and j > 0`;
-* **Exact score** — the five most probable cells (no per-score models);
-* **Handicap** — European 3-way handicap ±1, ±2: the line is added to the home goals,
-  home / draw / away of the adjusted score; three outcomes cover all scores, so there is
-  never a refund.
+Validation comparison: the v2 feature set, + corner-specific features (venue form, corner difference and
+share, conceded-corner trend, league home / away corners), + shot-based pressure features, and separate home
++ away corner models. The single total-corners model with corner and shot features was best; separate models
+were not better and were not adopted.
 
-**Corners**: total corners follow a negative-binomial distribution with mean μ_corners
-and a dispersion estimated on validation residuals (Poisson when not over-dispersed).
-Over / under 8.5, 9.5, 10.5 are stored; the match page has a slider for any line.
+## Markets
 
-## Odds, EV and recommendations
+All goal markets come from one score matrix: `Pois(i; λ_home) · Pois(j; λ_away)`, with the home-win / draw /
+away-win regions rescaled to the classifier probabilities, so 1X2, double chance, totals 1.5 / 2.5 / 3.5,
+BTTS, exact scores and handicaps agree with each other.
 
-For every selection the system keeps apart:
+**Handicap** (home team's perspective): whole lines ±1, ±2 are 3-way European handicaps (home / draw / away
+after adding the line to the home goals); half lines ±0.5, ±1.5, ±2.5 are 2-way (a draw after the handicap
+is impossible). Settlement is tested for both types.
 
-* **model probability** `p`;
-* **fair odds** `1 / p`;
-* **odds** and **odds source**:
-  * `market` — real bookmaker average from Football-Data (1X2, over / under 2.5);
-  * `derived` — computed from the real 1X2 and O/U 2.5 prices of the same match: a
-    Poisson score model is fitted to the bookmaker probabilities and the bookmaker's
-    margin is applied (double chance, other totals, BTTS, exact score, handicap);
-  * `simulated` — no market information (corners, or matches without odds): a naive
-    bookmaker prices the event at its recent league frequency plus a 6 % margin;
-* **EV** = `p · odds − 1` per unit stake.
+## Odds, EV and the Main prediction
 
-Derived and simulated prices are always labelled; history and analytics can be
-filtered by odds source.
+* **Odds** = a real bookmaker price from a provider; if a selection has no real price, the interface shows
+  no odds and no EV — nothing is derived or simulated.
+* **EV** = model probability × real odds − 1 (theoretical edge, not profit).
+* **Main prediction** — the best prediction for every match: among selections with probability 45–80 %,
+  a selection with real odds 1.30–3.00 and EV ≥ +3 % wins (highest EV × market reliability); otherwise the
+  highest probability × market reliability. It always exists when the match has a prediction.
+* **Risk prediction** — optional, real odds only: odds 3.0–8.0, probability ≥ 22 %, EV ≥ +5 %, reliable
+  market. Hidden when nothing qualifies.
 
-**Main prediction** (rule in `src/markets/recommendation.py`):
+## History, settlement and ROI
 
-1. candidates: all priced selections except exact scores with `p ≥ 45 %` and
-   `1.30 ≤ odds < 3.00`;
-2. if any candidate has `EV ≥ +3 %`, choose the highest
-   `EV × market reliability × odds-source reliability` → *value* pick;
-3. otherwise choose the most probable candidate → *confidence* pick (labelled "not a
-   value bet").
+Each match stores many predictions: market forecasts (1X2 — draw-aware —, total 2.5, BTTS, double chance,
+corners 9.5, exact score, handicap), the Main and the Risk prediction. After the match: `WON / LOST`
+(`VOID` only for a match that never took place). Fixed stake 1 unit: win `odds − 1`, loss `−1`, void `0`
+(not staked). **ROI = net profit / amount staked × 100**, counting only predictions with real odds; the hit
+rate counts every settled prediction. **Analytics defaults to Main predictions only** (one per match) — this
+is the FootPredict strategy result; Risk, all market forecasts and single markets are separate views.
 
-**Risk prediction** (optional): `3.0 ≤ odds ≤ 8.0`, `p ≥ 22 %`, `EV ≥ +5 %`, highest
-weighted EV; not shown when nothing qualifies. All thresholds live in `src/config.py`.
+`scripts/migrate_real_odds.py` removed the derived / simulated prices of the v2 history (the predictions and
+their results are kept; they no longer count in profit / ROI).
 
-## Prediction history and ROI
+## Website
 
-`local_data/predictions/`:
-
-* `snapshots.parquet` — one row per predicted match (probabilities, expected goals and
-  corners, main / risk selection, model version, source);
-* `markets.parquet` — every priced selection;
-* `picks.parquet` — stored predictions (one match → many predictions): the most likely
-  selection of 1X2, total 2.5, BTTS, corners 9.5 and exact score, plus main and risk.
-
-Each pick has a status `UPCOMING → WON / LOST` (`VOID` if corners were not reported or
-the match never took place) and a unit-stake profit: win `odds − 1`, loss `−1`.
-ROI = total profit / number of settled predictions × 100.
-
-Prediction origins:
-
-* `live` — generated before kick-off;
-* `backfill` — current-season match predicted after the fact by a model trained only on
-  earlier seasons, from pre-match features (still out-of-sample);
-* `backtest` — test season, predicted by the backtest model.
-
-A prediction is frozen once its match date has passed; re-running the pipeline only
-refreshes upcoming matches.
-
-## SHAP explanations
-
-TreeSHAP values are computed on demand with the model version that produced the stored
-prediction, from the stored pre-match features.
-
-* **Why this prediction?** — a sentence and the main factors for / against in plain
-  language (feature names are mapped to readable labels in `src/features/names.py`).
-* **Detailed SHAP** — horizontal bar chart, top 10 / 20 / all, positive and negative
-  contributions coloured separately.
-* **Global SHAP** (Model Analysis) — mean |SHAP| on the test season for each model,
-  next to XGBoost gain importance.
-
-Market → model mapping: 1X2 / handicap → result-model class; double chance → the
-excluded class with opposite sign; totals / BTTS → sum of both goal models (sign
-flipped for under / no); corners → corners model.
-
-## Web interface
-
-| Page | Content |
-|---|---|
-| Matches | leagues grouped by country (left), date strip and calendar (top), match cards with 1X2, total and BTTS probabilities and odds (centre), day summary (right) |
-| Match Details | header, result and settled predictions, main / risk prediction, why this prediction, detailed SHAP, all markets, corners slider, team comparison, last 5 / 10 / 15, home / away, H2H, rest days |
-| Prediction History | filters (dates, league, market, type, status, odds source, origin), daily / weekly / monthly / yearly summary, prediction table |
-| Leagues | table with form, upcoming matches, recent results, prediction performance |
-| Teams | search, position, form 5 / 10 / 15, home / away, trends, matches |
-| Analytics | overall ROI, by type, by league, by market, by period; Advanced Analytics charts |
-| Model Analysis | periods, metrics with plain explanations, confusion matrix, calibration, benchmarks, global SHAP, Hyperopt search, derived markets |
+Matches (leagues, date strip, team search, 1X2 + total probabilities with real odds), Match Details
+(Main / Risk, markets, team comparison, recent form, home / away, H2H, rest days, "Why this prediction?" with
+relative influence bars, technical SHAP in an expander), Prediction History (completed predictions by default,
+period presets, group-by, advanced filters), Leagues, Teams (period selector drives statistics, charts and
+match list), Analytics (Main strategy, best / weakest market with a minimum sample), Model Analysis (metrics
+with explanations, draw section, baseline comparison, calibration, global SHAP, feature groups).
 
 ## Installation
 
-Python 3.11 or 3.12.
+Python 3.12.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-## Running
-
-```bash
 streamlit run app.py
 ```
 
-The repository already contains downloaded data, trained models and predictions, so
-the interface works right away.
+## API setup
 
-## Updating data and predictions
+1. Register at <https://dashboard.api-football.com/register> (free plan) and copy the API key.
+2. Register at <https://the-odds-api.com> (free plan) and copy the API key.
+3. Copy `.env.example` to `.env` (never commit `.env`) and fill in:
+
+   ```
+   API_FOOTBALL_KEY=your-api-football-key
+   ODDS_API_KEY=your-odds-api-key
+   ```
+
+4. Run `python scripts/run_pipeline.py`.
+5. For the scheduled cloud update add the same two values as GitHub repository secrets
+   (Settings → Secrets and variables → Actions) or with `gh secret set API_FOOTBALL_KEY`.
+
+Without keys the pipeline still works with Football-Data only (results, fixtures and Bet365 prices for
+1X2, total 2.5 and half-line handicaps).
+
+## Updating and retraining
 
 ```bash
-python scripts/run_pipeline.py              # download current season + fixtures,
-                                            # rebuild features, predict, settle
-python scripts/run_pipeline.py --offline    # same without downloading
-python scripts/update_data.py --all-seasons # re-download every season
-python scripts/build_features.py            # only rebuild features
+python scripts/run_pipeline.py              # APIs + Football-Data -> features -> settle -> predict
+python scripts/run_pipeline.py --offline    # local files only
+python scripts/retrain_models.py            # retrain the four models (≈15 min)
 ```
 
-Updating data and retraining are separate: the daily pipeline never changes the models.
+* `run_pipeline.py` updates data and predictions; it never retrains. Run it once or twice a day, before
+  match days. Order: providers → Football-Data → features → settlement (once) → predictions.
+* `retrain_models.py` re-tunes and refits the models; run it weekly or after a few hundred new results, and
+  always when a season ends (the train / validation / test split moves forward).
 
-## Retraining
+### Deployment and synchronisation
 
-```bash
-python scripts/retrain_models.py            # full Hyperopt search (≈10–15 min)
-python scripts/retrain_models.py --quick    # 5 trials per model, for a smoke test
-```
-
-Retrain once a season has finished: the split moves forward by one season, the new
-production model includes the finished season, and the backtest history is
-regenerated. Stored live predictions are never rewritten.
+The deployed app (Streamlit Community Cloud) is built from `main`. The workflow
+`.github/workflows/update-data.yml` is the single writer of `local_data/`: twice a day it runs the pipeline
+with the API keys from the repository secrets and commits the new data to `main`; Streamlit redeploys on
+the push. A local checkout of `main` is synchronised with `git pull` — the footer of every page shows the
+data timestamp, and `E2E_BASE_URL=<app url>/~/+ pytest tests/e2e --e2e -k sync` checks that the deployed app
+serves exactly the data of the checkout.
 
 ## Tests
 
@@ -325,15 +230,6 @@ regenerated. Stored live predictions are never rewritten.
 pip install -r requirements-dev.txt
 pytest                                     # unit tests
 python -m playwright install chromium
-pytest tests/e2e --e2e                     # browser tests: starts the app and drives every page
+pytest tests/e2e --e2e                     # browser tests (starts the app)
+E2E_BASE_URL=https://football-prediction-diploma.streamlit.app/~/+ pytest tests/e2e --e2e   # deployed app
 ```
-
-Unit tests cover deduplication, leakage (same-day matches, future fixtures, invariance
-to later data), odds exclusion from features, probability sums, exact score, totals,
-handicap, settlement and ROI.
-
-## Possible extensions
-
-Odds as model features (one flag), Asian handicap, cards and corner handicap markets,
-a simple baseline model for comparison, probability calibration (isotonic) on the
-validation season, scheduled pipeline runs.

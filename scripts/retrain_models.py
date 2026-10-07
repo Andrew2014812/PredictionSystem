@@ -17,6 +17,7 @@ from src import config  # noqa: E402
 from src.features.store import rebuild_features  # noqa: E402
 from src.modelling.pipeline import train_all  # noqa: E402
 from src.prediction.pipeline import generate_live_predictions, settle_predictions  # noqa: E402
+from src.prediction.store import drop_source  # noqa: E402
 
 
 def main() -> None:
@@ -27,9 +28,12 @@ def main() -> None:
 
     features = rebuild_features()
     versions = train_all(features, evals)
+    # Backfilled predictions were produced after the matches anyway; regenerate
+    # them with the new model. Live predictions (made before kick-off) are kept.
+    print("backfill predictions dropped:", drop_source("backfill"))
     print("trained:", versions)
     print("live predictions:", generate_live_predictions(features))
-    settle_predictions(features)
+    settle_predictions(features)          # one settlement for backtest, backfill and live picks
 
 
 if __name__ == "__main__":

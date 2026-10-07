@@ -26,10 +26,12 @@ from .. import config
 from ..explain.shap_explainer import gain_importance, global_importance
 from ..markets.distributions import (corners_distribution, prob_over, reconcile_with_1x2,
                                      score_matrix)
-from ..prediction.engine import LeagueBaselines, predict_matches
-from ..prediction.store import save_batch, settle
+from ..prediction.engine import predict_matches
+from ..providers import real_odds_lookup
+from ..prediction.store import save_batch
 from .evaluation import (binary_metrics, calibration_table, classifier_metrics, market_benchmark,
                          prior_benchmark, regressor_metrics)
+from .decision import choose_draw_multiplier, decide
 from .registry import save_version
 from .tasks import RESULT_CLASSES, TASKS
 from .training import ModelBundle, TaskTrainer, corner_leagues, negative_binomial_size
@@ -115,7 +117,20 @@ def train_all(features: pd.DataFrame, max_evals: dict | None = None) -> dict:
             tr, va, te, fu = (d.loc[d["league"].isin(leagues_with_corners)] for d in (tr, va, te, fu))
 
         params, n_estimators, trials = trainer.tune(tr, va, max_evals[name])
-        extra = {}
+        extra, validation = {}, None
+        if task.kind == "classifier":
+            # Draw decision rule: chosen on VALIDATION predictions of the train-only model.
+            tuned = trainer.fit(tr, params, n_estimators)
+            rows = va.loc[task.trainable(va)]
+            y_va, p_va = task.target_values(rows).to_numpy(), tuned.predict(rows)
+            train_draw_share = float((task.target_values(tr.loc[task.trainable(tr)]) == 1).mean())
+            choice = choose_draw_multiplier(p_va, y_va, train_draw_share)
+            extra = {"draw_multiplier": choice["multiplier"]}
+            validation = {
+                "argmax": classifier_metrics(y_va, p_va),
+                "draw_rule": classifier_metrics(y_va, p_va, decide(p_va, choice["multiplier"])),
+                "draw_rule_choice": choice,
+            }
         if name == "corners":
             tuned = trainer.fit(tr, params, n_estimators)
             rows = va.loc[task.trainable(va)]
@@ -132,8 +147,10 @@ def train_all(features: pd.DataFrame, max_evals: dict | None = None) -> dict:
         rows = te.loc[task.trainable(te)]
         y_true = task.target_values(rows).to_numpy()
         pred = bt.predict(rows)
+        test_argmax = None
         if task.kind == "classifier":
-            metrics = classifier_metrics(y_true, pred)
+            metrics = classifier_metrics(y_true, pred, decide(pred, extra["draw_multiplier"]))
+            test_argmax = classifier_metrics(y_true, pred)
             benchmarks = {"prior": prior_benchmark(task.target_values(tr.loc[task.trainable(tr)]), y_true),
                           "bookmaker": market_benchmark(rows, y_true)}
             calibration = {c: calibration_table((y_true == i).astype(int), pred[:, i])
@@ -151,7 +168,8 @@ def train_all(features: pd.DataFrame, max_evals: dict | None = None) -> dict:
             "hyperopt_evals": max_evals[name], "validation_score": best_trial["score"],
             "params": params, "n_estimators": n_estimators,
             "n_features": len(bt.feature_names), "features": bt.feature_names,
-            "test_metrics": metrics, "benchmarks": benchmarks, "calibration": calibration,
+            "test_metrics": metrics, "test_metrics_argmax": test_argmax, "validation_metrics": validation,
+            "benchmarks": benchmarks, "calibration": calibration,
             "trials": trials, "extra": {k: v for k, v in extra.items() if k != "feature_means"},
             "shap_global": global_importance(bt, rows),
             "gain_importance": gain_importance(bt),
@@ -178,8 +196,7 @@ def train_all(features: pd.DataFrame, max_evals: dict | None = None) -> dict:
 
     # Fill the prediction history of the test season with the backtest model.
     test_rows = features.loc[features["season"].isin(split["test"])]
-    batch = predict_matches(test_rows, backtest, LeagueBaselines(features), bt_version, "backtest")
+    batch = predict_matches(test_rows, backtest, real_odds_lookup(test_rows), bt_version, "backtest")
     save_batch(batch, replace_source="backtest")
-    settle(features)
     log.info("backtest predictions: %d matches", len(batch.snapshots))
     return {"backtest": bt_version, "production": prod_version}

@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import (accuracy_score, balanced_accuracy_score, confusion_matrix, f1_score,
                              log_loss, mean_absolute_error, mean_poisson_deviance,
-                             mean_squared_error, r2_score)
+                             mean_squared_error, precision_score, r2_score, recall_score)
 
 from .tasks import RESULT_CLASSES
 
@@ -16,9 +16,11 @@ def multiclass_brier(y_true: np.ndarray, proba: np.ndarray) -> float:
     return float(np.mean(np.sum((proba - onehot) ** 2, axis=1)))
 
 
-def classifier_metrics(y_true: np.ndarray, proba: np.ndarray) -> dict:
+def classifier_metrics(y_true: np.ndarray, proba: np.ndarray, y_pred: np.ndarray | None = None) -> dict:
+    """Probability metrics use ``proba``; class metrics use ``y_pred`` (default arg-max)."""
     y_true = np.asarray(y_true, dtype=int)
-    y_pred = proba.argmax(axis=1)
+    y_pred = proba.argmax(axis=1) if y_pred is None else np.asarray(y_pred, dtype=int)
+    labels = [0, 1, 2]
     return {
         "n": int(len(y_true)),
         "accuracy": float(accuracy_score(y_true, y_pred)),
@@ -29,6 +31,11 @@ def classifier_metrics(y_true: np.ndarray, proba: np.ndarray) -> dict:
         "confusion_matrix": confusion_matrix(y_true, y_pred, labels=[0, 1, 2]).tolist(),
         "predicted_share": {c: float(np.mean(y_pred == i)) for i, c in enumerate(RESULT_CLASSES)},
         "actual_share": {c: float(np.mean(y_true == i)) for i, c in enumerate(RESULT_CLASSES)},
+        "mean_probability": {c: float(np.mean(proba[:, i])) for i, c in enumerate(RESULT_CLASSES)},
+        "recall": dict(zip(RESULT_CLASSES, map(float, recall_score(y_true, y_pred, labels=labels,
+                                                                    average=None, zero_division=0)))),
+        "precision": dict(zip(RESULT_CLASSES, map(float, precision_score(y_true, y_pred, labels=labels,
+                                                                          average=None, zero_division=0)))),
     }
 
 

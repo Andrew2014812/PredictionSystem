@@ -8,10 +8,12 @@ Canonical columns (one row = one match):
     home_shots, away_shots, home_sot, away_sot, home_fouls, away_fouls,
     home_corners, away_corners, home_yellows, away_yellows,
     home_reds, away_reds,
-    odds_home, odds_draw, odds_away, odds_over25, odds_under25
+    odds_home, odds_draw, odds_away, odds_over25, odds_under25,
+    odds_ah_line, odds_ah_home, odds_ah_away
 
-Odds are kept as market information only; they never enter the feature
-matrix unless ``config.USE_ODDS_FEATURES`` is switched on.
+Odds are real Bet365 prices (Football-Data columns ``B365*``). They are kept
+as market information only and never enter the feature matrix unless
+``config.USE_ODDS_FEATURES`` is switched on.
 """
 from __future__ import annotations
 
@@ -21,7 +23,7 @@ import numpy as np
 import pandas as pd
 
 from .. import config
-from ..leagues import league_country
+from ..leagues import get_league, league_country
 
 STAT_COLUMNS = {
     "FTHG": "home_goals", "FTAG": "away_goals", "FTR": "result",
@@ -33,18 +35,21 @@ STAT_COLUMNS = {
     "HR": "home_reds", "AR": "away_reds",
 }
 
-# Each canonical odds column takes the first source column that is present
-# (market average first, then the older Betbrain average, then Bet365, then
-# the market maximum).
+# Real prices of one bookmaker (Bet365) so that every stored price is a
+# price a bettor could actually take; no averages, no derived values.
+ODDS_BOOKMAKER = "Bet365"
 ODDS_SOURCES = {
-    "odds_home": ["AvgH", "BbAvH", "B365H", "MaxH", "BbMxH"],
-    "odds_draw": ["AvgD", "BbAvD", "B365D", "MaxD", "BbMxD"],
-    "odds_away": ["AvgA", "BbAvA", "B365A", "MaxA", "BbMxA"],
-    "odds_over25": ["Avg>2.5", "BbAv>2.5", "B365>2.5", "Max>2.5", "P>2.5"],
-    "odds_under25": ["Avg<2.5", "BbAv<2.5", "B365<2.5", "Max<2.5", "P<2.5"],
+    "odds_home": ["B365H"],
+    "odds_draw": ["B365D"],
+    "odds_away": ["B365A"],
+    "odds_over25": ["B365>2.5"],
+    "odds_under25": ["B365<2.5"],
+    "odds_ah_home": ["B365AHH"],
+    "odds_ah_away": ["B365AHA"],
 }
+AH_LINE_SOURCES = ["AHh", "BbAHh"]
 
-NUMERIC_COLUMNS = [c for c in STAT_COLUMNS.values() if c != "result"] + list(ODDS_SOURCES)
+NUMERIC_COLUMNS = [c for c in STAT_COLUMNS.values() if c != "result"] + list(ODDS_SOURCES) + ["odds_ah_line"]
 
 CANONICAL_COLUMNS = [
     "match_id", "league", "country", "season", "date", "time", "kickoff",
@@ -102,6 +107,7 @@ def normalise(raw: pd.DataFrame) -> pd.DataFrame:
             df[dst] = np.nan
     for dst, candidates in ODDS_SOURCES.items():
         df[dst] = _pick_first(raw, candidates)
+    df["odds_ah_line"] = _pick_first(raw, AH_LINE_SOURCES)
     # Odds of 1.0 or less are data errors, not prices.
     for col in ODDS_SOURCES:
         df.loc[df[col] <= 1.0, col] = np.nan
@@ -116,7 +122,9 @@ def normalise(raw: pd.DataFrame) -> pd.DataFrame:
     df.loc[~df["played"], stat_cols] = np.nan
 
     df["country"] = df["league"].map(league_country)
-    df["season"] = df["date"].map(config.season_of).astype(int)
+    calendars = df["league"].map(lambda c: get_league(c).calendar)
+    df["season"] = [config.season_of(d, c) for d, c in zip(df["date"], calendars)]
+    df["season"] = df["season"].astype(int)
     kickoff_time = df["time"].where(df["time"] != "", "00:00")
     df["kickoff"] = pd.to_datetime(df["date"].dt.strftime("%Y-%m-%d") + " " + kickoff_time,
                                    errors="coerce")

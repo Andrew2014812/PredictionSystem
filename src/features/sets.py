@@ -27,7 +27,10 @@ GROUPS: dict[str, list[str]] = {
     "form_corners": [r"^[ha]_form\d+_corners_(for|against)$"],
     "frequencies": [r"^[ha]_freq_"],
     "trends_goals": [r"^[ha]_trend_(scoring|conceding|shots)$"],
-    "trends_corners": [r"^[ha]_trend_corners$"],
+    "trends_corners": [r"^[ha]_trend_corners(_conceded)?$"],
+    "venue_form_goals": [r"^[ha]_venue_form5_(gf|ga|shots_for)$"],
+    "venue_form_corners": [r"^[ha]_venue_form5_corners_(for|against)$"],
+    "corner_pressure": [r"^[ha]_form10_(corner_diff|corner_share|shot_share)$"],
     "rest": [r"^[ha]_rest_days$", r"^diff_rest_days$"],
     "h2h_result": [r"^h2h_(n|home_win_rate|draw_rate|away_win_rate)$"],
     "h2h_goals": [r"^h2h_(n|avg_goals|home_team_goals|btts_rate|over25_rate)$"],
@@ -36,7 +39,7 @@ GROUPS: dict[str, list[str]] = {
     "diff_corners": [r"^diff_form10_corners$", r"^[ha]_corners_vs_", r"^form_corners_sum$"],
     "league_result": [r"^league_(home_win_rate|draw_rate)$"],
     "league_goals": [r"^league_(avg_home_goals|avg_away_goals|over25_rate|btts_rate)$"],
-    "league_corners": [r"^league_avg_corners$"],
+    "league_corners": [r"^league_avg_(home_|away_)?corners$"],
     # Bookmaker information; only included when USE_ODDS_FEATURES is on.
     "market": [r"^market_prob_"],
 }
@@ -46,11 +49,14 @@ MODEL_GROUPS: dict[str, list[str]] = {
                "trends_goals", "rest", "h2h_result", "h2h_goals", "diff_result", "diff_attack",
                "league_result", "league_goals", "discipline"],
     "home_goals": ["table", "season_attack", "venue_goals", "form_result", "form_goals", "frequencies",
-                   "trends_goals", "rest", "h2h_goals", "diff_result", "diff_attack", "league_goals"],
+                   "trends_goals", "rest", "h2h_goals", "diff_result", "diff_attack", "league_goals",
+                   "venue_form_goals", "corner_pressure"],
     "away_goals": ["table", "season_attack", "venue_goals", "form_result", "form_goals", "frequencies",
-                   "trends_goals", "rest", "h2h_goals", "diff_result", "diff_attack", "league_goals"],
+                   "trends_goals", "rest", "h2h_goals", "diff_result", "diff_attack", "league_goals",
+                   "venue_form_goals", "corner_pressure"],
     "corners": ["table", "season_attack", "season_corners", "venue_corners", "form_corners",
-                "trends_corners", "rest", "diff_corners", "league_corners", "league_goals"],
+                "trends_corners", "rest", "diff_corners", "league_corners", "league_goals",
+                "venue_form_corners", "corner_pressure", "form_goals", "venue_form_goals"],
 }
 
 

@@ -1,24 +1,28 @@
 """Main prediction and risk prediction: formal selection rules.
 
-MAIN PREDICTION
-    1. Candidates: every priced selection except exact scores, with
-       p >= MAIN_MIN_PROBABILITY and MAIN_MIN_ODDS <= odds < MAIN_MAX_ODDS.
-    2. Value rule: among candidates with EV >= MAIN_MIN_EV pick the highest
-       score = EV x market reliability x odds-source reliability
-       (kind = "value").
-    3. Fallback: if no candidate has enough EV, pick the candidate with the
-       highest probability among those with odds >= MAIN_MIN_ODDS
-       (kind = "confidence"); the UI says that no value was found.
-    4. No candidates at all -> no main prediction.
+MAIN PREDICTION — the system's best prediction for the match; it exists for
+every match that has a model prediction.
 
-RISK PREDICTION (optional)
-    Candidates with RISK_MIN_ODDS <= odds <= RISK_MAX_ODDS,
-    p >= RISK_MIN_PROBABILITY and EV >= RISK_MIN_EV; pick the highest score
-    (same formula). Exact scores are excluded. If nothing qualifies the block
-    is not shown.
+    Candidates: every selection except exact scores whose probability lies in
+    [MAIN_MIN_PROBABILITY, MAIN_MAX_PROBABILITY] (the upper bound removes
+    near-certain, uninformative selections such as "over 0.5").
 
-Reliability weights downgrade markets the models predict less reliably
-(corners, handicap) and odds that are not real bookmaker prices.
+    1. Value rule — among candidates WITH real odds in
+       [MAIN_MIN_ODDS, MAIN_MAX_ODDS) and EV >= MAIN_MIN_EV, choose the
+       highest EV x market reliability.
+    2. Otherwise — choose the candidate with the highest
+       probability x market reliability (odds and EV are shown only if a real
+       price exists).
+    3. If no selection is in the probability band, the most probable 1X2
+       outcome is used.
+
+RISK PREDICTION — optional, real odds only: RISK_MIN_ODDS <= odds <=
+RISK_MAX_ODDS, p >= RISK_MIN_PROBABILITY, EV >= RISK_MIN_EV and a market
+reliability of at least RISK_MIN_RELIABILITY; highest EV x reliability.
+Exact scores are excluded. If nothing qualifies there is no risk prediction.
+
+Market reliability weights downgrade markets the models predict less
+reliably (corners, handicap, exact score).
 """
 from __future__ import annotations
 
@@ -31,7 +35,7 @@ from .odds import PricedSelection
 @dataclass
 class Recommendation:
     role: str                 # "main" | "risk"
-    kind: str                 # "value" | "confidence"
+    kind: str                 # "value" (chosen on EV) | "model" (chosen on probability)
     pick: PricedSelection
     score: float
 
@@ -40,38 +44,36 @@ class Recommendation:
 
 
 def reliability(sel: PricedSelection) -> float:
-    return (config.MARKET_RELIABILITY.get(sel.group, 0.8)
-            * config.ODDS_SOURCE_RELIABILITY.get(sel.odds_source or "", 0.0))
-
-
-def _score(sel: PricedSelection) -> float:
-    return (sel.ev or 0.0) * reliability(sel)
-
-
-def _priced(selections: list[PricedSelection]) -> list[PricedSelection]:
-    return [s for s in selections if s.odds and s.group != "EXACT_SCORE"]
+    return config.MARKET_RELIABILITY.get(sel.group, 0.8)
 
 
 def main_prediction(selections: list[PricedSelection]) -> Recommendation | None:
-    candidates = [s for s in _priced(selections)
-                  if s.probability >= config.MAIN_MIN_PROBABILITY
-                  and config.MAIN_MIN_ODDS <= s.odds < config.MAIN_MAX_ODDS]
-    if not candidates:
+    if not selections:
         return None
-    value = [s for s in candidates if s.ev >= config.MAIN_MIN_EV]
+    candidates = [s for s in selections if s.group != "EXACT_SCORE"
+                  and config.MAIN_MIN_PROBABILITY <= s.probability <= config.MAIN_MAX_PROBABILITY]
+    value = [s for s in candidates if s.has_odds and config.MAIN_MIN_ODDS <= s.odds < config.MAIN_MAX_ODDS
+             and s.ev >= config.MAIN_MIN_EV]
     if value:
-        best = max(value, key=lambda s: (_score(s), s.probability))
-        return Recommendation("main", "value", best, _score(best))
-    best = max(candidates, key=lambda s: (s.probability * reliability(s), s.odds))
-    return Recommendation("main", "confidence", best, _score(best))
+        best = max(value, key=lambda s: (s.ev * reliability(s), s.probability))
+        return Recommendation("main", "value", best, best.ev * reliability(best))
+    if candidates:
+        best = max(candidates, key=lambda s: (s.probability * reliability(s), s.has_odds))
+        return Recommendation("main", "model", best, best.probability * reliability(best))
+    one_x_two = [s for s in selections if s.market == "1X2"]
+    if not one_x_two:
+        return None
+    best = max(one_x_two, key=lambda s: s.probability)
+    return Recommendation("main", "model", best, best.probability)
 
 
 def risk_prediction(selections: list[PricedSelection]) -> Recommendation | None:
-    candidates = [s for s in _priced(selections)
-                  if config.RISK_MIN_ODDS <= s.odds <= config.RISK_MAX_ODDS
+    candidates = [s for s in selections if s.has_odds and s.group != "EXACT_SCORE"
+                  and config.RISK_MIN_ODDS <= s.odds <= config.RISK_MAX_ODDS
                   and s.probability >= config.RISK_MIN_PROBABILITY
-                  and s.ev >= config.RISK_MIN_EV]
+                  and s.ev >= config.RISK_MIN_EV
+                  and reliability(s) >= config.RISK_MIN_RELIABILITY]
     if not candidates:
         return None
-    best = max(candidates, key=lambda s: (_score(s), s.probability))
-    return Recommendation("risk", "value", best, _score(best))
+    best = max(candidates, key=lambda s: (s.ev * reliability(s), s.probability))
+    return Recommendation("risk", "value", best, best.ev * reliability(best))

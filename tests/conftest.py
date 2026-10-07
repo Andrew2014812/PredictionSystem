@@ -14,7 +14,8 @@ def raw_row(div, day, home, away, hg=None, ag=None, time="15:00", **extra):
     row = {"Div": div, "Date": day, "Time": time, "HomeTeam": home, "AwayTeam": away,
            "FTHG": hg, "FTAG": ag, "FTR": None, "HS": 10, "AS": 8, "HST": 4, "AST": 3,
            "HF": 11, "AF": 12, "HC": 5, "AC": 4, "HY": 1, "AY": 2, "HR": 0, "AR": 0,
-           "AvgH": 2.0, "AvgD": 3.4, "AvgA": 3.8, "Avg>2.5": 1.9, "Avg<2.5": 1.95}
+           "B365H": 2.0, "B365D": 3.4, "B365A": 3.8, "B365>2.5": 1.9, "B365<2.5": 1.95,
+           "AHh": -0.5, "B365AHH": 1.95, "B365AHA": 1.9}
     if hg is None:
         for k in ("FTHG", "FTAG", "HS", "AS", "HST", "AST", "HF", "AF", "HC", "AC", "HY", "AY", "HR", "AR"):
             row[k] = np.nan

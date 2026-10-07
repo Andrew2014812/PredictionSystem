@@ -30,6 +30,9 @@ STAT_LABELS = {
     "draw_rate": "draw rate",
     "loss_rate": "loss rate",
     "n": "matches available",
+    "corner_diff": "corner difference per game",
+    "corner_share": "share of corners in its matches",
+    "shot_share": "share of shots in its matches",
     "games": "matches played",
 }
 
@@ -47,6 +50,7 @@ TREND_LABELS = {
     "conceding": "conceding trend (last 5 vs season)",
     "shots": "shooting trend (last 5 vs season)",
     "corners": "corners trend (last 5 vs season)",
+    "corners_conceded": "corners conceded trend (last 5 vs season)",
 }
 
 OVERRIDES = {
@@ -93,6 +97,8 @@ OVERRIDES = {
     "league_avg_home_goals": "League average home goals",
     "league_avg_away_goals": "League average away goals",
     "league_avg_corners": "League average corners",
+    "league_avg_home_corners": "League average home corners",
+    "league_avg_away_corners": "League average away corners",
     "league_home_win_rate": "League home win rate",
     "league_draw_rate": "League draw rate",
     "league_over25_rate": "League over 2.5 rate",
@@ -105,41 +111,111 @@ OVERRIDES = {
 
 _TEAM = re.compile(r"^(?P<side>[ha])_(?P<rest>.+)$")
 
+# Ukrainian vocabulary ------------------------------------------------------
+SIDES_UK = {"h": "Господарі", "a": "Гості"}
+STAT_LABELS_UK = {
+    "gf": "забиті голи за матч", "ga": "пропущені голи за матч", "gd": "різниця голів за матч",
+    "ppg": "очки за матч", "shots_for": "удари за матч", "shots_against": "удари суперника за матч",
+    "sot_for": "удари в площину воріт за матч", "sot_against": "удари суперника в площину за матч",
+    "corners_for": "кутові за матч", "corners_against": "кутові суперника за матч",
+    "fouls": "фоли за матч", "yellows": "жовті картки за матч", "reds": "червоні картки за матч",
+    "win_rate": "частка перемог", "draw_rate": "частка нічиїх", "loss_rate": "частка поразок",
+    "n": "доступні матчі", "corner_diff": "різниця кутових за матч",
+    "corner_share": "частка кутових у матчах", "shot_share": "частка ударів у матчах",
+    "games": "зіграні матчі",
+}
+FREQ_LABELS_UK = {
+    "btts": "частка матчів «обидві заб'ють»", "over15": "частка тоталу більше 1.5",
+    "over25": "частка тоталу більше 2.5", "over35": "частка тоталу більше 3.5",
+    "clean_sheet": "частка «сухих» матчів", "failed_to_score": "частка матчів без забитих",
+}
+TREND_LABELS_UK = {
+    "scoring": "тренд забитих (останні 5 проти сезону)", "conceding": "тренд пропущених (останні 5 проти сезону)",
+    "shots": "тренд ударів (останні 5 проти сезону)", "corners": "тренд кутових (останні 5 проти сезону)",
+    "corners_conceded": "тренд кутових суперника (останні 5 проти сезону)",
+}
+OVERRIDES_UK = {
+    "league": "Ліга",
+    "h_points": "Господарі · очки в таблиці", "a_points": "Гості · очки в таблиці",
+    "h_position": "Господарі · місце в таблиці", "a_position": "Гості · місце в таблиці",
+    "h_position_norm": "Господарі · відносне місце в таблиці", "a_position_norm": "Гості · відносне місце в таблиці",
+    "h_season_gd": "Господарі · різниця голів за матч (сезон)", "a_season_gd": "Гості · різниця голів за матч (сезон)",
+    "h_rest_days": "Господарі · днів відпочинку", "a_rest_days": "Гості · днів відпочинку",
+    "diff_rest_days": "Перевага господарів у відпочинку (дні)",
+    "diff_season_ppg": "Різниця очок за матч (сезон)", "diff_position": "Різниця місць у таблиці",
+    "diff_points": "Різниця очок у таблиці", "diff_season_gd": "Різниця голів (сезон)",
+    "diff_venue_ppg": "Форма господарів удома проти форми гостей на виїзді",
+    "diff_form5_ppg": "Різниця поточної форми (останні 5)", "diff_form10_ppg": "Різниця поточної форми (останні 10)",
+    "diff_form10_gd": "Різниця голів (останні 10)", "diff_form10_shots": "Різниця ударів (останні 10)",
+    "diff_form10_sot": "Різниця ударів у площину (останні 10)", "diff_form10_corners": "Різниця кутових (останні 10)",
+    "h_attack_vs_a_defence": "Атака господарів проти оборони гостей",
+    "a_attack_vs_h_defence": "Атака гостей проти оборони господарів",
+    "h_form_attack_vs_a_form_defence": "Поточна атака господарів проти поточної оборони гостей",
+    "a_form_attack_vs_h_form_defence": "Поточна атака гостей проти поточної оборони господарів",
+    "h_sot_vs_a_sot_conceded": "Удари господарів у площину проти дозволених гостями",
+    "a_sot_vs_h_sot_conceded": "Удари гостей у площину проти дозволених господарями",
+    "h_corners_vs_a_corners_conceded": "Кутові господарів проти дозволених гостями",
+    "a_corners_vs_h_corners_conceded": "Кутові гостей проти дозволених господарями",
+    "form_corners_sum": "Сумарна кількість кутових обох команд (останні 10)",
+    "h2h_n": "Кількість особистих зустрічей", "h2h_home_win_rate": "Частка перемог господарів в особистих зустрічах",
+    "h2h_draw_rate": "Частка нічиїх в особистих зустрічах", "h2h_away_win_rate": "Частка перемог гостей в особистих зустрічах",
+    "h2h_avg_goals": "Голи за матч в особистих зустрічах", "h2h_home_team_goals": "Голи господарів в особистих зустрічах",
+    "h2h_btts_rate": "«Обидві заб'ють» в особистих зустрічах", "h2h_over25_rate": "Тотал більше 2.5 в особистих зустрічах",
+    "league_avg_home_goals": "Середні голи господарів у лізі", "league_avg_away_goals": "Середні голи гостей у лізі",
+    "league_avg_corners": "Середні кутові в лізі", "league_avg_home_corners": "Середні кутові господарів у лізі",
+    "league_avg_away_corners": "Середні кутові гостей у лізі", "league_home_win_rate": "Частка перемог господарів у лізі",
+    "league_draw_rate": "Частка нічиїх у лізі", "league_over25_rate": "Частка тоталу більше 2.5 у лізі",
+    "league_btts_rate": "Частка «обидві заб'ють» у лізі",
+    "market_prob_home": "Ймовірність букмекера: перемога господарів",
+    "market_prob_draw": "Ймовірність букмекера: нічия", "market_prob_away": "Ймовірність букмекера: перемога гостей",
+    "market_prob_over25": "Ймовірність букмекера: тотал більше 2.5",
+}
 
-def _venue(side: str) -> str:
-    return "home matches" if side == "h" else "away matches"
+_VOCAB = {
+    "en": {"sides": SIDES, "stats": STAT_LABELS, "freq": FREQ_LABELS, "trend": TREND_LABELS,
+           "overrides": OVERRIDES, "season": "season", "last": "last", "home_m": "home matches",
+           "away_m": "away matches", "league": "League"},
+    "uk": {"sides": SIDES_UK, "stats": STAT_LABELS_UK, "freq": FREQ_LABELS_UK, "trend": TREND_LABELS_UK,
+           "overrides": OVERRIDES_UK, "season": "сезон", "last": "останні", "home_m": "домашні матчі",
+           "away_m": "виїзні матчі", "league": "Ліга"},
+}
 
 
-def feature_label(name: str) -> str:
-    if name in OVERRIDES:
-        return OVERRIDES[name]
-    if name.startswith("league_") and "=" in name:          # one-hot column
-        return f"League: {league_label(name.split('=', 1)[1])}"
+def feature_label(name: str, lang: str = "en") -> str:
+    v = _VOCAB.get(lang, _VOCAB["en"])
+    if name in v["overrides"]:
+        return v["overrides"][name]
+    if name.startswith("league=") or (name.startswith("league_") and "=" in name):   # one-hot column
+        return f"{v['league']}: {league_label(name.split('=', 1)[1])}"
     m = _TEAM.match(name)
     if not m:
         return name.replace("_", " ").capitalize()
     side, rest = m["side"], m["rest"]
-    team = SIDES[side]
+    team, stats = v["sides"][side], v["stats"]
+    venue = v["home_m"] if side == "h" else v["away_m"]
     if rest.startswith("season_"):
         stat = rest[len("season_"):]
-        return f"{team} · {STAT_LABELS.get(stat, stat)} (season)"
+        return f"{team} · {stats.get(stat, stat)} ({v['season']})"
+    vform = re.match(r"venue_form(\d+)_(.+)", rest)
+    if vform:
+        return f"{team} · {stats.get(vform[2], vform[2])} ({v['last']} {vform[1]}, {venue})"
     if rest.startswith("venue_"):
         stat = rest[len("venue_"):]
-        return f"{team} · {STAT_LABELS.get(stat, stat)} ({_venue(side)})"
+        return f"{team} · {stats.get(stat, stat)} ({venue})"
     form = re.match(r"form(\d+)_(.+)", rest)
     if form:
-        return f"{team} · {STAT_LABELS.get(form[2], form[2])} (last {form[1]})"
+        return f"{team} · {stats.get(form[2], form[2])} ({v['last']} {form[1]})"
     if rest.startswith("freq_"):
         stat = rest[len("freq_"):]
-        return f"{team} · {FREQ_LABELS.get(stat, stat)} (last 10)"
+        return f"{team} · {v['freq'].get(stat, stat)} ({v['last']} 10)"
     if rest.startswith("trend_"):
         stat = rest[len("trend_"):]
-        return f"{team} · {TREND_LABELS.get(stat, stat)}"
+        return f"{team} · {v['trend'].get(stat, stat)}"
     return f"{team} · {rest.replace('_', ' ')}"
 
 
-def feature_labels(names) -> dict[str, str]:
-    return {n: feature_label(n) for n in names}
+def feature_labels(names, lang: str = "en") -> dict[str, str]:
+    return {n: feature_label(n, lang) for n in names}
 
 
 # ---------------------------------------------------------------------------
@@ -175,17 +251,41 @@ _GLOBAL_TOPICS = [
 ]
 
 
-def feature_topic(name: str) -> str:
+_TEAM_TOPICS_UK = {
+    "attacking output": "атакувальна результативність {team}", "defensive record": "надійність оборони {team}",
+    "failures to score": "матчі {team} без забитих", "recent results": "останні результати {team}",
+    "league standing": "становище {team} у таблиці", "{venue} record": "результати {team} {venue}",
+    "{venue} attack": "атака {team} {venue}", "{venue} defence": "оборона {team} {venue}",
+    "corner volume": "кількість кутових {team}", "rest before the match": "відпочинок {team} перед матчем",
+    "discipline": "дисципліна {team}",
+}
+_GLOBAL_TOPICS_UK = {
+    "home attack against the away defence": "атака господарів проти оборони гостей",
+    "away attack against the home defence": "атака гостей проти оборони господарів",
+    "corner volume of both teams": "кількість кутових обох команд",
+    "gap in league standing": "різниця в турнірному становищі", "gap in recent form": "різниця в поточній формі",
+    "difference in rest days": "різниця у відпочинку", "head-to-head record": "історія особистих зустрічей",
+    "scoring level of the league": "результативність ліги", "typical results in this league": "типові результати ліги",
+    "league profile": "профіль ліги", "bookmaker expectations": "очікування букмекерів",
+}
+
+
+def feature_topic(name: str, lang: str = "en") -> str:
     """Short noun phrase, e.g. "the home team's recent results"."""
+    uk = lang == "uk"
     m = _TEAM.match(name)
     if m and not re.match(r"^[ha]_(attack_vs|form_attack_vs|sot_vs|corners_vs)", name):
-        team = "the home team's" if m["side"] == "h" else "the away team's"
-        venue = "home" if m["side"] == "h" else "away"
+        home = m["side"] == "h"
         for pattern, topic in _TEAM_TOPICS:
             if re.search(pattern, name):
-                return f"{team} {topic.format(venue=venue)}"
-        return f"{team} statistics"
+                if uk:
+                    venue = "удома" if home else "на виїзді"
+                    return _TEAM_TOPICS_UK[topic].format(venue=venue, team="господарів" if home else "гостей")
+                team = "the home team's" if home else "the away team's"
+                return f"{team} {topic.format(venue='home' if home else 'away')}"
+        return ("статистика " + ("господарів" if home else "гостей")) if uk else \
+            f"{'the home team' if home else 'the away team'}'s statistics"
     for pattern, topic in _GLOBAL_TOPICS:
         if re.search(pattern, name):
-            return f"the {topic}"
-    return feature_label(name).lower()
+            return _GLOBAL_TOPICS_UK[topic] if uk else f"the {topic}"
+    return feature_label(name, lang).lower()

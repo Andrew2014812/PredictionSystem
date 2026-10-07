@@ -53,5 +53,50 @@ def test_settlement_profit(tmp_path, monkeypatch):
     out = store.settle(results, today=pd.Timestamp("2026-01-05").date()).set_index("pick_id")
     assert (out.loc["1", "status"], out.loc["1", "profit"]) == ("WON", pytest.approx(0.8))
     assert (out.loc["2", "status"], out.loc["2", "profit"]) == ("LOST", -1.0)
-    assert out.loc["3", "status"] == "VOID"            # corners not reported
+    assert out.loc["3", "status"] == "UPCOMING"        # corners not reported yet: wait, do not void
     assert out.loc["4", "status"] == "VOID"            # never played, long overdue
+
+
+def test_roi_uses_only_real_odds():
+    picks = _picks()
+    extra = pd.DataFrame({"match_id": ["f", "g"], "date": pd.to_datetime(["2026-01-11", "2026-01-12"]),
+                          "league": ["E0", "E0"], "group": ["BTTS", "BTTS"], "status": ["WON", "LOST"],
+                          "odds": [np.nan, np.nan], "probability": [.6, .6], "profit": [np.nan, np.nan]})
+    s = summarize(pd.concat([picks, extra], ignore_index=True))
+    assert s["settled"] == 5 and s["won"] == 3                 # hit rate counts every settled prediction
+    assert s["bets"] == 3                                      # ... ROI only the ones with real odds
+    assert s["roi"] == pytest.approx(0.8 / 3 * 100)
+    assert np.isnan(summarize(extra)["roi"]) and np.isnan(summarize(extra)["profit"])
+
+
+def test_void_is_not_staked():
+    s = summarize(_picks())
+    assert s["void"] == 1 and s["bets"] == 3
+
+
+def test_best_and_worst_market_need_a_minimum_sample():
+    from src.analytics.performance import best_and_worst
+    rows = []
+    for i in range(120):
+        rows.append({"match_id": f"t{i}", "date": pd.Timestamp("2026-01-01"), "group": "TOTAL", "league": "E0",
+                     "status": "WON" if i % 2 else "LOST", "odds": 2.2, "probability": .5,
+                     "profit": 1.2 if i % 2 else -1.0})
+        rows.append({"match_id": f"b{i}", "date": pd.Timestamp("2026-01-01"), "group": "BTTS", "league": "E0",
+                     "status": "LOST", "odds": 1.9, "probability": .5, "profit": -1.0})
+    rows.append({"match_id": "x", "date": pd.Timestamp("2026-01-01"), "group": "CORNERS", "league": "E0",
+                 "status": "WON", "odds": 5.0, "probability": .5, "profit": 4.0})
+    best, worst = best_and_worst(pd.DataFrame(rows))
+    assert best["group"] == "TOTAL" and worst["group"] == "BTTS"    # CORNERS: too few bets
+
+
+def test_date_presets():
+    from src.analytics.performance import preset_range
+    today = pd.Timestamp("2026-10-07")
+    assert preset_range("Last 7 days", today, "2025-01-01") == (pd.Timestamp("2026-10-01"), today)
+    assert preset_range("Last 30 days", today, "2025-01-01")[0] == pd.Timestamp("2026-09-08")
+    assert preset_range("This month", today, "2025-01-01")[0] == pd.Timestamp("2026-10-01")
+    assert preset_range("This year", today, "2025-01-01")[0] == pd.Timestamp("2026-01-01")
+    assert preset_range("This season", today, "2025-01-01", season_start="2026-07-01")[0] == pd.Timestamp("2026-07-01")
+    assert preset_range("All time", today, "2025-01-01")[0] == pd.Timestamp("2025-01-01")
+    assert preset_range("Custom", today, "2025-01-01", ("2026-02-01", "2026-02-10")) == \
+        (pd.Timestamp("2026-02-01"), pd.Timestamp("2026-02-10"))

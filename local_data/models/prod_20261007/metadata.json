@@ -1,0 +1,4058 @@
+{
+  "created": "2026-10-07T17:09:41",
+  "periods": {
+    "train": [
+      "2021/22",
+      "2022/23",
+      "2023/24"
+    ],
+    "validation": [
+      "2024/25"
+    ],
+    "test": [
+      "2025/26"
+    ],
+    "current": "2026/27"
+  },
+  "tasks": {
+    "result": {
+      "title": "Match result (1X2)",
+      "description": "Probabilities of home win, draw and away win.",
+      "kind": "classifier",
+      "target": "result",
+      "objective": "multi:softprob",
+      "hyperopt_metric": "log_loss",
+      "hyperopt_evals": 30,
+      "validation_score": 1.0148340626780517,
+      "params": {
+        "colsample_bytree": 0.31585396881920624,
+        "gamma": 1.9769372331099067,
+        "half_life_years": 2,
+        "learning_rate": 0.010384792043803404,
+        "max_depth": 4,
+        "min_child_weight": 1.0182574843051655,
+        "reg_alpha": 0.005074254213540458,
+        "reg_lambda": 1.9455719125289708,
+        "subsample": 0.8352914228773503
+      },
+      "n_estimators": 759,
+      "n_features": 174,
+      "features": [
+        "league=B1",
+        "league=D1",
+        "league=D2",
+        "league=E0",
+        "league=E1",
+        "league=E2",
+        "league=E3",
+        "league=F1",
+        "league=F2",
+        "league=G1",
+        "league=I1",
+        "league=I2",
+        "league=N1",
+        "league=P1",
+        "league=SC0",
+        "league=SC1",
+        "league=SC2",
+        "league=SC3",
+        "league=SP1",
+        "league=SP2",
+        "league=T1",
+        "h_season_games",
+        "h_venue_games",
+        "h_form5_n",
+        "h_form10_n",
+        "h_form15_n",
+        "a_season_games",
+        "a_venue_games",
+        "a_form5_n",
+        "a_form10_n",
+        "a_form15_n",
+        "h2h_n",
+        "diff_season_ppg",
+        "diff_position",
+        "diff_points",
+        "diff_season_gd",
+        "diff_venue_ppg",
+        "diff_form5_ppg",
+        "diff_form10_ppg",
+        "diff_form10_gd",
+        "diff_form10_shots",
+        "diff_form10_sot",
+        "diff_rest_days",
+        "h_attack_vs_a_defence",
+        "a_attack_vs_h_defence",
+        "h_form_attack_vs_a_form_defence",
+        "a_form_attack_vs_h_form_defence",
+        "h_sot_vs_a_sot_conceded",
+        "a_sot_vs_h_sot_conceded",
+        "league_avg_home_goals",
+        "league_avg_away_goals",
+        "league_home_win_rate",
+        "league_draw_rate",
+        "league_over25_rate",
+        "league_btts_rate",
+        "h_points",
+        "h_season_ppg",
+        "h_season_gd",
+        "h_season_gf",
+        "h_season_ga",
+        "h_season_shots_for",
+        "h_season_shots_against",
+        "h_season_sot_for",
+        "h_season_sot_against",
+        "h_season_fouls",
+        "h_season_yellows",
+        "h_season_reds",
+        "h_position",
+        "h_position_norm",
+        "h_form5_ppg",
+        "h_form5_win_rate",
+        "h_form5_draw_rate",
+        "h_form5_loss_rate",
+        "h_form5_gd",
+        "h_form5_gf",
+        "h_form5_ga",
+        "h_form5_shots_for",
+        "h_form5_shots_against",
+        "h_form5_sot_for",
+        "h_form5_sot_against",
+        "h_form10_ppg",
+        "h_form10_win_rate",
+        "h_form10_draw_rate",
+        "h_form10_loss_rate",
+        "h_form10_gd",
+        "h_form10_gf",
+        "h_form10_ga",
+        "h_form10_shots_for",
+        "h_form10_shots_against",
+        "h_form10_sot_for",
+        "h_form10_sot_against",
+        "h_form15_ppg",
+        "h_form15_win_rate",
+        "h_form15_draw_rate",
+        "h_form15_loss_rate",
+        "h_form15_gd",
+        "h_form15_gf",
+        "h_form15_ga",
+        "h_form15_shots_for",
+        "h_form15_shots_against",
+        "h_form15_sot_for",
+        "h_form15_sot_against",
+        "h_trend_scoring",
+        "h_trend_conceding",
+        "h_trend_shots",
+        "h_rest_days",
+        "a_points",
+        "a_season_ppg",
+        "a_season_gd",
+        "a_season_gf",
+        "a_season_ga",
+        "a_season_shots_for",
+        "a_season_shots_against",
+        "a_season_sot_for",
+        "a_season_sot_against",
+        "a_season_fouls",
+        "a_season_yellows",
+        "a_season_reds",
+        "a_position",
+        "a_position_norm",
+        "a_form5_ppg",
+        "a_form5_win_rate",
+        "a_form5_draw_rate",
+        "a_form5_loss_rate",
+        "a_form5_gd",
+        "a_form5_gf",
+        "a_form5_ga",
+        "a_form5_shots_for",
+        "a_form5_shots_against",
+        "a_form5_sot_for",
+        "a_form5_sot_against",
+        "a_form10_ppg",
+        "a_form10_win_rate",
+        "a_form10_draw_rate",
+        "a_form10_loss_rate",
+        "a_form10_gd",
+        "a_form10_gf",
+        "a_form10_ga",
+        "a_form10_shots_for",
+        "a_form10_shots_against",
+        "a_form10_sot_for",
+        "a_form10_sot_against",
+        "a_form15_ppg",
+        "a_form15_win_rate",
+        "a_form15_draw_rate",
+        "a_form15_loss_rate",
+        "a_form15_gd",
+        "a_form15_gf",
+        "a_form15_ga",
+        "a_form15_shots_for",
+        "a_form15_shots_against",
+        "a_form15_sot_for",
+        "a_form15_sot_against",
+        "a_trend_scoring",
+        "a_trend_conceding",
+        "a_trend_shots",
+        "a_rest_days",
+        "h_venue_ppg",
+        "h_venue_gf",
+        "h_venue_ga",
+        "h_venue_shots_for",
+        "h_venue_sot_for",
+        "a_venue_ppg",
+        "a_venue_gf",
+        "a_venue_ga",
+        "a_venue_shots_for",
+        "a_venue_sot_for",
+        "h2h_home_win_rate",
+        "h2h_draw_rate",
+        "h2h_away_win_rate",
+        "h2h_avg_goals",
+        "h2h_home_team_goals",
+        "h2h_btts_rate",
+        "h2h_over25_rate"
+      ],
+      "test_metrics": {
+        "n": 7094,
+        "accuracy": 0.47053848322526076,
+        "macro_f1": 0.43096903452171526,
+        "balanced_accuracy": 0.43315237232159426,
+        "log_loss": 1.0190733283655027,
+        "brier": 0.6111218914019745,
+        "confusion_matrix": [
+          [
+            2062,
+            621,
+            370
+          ],
+          [
+            957,
+            481,
+            451
+          ],
+          [
+            833,
+            524,
+            795
+          ]
+        ],
+        "predicted_share": {
+          "H": 0.5429940795038061,
+          "D": 0.22920778122356922,
+          "A": 0.22779813927262477
+        },
+        "actual_share": {
+          "H": 0.43036368762334365,
+          "D": 0.2662813645334085,
+          "A": 0.3033549478432478
+        },
+        "mean_probability": {
+          "H": 0.4340231120586395,
+          "D": 0.26130542159080505,
+          "A": 0.3046714663505554
+        },
+        "recall": {
+          "H": 0.6754012446773665,
+          "D": 0.25463208046585495,
+          "A": 0.3694237918215613
+        },
+        "precision": {
+          "H": 0.5353063343717549,
+          "D": 0.2958179581795818,
+          "A": 0.49195544554455445
+        }
+      },
+      "test_metrics_argmax": {
+        "n": 7094,
+        "accuracy": 0.4966168593177333,
+        "macro_f1": 0.37077187205254386,
+        "balanced_accuracy": 0.4318734322934675,
+        "log_loss": 1.0190733283655027,
+        "brier": 0.6111218914019745,
+        "confusion_matrix": [
+          [
+            2497,
+            12,
+            544
+          ],
+          [
+            1264,
+            15,
+            610
+          ],
+          [
+            1134,
+            7,
+            1011
+          ]
+        ],
+        "predicted_share": {
+          "H": 0.6900197349873132,
+          "D": 0.004792782633211165,
+          "A": 0.3051874823794756
+        },
+        "actual_share": {
+          "H": 0.43036368762334365,
+          "D": 0.2662813645334085,
+          "A": 0.3033549478432478
+        },
+        "mean_probability": {
+          "H": 0.4340231120586395,
+          "D": 0.26130542159080505,
+          "A": 0.3046714663505554
+        },
+        "recall": {
+          "H": 0.817884048476908,
+          "D": 0.007940709370037057,
+          "A": 0.4697955390334573
+        },
+        "precision": {
+          "H": 0.5101123595505618,
+          "D": 0.4411764705882353,
+          "A": 0.46697459584295614
+        }
+      },
+      "validation_metrics": {
+        "argmax": {
+          "n": 7129,
+          "accuracy": 0.49824659840089774,
+          "macro_f1": 0.370669116694156,
+          "balanced_accuracy": 0.4298208559128487,
+          "log_loss": 1.0148340626780517,
+          "brier": 0.6077751807472423,
+          "confusion_matrix": [
+            [
+              2503,
+              8,
+              614
+            ],
+            [
+              1279,
+              11,
+              563
+            ],
+            [
+              1105,
+              8,
+              1038
+            ]
+          ],
+          "predicted_share": {
+            "H": 0.685509889185019,
+            "D": 0.0037873474540608782,
+            "A": 0.3107027633609202
+          },
+          "actual_share": {
+            "H": 0.4383503997755646,
+            "D": 0.25992425305091876,
+            "A": 0.3017253471735166
+          },
+          "mean_probability": {
+            "H": 0.4324176013469696,
+            "D": 0.2602829337120056,
+            "A": 0.30729952454566956
+          },
+          "recall": {
+            "H": 0.80096,
+            "D": 0.0059363194819212085,
+            "A": 0.4825662482566248
+          },
+          "precision": {
+            "H": 0.5121751585839983,
+            "D": 0.4074074074074074,
+            "A": 0.4686230248306998
+          }
+        },
+        "draw_rule": {
+          "n": 7129,
+          "accuracy": 0.4666853696170571,
+          "macro_f1": 0.425456553533697,
+          "balanced_accuracy": 0.426550763109299,
+          "log_loss": 1.0148340626780517,
+          "brier": 0.6077751807472423,
+          "confusion_matrix": [
+            [
+              2081,
+              650,
+              394
+            ],
+            [
+              981,
+              461,
+              411
+            ],
+            [
+              816,
+              550,
+              785
+            ]
+          ],
+          "predicted_share": {
+            "H": 0.5439753121054847,
+            "D": 0.2329920044887081,
+            "A": 0.22303268340580726
+          },
+          "actual_share": {
+            "H": 0.4383503997755646,
+            "D": 0.25992425305091876,
+            "A": 0.3017253471735166
+          },
+          "mean_probability": {
+            "H": 0.4324176013469696,
+            "D": 0.2602829337120056,
+            "A": 0.30729952454566956
+          },
+          "recall": {
+            "H": 0.66592,
+            "D": 0.2487857528332434,
+            "A": 0.36494653649465364
+          },
+          "precision": {
+            "H": 0.536616812790098,
+            "D": 0.27754364840457557,
+            "A": 0.4937106918238994
+          }
+        },
+        "draw_rule_choice": {
+          "multiplier": 1.4,
+          "max_draw_share": 0.26125177418616363,
+          "grid": [
+            {
+              "multiplier": 1.0,
+              "macro_f1": 0.370669116694156,
+              "draw_share": 0.0037873474540608782
+            },
+            {
+              "multiplier": 1.05,
+              "macro_f1": 0.37245410803130313,
+              "draw_share": 0.00841632767569084
+            },
+            {
+              "multiplier": 1.1,
+              "macro_f1": 0.37588386784272876,
+              "draw_share": 0.017674288118950766
+            },
+            {
+              "multiplier": 1.15,
+              "macro_f1": 0.38512742325143473,
+              "draw_share": 0.034366671342404266
+            },
+            {
+              "multiplier": 1.2,
+              "macro_f1": 0.39467261456984976,
+              "draw_share": 0.06157946416047132
+            },
+            {
+              "multiplier": 1.25,
+              "macro_f1": 0.4067664398657162,
+              "draw_share": 0.09510450273530649
+            },
+            {
+              "multiplier": 1.3,
+              "macro_f1": 0.4193077963988978,
+              "draw_share": 0.1357834198344789
+            },
+            {
+              "multiplier": 1.35,
+              "macro_f1": 0.4224106110273545,
+              "draw_share": 0.18459812035348577
+            },
+            {
+              "multiplier": 1.4,
+              "macro_f1": 0.425456553533697,
+              "draw_share": 0.2329920044887081
+            },
+            {
+              "multiplier": 1.45,
+              "macro_f1": 0.43043636050051365,
+              "draw_share": 0.2851732360779913
+            },
+            {
+              "multiplier": 1.5,
+              "macro_f1": 0.4362446197308576,
+              "draw_share": 0.3344087529807827
+            },
+            {
+              "multiplier": 1.55,
+              "macro_f1": 0.43600065744270083,
+              "draw_share": 0.375789030719596
+            },
+            {
+              "multiplier": 1.6,
+              "macro_f1": 0.4320403943783418,
+              "draw_share": 0.41422359377191753
+            },
+            {
+              "multiplier": 1.65,
+              "macro_f1": 0.4276515394525,
+              "draw_share": 0.45153597980081356
+            },
+            {
+              "multiplier": 1.7,
+              "macro_f1": 0.42117263852415515,
+              "draw_share": 0.4839388413522233
+            },
+            {
+              "multiplier": 1.75,
+              "macro_f1": 0.41632878040830773,
+              "draw_share": 0.5187263290784121
+            },
+            {
+              "multiplier": 1.8,
+              "macro_f1": 0.4065856284165849,
+              "draw_share": 0.5481834759433301
+            }
+          ]
+        }
+      },
+      "benchmarks": {
+        "prior": {
+          "n": 7094,
+          "accuracy": 0.43036368762334365,
+          "macro_f1": 0.20058473768930063,
+          "balanced_accuracy": 0.3333333333333333,
+          "log_loss": 1.0771195019157798,
+          "brier": 0.6518956064364316,
+          "predicted_share": {
+            "H": 1.0,
+            "D": 0.0,
+            "A": 0.0
+          },
+          "actual_share": {
+            "H": 0.43036368762334365,
+            "D": 0.2662813645334085,
+            "A": 0.3033549478432478
+          },
+          "mean_probability": {
+            "H": 0.4323519985348656,
+            "D": 0.2612517741861637,
+            "A": 0.3063962272789707
+          },
+          "recall": {
+            "H": 1.0,
+            "D": 0.0,
+            "A": 0.0
+          },
+          "precision": {
+            "H": 0.43036368762334365,
+            "D": 0.0,
+            "A": 0.0
+          }
+        },
+        "bookmaker": {
+          "n": 7082,
+          "accuracy": 0.5029652640497034,
+          "macro_f1": 0.3725550836912989,
+          "balanced_accuracy": 0.4375684213591662,
+          "log_loss": 1.0040083965459423,
+          "brier": 0.6008935893604275,
+          "predicted_share": {
+            "H": 0.6904829144309517,
+            "D": 0.0004236091499576391,
+            "A": 0.30909347641909063
+          },
+          "actual_share": {
+            "H": 0.42996328720700366,
+            "D": 0.266450155323355,
+            "A": 0.30358655746964136
+          },
+          "mean_probability": {
+            "H": 0.43195449264241376,
+            "D": 0.25787748295073126,
+            "A": 0.31016802440685504
+          },
+          "recall": {
+            "H": 0.8269293924466338,
+            "D": 0.001589825119236884,
+            "A": 0.4841860465116279
+          },
+          "precision": {
+            "H": 0.5149284253578732,
+            "D": 1.0,
+            "A": 0.47555961626313387
+          }
+        }
+      },
+      "calibration": {
+        "H": [
+          {
+            "predicted": 0.08853080123662949,
+            "observed": 0.13513513513513514,
+            "n": 37
+          },
+          {
+            "predicted": 0.1587614268064499,
+            "observed": 0.138328530259366,
+            "n": 347
+          },
+          {
+            "predicted": 0.25829198956489563,
+            "observed": 0.24053452115812918,
+            "n": 898
+          },
+          {
+            "predicted": 0.35232898592948914,
+            "observed": 0.366369710467706,
+            "n": 1796
+          },
+          {
+            "predicted": 0.4482800364494324,
+            "observed": 0.4448034464189553,
+            "n": 1857
+          },
+          {
+            "predicted": 0.544161319732666,
+            "observed": 0.5247863247863248,
+            "n": 1170
+          },
+          {
+            "predicted": 0.641871988773346,
+            "observed": 0.6533795493934142,
+            "n": 577
+          },
+          {
+            "predicted": 0.7442262768745422,
+            "observed": 0.7313915857605178,
+            "n": 309
+          },
+          {
+            "predicted": 0.8383709192276001,
+            "observed": 0.803921568627451,
+            "n": 102
+          },
+          {
+            "predicted": 0.900266706943512,
+            "observed": 1.0,
+            "n": 1
+          }
+        ],
+        "D": [
+          {
+            "predicted": 0.08901862055063248,
+            "observed": 0.09523809523809523,
+            "n": 42
+          },
+          {
+            "predicted": 0.16502827405929565,
+            "observed": 0.19242902208201892,
+            "n": 634
+          },
+          {
+            "predicted": 0.26325300335884094,
+            "observed": 0.268342644320298,
+            "n": 5370
+          },
+          {
+            "predicted": 0.3164744973182678,
+            "observed": 0.30725190839694655,
+            "n": 1048
+          }
+        ],
+        "A": [
+          {
+            "predicted": 0.07437396049499512,
+            "observed": 0.05944055944055944,
+            "n": 286
+          },
+          {
+            "predicted": 0.15810923278331757,
+            "observed": 0.15871774824081314,
+            "n": 1279
+          },
+          {
+            "predicted": 0.2499384582042694,
+            "observed": 0.2603626943005181,
+            "n": 2316
+          },
+          {
+            "predicted": 0.3457816243171692,
+            "observed": 0.3375149342891278,
+            "n": 1674
+          },
+          {
+            "predicted": 0.44396594166755676,
+            "observed": 0.45240761478163494,
+            "n": 893
+          },
+          {
+            "predicted": 0.5446614027023315,
+            "observed": 0.4869791666666667,
+            "n": 384
+          },
+          {
+            "predicted": 0.6400627493858337,
+            "observed": 0.6526315789473685,
+            "n": 190
+          },
+          {
+            "predicted": 0.7339980006217957,
+            "observed": 0.676056338028169,
+            "n": 71
+          },
+          {
+            "predicted": 0.8135554194450378,
+            "observed": 1.0,
+            "n": 1
+          }
+        ]
+      },
+      "trials": [
+        {
+          "score": 1.0162219930123066,
+          "n_estimators": 309,
+          "colsample_bytree": 0.6389294340869437,
+          "gamma": 0.6479980714308677,
+          "half_life_years": 1,
+          "learning_rate": 0.013609268898085093,
+          "max_depth": 5,
+          "min_child_weight": 14.417719203520273,
+          "reg_alpha": 1.860450303732333,
+          "reg_lambda": 6.333377508548816,
+          "subsample": 0.9254621630561151
+        },
+        {
+          "score": 1.015476100570136,
+          "n_estimators": 458,
+          "colsample_bytree": 0.5393108460206547,
+          "gamma": 0.010976066509657212,
+          "half_life_years": 2,
+          "learning_rate": 0.012384872644407166,
+          "max_depth": 4,
+          "min_child_weight": 1.278131709658417,
+          "reg_alpha": 1.5295230577607941,
+          "reg_lambda": 6.032940090151863,
+          "subsample": 0.7201685419162034
+        },
+        {
+          "score": 1.016738563545769,
+          "n_estimators": 61,
+          "colsample_bytree": 0.7661560391684041,
+          "gamma": 1.0513868273316425,
+          "half_life_years": 2,
+          "learning_rate": 0.09298891765084724,
+          "max_depth": 4,
+          "min_child_weight": 1.9032212632033894,
+          "reg_alpha": 0.1926233633544823,
+          "reg_lambda": 0.6760058415983122,
+          "subsample": 0.658785114914011
+        },
+        {
+          "score": 1.0160956026626564,
+          "n_estimators": 424,
+          "colsample_bytree": 0.47669610384659056,
+          "gamma": 1.1670632048936762,
+          "half_life_years": 2,
+          "learning_rate": 0.038808639245965844,
+          "max_depth": 2,
+          "min_child_weight": 17.89107592654053,
+          "reg_alpha": 0.15540586494961336,
+          "reg_lambda": 1.1921314249693131,
+          "subsample": 0.7615110681047916
+        },
+        {
+          "score": 1.0162602524092144,
+          "n_estimators": 216,
+          "colsample_bytree": 0.7748227532635993,
+          "gamma": 1.523146153993598,
+          "half_life_years": 4,
+          "learning_rate": 0.029828719485540195,
+          "max_depth": 3,
+          "min_child_weight": 4.125258968707463,
+          "reg_alpha": 0.011559057062904316,
+          "reg_lambda": 0.7427091970911385,
+          "subsample": 0.8011615018645928
+        },
+        {
+          "score": 1.0167791997046662,
+          "n_estimators": 88,
+          "colsample_bytree": 0.9001212773780123,
+          "gamma": 1.7000795453001587,
+          "half_life_years": 4,
+          "learning_rate": 0.04594504383474939,
+          "max_depth": 6,
+          "min_child_weight": 19.313740239759028,
+          "reg_alpha": 0.043125622215755444,
+          "reg_lambda": 0.9667078036749922,
+          "subsample": 0.9018909441059156
+        },
+        {
+          "score": 1.0173456035099309,
+          "n_estimators": 53,
+          "colsample_bytree": 0.6021135609592614,
+          "gamma": 0.26643144045295597,
+          "half_life_years": 1,
+          "learning_rate": 0.13019394525033393,
+          "max_depth": 4,
+          "min_child_weight": 35.14360504708982,
+          "reg_alpha": 0.0020062242991347283,
+          "reg_lambda": 29.63221105276826,
+          "subsample": 0.8796314378966033
+        },
+        {
+          "score": 1.0159228570053063,
+          "n_estimators": 96,
+          "colsample_bytree": 0.9389820660275405,
+          "gamma": 0.6679702943464678,
+          "half_life_years": 4,
+          "learning_rate": 0.07369931434455396,
+          "max_depth": 3,
+          "min_child_weight": 3.973753694454135,
+          "reg_alpha": 0.5847387652651389,
+          "reg_lambda": 14.96218161660687,
+          "subsample": 0.6257147453238197
+        },
+        {
+          "score": 1.0157236769905262,
+          "n_estimators": 166,
+          "colsample_bytree": 0.5655011809534063,
+          "gamma": 1.691920001744672,
+          "half_life_years": 4,
+          "learning_rate": 0.02574886215833619,
+          "max_depth": 6,
+          "min_child_weight": 10.4640628581292,
+          "reg_alpha": 0.001585011565300635,
+          "reg_lambda": 11.765266517760054,
+          "subsample": 0.8893193614697442
+        },
+        {
+          "score": 1.0178478281255767,
+          "n_estimators": 63,
+          "colsample_bytree": 0.6531143210539823,
+          "gamma": 0.17406750008159766,
+          "half_life_years": 1,
+          "learning_rate": 0.06630829329119478,
+          "max_depth": 5,
+          "min_child_weight": 17.867214602146905,
+          "reg_alpha": 0.040648486755528346,
+          "reg_lambda": 3.576624397924405,
+          "subsample": 0.7300129570941898
+        },
+        {
+          "score": 1.0164782063861741,
+          "n_estimators": 79,
+          "colsample_bytree": 0.6562390751987819,
+          "gamma": 0.6922163999711601,
+          "half_life_years": 0,
+          "learning_rate": 0.044664987050490025,
+          "max_depth": 6,
+          "min_child_weight": 49.85905525778421,
+          "reg_alpha": 0.009829359411891368,
+          "reg_lambda": 0.5920210657328656,
+          "subsample": 0.6138813743427279
+        },
+        {
+          "score": 1.015794922754058,
+          "n_estimators": 67,
+          "colsample_bytree": 0.44219505656255864,
+          "gamma": 1.8389482549633798,
+          "half_life_years": 4,
+          "learning_rate": 0.14516972450804472,
+          "max_depth": 3,
+          "min_child_weight": 3.5263314657605305,
+          "reg_alpha": 0.0024421104836381624,
+          "reg_lambda": 6.030550074813198,
+          "subsample": 0.9124351334655565
+        },
+        {
+          "score": 1.0163656556083474,
+          "n_estimators": 96,
+          "colsample_bytree": 0.7286136026697763,
+          "gamma": 0.3944470417189898,
+          "half_life_years": 1,
+          "learning_rate": 0.05225770116894761,
+          "max_depth": 5,
+          "min_child_weight": 2.430116450100457,
+          "reg_alpha": 0.17908449104347277,
+          "reg_lambda": 9.933237800416094,
+          "subsample": 0.713264375212042
+        },
+        {
+          "score": 1.0154841245065829,
+          "n_estimators": 275,
+          "colsample_bytree": 0.5136183797677456,
+          "gamma": 1.3678469680987995,
+          "half_life_years": 2,
+          "learning_rate": 0.015944335449190838,
+          "max_depth": 5,
+          "min_child_weight": 37.02600720903606,
+          "reg_alpha": 0.002131377225231094,
+          "reg_lambda": 3.385562306552041,
+          "subsample": 0.6269691695176437
+        },
+        {
+          "score": 1.0162249768680347,
+          "n_estimators": 621,
+          "colsample_bytree": 0.6098056715332502,
+          "gamma": 0.8248172403640441,
+          "half_life_years": 0,
+          "learning_rate": 0.019548429048879816,
+          "max_depth": 2,
+          "min_child_weight": 53.929545366091894,
+          "reg_alpha": 0.0011567516916482982,
+          "reg_lambda": 20.393785388732944,
+          "subsample": 0.6929842549878388
+        },
+        {
+          "score": 1.015191993384259,
+          "n_estimators": 468,
+          "colsample_bytree": 0.4107497314032142,
+          "gamma": 1.8649029873461493,
+          "half_life_years": 2,
+          "learning_rate": 0.01330916045654552,
+          "max_depth": 5,
+          "min_child_weight": 3.9394164632343642,
+          "reg_alpha": 0.005696935737269584,
+          "reg_lambda": 28.530945411638736,
+          "subsample": 0.950099043659659
+        },
+        {
+          "score": 1.0160272348843422,
+          "n_estimators": 393,
+          "colsample_bytree": 0.44946032418762405,
+          "gamma": 0.6502730270248975,
+          "half_life_years": 0,
+          "learning_rate": 0.026820553800321136,
+          "max_depth": 3,
+          "min_child_weight": 6.354169502225643,
+          "reg_alpha": 1.0520566516023813,
+          "reg_lambda": 14.013078016053097,
+          "subsample": 0.9529070419898528
+        },
+        {
+          "score": 1.015604584734597,
+          "n_estimators": 480,
+          "colsample_bytree": 0.5096220473872781,
+          "gamma": 0.1560411817367522,
+          "half_life_years": 4,
+          "learning_rate": 0.015138424483221105,
+          "max_depth": 3,
+          "min_child_weight": 54.501655042953644,
+          "reg_alpha": 0.019822890539737605,
+          "reg_lambda": 0.7625450550842938,
+          "subsample": 0.7299796125452439
+        },
+        {
+          "score": 1.0158359577601457,
+          "n_estimators": 157,
+          "colsample_bytree": 0.9894840463721981,
+          "gamma": 1.8373518319306519,
+          "half_life_years": 2,
+          "learning_rate": 0.05919405022388324,
+          "max_depth": 3,
+          "min_child_weight": 5.517957556472272,
+          "reg_alpha": 0.0029768201467872623,
+          "reg_lambda": 16.22335248993499,
+          "subsample": 0.6980854195523465
+        },
+        {
+          "score": 1.0158977389442054,
+          "n_estimators": 239,
+          "colsample_bytree": 0.4379621936542616,
+          "gamma": 0.5341390766082121,
+          "half_life_years": 2,
+          "learning_rate": 0.04321506060992342,
+          "max_depth": 3,
+          "min_child_weight": 2.562611720078188,
+          "reg_alpha": 4.075626205151813,
+          "reg_lambda": 9.265545900501793,
+          "subsample": 0.7789294379947928
+        },
+        {
+          "score": 1.0148340626780517,
+          "n_estimators": 759,
+          "colsample_bytree": 0.31585396881920624,
+          "gamma": 1.9769372331099067,
+          "half_life_years": 2,
+          "learning_rate": 0.010384792043803404,
+          "max_depth": 4,
+          "min_child_weight": 1.0182574843051655,
+          "reg_alpha": 0.005074254213540458,
+          "reg_lambda": 1.9455719125289708,
+          "subsample": 0.8352914228773503
+        },
+        {
+          "score": 1.0151153175512357,
+          "n_estimators": 499,
+          "colsample_bytree": 0.3061889024984079,
+          "gamma": 1.9822916975673728,
+          "half_life_years": 2,
+          "learning_rate": 0.010373498467827365,
+          "max_depth": 5,
+          "min_child_weight": 1.028411323244004,
+          "reg_alpha": 0.00793177004002223,
+          "reg_lambda": 1.888288574314346,
+          "subsample": 0.9958409418162124
+        },
+        {
+          "score": 1.015383199207034,
+          "n_estimators": 569,
+          "colsample_bytree": 0.3391988473606124,
+          "gamma": 1.985518552621682,
+          "half_life_years": 2,
+          "learning_rate": 0.010648177895002971,
+          "max_depth": 4,
+          "min_child_weight": 1.0119204543580653,
+          "reg_alpha": 0.005971280892218293,
+          "reg_lambda": 1.5661330539367755,
+          "subsample": 0.9963489984094553
+        },
+        {
+          "score": 1.0151247006631823,
+          "n_estimators": 573,
+          "colsample_bytree": 0.3198525650505425,
+          "gamma": 1.3604590210940541,
+          "half_life_years": 2,
+          "learning_rate": 0.010025850061053068,
+          "max_depth": 5,
+          "min_child_weight": 1.3540022536878304,
+          "reg_alpha": 0.019281225997956012,
+          "reg_lambda": 2.193331106363063,
+          "subsample": 0.8446670105743292
+        },
+        {
+          "score": 1.015707987646889,
+          "n_estimators": 434,
+          "colsample_bytree": 0.35320809182853424,
+          "gamma": 1.9727319064918554,
+          "half_life_years": 2,
+          "learning_rate": 0.02006737279443777,
+          "max_depth": 4,
+          "min_child_weight": 1.1128102355874052,
+          "reg_alpha": 0.004967388599482262,
+          "reg_lambda": 2.320476415514145,
+          "subsample": 0.9975669070443056
+        },
+        {
+          "score": 1.015239078530244,
+          "n_estimators": 233,
+          "colsample_bytree": 0.30106558793522675,
+          "gamma": 1.5001114144864003,
+          "half_life_years": 2,
+          "learning_rate": 0.018413249765690216,
+          "max_depth": 6,
+          "min_child_weight": 1.849522131750275,
+          "reg_alpha": 0.06278027107537723,
+          "reg_lambda": 1.9054391083812672,
+          "subsample": 0.8540968977697094
+        },
+        {
+          "score": 1.015078413833304,
+          "n_estimators": 445,
+          "colsample_bytree": 0.3914640299271599,
+          "gamma": 1.6248037047263206,
+          "half_life_years": 0,
+          "learning_rate": 0.011341711499286767,
+          "max_depth": 5,
+          "min_child_weight": 1.5857974734226759,
+          "reg_alpha": 0.013861610890987835,
+          "reg_lambda": 1.1683870084061707,
+          "subsample": 0.8237434494074961
+        },
+        {
+          "score": 1.0153366407349331,
+          "n_estimators": 217,
+          "colsample_bytree": 0.38287513113945376,
+          "gamma": 1.6545165328389415,
+          "half_life_years": 0,
+          "learning_rate": 0.022144704376346504,
+          "max_depth": 4,
+          "min_child_weight": 1.6817984223800668,
+          "reg_alpha": 0.025667817424444885,
+          "reg_lambda": 1.2026253589508904,
+          "subsample": 0.8209355714717417
+        },
+        {
+          "score": 1.015454133526609,
+          "n_estimators": 379,
+          "colsample_bytree": 0.3810745221992233,
+          "gamma": 1.1595242571783095,
+          "half_life_years": 0,
+          "learning_rate": 0.012042226596698288,
+          "max_depth": 5,
+          "min_child_weight": 8.994995648408791,
+          "reg_alpha": 0.09247865365029193,
+          "reg_lambda": 4.416723295519756,
+          "subsample": 0.850252626421397
+        },
+        {
+          "score": 1.0169618487550198,
+          "n_estimators": 115,
+          "colsample_bytree": 0.8353153743814898,
+          "gamma": 1.3633357181302892,
+          "half_life_years": 0,
+          "learning_rate": 0.03392195032962692,
+          "max_depth": 6,
+          "min_child_weight": 2.7471521929907152,
+          "reg_alpha": 0.013909373482314276,
+          "reg_lambda": 2.8131247549713647,
+          "subsample": 0.7649823657247966
+        }
+      ],
+      "extra": {
+        "draw_multiplier": 1.4
+      },
+      "shap_global": [
+        {
+          "feature": "diff_season_gd",
+          "label": "Goal difference gap (season)",
+          "mean_abs_shap": 0.04143289849162102
+        },
+        {
+          "feature": "diff_form10_shots",
+          "label": "Shots gap (last 10)",
+          "mean_abs_shap": 0.04060507193207741
+        },
+        {
+          "feature": "diff_season_ppg",
+          "label": "Points-per-game gap (season)",
+          "mean_abs_shap": 0.024816522374749184
+        },
+        {
+          "feature": "diff_points",
+          "label": "League points gap",
+          "mean_abs_shap": 0.02072562836110592
+        },
+        {
+          "feature": "diff_form10_sot",
+          "label": "Shots on target gap (last 10)",
+          "mean_abs_shap": 0.016454773023724556
+        },
+        {
+          "feature": "a_season_shots_against",
+          "label": "Away team · shots conceded per game (season)",
+          "mean_abs_shap": 0.016286922618746758
+        },
+        {
+          "feature": "h_venue_shots_for",
+          "label": "Home team · shots per game (home matches)",
+          "mean_abs_shap": 0.014872080646455288
+        },
+        {
+          "feature": "h_season_shots_against",
+          "label": "Home team · shots conceded per game (season)",
+          "mean_abs_shap": 0.01399999763816595
+        },
+        {
+          "feature": "h_form5_shots_against",
+          "label": "Home team · shots conceded per game (last 5)",
+          "mean_abs_shap": 0.013878184370696545
+        },
+        {
+          "feature": "h2h_away_win_rate",
+          "label": "Head-to-head win rate of the away team",
+          "mean_abs_shap": 0.011975468136370182
+        },
+        {
+          "feature": "h_sot_vs_a_sot_conceded",
+          "label": "Home shots on target vs away shots conceded",
+          "mean_abs_shap": 0.011711273342370987
+        },
+        {
+          "feature": "diff_form10_gd",
+          "label": "Recent goal difference gap (last 10)",
+          "mean_abs_shap": 0.011299190111458302
+        },
+        {
+          "feature": "a_sot_vs_h_sot_conceded",
+          "label": "Away shots on target vs home shots conceded",
+          "mean_abs_shap": 0.010443936102092266
+        },
+        {
+          "feature": "a_form15_shots_against",
+          "label": "Away team · shots conceded per game (last 15)",
+          "mean_abs_shap": 0.009911785833537579
+        },
+        {
+          "feature": "h2h_home_team_goals",
+          "label": "Head-to-head goals of the home team",
+          "mean_abs_shap": 0.009576491080224514
+        },
+        {
+          "feature": "a_form15_sot_against",
+          "label": "Away team · shots on target conceded per game (last 15)",
+          "mean_abs_shap": 0.009188801981508732
+        },
+        {
+          "feature": "h_form15_shots_against",
+          "label": "Home team · shots conceded per game (last 15)",
+          "mean_abs_shap": 0.008902639150619507
+        },
+        {
+          "feature": "h_season_sot_against",
+          "label": "Home team · shots on target conceded per game (season)",
+          "mean_abs_shap": 0.008666221983730793
+        },
+        {
+          "feature": "h_form10_shots_against",
+          "label": "Home team · shots conceded per game (last 10)",
+          "mean_abs_shap": 0.00790142361074686
+        },
+        {
+          "feature": "h_season_fouls",
+          "label": "Home team · fouls per game (season)",
+          "mean_abs_shap": 0.007172694895416498
+        },
+        {
+          "feature": "league",
+          "label": "League",
+          "mean_abs_shap": 0.007048961706459522
+        },
+        {
+          "feature": "a_season_shots_for",
+          "label": "Away team · shots per game (season)",
+          "mean_abs_shap": 0.006964097265154123
+        },
+        {
+          "feature": "a_season_sot_for",
+          "label": "Away team · shots on target per game (season)",
+          "mean_abs_shap": 0.006940027233213186
+        },
+        {
+          "feature": "h_form15_shots_for",
+          "label": "Home team · shots per game (last 15)",
+          "mean_abs_shap": 0.006939832121133804
+        },
+        {
+          "feature": "h_season_shots_for",
+          "label": "Home team · shots per game (season)",
+          "mean_abs_shap": 0.006623731926083565
+        },
+        {
+          "feature": "h_form15_sot_against",
+          "label": "Home team · shots on target conceded per game (last 15)",
+          "mean_abs_shap": 0.006523834075778723
+        },
+        {
+          "feature": "a_season_fouls",
+          "label": "Away team · fouls per game (season)",
+          "mean_abs_shap": 0.006444726139307022
+        },
+        {
+          "feature": "a_season_yellows",
+          "label": "Away team · yellow cards per game (season)",
+          "mean_abs_shap": 0.006299074273556471
+        },
+        {
+          "feature": "a_trend_conceding",
+          "label": "Away team · conceding trend (last 5 vs season)",
+          "mean_abs_shap": 0.00608036108314991
+        },
+        {
+          "feature": "a_season_sot_against",
+          "label": "Away team · shots on target conceded per game (season)",
+          "mean_abs_shap": 0.006001738365739584
+        }
+      ],
+      "gain_importance": [
+        {
+          "feature": "league",
+          "label": "League",
+          "gain_share": 0.07469246741186554
+        },
+        {
+          "feature": "diff_season_gd",
+          "label": "Goal difference gap (season)",
+          "gain_share": 0.04758219321376814
+        },
+        {
+          "feature": "diff_season_ppg",
+          "label": "Points-per-game gap (season)",
+          "gain_share": 0.03841807628304934
+        },
+        {
+          "feature": "diff_form10_gd",
+          "label": "Recent goal difference gap (last 10)",
+          "gain_share": 0.032138159804098995
+        },
+        {
+          "feature": "diff_form10_shots",
+          "label": "Shots gap (last 10)",
+          "gain_share": 0.024943123155191815
+        },
+        {
+          "feature": "diff_points",
+          "label": "League points gap",
+          "gain_share": 0.023188838858813978
+        },
+        {
+          "feature": "diff_position",
+          "label": "League position gap",
+          "gain_share": 0.023026995321096914
+        },
+        {
+          "feature": "diff_form10_sot",
+          "label": "Shots on target gap (last 10)",
+          "gain_share": 0.019938786119482663
+        },
+        {
+          "feature": "h_sot_vs_a_sot_conceded",
+          "label": "Home shots on target vs away shots conceded",
+          "gain_share": 0.012086321958936032
+        },
+        {
+          "feature": "diff_form10_ppg",
+          "label": "Recent form gap (last 10)",
+          "gain_share": 0.011929494841841505
+        },
+        {
+          "feature": "diff_venue_ppg",
+          "label": "Home form at home vs away form away",
+          "gain_share": 0.011857010219313948
+        },
+        {
+          "feature": "a_sot_vs_h_sot_conceded",
+          "label": "Away shots on target vs home shots conceded",
+          "gain_share": 0.011598494365889589
+        },
+        {
+          "feature": "a_form15_gd",
+          "label": "Away team · goal difference per game (last 15)",
+          "gain_share": 0.010097183840335443
+        },
+        {
+          "feature": "a_season_gd",
+          "label": "Away team · goal difference per game (season)",
+          "gain_share": 0.00922841607286817
+        },
+        {
+          "feature": "h_season_gd",
+          "label": "Home team · goal difference per game (season)",
+          "gain_share": 0.008944615335131759
+        },
+        {
+          "feature": "a_form15_shots_for",
+          "label": "Away team · shots per game (last 15)",
+          "gain_share": 0.008518080170141634
+        },
+        {
+          "feature": "h_form15_shots_for",
+          "label": "Home team · shots per game (last 15)",
+          "gain_share": 0.008496545530986999
+        },
+        {
+          "feature": "h2h_away_win_rate",
+          "label": "Head-to-head win rate of the away team",
+          "gain_share": 0.007972359751705706
+        },
+        {
+          "feature": "h_position_norm",
+          "label": "Home team · relative table position",
+          "gain_share": 0.0077686618123291775
+        },
+        {
+          "feature": "h_form15_gd",
+          "label": "Home team · goal difference per game (last 15)",
+          "gain_share": 0.007341357768624771
+        },
+        {
+          "feature": "h_season_sot_for",
+          "label": "Home team · shots on target per game (season)",
+          "gain_share": 0.007267734915912649
+        },
+        {
+          "feature": "a_form15_sot_for",
+          "label": "Away team · shots on target per game (last 15)",
+          "gain_share": 0.007245756089368916
+        },
+        {
+          "feature": "h_form15_sot_for",
+          "label": "Home team · shots on target per game (last 15)",
+          "gain_share": 0.0069718234331530874
+        },
+        {
+          "feature": "h_season_shots_against",
+          "label": "Home team · shots conceded per game (season)",
+          "gain_share": 0.006758560980539558
+        },
+        {
+          "feature": "a_season_shots_against",
+          "label": "Away team · shots conceded per game (season)",
+          "gain_share": 0.006708667752762167
+        },
+        {
+          "feature": "h_season_shots_for",
+          "label": "Home team · shots per game (season)",
+          "gain_share": 0.006570618416135588
+        },
+        {
+          "feature": "h_season_sot_against",
+          "label": "Home team · shots on target conceded per game (season)",
+          "gain_share": 0.006568325057333178
+        },
+        {
+          "feature": "a_form15_shots_against",
+          "label": "Away team · shots conceded per game (last 15)",
+          "gain_share": 0.006561501107865058
+        },
+        {
+          "feature": "h_season_ppg",
+          "label": "Home team · points per game (season)",
+          "gain_share": 0.006239743471402329
+        },
+        {
+          "feature": "h_form15_shots_against",
+          "label": "Home team · shots conceded per game (last 15)",
+          "gain_share": 0.006136142194534381
+        }
+      ],
+      "trained_on": {
+        "backtest": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2025-06-01",
+          "rows": 28970
+        },
+        "production": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2026-05-31",
+          "rows": 36064
+        }
+      }
+    },
+    "home_goals": {
+      "title": "Home goals",
+      "description": "Expected number of goals of the home team (Poisson rate).",
+      "kind": "regressor",
+      "target": "home_goals",
+      "objective": "count:poisson",
+      "hyperopt_metric": "poisson_deviance",
+      "hyperopt_evals": 20,
+      "validation_score": 1.113186040721154,
+      "params": {
+        "colsample_bytree": 0.5136183797677456,
+        "gamma": 1.3678469680987995,
+        "half_life_years": 2,
+        "learning_rate": 0.015944335449190838,
+        "max_depth": 5,
+        "min_child_weight": 37.02600720903606,
+        "reg_alpha": 0.002131377225231094,
+        "reg_lambda": 3.385562306552041,
+        "subsample": 0.6269691695176437
+      },
+      "n_estimators": 378,
+      "n_features": 183,
+      "features": [
+        "league=B1",
+        "league=D1",
+        "league=D2",
+        "league=E0",
+        "league=E1",
+        "league=E2",
+        "league=E3",
+        "league=F1",
+        "league=F2",
+        "league=G1",
+        "league=I1",
+        "league=I2",
+        "league=N1",
+        "league=P1",
+        "league=SC0",
+        "league=SC1",
+        "league=SC2",
+        "league=SC3",
+        "league=SP1",
+        "league=SP2",
+        "league=T1",
+        "h_season_games",
+        "h_form5_n",
+        "h_form10_n",
+        "h_form15_n",
+        "a_season_games",
+        "a_form5_n",
+        "a_form10_n",
+        "a_form15_n",
+        "h2h_n",
+        "diff_season_ppg",
+        "diff_position",
+        "diff_points",
+        "diff_season_gd",
+        "diff_venue_ppg",
+        "diff_form5_ppg",
+        "diff_form10_ppg",
+        "diff_form10_gd",
+        "diff_form10_shots",
+        "diff_form10_sot",
+        "diff_rest_days",
+        "h_attack_vs_a_defence",
+        "a_attack_vs_h_defence",
+        "h_form_attack_vs_a_form_defence",
+        "a_form_attack_vs_h_form_defence",
+        "h_sot_vs_a_sot_conceded",
+        "a_sot_vs_h_sot_conceded",
+        "league_avg_home_goals",
+        "league_avg_away_goals",
+        "league_over25_rate",
+        "league_btts_rate",
+        "h_points",
+        "h_season_ppg",
+        "h_season_gd",
+        "h_season_gf",
+        "h_season_ga",
+        "h_season_shots_for",
+        "h_season_shots_against",
+        "h_season_sot_for",
+        "h_season_sot_against",
+        "h_position",
+        "h_position_norm",
+        "h_form5_ppg",
+        "h_form5_win_rate",
+        "h_form5_draw_rate",
+        "h_form5_loss_rate",
+        "h_form5_gd",
+        "h_form5_gf",
+        "h_form5_ga",
+        "h_form5_shots_for",
+        "h_form5_shots_against",
+        "h_form5_sot_for",
+        "h_form5_sot_against",
+        "h_form10_ppg",
+        "h_form10_win_rate",
+        "h_form10_draw_rate",
+        "h_form10_loss_rate",
+        "h_form10_gd",
+        "h_form10_gf",
+        "h_form10_ga",
+        "h_form10_shots_for",
+        "h_form10_shots_against",
+        "h_form10_sot_for",
+        "h_form10_sot_against",
+        "h_form15_ppg",
+        "h_form15_win_rate",
+        "h_form15_draw_rate",
+        "h_form15_loss_rate",
+        "h_form15_gd",
+        "h_form15_gf",
+        "h_form15_ga",
+        "h_form15_shots_for",
+        "h_form15_shots_against",
+        "h_form15_sot_for",
+        "h_form15_sot_against",
+        "h_form10_corner_diff",
+        "h_form10_corner_share",
+        "h_form10_shot_share",
+        "h_freq_btts",
+        "h_freq_over15",
+        "h_freq_over25",
+        "h_freq_over35",
+        "h_freq_clean_sheet",
+        "h_freq_failed_to_score",
+        "h_trend_scoring",
+        "h_trend_conceding",
+        "h_trend_shots",
+        "h_rest_days",
+        "a_points",
+        "a_season_ppg",
+        "a_season_gd",
+        "a_season_gf",
+        "a_season_ga",
+        "a_season_shots_for",
+        "a_season_shots_against",
+        "a_season_sot_for",
+        "a_season_sot_against",
+        "a_position",
+        "a_position_norm",
+        "a_form5_ppg",
+        "a_form5_win_rate",
+        "a_form5_draw_rate",
+        "a_form5_loss_rate",
+        "a_form5_gd",
+        "a_form5_gf",
+        "a_form5_ga",
+        "a_form5_shots_for",
+        "a_form5_shots_against",
+        "a_form5_sot_for",
+        "a_form5_sot_against",
+        "a_form10_ppg",
+        "a_form10_win_rate",
+        "a_form10_draw_rate",
+        "a_form10_loss_rate",
+        "a_form10_gd",
+        "a_form10_gf",
+        "a_form10_ga",
+        "a_form10_shots_for",
+        "a_form10_shots_against",
+        "a_form10_sot_for",
+        "a_form10_sot_against",
+        "a_form15_ppg",
+        "a_form15_win_rate",
+        "a_form15_draw_rate",
+        "a_form15_loss_rate",
+        "a_form15_gd",
+        "a_form15_gf",
+        "a_form15_ga",
+        "a_form15_shots_for",
+        "a_form15_shots_against",
+        "a_form15_sot_for",
+        "a_form15_sot_against",
+        "a_form10_corner_diff",
+        "a_form10_corner_share",
+        "a_form10_shot_share",
+        "a_freq_btts",
+        "a_freq_over15",
+        "a_freq_over25",
+        "a_freq_over35",
+        "a_freq_clean_sheet",
+        "a_freq_failed_to_score",
+        "a_trend_scoring",
+        "a_trend_conceding",
+        "a_trend_shots",
+        "a_rest_days",
+        "h_venue_gf",
+        "h_venue_ga",
+        "h_venue_shots_for",
+        "h_venue_sot_for",
+        "h_venue_form5_gf",
+        "h_venue_form5_ga",
+        "h_venue_form5_shots_for",
+        "a_venue_gf",
+        "a_venue_ga",
+        "a_venue_shots_for",
+        "a_venue_sot_for",
+        "a_venue_form5_gf",
+        "a_venue_form5_ga",
+        "a_venue_form5_shots_for",
+        "h2h_avg_goals",
+        "h2h_home_team_goals",
+        "h2h_btts_rate",
+        "h2h_over25_rate"
+      ],
+      "test_metrics": {
+        "n": 7094,
+        "rmse": 1.1740114495988772,
+        "mae": 0.937602721900378,
+        "r2": 0.09265045738061373,
+        "poisson_deviance": 1.0849367672140053,
+        "mean_actual": 1.4859035804905554,
+        "mean_predicted": 1.4815923315910073
+      },
+      "test_metrics_argmax": null,
+      "validation_metrics": null,
+      "benchmarks": {
+        "mean": {
+          "n": 7094,
+          "rmse": 1.2324945878540985,
+          "mae": 1.0090256261302193,
+          "r2": -3.622174560291569e-09,
+          "poisson_deviance": 1.175568671330024,
+          "mean_actual": 1.4859035804905554,
+          "mean_predicted": 1.4858294034155946
+        }
+      },
+      "calibration": null,
+      "trials": [
+        {
+          "score": 1.1157978365829686,
+          "n_estimators": 387,
+          "colsample_bytree": 0.6389294340869437,
+          "gamma": 0.6479980714308677,
+          "half_life_years": 1,
+          "learning_rate": 0.013609268898085093,
+          "max_depth": 5,
+          "min_child_weight": 14.417719203520273,
+          "reg_alpha": 1.860450303732333,
+          "reg_lambda": 6.333377508548816,
+          "subsample": 0.9254621630561151
+        },
+        {
+          "score": 1.1142807922540272,
+          "n_estimators": 629,
+          "colsample_bytree": 0.5393108460206547,
+          "gamma": 0.010976066509657212,
+          "half_life_years": 2,
+          "learning_rate": 0.012384872644407166,
+          "max_depth": 4,
+          "min_child_weight": 1.278131709658417,
+          "reg_alpha": 1.5295230577607941,
+          "reg_lambda": 6.032940090151863,
+          "subsample": 0.7201685419162034
+        },
+        {
+          "score": 1.1158134108565738,
+          "n_estimators": 74,
+          "colsample_bytree": 0.7661560391684041,
+          "gamma": 1.0513868273316425,
+          "half_life_years": 2,
+          "learning_rate": 0.09298891765084724,
+          "max_depth": 4,
+          "min_child_weight": 1.9032212632033894,
+          "reg_alpha": 0.1926233633544823,
+          "reg_lambda": 0.6760058415983122,
+          "subsample": 0.658785114914011
+        },
+        {
+          "score": 1.1165789271864606,
+          "n_estimators": 306,
+          "colsample_bytree": 0.47669610384659056,
+          "gamma": 1.1670632048936762,
+          "half_life_years": 2,
+          "learning_rate": 0.038808639245965844,
+          "max_depth": 2,
+          "min_child_weight": 17.89107592654053,
+          "reg_alpha": 0.15540586494961336,
+          "reg_lambda": 1.1921314249693131,
+          "subsample": 0.7615110681047916
+        },
+        {
+          "score": 1.1142281137071544,
+          "n_estimators": 493,
+          "colsample_bytree": 0.7748227532635993,
+          "gamma": 1.523146153993598,
+          "half_life_years": 4,
+          "learning_rate": 0.029828719485540195,
+          "max_depth": 3,
+          "min_child_weight": 4.125258968707463,
+          "reg_alpha": 0.011559057062904316,
+          "reg_lambda": 0.7427091970911385,
+          "subsample": 0.8011615018645928
+        },
+        {
+          "score": 1.1156672775560539,
+          "n_estimators": 155,
+          "colsample_bytree": 0.9001212773780123,
+          "gamma": 1.7000795453001587,
+          "half_life_years": 4,
+          "learning_rate": 0.04594504383474939,
+          "max_depth": 6,
+          "min_child_weight": 19.313740239759028,
+          "reg_alpha": 0.043125622215755444,
+          "reg_lambda": 0.9667078036749922,
+          "subsample": 0.9018909441059156
+        },
+        {
+          "score": 1.116129750653494,
+          "n_estimators": 55,
+          "colsample_bytree": 0.6021135609592614,
+          "gamma": 0.26643144045295597,
+          "half_life_years": 1,
+          "learning_rate": 0.13019394525033393,
+          "max_depth": 4,
+          "min_child_weight": 35.14360504708982,
+          "reg_alpha": 0.0020062242991347283,
+          "reg_lambda": 29.63221105276826,
+          "subsample": 0.8796314378966033
+        },
+        {
+          "score": 1.1140419473100573,
+          "n_estimators": 217,
+          "colsample_bytree": 0.9389820660275405,
+          "gamma": 0.6679702943464678,
+          "half_life_years": 4,
+          "learning_rate": 0.07369931434455396,
+          "max_depth": 3,
+          "min_child_weight": 3.973753694454135,
+          "reg_alpha": 0.5847387652651389,
+          "reg_lambda": 14.96218161660687,
+          "subsample": 0.6257147453238197
+        },
+        {
+          "score": 1.1141050122550997,
+          "n_estimators": 257,
+          "colsample_bytree": 0.5655011809534063,
+          "gamma": 1.691920001744672,
+          "half_life_years": 4,
+          "learning_rate": 0.02574886215833619,
+          "max_depth": 6,
+          "min_child_weight": 10.4640628581292,
+          "reg_alpha": 0.001585011565300635,
+          "reg_lambda": 11.765266517760054,
+          "subsample": 0.8893193614697442
+        },
+        {
+          "score": 1.116043963118541,
+          "n_estimators": 91,
+          "colsample_bytree": 0.6531143210539823,
+          "gamma": 0.17406750008159766,
+          "half_life_years": 1,
+          "learning_rate": 0.06630829329119478,
+          "max_depth": 5,
+          "min_child_weight": 17.867214602146905,
+          "reg_alpha": 0.040648486755528346,
+          "reg_lambda": 3.576624397924405,
+          "subsample": 0.7300129570941898
+        },
+        {
+          "score": 1.115411356601468,
+          "n_estimators": 119,
+          "colsample_bytree": 0.6562390751987819,
+          "gamma": 0.6922163999711601,
+          "half_life_years": 0,
+          "learning_rate": 0.044664987050490025,
+          "max_depth": 6,
+          "min_child_weight": 49.85905525778421,
+          "reg_alpha": 0.009829359411891368,
+          "reg_lambda": 0.5920210657328656,
+          "subsample": 0.6138813743427279
+        },
+        {
+          "score": 1.1157720876344182,
+          "n_estimators": 160,
+          "colsample_bytree": 0.44219505656255864,
+          "gamma": 1.8389482549633798,
+          "half_life_years": 4,
+          "learning_rate": 0.14516972450804472,
+          "max_depth": 3,
+          "min_child_weight": 3.5263314657605305,
+          "reg_alpha": 0.0024421104836381624,
+          "reg_lambda": 6.030550074813198,
+          "subsample": 0.9124351334655565
+        },
+        {
+          "score": 1.114800779277404,
+          "n_estimators": 115,
+          "colsample_bytree": 0.7286136026697763,
+          "gamma": 0.3944470417189898,
+          "half_life_years": 1,
+          "learning_rate": 0.05225770116894761,
+          "max_depth": 5,
+          "min_child_weight": 2.430116450100457,
+          "reg_alpha": 0.17908449104347277,
+          "reg_lambda": 9.933237800416094,
+          "subsample": 0.713264375212042
+        },
+        {
+          "score": 1.113186040721154,
+          "n_estimators": 378,
+          "colsample_bytree": 0.5136183797677456,
+          "gamma": 1.3678469680987995,
+          "half_life_years": 2,
+          "learning_rate": 0.015944335449190838,
+          "max_depth": 5,
+          "min_child_weight": 37.02600720903606,
+          "reg_alpha": 0.002131377225231094,
+          "reg_lambda": 3.385562306552041,
+          "subsample": 0.6269691695176437
+        },
+        {
+          "score": 1.1140236542622144,
+          "n_estimators": 1122,
+          "colsample_bytree": 0.6098056715332502,
+          "gamma": 0.8248172403640441,
+          "half_life_years": 0,
+          "learning_rate": 0.019548429048879816,
+          "max_depth": 2,
+          "min_child_weight": 53.929545366091894,
+          "reg_alpha": 0.0011567516916482982,
+          "reg_lambda": 20.393785388732944,
+          "subsample": 0.6929842549878388
+        },
+        {
+          "score": 1.1142158134820406,
+          "n_estimators": 766,
+          "colsample_bytree": 0.4107497314032142,
+          "gamma": 1.8649029873461493,
+          "half_life_years": 2,
+          "learning_rate": 0.01330916045654552,
+          "max_depth": 5,
+          "min_child_weight": 3.9394164632343642,
+          "reg_alpha": 0.005696935737269584,
+          "reg_lambda": 28.530945411638736,
+          "subsample": 0.950099043659659
+        },
+        {
+          "score": 1.11388781654629,
+          "n_estimators": 656,
+          "colsample_bytree": 0.44946032418762405,
+          "gamma": 0.6502730270248975,
+          "half_life_years": 0,
+          "learning_rate": 0.026820553800321136,
+          "max_depth": 3,
+          "min_child_weight": 6.354169502225643,
+          "reg_alpha": 1.0520566516023813,
+          "reg_lambda": 14.013078016053097,
+          "subsample": 0.9529070419898528
+        },
+        {
+          "score": 1.1144737742682227,
+          "n_estimators": 776,
+          "colsample_bytree": 0.5096220473872781,
+          "gamma": 0.1560411817367522,
+          "half_life_years": 4,
+          "learning_rate": 0.015138424483221105,
+          "max_depth": 3,
+          "min_child_weight": 54.501655042953644,
+          "reg_alpha": 0.019822890539737605,
+          "reg_lambda": 0.7625450550842938,
+          "subsample": 0.7299796125452439
+        },
+        {
+          "score": 1.114503466847968,
+          "n_estimators": 211,
+          "colsample_bytree": 0.9894840463721981,
+          "gamma": 1.8373518319306519,
+          "half_life_years": 2,
+          "learning_rate": 0.05919405022388324,
+          "max_depth": 3,
+          "min_child_weight": 5.517957556472272,
+          "reg_alpha": 0.0029768201467872623,
+          "reg_lambda": 16.22335248993499,
+          "subsample": 0.6980854195523465
+        },
+        {
+          "score": 1.1143874153998714,
+          "n_estimators": 437,
+          "colsample_bytree": 0.4379621936542616,
+          "gamma": 0.5341390766082121,
+          "half_life_years": 2,
+          "learning_rate": 0.04321506060992342,
+          "max_depth": 3,
+          "min_child_weight": 2.562611720078188,
+          "reg_alpha": 4.075626205151813,
+          "reg_lambda": 9.265545900501793,
+          "subsample": 0.7789294379947928
+        }
+      ],
+      "extra": {},
+      "shap_global": [
+        {
+          "feature": "diff_season_gd",
+          "label": "Goal difference gap (season)",
+          "mean_abs_shap": 0.03714899346232414
+        },
+        {
+          "feature": "h_sot_vs_a_sot_conceded",
+          "label": "Home shots on target vs away shots conceded",
+          "mean_abs_shap": 0.032801005989313126
+        },
+        {
+          "feature": "diff_season_ppg",
+          "label": "Points-per-game gap (season)",
+          "mean_abs_shap": 0.01422622799873352
+        },
+        {
+          "feature": "diff_points",
+          "label": "League points gap",
+          "mean_abs_shap": 0.013755885884165764
+        },
+        {
+          "feature": "h_form_attack_vs_a_form_defence",
+          "label": "Home recent attack vs away recent defence",
+          "mean_abs_shap": 0.01247162651270628
+        },
+        {
+          "feature": "h_attack_vs_a_defence",
+          "label": "Home attack vs away defence",
+          "mean_abs_shap": 0.011916826479136944
+        },
+        {
+          "feature": "a_season_shots_against",
+          "label": "Away team · shots conceded per game (season)",
+          "mean_abs_shap": 0.011229507625102997
+        },
+        {
+          "feature": "h2h_home_team_goals",
+          "label": "Head-to-head goals of the home team",
+          "mean_abs_shap": 0.011059572920203209
+        },
+        {
+          "feature": "h_season_gf",
+          "label": "Home team · goals scored per game (season)",
+          "mean_abs_shap": 0.01082441583275795
+        },
+        {
+          "feature": "h_form15_gf",
+          "label": "Home team · goals scored per game (last 15)",
+          "mean_abs_shap": 0.010548611171543598
+        },
+        {
+          "feature": "h_form15_sot_for",
+          "label": "Home team · shots on target per game (last 15)",
+          "mean_abs_shap": 0.010087670758366585
+        },
+        {
+          "feature": "h_season_sot_for",
+          "label": "Home team · shots on target per game (season)",
+          "mean_abs_shap": 0.009047182276844978
+        },
+        {
+          "feature": "h_venue_shots_for",
+          "label": "Home team · shots per game (home matches)",
+          "mean_abs_shap": 0.008930685929954052
+        },
+        {
+          "feature": "h_form15_shots_for",
+          "label": "Home team · shots per game (last 15)",
+          "mean_abs_shap": 0.008269958198070526
+        },
+        {
+          "feature": "a_season_sot_against",
+          "label": "Away team · shots on target conceded per game (season)",
+          "mean_abs_shap": 0.008145425468683243
+        },
+        {
+          "feature": "diff_form10_shots",
+          "label": "Shots gap (last 10)",
+          "mean_abs_shap": 0.007941578514873981
+        },
+        {
+          "feature": "h_form10_corner_share",
+          "label": "Home team · share of corners in its matches (last 10)",
+          "mean_abs_shap": 0.007870534434914589
+        },
+        {
+          "feature": "h_form10_shot_share",
+          "label": "Home team · share of shots in its matches (last 10)",
+          "mean_abs_shap": 0.007764269597828388
+        },
+        {
+          "feature": "a_form15_shots_against",
+          "label": "Away team · shots conceded per game (last 15)",
+          "mean_abs_shap": 0.007053965236991644
+        },
+        {
+          "feature": "a_form15_sot_against",
+          "label": "Away team · shots on target conceded per game (last 15)",
+          "mean_abs_shap": 0.006744616199284792
+        },
+        {
+          "feature": "h_season_shots_for",
+          "label": "Home team · shots per game (season)",
+          "mean_abs_shap": 0.006173898000270128
+        },
+        {
+          "feature": "h_form10_corner_diff",
+          "label": "Home team · corner difference per game (last 10)",
+          "mean_abs_shap": 0.005303738173097372
+        },
+        {
+          "feature": "h_form10_shots_for",
+          "label": "Home team · shots per game (last 10)",
+          "mean_abs_shap": 0.005158592015504837
+        },
+        {
+          "feature": "h_form15_gd",
+          "label": "Home team · goal difference per game (last 15)",
+          "mean_abs_shap": 0.0047892238944768906
+        },
+        {
+          "feature": "a_season_gd",
+          "label": "Away team · goal difference per game (season)",
+          "mean_abs_shap": 0.004329758230596781
+        },
+        {
+          "feature": "a_form10_corner_share",
+          "label": "Away team · share of corners in its matches (last 10)",
+          "mean_abs_shap": 0.004191828891634941
+        },
+        {
+          "feature": "a_form10_corner_diff",
+          "label": "Away team · corner difference per game (last 10)",
+          "mean_abs_shap": 0.004094235599040985
+        },
+        {
+          "feature": "a_season_ga",
+          "label": "Away team · goals conceded per game (season)",
+          "mean_abs_shap": 0.003747125854715705
+        },
+        {
+          "feature": "h_form5_shots_for",
+          "label": "Home team · shots per game (last 5)",
+          "mean_abs_shap": 0.003379108849912882
+        },
+        {
+          "feature": "h_venue_sot_for",
+          "label": "Home team · shots on target per game (home matches)",
+          "mean_abs_shap": 0.0033378410153090954
+        }
+      ],
+      "gain_importance": [
+        {
+          "feature": "league",
+          "label": "League",
+          "gain_share": 0.07158627122261844
+        },
+        {
+          "feature": "diff_season_gd",
+          "label": "Goal difference gap (season)",
+          "gain_share": 0.05167379674811906
+        },
+        {
+          "feature": "h_sot_vs_a_sot_conceded",
+          "label": "Home shots on target vs away shots conceded",
+          "gain_share": 0.04001827677035259
+        },
+        {
+          "feature": "diff_season_ppg",
+          "label": "Points-per-game gap (season)",
+          "gain_share": 0.02722605482979913
+        },
+        {
+          "feature": "h_form_attack_vs_a_form_defence",
+          "label": "Home recent attack vs away recent defence",
+          "gain_share": 0.02251595955659261
+        },
+        {
+          "feature": "diff_points",
+          "label": "League points gap",
+          "gain_share": 0.018750842144828455
+        },
+        {
+          "feature": "h_form15_sot_for",
+          "label": "Home team · shots on target per game (last 15)",
+          "gain_share": 0.01622614107459538
+        },
+        {
+          "feature": "diff_position",
+          "label": "League position gap",
+          "gain_share": 0.013090833295160555
+        },
+        {
+          "feature": "h_form15_shots_for",
+          "label": "Home team · shots per game (last 15)",
+          "gain_share": 0.011406287227797771
+        },
+        {
+          "feature": "h_season_gf",
+          "label": "Home team · goals scored per game (season)",
+          "gain_share": 0.011278487847027799
+        },
+        {
+          "feature": "h_season_sot_for",
+          "label": "Home team · shots on target per game (season)",
+          "gain_share": 0.01120689077736419
+        },
+        {
+          "feature": "h_season_shots_for",
+          "label": "Home team · shots per game (season)",
+          "gain_share": 0.010565971316565358
+        },
+        {
+          "feature": "h_attack_vs_a_defence",
+          "label": "Home attack vs away defence",
+          "gain_share": 0.010357136100800803
+        },
+        {
+          "feature": "h_form15_gf",
+          "label": "Home team · goals scored per game (last 15)",
+          "gain_share": 0.010076074484889655
+        },
+        {
+          "feature": "h_form10_shots_for",
+          "label": "Home team · shots per game (last 10)",
+          "gain_share": 0.010042175264687841
+        },
+        {
+          "feature": "diff_form10_shots",
+          "label": "Shots gap (last 10)",
+          "gain_share": 0.00928634399101159
+        },
+        {
+          "feature": "diff_form10_gd",
+          "label": "Recent goal difference gap (last 10)",
+          "gain_share": 0.00902268670031358
+        },
+        {
+          "feature": "h_form10_shot_share",
+          "label": "Home team · share of shots in its matches (last 10)",
+          "gain_share": 0.008814483198859599
+        },
+        {
+          "feature": "h_form15_gd",
+          "label": "Home team · goal difference per game (last 15)",
+          "gain_share": 0.007919854755840462
+        },
+        {
+          "feature": "h_season_gd",
+          "label": "Home team · goal difference per game (season)",
+          "gain_share": 0.007509720795227851
+        },
+        {
+          "feature": "h_form10_corner_diff",
+          "label": "Home team · corner difference per game (last 10)",
+          "gain_share": 0.007194239092787116
+        },
+        {
+          "feature": "h_form10_corner_share",
+          "label": "Home team · share of corners in its matches (last 10)",
+          "gain_share": 0.006676191045178905
+        },
+        {
+          "feature": "a_season_shots_against",
+          "label": "Away team · shots conceded per game (season)",
+          "gain_share": 0.006585953635698265
+        },
+        {
+          "feature": "diff_form10_ppg",
+          "label": "Recent form gap (last 10)",
+          "gain_share": 0.006363188523428715
+        },
+        {
+          "feature": "a_season_gd",
+          "label": "Away team · goal difference per game (season)",
+          "gain_share": 0.006330484792761813
+        },
+        {
+          "feature": "a_season_sot_against",
+          "label": "Away team · shots on target conceded per game (season)",
+          "gain_share": 0.0062281476704061445
+        },
+        {
+          "feature": "h_venue_shots_for",
+          "label": "Home team · shots per game (home matches)",
+          "gain_share": 0.006180794723259851
+        },
+        {
+          "feature": "a_form15_sot_against",
+          "label": "Away team · shots on target conceded per game (last 15)",
+          "gain_share": 0.00615068876870595
+        },
+        {
+          "feature": "a_form15_shots_against",
+          "label": "Away team · shots conceded per game (last 15)",
+          "gain_share": 0.006114846133063784
+        },
+        {
+          "feature": "a_form10_shot_share",
+          "label": "Away team · share of shots in its matches (last 10)",
+          "gain_share": 0.005714724844273729
+        }
+      ],
+      "trained_on": {
+        "backtest": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2025-06-01",
+          "rows": 28970
+        },
+        "production": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2026-05-31",
+          "rows": 36064
+        }
+      }
+    },
+    "away_goals": {
+      "title": "Away goals",
+      "description": "Expected number of goals of the away team (Poisson rate).",
+      "kind": "regressor",
+      "target": "away_goals",
+      "objective": "count:poisson",
+      "hyperopt_metric": "poisson_deviance",
+      "hyperopt_evals": 20,
+      "validation_score": 1.1281073770384027,
+      "params": {
+        "colsample_bytree": 0.5393108460206547,
+        "gamma": 0.010976066509657212,
+        "half_life_years": 2,
+        "learning_rate": 0.012384872644407166,
+        "max_depth": 4,
+        "min_child_weight": 1.278131709658417,
+        "reg_alpha": 1.5295230577607941,
+        "reg_lambda": 6.032940090151863,
+        "subsample": 0.7201685419162034
+      },
+      "n_estimators": 770,
+      "n_features": 183,
+      "features": [
+        "league=B1",
+        "league=D1",
+        "league=D2",
+        "league=E0",
+        "league=E1",
+        "league=E2",
+        "league=E3",
+        "league=F1",
+        "league=F2",
+        "league=G1",
+        "league=I1",
+        "league=I2",
+        "league=N1",
+        "league=P1",
+        "league=SC0",
+        "league=SC1",
+        "league=SC2",
+        "league=SC3",
+        "league=SP1",
+        "league=SP2",
+        "league=T1",
+        "h_season_games",
+        "h_form5_n",
+        "h_form10_n",
+        "h_form15_n",
+        "a_season_games",
+        "a_form5_n",
+        "a_form10_n",
+        "a_form15_n",
+        "h2h_n",
+        "diff_season_ppg",
+        "diff_position",
+        "diff_points",
+        "diff_season_gd",
+        "diff_venue_ppg",
+        "diff_form5_ppg",
+        "diff_form10_ppg",
+        "diff_form10_gd",
+        "diff_form10_shots",
+        "diff_form10_sot",
+        "diff_rest_days",
+        "h_attack_vs_a_defence",
+        "a_attack_vs_h_defence",
+        "h_form_attack_vs_a_form_defence",
+        "a_form_attack_vs_h_form_defence",
+        "h_sot_vs_a_sot_conceded",
+        "a_sot_vs_h_sot_conceded",
+        "league_avg_home_goals",
+        "league_avg_away_goals",
+        "league_over25_rate",
+        "league_btts_rate",
+        "h_points",
+        "h_season_ppg",
+        "h_season_gd",
+        "h_season_gf",
+        "h_season_ga",
+        "h_season_shots_for",
+        "h_season_shots_against",
+        "h_season_sot_for",
+        "h_season_sot_against",
+        "h_position",
+        "h_position_norm",
+        "h_form5_ppg",
+        "h_form5_win_rate",
+        "h_form5_draw_rate",
+        "h_form5_loss_rate",
+        "h_form5_gd",
+        "h_form5_gf",
+        "h_form5_ga",
+        "h_form5_shots_for",
+        "h_form5_shots_against",
+        "h_form5_sot_for",
+        "h_form5_sot_against",
+        "h_form10_ppg",
+        "h_form10_win_rate",
+        "h_form10_draw_rate",
+        "h_form10_loss_rate",
+        "h_form10_gd",
+        "h_form10_gf",
+        "h_form10_ga",
+        "h_form10_shots_for",
+        "h_form10_shots_against",
+        "h_form10_sot_for",
+        "h_form10_sot_against",
+        "h_form15_ppg",
+        "h_form15_win_rate",
+        "h_form15_draw_rate",
+        "h_form15_loss_rate",
+        "h_form15_gd",
+        "h_form15_gf",
+        "h_form15_ga",
+        "h_form15_shots_for",
+        "h_form15_shots_against",
+        "h_form15_sot_for",
+        "h_form15_sot_against",
+        "h_form10_corner_diff",
+        "h_form10_corner_share",
+        "h_form10_shot_share",
+        "h_freq_btts",
+        "h_freq_over15",
+        "h_freq_over25",
+        "h_freq_over35",
+        "h_freq_clean_sheet",
+        "h_freq_failed_to_score",
+        "h_trend_scoring",
+        "h_trend_conceding",
+        "h_trend_shots",
+        "h_rest_days",
+        "a_points",
+        "a_season_ppg",
+        "a_season_gd",
+        "a_season_gf",
+        "a_season_ga",
+        "a_season_shots_for",
+        "a_season_shots_against",
+        "a_season_sot_for",
+        "a_season_sot_against",
+        "a_position",
+        "a_position_norm",
+        "a_form5_ppg",
+        "a_form5_win_rate",
+        "a_form5_draw_rate",
+        "a_form5_loss_rate",
+        "a_form5_gd",
+        "a_form5_gf",
+        "a_form5_ga",
+        "a_form5_shots_for",
+        "a_form5_shots_against",
+        "a_form5_sot_for",
+        "a_form5_sot_against",
+        "a_form10_ppg",
+        "a_form10_win_rate",
+        "a_form10_draw_rate",
+        "a_form10_loss_rate",
+        "a_form10_gd",
+        "a_form10_gf",
+        "a_form10_ga",
+        "a_form10_shots_for",
+        "a_form10_shots_against",
+        "a_form10_sot_for",
+        "a_form10_sot_against",
+        "a_form15_ppg",
+        "a_form15_win_rate",
+        "a_form15_draw_rate",
+        "a_form15_loss_rate",
+        "a_form15_gd",
+        "a_form15_gf",
+        "a_form15_ga",
+        "a_form15_shots_for",
+        "a_form15_shots_against",
+        "a_form15_sot_for",
+        "a_form15_sot_against",
+        "a_form10_corner_diff",
+        "a_form10_corner_share",
+        "a_form10_shot_share",
+        "a_freq_btts",
+        "a_freq_over15",
+        "a_freq_over25",
+        "a_freq_over35",
+        "a_freq_clean_sheet",
+        "a_freq_failed_to_score",
+        "a_trend_scoring",
+        "a_trend_conceding",
+        "a_trend_shots",
+        "a_rest_days",
+        "h_venue_gf",
+        "h_venue_ga",
+        "h_venue_shots_for",
+        "h_venue_sot_for",
+        "h_venue_form5_gf",
+        "h_venue_form5_ga",
+        "h_venue_form5_shots_for",
+        "a_venue_gf",
+        "a_venue_ga",
+        "a_venue_shots_for",
+        "a_venue_sot_for",
+        "a_venue_form5_gf",
+        "a_venue_form5_ga",
+        "a_venue_form5_shots_for",
+        "h2h_avg_goals",
+        "h2h_home_team_goals",
+        "h2h_btts_rate",
+        "h2h_over25_rate"
+      ],
+      "test_metrics": {
+        "n": 7094,
+        "rmse": 1.068082052200454,
+        "mae": 0.8391443339071712,
+        "r2": 0.06656923183085284,
+        "poisson_deviance": 1.1043745482073495,
+        "mean_actual": 1.2117282210318578,
+        "mean_predicted": 1.20332564328266
+      },
+      "test_metrics_argmax": null,
+      "validation_metrics": null,
+      "benchmarks": {
+        "mean": {
+          "n": 7094,
+          "rmse": 1.1055495581019643,
+          "mae": 0.8763263500605207,
+          "r2": -6.748680287183006e-05,
+          "poisson_deviance": 1.1688823846098422,
+          "mean_actual": 1.2117282210318578,
+          "mean_predicted": 1.2026463989744056
+        }
+      },
+      "calibration": null,
+      "trials": [
+        {
+          "score": 1.131026825464976,
+          "n_estimators": 501,
+          "colsample_bytree": 0.6389294340869437,
+          "gamma": 0.6479980714308677,
+          "half_life_years": 1,
+          "learning_rate": 0.013609268898085093,
+          "max_depth": 5,
+          "min_child_weight": 14.417719203520273,
+          "reg_alpha": 1.860450303732333,
+          "reg_lambda": 6.333377508548816,
+          "subsample": 0.9254621630561151
+        },
+        {
+          "score": 1.1281073770384027,
+          "n_estimators": 770,
+          "colsample_bytree": 0.5393108460206547,
+          "gamma": 0.010976066509657212,
+          "half_life_years": 2,
+          "learning_rate": 0.012384872644407166,
+          "max_depth": 4,
+          "min_child_weight": 1.278131709658417,
+          "reg_alpha": 1.5295230577607941,
+          "reg_lambda": 6.032940090151863,
+          "subsample": 0.7201685419162034
+        },
+        {
+          "score": 1.1311101883879933,
+          "n_estimators": 82,
+          "colsample_bytree": 0.7661560391684041,
+          "gamma": 1.0513868273316425,
+          "half_life_years": 2,
+          "learning_rate": 0.09298891765084724,
+          "max_depth": 4,
+          "min_child_weight": 1.9032212632033894,
+          "reg_alpha": 0.1926233633544823,
+          "reg_lambda": 0.6760058415983122,
+          "subsample": 0.658785114914011
+        },
+        {
+          "score": 1.130675657287752,
+          "n_estimators": 374,
+          "colsample_bytree": 0.47669610384659056,
+          "gamma": 1.1670632048936762,
+          "half_life_years": 2,
+          "learning_rate": 0.038808639245965844,
+          "max_depth": 2,
+          "min_child_weight": 17.89107592654053,
+          "reg_alpha": 0.15540586494961336,
+          "reg_lambda": 1.1921314249693131,
+          "subsample": 0.7615110681047916
+        },
+        {
+          "score": 1.1307292308612025,
+          "n_estimators": 415,
+          "colsample_bytree": 0.7748227532635993,
+          "gamma": 1.523146153993598,
+          "half_life_years": 4,
+          "learning_rate": 0.029828719485540195,
+          "max_depth": 3,
+          "min_child_weight": 4.125258968707463,
+          "reg_alpha": 0.011559057062904316,
+          "reg_lambda": 0.7427091970911385,
+          "subsample": 0.8011615018645928
+        },
+        {
+          "score": 1.1310043393925304,
+          "n_estimators": 116,
+          "colsample_bytree": 0.9001212773780123,
+          "gamma": 1.7000795453001587,
+          "half_life_years": 4,
+          "learning_rate": 0.04594504383474939,
+          "max_depth": 6,
+          "min_child_weight": 19.313740239759028,
+          "reg_alpha": 0.043125622215755444,
+          "reg_lambda": 0.9667078036749922,
+          "subsample": 0.9018909441059156
+        },
+        {
+          "score": 1.1318730856371122,
+          "n_estimators": 113,
+          "colsample_bytree": 0.6021135609592614,
+          "gamma": 0.26643144045295597,
+          "half_life_years": 1,
+          "learning_rate": 0.13019394525033393,
+          "max_depth": 4,
+          "min_child_weight": 35.14360504708982,
+          "reg_alpha": 0.0020062242991347283,
+          "reg_lambda": 29.63221105276826,
+          "subsample": 0.8796314378966033
+        },
+        {
+          "score": 1.1305924770209286,
+          "n_estimators": 159,
+          "colsample_bytree": 0.9389820660275405,
+          "gamma": 0.6679702943464678,
+          "half_life_years": 4,
+          "learning_rate": 0.07369931434455396,
+          "max_depth": 3,
+          "min_child_weight": 3.973753694454135,
+          "reg_alpha": 0.5847387652651389,
+          "reg_lambda": 14.96218161660687,
+          "subsample": 0.6257147453238197
+        },
+        {
+          "score": 1.1290879563795335,
+          "n_estimators": 235,
+          "colsample_bytree": 0.5655011809534063,
+          "gamma": 1.691920001744672,
+          "half_life_years": 4,
+          "learning_rate": 0.02574886215833619,
+          "max_depth": 6,
+          "min_child_weight": 10.4640628581292,
+          "reg_alpha": 0.001585011565300635,
+          "reg_lambda": 11.765266517760054,
+          "subsample": 0.8893193614697442
+        },
+        {
+          "score": 1.1304981978482136,
+          "n_estimators": 91,
+          "colsample_bytree": 0.6531143210539823,
+          "gamma": 0.17406750008159766,
+          "half_life_years": 1,
+          "learning_rate": 0.06630829329119478,
+          "max_depth": 5,
+          "min_child_weight": 17.867214602146905,
+          "reg_alpha": 0.040648486755528346,
+          "reg_lambda": 3.576624397924405,
+          "subsample": 0.7300129570941898
+        },
+        {
+          "score": 1.1302845165829642,
+          "n_estimators": 132,
+          "colsample_bytree": 0.6562390751987819,
+          "gamma": 0.6922163999711601,
+          "half_life_years": 0,
+          "learning_rate": 0.044664987050490025,
+          "max_depth": 6,
+          "min_child_weight": 49.85905525778421,
+          "reg_alpha": 0.009829359411891368,
+          "reg_lambda": 0.5920210657328656,
+          "subsample": 0.6138813743427279
+        },
+        {
+          "score": 1.1309148929964516,
+          "n_estimators": 67,
+          "colsample_bytree": 0.44219505656255864,
+          "gamma": 1.8389482549633798,
+          "half_life_years": 4,
+          "learning_rate": 0.14516972450804472,
+          "max_depth": 3,
+          "min_child_weight": 3.5263314657605305,
+          "reg_alpha": 0.0024421104836381624,
+          "reg_lambda": 6.030550074813198,
+          "subsample": 0.9124351334655565
+        },
+        {
+          "score": 1.1301536935763685,
+          "n_estimators": 112,
+          "colsample_bytree": 0.7286136026697763,
+          "gamma": 0.3944470417189898,
+          "half_life_years": 1,
+          "learning_rate": 0.05225770116894761,
+          "max_depth": 5,
+          "min_child_weight": 2.430116450100457,
+          "reg_alpha": 0.17908449104347277,
+          "reg_lambda": 9.933237800416094,
+          "subsample": 0.713264375212042
+        },
+        {
+          "score": 1.128462133578567,
+          "n_estimators": 421,
+          "colsample_bytree": 0.5136183797677456,
+          "gamma": 1.3678469680987995,
+          "half_life_years": 2,
+          "learning_rate": 0.015944335449190838,
+          "max_depth": 5,
+          "min_child_weight": 37.02600720903606,
+          "reg_alpha": 0.002131377225231094,
+          "reg_lambda": 3.385562306552041,
+          "subsample": 0.6269691695176437
+        },
+        {
+          "score": 1.1296317818443427,
+          "n_estimators": 1129,
+          "colsample_bytree": 0.6098056715332502,
+          "gamma": 0.8248172403640441,
+          "half_life_years": 0,
+          "learning_rate": 0.019548429048879816,
+          "max_depth": 2,
+          "min_child_weight": 53.929545366091894,
+          "reg_alpha": 0.0011567516916482982,
+          "reg_lambda": 20.393785388732944,
+          "subsample": 0.6929842549878388
+        },
+        {
+          "score": 1.1285289251387571,
+          "n_estimators": 613,
+          "colsample_bytree": 0.4107497314032142,
+          "gamma": 1.8649029873461493,
+          "half_life_years": 2,
+          "learning_rate": 0.01330916045654552,
+          "max_depth": 5,
+          "min_child_weight": 3.9394164632343642,
+          "reg_alpha": 0.005696935737269584,
+          "reg_lambda": 28.530945411638736,
+          "subsample": 0.950099043659659
+        },
+        {
+          "score": 1.129992378205685,
+          "n_estimators": 505,
+          "colsample_bytree": 0.44946032418762405,
+          "gamma": 0.6502730270248975,
+          "half_life_years": 0,
+          "learning_rate": 0.026820553800321136,
+          "max_depth": 3,
+          "min_child_weight": 6.354169502225643,
+          "reg_alpha": 1.0520566516023813,
+          "reg_lambda": 14.013078016053097,
+          "subsample": 0.9529070419898528
+        },
+        {
+          "score": 1.1287774973956954,
+          "n_estimators": 715,
+          "colsample_bytree": 0.5096220473872781,
+          "gamma": 0.1560411817367522,
+          "half_life_years": 4,
+          "learning_rate": 0.015138424483221105,
+          "max_depth": 3,
+          "min_child_weight": 54.501655042953644,
+          "reg_alpha": 0.019822890539737605,
+          "reg_lambda": 0.7625450550842938,
+          "subsample": 0.7299796125452439
+        },
+        {
+          "score": 1.1304685677517665,
+          "n_estimators": 267,
+          "colsample_bytree": 0.9894840463721981,
+          "gamma": 1.8373518319306519,
+          "half_life_years": 2,
+          "learning_rate": 0.05919405022388324,
+          "max_depth": 3,
+          "min_child_weight": 5.517957556472272,
+          "reg_alpha": 0.0029768201467872623,
+          "reg_lambda": 16.22335248993499,
+          "subsample": 0.6980854195523465
+        },
+        {
+          "score": 1.1299946179137126,
+          "n_estimators": 329,
+          "colsample_bytree": 0.4379621936542616,
+          "gamma": 0.5341390766082121,
+          "half_life_years": 2,
+          "learning_rate": 0.04321506060992342,
+          "max_depth": 3,
+          "min_child_weight": 2.562611720078188,
+          "reg_alpha": 4.075626205151813,
+          "reg_lambda": 9.265545900501793,
+          "subsample": 0.7789294379947928
+        }
+      ],
+      "extra": {},
+      "shap_global": [
+        {
+          "feature": "a_sot_vs_h_sot_conceded",
+          "label": "Away shots on target vs home shots conceded",
+          "mean_abs_shap": 0.04636392369866371
+        },
+        {
+          "feature": "diff_season_gd",
+          "label": "Goal difference gap (season)",
+          "mean_abs_shap": 0.029659757390618324
+        },
+        {
+          "feature": "h_season_shots_against",
+          "label": "Home team · shots conceded per game (season)",
+          "mean_abs_shap": 0.021903635933995247
+        },
+        {
+          "feature": "h_season_sot_against",
+          "label": "Home team · shots on target conceded per game (season)",
+          "mean_abs_shap": 0.016895657405257225
+        },
+        {
+          "feature": "a_season_gf",
+          "label": "Away team · goals scored per game (season)",
+          "mean_abs_shap": 0.015199430286884308
+        },
+        {
+          "feature": "a_form15_sot_for",
+          "label": "Away team · shots on target per game (last 15)",
+          "mean_abs_shap": 0.012205488979816437
+        },
+        {
+          "feature": "diff_season_ppg",
+          "label": "Points-per-game gap (season)",
+          "mean_abs_shap": 0.011227625422179699
+        },
+        {
+          "feature": "diff_form10_shots",
+          "label": "Shots gap (last 10)",
+          "mean_abs_shap": 0.01016664132475853
+        },
+        {
+          "feature": "a_season_sot_for",
+          "label": "Away team · shots on target per game (season)",
+          "mean_abs_shap": 0.009916211478412151
+        },
+        {
+          "feature": "h_form5_shots_against",
+          "label": "Home team · shots conceded per game (last 5)",
+          "mean_abs_shap": 0.009558060206472874
+        },
+        {
+          "feature": "a_form10_corner_share",
+          "label": "Away team · share of corners in its matches (last 10)",
+          "mean_abs_shap": 0.009549763053655624
+        },
+        {
+          "feature": "a_form_attack_vs_h_form_defence",
+          "label": "Away recent attack vs home recent defence",
+          "mean_abs_shap": 0.009446235373616219
+        },
+        {
+          "feature": "h2h_avg_goals",
+          "label": "Head-to-head goals per match",
+          "mean_abs_shap": 0.008888551965355873
+        },
+        {
+          "feature": "a_season_shots_against",
+          "label": "Away team · shots conceded per game (season)",
+          "mean_abs_shap": 0.00826205313205719
+        },
+        {
+          "feature": "a_form15_gf",
+          "label": "Away team · goals scored per game (last 15)",
+          "mean_abs_shap": 0.008168792352080345
+        },
+        {
+          "feature": "diff_points",
+          "label": "League points gap",
+          "mean_abs_shap": 0.007446033414453268
+        },
+        {
+          "feature": "league",
+          "label": "League",
+          "mean_abs_shap": 0.006840357091277838
+        },
+        {
+          "feature": "h_season_shots_for",
+          "label": "Home team · shots per game (season)",
+          "mean_abs_shap": 0.006782964803278446
+        },
+        {
+          "feature": "h_form15_shots_against",
+          "label": "Home team · shots conceded per game (last 15)",
+          "mean_abs_shap": 0.006426496431231499
+        },
+        {
+          "feature": "a_form10_corner_diff",
+          "label": "Away team · corner difference per game (last 10)",
+          "mean_abs_shap": 0.0061007412150502205
+        },
+        {
+          "feature": "a_season_shots_for",
+          "label": "Away team · shots per game (season)",
+          "mean_abs_shap": 0.005814562551677227
+        },
+        {
+          "feature": "a_attack_vs_h_defence",
+          "label": "Away attack vs home defence",
+          "mean_abs_shap": 0.005744087044149637
+        },
+        {
+          "feature": "h_venue_shots_for",
+          "label": "Home team · shots per game (home matches)",
+          "mean_abs_shap": 0.005660122726112604
+        },
+        {
+          "feature": "league_avg_home_goals",
+          "label": "League average home goals",
+          "mean_abs_shap": 0.005650480277836323
+        },
+        {
+          "feature": "a_form15_shots_for",
+          "label": "Away team · shots per game (last 15)",
+          "mean_abs_shap": 0.005447843577712774
+        },
+        {
+          "feature": "a_form5_shots_for",
+          "label": "Away team · shots per game (last 5)",
+          "mean_abs_shap": 0.005418411921709776
+        },
+        {
+          "feature": "h2h_over25_rate",
+          "label": "Head-to-head over 2.5 rate",
+          "mean_abs_shap": 0.005296585615724325
+        },
+        {
+          "feature": "h_form10_corner_share",
+          "label": "Home team · share of corners in its matches (last 10)",
+          "mean_abs_shap": 0.005040565971285105
+        },
+        {
+          "feature": "diff_form10_sot",
+          "label": "Shots on target gap (last 10)",
+          "mean_abs_shap": 0.005024110432714224
+        },
+        {
+          "feature": "a_venue_sot_for",
+          "label": "Away team · shots on target per game (away matches)",
+          "mean_abs_shap": 0.0050205206498503685
+        }
+      ],
+      "gain_importance": [
+        {
+          "feature": "league",
+          "label": "League",
+          "gain_share": 0.05902337817565545
+        },
+        {
+          "feature": "a_sot_vs_h_sot_conceded",
+          "label": "Away shots on target vs home shots conceded",
+          "gain_share": 0.055472396992865304
+        },
+        {
+          "feature": "diff_season_gd",
+          "label": "Goal difference gap (season)",
+          "gain_share": 0.04082445050972431
+        },
+        {
+          "feature": "a_form_attack_vs_h_form_defence",
+          "label": "Away recent attack vs home recent defence",
+          "gain_share": 0.029282589893517348
+        },
+        {
+          "feature": "diff_season_ppg",
+          "label": "Points-per-game gap (season)",
+          "gain_share": 0.027041224317448726
+        },
+        {
+          "feature": "diff_form10_gd",
+          "label": "Recent goal difference gap (last 10)",
+          "gain_share": 0.021886261917698338
+        },
+        {
+          "feature": "a_form15_gf",
+          "label": "Away team · goals scored per game (last 15)",
+          "gain_share": 0.020404105879865495
+        },
+        {
+          "feature": "a_form15_sot_for",
+          "label": "Away team · shots on target per game (last 15)",
+          "gain_share": 0.018651382065079387
+        },
+        {
+          "feature": "diff_points",
+          "label": "League points gap",
+          "gain_share": 0.014245614774668361
+        },
+        {
+          "feature": "diff_form10_shots",
+          "label": "Shots gap (last 10)",
+          "gain_share": 0.012618865781598154
+        },
+        {
+          "feature": "a_form15_gd",
+          "label": "Away team · goal difference per game (last 15)",
+          "gain_share": 0.012111284904186684
+        },
+        {
+          "feature": "a_season_gf",
+          "label": "Away team · goals scored per game (season)",
+          "gain_share": 0.011835685353617736
+        },
+        {
+          "feature": "a_form15_shots_for",
+          "label": "Away team · shots per game (last 15)",
+          "gain_share": 0.010595244068956414
+        },
+        {
+          "feature": "a_season_sot_for",
+          "label": "Away team · shots on target per game (season)",
+          "gain_share": 0.010056228599460943
+        },
+        {
+          "feature": "diff_form10_sot",
+          "label": "Shots on target gap (last 10)",
+          "gain_share": 0.009953401078664052
+        },
+        {
+          "feature": "h_season_sot_against",
+          "label": "Home team · shots on target conceded per game (season)",
+          "gain_share": 0.009727864534282302
+        },
+        {
+          "feature": "a_form10_gd",
+          "label": "Away team · goal difference per game (last 10)",
+          "gain_share": 0.00913696182648516
+        },
+        {
+          "feature": "diff_position",
+          "label": "League position gap",
+          "gain_share": 0.008752105964674581
+        },
+        {
+          "feature": "h_season_shots_against",
+          "label": "Home team · shots conceded per game (season)",
+          "gain_share": 0.007912519411576682
+        },
+        {
+          "feature": "a_season_shots_for",
+          "label": "Away team · shots per game (season)",
+          "gain_share": 0.007874753694574422
+        },
+        {
+          "feature": "a_season_gd",
+          "label": "Away team · goal difference per game (season)",
+          "gain_share": 0.007329828032868385
+        },
+        {
+          "feature": "h_position_norm",
+          "label": "Home team · relative table position",
+          "gain_share": 0.007245077772765026
+        },
+        {
+          "feature": "h_form10_shots_against",
+          "label": "Home team · shots conceded per game (last 10)",
+          "gain_share": 0.007099722912192439
+        },
+        {
+          "feature": "a_attack_vs_h_defence",
+          "label": "Away attack vs home defence",
+          "gain_share": 0.006931751914090467
+        },
+        {
+          "feature": "a_form10_sot_for",
+          "label": "Away team · shots on target per game (last 10)",
+          "gain_share": 0.006851088756370065
+        },
+        {
+          "feature": "a_form10_shots_for",
+          "label": "Away team · shots per game (last 10)",
+          "gain_share": 0.0068054047068584
+        },
+        {
+          "feature": "a_form10_corner_diff",
+          "label": "Away team · corner difference per game (last 10)",
+          "gain_share": 0.006773228770602644
+        },
+        {
+          "feature": "diff_venue_ppg",
+          "label": "Home form at home vs away form away",
+          "gain_share": 0.006617452827011694
+        },
+        {
+          "feature": "h_form15_shots_against",
+          "label": "Home team · shots conceded per game (last 15)",
+          "gain_share": 0.006606852976099834
+        },
+        {
+          "feature": "a_form10_shot_share",
+          "label": "Away team · share of shots in its matches (last 10)",
+          "gain_share": 0.006473845665333999
+        }
+      ],
+      "trained_on": {
+        "backtest": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2025-06-01",
+          "rows": 28970
+        },
+        "production": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2026-05-31",
+          "rows": 36064
+        }
+      }
+    },
+    "corners": {
+      "title": "Total corners",
+      "description": "Expected total number of corners in the match.",
+      "kind": "regressor",
+      "target": "total_corners",
+      "objective": "count:poisson",
+      "hyperopt_metric": "poisson_deviance",
+      "hyperopt_evals": 20,
+      "validation_score": 1.1724877614079294,
+      "params": {
+        "colsample_bytree": 0.5393108460206547,
+        "gamma": 0.010976066509657212,
+        "half_life_years": 2,
+        "learning_rate": 0.012384872644407166,
+        "max_depth": 4,
+        "min_child_weight": 1.278131709658417,
+        "reg_alpha": 1.5295230577607941,
+        "reg_lambda": 6.032940090151863,
+        "subsample": 0.7201685419162034
+      },
+      "n_estimators": 846,
+      "n_features": 135,
+      "features": [
+        "league=B1",
+        "league=D1",
+        "league=D2",
+        "league=E0",
+        "league=E1",
+        "league=E2",
+        "league=E3",
+        "league=F1",
+        "league=F2",
+        "league=G1",
+        "league=I1",
+        "league=I2",
+        "league=N1",
+        "league=P1",
+        "league=SC0",
+        "league=SC1",
+        "league=SC2",
+        "league=SC3",
+        "league=SP1",
+        "league=SP2",
+        "league=T1",
+        "h_season_games",
+        "a_season_games",
+        "diff_form10_corners",
+        "diff_rest_days",
+        "h_corners_vs_a_corners_conceded",
+        "a_corners_vs_h_corners_conceded",
+        "form_corners_sum",
+        "league_avg_home_goals",
+        "league_avg_away_goals",
+        "league_avg_corners",
+        "league_avg_home_corners",
+        "league_avg_away_corners",
+        "league_over25_rate",
+        "league_btts_rate",
+        "h_points",
+        "h_season_ppg",
+        "h_season_gd",
+        "h_season_gf",
+        "h_season_ga",
+        "h_season_shots_for",
+        "h_season_shots_against",
+        "h_season_sot_for",
+        "h_season_sot_against",
+        "h_season_corners_for",
+        "h_season_corners_against",
+        "h_position",
+        "h_position_norm",
+        "h_form5_gf",
+        "h_form5_ga",
+        "h_form5_shots_for",
+        "h_form5_shots_against",
+        "h_form5_sot_for",
+        "h_form5_sot_against",
+        "h_form5_corners_for",
+        "h_form5_corners_against",
+        "h_form10_gf",
+        "h_form10_ga",
+        "h_form10_shots_for",
+        "h_form10_shots_against",
+        "h_form10_sot_for",
+        "h_form10_sot_against",
+        "h_form10_corners_for",
+        "h_form10_corners_against",
+        "h_form15_gf",
+        "h_form15_ga",
+        "h_form15_shots_for",
+        "h_form15_shots_against",
+        "h_form15_sot_for",
+        "h_form15_sot_against",
+        "h_form15_corners_for",
+        "h_form15_corners_against",
+        "h_form10_corner_diff",
+        "h_form10_corner_share",
+        "h_form10_shot_share",
+        "h_trend_corners",
+        "h_trend_corners_conceded",
+        "h_rest_days",
+        "a_points",
+        "a_season_ppg",
+        "a_season_gd",
+        "a_season_gf",
+        "a_season_ga",
+        "a_season_shots_for",
+        "a_season_shots_against",
+        "a_season_sot_for",
+        "a_season_sot_against",
+        "a_season_corners_for",
+        "a_season_corners_against",
+        "a_position",
+        "a_position_norm",
+        "a_form5_gf",
+        "a_form5_ga",
+        "a_form5_shots_for",
+        "a_form5_shots_against",
+        "a_form5_sot_for",
+        "a_form5_sot_against",
+        "a_form5_corners_for",
+        "a_form5_corners_against",
+        "a_form10_gf",
+        "a_form10_ga",
+        "a_form10_shots_for",
+        "a_form10_shots_against",
+        "a_form10_sot_for",
+        "a_form10_sot_against",
+        "a_form10_corners_for",
+        "a_form10_corners_against",
+        "a_form15_gf",
+        "a_form15_ga",
+        "a_form15_shots_for",
+        "a_form15_shots_against",
+        "a_form15_sot_for",
+        "a_form15_sot_against",
+        "a_form15_corners_for",
+        "a_form15_corners_against",
+        "a_form10_corner_diff",
+        "a_form10_corner_share",
+        "a_form10_shot_share",
+        "a_trend_corners",
+        "a_trend_corners_conceded",
+        "a_rest_days",
+        "h_venue_corners_for",
+        "h_venue_corners_against",
+        "h_venue_form5_gf",
+        "h_venue_form5_ga",
+        "h_venue_form5_shots_for",
+        "h_venue_form5_corners_for",
+        "h_venue_form5_corners_against",
+        "a_venue_corners_for",
+        "a_venue_corners_against",
+        "a_venue_form5_gf",
+        "a_venue_form5_ga",
+        "a_venue_form5_shots_for",
+        "a_venue_form5_corners_for",
+        "a_venue_form5_corners_against"
+      ],
+      "test_metrics": {
+        "n": 7094,
+        "rmse": 3.349531484294854,
+        "mae": 2.6735445727823417,
+        "r2": 0.018556461769665522,
+        "poisson_deviance": 1.1687386252044698,
+        "mean_actual": 9.738793346489992,
+        "mean_predicted": 9.695886751077596
+      },
+      "test_metrics_argmax": null,
+      "validation_metrics": null,
+      "benchmarks": {
+        "mean": {
+          "n": 7094,
+          "rmse": 3.382409844713415,
+          "mae": 2.6992158400333945,
+          "r2": -0.0008054245354085499,
+          "poisson_deviance": 1.191546874659021,
+          "mean_actual": 9.738793346489992,
+          "mean_predicted": 9.834747511810303
+        }
+      },
+      "calibration": null,
+      "trials": [
+        {
+          "score": 1.1745961315695763,
+          "n_estimators": 437,
+          "colsample_bytree": 0.6389294340869437,
+          "gamma": 0.6479980714308677,
+          "half_life_years": 1,
+          "learning_rate": 0.013609268898085093,
+          "max_depth": 5,
+          "min_child_weight": 14.417719203520273,
+          "reg_alpha": 1.860450303732333,
+          "reg_lambda": 6.333377508548816,
+          "subsample": 0.9254621630561151
+        },
+        {
+          "score": 1.1724877614079294,
+          "n_estimators": 846,
+          "colsample_bytree": 0.5393108460206547,
+          "gamma": 0.010976066509657212,
+          "half_life_years": 2,
+          "learning_rate": 0.012384872644407166,
+          "max_depth": 4,
+          "min_child_weight": 1.278131709658417,
+          "reg_alpha": 1.5295230577607941,
+          "reg_lambda": 6.032940090151863,
+          "subsample": 0.7201685419162034
+        },
+        {
+          "score": 1.1765831125058348,
+          "n_estimators": 65,
+          "colsample_bytree": 0.7661560391684041,
+          "gamma": 1.0513868273316425,
+          "half_life_years": 2,
+          "learning_rate": 0.09298891765084724,
+          "max_depth": 4,
+          "min_child_weight": 1.9032212632033894,
+          "reg_alpha": 0.1926233633544823,
+          "reg_lambda": 0.6760058415983122,
+          "subsample": 0.658785114914011
+        },
+        {
+          "score": 1.1740210920365404,
+          "n_estimators": 363,
+          "colsample_bytree": 0.47669610384659056,
+          "gamma": 1.1670632048936762,
+          "half_life_years": 2,
+          "learning_rate": 0.038808639245965844,
+          "max_depth": 2,
+          "min_child_weight": 17.89107592654053,
+          "reg_alpha": 0.15540586494961336,
+          "reg_lambda": 1.1921314249693131,
+          "subsample": 0.7615110681047916
+        },
+        {
+          "score": 1.174511565164953,
+          "n_estimators": 410,
+          "colsample_bytree": 0.7748227532635993,
+          "gamma": 1.523146153993598,
+          "half_life_years": 4,
+          "learning_rate": 0.029828719485540195,
+          "max_depth": 3,
+          "min_child_weight": 4.125258968707463,
+          "reg_alpha": 0.011559057062904316,
+          "reg_lambda": 0.7427091970911385,
+          "subsample": 0.8011615018645928
+        },
+        {
+          "score": 1.1755594332121524,
+          "n_estimators": 158,
+          "colsample_bytree": 0.9001212773780123,
+          "gamma": 1.7000795453001587,
+          "half_life_years": 4,
+          "learning_rate": 0.04594504383474939,
+          "max_depth": 6,
+          "min_child_weight": 19.313740239759028,
+          "reg_alpha": 0.043125622215755444,
+          "reg_lambda": 0.9667078036749922,
+          "subsample": 0.9018909441059156
+        },
+        {
+          "score": 1.1756616407324822,
+          "n_estimators": 68,
+          "colsample_bytree": 0.6021135609592614,
+          "gamma": 0.26643144045295597,
+          "half_life_years": 1,
+          "learning_rate": 0.13019394525033393,
+          "max_depth": 4,
+          "min_child_weight": 35.14360504708982,
+          "reg_alpha": 0.0020062242991347283,
+          "reg_lambda": 29.63221105276826,
+          "subsample": 0.8796314378966033
+        },
+        {
+          "score": 1.173213227930179,
+          "n_estimators": 171,
+          "colsample_bytree": 0.9389820660275405,
+          "gamma": 0.6679702943464678,
+          "half_life_years": 4,
+          "learning_rate": 0.07369931434455396,
+          "max_depth": 3,
+          "min_child_weight": 3.973753694454135,
+          "reg_alpha": 0.5847387652651389,
+          "reg_lambda": 14.96218161660687,
+          "subsample": 0.6257147453238197
+        },
+        {
+          "score": 1.174691150969142,
+          "n_estimators": 345,
+          "colsample_bytree": 0.5655011809534063,
+          "gamma": 1.691920001744672,
+          "half_life_years": 4,
+          "learning_rate": 0.02574886215833619,
+          "max_depth": 6,
+          "min_child_weight": 10.4640628581292,
+          "reg_alpha": 0.001585011565300635,
+          "reg_lambda": 11.765266517760054,
+          "subsample": 0.8893193614697442
+        },
+        {
+          "score": 1.1747695199660753,
+          "n_estimators": 77,
+          "colsample_bytree": 0.6531143210539823,
+          "gamma": 0.17406750008159766,
+          "half_life_years": 1,
+          "learning_rate": 0.06630829329119478,
+          "max_depth": 5,
+          "min_child_weight": 17.867214602146905,
+          "reg_alpha": 0.040648486755528346,
+          "reg_lambda": 3.576624397924405,
+          "subsample": 0.7300129570941898
+        },
+        {
+          "score": 1.1759583504795987,
+          "n_estimators": 139,
+          "colsample_bytree": 0.6562390751987819,
+          "gamma": 0.6922163999711601,
+          "half_life_years": 0,
+          "learning_rate": 0.044664987050490025,
+          "max_depth": 6,
+          "min_child_weight": 49.85905525778421,
+          "reg_alpha": 0.009829359411891368,
+          "reg_lambda": 0.5920210657328656,
+          "subsample": 0.6138813743427279
+        },
+        {
+          "score": 1.1746799013441585,
+          "n_estimators": 74,
+          "colsample_bytree": 0.44219505656255864,
+          "gamma": 1.8389482549633798,
+          "half_life_years": 4,
+          "learning_rate": 0.14516972450804472,
+          "max_depth": 3,
+          "min_child_weight": 3.5263314657605305,
+          "reg_alpha": 0.0024421104836381624,
+          "reg_lambda": 6.030550074813198,
+          "subsample": 0.9124351334655565
+        },
+        {
+          "score": 1.1751516631782757,
+          "n_estimators": 113,
+          "colsample_bytree": 0.7286136026697763,
+          "gamma": 0.3944470417189898,
+          "half_life_years": 1,
+          "learning_rate": 0.05225770116894761,
+          "max_depth": 5,
+          "min_child_weight": 2.430116450100457,
+          "reg_alpha": 0.17908449104347277,
+          "reg_lambda": 9.933237800416094,
+          "subsample": 0.713264375212042
+        },
+        {
+          "score": 1.1738015737435719,
+          "n_estimators": 372,
+          "colsample_bytree": 0.5136183797677456,
+          "gamma": 1.3678469680987995,
+          "half_life_years": 2,
+          "learning_rate": 0.015944335449190838,
+          "max_depth": 5,
+          "min_child_weight": 37.02600720903606,
+          "reg_alpha": 0.002131377225231094,
+          "reg_lambda": 3.385562306552041,
+          "subsample": 0.6269691695176437
+        },
+        {
+          "score": 1.17368972922349,
+          "n_estimators": 839,
+          "colsample_bytree": 0.6098056715332502,
+          "gamma": 0.8248172403640441,
+          "half_life_years": 0,
+          "learning_rate": 0.019548429048879816,
+          "max_depth": 2,
+          "min_child_weight": 53.929545366091894,
+          "reg_alpha": 0.0011567516916482982,
+          "reg_lambda": 20.393785388732944,
+          "subsample": 0.6929842549878388
+        },
+        {
+          "score": 1.1733011324580795,
+          "n_estimators": 653,
+          "colsample_bytree": 0.4107497314032142,
+          "gamma": 1.8649029873461493,
+          "half_life_years": 2,
+          "learning_rate": 0.01330916045654552,
+          "max_depth": 5,
+          "min_child_weight": 3.9394164632343642,
+          "reg_alpha": 0.005696935737269584,
+          "reg_lambda": 28.530945411638736,
+          "subsample": 0.950099043659659
+        },
+        {
+          "score": 1.1730364828768014,
+          "n_estimators": 649,
+          "colsample_bytree": 0.44946032418762405,
+          "gamma": 0.6502730270248975,
+          "half_life_years": 0,
+          "learning_rate": 0.026820553800321136,
+          "max_depth": 3,
+          "min_child_weight": 6.354169502225643,
+          "reg_alpha": 1.0520566516023813,
+          "reg_lambda": 14.013078016053097,
+          "subsample": 0.9529070419898528
+        },
+        {
+          "score": 1.1729192746057555,
+          "n_estimators": 987,
+          "colsample_bytree": 0.5096220473872781,
+          "gamma": 0.1560411817367522,
+          "half_life_years": 4,
+          "learning_rate": 0.015138424483221105,
+          "max_depth": 3,
+          "min_child_weight": 54.501655042953644,
+          "reg_alpha": 0.019822890539737605,
+          "reg_lambda": 0.7625450550842938,
+          "subsample": 0.7299796125452439
+        },
+        {
+          "score": 1.1736183621831342,
+          "n_estimators": 164,
+          "colsample_bytree": 0.9894840463721981,
+          "gamma": 1.8373518319306519,
+          "half_life_years": 2,
+          "learning_rate": 0.05919405022388324,
+          "max_depth": 3,
+          "min_child_weight": 5.517957556472272,
+          "reg_alpha": 0.0029768201467872623,
+          "reg_lambda": 16.22335248993499,
+          "subsample": 0.6980854195523465
+        },
+        {
+          "score": 1.1734527812986233,
+          "n_estimators": 202,
+          "colsample_bytree": 0.4379621936542616,
+          "gamma": 0.5341390766082121,
+          "half_life_years": 2,
+          "learning_rate": 0.04321506060992342,
+          "max_depth": 3,
+          "min_child_weight": 2.562611720078188,
+          "reg_alpha": 4.075626205151813,
+          "reg_lambda": 9.265545900501793,
+          "subsample": 0.7789294379947928
+        }
+      ],
+      "extra": {
+        "leagues": [
+          "B1",
+          "D1",
+          "D2",
+          "E0",
+          "E1",
+          "E2",
+          "E3",
+          "F1",
+          "F2",
+          "G1",
+          "I1",
+          "I2",
+          "N1",
+          "P1",
+          "SC0",
+          "SC1",
+          "SC2",
+          "SC3",
+          "SP1",
+          "SP2",
+          "T1"
+        ],
+        "nb_size": 71.08005748615068
+      },
+      "shap_global": [
+        {
+          "feature": "form_corners_sum",
+          "label": "Combined corner volume of both teams (last 10)",
+          "mean_abs_shap": 0.016107825562357903
+        },
+        {
+          "feature": "league_avg_corners",
+          "label": "League average corners",
+          "mean_abs_shap": 0.008745374158024788
+        },
+        {
+          "feature": "league_avg_away_corners",
+          "label": "League average away corners",
+          "mean_abs_shap": 0.005124711897224188
+        },
+        {
+          "feature": "h_corners_vs_a_corners_conceded",
+          "label": "Home corners vs away corners conceded",
+          "mean_abs_shap": 0.004285699687898159
+        },
+        {
+          "feature": "league_avg_home_corners",
+          "label": "League average home corners",
+          "mean_abs_shap": 0.004119954537600279
+        },
+        {
+          "feature": "a_corners_vs_h_corners_conceded",
+          "label": "Away corners vs home corners conceded",
+          "mean_abs_shap": 0.00407950347289443
+        },
+        {
+          "feature": "a_season_shots_against",
+          "label": "Away team · shots conceded per game (season)",
+          "mean_abs_shap": 0.004013083875179291
+        },
+        {
+          "feature": "a_form15_corners_against",
+          "label": "Away team · corners conceded per game (last 15)",
+          "mean_abs_shap": 0.003250687848776579
+        },
+        {
+          "feature": "h_season_corners_for",
+          "label": "Home team · corners per game (season)",
+          "mean_abs_shap": 0.0031179909128695726
+        },
+        {
+          "feature": "a_form15_shots_for",
+          "label": "Away team · shots per game (last 15)",
+          "mean_abs_shap": 0.00268930965103209
+        },
+        {
+          "feature": "h_form15_corners_for",
+          "label": "Home team · corners per game (last 15)",
+          "mean_abs_shap": 0.002468809485435486
+        },
+        {
+          "feature": "league",
+          "label": "League",
+          "mean_abs_shap": 0.00216845003888011
+        },
+        {
+          "feature": "h_form5_shots_against",
+          "label": "Home team · shots conceded per game (last 5)",
+          "mean_abs_shap": 0.0021361710969358683
+        },
+        {
+          "feature": "h_season_ga",
+          "label": "Home team · goals conceded per game (season)",
+          "mean_abs_shap": 0.0020862575620412827
+        },
+        {
+          "feature": "a_form5_ga",
+          "label": "Away team · goals conceded per game (last 5)",
+          "mean_abs_shap": 0.0020649905782192945
+        },
+        {
+          "feature": "h_season_corners_against",
+          "label": "Home team · corners conceded per game (season)",
+          "mean_abs_shap": 0.002007154282182455
+        },
+        {
+          "feature": "h_season_shots_for",
+          "label": "Home team · shots per game (season)",
+          "mean_abs_shap": 0.0017686395440250635
+        },
+        {
+          "feature": "h_form10_corners_for",
+          "label": "Home team · corners per game (last 10)",
+          "mean_abs_shap": 0.0016820469172671437
+        },
+        {
+          "feature": "h_form5_sot_against",
+          "label": "Home team · shots on target conceded per game (last 5)",
+          "mean_abs_shap": 0.0016131502343341708
+        },
+        {
+          "feature": "a_season_ppg",
+          "label": "Away team · points per game (season)",
+          "mean_abs_shap": 0.0016102755907922983
+        },
+        {
+          "feature": "h_season_shots_against",
+          "label": "Home team · shots conceded per game (season)",
+          "mean_abs_shap": 0.001530566019937396
+        },
+        {
+          "feature": "a_season_corners_for",
+          "label": "Away team · corners per game (season)",
+          "mean_abs_shap": 0.0014655721606686711
+        },
+        {
+          "feature": "a_form15_shots_against",
+          "label": "Away team · shots conceded per game (last 15)",
+          "mean_abs_shap": 0.001415931386873126
+        },
+        {
+          "feature": "a_venue_corners_for",
+          "label": "Away team · corners per game (away matches)",
+          "mean_abs_shap": 0.001326832571066916
+        },
+        {
+          "feature": "a_form10_corners_against",
+          "label": "Away team · corners conceded per game (last 10)",
+          "mean_abs_shap": 0.00126829172950238
+        },
+        {
+          "feature": "h_form10_sot_against",
+          "label": "Home team · shots on target conceded per game (last 10)",
+          "mean_abs_shap": 0.0012103179469704628
+        },
+        {
+          "feature": "h_season_gd",
+          "label": "Home team · goal difference per game (season)",
+          "mean_abs_shap": 0.0012076650746166706
+        },
+        {
+          "feature": "a_season_corners_against",
+          "label": "Away team · corners conceded per game (season)",
+          "mean_abs_shap": 0.0012073037214577198
+        },
+        {
+          "feature": "a_form15_corners_for",
+          "label": "Away team · corners per game (last 15)",
+          "mean_abs_shap": 0.001201489008963108
+        },
+        {
+          "feature": "a_form5_corners_against",
+          "label": "Away team · corners conceded per game (last 5)",
+          "mean_abs_shap": 0.001162260421551764
+        }
+      ],
+      "gain_importance": [
+        {
+          "feature": "league",
+          "label": "League",
+          "gain_share": 0.1096558275175748
+        },
+        {
+          "feature": "form_corners_sum",
+          "label": "Combined corner volume of both teams (last 10)",
+          "gain_share": 0.030107837524521532
+        },
+        {
+          "feature": "league_avg_corners",
+          "label": "League average corners",
+          "gain_share": 0.02452215759140601
+        },
+        {
+          "feature": "league_avg_home_corners",
+          "label": "League average home corners",
+          "gain_share": 0.017428806955414763
+        },
+        {
+          "feature": "league_avg_away_corners",
+          "label": "League average away corners",
+          "gain_share": 0.013123538187424863
+        },
+        {
+          "feature": "h_corners_vs_a_corners_conceded",
+          "label": "Home corners vs away corners conceded",
+          "gain_share": 0.011688519435292682
+        },
+        {
+          "feature": "a_season_shots_against",
+          "label": "Away team · shots conceded per game (season)",
+          "gain_share": 0.010248114054552535
+        },
+        {
+          "feature": "h_form15_corners_for",
+          "label": "Home team · corners per game (last 15)",
+          "gain_share": 0.009390337121667425
+        },
+        {
+          "feature": "a_form5_ga",
+          "label": "Away team · goals conceded per game (last 5)",
+          "gain_share": 0.009375636001865747
+        },
+        {
+          "feature": "a_form15_corners_against",
+          "label": "Away team · corners conceded per game (last 15)",
+          "gain_share": 0.009137438420367577
+        },
+        {
+          "feature": "h_season_shots_for",
+          "label": "Home team · shots per game (season)",
+          "gain_share": 0.008975542406087052
+        },
+        {
+          "feature": "a_form15_shots_against",
+          "label": "Away team · shots conceded per game (last 15)",
+          "gain_share": 0.008953590678871241
+        },
+        {
+          "feature": "h_form10_corners_for",
+          "label": "Home team · corners per game (last 10)",
+          "gain_share": 0.0088667634844723
+        },
+        {
+          "feature": "a_season_corners_against",
+          "label": "Away team · corners conceded per game (season)",
+          "gain_share": 0.008650859809874166
+        },
+        {
+          "feature": "a_corners_vs_h_corners_conceded",
+          "label": "Away corners vs home corners conceded",
+          "gain_share": 0.008507638702096582
+        },
+        {
+          "feature": "a_form5_shots_against",
+          "label": "Away team · shots conceded per game (last 5)",
+          "gain_share": 0.00839637357493409
+        },
+        {
+          "feature": "h_season_corners_for",
+          "label": "Home team · corners per game (season)",
+          "gain_share": 0.008293011898004314
+        },
+        {
+          "feature": "h_form15_sot_against",
+          "label": "Home team · shots on target conceded per game (last 15)",
+          "gain_share": 0.008222800228693001
+        },
+        {
+          "feature": "a_form10_shots_against",
+          "label": "Away team · shots conceded per game (last 10)",
+          "gain_share": 0.008217931371975637
+        },
+        {
+          "feature": "a_season_sot_against",
+          "label": "Away team · shots on target conceded per game (season)",
+          "gain_share": 0.008201837220670026
+        },
+        {
+          "feature": "h_season_shots_against",
+          "label": "Home team · shots conceded per game (season)",
+          "gain_share": 0.008125305132401957
+        },
+        {
+          "feature": "a_form10_corners_against",
+          "label": "Away team · corners conceded per game (last 10)",
+          "gain_share": 0.00808844067426396
+        },
+        {
+          "feature": "h_season_sot_for",
+          "label": "Home team · shots on target per game (season)",
+          "gain_share": 0.008066920273544841
+        },
+        {
+          "feature": "a_season_corners_for",
+          "label": "Away team · corners per game (season)",
+          "gain_share": 0.008061779474025806
+        },
+        {
+          "feature": "h_form15_shots_against",
+          "label": "Home team · shots conceded per game (last 15)",
+          "gain_share": 0.008061768668351567
+        },
+        {
+          "feature": "h_season_ga",
+          "label": "Home team · goals conceded per game (season)",
+          "gain_share": 0.008044432764981365
+        },
+        {
+          "feature": "a_form15_corners_for",
+          "label": "Away team · corners per game (last 15)",
+          "gain_share": 0.008010154464877817
+        },
+        {
+          "feature": "h_season_corners_against",
+          "label": "Home team · corners conceded per game (season)",
+          "gain_share": 0.00793696403136805
+        },
+        {
+          "feature": "a_form15_ga",
+          "label": "Away team · goals conceded per game (last 15)",
+          "gain_share": 0.007885579448471873
+        },
+        {
+          "feature": "a_form15_shots_for",
+          "label": "Away team · shots per game (last 15)",
+          "gain_share": 0.00786590051473759
+        }
+      ],
+      "trained_on": {
+        "backtest": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2025-06-01",
+          "rows": 28928
+        },
+        "production": {
+          "seasons": [
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "date_from": "2021-07-23",
+          "date_to": "2026-05-31",
+          "rows": 36022
+        }
+      }
+    }
+  },
+  "derived_markets": {
+    "Over 1.5": {
+      "poisson": {
+        "n": 7094,
+        "accuracy": 0.757259656047364,
+        "brier": 0.1814916126902417,
+        "log_loss": 0.54757357923937,
+        "base_rate": 0.757259656047364
+      },
+      "reconciled": {
+        "n": 7094,
+        "accuracy": 0.757259656047364,
+        "brier": 0.18149926264974198,
+        "log_loss": 0.5475750851268083,
+        "base_rate": 0.757259656047364
+      },
+      "calibration": [
+        {
+          "predicted": 0.6804134221394633,
+          "observed": 0.692820133234641,
+          "n": 1351
+        },
+        {
+          "predicted": 0.7441918363580606,
+          "observed": 0.758817317845829,
+          "n": 4735
+        },
+        {
+          "predicted": 0.8316966531551903,
+          "observed": 0.8351648351648352,
+          "n": 1001
+        },
+        {
+          "predicted": 0.9049877427720964,
+          "observed": 1.0,
+          "n": 7
+        }
+      ]
+    },
+    "Over 2.5": {
+      "poisson": {
+        "n": 7094,
+        "accuracy": 0.5484916831124894,
+        "brier": 0.24673242392039405,
+        "log_loss": 0.6865062572640218,
+        "base_rate": 0.5180434169720891
+      },
+      "reconciled": {
+        "n": 7094,
+        "accuracy": 0.5473639695517338,
+        "brier": 0.2468007672861417,
+        "log_loss": 0.6866334736806115,
+        "base_rate": 0.5180434169720891
+      },
+      "calibration": [
+        {
+          "predicted": 0.38523029695954514,
+          "observed": 0.46557377049180326,
+          "n": 305
+        },
+        {
+          "predicted": 0.4539252804071619,
+          "observed": 0.4760317867213535,
+          "n": 3901
+        },
+        {
+          "predicted": 0.540169948329086,
+          "observed": 0.5610939567710631,
+          "n": 2267
+        },
+        {
+          "predicted": 0.6386886043251532,
+          "observed": 0.6371841155234657,
+          "n": 554
+        },
+        {
+          "predicted": 0.7235048221036815,
+          "observed": 0.7611940298507462,
+          "n": 67
+        }
+      ]
+    },
+    "Over 3.5": {
+      "poisson": {
+        "n": 7094,
+        "accuracy": 0.7144065407386524,
+        "brier": 0.20137859952824985,
+        "log_loss": 0.5918298852115422,
+        "base_rate": 0.2855934592613476
+      },
+      "reconciled": {
+        "n": 7094,
+        "accuracy": 0.7142655765435579,
+        "brier": 0.20137257895028052,
+        "log_loss": 0.59182678532967,
+        "base_rate": 0.2855934592613476
+      },
+      "calibration": [
+        {
+          "predicted": 0.18929418567656217,
+          "observed": 0.20676691729323307,
+          "n": 266
+        },
+        {
+          "predicted": 0.2513911834237626,
+          "observed": 0.25815696649029984,
+          "n": 4536
+        },
+        {
+          "predicted": 0.337671261947744,
+          "observed": 0.3342391304347826,
+          "n": 1840
+        },
+        {
+          "predicted": 0.43558630815173643,
+          "observed": 0.39950372208436724,
+          "n": 403
+        },
+        {
+          "predicted": 0.523607231398681,
+          "observed": 0.4897959183673469,
+          "n": 49
+        }
+      ]
+    },
+    "BTTS Yes": {
+      "poisson": {
+        "n": 7094,
+        "accuracy": 0.5414434733577671,
+        "brier": 0.24701843735476112,
+        "log_loss": 0.6871392545585131,
+        "base_rate": 0.5411615449675783
+      },
+      "reconciled": {
+        "n": 7094,
+        "accuracy": 0.5431350436989005,
+        "brier": 0.24690989052887113,
+        "log_loss": 0.6869213978628578,
+        "base_rate": 0.5411615449675783
+      },
+      "calibration": [
+        {
+          "predicted": 0.39552795949411496,
+          "observed": 1.0,
+          "n": 1
+        },
+        {
+          "predicted": 0.47454476915896615,
+          "observed": 0.49706687524442705,
+          "n": 2557
+        },
+        {
+          "predicted": 0.5369962314917502,
+          "observed": 0.5617491590581452,
+          "n": 4162
+        },
+        {
+          "predicted": 0.6229854846788477,
+          "observed": 0.6091644204851752,
+          "n": 371
+        },
+        {
+          "predicted": 0.7040556081022197,
+          "observed": 1.0,
+          "n": 3
+        }
+      ]
+    },
+    "Exact score (top 1)": {
+      "hit_rate": 0.1320834508034959,
+      "n": 7094
+    },
+    "Corners over 9.5": {
+      "reconciled": {
+        "n": 7094,
+        "accuracy": 0.5434169720890893,
+        "brier": 0.24757342701381477,
+        "log_loss": 0.6882893745447249,
+        "base_rate": 0.5047927826332111
+      }
+    }
+  },
+  "use_odds_features": false,
+  "version": "prod_20261007",
+  "role": "production",
+  "trained_to": "2026-05-31"
+}

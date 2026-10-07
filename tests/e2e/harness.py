@@ -22,11 +22,25 @@ class App:
         self.wait()
         return self
 
+    def nav_links(self) -> Locator:
+        return self.page.locator("header").get_by_role("link")
+
+    def pref(self, name: str) -> Locator:
+        """Language / theme switch in the top bar ("EN", "UA", "dark_mode", "light_mode")."""
+        return self.page.locator(".st-key-fp_prefs").get_by_role("radio", name=name)
+
+    def background(self) -> str:
+        return self.page.evaluate("getComputedStyle(document.querySelector('[data-testid=stApp]')).backgroundColor")
+
     def wait(self) -> None:
-        self.page.wait_for_selector(".page-title", timeout=90_000)
-        self.page.wait_for_timeout(600)
+        """Wait until Streamlit has finished the current run."""
+        self.page.wait_for_selector(".fp-brand", timeout=90_000)
+        try:   # a rerun may take a moment to start; catch its running indicator if it appears
+            self.page.wait_for_selector(RUNNING, state="attached", timeout=1500)
+        except Exception:
+            pass
         self.page.wait_for_selector(RUNNING, state="detached", timeout=120_000)
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(400)
 
     # -- lookups ------------------------------------------------------------------
     @property
