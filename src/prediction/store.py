@@ -51,6 +51,18 @@ def load_picks() -> pd.DataFrame:
     return predictions_storage.read_parquet_or_empty(PICKS)
 
 
+def drop_source(source: str) -> int:
+    """Remove every stored prediction of one origin (e.g. "backfill" before a retrain)."""
+    snapshots = load_snapshots()
+    if snapshots.empty:
+        return 0
+    ids = set(snapshots.loc[snapshots["source"] == source, "match_id"])
+    for name, df in ((SNAPSHOTS, snapshots), (MARKETS, load_markets()), (PICKS, load_picks())):
+        if not df.empty:
+            predictions_storage.write_parquet(name, df.loc[~df["match_id"].isin(ids)])
+    return len(ids)
+
+
 def _replace(existing: pd.DataFrame, new: pd.DataFrame, drop_ids: set[str]) -> pd.DataFrame:
     if not existing.empty:
         existing = existing.loc[~existing["match_id"].isin(drop_ids)]
@@ -95,7 +107,9 @@ def _rescheduled_result(pick: pd.Series, by_pair: dict) -> pd.Series | None:
 def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     """Settle UPCOMING picks against played matches; returns all picks.
 
-    Unit stake per pick: a win returns ``odds - 1``, a loss ``-1``, a void 0.
+    Unit stake per pick with a real price: a win returns ``odds - 1``, a loss
+    ``-1``, a void 0. Picks without a real price are settled (won / lost) but
+    have no profit.
     A pick without a result VOID_AFTER_DAYS after its date is voided
     (postponed or abandoned match).
     """
@@ -127,12 +141,17 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
         pick, row = pending.loc[idx], scores.loc[idx]
         won = selection_won(pick["market"], pick["selection"], row["home_goals"], row["away_goals"],
                             row["total_corners"])
-        odds = pick["odds"] if pick["odds"] == pick["odds"] else None
-        if won is None:                       # e.g. corners were not reported
-            status[idx], profit[idx] = "VOID", 0.0
-        else:
-            status[idx] = "WON" if won else "LOST"
-            profit[idx] = (odds - 1 if won else -1.0) if odds else np.nan
+        odds = pick["odds"] if pick["odds"] == pick["odds"] and pick["odds"] else None
+        if won is None:
+            # e.g. corners not (yet) reported: an API result carries goals only,
+            # the statistics arrive with Football-Data. Void only when overdue.
+            if overdue[idx]:
+                status[idx], profit[idx] = "VOID", 0.0
+            continue
+        status[idx] = "WON" if won else "LOST"
+        # profit only with a real bookmaker price; otherwise the pick is settled
+        # (hit / miss) but has no profit
+        profit[idx] = (odds - 1 if won else -1.0) if odds else np.nan
 
     decided = status != "UPCOMING"
     picks.loc[pending.index[has_result], score_cols] = scores.loc[has_result, score_cols].to_numpy()

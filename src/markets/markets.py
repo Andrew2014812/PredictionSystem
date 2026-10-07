@@ -7,12 +7,15 @@ Every selection is identified by ``(market, selection)``:
     TOTAL_<line>     OVER | UNDER          line in TOTAL_GOAL_LINES
     BTTS             YES | NO
     EXACT_SCORE      "<home>-<away>"       e.g. "2-1"
-    HANDICAP_<line>  H | D | A             European 3-way handicap, home perspective
+    HANDICAP_<line>  H | D | A             whole line: European 3-way handicap
+                     H | A                 half line: 2-way handicap
     CORNERS_<line>   OVER | UNDER          line in CORNER_LINES (or any line)
 
-European handicap ``-1`` adds -1 to the home goals: "H(-1)" wins when the
-home team wins by 2+, "D(-1)" when it wins by exactly 1, "A(+1)" otherwise.
-Three outcomes always cover every score, so there is no push / refund.
+The handicap line is added to the home team's goals (home perspective).
+Whole line ``-1``: "H(-1)" wins when the home team wins by 2+, "D(-1)" when
+it wins by exactly 1, "A(+1)" otherwise. Half line ``-0.5``: "H(-0.5)" wins
+when the home team wins, "A(+0.5)" otherwise. In both cases the outcomes
+cover every score, so there is no push / refund.
 """
 from __future__ import annotations
 
@@ -31,6 +34,15 @@ GROUPS = {
 def market_group(market: str) -> str:
     """'TOTAL_2.5' -> 'TOTAL', 'HANDICAP_-1' -> 'HANDICAP', '1X2' -> '1X2'."""
     return GROUPS.get(market, market.split("_")[0])
+
+
+def handicap_market(line: float) -> str:
+    """'HANDICAP_-1', 'HANDICAP_+0.5', ..."""
+    return f"HANDICAP_{line:+g}"
+
+
+def is_half_line(line: float) -> bool:
+    return abs(line * 2) % 2 == 1
 
 
 def market_line(market: str) -> float | None:
@@ -74,10 +86,11 @@ def goal_markets(matrix: np.ndarray, top_scores: int = config.EXACT_SCORE_TOP_N)
     out += [Selection("BTTS", "YES", btts), Selection("BTTS", "NO", 1 - btts)]
     for line in config.HANDICAP_LINES:
         margin = i + line - j
-        market = f"HANDICAP_{line:+d}"
-        out += [Selection(market, "H", matrix[margin > 0].sum()),
-                Selection(market, "D", matrix[margin == 0].sum()),
-                Selection(market, "A", matrix[margin < 0].sum())]
+        market = handicap_market(line)
+        out.append(Selection(market, "H", matrix[margin > 0].sum()))
+        if not is_half_line(line):
+            out.append(Selection(market, "D", matrix[margin == 0].sum()))
+        out.append(Selection(market, "A", matrix[margin < 0].sum()))
     flat = np.argsort(matrix, axis=None)[::-1][:top_scores]
     for idx in flat:
         h, a = np.unravel_index(idx, matrix.shape)
@@ -128,6 +141,10 @@ def selection_won(market: str, selection: str, home_goals: float, away_goals: fl
         return selection == f"{hg}-{ag}"
     if group == "HANDICAP":
         margin = hg + line - ag
+        if is_half_line(line):
+            if selection not in ("H", "A"):
+                raise ValueError(f"{market} has no {selection} selection")
+            return selection == ("H" if margin > 0 else "A")
         return selection == ("H" if margin > 0 else ("A" if margin < 0 else "D"))
     if group == "CORNERS":
         if corners is None or corners != corners:
@@ -153,7 +170,7 @@ def market_title(market: str) -> str:
     if group in ("TOTAL", "CORNERS") and line is not None:
         return f"{title} {line:g}"
     if group == "HANDICAP" and line is not None:
-        return f"{title} {int(line):+d}"
+        return f"{title} {line:+g}"
     return title
 
 
@@ -171,8 +188,7 @@ def selection_label(market: str, selection: str, home: str = "Home", away: str =
     if group == "EXACT_SCORE":
         return f"Exact score {selection.replace('-', ':')}"
     if group == "HANDICAP":
-        hcp = int(line)
-        return {"H": f"{home} ({hcp:+d})", "D": f"Draw ({hcp:+d})", "A": f"{away} ({-hcp:+d})"}[selection]
+        return {"H": f"{home} ({line:+g})", "D": f"Draw ({line:+g})", "A": f"{away} ({-line:+g})"}[selection]
     if group == "CORNERS":
         return f"{selection.title()} {line:g} corners"
     return f"{market} {selection}"

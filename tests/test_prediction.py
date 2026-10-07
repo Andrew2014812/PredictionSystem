@@ -6,7 +6,7 @@ import pytest
 from src.features.builder import build_features
 from src.modelling.tasks import TASKS
 from src.modelling.training import TaskTrainer, corner_leagues
-from src.prediction.engine import LeagueBaselines, predict_matches
+from src.prediction.engine import predict_matches
 from tests.conftest import raw_row
 from src.data.cleaning import normalise
 
@@ -40,7 +40,9 @@ def test_prediction_output(synthetic):
             bundle.extra.update({"leagues": corner_leagues(synthetic), "nb_size": None})
         bundles[name] = bundle
     upcoming = synthetic.loc[~synthetic["played"]]
-    batch = predict_matches(upcoming, bundles, LeagueBaselines(synthetic), "test", "live")
+    first = upcoming["match_id"].iloc[0]
+    odds = {first: {("1X2", "H"): {"odds": 2.1, "bookmaker": "Bet365", "provider": "football_data"}}}
+    batch = predict_matches(upcoming, bundles, odds, "test", "live")
 
     snaps = batch.snapshots
     assert len(snaps) == len(upcoming)
@@ -55,10 +57,16 @@ def test_prediction_output(synthetic):
         assert p.loc["TOTAL_2.5"].sum() == pytest.approx(1.0, abs=1e-5)
         assert p.loc["BTTS"].sum() == pytest.approx(1.0, abs=1e-5)
         assert (g["probability"].between(0, 1)).all()
-        assert set(g["odds_source"].dropna()) <= {"market", "derived", "simulated"}
+        priced = g.loc[g["odds"].notna()]
+        if mid == first:
+            assert list(zip(priced["market"], priced["selection"])) == [("1X2", "H")]
+        else:
+            assert priced.empty                        # no real price -> no odds, nothing simulated
     picks = batch.picks
-    assert set(picks["role"]) >= {"market"}
+    assert set(picks["role"]) >= {"market", "main"}
+    assert picks.groupby("match_id")["role"].apply(lambda r: (r == "main").sum()).eq(1).all()
     assert (picks["status"] == "UPCOMING").all()
+    assert not picks.loc[picks["match_id"] != first, "real_odds"].any()
 
 
 def test_prediction_matrix_columns_match_training(synthetic):
