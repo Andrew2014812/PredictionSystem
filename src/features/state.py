@@ -134,21 +134,24 @@ class LeaguePrior:
     def __init__(self, size: int):
         self.matches: dict[str, deque] = defaultdict(lambda: deque(maxlen=size))
 
-    def add(self, league: str, hg: float, ag: float, corners: float) -> None:
-        self.matches[league].append((hg, ag, corners))
+    def add(self, league: str, hg: float, ag: float, home_corners: float, away_corners: float) -> None:
+        self.matches[league].append((hg, ag, home_corners, away_corners))
 
     def summary(self, league: str) -> dict[str, float]:
         rows = self.matches.get(league)
         if not rows:
             return {}
         arr = np.array(rows, dtype="float64")
-        hg, ag, corners = arr[:, 0], arr[:, 1], arr[:, 2]
+        hg, ag, hc, ac = arr[:, 0], arr[:, 1], arr[:, 2], arr[:, 3]
+        corners = hc + ac
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=RuntimeWarning)
             return {
                 "league_avg_home_goals": hg.mean(),
                 "league_avg_away_goals": ag.mean(),
                 "league_avg_corners": np.nanmean(corners),
+                "league_avg_home_corners": np.nanmean(hc),
+                "league_avg_away_corners": np.nanmean(ac),
                 "league_home_win_rate": (hg > ag).mean(),
                 "league_draw_rate": (hg == ag).mean(),
                 "league_over25_rate": (hg + ag > 2.5).mean(),
