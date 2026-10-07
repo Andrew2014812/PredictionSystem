@@ -4052,7 +4052,7 @@
     }
   },
   "use_odds_features": false,
-  "version": "backtest_2526",
-  "role": "backtest",
-  "trained_to": "2025-06-01"
+  "version": "prod_20261007",
+  "role": "production",
+  "trained_to": "2026-05-31"
 }
