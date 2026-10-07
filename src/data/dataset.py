@@ -15,7 +15,7 @@ import pandas as pd
 from .. import config
 from ..leagues import league_codes
 from ..storage import fixtures_storage, results_storage
-from .cleaning import deduplicate, drop_stale_fixtures, normalise
+from .cleaning import CANONICAL_COLUMNS, deduplicate, drop_stale_fixtures, normalise
 
 log = logging.getLogger(__name__)
 
@@ -56,11 +56,25 @@ def load_fixtures(leagues: list[str] | None = None) -> pd.DataFrame:
     return fixtures.reset_index(drop=True)
 
 
+def load_live(leagues: list[str] | None = None) -> pd.DataFrame:
+    """Fresh fixtures / results collected from the API providers (goals only)."""
+    from ..providers.collect import load_live_matches
+    live = load_live_matches().reindex(columns=CANONICAL_COLUMNS)
+    return live.loc[live["league"].isin(leagues or league_codes())].reset_index(drop=True)
+
+
 def build_matches(leagues: list[str] | None = None) -> pd.DataFrame:
-    """All known matches (played + upcoming), deduplicated and time-ordered."""
+    """All known matches (played + upcoming), deduplicated and time-ordered.
+
+    Sources: Football-Data results, Football-Data fixtures and the API
+    providers' fixtures / results. Deduplication keeps the most complete row,
+    so a Football-Data result (with statistics) replaces an API result of the
+    same match as soon as it is published.
+    """
     results = load_results(leagues=leagues)
     fixtures = load_fixtures(leagues)
-    matches = pd.concat([results, fixtures], ignore_index=True)
+    live = load_live(leagues)
+    matches = pd.concat([f for f in (results, fixtures, live) if not f.empty], ignore_index=True)
     before = len(matches)
     matches = deduplicate(matches)
     matches = drop_stale_fixtures(matches)

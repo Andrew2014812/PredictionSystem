@@ -20,6 +20,9 @@ FIXTURES_DIR = DATA_DIR / "fixtures"        # raw Football-Data fixtures file
 PROCESSED_DIR = DATA_DIR / "processed"      # cleaned matches + features
 MODELS_DIR = DATA_DIR / "models"            # trained models + metadata.json
 PREDICTIONS_DIR = DATA_DIR / "predictions"  # prediction snapshots, picks, SHAP
+API_DIR = DATA_DIR / "api"                  # cached raw API responses + quota log
+ODDS_DIR = DATA_DIR / "odds"                # real bookmaker odds from the API providers
+LIVE_DIR = DATA_DIR / "results_live"        # fresh fixtures / results from the API providers
 
 # ---------------------------------------------------------------------------
 # Data source
@@ -28,6 +31,36 @@ FOOTBALL_DATA_URL = "https://www.football-data.co.uk"
 FOOTBALL_DATA_RESULTS_PATH = "mmz4281"      # /mmz4281/2526/E0.csv
 FOOTBALL_DATA_FIXTURES_FILE = "fixtures.csv"
 HTTP_TIMEOUT = 30
+
+# ---------------------------------------------------------------------------
+# API providers (keys come from the environment or a local, uncommitted .env)
+# ---------------------------------------------------------------------------
+def _load_dotenv(path: Path = ROOT_DIR / ".env") -> None:
+    import os
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+def api_key(name: str) -> str | None:
+    import os
+    _load_dotenv()
+    return os.environ.get(name) or None
+
+
+API_FOOTBALL_URL = "https://v3.football.api-sports.io"
+API_FOOTBALL_BOOKMAKER = 8          # Bet365 — same bookmaker as the Football-Data prices
+API_FOOTBALL_DAILY_LIMIT = 100      # free plan
+ODDS_API_URL = "https://api.the-odds-api.com/v4"
+ODDS_API_REGIONS = "uk"
+ODDS_API_BOOKMAKERS = ("williamhill", "skybet", "paddypower", "unibet_uk", "betfair_sb_uk")
+ODDS_API_MAX_CREDITS_PER_RUN = 20   # free plan: 500 credits / month
+API_FIXTURE_DAYS_BACK = 2           # refresh results of the last N days
+API_FIXTURE_DAYS_AHEAD = 3          # fixtures / odds for the next N days
 
 # ---------------------------------------------------------------------------
 # Seasons
@@ -51,8 +84,14 @@ def season_label(season: int) -> str:
     return f"{season}/{(season + 1) % 100:02d}"
 
 
-def season_of(day) -> int:
-    """Season a match date belongs to."""
+def season_of(day, calendar: str = "european") -> int:
+    """Season a match date belongs to.
+
+    "european": seasons run July-June and are named by the starting year;
+    "calendar_year": the season is the calendar year (e.g. Brazil, MLS).
+    """
+    if calendar == "calendar_year":
+        return day.year
     return day.year if day.month >= 7 else day.year - 1
 
 
@@ -98,21 +137,21 @@ MAX_GOALS = 10                 # score matrix is (MAX_GOALS + 1) x (MAX_GOALS + 
 TOTAL_GOAL_LINES = (1.5, 2.5, 3.5)
 CORNER_LINES = (8.5, 9.5, 10.5)
 DEFAULT_CORNER_LINE = 9.5
-HANDICAP_LINES = (-2, -1, 1, 2)   # European (3-way) handicap, home perspective
+# Handicap lines from the home team's perspective. Whole lines are 3-way
+# European handicaps (home / draw / away after the handicap); half lines are
+# 2-way handicaps (a draw after the handicap is impossible).
+HANDICAP_LINES = (-2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5)
 EXACT_SCORE_TOP_N = 5
-
-# Margin applied to simulated odds (a "naive bookmaker" that prices every
-# selection from the league's historical frequency of that event).
-SIMULATED_MARGIN = 0.06
 
 # Markets whose single most likely selection is stored in the prediction
 # history for every match (role = "market").
-HISTORY_MARKETS = ("1X2", "TOTAL_2.5", "BTTS", "CORNERS_9.5", "EXACT_SCORE")
+HISTORY_MARKETS = ("1X2", "TOTAL_2.5", "BTTS", "DOUBLE_CHANCE", "CORNERS_9.5", "EXACT_SCORE")
 
 # ---------------------------------------------------------------------------
-# Recommendation layer (main / risk prediction)
+# Recommendation layer (main / risk prediction) — see markets/recommendation.py
 # ---------------------------------------------------------------------------
 MAIN_MIN_PROBABILITY = 0.45
+MAIN_MAX_PROBABILITY = 0.80
 MAIN_MIN_ODDS = 1.30
 MAIN_MAX_ODDS = 3.00
 MAIN_MIN_EV = 0.03
@@ -120,22 +159,17 @@ RISK_MIN_ODDS = 3.00
 RISK_MAX_ODDS = 8.00
 RISK_MIN_PROBABILITY = 0.22
 RISK_MIN_EV = 0.05
+RISK_MIN_RELIABILITY = 0.85
 
 # How much each market's model output is trusted when ranking candidates.
 MARKET_RELIABILITY = {
     "1X2": 1.00,
-    "DOUBLE_CHANCE": 1.00,
     "TOTAL": 1.00,
     "BTTS": 0.95,
+    "DOUBLE_CHANCE": 0.90,
     "HANDICAP": 0.90,
     "CORNERS": 0.85,
     "EXACT_SCORE": 0.50,
-}
-# How much an odds value is trusted, by where it came from.
-ODDS_SOURCE_RELIABILITY = {
-    "market": 1.00,
-    "derived": 0.90,
-    "simulated": 0.75,
 }
 
 # Predictions are settled as VOID when no result appears this long after
