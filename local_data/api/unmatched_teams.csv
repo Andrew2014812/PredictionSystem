@@ -1,10 +1,15 @@
 provider,league,name
+api_football,B1,KVC Westerlo
 api_football,B1,Lommel United
 api_football,D1,1899 Hoffenheim
+api_football,D2,SpVgg Greuther Fürth
 api_football,E3,Accrington ST
+api_football,F1,Estac Troyes
 api_football,F1,Stade Brestois 29
 api_football,F2,Clermont Foot
 api_football,F2,RED Star FC 93
+api_football,G1,Aris Thessalonikis
+api_football,G1,Iraklis 1908
 api_football,G1,OFI
 api_football,I2,Vicenza Virtus
 api_football,SC0,Dundee Utd
