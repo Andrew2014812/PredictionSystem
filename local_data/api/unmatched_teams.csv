@@ -1,6 +1,5 @@
 provider,league,name
 api_football,B1,KVC Westerlo
-api_football,B1,Lommel United
 api_football,D1,1899 Hoffenheim
 api_football,D2,SpVgg Greuther Fürth
 api_football,E3,Accrington ST
@@ -24,4 +23,3 @@ api_football,SC3,Stirling Albion
 api_football,SP2,Celta de Vigo II
 api_football,SP2,Real Sociedad II
 api_football,T1,Gençlerbirliği S.K.
-api_football,T1,Kasımpaşa
