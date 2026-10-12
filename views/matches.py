@@ -13,7 +13,7 @@ from src.ui import data
 from src.ui.components import (empty_state, esc, guard, match_url, odds_text, page_header, pct, prob_bar,
                                team_url)
 from src.ui.i18n import t
-from src.ui.labels import country_label
+from src.ui.labels import country_label, league_name
 
 
 def _param_date() -> date:
@@ -67,7 +67,7 @@ def _league_list(selected: str) -> None:
     for country, leagues in leagues_by_country().items():
         st.html(f'<div class="country-label">{esc(country_label(country))}</div>')
         for lg in leagues:
-            st.button(lg.name, key=f"lg_{lg.code}", width="stretch",
+            st.button(league_name(lg.code), key=f"lg_{lg.code}", width="stretch",
                       type="primary" if selected == lg.code else "tertiary",
                       on_click=_set, kwargs={"league": lg.code})
 
@@ -89,7 +89,7 @@ def _team_search() -> None:
         return
     st.html("<div class='card search-hit'>" + "".join(
         f"<div style='padding:3px 0'><a href='{team_url(r.team, r.country)}' target='_self'>{esc(r.team)}</a>"
-        f" <span class='muted small'>{esc(r.league_name)} · {esc(country_label(r.country))}</span></div>"
+        f" <span class='muted small'>{esc(league_name(r.league))} · {esc(country_label(r.country))}</span></div>"
         for r in hits.itertuples()) + "</div>")
 
 
@@ -171,7 +171,7 @@ def render() -> None:
             empty_state(t("No matches available for this date."), t("Pick another date or league."))
         for league, group in shown.groupby("league", sort=False):
             lg = get_league(league)
-            st.html(f'<div class="league-head">{esc(lg.name)}'
+            st.html(f'<div class="league-head">{esc(league_name(lg.code))}'
                     f'<span class="country">{esc(country_label(lg.country))}</span></div>'
                     + "".join(_card(r) for _, r in group.iterrows()))
     with right:
