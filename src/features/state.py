@@ -19,20 +19,35 @@ FIELDS = (
     "corners_for", "corners_against", "fouls", "yellows", "reds",
     "points", "win", "draw", "loss",
     "btts", "over15", "over25", "over35", "clean_sheet", "failed_to_score",
+    # opponent-adjusted: the opponent's pre-match strength and how the team did against it
+    "opp_elo", "elo_surprise", "adj_gf", "adj_ga", "adj_cf", "adj_ca",
 )
 IDX = {name: i for i, name in enumerate(FIELDS)}
 
 
 def team_record(gf, ga, shots_for, shots_against, sot_for, sot_against,
-                corners_for, corners_against, fouls, yellows, reds) -> np.ndarray:
+                corners_for, corners_against, fouls, yellows, reds, context: dict | None = None) -> np.ndarray:
+    """One team's view of a played match.
+
+    ``context`` holds the opponent's PRE-match strength (Elo, the team's own
+    expected score, and the opponent's season averages before the match),
+    so the adjusted values compare the performance with what the opponent
+    usually allows — using only information available before kick-off.
+    """
+    c = context or {}
+    nan = float("nan")
     total = gf + ga
     win, draw = float(gf > ga), float(gf == ga)
+    score = win + 0.5 * draw
     return np.array([
         gf, ga, shots_for, shots_against, sot_for, sot_against,
         corners_for, corners_against, fouls, yellows, reds,
         3 * win + draw, win, draw, float(gf < ga),
         float(gf > 0 and ga > 0), float(total > 1.5), float(total > 2.5), float(total > 3.5),
         float(ga == 0), float(gf == 0),
+        c.get("opp_elo", nan), score - c.get("expected", nan),
+        gf - c.get("opp_ga", nan), ga - c.get("opp_gf", nan),
+        corners_for - c.get("opp_ca", nan), corners_against - c.get("opp_cf", nan),
     ], dtype="float64")
 
 
@@ -157,3 +172,44 @@ class LeaguePrior:
                 "league_over25_rate": (hg + ag > 2.5).mean(),
                 "league_btts_rate": ((hg > 0) & (ag > 0)).mean(),
             }
+
+
+class EloRatings:
+    """Club Elo ratings updated after every played match (no future information).
+
+    Standard football Elo: expected home score
+    E = 1 / (1 + 10^(-(R_home + HFA - R_away) / 400)), update K·G·(S − E) with the
+    goal-difference multiplier G (1, 1.5, (11 + |gd|) / 8). A new club starts
+    from a tier-dependent value; at the start of a new season every rating is
+    pulled part of the way back towards its tier's base value.
+    """
+
+    def __init__(self, k: float = 20.0, home_advantage: float = 60.0, carry: float = 0.8):
+        self.k, self.hfa, self.carry = k, home_advantage, carry
+        self.ratings: dict[tuple, float] = {}
+        self.season: dict[tuple, int] = {}
+
+    @staticmethod
+    def base(tier: int) -> float:
+        return 1500.0 - 100.0 * (tier - 1)
+
+    def get(self, team: tuple, season: int, tier: int) -> float:
+        if team not in self.ratings:
+            self.ratings[team], self.season[team] = self.base(tier), season
+        elif self.season[team] != season:
+            r = self.ratings[team]
+            self.ratings[team] = self.carry * r + (1 - self.carry) * self.base(tier)
+            self.season[team] = season
+        return self.ratings[team]
+
+    def expected_home(self, r_home: float, r_away: float) -> float:
+        return 1.0 / (1.0 + 10 ** (-(r_home + self.hfa - r_away) / 400.0))
+
+    def update(self, home: tuple, away: tuple, hg: float, ag: float, season: int, tier: int) -> None:
+        rh, ra = self.get(home, season, tier), self.get(away, season, tier)
+        expected = self.expected_home(rh, ra)
+        score = 1.0 if hg > ag else (0.5 if hg == ag else 0.0)
+        gd = abs(hg - ag)
+        g = 1.0 if gd <= 1 else (1.5 if gd == 2 else (11 + gd) / 8)
+        delta = self.k * g * (score - expected)
+        self.ratings[home], self.ratings[away] = rh + delta, ra - delta
