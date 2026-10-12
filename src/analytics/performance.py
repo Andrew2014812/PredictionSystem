@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 
 PERIODS = {"Daily": "D", "Weekly": "W-MON", "Monthly": "MS", "Yearly": "YS"}
-MIN_MARKET_SAMPLE = 100          # settled bets needed before a market can be "best" / "weakest"
+MIN_MARKET_SAMPLE = 30           # settled bets needed before a market can be "best" / "weakest"
 
 
 def settled(picks: pd.DataFrame) -> pd.DataFrame:
@@ -158,3 +158,17 @@ def preset_range(preset: str, today, first_date, custom: tuple | None = None, se
     if preset == "Custom" and custom and len(custom) == 2:
         return pd.Timestamp(custom[0]), pd.Timestamp(custom[1])
     return first, max(today, first)
+
+
+# Which stored predictions belong to which view:
+#   recorded   — saved BEFORE kick-off by the production model ("live")
+#   evaluation — after-the-fact model evaluation: the test-season backtest and the
+#                current-season backfill (features are still pre-match, but nothing
+#                was published before the match)
+DATASETS = {"recorded": ("live",), "evaluation": ("backtest", "backfill")}
+
+
+def select_dataset(picks: pd.DataFrame, key: str) -> pd.DataFrame:
+    if picks.empty or "source" not in picks:
+        return picks
+    return picks.loc[picks["source"].isin(DATASETS[key])]

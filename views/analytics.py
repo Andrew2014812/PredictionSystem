@@ -8,7 +8,8 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from src import config
-from src.analytics.performance import (DATE_PRESETS, MIN_MARKET_SAMPLE, PERIODS, best_and_worst,
+from src.analytics.performance import (DATASETS, DATE_PRESETS, MIN_MARKET_SAMPLE, PERIODS, best_and_worst,
+                                       select_dataset,
                                        cumulative_by_date, group_summary, preset_range, summarize, timeline)
 from src.leagues import league_codes
 from src.ui import data
@@ -17,6 +18,8 @@ from src.ui.components import (empty_state, esc, guard, html_table, kpi_row, num
 from src.ui.i18n import t
 from src.ui.labels import group_title, league_label
 from src.ui.theme import colors
+
+DATASET_LABELS = {"recorded": "Recorded predictions", "evaluation": "Historical evaluation"}
 
 # prediction set -> (role filter, market group filter)
 PREDICTION_SETS = {
@@ -53,16 +56,25 @@ def _table(df: pd.DataFrame, label_col: str, label_name: str, label_fn) -> None:
         align_right=(t("Predictions"), t("Hit rate"), t("Profit"), t("ROI"), t("Average odds"))))
 
 
-def _market_highlight(picks: pd.DataFrame) -> None:
-    best, worst = best_and_worst(picks.loc[picks["role"] == "market"], "group")
+def highlight_dimension(set_key: str) -> str:
+    """Markets are compared inside a prediction set; inside one market, leagues are."""
+    return "league" if PREDICTION_SETS[set_key][2] else "group"
+
+
+def _market_highlight(df: pd.DataFrame, set_key: str) -> None:
+    """Best / weakest market (or league, for a single-market set) WITHIN the active filters."""
+    dim = highlight_dimension(set_key)
+    best, worst = best_and_worst(df, dim)
+    label = (lambda v: league_label(v, True)) if dim == "league" else group_title
+    titles = (t("Best league"), t("Weakest league")) if dim == "league" else (t("Best market"), t("Weakest market"))
     cols = st.columns(2)
-    for col, item, title in ((cols[0], best, t("Best market")), (cols[1], worst, t("Weakest market"))):
+    for col, item, title in ((cols[0], best, titles[0]), (cols[1], worst, titles[1])):
         if item is None:
             col.html(f'<div class="kpi"><div class="label">{title}</div><div class="sub">'
                      f'{t("Not enough data (at least {n} predictions with odds).", n=MIN_MARKET_SAMPLE)}</div></div>')
             continue
         col.html(f'<div class="kpi"><div class="label">{title}</div>'
-                 f'<div class="value">{esc(group_title(item["group"]))}</div>'
+                 f'<div class="value">{esc(label(item[dim]))}</div>'
                  f'<div class="sub">ROI <span class="{tone(item["roi"])}">{signed(item["roi"], 1, "%")}</span> · '
                  f'{t("Hit rate")} {pct(item["hit_rate"], 1)} · {t("{n} predictions with odds", n=int(item["bets"]))}'
                  f'</div></div>')
@@ -88,11 +100,15 @@ def render() -> None:
                                      key="a_custom")
         leagues = c[2].multiselect(t("League"), league_codes(), format_func=lambda x: league_label(x, True),
                                    placeholder=t("All leagues"), key="a_leagues")
-        group_by = c[3].selectbox(t("Group by"), list(PERIODS), index=2, format_func=t, key="a_group_by")
+        dataset = c[3].selectbox(t("Data"), list(DATASETS), key="a_dataset",
+                                 format_func=lambda k: t(DATASET_LABELS[k]),
+                                 help=t("Recorded = predictions saved before kick-off. Historical evaluation = the "
+                                        "model tested afterwards on past matches from pre-match data."))
 
     season_start = pd.Timestamp(year=config.current_season(), month=7, day=1)
     start, end = preset_range(preset, date.today(), first, custom, season_start)
-    scope = picks.loc[(picks["date"] >= start) & (picks["date"] <= end)]
+    scope = select_dataset(picks, dataset)
+    scope = scope.loc[(scope["date"] >= start) & (scope["date"] <= end)]
     if leagues:
         scope = scope.loc[scope["league"].isin(leagues)]
     df = select_set(scope, key)
@@ -115,7 +131,7 @@ def render() -> None:
         t("Fixed stake of 1 unit per prediction; profit and ROI use real bookmaker odds only.")
     st.html(f'<div class="note">{note}</div>')
 
-    _market_highlight(scope)
+    _market_highlight(df, key)
 
     cols = st.columns(2, gap="medium")
     with cols[0]:
@@ -125,7 +141,9 @@ def render() -> None:
         section(t("Performance by market"))
         _table(group_summary(df, "group"), "group", t("Market"), group_title)
 
-    section(t("By period"))
+    section(t("Performance over time"))
+    group_by = st.segmented_control(t("Group results by"), list(PERIODS), default="Monthly", format_func=t,
+                                    key="a_group_by", label_visibility="collapsed") or "Monthly"
     tl = timeline(df, group_by)
     if tl.empty:
         st.caption(t("No completed predictions for this period."))
