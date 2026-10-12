@@ -1,0 +1,14 @@
+{
+ "checked_at": "2026-10-12T15:20:00",
+ "month": "2026-10",
+ "month_credits": 6,
+ "remaining": 315,
+ "requests": {
+  "event|acd5bd945dd953ad1e300df5bfe696f9": {
+   "at": "2026-10-12T15:20:00",
+   "cost": 6,
+   "items": 6
+  }
+ },
+ "used": 185
+}
