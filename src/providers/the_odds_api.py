@@ -1,14 +1,17 @@
-"""The Odds API (v4): additional real bookmaker odds and fresh scores.
+"""The Odds API (v4): fixtures and real bookmaker odds.
 
-Endpoints used (query parameter ``apiKey``):
+Endpoints used (query parameter ``apiKey``), verified on the free plan:
 
-* ``GET /sports/{sport}/events`` — upcoming fixtures, free (0 credits);
-* ``GET /sports/{sport}/odds?markets=h2h,totals&oddsFormat=decimal&bookmakers=...``
-  — cost = number of markets (the bookmaker list counts as one region);
-* ``GET /sports/{sport}/scores?daysFrom=3`` — completed matches, cost 2.
+* ``GET /sports/{sport}/events`` — upcoming fixtures, 0 credits;
+* ``GET /sports/{sport}/odds?markets=h2h,totals&bookmakers=...`` — featured
+  markets for a whole league, 1 credit per market;
+* ``GET /sports/{sport}/events/{eventId}/odds?regions=uk&markets=...`` —
+  additional markets for ONE match, 1 credit per market returned:
+  ``btts``, ``double_chance``, ``alternate_totals`` (goal lines 0.5–5.5),
+  ``alternate_totals_corners`` (7.5–11.5), ``correct_score``,
+  ``alternate_spreads`` (handicap; only half lines are used).
 
-Featured soccer markets map to: h2h -> 1X2, totals -> total goals,
-spreads -> handicap (half lines only; whole / quarter lines are Asian).
+Credits are tracked in :class:`~src.providers.ledger.CreditLedger`.
 """
 from __future__ import annotations
 
@@ -16,56 +19,87 @@ import logging
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+import requests
+
 from .. import config
 from ..leagues import by_odds_api_key
 from ..markets.markets import handicap_market, is_half_line
-from .cache import ApiCache, fetch_json
+from .cache import ApiCache
+from .ledger import CreditLedger
 
 log = logging.getLogger(__name__)
 
 PROVIDER = "the_odds_api"
 UK = ZoneInfo("Europe/London")
-MARKETS = ("h2h", "totals", "spreads")          # every market the parser understands
+FEATURED_MARKETS = ("h2h", "totals", "spreads")
+EXTENDED_MARKETS = ("btts", "double_chance", "alternate_totals", "alternate_totals_corners",
+                    "correct_score", "alternate_spreads")
+CORNER_LINES = tuple(x + 0.5 for x in range(5, 15))      # 5.5 … 14.5
 
 
 class TheOddsApi:
-    def __init__(self, key: str | None = None, cache: ApiCache | None = None):
+    def __init__(self, key: str | None = None, cache: ApiCache | None = None, ledger: CreditLedger | None = None):
         self.key = key or config.api_key("ODDS_API_KEY")
         self.cache = cache or ApiCache(PROVIDER)
-        self.credits_used = 0
+        self.ledger = ledger or CreditLedger()
 
     @property
     def available(self) -> bool:
         return bool(self.key)
 
-    def _get(self, path: str, params: dict, cost: int, max_age: float):
-        cached = self.cache.get(f"{config.ODDS_API_URL}/{path}", params, max_age)
+    @property
+    def credits_used(self) -> int:
+        return self.ledger.spent_this_run
+
+    def _request(self, path: str, params: dict) -> tuple[object | None, dict]:
+        url = f"{config.ODDS_API_URL}/{path}"
+        try:
+            response = requests.get(url, params={**params, "apiKey": self.key}, timeout=config.HTTP_TIMEOUT)
+        except requests.RequestException as exc:
+            log.warning("The Odds API request failed: %s", exc)
+            return None, {}
+        headers = {k: response.headers.get(k) for k in ("x-requests-last", "x-requests-used", "x-requests-remaining")}
+        self.cache.log_request(url, float(headers["x-requests-last"] or 0), headers["x-requests-remaining"])
+        if response.status_code != 200:
+            log.warning("The Odds API HTTP %s for %s: %s", response.status_code, path, response.text[:200])
+            return None, headers
+        body = response.json()
+        self.cache.put(url, params, body)
+        return body, headers
+
+    def events(self, sport_key: str) -> list[dict]:
+        """Upcoming fixtures of a league (free)."""
+        cached = self.cache.get(f"{config.ODDS_API_URL}/sports/{sport_key}/events", {}, 3 * 3600)
         if cached is not None:
             return cached
-        if self.credits_used + cost > config.ODDS_API_MAX_CREDITS_PER_RUN:
-            log.warning("The Odds API credit cap for this run reached; skipping %s", path)
+        body, _ = self._request(f"sports/{sport_key}/events", {})
+        return body or []
+
+    def _paid(self, key: str, path: str, params: dict, expected_cost: int, now: datetime, run_budget: int,
+              count_items) -> object | None:
+        if not self.ledger.can_spend(expected_cost, run_budget):
+            log.info("The Odds API budget reached; skipping %s", key)
             return None
-        self.credits_used += cost
-        return fetch_json(self.cache, f"{config.ODDS_API_URL}/{path}", {**params, "apiKey": self.key}, {},
-                          max_age, cost_header="x-requests-last", remaining_header="x-requests-remaining")
+        body, headers = self._request(path, params)
+        cost = int(float(headers.get("x-requests-last") or (expected_cost if body is not None else 0)))
+        self.ledger.record(key, cost, count_items(body) if body is not None else 0, now,
+                           headers.get("x-requests-used"), headers.get("x-requests-remaining"))
+        return body
 
-    def events(self, sport_key: str, max_age: float = 3 * 3600) -> list[dict]:
-        """Upcoming fixtures of a league (free endpoint)."""
-        return self._get(f"sports/{sport_key}/events", {}, 0, max_age) or []
-
-    def odds(self, sport_key: str, max_age: float = config.ODDS_API_REFRESH_HOURS * 3600) -> list[dict]:
-        params = {"markets": ",".join(config.ODDS_API_MARKETS), "oddsFormat": "decimal",
+    def league_odds(self, sport_key: str, now: datetime, run_budget: int) -> list[dict]:
+        markets = config.ODDS_API_MARKETS
+        params = {"markets": ",".join(markets), "oddsFormat": "decimal",
                   "bookmakers": ",".join(config.ODDS_API_BOOKMAKERS)}
-        return self._get(f"sports/{sport_key}/odds", params, len(config.ODDS_API_MARKETS), max_age) or []
+        body = self._paid(f"odds|{sport_key}", f"sports/{sport_key}/odds", params, len(markets), now, run_budget,
+                          lambda b: sum(1 for e in b if e.get("bookmakers")))
+        return body or []
 
-    def is_cached(self, sport_key: str) -> bool:
-        params = {"markets": ",".join(config.ODDS_API_MARKETS), "oddsFormat": "decimal",
-                  "bookmakers": ",".join(config.ODDS_API_BOOKMAKERS)}
-        return self.cache.get(f"{config.ODDS_API_URL}/sports/{sport_key}/odds", params,
-                              config.ODDS_API_REFRESH_HOURS * 3600) is not None
-
-    def scores(self, sport_key: str, days_from: int = 3, max_age: float = 1800) -> list[dict]:
-        return self._get(f"sports/{sport_key}/scores", {"daysFrom": days_from}, 2, max_age) or []
+    def event_odds(self, sport_key: str, event_id: str, now: datetime, run_budget: int) -> dict | None:
+        markets = config.ODDS_API_EXTENDED_MARKETS
+        params = {"regions": "uk", "markets": ",".join(markets), "oddsFormat": "decimal"}
+        return self._paid(f"event|{event_id}", f"sports/{sport_key}/events/{event_id}/odds", params, len(markets),
+                          now, run_budget, lambda b: len({m["key"] for bk in b.get("bookmakers", [])
+                                                           for m in bk.get("markets", [])}))
 
 
 def _kickoff(event: dict) -> datetime:
@@ -81,35 +115,60 @@ def parse_event(event: dict, sport_key: str) -> dict | None:
             "time": ko.strftime("%H:%M"), "home_name": event["home_team"], "away_name": event["away_team"]}
 
 
-def parse_event_odds(event: dict) -> list[tuple]:
-    """[(market, line, selection, odds, bookmaker)] — per market, the first bookmaker by priority."""
-    home, away = event["home_team"], event["away_team"]
-    books = {b["key"]: b for b in event.get("bookmakers", [])}
-    order = [k for k in config.ODDS_API_BOOKMAKERS if k in books] + [k for k in books
-                                                                     if k not in config.ODDS_API_BOOKMAKERS]
-    rows = []
-    for market_key in MARKETS:
-        for book_key in order:
-            market = next((m for m in books[book_key].get("markets", []) if m["key"] == market_key), None)
-            if market is None:
+def _parse_market(key: str, outcomes: list[dict], home: str, away: str) -> list[tuple]:
+    """(market, line, selection, price) for one market of one bookmaker."""
+    out = []
+    for o in outcomes:
+        price, name, point = o.get("price"), str(o.get("name", "")), o.get("point")
+        if not price or float(price) <= 1.0:
+            continue
+        if key == "h2h":
+            sel = "H" if name == home else ("A" if name == away else ("D" if name == "Draw" else None))
+            if sel:
+                out.append(("1X2", None, sel, price))
+        elif key in ("totals", "alternate_totals") and point is not None and float(point) in config.TOTAL_GOAL_LINES:
+            out.append((f"TOTAL_{float(point)}", float(point), name.upper(), price))
+        elif key == "alternate_totals_corners" and point is not None and float(point) in CORNER_LINES:
+            out.append((f"CORNERS_{float(point)}", float(point), name.upper(), price))
+        elif key == "btts" and name in ("Yes", "No"):
+            out.append(("BTTS", None, name.upper(), price))
+        elif key == "double_chance":
+            sel = {f"{home} or Draw": "1X", f"{away} or Draw": "X2", f"{home} or {away}": "12",
+                   f"Draw or {home}": "1X", f"Draw or {away}": "X2", f"{away} or {home}": "12"}.get(name)
+            if sel:
+                out.append(("DOUBLE_CHANCE", None, sel, price))
+        elif key == "correct_score":
+            parts = dict(p.rsplit(":", 1) for p in name.split("|") if ":" in p)
+            try:
+                hg, ag = int(parts[home]), int(parts[away])
+            except (KeyError, ValueError):
                 continue
-            parsed = []
-            for o in market.get("outcomes", []):
-                price, name, point = o.get("price"), o.get("name"), o.get("point")
-                if market_key == "h2h":
-                    sel = "H" if name == home else ("A" if name == away else ("D" if name == "Draw" else None))
-                    if sel:
-                        parsed.append(("1X2", None, sel, price))
-                elif market_key == "totals" and point is not None and float(point) in config.TOTAL_GOAL_LINES:
-                    parsed.append((f"TOTAL_{float(point)}", float(point), name.upper(), price))
-                elif market_key == "spreads" and point is not None:
-                    line = float(point) if name == home else -float(point)
-                    if is_half_line(line) and line in config.HANDICAP_LINES:
-                        parsed.append((handicap_market(line), line, "H" if name == home else "A", price))
-            if parsed:
-                title = books[book_key].get("title", book_key)
-                rows += [(m, ln, s, float(p), title) for m, ln, s, p in parsed if p and float(p) > 1.0]
-                break
+            out.append(("EXACT_SCORE", None, f"{hg}-{ag}", price))
+        elif key in ("spreads", "alternate_spreads") and point is not None and name in (home, away):
+            # the point is the named team's handicap; the system's line is the home team's
+            line = float(point) if name == home else -float(point)
+            if is_half_line(line) and line in config.HANDICAP_LINES:
+                out.append((handicap_market(line), line, "H" if name == home else "A", price))
+    return out
+
+
+def parse_event_odds(event: dict) -> list[tuple]:
+    """[(market, line, selection, odds, bookmaker)] — for every selection, the price of
+    the first bookmaker in ``config.ODDS_API_BOOKMAKERS`` order that quotes it
+    (exchanges are skipped). Featured and alternate markets can quote the same
+    line; the first price found wins, so each selection appears once."""
+    home, away = event["home_team"], event["away_team"]
+    books = {b["key"]: b for b in event.get("bookmakers", []) if b["key"] not in config.ODDS_API_EXCLUDED_BOOKMAKERS}
+    order = [k for k in config.ODDS_API_BOOKMAKERS if k in books] + sorted(k for k in books
+                                                                          if k not in config.ODDS_API_BOOKMAKERS)
+    seen, rows = set(), []
+    for book_key in order:
+        title = books[book_key].get("title", book_key)
+        for market in books[book_key].get("markets", []):
+            for m, ln, sel, price in _parse_market(market["key"], market.get("outcomes", []), home, away):
+                if (m, sel) not in seen:
+                    seen.add((m, sel))
+                    rows.append((m, ln, sel, float(price), title))
     return rows
 
 

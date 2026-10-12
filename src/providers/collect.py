@@ -4,8 +4,9 @@ Run by the pipeline only (never by the web interface). Output files:
 
 * ``local_data/results_live/fixtures.parquet`` — fixtures and finished
   results from the APIs, in the canonical match schema (goals only);
-* ``local_data/odds/odds.parquet`` — real bookmaker prices (unified schema),
-  collected before kick-off;
+* ``local_data/odds/odds.parquet`` — archive of real bookmaker prices (unified
+  schema). Every collection is kept; prices are only ever collected before
+  kick-off, so a later quote never replaces a price after the match started;
 * ``local_data/api/unmatched_teams.csv`` — provider team names that could not
   be mapped (add them to ``aliases.TEAM_ALIASES``).
 
@@ -108,8 +109,9 @@ def _save_odds(records: list[dict]) -> int:
         return 0
     old = load_api_odds()
     merged = pd.concat([old, new], ignore_index=True) if not old.empty else new
+    # keep the whole pre-match history; only drop a quote recorded twice in one collection
     merged = merged.sort_values("collected_at").drop_duplicates(
-        ["match_id", "provider", "bookmaker", "market", "selection"], keep="last")
+        ["match_id", "provider", "bookmaker", "market", "selection", "collected_at"], keep="last")
     odds_storage.write_parquet(ODDS_FILE, merged[ODDS_COLUMNS])
     return len(new)
 
@@ -121,26 +123,41 @@ def _odds_records(match_id: str, provider: str, fixture_id: str, rows, now) -> l
             for market, line, selection, price, bookmaker in rows]
 
 
-def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
-    """Fetch fixtures / results / odds from every configured provider.
+MODES = ("results", "odds", "full")
 
-    1. API-Football ``/fixtures`` for yesterday, today and tomorrow (all leagues,
-       one request per day): fresh final scores and near fixtures.
-    2. The Odds API ``/events`` per league (free): fixtures of the coming week.
-    3. The Odds API ``/odds`` (h2h + totals) for leagues with a match in the next
-       ODDS_API_WINDOW_HOURS, at most once per ODDS_API_REFRESH_HOURS.
-    Odds are stored only for matches that have not started.
+
+def _extended_priority(candidate: tuple) -> tuple:
+    """Top divisions first, then the earliest kick-off."""
+    _, _, _, league, kickoff = candidate
+    return (get_league(league).tier not in config.ODDS_API_EXTENDED_TIERS, kickoff)
+
+
+def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full",
+            run_budget: int | None = None) -> dict:
+    """Fetch fixtures / results / real odds from the configured providers.
+
+    ``mode`` "results": free requests only — API-Football fixtures for yesterday,
+    today and tomorrow (fresh scores) and The Odds API ``/events`` (fixtures of
+    the coming week). "odds": real prices from The Odds API for matches starting
+    within ODDS_API_WINDOW_HOURS. "full": both.
+
+    Credits (odds only) are spent within ``run_budget`` and the monthly reserve;
+    a league or match already asked within ODDS_API_REFRESH_HOURS is not asked
+    again, whether or not that request returned prices (CreditLedger).
     """
+    if mode not in MODES:
+        raise ValueError(f"mode must be one of {MODES}")
     today = today or date.today()
     now = datetime.now(ZoneInfo("Europe/London")).replace(tzinfo=None)   # kick-off times are UK time
     window_end = pd.Timestamp(now) + pd.Timedelta(hours=config.ODDS_API_WINDOW_HOURS)
+    run_budget = config.ODDS_API_RUN_BUDGET if run_budget is None else run_budget
     resolve = TeamResolver(matches)
-    summary = {"api_football": "no key", "the_odds_api": "no key"}
+    summary = {"mode": mode, "api_football": "not used", "the_odds_api": "not used"}
     live_rows: list[dict] = []
     odds_records: list[dict] = []
 
     af = ApiFootball()
-    if af.available:
+    if af.available and mode in ("results", "full"):
         days = [today + timedelta(days=d) for d in range(-config.API_FIXTURE_DAYS_BACK,
                                                           config.API_FIXTURE_DAYS_AHEAD + 1)]
         fixture_ids: dict[str, str] = {}
@@ -174,16 +191,14 @@ def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
     toa = TheOddsApi()
     if toa.available:
         stored = load_api_odds()
-        recent_cut = pd.Timestamp(now) - pd.Timedelta(hours=config.ODDS_API_REFRESH_HOURS)
-        recent = set(stored.loc[(stored["provider"] == PROVIDER_TOA)
-                                & (pd.to_datetime(stored["collected_at"]) > recent_cut), "match_id"]) \
-            if not stored.empty else set()
+        priced = (stored.loc[stored["provider"] == PROVIDER_TOA]
+                  .groupby("match_id")["market"].agg(set).to_dict() if not stored.empty else {})
+        extended_candidates = []
         for lg in enabled_leagues():
             if not lg.odds_api_key:
                 continue
-            events = {e["id"]: e for e in toa.events(lg.odds_api_key)}       # free
             soon = []
-            for event in events.values():
+            for event in toa.events(lg.odds_api_key):            # free
                 ev = parse_event(event, lg.odds_api_key)
                 if ev is None:
                     continue
@@ -193,20 +208,35 @@ def collect(matches: pd.DataFrame, today: date | None = None) -> dict:
                     continue
                 row = _canonical({**ev, "played": False}, home, away)
                 if row["kickoff"] <= pd.Timestamp(now):
-                    continue
+                    continue                                       # pre-match only
                 live_rows.append({**row, "provider": PROVIDER_TOA, "provider_fixture_id": ev["provider_fixture_id"]})
                 if row["kickoff"] <= window_end:
-                    soon.append((ev["provider_fixture_id"], row["match_id"]))
-            if not soon or all(match_id in recent for _, match_id in soon):
-                # no credits for idle leagues, nor for prices refreshed recently (the
-                # stored odds survive between CI runs, the raw-response cache does not)
+                    soon.append((ev["provider_fixture_id"], row["match_id"], row["kickoff"]))
+            if mode == "results" or not soon:
                 continue
-            priced = {e["id"]: e for e in toa.odds(lg.odds_api_key)}
-            for fixture_id, match_id in soon:
-                if fixture_id in priced:
-                    odds_records += _odds_records(match_id, PROVIDER_TOA, fixture_id,
-                                                  parse_event_odds(priced[fixture_id]), now)
-        summary["the_odds_api"] = f"{toa.credits_used} credits this run"
+            missing = [s for s in soon if "1X2" not in priced.get(s[1], set())]
+            if missing and not toa.ledger.requested_within(f"odds|{lg.odds_api_key}",
+                                                           config.ODDS_API_REFRESH_HOURS, now):
+                by_id = {e["id"]: e for e in toa.league_odds(lg.odds_api_key, now, run_budget)}
+                for fixture_id, match_id, _ in soon:
+                    if fixture_id in by_id:
+                        odds_records += _odds_records(match_id, PROVIDER_TOA, fixture_id,
+                                                      parse_event_odds(by_id[fixture_id]), now)
+            for fixture_id, match_id, kickoff in soon:
+                if "BTTS" not in priced.get(match_id, set()) and \
+                        not toa.ledger.requested_within(f"event|{fixture_id}", 24 * 30, now):
+                    extended_candidates.append((lg.odds_api_key, fixture_id, match_id, lg.code, kickoff))
+        if mode in ("odds", "full") and config.ODDS_API_EXTENDED_MARKETS:
+            for sport_key, fixture_id, match_id, _, _ in sorted(extended_candidates, key=_extended_priority):
+                if not toa.ledger.can_spend(len(config.ODDS_API_EXTENDED_MARKETS), run_budget):
+                    break
+                body = toa.event_odds(sport_key, fixture_id, now, run_budget)
+                if body:
+                    odds_records += _odds_records(match_id, PROVIDER_TOA, fixture_id, parse_event_odds(body), now)
+        toa.ledger.prune(now)
+        toa.ledger.save()
+        summary["the_odds_api"] = (f"{toa.credits_used} credits this run, "
+                                   f"{toa.ledger.remaining if toa.ledger.remaining is not None else '?'} left")
 
     summary["live_rows"] = _save_live(live_rows)
     summary["odds_rows"] = _save_odds(odds_records)

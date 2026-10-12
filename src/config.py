@@ -62,15 +62,23 @@ API_FIXTURE_DAYS_BACK = 1           # fresh results of yesterday and today
 API_FIXTURE_DAYS_AHEAD = 1          # fixtures of tomorrow
 
 ODDS_API_URL = "https://api.the-odds-api.com/v4"
-ODDS_API_BOOKMAKERS = ("williamhill", "skybet", "paddypower", "unibet_uk", "betfair_sb_uk")
-# Free plan: 500 credits / month. /events is free (fixtures for the week),
-# /odds costs one credit per market. h2h + totals = 2 credits per league,
-# requested only for leagues with a match in the next ODDS_API_WINDOW_HOURS
-# and at most once per ODDS_API_REFRESH_HOURS.
+# Bookmaker priority (UK region). Exchanges are skipped: their prices are
+# before commission and not comparable with fixed-odds bookmakers.
+ODDS_API_BOOKMAKERS = ("williamhill", "paddypower", "skybet", "coral", "ladbrokes_uk", "betfred_uk",
+                       "unibet_uk", "betfair_sb_uk", "virginbet", "leovegas", "livescorebet", "betvictor")
+ODDS_API_EXCLUDED_BOOKMAKERS = ("betfair_ex_uk", "matchbook", "smarkets")
+# Free plan: 500 credits / month (verified 2026-10-12). Costs:
+#   /events                     0 credits (fixtures of the coming week)
+#   /odds (whole league)        1 credit per featured market (h2h, totals)
+#   /events/{id}/odds (1 match) 1 credit per additional market returned
 ODDS_API_MARKETS = ("h2h", "totals")
-ODDS_API_WINDOW_HOURS = 48
-ODDS_API_REFRESH_HOURS = 20
-ODDS_API_MAX_CREDITS_PER_RUN = 40
+ODDS_API_EXTENDED_MARKETS = ("btts", "double_chance", "alternate_totals", "alternate_totals_corners")
+ODDS_API_WINDOW_HOURS = 96          # price matches starting within the next 4 days
+ODDS_API_REFRESH_HOURS = 20         # never ask the same league / match again sooner
+ODDS_API_RUN_BUDGET = 60            # credits one pipeline run may spend
+ODDS_API_MONTHLY_RESERVE = 30       # stop when fewer credits than this are left
+# Additional markets are bought per match: top divisions first, then by kick-off.
+ODDS_API_EXTENDED_TIERS = (1,)
 
 # ---------------------------------------------------------------------------
 # Seasons
@@ -160,15 +168,24 @@ HISTORY_MARKETS = ("1X2", "TOTAL_2.5", "BTTS", "DOUBLE_CHANCE", "CORNERS_9.5", "
 # ---------------------------------------------------------------------------
 # Recommendation layer (main / risk prediction) — see markets/recommendation.py
 # ---------------------------------------------------------------------------
-MAIN_MIN_PROBABILITY = 0.45
-MAIN_MAX_PROBABILITY = 0.80
-MAIN_MIN_ODDS = 1.30
-MAIN_MAX_ODDS = 3.00
-MAIN_MIN_EV = 0.03
+# Draw-aware 1X2 decision rule argmax(P(H), m*P(D), P(A)) and the Dixon-Coles
+# correction of the score matrix; both decided on the validation season
+# (scripts/decision_study.py): the draw rule lowered accuracy (49.6 % -> 47.1 %)
+# without improving the return at real odds, Dixon-Coles' rho was unstable
+# between the two halves of the season with no gain, so both are off.
+DRAW_RULE = False
+DIXON_COLES = False
+
+MAIN_MIN_PROBABILITY = 0.40
+MAIN_MAX_PROBABILITY = 0.85
+MAIN_PREFERRED_ODDS = (1.40, 2.50)       # soft preference, not a hard range
+MAIN_ODDS_SOFTNESS = 0.15                # width of the decay outside it (log-odds)
+MAIN_EV_WEIGHT = 0.0                     # EV enters through MAIN_MIN_EV; extra weight did not help
+MAIN_MIN_EV = 0.0
 RISK_MIN_ODDS = 3.00
 RISK_MAX_ODDS = 8.00
 RISK_MIN_PROBABILITY = 0.22
-RISK_MIN_EV = 0.05
+RISK_MIN_EV = 0.10
 RISK_MIN_RELIABILITY = 0.85
 
 # How much each market's model output is trusted when ranking candidates.

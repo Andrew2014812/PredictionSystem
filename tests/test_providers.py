@@ -107,6 +107,17 @@ def test_the_odds_api_event_and_score():
     ("Borussia Mönchengladbach", {"M'gladbach"}, "M'gladbach"),
     ("Paris Saint-Germain", {"Paris SG", "Paris FC"}, "Paris SG"),
     ("Paris FC", {"Paris SG", "Paris FC"}, "Paris FC"),
+    ("KVC Westerlo", {"Westerlo", "Mechelen"}, "Westerlo"),
+    ("SpVgg Greuther Fürth", {"Greuther Furth", "Bochum"}, "Greuther Furth"),
+    ("Estac Troyes", {"Troyes", "Metz"}, "Troyes"),
+    ("Aris Thessalonikis", {"Aris", "PAOK"}, "Aris"),                 # unique word-set match
+    ("Iraklis 1908", {"Iraklis", "Larisa"}, "Iraklis"),               # founding year ignored
+    ("Queen's Park", {"Queens Park", "Partick"}, "Queens Park"),
+    ("Lommel United", {"Lommel SK", "Genk"}, "Lommel SK"),
+    ("TSG 1899 Hoffenheim", {"Hoffenheim", "Mainz"}, "Hoffenheim"),
+    ("Stade Brestois 29", {"Brest", "Lens"}, "Brest"),
+    ("Gençlerbirliği S.K.", {"Genclerbirligi", "Konyaspor"}, "Genclerbirligi"),
+    ("Real", {"Real Madrid", "Real Sociedad"}, None),                 # ambiguous -> no match
     ("Some Unknown Club", {"Arsenal"}, None),                        # never guessed
     ("Manchester United", {"Arsenal"}, None),                        # alias outside the league is rejected
 ])
@@ -174,39 +185,112 @@ def test_api_cache_avoids_repeated_requests(tmp_path, monkeypatch):
     assert cache.get("https://api.example/odds", {"league": 1}, -1) is None   # expired
 
 
-def test_collect_spends_odds_credits_only_when_prices_are_stale(tmp_path, monkeypatch):
-    from datetime import datetime, timedelta
-    from zoneinfo import ZoneInfo
-
+def _collect_env(tmp_path, monkeypatch):
     from src.providers import collect as col
+    from src.providers.ledger import CreditLedger
     from src.storage import LocalStorage
-
     monkeypatch.setattr(col, "live_storage", LocalStorage(tmp_path / "live"))
     monkeypatch.setattr(col, "odds_storage", LocalStorage(tmp_path / "odds"))
     monkeypatch.setattr(col, "api_storage", LocalStorage(tmp_path / "api"))
     monkeypatch.setattr(col.ApiFootball, "available", property(lambda self: False))
+    ledger_path = tmp_path / "ledger.json"
+    return col, (lambda: CreditLedger(ledger_path))
+
+
+def _fake_api(col, ledger_factory, calls, league_prices=True, event_body=None, remaining=400):
+    from datetime import datetime, timedelta
+    from zoneinfo import ZoneInfo
     kickoff = datetime.now(ZoneInfo("UTC")) + timedelta(hours=20)
     event = {"id": "ev1", "commence_time": kickoff.strftime("%Y-%m-%dT%H:%M:%SZ"),
              "home_team": "Arsenal", "away_team": "Chelsea"}
-    calls = []
 
-    class FakeOddsApi:
-        available = True
-        credits_used = 0
+    class FakeOddsApi(col.TheOddsApi):
+        def __init__(self):
+            super().__init__(key="test", ledger=ledger_factory())
 
         def events(self, sport_key):
             return [event] if sport_key == "soccer_epl" else []
 
-        def odds(self, sport_key):
-            calls.append(sport_key)
-            self.credits_used += 2
-            return [{**event, "bookmakers": [{"key": "williamhill", "title": "William Hill", "markets": [
+        def _request(self, path, params):
+            calls.append(path)
+            if path.endswith("/events/ev1/odds"):
+                body = event_body if event_body is not None else {**event, "bookmakers": []}
+                n = len({m["key"] for b in body.get("bookmakers", []) for m in b["markets"]})
+                return body, {"x-requests-last": str(n), "x-requests-used": "1", "x-requests-remaining": str(remaining)}
+            body = [{**event, "bookmakers": [{"key": "williamhill", "title": "William Hill", "markets": [
                 {"key": "h2h", "outcomes": [{"name": "Arsenal", "price": 2.0}, {"name": "Chelsea", "price": 3.6},
-                                            {"name": "Draw", "price": 3.4}]}]}]}]
+                                            {"name": "Draw", "price": 3.4}]}]}]}] if league_prices else []
+            return body, {"x-requests-last": "2", "x-requests-used": "2", "x-requests-remaining": str(remaining)}
 
-    monkeypatch.setattr(col, "TheOddsApi", FakeOddsApi)
-    matches = pd.DataFrame({"league": ["E0"], "season": [2026], "home_team": ["Arsenal"], "away_team": ["Chelsea"]})
-    first = col.collect(matches)
-    assert calls == ["soccer_epl"] and first["odds_rows"] == 3 and first["live_rows"] == 1
-    second = col.collect(matches)                 # prices are fresh -> no new request
-    assert calls == ["soccer_epl"] and second["odds_rows"] == 0
+    return FakeOddsApi, event
+
+
+MATCHES = pd.DataFrame({"league": ["E0"], "season": [2026], "home_team": ["Arsenal"], "away_team": ["Chelsea"]})
+
+
+def test_league_odds_are_not_requested_again_even_after_an_empty_answer(tmp_path, monkeypatch):
+    col, ledger = _collect_env(tmp_path, monkeypatch)
+    calls = []
+    fake, _ = _fake_api(col, ledger, calls, league_prices=False)
+    monkeypatch.setattr(col, "TheOddsApi", fake)
+    col.collect(MATCHES, mode="odds")
+    league_calls = [c for c in calls if c.endswith("soccer_epl/odds")]
+    assert len(league_calls) == 1
+    col.collect(MATCHES, mode="odds")                 # a new CI run: the ledger file survives
+    assert len([c for c in calls if c.endswith("soccer_epl/odds")]) == 1
+
+
+def test_extended_markets_are_bought_once_per_match(tmp_path, monkeypatch):
+    import json as _json
+    from pathlib import Path
+    col, ledger = _collect_env(tmp_path, monkeypatch)
+    sample = _json.loads((Path(__file__).parent / "data" / "the_odds_api_event_odds.json").read_text())
+    calls = []
+    fake, event = _fake_api(col, ledger, calls)
+    sample = {**sample, "id": "ev1", "home_team": "Arsenal", "away_team": "Chelsea",
+              "bookmakers": [{**b, "markets": [{**m, "outcomes": [
+                  {**o, "name": o["name"].replace("Coventry City", "Arsenal").replace("Newcastle United", "Chelsea")}
+                  for o in m["outcomes"]]} for m in b["markets"]]} for b in sample["bookmakers"]]}
+    monkeypatch.setattr(col, "TheOddsApi", _fake_api(col, ledger, calls, event_body=sample)[0])
+    first = col.collect(MATCHES, mode="odds")
+    stored = col.load_api_odds()
+    markets = set(stored["market"])
+    assert {"1X2", "BTTS", "DOUBLE_CHANCE", "TOTAL_1.5", "TOTAL_3.5", "CORNERS_9.5"} <= markets, markets
+    assert set(stored["provider"]) == {"the_odds_api"} and stored["bookmaker"].notna().all()
+    assert first["odds_rows"] > 10
+    col.collect(MATCHES, mode="odds")
+    assert len([c for c in calls if c.endswith("/events/ev1/odds")]) == 1
+
+
+def test_results_mode_spends_no_credits(tmp_path, monkeypatch):
+    col, ledger = _collect_env(tmp_path, monkeypatch)
+    calls = []
+    monkeypatch.setattr(col, "TheOddsApi", _fake_api(col, ledger, calls)[0])
+    summary = col.collect(MATCHES, mode="results")
+    assert calls == [] and summary["live_rows"] == 1
+
+
+def test_monthly_reserve_stops_spending(tmp_path, monkeypatch):
+    from src import config
+    col, ledger = _collect_env(tmp_path, monkeypatch)
+    l = ledger()
+    l.data["remaining"] = config.ODDS_API_MONTHLY_RESERVE + 1
+    l.save()
+    calls = []
+    monkeypatch.setattr(col, "TheOddsApi", _fake_api(col, ledger, calls)[0])
+    col.collect(MATCHES, mode="odds")
+    assert calls == []                                  # 2 credits would break the reserve
+
+
+def test_extended_market_parsing_from_a_real_response():
+    import json as _json
+    from pathlib import Path
+    sample = _json.loads((Path(__file__).parent / "data" / "the_odds_api_event_odds.json").read_text())
+    rows = {(m, s): (o, b) for m, _, s, o, b in parse_event_odds(sample)}
+    assert rows[("BTTS", "YES")][0] > 1 and rows[("BTTS", "NO")][0] > 1
+    assert {("DOUBLE_CHANCE", "1X"), ("DOUBLE_CHANCE", "X2"), ("DOUBLE_CHANCE", "12")} <= set(rows)
+    assert ("TOTAL_1.5", "OVER") in rows and ("TOTAL_3.5", "UNDER") in rows
+    assert ("CORNERS_9.5", "OVER") in rows and ("CORNERS_10.5", "UNDER") in rows
+    assert ("EXACT_SCORE", "1-0") in rows
+    assert all(b != "Betfair" and "Exchange" not in b for _, b in rows.values())     # exchanges skipped
+    assert not any(m == "HANDICAP_-1" for m, _ in rows)                                  # whole Asian lines skipped
