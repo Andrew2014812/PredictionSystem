@@ -108,6 +108,16 @@ def metadata(version: str | None = None) -> dict | None:
     return _metadata(version, _mtime(models_storage.path(f"{version}/metadata.json")))
 
 
+@st.cache_data(show_spinner=False)
+def _decision_study(_mtime_key: float) -> dict | None:
+    return models_storage.read_json("decision_study.json") if models_storage.exists("decision_study.json") else None
+
+
+def decision_study() -> dict | None:
+    """Validation study of the decision rules (scripts/decision_study.py)."""
+    return _decision_study(_mtime(models_storage.path("decision_study.json")))
+
+
 def model_versions() -> dict:
     return registry.list_versions()
 

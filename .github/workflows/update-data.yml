@@ -1,14 +1,29 @@
-# Single writer of local_data/: refreshes results, fixtures, real odds and
-# predictions twice a day and commits them to main. Streamlit Community Cloud
-# redeploys on every push to main, so the deployed app and a local checkout of
-# main (after `git pull`) always run the same code on the same data.
+# Manual data update. Open GitHub → Actions → "Update data and predictions" →
+# "Run workflow", pick what to update, press the green button.
+#
+#   results  — new results and fixtures, refreshed predictions. Free: no API credits.
+#   odds     — real bookmaker odds for matches in the next days (spends The Odds API
+#              credits, at most "credit_budget" per run), refreshed predictions.
+#   full     — both.
+#
+# The run commits local_data/ to main; Streamlit Cloud redeploys automatically and
+# a local checkout catches up with `git pull`. No schedule: credits are only spent
+# when someone presses the button (to restore a schedule add e.g.
+#   schedule: [{cron: "0 18 * * 1"}, {cron: "0 18 * * 4"}]   # Mon + Thu 18:00 UTC).
 name: Update data and predictions
 
 on:
-  schedule:
-    - cron: "0 6 * * *"
-    - cron: "0 16 * * *"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to update"
+        type: choice
+        options: [results, odds, full]
+        default: results
+      credit_budget:
+        description: "Max The Odds API credits for this run (odds / full only)"
+        type: number
+        default: 60
 
 concurrency:
   group: update-data
@@ -35,7 +50,9 @@ jobs:
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python scripts/run_pipeline.py
+        run: python scripts/run_pipeline.py --mode "${{ inputs.mode }}" --credit-budget "${{ inputs.credit_budget }}"
+      - name: Show The Odds API credits
+        run: python scripts/odds_credits.py
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
@@ -44,7 +61,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No data changes."
           else
-            git commit -m "Update data and predictions"
+            git commit -m "Update data and predictions (${{ inputs.mode }})"
             git pull --rebase origin main
             git push origin HEAD:main
           fi

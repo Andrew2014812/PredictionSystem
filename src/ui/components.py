@@ -21,7 +21,15 @@ log = logging.getLogger(__name__)
 # formatting
 # ---------------------------------------------------------------------------
 def missing(x) -> bool:
-    return x is None or (isinstance(x, float) and np.isnan(x)) or x is pd.NA or x is pd.NaT
+    """True for None, NaN of any float type (incl. numpy.float32), pd.NA, NaT and inf."""
+    if x is None or x is pd.NA or x is pd.NaT:
+        return True
+    if isinstance(x, (float, np.floating)):
+        return not np.isfinite(x)
+    try:
+        return bool(pd.isna(x))
+    except (TypeError, ValueError):
+        return False
 
 
 def pct(x, digits: int = 0) -> str:

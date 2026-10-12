@@ -66,7 +66,6 @@ def test_history_shows_completed_predictions_by_default():
     fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "default_statuses")
     namespace: dict = {}
     exec(compile(ast.Module([fn], type_ignores=[]), "history", "exec"), namespace)
-    assert namespace["default_statuses"](False) == ["WON", "LOST"]
-    assert "UPCOMING" in namespace["default_statuses"](True)
-    assert namespace["default_statuses"](False, ["VOID"]) == ["VOID"]
+    assert namespace["default_statuses"]() == ["WON", "LOST"]
+    assert "Show upcoming" not in source and "origin" not in source.lower().split("def render")[1]
     assert spec is not None

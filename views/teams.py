@@ -12,7 +12,7 @@ from src.ui import data
 from src.ui.components import (date_text, empty_state, esc, form_chips, guard, kpi_row, match_url, num,
                                page_header, pct, plotly, section)
 from src.ui.i18n import t
-from src.ui.labels import country_label
+from src.ui.labels import country_label, league_name
 from src.ui.theme import colors
 
 PERIODS = {"5": "Last 5", "10": "Last 10", "15": "Last 15", "season": "Current season", "all": "All available"}
@@ -34,17 +34,25 @@ def select_period(tm: pd.DataFrame, period: str, season: int) -> pd.DataFrame:
 
 
 def _stat_grid(s: dict) -> str:
+    """Grouped team statistics: results · attack · defence · corners."""
     if not s.get("games"):
         return f"<span class='muted small'>{t('No matches.')}</span>"
-    items = [(t("Matches"), s["games"]), (t("W-D-L"), f"{s['wins']}-{s['draws']}-{s['losses']}"),
-             (t("Points / game"), num(s["ppg"])), (t("Goals"), num(s["gf"])), (t("Conceded"), num(s["ga"])),
-             (t("Shots"), num(s["shots_for"], 1)), (t("On target"), num(s["sot_for"], 1)),
-             (t("Corners"), num(s["corners_for"], 1)), (t("Corners against"), num(s["corners_against"], 1)),
-             (t("Over 2.5"), pct(s["over25_rate"])), ("BTTS", pct(s["btts_rate"])),
-             (t("Clean sheets"), pct(s["clean_sheet_rate"]))]
-    return ("<div style='display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem 1rem'>"
-            + "".join(f"<div><div class='muted small'>{k}</div><b style='font-size:1.1rem'>{v}</b></div>"
-                      for k, v in items) + "</div>")
+    groups = [
+        (t("Results"), [(t("Matches"), s["games"]), (t("W-D-L"), f"{s['wins']}-{s['draws']}-{s['losses']}"),
+                        (t("Points / game"), num(s["ppg"]))]),
+        (t("Attack"), [(t("Goals / game"), num(s["gf"])), (t("Shots / game"), num(s["shots_for"], 1)),
+                       (t("Shots on target / game"), num(s["sot_for"], 1)),
+                       (t("Over 2.5") + " · BTTS", f"{pct(s['over25_rate'])} · {pct(s['btts_rate'])}")]),
+        (t("Defence"), [(t("Conceded / game"), num(s["ga"])), (t("Clean sheets"), pct(s["clean_sheet_rate"])),
+                        (t("Shots conceded / game"), num(s["shots_against"], 1))]),
+        (t("Corners"), [(t("Corners / game"), num(s["corners_for"], 1)),
+                        (t("Corners against"), num(s["corners_against"], 1))]),
+    ]
+    cells = []
+    for title, items in groups:
+        body = "".join(f"<div class='st-row'><span class='muted small'>{k}</span><b>{v}</b></div>" for k, v in items)
+        cells.append(f"<div class='st-group'><div class='why-h'>{title}</div>{body}</div>")
+    return "<div class='st-grid'>" + "".join(cells) + "</div>"
 
 
 def _trend_charts(matches: pd.DataFrame) -> None:
@@ -60,19 +68,19 @@ def _trend_charts(matches: pd.DataFrame) -> None:
         fig = go.Figure()
         fig.add_scatter(x=chron["date"], y=roll["gf"], name=t("Scored"), line=dict(color=c["pos"]))
         fig.add_scatter(x=chron["date"], y=roll["ga"], name=t("Conceded"), line=dict(color=c["neg"]))
-        fig.update_layout(title=t("Goals per game"), legend=dict(orientation="h", y=1.15))
-        plotly(fig, height=270)
+        fig.update_layout(title=t("Goals per game"), legend=dict(orientation="h", y=-0.25, x=0))
+        plotly(fig, height=300)
     with cols[1]:
         fig = go.Figure()
         fig.add_scatter(x=chron["date"], y=roll["corners_for"], name=t("Corners"), line=dict(color=c["away"]))
         fig.add_scatter(x=chron["date"], y=roll["corners_against"], name=t("Corners against"),
                         line=dict(color=c["faint"], dash="dot"))
-        fig.update_layout(title=t("Corners per game"), legend=dict(orientation="h", y=1.15))
-        plotly(fig, height=270)
+        fig.update_layout(title=t("Corners per game"), legend=dict(orientation="h", y=-0.25, x=0))
+        plotly(fig, height=300)
     with cols[2]:
         fig = go.Figure(go.Scatter(x=chron["date"], y=roll["points"], line=dict(color=c["home"]), name=t("Points")))
-        fig.update_layout(title=t("Points per game"), yaxis_range=[0, 3])
-        plotly(fig, height=270)
+        fig.update_layout(title=t("Points per game"), yaxis_range=[0, 3], showlegend=False)
+        plotly(fig, height=300)
     st.caption(t("{n}-match rolling averages.", n=window))
 
 
@@ -85,7 +93,7 @@ def render() -> None:
         return
     teams = _teams_index(len(features))
     keys = [f"{r.team}|{r.country}" for r in teams.itertuples()]
-    labels = {f"{r.team}|{r.country}": f"{r.team} — {r.league_name} ({country_label(r.country)})"
+    labels = {f"{r.team}|{r.country}": f"{r.team} — {league_name(r.league)} ({country_label(r.country)})"
               for r in teams.itertuples()}
     param = st.query_params.get("team")
     current = f"{param}|{st.query_params.get('country', '')}" if param else None
@@ -107,7 +115,7 @@ def render() -> None:
     table = league_table(features, info["league"], season)
     row = table.loc[table["Team"] == team] if not table.empty else table
 
-    st.html(f"<div class='match-header'><div class='mh-meta'><span>{esc(country_label(lg.country))} · {esc(lg.name)}</span>"
+    st.html(f"<div class='match-header'><div class='mh-meta'><span>{esc(country_label(lg.country))} · {esc(league_name(lg.code))}</span>"
             f"<span>{t('Season')} {config.season_label(season)}</span></div><div class='mh-team' style='margin-top:.5rem'>"
             f"{esc(team)}</div><div style='margin-top:.5rem'>{form_chips(''.join(tm['result'].head(5)))}</div></div>")
     if not row.empty:
@@ -141,14 +149,16 @@ def render() -> None:
             f"<span class='v'>{t('H') if m.home_team == team else t('A')}</span>"
             f"<span>{esc(m.away_team if m.home_team == team else m.home_team)}</span><span class='s'>{m.time or ''}</span></a>"
             for m in upcoming.sort_values("date").itertuples()]
-    listed = chosen.head(MAX_LIST)
+    pages = max(1, (len(chosen) - 1) // MAX_LIST + 1)
+    page = st.number_input(t("Page"), 1, pages, 1, key="team_page") if pages > 1 else 1
+    listed = chosen.iloc[(page - 1) * MAX_LIST: page * MAX_LIST]
     rows += [f"<a class='rm' href='{match_url(m.match_id)}' target='_self'>{form_chips(m.result)}"
              f"<span class='d'>{date_text(m.date, '%d.%m.%y')}</span><span class='v'>{t('H') if m.venue == 'H' else t('A')}</span>"
              f"<span>{esc(m.opponent)}</span><span class='s'>{int(m.gf)}–{int(m.ga)}</span></a>"
              for m in listed.itertuples()]
     st.html("<div class='card'>" + "".join(rows) + "</div>")
-    if len(chosen) > MAX_LIST:
-        st.caption(t("Showing the latest {a} of {b} matches.", a=MAX_LIST, b=len(chosen)))
+    if pages > 1:
+        st.caption(t("Page {p} of {n} · {k} matches", p=page, n=pages, k=len(chosen)))
 
 
 render()

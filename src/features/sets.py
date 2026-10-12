@@ -40,20 +40,28 @@ GROUPS: dict[str, list[str]] = {
     "league_result": [r"^league_(home_win_rate|draw_rate)$"],
     "league_goals": [r"^league_(avg_home_goals|avg_away_goals|over25_rate|btts_rate)$"],
     "league_corners": [r"^league_avg_(home_|away_)?corners$"],
+    "elo": [r"^[ha]_elo$", r"^elo_(diff|exp_home)$"],
+    "opp_adjusted": [r"^[ha]_form10_(opp_elo|elo_surprise|adj_gf|adj_ga)$"],
+    "opp_adjusted_corners": [r"^[ha]_form10_adj_c[fa]$"],
     # Bookmaker information; only included when USE_ODDS_FEATURES is on.
     "market": [r"^market_prob_"],
 }
 
+# v4 ablation on the validation season (fixed tuned parameters):
+#   result      base 1.01483 log loss -> +elo 1.01268 -> +elo+opp_adjusted 1.01253 (adopted)
+#   home goals  base 1.11319 Poisson dev. -> +elo 1.10922 (adopted) -> +opp_adjusted 1.10949
+#   away goals  base 1.12811 -> +elo 1.12495 -> +elo+opp_adjusted 1.12415 (adopted)
+#   corners     base 1.17249 (kept) -> +elo+opp_adjusted_corners 1.17343 -> +all 1.17268
 MODEL_GROUPS: dict[str, list[str]] = {
     "result": ["table", "season_attack", "venue_result", "venue_goals", "form_result", "form_goals",
                "trends_goals", "rest", "h2h_result", "h2h_goals", "diff_result", "diff_attack",
-               "league_result", "league_goals", "discipline"],
+               "league_result", "league_goals", "discipline", "elo", "opp_adjusted"],
     "home_goals": ["table", "season_attack", "venue_goals", "form_result", "form_goals", "frequencies",
                    "trends_goals", "rest", "h2h_goals", "diff_result", "diff_attack", "league_goals",
-                   "venue_form_goals", "corner_pressure"],
+                   "venue_form_goals", "corner_pressure", "elo"],
     "away_goals": ["table", "season_attack", "venue_goals", "form_result", "form_goals", "frequencies",
                    "trends_goals", "rest", "h2h_goals", "diff_result", "diff_attack", "league_goals",
-                   "venue_form_goals", "corner_pressure"],
+                   "venue_form_goals", "corner_pressure", "elo", "opp_adjusted"],
     "corners": ["table", "season_attack", "season_corners", "venue_corners", "form_corners",
                 "trends_corners", "rest", "diff_corners", "league_corners", "league_goals",
                 "venue_form_corners", "corner_pressure", "form_goals", "venue_form_goals"],

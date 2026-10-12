@@ -6,7 +6,7 @@ from src.markets.distributions import (corners_distribution, outcome_probabiliti
                                        reconcile_with_1x2, score_matrix)
 from src.markets.markets import corner_markets, goal_markets, selection_won
 from src.markets.odds import PricedSelection, price
-from src.markets.recommendation import main_prediction, risk_prediction
+from src.markets.recommendation import main_prediction, odds_preference, risk_prediction
 
 
 def _by_key(sels):
@@ -104,12 +104,21 @@ def _ps(market, selection, p, odds=None):
     return PricedSelection(market, selection, p, odds, "Bet365" if odds else None)
 
 
-def test_main_prediction_prefers_value_over_probability():
-    sels = [_ps("DOUBLE_CHANCE", "1X", 0.80, 1.20),          # very likely, odds too low
-            _ps("1X2", "H", 0.55, 2.00),                     # EV +10%
-            _ps("TOTAL_2.5", "OVER", 0.60, 1.70)]            # EV +2%
+def test_main_prediction_softly_prefers_odds_in_the_preferred_range():
+    sels = [_ps("DOUBLE_CHANCE", "1X", 0.84, 1.22),          # very likely, but odds below 1.40
+            _ps("1X2", "H", 0.55, 1.95)]                     # inside 1.40–2.50
     main = main_prediction(sels)
     assert main.kind == "value" and (main.pick.market, main.pick.selection) == ("1X2", "H")
+    # outside the range the weight decays smoothly instead of dropping to zero
+    assert 0 < odds_preference(1.22) < odds_preference(1.35) < odds_preference(1.40) == 1.0
+    assert odds_preference(2.50) == 1.0 > odds_preference(2.8) > odds_preference(3.5) > 0
+
+
+def test_main_value_pick_needs_a_non_negative_expected_value():
+    sels = [_ps("1X2", "H", 0.50, 1.90),                     # EV -5%
+            _ps("TOTAL_2.5", "OVER", 0.55, 1.90)]            # EV +4.5%
+    main = main_prediction(sels)
+    assert main.kind == "value" and main.pick.market == "TOTAL_2.5"
 
 
 def test_main_prediction_without_value_is_the_most_reliable_probable_selection():
@@ -133,7 +142,8 @@ def test_main_prediction_ignores_near_certain_selections():
 
 
 def test_risk_prediction_rules():
-    assert risk_prediction([_ps("1X2", "A", 0.30, 3.6)]).pick.selection == "A"
+    assert risk_prediction([_ps("1X2", "A", 0.30, 3.8)]).pick.selection == "A"      # EV +14%
+    assert risk_prediction([_ps("1X2", "A", 0.30, 3.6)]) is None        # EV +8% < 10%
     assert risk_prediction([_ps("1X2", "A", 0.20, 6.0)]) is None        # probability too low
     assert risk_prediction([_ps("1X2", "A", 0.30, 3.2)]) is None        # EV below threshold
     assert risk_prediction([_ps("EXACT_SCORE", "2-1", 0.30, 9.0)]) is None

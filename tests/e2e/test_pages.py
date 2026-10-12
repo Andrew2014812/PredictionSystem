@@ -47,7 +47,7 @@ def test_matches_filter_by_league_and_open_details(app, predicted_day):
     app.match_cards().first.click()
     app.wait()
     expect(app.title).to_have_count(0)
-    expect(app.page.locator(".rec.main")).to_be_visible()
+    expect(app.page.locator(".rec.main, .outcome").first).to_be_visible()     # outcome card once finished
     expect(app.text("Match result").first).to_be_visible()
     app.assert_healthy()
 
@@ -152,7 +152,7 @@ def test_model_analysis_draw_section(app):
     app.open("models")
     expect(app.title).to_have_text("Model Analysis")
     expect(app.text("Active production model")).to_be_visible()
-    expect(app.kpi("Log loss").first).to_be_visible()
+    expect(app.kpi("Log loss ↓").first).to_be_visible()                 # says which way is better
     expect(app.section("Draw predictions")).to_be_visible()
     expect(app.page.locator("table.mkt").filter(has_text="draw-aware rule").first).to_be_visible()
     expect(app.section("Confusion matrix")).to_be_visible()
@@ -189,3 +189,98 @@ def test_theme_switch(app):
     app.pref("dark_mode").click()
     app.wait()
     assert app.background() == dark
+
+
+NAN = re.compile(r"\bnan\b|\+nan%|NaN")
+
+
+def test_finished_match_shows_result_before_predictions(app, predicted_day):
+    day, _ = predicted_day
+    _open_first_match(app, day)
+    main = app.page.locator("[data-testid=stMain]")
+    outcome = app.page.locator(".outcome").first
+    expect(outcome).to_be_visible()
+    expect(outcome).to_contain_text(re.compile("Main prediction"))
+    expect(outcome.locator(".status")).to_have_text(re.compile("^(Won|Lost)$"))
+    order = main.inner_text().lower()                                   # labels may be upper-cased by CSS
+    assert order.index("main prediction") < order.index("why this prediction?") < order.index("markets")
+    expect(app.page.locator(".why .why-h").first).to_have_text("The numbers")   # facts before model factors
+    expect(app.page.locator(".why .lvl").first).to_contain_text("%")
+    assert not NAN.search(order), NAN.search(order).group()
+    app.assert_healthy()
+
+
+def test_history_separates_recorded_and_evaluation_predictions(app):
+    app.open("history")
+    body = app.page.locator("[data-testid=stMain]")
+    expect(app.option("Recorded predictions")).to_be_visible()
+    assert "Show upcoming" not in body.inner_text() and "Origin" not in body.inner_text()
+    expect(app.section("Summary by period")).to_be_visible()                  # visible without a click
+    app.select("Period", "All time")
+    recorded = app.kpi("Predictions").first.locator(".value").inner_text()
+    app.option("Historical evaluation").click()
+    app.wait()
+    evaluation = app.kpi("Predictions").first.locator(".value").inner_text()
+    assert recorded != evaluation
+    assert not NAN.search(body.inner_text())
+    app.assert_healthy()
+
+
+def test_analytics_highlights_follow_the_filters(app):
+    app.open("analytics")
+    expect(app.page.locator('[data-testid="stSelectbox"]').filter(has_text="Data")).to_be_visible()
+    expect(app.section("Performance over time")).to_be_visible()
+    app.select("Prediction set", "Total goals")
+    expect(app.text("Best league").first).to_be_visible()                     # one market: leagues compared
+    app.assert_healthy()
+
+
+def test_team_statistics_are_grouped_and_all_matches_paginated(app):
+    app.open("teams")
+    app.select("Search team", "Arsenal — Premier League (England)")
+    for group in ("Results", "Attack", "Defence", "Corners"):
+        expect(app.page.locator(".st-group").filter(has_text=group).first).to_be_visible()
+    app.option("All available").click()
+    app.wait()
+    expect(app.text(re.compile(r"Page 1 of \d+")).first).to_be_visible()
+    app.assert_healthy()
+
+
+def test_model_analysis_feature_dictionary_and_decision_rules(app):
+    app.open("models")
+    app.expander("Feature dictionary").first.click()
+    app.page.get_by_label("Search features").first.fill("Elo")
+    app.page.keyboard.press("Enter")
+    app.wait()
+    expect(app.text("Elo strength rating").first).to_be_visible()
+    app.tab("Decision rules").click()
+    expect(app.section("Main prediction rule")).to_be_visible()
+    expect(app.section("Walk-forward check of the result model")).to_be_visible()
+    app.assert_healthy()
+
+
+def _contrast(rgb_a: str, rgb_b: str) -> float:
+    def lum(rgb):
+        vals = [int(x) / 255 for x in re.findall(r"\d+", rgb)[:3]]
+        vals = [v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4 for v in vals]
+        return 0.2126 * vals[0] + 0.7152 * vals[1] + 0.0722 * vals[2]
+    hi, lo = sorted((lum(rgb_a), lum(rgb_b)), reverse=True)
+    return (hi + 0.05) / (lo + 0.05)
+
+
+def test_light_theme_text_is_readable(app):
+    app.open("history")
+    app.pref("light_mode").click()
+    app.wait()
+    bg = app.background()
+    for selector in (".note", '[data-testid="stCaptionContainer"] p', '[data-testid="stWidgetLabel"] p', ".kpi .label"):
+        colors = app.page.locator(selector).evaluate_all(
+            "els => els.filter(e => e.getBoundingClientRect().width > 0).map(e => getComputedStyle(e).color)")
+        assert colors, selector
+        for color in set(colors):
+            assert _contrast(color, bg) >= 4.5, (selector, color, bg)
+    controls = app.page.locator('[data-testid="stSelectbox"] [role="group"], [data-testid="stMultiSelect"] [role="group"]')
+    for color in set(controls.evaluate_all("els => els.map(e => getComputedStyle(e).backgroundColor)")):
+        assert _contrast(color, bg) < 1.3, ("dark select control in the light theme", color)
+    app.pref("dark_mode").click()
+    app.wait()

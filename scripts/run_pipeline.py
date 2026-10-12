@@ -1,11 +1,13 @@
 """Daily pipeline — updates data and predictions, never retrains models.
 
-    python scripts/run_pipeline.py             # full update
-    python scripts/run_pipeline.py --offline   # use local files only
+    python scripts/run_pipeline.py                      # results + fixtures (free)
+    python scripts/run_pipeline.py --mode odds          # + real odds (spends credits)
+    python scripts/run_pipeline.py --mode full --credit-budget 40
+    python scripts/run_pipeline.py --offline            # use local files only
 
 Order:
-1. fresh fixtures / results and real odds from the API providers
-   (API-Football, The Odds API — only if keys are configured);
+1. fresh fixtures / results (free) and — in "odds" / "full" mode — real
+   odds from the API providers (only if keys are configured);
 2. current-season Football-Data results and fixtures;
 3. rebuild features (Football-Data + API rows, deduplicated);
 4. settle stored predictions of finished matches;
@@ -38,10 +40,13 @@ from src.storage import LocalStorage  # noqa: E402
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--offline", action="store_true")
+    parser.add_argument("--mode", choices=("results", "odds", "full"), default="results")
+    parser.add_argument("--credit-budget", type=int, default=None,
+                        help="max The Odds API credits for this run (default: config.ODDS_API_RUN_BUDGET)")
     args = parser.parse_args()
     summary = {}
     if not args.offline:
-        summary["providers"] = collect(build_matches())
+        summary["providers"] = collect(build_matches(), mode=args.mode, run_budget=args.credit_budget)
         download_results([config.current_season()])
         download_fixtures()
     features = rebuild_features()

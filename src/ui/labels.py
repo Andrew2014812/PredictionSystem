@@ -57,6 +57,22 @@ def country_label(country: str) -> str:
     return t(country)
 
 
+# Ukrainian football names of the leagues (display only; the registry keeps the English names)
+LEAGUE_NAMES_UK = {
+    "E0": "Прем'єр-ліга", "E1": "Чемпіоншип", "E2": "Ліга 1", "E3": "Ліга 2", "EC": "Національна ліга",
+    "SC0": "Прем'єршип", "SC1": "Чемпіоншип", "SC2": "Ліга 1", "SC3": "Ліга 2",
+    "SP1": "Ла Ліга", "SP2": "Сегунда", "I1": "Серія A", "I2": "Серія B",
+    "D1": "Бундесліга", "D2": "Друга Бундесліга", "F1": "Ліга 1", "F2": "Ліга 2",
+    "N1": "Ередивізі", "B1": "Про Ліга", "P1": "Прімейра-ліга", "T1": "Суперліга", "G1": "Суперліга",
+}
+
+
+def league_name(code: str) -> str:
+    from .i18n import current_language
+    lg = get_league(code)
+    return LEAGUE_NAMES_UK.get(code, lg.name) if current_language() == "uk" else lg.name
+
+
 def league_label(code: str, with_country: bool = False) -> str:
     lg = get_league(code)
-    return f"{country_label(lg.country)} · {lg.name}" if with_country else lg.name
+    return f"{country_label(lg.country)} · {league_name(code)}" if with_country else league_name(code)

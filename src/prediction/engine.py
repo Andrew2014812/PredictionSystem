@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
@@ -72,12 +72,13 @@ def predict_matches(matches: pd.DataFrame, bundles: dict[str, ModelBundle], odds
         empty = pd.DataFrame()
         return PredictionBatch(empty, empty, empty)
 
-    generated_at = pd.Timestamp(datetime.now()).floor("s")
+    generated_at = pd.Timestamp(datetime.now(timezone.utc).replace(tzinfo=None)).floor("s")   # naive UTC
     result = bundles["result"]
     p1x2 = result.predict(matches)
     outcomes = decide(p1x2, result.extra.get("draw_multiplier", 1.0))
     lam_home = bundles["home_goals"].predict(matches)
     lam_away = bundles["away_goals"].predict(matches)
+    rho = bundles["home_goals"].extra.get("dc_rho", 0.0)            # Dixon-Coles (0 = independent Poisson)
     corners_bundle = bundles.get("corners")
     corner_mu = corners_bundle.predict(matches) if corners_bundle else np.full(len(matches), np.nan)
     corner_leagues = set(corners_bundle.extra.get("leagues", [])) if corners_bundle else set()
@@ -85,7 +86,7 @@ def predict_matches(matches: pd.DataFrame, bundles: dict[str, ModelBundle], odds
 
     snapshots, market_rows, picks = [], [], []
     for i, match in enumerate(matches.to_dict("records")):
-        matrix = reconcile_with_1x2(score_matrix(lam_home[i], lam_away[i]), p1x2[i])
+        matrix = reconcile_with_1x2(score_matrix(lam_home[i], lam_away[i], rho=rho), p1x2[i])
         selections = goal_markets(matrix)
         corners_ok = match["league"] in corner_leagues and not np.isnan(corner_mu[i])
         corners_pmf = corners_distribution(corner_mu[i], nb_size) if corners_ok else None

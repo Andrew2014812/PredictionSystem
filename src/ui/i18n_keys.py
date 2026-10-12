@@ -13,6 +13,7 @@ EXTRA = {
     "Backtest (test season)", "League position", "Points", "Points / game", "Points / game (last 5)",
     "Goals / game", "Conceded / game", "Shots / game", "Shots on target / game", "Corners / game",
     "Yellow cards / game", "Home", "Draw", "Away",
+    "Most probable outcome", "Draw-aware rule", "Independent Poisson", "Dixon-Coles",
 }
 
 
@@ -35,9 +36,10 @@ def registry_keys() -> set[str]:
     from .labels import MARKET_GROUP_TITLES
     keys = set(DATE_PRESETS) | set(PERIODS) | set(WEEKDAYS) | set(MARKET_GROUP_TITLES.values())
     keys |= {lg.country for lg in LEAGUES}
-    for module, names in (("views.history", ("ROLES",)), ("views.analytics", ("PREDICTION_SETS",)),
+    for module, names in (("views.history", ("ROLES", "DATASET_HELP", "DATASET_LABELS")),
+                          ("views.analytics", ("PREDICTION_SETS", "DATASET_LABELS")),
                           ("views.teams", ("PERIODS",)), ("views.model_analysis",
-                                                            ("METRIC_HELP", "GROUP_NAMES", "TASK_TITLES"))):
+                                                            ("METRIC_HELP", "GROUP_NAMES", "TASK_TITLES", "SOURCES"))):
         tree = ast.parse((ROOT / (module.replace(".", "/") + ".py")).read_text(encoding="utf-8"))
         for node in ast.walk(tree):
             if isinstance(node, ast.Assign) and any(getattr(tg, "id", None) in names for tg in node.targets):

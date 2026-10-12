@@ -6,3 +6,4 @@ __pycache__/
 test-results/
 .env
 local_data/api/*/*.json
+!local_data/api/the_odds_api/ledger.json

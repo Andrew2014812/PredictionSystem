@@ -9,8 +9,9 @@ Files (Parquet, ``local_data/predictions/``):
   ROI statistics: the most likely selection of each history market
   (role="market") plus the main and risk predictions.
 
-A prediction is frozen once its match date has passed: re-running the
-pipeline only refreshes predictions of matches that are still upcoming.
+A recorded pre-match prediction is frozen once its match has kicked off:
+re-running the pipeline only refreshes matches that have not started.
+``generated_at`` is stored as naive UTC; ``kickoff`` as naive UK local time.
 ``source`` tells how a prediction was produced:
 
 * ``live``     - generated before kick-off;
@@ -70,13 +71,39 @@ def _replace(existing: pd.DataFrame, new: pd.DataFrame, drop_ids: set[str]) -> p
     return pd.concat(frames, ignore_index=True) if frames else new
 
 
-def save_batch(batch: PredictionBatch, replace_source: str | None = None) -> None:
-    """Store a batch. Matches in the batch replace their previous predictions.
+def _locked_ids(snapshots: pd.DataFrame, now: pd.Timestamp) -> set[str]:
+    """Recorded pre-match predictions whose match has started: never rewritten."""
+    if snapshots.empty or "kickoff" not in snapshots:
+        return set()
+    started = pd.to_datetime(snapshots["kickoff"]) <= now
+    return set(snapshots.loc[started & (snapshots["source"] == "live"), "match_id"])
+
+
+def save_batch(batch: PredictionBatch, replace_source: str | None = None,
+               now: pd.Timestamp | None = None) -> None:
+    """Store a batch. Matches in the batch replace their previous predictions,
+    except recorded pre-match ("live") predictions of matches that have already
+    kicked off — those are frozen. A refreshed pre-match prediction keeps the
+    time of its first version in ``first_generated_at``.
 
     With ``replace_source`` every stored prediction of that source is
     dropped first (used to regenerate the whole backtest).
     """
+    from .pipeline import uk_now
+    now = now if now is not None else uk_now()
     snapshots, markets, picks = load_snapshots(), load_markets(), load_picks()
+    locked = _locked_ids(snapshots, now)
+    if locked and not batch.snapshots.empty:
+        keep = ~batch.snapshots["match_id"].isin(locked)
+        batch = PredictionBatch(batch.snapshots.loc[keep],
+                                batch.markets.loc[~batch.markets["match_id"].isin(locked)] if not batch.markets.empty else batch.markets,
+                                batch.picks.loc[~batch.picks["match_id"].isin(locked)] if not batch.picks.empty else batch.picks)
+    if not batch.snapshots.empty:
+        first = (snapshots.set_index("match_id")["first_generated_at"] if "first_generated_at" in snapshots
+                 else snapshots.set_index("match_id")["generated_at"]) if not snapshots.empty else pd.Series(dtype="datetime64[ns]")
+        new = batch.snapshots.copy()
+        new["first_generated_at"] = pd.to_datetime(new["match_id"].map(first)).fillna(pd.to_datetime(new["generated_at"]))
+        batch = PredictionBatch(new, batch.markets, batch.picks)
     if replace_source and not snapshots.empty:
         old = set(snapshots.loc[snapshots["source"] == replace_source, "match_id"])
         snapshots = snapshots.loc[~snapshots["match_id"].isin(old)]

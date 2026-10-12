@@ -18,7 +18,8 @@ import numpy as np
 import pandas as pd
 
 from .. import config
-from .state import (IDX, HeadToHead, LeaguePrior, SeasonTables, TeamHistory, nanmean_rows,
+from ..leagues import get_league
+from .state import (IDX, EloRatings, HeadToHead, LeaguePrior, SeasonTables, TeamHistory, nanmean_rows,
                     team_record)
 
 log = logging.getLogger(__name__)
@@ -54,6 +55,8 @@ class FeatureBuilder:
         self.tables = SeasonTables()
         self.h2h = HeadToHead(config.H2H_WINDOW)
         self.prior = LeaguePrior(config.LEAGUE_PRIOR_WINDOW)
+        self.elo = EloRatings()
+        self._context: dict[str, dict] = {}       # match_id -> pre-match context for the update
 
     # -- reading state ------------------------------------------------------
     def _team_features(self, side: str, match: dict, venue: str) -> dict[str, float]:
@@ -101,6 +104,13 @@ class FeatureBuilder:
             out[f"{side}_form{k}_gd"] = mean[IDX["gf"]] - mean[IDX["ga"]]
             for stat in FORM_STATS:
                 out[f"{side}_form{k}_{stat}"] = mean[IDX[stat]]
+
+        # Opponent-adjusted form over the last 10 matches.
+        adj_rows = self.history.window(team_key, 10)
+        if adj_rows:
+            mean = nanmean_rows(adj_rows)
+            for stat in ("opp_elo", "elo_surprise", "adj_gf", "adj_ga", "adj_cf", "adj_ca"):
+                out[f"{side}_form10_{stat}"] = mean[IDX[stat]]
 
         # Recent matches at the same venue (home team at home, away team away).
         venue_rows = self.venue_history.window((*team_key, venue), VENUE_FORM_WINDOW)
@@ -221,26 +231,46 @@ class FeatureBuilder:
             out["market_prob_over25"] = (1 / over) / (1 / over + 1 / under)
         return out
 
+    def _elo_features(self, match: dict) -> dict[str, float]:
+        tier = get_league(match["league"]).tier
+        home = (match["country"], match["home_team"])
+        away = (match["country"], match["away_team"])
+        rh = self.elo.get(home, match["season"], tier)
+        ra = self.elo.get(away, match["season"], tier)
+        return {"h_elo": rh, "a_elo": ra, "elo_diff": rh + self.elo.hfa - ra,
+                "elo_exp_home": self.elo.expected_home(rh, ra)}
+
     def match_features(self, match: dict) -> dict[str, float]:
         f: dict[str, float] = {}
         f.update(self._team_features("h", match, "home"))
         f.update(self._team_features("a", match, "away"))
+        f.update(self._elo_features(match))
         f.update(self._h2h_features(match))
         f.update(self.prior.summary(match["league"]))
         f.update(self._derived_features(f))
         f.update(self._market_features(match))
+        # what the opponent-adjusted records of this match will be compared with
+        self._context[match["match_id"]] = {
+            "home": {"opp_elo": f["a_elo"], "expected": f["elo_exp_home"], "opp_ga": f.get("a_season_ga", np.nan),
+                     "opp_gf": f.get("a_season_gf", np.nan), "opp_ca": f.get("a_season_corners_against", np.nan),
+                     "opp_cf": f.get("a_season_corners_for", np.nan)},
+            "away": {"opp_elo": f["h_elo"], "expected": 1 - f["elo_exp_home"], "opp_ga": f.get("h_season_ga", np.nan),
+                     "opp_gf": f.get("h_season_gf", np.nan), "opp_ca": f.get("h_season_corners_against", np.nan),
+                     "opp_cf": f.get("h_season_corners_for", np.nan)},
+        }
         return f
 
     # -- updating state ------------------------------------------------------
     def add_result(self, match: dict) -> None:
         hg, ag = match["home_goals"], match["away_goals"]
         s = {c: _value(match[c]) for c in MATCH_STAT_COLUMNS + ["home_fouls", "away_fouls"]}
+        ctx = self._context.pop(match["match_id"], {})
         home_rec = team_record(hg, ag, s["home_shots"], s["away_shots"], s["home_sot"], s["away_sot"],
                                s["home_corners"], s["away_corners"], s["home_fouls"],
-                               s["home_yellows"], s["home_reds"])
+                               s["home_yellows"], s["home_reds"], ctx.get("home"))
         away_rec = team_record(ag, hg, s["away_shots"], s["home_shots"], s["away_sot"], s["home_sot"],
                                s["away_corners"], s["home_corners"], s["away_fouls"],
-                               s["away_yellows"], s["away_reds"])
+                               s["away_yellows"], s["away_reds"], ctx.get("away"))
         key = (match["league"], match["season"])
         self.tables.add(key, match["home_team"], match["away_team"], home_rec, away_rec)
         self.history.add((match["country"], match["home_team"]), match["date"], home_rec)
@@ -249,6 +279,8 @@ class FeatureBuilder:
         self.venue_history.add((match["country"], match["away_team"], "away"), match["date"], away_rec)
         self.h2h.add(match["country"], match["home_team"], match["away_team"], hg, ag)
         self.prior.add(match["league"], hg, ag, s["home_corners"], s["away_corners"])
+        self.elo.update((match["country"], match["home_team"]), (match["country"], match["away_team"]),
+                        hg, ag, match["season"], get_league(match["league"]).tier)
 
     # -- driver -------------------------------------------------------------
     def build(self, matches: pd.DataFrame) -> pd.DataFrame:

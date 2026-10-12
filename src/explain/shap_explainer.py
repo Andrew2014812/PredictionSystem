@@ -60,7 +60,7 @@ def explanation_plan(market: str, selection: str) -> list[tuple[str, int | None,
         return [("result", cls[excluded], -1.0)]
     if group == "EXACT_SCORE":
         h, a = (int(x) for x in selection.split("-"))
-        return [("result", cls["H" if h > a else ("A" if h < a else "D")], 1.0)]
+        return [("home_goals", None, 1.0), ("away_goals", None, 1.0)]
     if group in ("TOTAL", "BTTS"):
         sign = 1.0 if selection in ("OVER", "YES") else -1.0
         return [("home_goals", None, sign), ("away_goals", None, sign)]

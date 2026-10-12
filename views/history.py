@@ -7,20 +7,29 @@ import pandas as pd
 import streamlit as st
 
 from src import config
-from src.analytics.performance import DATE_PRESETS, PERIODS, preset_range, summarize, timeline
+from src.analytics.performance import (DATASETS, DATE_PRESETS, PERIODS, preset_range, select_dataset, summarize,
+                                       timeline)
 from src.leagues import league_codes
 from src.ui import data
 from src.ui.components import (date_text, empty_state, esc, guard, html_table, kpi_row, match_url, num,
-                               page_header, pct, signed, status_badge, tone)
+                               missing, odds_text, page_header, pct, section, signed, status_badge,
+                               tone)
+
+DATASET_HELP = {
+    "recorded": "Predictions saved before kick-off and settled after the match.",
+    "evaluation": "How the model would have done on past matches (test season and the current season so far), "
+                  "computed afterwards from pre-match data. Not predictions published before those matches.",
+}
 from src.ui.i18n import t
 from src.ui.labels import MARKET_GROUP_TITLES, group_title, league_label, market_title, selection_label
 
-ROLES = {"main": "Main predictions", "risk": "Risk predictions", "market": "Market forecasts", "all": "All"}
+ROLES = {"main": "Main predictions", "risk": "Risk predictions", "market": "Market forecasts"}
+DATASET_LABELS = {"recorded": "Recorded predictions", "evaluation": "Historical evaluation"}
 PAGE_SIZE = 50
 
 
-def filter_picks(picks: pd.DataFrame, start, end, leagues, groups, role, statuses, sources=None,
-                 odds_only: bool = False) -> pd.DataFrame:
+def filter_picks(picks: pd.DataFrame, start, end, leagues, groups, role, statuses=("WON", "LOST"),
+                 sources=None, odds_only: bool = False) -> pd.DataFrame:
     df = picks.loc[(picks["date"] >= pd.Timestamp(start)) & (picks["date"] <= pd.Timestamp(end))]
     if leagues:
         df = df.loc[df["league"].isin(leagues)]
@@ -37,11 +46,9 @@ def filter_picks(picks: pd.DataFrame, start, end, leagues, groups, role, statuse
     return df
 
 
-def default_statuses(show_upcoming: bool, advanced: list[str] | None = None) -> list[str]:
-    """Completed predictions only, unless upcoming are requested or advanced statuses chosen."""
-    if advanced:
-        return advanced
-    return ["WON", "LOST"] + (["UPCOMING"] if show_upcoming else [])
+def default_statuses() -> list[str]:
+    """History shows finished predictions only (upcoming matches live on the Matches page)."""
+    return ["WON", "LOST"]
 
 
 @guard
@@ -52,38 +59,34 @@ def render() -> None:
         empty_state(t("No completed predictions yet."))
         return
 
+    dataset = st.segmented_control(t("Data"), list(DATASETS), default="recorded", key="h_dataset",
+                                   format_func=lambda k: t(DATASET_LABELS[k])) or "recorded"
+    st.html(f'<div class="note">{t(DATASET_HELP[dataset])}</div>')
+    picks = select_dataset(picks, dataset)
+    if picks.empty:
+        empty_state(t("No completed predictions yet."))
+        return
     first = picks["date"].min()
     season_start = pd.Timestamp(year=config.current_season(), month=7, day=1)
     with st.container(border=True):
-        c = st.columns([1.5, 1.5, 1.6, 1.6, 1.3])
-        preset = c[0].selectbox(t("Period"), DATE_PRESETS, index=DATE_PRESETS.index("Last 30 days"),
+        c = st.columns([1.5, 1.5, 1.7, 1.7])
+        preset = c[0].selectbox(t("Period"), DATE_PRESETS, index=DATE_PRESETS.index("All time"),
                                 format_func=t, key="h_preset")
         custom = None
         if preset == "Custom":
             custom = c[0].date_input(t("Date range"), value=(first.date(), date.today()), format="DD.MM.YYYY",
                                      key="h_custom")
-        role = c[1].selectbox(t("Prediction type"), list(ROLES), format_func=lambda r: t(ROLES[r]), key="h_role")
+        role = c[1].selectbox(t("Prediction type"), list(ROLES), format_func=lambda r: t(ROLES[r]), key="h_role",
+                              help=t("Main = the one prediction FootPredict recommends per match. Risk = an optional "
+                                     "high-odds pick. Market forecasts = the model's most likely outcome in each "
+                                     "market; they are estimates, not recommended bets."))
         leagues = c[2].multiselect(t("League"), league_codes(), format_func=lambda x: league_label(x, True),
                                    placeholder=t("All leagues"), key="h_leagues")
         groups = c[3].multiselect(t("Market"), list(MARKET_GROUP_TITLES), format_func=group_title,
                                   placeholder=t("All markets"), key="h_groups")
-        show_upcoming = c[4].toggle(t("Show upcoming"), key="h_upcoming")
-        with st.expander(t("Advanced filters"), icon=":material/tune:"):
-            a = st.columns(3)
-            statuses = a[0].multiselect(t("Status"), ["WON", "LOST", "UPCOMING", "VOID"],
-                                        format_func=lambda s: t({"WON": "Won", "LOST": "Lost",
-                                                                 "UPCOMING": "Upcoming", "VOID": "Void"}[s]),
-                                        key="h_status", placeholder=t("Won and lost"))
-            sources = a[1].multiselect(t("Prediction origin"), ["live", "backfill", "backtest"],
-                                       format_func=lambda s: t({"live": "Live (before kick-off)",
-                                                                "backfill": "Backfill (current season)",
-                                                                "backtest": "Backtest (test season)"}[s]),
-                                       key="h_sources", placeholder=t("All"))
-            odds_only = a[2].toggle(t("Only predictions with odds"), key="h_odds_only")
 
     start, end = preset_range(preset, date.today(), first, custom, season_start)
-    df = filter_picks(picks, start, end, leagues, groups, role, default_statuses(show_upcoming, statuses),
-                      sources, odds_only)
+    df = filter_picks(picks, start, end, leagues, groups, role, default_statuses())
     s = summarize(df)
     kpi_row([
         (t("Predictions"), f"{s['settled']:,}", t("{a} won · {b} lost", a=s["won"], b=s["lost"])),
@@ -101,11 +104,13 @@ def render() -> None:
         empty_state(t("No completed predictions for this period."))
         return
 
-    group_by = st.segmented_control(t("Group by"), list(PERIODS), default="Weekly", format_func=t,
-                                    key="h_group_by") or "Weekly"
+    section(t("Summary by period"))
+    group_by = st.segmented_control(t("Group results by"), list(PERIODS), default="Weekly", format_func=t,
+                                    key="h_group_by", help=t("Changes how the summary below is grouped in time; "
+                                                             "it does not filter the predictions.")) or "Weekly"
     tl = timeline(df, group_by)
     if not tl.empty:
-        with st.expander(t("Summary by period"), icon=":material/calendar_month:", expanded=False):
+        with st.container():
             view = pd.DataFrame({
                 t("Period"): tl["period"].dt.strftime("%d.%m.%Y"), t("Predictions"): tl["predictions"],
                 t("Hit rate"): tl["hit_rate"], t("Profit"): tl["profit"], t("ROI"): tl["roi"],
@@ -136,8 +141,9 @@ def render() -> None:
         t("Profit"): chunk["profit"],
     })
     st.html(html_table(view, formats={
-        t("Match"): lambda v: v, t("Probability"): lambda v: pct(v, 1), t("Odds"): num,
-        t("Result"): status_badge, t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>"},
+        t("Match"): lambda v: v, t("Probability"): lambda v: pct(v, 1), t("Odds"): odds_text,
+        t("Result"): status_badge,
+        t("Profit"): lambda v: "—" if missing(v) else f"<span class='{tone(v)}'>{signed(v)}</span>"},
         align_right=(t("Probability"), t("Odds"), t("Profit"))))
     st.caption(t("Page {p} of {n} · {k} predictions", p=page, n=pages, k=f"{len(table):,}"))
 

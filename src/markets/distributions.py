@@ -11,6 +11,15 @@ gives a full score matrix. Every goal market (totals, BTTS, exact score,
 handicap) is a sum over cells of this one matrix, so all markets are
 mutually consistent.
 
+Optionally the Dixon-Coles correction (Dixon & Coles, 1997) multiplies the
+four low-score cells by tau(i, j; rho):
+
+    tau(0,0) = 1 - lh*la*rho,  tau(0,1) = 1 + lh*rho,
+    tau(1,0) = 1 + la*rho,     tau(1,1) = 1 - rho,
+
+with ``rho`` fitted by maximum likelihood on the validation season (rho = 0
+is plain independent Poisson).
+
 Independent Poisson is known to misprice draws, while the dedicated 1X2
 classifier is trained on exactly that target. ``reconcile_with_1x2``
 therefore rescales the three regions of the matrix (home win / draw / away
@@ -39,10 +48,38 @@ def poisson_vector(lam: float, max_goals: int = config.MAX_GOALS) -> np.ndarray:
     return pmf
 
 
+def dixon_coles_tau(lambda_home: float, lambda_away: float, rho: float) -> np.ndarray:
+    """2 x 2 multipliers of the cells 0-0, 0-1, 1-0, 1-1."""
+    return np.array([[1 - lambda_home * lambda_away * rho, 1 + lambda_home * rho],
+                     [1 + lambda_away * rho, 1 - rho]])
+
+
 def score_matrix(lambda_home: float, lambda_away: float,
-                 max_goals: int = config.MAX_GOALS) -> np.ndarray:
+                 max_goals: int = config.MAX_GOALS, rho: float = 0.0) -> np.ndarray:
     m = np.outer(poisson_vector(lambda_home, max_goals), poisson_vector(lambda_away, max_goals))
+    if rho:
+        m[:2, :2] *= np.clip(dixon_coles_tau(lambda_home, lambda_away, rho), 1e-6, None)
     return m / m.sum()
+
+
+def fit_dixon_coles_rho(lambda_home: np.ndarray, lambda_away: np.ndarray, home_goals: np.ndarray,
+                        away_goals: np.ndarray) -> float:
+    """Maximum-likelihood rho given fixed goal rates (only low scores carry information)."""
+    from scipy.optimize import minimize_scalar
+    lh, la = np.asarray(lambda_home, float), np.asarray(lambda_away, float)
+    hg, ag = np.asarray(home_goals, int), np.asarray(away_goals, int)
+    low = (hg <= 1) & (ag <= 1)
+
+    def nll(rho: float) -> float:
+        tau = np.ones(len(hg))
+        tau[low] = np.array([dixon_coles_tau(a, b, rho)[i, j]
+                             for a, b, i, j in zip(lh[low], la[low], hg[low], ag[low])])
+        if (tau <= 0).any():
+            return np.inf
+        # the four corrections cancel out, so the corrected matrix still sums to 1
+        return -np.log(tau).sum()
+
+    return float(minimize_scalar(nll, bounds=(-0.3, 0.3), method="bounded").x)
 
 
 def outcome_masks(size: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
