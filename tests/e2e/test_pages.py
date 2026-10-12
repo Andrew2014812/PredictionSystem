@@ -47,7 +47,7 @@ def test_matches_filter_by_league_and_open_details(app, predicted_day):
     app.match_cards().first.click()
     app.wait()
     expect(app.title).to_have_count(0)
-    expect(app.page.locator(".rec.main")).to_be_visible()
+    expect(app.page.locator(".rec.main, .outcome").first).to_be_visible()     # outcome card once finished
     expect(app.text("Match result").first).to_be_visible()
     app.assert_healthy()
 
@@ -202,8 +202,8 @@ def test_finished_match_shows_result_before_predictions(app, predicted_day):
     expect(outcome).to_be_visible()
     expect(outcome).to_contain_text(re.compile("Main prediction"))
     expect(outcome.locator(".status")).to_have_text(re.compile("^(Won|Lost)$"))
-    order = main.inner_text()
-    assert order.index("Main prediction") < order.index("Why this prediction?") < order.index("Markets")
+    order = main.inner_text().lower()                                   # labels may be upper-cased by CSS
+    assert order.index("main prediction") < order.index("why this prediction?") < order.index("markets")
     expect(app.page.locator(".why .why-h").first).to_have_text("The numbers")   # facts before model factors
     expect(app.page.locator(".why .lvl").first).to_contain_text("%")
     assert not NAN.search(order), NAN.search(order).group()
@@ -273,10 +273,14 @@ def test_light_theme_text_is_readable(app):
     app.pref("light_mode").click()
     app.wait()
     bg = app.background()
-    for selector in (".note", '[data-testid="stCaptionContainer"]', '[data-testid="stWidgetLabel"]', ".kpi .label"):
-        el = app.page.locator(selector).first
-        if el.count():
-            color = el.evaluate("e => getComputedStyle(e).color")
+    for selector in (".note", '[data-testid="stCaptionContainer"] p', '[data-testid="stWidgetLabel"] p', ".kpi .label"):
+        colors = app.page.locator(selector).evaluate_all(
+            "els => els.filter(e => e.getBoundingClientRect().width > 0).map(e => getComputedStyle(e).color)")
+        assert colors, selector
+        for color in set(colors):
             assert _contrast(color, bg) >= 4.5, (selector, color, bg)
+    controls = app.page.locator('[data-testid="stSelectbox"] [role="group"], [data-testid="stMultiSelect"] [role="group"]')
+    for color in set(controls.evaluate_all("els => els.map(e => getComputedStyle(e).backgroundColor)")):
+        assert _contrast(color, bg) < 1.3, ("dark select control in the light theme", color)
     app.pref("dark_mode").click()
     app.wait()

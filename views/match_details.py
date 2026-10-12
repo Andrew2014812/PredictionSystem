@@ -80,7 +80,8 @@ def _outcome_html(pick: pd.Series, label: str, home: str, away: str) -> str:
     status = pick["status"]
     profit = "" if missing(pick.get("profit")) else (
         f'<div><div class="l">{t("Profit")}</div><div class="v {tone(pick["profit"])}">{signed(pick["profit"])}</div></div>')
-    odds = "" if missing(pick.get("odds")) else (
+    odds = (f'<div><div class="l">{t("Odds")}</div><div class="v na">'
+            f'{t("No real odds — not counted in ROI")}</div></div>') if missing(pick.get("odds")) else (
         f'<div><div class="l">{t("Odds")}</div><div class="v">{num(pick["odds"])}</div></div>')
     return (f'<div class="outcome {status}"><div class="tag">{esc(label)}</div>'
             f'<div class="pick">{esc(selection_label(pick["market"], pick["selection"], home, away))}</div>'
@@ -90,16 +91,12 @@ def _outcome_html(pick: pd.Series, label: str, home: str, away: str) -> str:
             f'{odds}{profit}</div></div>')
 
 
-def _result_summary(match_id: str, home: str, away: str) -> None:
-    """Finished match: did Main and Risk win? (shown right under the score)."""
+def _outcome_cards(match_id: str, home: str, away: str) -> dict[str, str]:
+    """Finished match: role -> card saying whether the Main / Risk prediction won, with odds and profit."""
     picks = _match_picks(match_id)
     done = picks.loc[picks["status"].isin(["WON", "LOST", "VOID"])] if not picks.empty else picks
-    items = [(_outcome_html(r, t("Main prediction") if role == "main" else t("Risk prediction"), home, away))
-             for role in ("main", "risk") for _, r in done.loc[done["role"] == role].iterrows()]
-    if items:
-        cols = st.columns(len(items), gap="medium")
-        for col, html in zip(cols, items):
-            col.html(html)
+    return {role: _outcome_html(r, t("Main prediction") if role == "main" else t("Risk prediction"), home, away)
+            for role in ("main", "risk") for _, r in done.loc[done["role"] == role].head(1).iterrows()}
 
 
 def _all_results(match_id: str, home: str, away: str) -> None:
@@ -153,19 +150,22 @@ def _explain(feat_row: pd.Series, bundles, market: str, selection: str, home: st
     st.html(f'<div class="why {"risk" if role == "risk" else ""}">{"".join(parts)}</div>')
 
 
-def _predictions(feat_row, snap: pd.Series, markets: pd.DataFrame, home: str, away: str):
-    """Main prediction + its explanation, then the optional risk prediction."""
+def _predictions(feat_row, snap: pd.Series, markets: pd.DataFrame, home: str, away: str,
+                 outcomes: dict[str, str] | None = None):
+    """Main prediction + its explanation, then the optional risk prediction. For a finished
+    match ``outcomes`` holds the won / lost cards that replace the plain prediction cards."""
+    outcomes = outcomes or {}
     main = _pick(markets, snap.get("main_market"), snap.get("main_selection"))
     risk = _pick(markets, snap.get("risk_market"), snap.get("risk_selection"))
     bundles = data.bundles(snap["model_version"])
     if main is None:
         st.info(t("There is not enough data for a reliable main prediction for this match."))
     else:
-        st.html(recommendation_card("main", main, home, away))
+        st.html(outcomes.get("main") or recommendation_card("main", main, home, away))
         section(t("Why this prediction?"))
         _explain(feat_row, bundles, main["market"], main["selection"], home, away)
     if risk is not None:
-        st.html(recommendation_card("risk", risk, home, away))
+        st.html(outcomes.get("risk") or recommendation_card("risk", risk, home, away))
         with st.expander(t("Why this risk prediction?"), icon=":material/help:"):
             _explain(feat_row, bundles, risk["market"], risk["selection"], home, away, role="risk")
     return main, risk
@@ -399,13 +399,12 @@ def render() -> None:
     feat_row = feat_rows.iloc[0] if not feat_rows.empty else row
 
     finished = bool(row.get("played"))
-    if finished:
-        _result_summary(match_id, home, away)
     markets = data.match_markets(match_id) if snap is not None else pd.DataFrame()
     if snap is None:
         st.info(t("There is no prediction for this match."))
     else:
-        _predictions(feat_row if not feat_rows.empty else None, snap, markets, home, away)
+        outcomes = _outcome_cards(match_id, home, away) if finished else None
+        _predictions(feat_row if not feat_rows.empty else None, snap, markets, home, away, outcomes)
         _markets_section(snap, markets, home, away)
         if finished:
             _all_results(match_id, home, away)
