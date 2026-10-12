@@ -170,18 +170,18 @@ HISTORY_MARKETS = ("1X2", "TOTAL_2.5", "BTTS", "DOUBLE_CHANCE", "CORNERS_9.5", "
 # ---------------------------------------------------------------------------
 # Draw-aware 1X2 decision rule argmax(P(H), m*P(D), P(A)) and the Dixon-Coles
 # correction of the score matrix; both decided on the validation season
-# (scripts/decision_study.py): the draw rule lowered accuracy (49.6 % -> 47.1 %)
-# without improving the return at real odds, Dixon-Coles' rho was unstable
-# between the two halves of the season with no gain, so both are off.
+# (scripts/decision_study.py): the draw rule lowered accuracy (49.7 % -> 47.6 %)
+# and changed the return at real odds only within noise; Dixon-Coles' rho was
+# unstable between the two halves of the season with no gain, so both are off.
 DRAW_RULE = False
 DIXON_COLES = False
 
 MAIN_MIN_PROBABILITY = 0.40
 MAIN_MAX_PROBABILITY = 0.85
 MAIN_PREFERRED_ODDS = (1.40, 2.50)       # soft preference, not a hard range
-MAIN_ODDS_SOFTNESS = 0.15                # width of the decay outside it (log-odds)
+MAIN_ODDS_SOFTNESS = 0.30                # width of the decay outside it (log-odds)
 MAIN_EV_WEIGHT = 0.0                     # EV enters through MAIN_MIN_EV; extra weight did not help
-MAIN_MIN_EV = 0.0
+MAIN_MIN_EV = 0.03
 RISK_MIN_ODDS = 3.00
 RISK_MAX_ODDS = 8.00
 RISK_MIN_PROBABILITY = 0.22

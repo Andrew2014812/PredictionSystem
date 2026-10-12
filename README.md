@@ -144,7 +144,7 @@ and the production model (all completed seasons).
 
 The test season has been looked at during development (v2–v4), so it is no longer a strictly untouched test.
 `scripts/decision_study.py` therefore also runs a **walk-forward** check (train on all earlier seasons, evaluate
-the next): result-model log loss 1.007 (2023/24), 1.013 (2024/25), 1.015 (2025/26) against 1.07–1.08 for the
+the next): result-model log loss 1.006 (2023/24), 1.012 (2024/25), 1.015 (2025/26) against 1.07–1.08 for the
 frequency baseline.
 
 ### Decision rules (validation season only)
@@ -152,12 +152,12 @@ frequency baseline.
 `scripts/decision_study.py` fits the models on the train seasons, predicts 2024/25 (7,129 matches) and compares
 the rules; results are on the Model Analysis page (tab *Decision rules*):
 
-* **Draw rule** `argmax(P(H), 1.4·P(D), P(A))` — draw recall 0.6 % → 27 %, but accuracy 49.6 % → 47.1 % and the
-  1X2 return at real odds practically unchanged (−6.0 % vs −5.9 %). **Removed**: the named outcome is the most
+* **Draw rule** `argmax(P(H), 1.4·P(D), P(A))` — draw recall 0.2 % → 26 %, but accuracy 49.7 % → 47.6 %; the
+  1X2 return at real odds moves only within noise (−5.9 % vs −5.2 %, ≈1.2 pp standard error). **Removed**: the named outcome is the most
   probable one; draw probabilities are unchanged and used by every market.
 * **Calibration** — expected calibration error ≈ 1 % for 1X2, over 2.5, BTTS and double chance; temperature
-  scaling improves log loss by 0.0002. Not adopted (not needed).
-* **Dixon-Coles** low-score correction — rho unstable between the two halves of the season (−0.06 / +0.01), no
+  scaling changes log loss by less than 0.0001. Not adopted (not needed).
+* **Dixon-Coles** low-score correction — rho unstable between the two halves of the season (−0.06 / +0.007), no
   gain in exact-score log loss or totals / BTTS Brier. Implemented (`DIXON_COLES`), **off**.
 
 ### Corners
@@ -183,11 +183,12 @@ is impossible). Settlement is tested for both types.
 * **EV** = model probability × real odds − 1 (theoretical edge, not profit).
 * **Main prediction** — one per match. Candidates: probability 40–85 %, no exact scores. Score =
   market reliability × probability × odds preference, where the preference is 1 for odds **1.40–2.50** and
-  decays smoothly outside (a soft preference, not a hard band). A candidate with real odds and EV ≥ 0 is
+  decays smoothly outside (a soft preference, not a hard band). A candidate with real odds and EV ≥ +3 % is
   preferred (value pick); without one the best candidate on probability is used (fair odds 1 / p for the
   preference). Chosen on validation among 144 variants (softness, EV weight, minimum EV, minimum probability):
-  ROI −4.2 % with 78 % of Main predictions priced, vs −5.8 % / 56 % for the v3 rule (hard band 1.30–3.00,
-  EV ≥ 3 %). Every variant loses against the bookmaker margin; the difference is within about one standard error.
+  ROI −2.7 % with 61 % of Main predictions priced, vs −4.1 % / 55 % for the v3 rule (hard band 1.30–3.00,
+  EV ≥ 3 %); on the test season −4.9 % vs −6.0 %. Every variant loses against the bookmaker margin and the
+  difference is about one standard error — the rule is better calibrated to the task, not a winning strategy.
 * **Risk prediction** — optional, real odds only: odds 3.0–8.0, probability ≥ 22 %, EV ≥ +10 %, reliable
   market; hidden when nothing qualifies.
 
