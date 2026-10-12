@@ -34,6 +34,12 @@ STAT_LABELS = {
     "corner_share": "share of corners in its matches",
     "shot_share": "share of shots in its matches",
     "games": "matches played",
+    "opp_elo": "average Elo of opponents",
+    "elo_surprise": "results above Elo expectation",
+    "adj_gf": "goals scored vs opponents' usual",
+    "adj_ga": "goals conceded vs opponents' usual",
+    "adj_cf": "corners won vs opponents' usual",
+    "adj_ca": "corners conceded vs opponents' usual",
 }
 
 FREQ_LABELS = {
@@ -55,6 +61,10 @@ TREND_LABELS = {
 
 OVERRIDES = {
     "league": "League",
+    "h_elo": "Home team · Elo strength rating",
+    "a_elo": "Away team · Elo strength rating",
+    "elo_diff": "Elo strength gap (incl. home advantage)",
+    "elo_exp_home": "Elo expected score of the home team",
     "h_points": "Home team · league points",
     "a_points": "Away team · league points",
     "h_position": "Home team · league position",
@@ -123,6 +133,9 @@ STAT_LABELS_UK = {
     "n": "доступні матчі", "corner_diff": "різниця кутових за матч",
     "corner_share": "частка кутових у матчах", "shot_share": "частка ударів у матчах",
     "games": "зіграні матчі",
+    "opp_elo": "середній Elo суперників", "elo_surprise": "результати понад очікування Elo",
+    "adj_gf": "забиті проти звичного для суперників", "adj_ga": "пропущені проти звичного для суперників",
+    "adj_cf": "кутові проти звичного для суперників", "adj_ca": "кутові суперника проти звичного",
 }
 FREQ_LABELS_UK = {
     "btts": "частка матчів «обидві заб'ють»", "over15": "частка тоталу більше 1.5",
@@ -136,6 +149,8 @@ TREND_LABELS_UK = {
 }
 OVERRIDES_UK = {
     "league": "Ліга",
+    "h_elo": "Господарі · рейтинг сили Elo", "a_elo": "Гості · рейтинг сили Elo",
+    "elo_diff": "Різниця рейтингів Elo (з урахуванням поля)", "elo_exp_home": "Очікуваний результат господарів за Elo",
     "h_points": "Господарі · очки в таблиці", "a_points": "Гості · очки в таблиці",
     "h_position": "Господарі · місце в таблиці", "a_position": "Гості · місце в таблиці",
     "h_position_norm": "Господарі · відносне місце в таблиці", "a_position_norm": "Гості · відносне місце в таблиці",
@@ -222,6 +237,10 @@ def feature_labels(names, lang: str = "en") -> dict[str, str]:
 # Short topics for the plain-language explanation ("Why this prediction?")
 # ---------------------------------------------------------------------------
 _TEAM_TOPICS = [
+    (r"_elo$", "strength rating"),
+    (r"_form\d+_(opp_elo|elo_surprise)$", "results against the strength of its opponents"),
+    (r"_form\d+_adj_(gf|ga)$", "goals against the level of its opponents"),
+    (r"_form\d+_adj_c[fa]$", "corners against the level of its opponents"),
     (r"_(form\d+|season)_(gf|sot_for|shots_for)$|_freq_(over|btts)|_trend_(scoring|shots)$", "attacking output"),
     (r"_(form\d+|season)_(ga|sot_against|shots_against)$|_freq_clean_sheet|_trend_conceding$",
      "defensive record"),
@@ -237,6 +256,7 @@ _TEAM_TOPICS = [
 ]
 
 _GLOBAL_TOPICS = [
+    (r"^elo_", "gap in Elo strength"),
     (r"^h_(attack_vs|form_attack_vs|sot_vs)", "home attack against the away defence"),
     (r"^a_(attack_vs|form_attack_vs|sot_vs)", "away attack against the home defence"),
     (r"corners", "corner volume of both teams"),
@@ -258,6 +278,10 @@ _TEAM_TOPICS_UK = {
     "{venue} attack": "атака {team} {venue}", "{venue} defence": "оборона {team} {venue}",
     "corner volume": "кількість кутових {team}", "rest before the match": "відпочинок {team} перед матчем",
     "discipline": "дисципліна {team}",
+    "strength rating": "рейтинг сили {team}",
+    "results against the strength of its opponents": "результати {team} з урахуванням сили суперників",
+    "goals against the level of its opponents": "голи {team} з поправкою на суперників",
+    "corners against the level of its opponents": "кутові {team} з поправкою на суперників",
 }
 _GLOBAL_TOPICS_UK = {
     "home attack against the away defence": "атака господарів проти оборони гостей",
@@ -266,7 +290,7 @@ _GLOBAL_TOPICS_UK = {
     "gap in league standing": "різниця в турнірному становищі", "gap in recent form": "різниця в поточній формі",
     "difference in rest days": "різниця у відпочинку", "head-to-head record": "історія особистих зустрічей",
     "scoring level of the league": "результативність ліги", "typical results in this league": "типові результати ліги",
-    "league profile": "профіль ліги", "bookmaker expectations": "очікування букмекерів",
+    "league profile": "профіль ліги", "gap in Elo strength": "різниця в силі за Elo", "bookmaker expectations": "очікування букмекерів",
 }
 
 
