@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from src import config
+from src.features.catalog import catalogue
 from src.features.names import feature_label
 from src.features.sets import MODEL_GROUPS
 from src.ui import data
@@ -38,14 +39,28 @@ GROUP_NAMES = {
     "diff_corners": "Corner statistics", "league_result": "League context", "league_goals": "League context",
     "league_corners": "League context", "venue_form_goals": "Home / away", "venue_form_corners": "Corner statistics",
     "corner_pressure": "Attacking pressure", "market": "Bookmaker probabilities",
+    "elo": "Elo strength rating", "opp_adjusted": "Opponent-adjusted form",
+    "opp_adjusted_corners": "Opponent-adjusted corners",
+}
+LOWER_IS_BETTER = {"Log loss", "Brier score", "RMSE", "MAE", "Poisson deviance"}
+SOURCES = {
+    "live": ("Recorded before kick-off",
+             "Saved by the pipeline before the match started and never changed afterwards. Only these show how "
+             "FootPredict performs in real use."),
+    "backfill": ("Current season, predicted afterwards",
+                 "Played matches of the current season predicted later by a model trained only on earlier seasons, "
+                 "from pre-match data. An honest evaluation, but not a recorded prediction."),
+    "backtest": ("Test season",
+                 "The test season predicted by the evaluation model, which never saw it. Used for the metrics below."),
 }
 TASK_TITLES = {"result": "Result model (1X2)", "home_goals": "Home goals model", "away_goals": "Away goals model",
                "corners": "Corners model"}
 
 
 def _k(metric: str, value: str, sub: str = "") -> tuple:
-    """KPI tuple with an (i) tooltip explaining the metric."""
-    return (t(metric), value, sub, "", t(METRIC_HELP[metric]) if metric in METRIC_HELP else "")
+    """KPI tuple with an (i) tooltip explaining the metric and an arrow saying which way is better."""
+    arrow = " ↓" if metric in LOWER_IS_BETTER else (" ↑" if metric in METRIC_HELP else "")
+    return (t(metric) + arrow, value, sub, "", t(METRIC_HELP[metric]) if metric in METRIC_HELP else "")
 
 
 def _versions() -> tuple[str | None, str | None]:
@@ -96,11 +111,17 @@ def _draw_section(task: dict) -> None:
     fmt = {k: (lambda v: pct(v, 1)) for k in (t("Actual share"), t("Predicted share"), t("Recall"), t("Precision"),
                                               t("Average probability"))}
     st.html(html_table(pd.DataFrame(rows), formats=fmt, align_right=tuple(fmt)))
-    multiplier = task.get("extra", {}).get("draw_multiplier")
-    st.html(f'<div class="note">{t("A draw is rarely the single most likely outcome, so a plain arg-max almost never "
-            "predicts one. FootPredict keeps the probabilities and names an outcome with argmax(P(H), m·P(D), P(A)); "
-            "the multiplier m is chosen on the validation season only.")}'
-            + (f" m = {multiplier:.2f}." if multiplier else "") + "</div>")
+    multiplier = task.get("extra", {}).get("draw_multiplier") or 1.0
+    if multiplier > 1.0:
+        st.html(f'<div class="note">{t("A draw is rarely the single most likely outcome, so a plain arg-max almost "
+                "never predicts one. FootPredict keeps the probabilities and names an outcome with "
+                "argmax(P(H), m·P(D), P(A)); the multiplier m is chosen on the validation season only.")}'
+                f" m = {multiplier:.2f}.</div>")
+    else:
+        st.html(f'<div class="note">{t("FootPredict names the most probable outcome (arg-max). A draw-aware rule "
+                "that boosts draws was tested on the validation season and not adopted: it predicts more draws but "
+                "lowers accuracy, and the return at real odds stays practically the same. Draw probabilities "
+                "themselves are unchanged and are used by every market.")}</div>')
     compare = []
     for label, metrics in ((t("Validation · arg-max"), val.get("argmax")),
                            (t("Validation · draw-aware rule"), val.get("draw_rule")),
@@ -188,20 +209,24 @@ def _features(name: str, task: dict) -> None:
     st.html("<div class='card'>" + " · ".join(esc(g) for g in groups)
             + f" <span class='muted small'>({t('{n} features', n=task['n_features'])})</span></div>")
     lang = current_language()
-    with st.expander(t("Show technical features")):
-        st.write(", ".join(task["features"]))
+    with st.expander(t("Feature dictionary"), icon=":material/menu_book:"):
+        _dictionary(name, task, lang)
     n = st.segmented_control(t("Features"), [10, 20, 30], default=20, key=f"imp_{name}",
                              format_func=lambda x: t("Top {n}", n=x), label_visibility="collapsed") or 20
     c = colors()
     c1, c2 = st.columns(2, gap="medium")
-    shap_rows = pd.DataFrame(task.get("shap_global", [])).head(n)
+    shap_all = pd.DataFrame(task.get("shap_global", []))
+    if not shap_all.empty:
+        shap_all["share"] = shap_all["mean_abs_shap"] / shap_all["mean_abs_shap"].sum()
+    shap_rows = shap_all.head(n)
     gain_rows = pd.DataFrame(task.get("gain_importance", [])).head(n)
     with c1:
         if not shap_rows.empty:
             d = shap_rows.iloc[::-1]
-            fig = go.Figure(go.Bar(x=d["mean_abs_shap"], y=[feature_label(f, lang) for f in d["feature"]],
+            fig = go.Figure(go.Bar(x=d["share"], y=[feature_label(f, lang) for f in d["feature"]],
                                    orientation="h", marker_color=c["accent"]))
-            fig.update_layout(title=t("Global SHAP (mean |SHAP|, test season)"), yaxis=dict(automargin=True))
+            fig.update_layout(title=t("SHAP: share of total influence (test season)"), xaxis_tickformat=".0%",
+                              yaxis=dict(automargin=True))
             plotly(fig, height=max(320, 24 * len(d) + 60))
     with c2:
         if not gain_rows.empty:
@@ -212,7 +237,28 @@ def _features(name: str, task: dict) -> None:
                               yaxis=dict(automargin=True))
             plotly(fig, height=max(320, 24 * len(d) + 60))
     st.html(f'<div class="note">{t("Global importance shows what matters on average across many matches; the "
-            "explanation on a match page describes one particular prediction.")}</div>')
+            "explanation on a match page describes one particular prediction. SHAP share = the feature\'s mean "
+            "absolute SHAP value divided by the sum over all features, so the bars of all features add up to 100%.")}'
+            '</div>')
+
+
+def _dictionary(name: str, task: dict, lang: str) -> None:
+    query = st.text_input(t("Search features"), key=f"dict_{name}", placeholder=t("e.g. corners, Elo, form"))
+    entries = catalogue({name: task["features"]}, lang)
+    q = (query or "").strip().lower()
+    if q:
+        entries = [e for e in entries if q in e["name"].lower() or q in e["description"].lower()
+                   or any(q in c.lower() for c in e["columns"])]
+    if not entries:
+        st.caption(t("No features match the search."))
+        return
+    st.html("<div class='card'>" + "".join(
+        f"<div class='mx'><div class='ic'>•</div><div><b>{esc(e['name'])}</b> "
+        f"<span class='muted small'>({t('{n} features', n=len(e['columns']))})</span>"
+        f"<span>{esc(e['description'])}</span></div></div>" for e in entries) + "</div>")
+    with st.popover(t("Technical column names")):
+        for e in entries:
+            st.caption(f"{e['name']}: " + ", ".join(e["columns"]))
 
 
 def _advanced(name: str, task: dict, version: str) -> None:
@@ -231,6 +277,71 @@ def _advanced(name: str, task: dict, version: str) -> None:
             plotly(fig, height=260)
         st.json({"model_id": version, "objective": task["objective"], "params": task["params"],
                  "trees": task["n_estimators"], "extra": task.get("extra", {})}, expanded=False)
+
+
+def _study() -> None:
+    study = data.decision_study()
+    if not study:
+        st.info(t("Run scripts/decision_study.py to evaluate the decision rules."))
+        return
+    st.html(f'<div class="note">{t("Every rule below was chosen on the validation season {s} ({n} matches) with "
+            "models trained only on earlier seasons; nothing here used the test season.", s=study["validation_season"],
+            n=f"{study['matches']:,}")}</div>')
+    section(t("Draw rule"), t("validation, cross-fitted on two halves"))
+    dr = study["draw_rule"]
+    rows = [{t("Rule"): t(label), "Accuracy": dr[key]["accuracy"], "Macro F1": dr[key]["macro_f1"],
+             t("Draw recall"): dr[key]["draw_recall"], t("Predicted draw share"): dr[key]["predicted_draw_share"],
+             t("ROI at real odds"): dr[key]["roi_1x2_at_real_odds"]}
+            for key, label in (("argmax", "Most probable outcome"), ("draw_rule", "Draw-aware rule"))]
+    f = {"Accuracy": lambda v: pct(v, 1), "Macro F1": lambda v: num(v, 3), t("Draw recall"): lambda v: pct(v, 1),
+         t("Predicted draw share"): lambda v: pct(v, 1), t("ROI at real odds"): lambda v: pct(v, 1)}
+    st.html(html_table(pd.DataFrame(rows), formats=f, align_right=tuple(f)))
+
+    section(t("Score model: Dixon-Coles vs independent Poisson"), t("lower is better"))
+    dc = study["dixon_coles"]
+    rows = [{t("Model"): t(label), t("Exact score log loss"): dc[key]["score_log_loss"],
+             t("Over 2.5 Brier"): dc[key]["over25_brier"], t("BTTS Brier"): dc[key]["btts_brier"]}
+            for key, label in (("poisson", "Independent Poisson"), ("dixon_coles", "Dixon-Coles"))]
+    f = {k: (lambda v: num(v, 4)) for k in (t("Exact score log loss"), t("Over 2.5 Brier"), t("BTTS Brier"))}
+    st.html(html_table(pd.DataFrame(rows), formats=f, align_right=tuple(f)))
+    st.caption(t("rho = {r} (halves: {h}). Adopted: {a}.", r=f"{dc['rho_full_validation']:.3f}",
+                 h=", ".join(f"{x:.3f}" for x in dc["rho"]), a=t("yes") if config.DIXON_COLES else t("no")))
+
+    section(t("Calibration by market"), t("expected calibration error, lower is better"))
+    cal = study["calibration"]
+    rows = [{t("Market"): k, "ECE": v, "Brier": cal["brier"][k]} for k, v in cal["ece"].items()]
+    st.html(html_table(pd.DataFrame(rows), formats={"ECE": lambda v: pct(v, 1), "Brier": lambda v: num(v, 4)},
+                       align_right=("ECE", "Brier")))
+    ts = cal["temperature_scaling"]
+    st.caption(t("Temperature scaling of 1X2 (not adopted, negligible gain): log loss {a} → {b} (T = {T}).", a=num(ts["log_loss_raw"], 4),
+                 b=num(ts["log_loss_scaled"], 4), T=", ".join(f"{x:.2f}" for x in ts["T"])))
+
+    section(t("Main prediction rule"), t("validation, real Bet365 prices"))
+    rows = []
+    for label, r in ((t("Previous rule (hard odds band 1.30–3.00)"), study["main_legacy"]),
+                     (t("Current rule (soft preference 1.40–2.50)"), study["main_chosen"])):
+        rows.append({t("Rule"): label, t("Hit rate"): r["hit_rate"], t("With real odds"): r["priced_share"],
+                     t("Average odds"): r["avg_odds"], "ROI": r["roi"]})
+    f = {t("Hit rate"): lambda v: pct(v, 1), t("With real odds"): lambda v: pct(v, 1),
+         t("Average odds"): lambda v: num(v, 2), "ROI": lambda v: pct(v, 1)}
+    st.html(html_table(pd.DataFrame(rows), formats=f, align_right=tuple(f)))
+    ch = study["main_chosen"]
+    st.caption(t("Chosen: softness {s}, EV weight {w}, minimum EV {e}, minimum probability {p}. ROI = total profit "
+                 "/ number of bets with real odds (stake 1).", s=ch["softness"], w=ch["ev_weight"], e=ch["min_ev"],
+                 p=ch["min_probability"]))
+
+    section(t("Walk-forward check of the result model"),
+            t("train on all earlier seasons, evaluate the next one; lower log loss is better"))
+    wf = pd.DataFrame(study.get("walk_forward", []))
+    if not wf.empty:
+        wf = wf.rename(columns={"season": t("Season"), "matches": t("Matches"), "log_loss": "Log loss",
+                                "baseline_log_loss": t("Baseline log loss"), "accuracy": "Accuracy", "brier": "Brier"})
+        f = {"Log loss": lambda v: num(v, 4), t("Baseline log loss"): lambda v: num(v, 4),
+             "Accuracy": lambda v: pct(v, 1), "Brier": lambda v: num(v, 4)}
+        st.html(html_table(wf, formats=f, align_right=tuple(f)))
+    st.html(f'<div class="note">{t("The test season 2025/26 was looked at while FootPredict was developed, so it is "
+            "no longer a strictly untouched test; the walk-forward table is the more honest out-of-sample view.")}'
+            "</div>")
 
 
 def _derived(meta: dict) -> None:
@@ -264,11 +375,15 @@ def render() -> None:
     section(t("Models and data periods"))
     _periods(meta)
     with st.expander(t("What do these metrics mean?"), icon=":material/help:"):
-        st.html("<div class='card'>" + "".join(f"<div class='mx'><div class='ic'>•</div><div><b>{esc(t(k))}</b>"
-                                               f"<span>{esc(t(v))}</span></div></div>"
-                                               for k, v in METRIC_HELP.items()) + "</div>")
+        st.html("<div class='card'>" + "".join(
+            f"<div class='mx'><div class='ic'>{'↓' if k in LOWER_IS_BETTER else '↑'}</div><div><b>{esc(t(k))}</b>"
+            f"<span>{esc(t(v))}</span></div></div>" for k, v in METRIC_HELP.items()) + "</div>")
+    with st.expander(t("Where do the stored predictions come from?"), icon=":material/history:"):
+        st.html("<div class='card'>" + "".join(f"<div class='mx'><div class='ic'>•</div><div><b>{esc(t(a))}</b>"
+                                               f"<span>{esc(t(b))}</span></div></div>"
+                                               for a, b in SOURCES.values()) + "</div>")
     tasks = meta["tasks"]
-    tabs = st.tabs([t(TASK_TITLES.get(k, k)) for k in tasks] + [t("Derived markets")])
+    tabs = st.tabs([t(TASK_TITLES.get(k, k)) for k in tasks] + [t("Derived markets"), t("Decision rules")])
     for tab, (name, task) in zip(tabs, tasks.items()):
         with tab:
             section(t("Test-season metrics"))
@@ -279,9 +394,11 @@ def render() -> None:
             section(t("Features and importance"))
             _features(name, task)
             _advanced(name, task, active)
-    with tabs[-1]:
+    with tabs[-2]:
         section(t("Markets derived from the goal and corner models"), t("test season"))
         _derived(meta)
+    with tabs[-1]:
+        _study()
     st.caption(t("Model settings: {a} Hyperopt trials for the result model, {b} for each regression model.",
                  a=config.HYPEROPT_EVALS["result"], b=config.HYPEROPT_EVALS["home_goals"]))
 
