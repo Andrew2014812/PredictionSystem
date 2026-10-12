@@ -24,8 +24,8 @@ import pandas as pd
 
 from .. import config
 from ..explain.shap_explainer import gain_importance, global_importance
-from ..markets.distributions import (corners_distribution, prob_over, reconcile_with_1x2,
-                                     score_matrix)
+from ..markets.distributions import (corners_distribution, fit_dixon_coles_rho, prob_over,
+                                     reconcile_with_1x2, score_matrix)
 from ..prediction.engine import predict_matches
 from ..providers import real_odds_lookup
 from ..prediction.store import save_batch
@@ -61,11 +61,12 @@ def _derived_market_metrics(bundles: dict[str, ModelBundle], test: pd.DataFrame)
     p1x2 = bundles["result"].predict(test)
     lh, la = bundles["home_goals"].predict(test), bundles["away_goals"].predict(test)
     hg, ag = test["home_goals"].to_numpy(), test["away_goals"].to_numpy()
+    rho = bundles["home_goals"].extra.get("dc_rho", 0.0)
     out: dict = {}
     raw, rec = {k: [] for k in ("o15", "o25", "o35", "btts")}, {k: [] for k in ("o15", "o25", "o35", "btts")}
     top_hit = []
     for i in range(len(test)):
-        base = score_matrix(lh[i], la[i])
+        base = score_matrix(lh[i], la[i], rho=rho)
         adj = reconcile_with_1x2(base, p1x2[i])
         ii, jj = np.indices(base.shape)
         for store, m in ((raw, base), (rec, adj)):
@@ -110,6 +111,7 @@ def train_all(features: pd.DataFrame, max_evals: dict | None = None) -> dict:
 
     leagues_with_corners = corner_leagues(full)
     backtest, production, task_meta = {}, {}, {}
+    goal_rates_va: dict[str, np.ndarray] = {}
     for name, task in TASKS.items():
         trainer = TaskTrainer(task, features.columns)
         tr, va, te, fu = train, valid, test, full
@@ -125,12 +127,15 @@ def train_all(features: pd.DataFrame, max_evals: dict | None = None) -> dict:
             y_va, p_va = task.target_values(rows).to_numpy(), tuned.predict(rows)
             train_draw_share = float((task.target_values(tr.loc[task.trainable(tr)]) == 1).mean())
             choice = choose_draw_multiplier(p_va, y_va, train_draw_share)
-            extra = {"draw_multiplier": choice["multiplier"]}
+            # The rule is only applied when enabled; the comparison is always recorded.
+            extra = {"draw_multiplier": choice["multiplier"] if config.DRAW_RULE else 1.0}
             validation = {
                 "argmax": classifier_metrics(y_va, p_va),
                 "draw_rule": classifier_metrics(y_va, p_va, decide(p_va, choice["multiplier"])),
                 "draw_rule_choice": choice,
             }
+        if name in ("home_goals", "away_goals"):
+            goal_rates_va[name] = trainer.fit(tr, params, n_estimators).predict(va)
         if name == "corners":
             tuned = trainer.fit(tr, params, n_estimators)
             rows = va.loc[task.trainable(va)]
@@ -177,6 +182,16 @@ def train_all(features: pd.DataFrame, max_evals: dict | None = None) -> dict:
         }
         log.info("%s test metrics: %s", name,
                  {k: round(v, 4) for k, v in metrics.items() if isinstance(v, float)})
+
+    # Dixon-Coles low-score correction: rho fitted on VALIDATION with the train-only goal models.
+    rho = 0.0
+    if config.DIXON_COLES:
+        rho = fit_dixon_coles_rho(goal_rates_va["home_goals"], goal_rates_va["away_goals"],
+                                  valid["home_goals"].to_numpy(), valid["away_goals"].to_numpy())
+    for bundle in (backtest["home_goals"], production["home_goals"]):
+        bundle.extra["dc_rho"] = rho
+    task_meta["home_goals"]["extra"]["dc_rho"] = rho
+    log.info("Dixon-Coles rho: %.4f", rho)
 
     created = datetime.now().isoformat(timespec="seconds")
     periods = {k: [config.season_label(s) for s in v] for k, v in split.items() if k != "current"}
