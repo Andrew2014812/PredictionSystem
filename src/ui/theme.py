@@ -43,7 +43,8 @@ def plotly_layout() -> dict:
         template="plotly_dark" if current_theme() == "dark" else "plotly_white",
         paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
         font=dict(family="Inter, sans-serif", size=12, color=c["muted"]),
-        margin=dict(l=10, r=10, t=36, b=10),
+        title_font_color=c["text-strong"], legend_font_color=c["text"],
+        margin=dict(l=10, r=10, t=48, b=10),
         hoverlabel=dict(font_family="Inter, sans-serif"),
         xaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"]),
         yaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"]),
@@ -175,6 +176,29 @@ table.mkt a { color: var(--accent) !important; font-weight: 600; }
 .minibar { height: 6px; border-radius: 4px; background: var(--track); overflow: hidden; min-width: 60px; }
 .minibar span { display: block; height: 100%; background: var(--accent); }
 
+/* grouped team statistics --------------------------------------------------- */
+.st-grid { display: grid; grid-template-columns: repeat(4, minmax(160px, 1fr)); gap: 1rem 1.4rem; }
+.st-group .st-row { display: flex; justify-content: space-between; gap: .6rem; padding: 3px 0;
+  border-bottom: 1px solid var(--border-soft); }
+.st-group .st-row:last-child { border-bottom: none; }
+.st-group b { color: var(--text-strong); }
+@media (max-width: 1100px) { .st-grid { grid-template-columns: repeat(2, minmax(160px, 1fr)); } }
+
+/* finished-match outcome cards ------------------------------------------------- */
+.outcome { border-radius: 16px; padding: 1rem 1.2rem; border: 1px solid var(--border); background: var(--surface); }
+.outcome.WON { border-color: var(--pos); background: linear-gradient(135deg, var(--accent-soft), var(--surface) 70%); }
+.outcome.LOST { border-color: var(--neg); background: linear-gradient(135deg, rgba(239,68,68,.12), var(--surface) 70%); }
+.outcome .tag { font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.outcome .pick { font-size: 1.2rem; font-weight: 800; margin: .25rem 0 .1rem; color: var(--text-strong); }
+.outcome .mkt { color: var(--muted); font-size: .82rem; }
+.outcome .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; margin-top: .7rem; }
+.outcome .grid .l { color: var(--faint); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+.outcome .grid .v { font-weight: 800; font-size: 1.02rem; color: var(--text-strong); }
+.why-h { font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  margin: .2rem 0 .4rem; }
+ul.facts { margin: 0 0 .9rem 1.1rem; padding: 0; color: var(--text); font-size: .9rem; line-height: 1.55; }
+.odd { color: var(--muted); font-size: .78rem; margin-left: .25rem; }
+
 /* team comparison --------------------------------------------------------- */
 .cmp-row { display: grid; grid-template-columns: 70px 1fr 170px 1fr 70px; align-items: center; gap: .6rem; padding: 5px 0;
   border-bottom: 1px solid var(--border-soft); font-size: .86rem; color: var(--text); }
@@ -224,7 +248,14 @@ LIGHT_WIDGETS = """
 [data-testid="stHeader"], header { background: var(--bg) !important; }
 [data-testid="stHeader"] a, [data-testid="stHeader"] span, [data-testid="stHeader"] p { color: var(--text) !important; }
 [data-testid="stMarkdownContainer"], [data-testid="stCaptionContainer"], [data-testid="stText"] { color: var(--text); }
-[data-testid="stCaptionContainer"] { color: var(--faint) !important; }
+[data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p { color: var(--muted) !important; }
+input::placeholder, textarea::placeholder { color: var(--faint) !important; opacity: 1 !important; }
+[role="listbox"], [role="listbox"] li, [role="option"] { background: var(--surface) !important; color: var(--text) !important; }
+[role="option"]:hover, [role="option"][aria-selected="true"] { background: var(--surface-2) !important; }
+[data-baseweb="select"] > div:focus-within, [data-baseweb="input"]:focus-within { border-color: var(--accent) !important; }
+button:disabled, [data-baseweb="select"][aria-disabled="true"] { opacity: .55 !important; }
+[data-testid="stWidgetLabel"] p, label p { color: var(--text) !important; }
+[data-testid="stTooltipHoverTarget"] svg, [data-testid="stTooltipIcon"] svg { color: var(--muted) !important; }
 button[kind], [data-testid^="stBaseButton"] { background: var(--surface) !important; color: var(--text) !important;
   border-color: var(--border) !important; }
 button[kind="primary"], [data-testid="stBaseButton-primary"], [data-testid="stBaseButton-segmented_controlActive"] {
