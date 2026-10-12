@@ -1,13 +1,15 @@
 """Mapping provider team names to Football-Data team names.
 
 Football-Data names are the canonical names of the system. A provider name
-is resolved in two controlled steps, never by fuzzy matching:
+is resolved in three controlled steps inside ONE league, never by fuzzy
+(edit-distance) matching:
 
 1. explicit alias table ``TEAM_ALIASES`` (normalised provider name ->
    Football-Data name);
-2. exact match of the normalised names inside the same league
-   (e.g. "Nottingham Forest" vs "Nott'm Forest" needs an alias,
-   "Bournemouth" vs "AFC Bournemouth" does not).
+2. exact match of the normalised names ("AFC Bournemouth" = "Bournemouth");
+3. unique word-set match: the words of exactly one club of the league are all
+   contained in the provider name ("Aris Thessalonikis" -> "Aris") or the other
+   way round. Two or more candidates = no match.
 
 Unresolved names are returned as None; the caller skips the fixture and
 logs the name so an alias can be added here.
@@ -21,13 +23,16 @@ import unicodedata
 _NOISE = {"fc", "afc", "cf", "sc", "ac", "cd", "ud", "sd", "rc", "rcd", "ca", "club", "de", "the",
           "calcio", "sv", "vfb", "vfl", "tsg", "fk", "sk", "as", "ssc", "us", "sl", "kv", "krc",
           "kaa", "rsc", "royal", "rfc", "jk", "bk", "if", "aj", "ogc", "stade", "olympique",
-          "football", "fussball", "1"}
+          "football", "fussball", "1", "kvc", "spvgg", "estac", "tsv", "fsv", "vfr", "afc", "ksv", "kfc",
+          "fk", "nk", "pfc", "sad", "bk", "ik", "fc", "sk", "gfc", "cfc"}
 
 
 def normalise(name: str) -> str:
-    text = unicodedata.normalize("NFKD", str(name)).encode("ascii", "ignore").decode()
-    text = re.sub(r"[^a-z0-9 ]+", " ", text.lower().replace("&", " and "))
-    words = [w for w in text.split() if w not in _NOISE]
+    text = unicodedata.normalize("NFKD", str(name).replace("ı", "i")).encode("ascii", "ignore").decode()
+    text = text.lower().replace("&", " and ").replace("'", "").replace("’", "").replace(".", "")
+    text = re.sub(r"[^a-z0-9 ]+", " ", text)
+    # founding years / numbers ("Iraklis 1908", "1899 Hoffenheim") are dropped on both sides
+    words = [w for w in text.split() if w not in _NOISE and not w.isdigit()]
     return " ".join(words)
 
 
@@ -146,6 +151,7 @@ TEAM_ALIASES: dict[str, str] = {
     "real sociedad b": "Sociedad B", "amed": "Amedspor", "erzurum bb": "Erzurumspor",
     "gazisehir gaziantep": "Gaziantep", "goztepe": "Goztep", "torku konyaspor": "Konyaspor",
     "caykur rizespor": "Rizespor",
+    "brestois": "Brest", "hoffenheim": "Hoffenheim", "aris thessaloniki": "Aris",
 }
 
 
@@ -163,4 +169,10 @@ def resolve(name: str, known: set[str] | None = None) -> str | None:
         by_norm = {normalise(k): k for k in known}
         if key in by_norm:
             return by_norm[key]
+        words = set(key.split())
+        if words and max(len(w) for w in words) >= 4:
+            candidates = {k for norm, k in by_norm.items() if norm and
+                          (set(norm.split()) <= words or words <= set(norm.split()))}
+            if len(candidates) == 1:
+                return candidates.pop()
     return None
