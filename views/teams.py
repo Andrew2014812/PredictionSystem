@@ -41,12 +41,12 @@ def _stat_grid(s: dict) -> str:
         (t("Results"), [(t("Matches"), s["games"]), (t("W-D-L"), f"{s['wins']}-{s['draws']}-{s['losses']}"),
                         (t("Points / game"), num(s["ppg"]))]),
         (t("Attack"), [(t("Goals / game"), num(s["gf"])), (t("Shots / game"), num(s["shots_for"], 1)),
-                       (t("Shots on target / game"), num(s["sot_for"], 1))]),
+                       (t("Shots on target / game"), num(s["sot_for"], 1)),
+                       (t("Over 2.5") + " · BTTS", f"{pct(s['over25_rate'])} · {pct(s['btts_rate'])}")]),
         (t("Defence"), [(t("Conceded / game"), num(s["ga"])), (t("Clean sheets"), pct(s["clean_sheet_rate"])),
                         (t("Shots conceded / game"), num(s["shots_against"], 1))]),
         (t("Corners"), [(t("Corners / game"), num(s["corners_for"], 1)),
-                        (t("Corners against"), num(s["corners_against"], 1)),
-                        (t("Over 2.5") + " · BTTS", f"{pct(s['over25_rate'])} · {pct(s['btts_rate'])}")]),
+                        (t("Corners against"), num(s["corners_against"], 1))]),
     ]
     cells = []
     for title, items in groups:

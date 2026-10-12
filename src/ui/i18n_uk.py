@@ -247,7 +247,7 @@ UK: dict[str, str] = {
     'Recorded = predictions saved before kick-off. Historical evaluation = the model tested afterwards on past matches from pre-match data.': 'Збережені = прогнози, записані до початку матчу. Історична оцінка = модель, перевірена згодом на минулих матчах за передматчевими даними.',
     'Recorded predictions': 'Збережені прогнози',
     'Results': 'Результати',
-    'Shots conceded / game': 'Удари суперника / матч',
+    'Shots conceded / game': 'Удари суперника за матч',
     "The line is added to the home team's goals. Whole lines (±1, ±2) have three outcomes (home, draw, away after the handicap); half lines (±0.5, ±1.5, ±2.5) have two, because a draw after the handicap is impossible. No refunds.": 'Лінія додається до голів господарів. Цілі лінії (±1, ±2) мають три результати (господарі, нічия, гості після фори); половинні (±0.5, ±1.5, ±2.5) — два, бо нічия після фори неможлива. Повернень немає.',
     'The numbers': 'Цифри',
     'There is not enough data for a reliable main prediction for this match.': 'Для цього матчу недостатньо даних для надійного основного прогнозу.',
@@ -304,4 +304,5 @@ UK: dict[str, str] = {
     'yes': 'так',
     'no': 'ні',
     'Temperature scaling of 1X2 (not adopted, negligible gain): log loss {a} → {b} (T = {T}).': 'Температурне масштабування 1X2 (не прийнято, виграш мізерний): log loss {a} → {b} (T = {T}).',
+    'No real odds — not counted in ROI': 'Немає реальних коефіцієнтів — не входить у ROI',
 }

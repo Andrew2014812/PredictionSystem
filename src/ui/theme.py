@@ -20,7 +20,7 @@ PALETTES = {
     "light": {
         "bg": "#f5f7fb", "surface": "#ffffff", "surface-2": "#eef2f8", "border": "#dfe5ef",
         "border-soft": "#e9edf4", "text": "#1e293b", "text-strong": "#0f172a", "muted": "#475569",
-        "faint": "#64748b", "accent": "#16a34a", "accent-soft": "rgba(22,163,74,.10)",
+        "faint": "#5b6b80", "accent": "#16a34a", "accent-soft": "rgba(22,163,74,.10)",
         "risk": "#d97706", "risk-soft": "rgba(217,119,6,.10)", "home": "#2563eb", "draw": "#94a3b8",
         "away": "#ea580c", "pos": "#16a34a", "neg": "#dc2626", "track": "#e2e8f0",
         "header-grad": "linear-gradient(135deg, #ffffff 0%, #ecfdf3 100%)", "input": "#ffffff",
@@ -177,12 +177,11 @@ table.mkt a { color: var(--accent) !important; font-weight: 600; }
 .minibar span { display: block; height: 100%; background: var(--accent); }
 
 /* grouped team statistics --------------------------------------------------- */
-.st-grid { display: grid; grid-template-columns: repeat(4, minmax(160px, 1fr)); gap: 1rem 1.4rem; }
+.st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem 1.4rem; }
 .st-group .st-row { display: flex; justify-content: space-between; gap: .6rem; padding: 3px 0;
   border-bottom: 1px solid var(--border-soft); }
 .st-group .st-row:last-child { border-bottom: none; }
 .st-group b { color: var(--text-strong); }
-@media (max-width: 1100px) { .st-grid { grid-template-columns: repeat(2, minmax(160px, 1fr)); } }
 
 /* finished-match outcome cards ------------------------------------------------- */
 .outcome { border-radius: 16px; padding: 1rem 1.2rem; border: 1px solid var(--border); background: var(--surface); }
@@ -194,6 +193,7 @@ table.mkt a { color: var(--accent) !important; font-weight: 600; }
 .outcome .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; margin-top: .7rem; }
 .outcome .grid .l { color: var(--faint); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
 .outcome .grid .v { font-weight: 800; font-size: 1.02rem; color: var(--text-strong); }
+.outcome .grid .v.na { font-weight: 500; font-size: .82rem; color: var(--muted); }
 .why-h { font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
   margin: .2rem 0 .4rem; }
 ul.facts { margin: 0 0 .9rem 1.1rem; padding: 0; color: var(--text); font-size: .9rem; line-height: 1.55; }
@@ -284,6 +284,12 @@ input, textarea { background: var(--input) !important; color: var(--text) !impor
 [data-baseweb="calendar"] div, [data-baseweb="popover"] > div { background: var(--surface) !important; color: var(--text) !important; }
 [data-baseweb="popover"] li:hover, [aria-selected="true"][role="option"] { background: var(--surface-2) !important; }
 [data-baseweb="select"] svg, [data-baseweb="input"] svg { fill: var(--muted) !important; color: var(--muted) !important; }
+[data-testid="stSelectbox"] [role="group"], [data-testid="stMultiSelect"] [role="group"],
+[data-testid="stDateInput"] [role="group"] { background-color: var(--input) !important; border-color: var(--border) !important; }
+[data-testid="stSelectbox"] [role="group"]:focus-within,
+[data-testid="stMultiSelect"] [role="group"]:focus-within { border-color: var(--accent) !important; }
+[data-testid="stSelectbox"] [role="group"] svg, [data-testid="stMultiSelect"] [role="group"] svg {
+  fill: var(--muted) !important; color: var(--muted) !important; }
 [data-testid="stExpander"] details { background: var(--surface) !important; border-color: var(--border) !important; }
 [data-testid="stExpander"] summary, [data-testid="stExpander"] summary p, [data-testid="stExpander"] summary span {
   color: var(--text) !important; }
