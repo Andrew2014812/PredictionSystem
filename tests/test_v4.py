@@ -65,8 +65,9 @@ def test_best_and_worst_need_a_minimum_sample_and_follow_the_given_rows():
                       ignore_index=True)
     best, worst = best_and_worst(picks)
     assert best["group"] == "TOTAL" and worst["group"] == "BTTS"           # 5 corner bets are too few
-    best, worst = best_and_worst(picks.loc[picks["group"] != "TOTAL"])
-    assert best["group"] == "BTTS" and worst is None
+    best, worst = best_and_worst(picks.loc[picks["group"] != "TOTAL"])     # only one solid market left
+    assert best["group"] == "CORNERS" and best["small_sample"]                 # shown, but flagged
+    assert worst["group"] == "BTTS" and not worst["small_sample"]
 
 
 # -- explanations --------------------------------------------------------------

@@ -107,7 +107,7 @@ def best_and_worst(picks: pd.DataFrame, by: str = "group",
     if g.empty:
         return None, None
     big = g.loc[g["bets"] >= min_sample]
-    pool = big if not big.empty else g
+    pool = big if len(big) >= 2 else g          # fewer than two solid groups: compare all, flag small ones
     pool = pool.sort_values("roi").assign(small_sample=lambda d: d["bets"] < min_sample)
     return pool.iloc[-1].to_dict(), (pool.iloc[0].to_dict() if len(pool) > 1 else None)
 
