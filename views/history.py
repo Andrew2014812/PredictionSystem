@@ -1,31 +1,21 @@
 """Prediction history: results of stored predictions with filters."""
 from __future__ import annotations
 
-from datetime import date
 
 import pandas as pd
 import streamlit as st
 
-from src import config
-from src.analytics.performance import (DATASETS, DATE_PRESETS, PERIODS, preset_range, select_dataset, summarize,
-                                       timeline)
+from src.analytics.performance import PERIODS, select_dataset, summarize, timeline
 from src.leagues import league_codes
 from src.ui import data
-from src.ui.components import (date_text, empty_state, esc, guard, html_table, kpi_row, match_url, num,
-                               missing, odds_text, page_header, pct, section, signed, status_badge,
-                               tone)
-
-DATASET_HELP = {
-    "recorded": "Predictions saved before kick-off and settled after the match.",
-    "evaluation": "How the model would have done on past matches (test season and the current season so far), "
-                  "computed afterwards from pre-match data. Not predictions published before those matches.",
-}
+from src.ui.components import (date_text, empty_state, esc, guard, html_table, kpi_row, match_url, missing, num,
+                               odds_text, page_header, pct, period_filter, section, signed, status_badge, tone)
 from src.ui.i18n import t
 from src.ui.labels import MARKET_GROUP_TITLES, group_title, league_label, market_title, selection_label
 
 ROLES = {"main": "Main predictions", "risk": "Risk predictions", "market": "Market forecasts"}
-DATASET_LABELS = {"recorded": "Recorded predictions", "evaluation": "Historical evaluation"}
 PAGE_SIZE = 50
+SUMMARY_ROWS = 12
 
 
 def filter_picks(picks: pd.DataFrame, start, end, leagues, groups, role, statuses=("WON", "LOST"),
@@ -47,35 +37,23 @@ def filter_picks(picks: pd.DataFrame, start, end, leagues, groups, role, statuse
 
 
 def default_statuses() -> list[str]:
-    """History shows finished predictions only (upcoming matches live on the Matches page)."""
-    return ["WON", "LOST"]
+    """History shows finished predictions (upcoming matches live on the Matches page); an Asian
+    handicap refund is shown as "Refund" but does not count in the hit rate or ROI."""
+    return ["WON", "LOST", "PUSH"]
 
 
 @guard
 def render() -> None:
-    page_header(t("Prediction History"), t("Prediction results and performance history."))
-    picks = data.picks()
+    page_header(t("Prediction History"), t("Predictions FootPredict recorded before kick-off, and how they ended."))
+    # Only predictions really recorded before kick-off; the after-the-fact model
+    # evaluation (backtest / backfill) lives on the Model Analysis page.
+    picks = select_dataset(data.picks(), "recorded")
     if picks.empty:
         empty_state(t("No completed predictions yet."))
         return
-
-    dataset = st.segmented_control(t("Data"), list(DATASETS), default="recorded", key="h_dataset",
-                                   format_func=lambda k: t(DATASET_LABELS[k])) or "recorded"
-    st.html(f'<div class="note">{t(DATASET_HELP[dataset])}</div>')
-    picks = select_dataset(picks, dataset)
-    if picks.empty:
-        empty_state(t("No completed predictions yet."))
-        return
-    first = picks["date"].min()
-    season_start = pd.Timestamp(year=config.current_season(), month=7, day=1)
     with st.container(border=True):
         c = st.columns([1.5, 1.5, 1.7, 1.7])
-        preset = c[0].selectbox(t("Period"), DATE_PRESETS, index=DATE_PRESETS.index("All time"),
-                                format_func=t, key="h_preset")
-        custom = None
-        if preset == "Custom":
-            custom = c[0].date_input(t("Date range"), value=(first.date(), date.today()), format="DD.MM.YYYY",
-                                     key="h_custom")
+        start, end = period_filter(c[0], "h", picks["date"].min())
         role = c[1].selectbox(t("Prediction type"), list(ROLES), format_func=lambda r: t(ROLES[r]), key="h_role",
                               help=t("Main = the one prediction FootPredict recommends per match. Risk = an optional "
                                      "high-odds pick. Market forecasts = the model's most likely outcome in each "
@@ -85,7 +63,6 @@ def render() -> None:
         groups = c[3].multiselect(t("Market"), list(MARKET_GROUP_TITLES), format_func=group_title,
                                   placeholder=t("All markets"), key="h_groups")
 
-    start, end = preset_range(preset, date.today(), first, custom, season_start)
     df = filter_picks(picks, start, end, leagues, groups, role, default_statuses())
     s = summarize(df)
     kpi_row([
@@ -115,6 +92,8 @@ def render() -> None:
                 t("Period"): tl["period"].dt.strftime("%d.%m.%Y"), t("Predictions"): tl["predictions"],
                 t("Hit rate"): tl["hit_rate"], t("Profit"): tl["profit"], t("ROI"): tl["roi"],
             }).iloc[::-1]
+            if len(view) > SUMMARY_ROWS and not st.toggle(t("Show all {n} periods", n=len(view)), key="h_all_periods"):
+                view = view.head(SUMMARY_ROWS)
             st.html(html_table(view, formats={t("Hit rate"): lambda v: pct(v, 1),
                                               t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>",
                                               t("ROI"): lambda v: f"<span class='{tone(v)}'>{signed(v, 1, '%')}</span>"},
@@ -136,7 +115,7 @@ def render() -> None:
                           zip(chunk["market"], chunk["selection"], chunk["home_team"], chunk["away_team"])],
         t("Probability"): chunk["probability"],
         t("Odds"): chunk["odds"],
-        t("Score"): [f"{int(h)}–{int(a)}" if h == h else "" for h, a in zip(chunk["home_goals"], chunk["away_goals"])],
+        t("Score"): [f"{int(h)}:{int(a)}" if h == h else "" for h, a in zip(chunk["home_goals"], chunk["away_goals"])],
         t("Result"): chunk["status"],
         t("Profit"): chunk["profit"],
     })

@@ -5,6 +5,7 @@ Every prediction with a REAL bookmaker price is one bet with a fixed stake of
     win  -> profit = odds - 1
     loss -> profit = -1
     void -> profit = 0, stake returned (not part of the staked total)
+    push -> Asian handicap refund: profit = 0, stake returned (not staked either)
 
     ROI = net profit / total amount staked × 100
         = sum(profit) / number of won or lost bets with real odds × 100
@@ -62,6 +63,7 @@ def summarize(picks: pd.DataFrame) -> dict:
         "bets": n_bets,
         "pending": int((picks["status"] == "UPCOMING").sum()) if len(picks) else 0,
         "void": int((picks["status"] == "VOID").sum()) if len(picks) else 0,
+        "push": int((picks["status"] == "PUSH").sum()) if len(picks) else 0,
         "hit_rate": won / n if n else np.nan,
         "profit": profit if n_bets else np.nan,
         "roi": profit / n_bets * 100 if n_bets else np.nan,
@@ -93,15 +95,21 @@ def group_summary(picks: pd.DataFrame, by: str | list[str]) -> pd.DataFrame:
 
 def best_and_worst(picks: pd.DataFrame, by: str = "group",
                    min_sample: int = MIN_MARKET_SAMPLE) -> tuple[dict | None, dict | None]:
-    """Best and weakest group by ROI among groups with enough real-odds bets."""
+    """Highest- and lowest-ROI group by real-odds bets.
+
+    Groups with at least ``min_sample`` bets are compared first; only when none
+    reaches it are smaller groups used, and the result is flagged
+    ``small_sample`` so the interface can say so instead of hiding it."""
     g = group_summary(picks, by)
     if g.empty:
         return None, None
-    g = g.loc[g["bets"] >= min_sample]
+    g = g.loc[g["bets"] > 0]
     if g.empty:
         return None, None
-    g = g.sort_values("roi")
-    return g.iloc[-1].to_dict(), (g.iloc[0].to_dict() if len(g) > 1 else None)
+    big = g.loc[g["bets"] >= min_sample]
+    pool = big if not big.empty else g
+    pool = pool.sort_values("roi").assign(small_sample=lambda d: d["bets"] < min_sample)
+    return pool.iloc[-1].to_dict(), (pool.iloc[0].to_dict() if len(pool) > 1 else None)
 
 
 def timeline(picks: pd.DataFrame, period: str = "Weekly") -> pd.DataFrame:
@@ -138,24 +146,31 @@ def cumulative_by_date(picks: pd.DataFrame, window: int = 200) -> pd.DataFrame:
     return out
 
 
-DATE_PRESETS = ("Last 7 days", "Last 30 days", "This month", "This season", "This year", "All time", "Custom")
+DATE_PRESETS = ("Last 7 days", "Last 30 days", "Current month", "Previous month", "Current season", "All time",
+                "Specific month", "Custom dates")
 
 
 def preset_range(preset: str, today, first_date, custom: tuple | None = None, season_start=None):
-    """(start, end) dates of a date-range preset (inclusive)."""
+    """(start, end) dates of a date-range preset (inclusive).
+
+    ``custom`` is (start, end) for "Custom dates" and (year, month) for "Specific month"."""
     today = pd.Timestamp(today).normalize()
     first = pd.Timestamp(first_date).normalize()
     if preset == "Last 7 days":
         return today - pd.Timedelta(days=6), today
     if preset == "Last 30 days":
         return today - pd.Timedelta(days=29), today
-    if preset == "This month":
+    if preset == "Current month":
         return today.replace(day=1), today
-    if preset == "This season":
+    if preset == "Previous month":
+        end = today.replace(day=1) - pd.Timedelta(days=1)
+        return end.replace(day=1), end
+    if preset == "Current season":
         return pd.Timestamp(season_start) if season_start is not None else first, today
-    if preset == "This year":
-        return today.replace(month=1, day=1), today
-    if preset == "Custom" and custom and len(custom) == 2:
+    if preset == "Specific month" and custom and len(custom) == 2:
+        start = pd.Timestamp(year=int(custom[0]), month=int(custom[1]), day=1)
+        return start, start + pd.offsets.MonthEnd(0)
+    if preset == "Custom dates" and custom and len(custom) == 2:
         return pd.Timestamp(custom[0]), pd.Timestamp(custom[1])
     return first, max(today, first)
 
