@@ -9,3 +9,5 @@ local_data/api/*/*.json
 !local_data/api/the_odds_api/ledger.json
 !local_data/api/oddspapi/ledger.json
 !local_data/api/oddspapi/tournaments.json
+experiments/model_comparison/results/*_quick*
+experiments/model_comparison/report/*_quick*
