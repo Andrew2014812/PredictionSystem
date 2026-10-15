@@ -52,10 +52,19 @@ def _set_pref(key: str, widget_key: str) -> None:
         st.query_params[key] = value
 
 
+# Small football used as the logo (inline SVG: crisp at any size, follows the theme colours).
+BALL_SVG = ('<svg class="ball" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">'
+            '<circle cx="12" cy="12" r="10.4" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>'
+            '<path d="M12 7.3l3.5 2.5-1.3 4.1H9.8L8.5 9.8z" fill="currentColor"/>'
+            '<path d="M12 7.3V3.4M15.5 9.8l3.6-1.3M14.2 13.9l2.3 3.2M9.8 13.9l-2.3 3.2M8.5 9.8 4.9 8.5" '
+            'stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>')
+
+
 def top_bar() -> None:
     """Brand on the left, language and theme switches on the right."""
     inject_css()
-    st.html('<div class="fp-brand"><span class="ball">⚽</span><span>Foot<span class="accent">Predict</span></span></div>')
+    st.html(f'<div class="fp-brand"><a href="{href("matches")}" target="_self" aria-label="FootPredict — '
+            f'{t("Matches")}">{BALL_SVG}<span>Foot<span class="accent">Predict</span></span></a></div>')
     with st.container(key="fp_prefs", horizontal=True):
         st.session_state["w_lang"] = st.session_state["lang"]
         st.segmented_control("Language", list(LANGUAGES), format_func=LANGUAGES.get, key="w_lang",

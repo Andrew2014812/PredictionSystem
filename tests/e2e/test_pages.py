@@ -183,7 +183,7 @@ def test_theme_switch(app):
     app.pref("light_mode").click()
     app.wait()
     light = app.background()
-    assert dark != light and light in ("rgb(245, 247, 251)",), light
+    assert dark != light and light in ("rgb(233, 238, 244)",), light          # soft grey-blue, not white
     app.nav("Analytics")
     assert app.background() == light                                 # stays light across pages
     app.pref("dark_mode").click()
