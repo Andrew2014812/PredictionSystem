@@ -4,6 +4,9 @@
     python scripts/run_pipeline.py --mode odds          # + real odds (spends credits)
     python scripts/run_pipeline.py --mode full --credit-budget 40
     python scripts/run_pipeline.py --offline            # use local files only
+    python scripts/run_pipeline.py --mode odds --odds-league E0          # one league
+    python scripts/run_pipeline.py --mode odds --odds-date 2026-10-18    # one match day
+    python scripts/run_pipeline.py --mode odds --odds-match <match_id> --force
 
 Order:
 1. fresh fixtures / results (free) and — in "odds" / "full" mode — real
@@ -41,12 +44,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--offline", action="store_true")
     parser.add_argument("--mode", choices=("results", "odds", "full"), default="results")
+    parser.add_argument("--odds-match", help="only this match id (odds / full mode)")
+    parser.add_argument("--odds-league", help="only this league code, e.g. E0")
+    parser.add_argument("--odds-date", help="only matches on this day, YYYY-MM-DD")
+    parser.add_argument("--force", action="store_true",
+                        help="re-price the selected matches even inside the refresh window")
     parser.add_argument("--credit-budget", type=int, default=None,
                         help="max The Odds API credits for this run (default: config.ODDS_API_RUN_BUDGET)")
     args = parser.parse_args()
     summary = {}
     if not args.offline:
-        summary["providers"] = collect(build_matches(), mode=args.mode, run_budget=args.credit_budget)
+        targets = {k: v for k, v in (("match_id", args.odds_match), ("league", args.odds_league),
+                                     ("date", args.odds_date)) if v}
+        summary["providers"] = collect(build_matches(), mode=args.mode, run_budget=args.credit_budget,
+                                       targets=targets or None, force=args.force)
         download_results([config.current_season()])
         download_fixtures()
     features = rebuild_features()

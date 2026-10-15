@@ -2,9 +2,13 @@
 # "Run workflow", pick what to update, press the green button.
 #
 #   results  — new results and fixtures, refreshed predictions. Free: no API credits.
-#   odds     — real bookmaker odds for matches in the next days (spends The Odds API
-#              credits, at most "credit_budget" per run), refreshed predictions.
+#   odds     — real bookmaker odds for matches in the next days: OddsPapi first (one
+#              request for all fixtures; prices from the free historical endpoint),
+#              The Odds API as fallback (at most "credit_budget" credits), refreshed predictions.
 #   full     — both.
+#
+# Optional: limit the odds update to one league (E0, SP1 …), one match day
+# (YYYY-MM-DD) or one match id, and "force" to re-price inside the refresh window.
 #
 # The run commits local_data/ to main; Streamlit Cloud redeploys automatically and
 # a local checkout catches up with `git pull`. No schedule: credits are only spent
@@ -24,6 +28,22 @@ on:
         description: "Max The Odds API credits for this run (odds / full only)"
         type: number
         default: 60
+      league:
+        description: "Only this league code (optional, odds / full)"
+        type: string
+        default: ""
+      day:
+        description: "Only matches on this day, YYYY-MM-DD (optional)"
+        type: string
+        default: ""
+      match_id:
+        description: "Only this match id (optional)"
+        type: string
+        default: ""
+      force:
+        description: "Re-price even if asked recently"
+        type: boolean
+        default: false
 
 concurrency:
   group: update-data
@@ -50,8 +70,15 @@ jobs:
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python scripts/run_pipeline.py --mode "${{ inputs.mode }}" --credit-budget "${{ inputs.credit_budget }}"
-      - name: Show The Odds API credits
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+        run: |
+          args=(--mode "${{ inputs.mode }}" --credit-budget "${{ inputs.credit_budget }}")
+          [ -n "${{ inputs.league }}" ] && args+=(--odds-league "${{ inputs.league }}")
+          [ -n "${{ inputs.day }}" ] && args+=(--odds-date "${{ inputs.day }}")
+          [ -n "${{ inputs.match_id }}" ] && args+=(--odds-match "${{ inputs.match_id }}")
+          [ "${{ inputs.force }}" = "true" ] && args+=(--force)
+          python scripts/run_pipeline.py "${args[@]}"
+      - name: Show API quotas
         run: python scripts/odds_credits.py
       - name: Commit updated data
         run: |

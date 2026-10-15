@@ -17,7 +17,7 @@ ODDS_COLUMNS = ["match_id", "provider", "provider_fixture_id", "bookmaker", "mar
                 "selection", "odds", "collected_at"]
 
 # When several providers price the same selection, the first one wins.
-PROVIDER_PRIORITY = ("api_football", "the_odds_api", "football_data")
+PROVIDER_PRIORITY = ("oddspapi", "api_football", "the_odds_api", "football_data")
 
 
 def empty_odds() -> pd.DataFrame:
