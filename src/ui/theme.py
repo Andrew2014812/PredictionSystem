@@ -96,7 +96,6 @@ a { text-decoration: none; }
 .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem 1rem; height: 100%; }
 .kpi .label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
 img.badge { object-fit: contain; vertical-align: middle; flex: none; }
-.infl .lvl { white-space: nowrap; }
 .chip-note { display: inline-block; margin-left: .4rem; padding: 0 .4rem; border-radius: 6px; font-size: .62rem; font-weight: 700; letter-spacing: .02em; text-transform: none; color: var(--risk); border: 1px solid var(--risk); vertical-align: middle; }
 .kpi .value { font-size: 1.45rem; font-weight: 800; margin-top: .15rem; color: var(--text-strong); }
 .kpi .sub { color: var(--faint); font-size: .78rem; }
@@ -224,7 +223,7 @@ ul.facts { margin: 0 0 .9rem 1.1rem; padding: 0; color: var(--text); font-size: 
   border-radius: 12px; padding: 1rem 1.2rem; color: var(--text); }
 .why.risk { border-left-color: var(--risk); }
 .why p { margin: 0 0 .7rem 0; font-size: .95rem; line-height: 1.5; color: var(--text-strong); }
-.infl { display: grid; grid-template-columns: 1fr 180px 150px; gap: .8rem; align-items: center; padding: 4px 0;
+.infl { display: grid; grid-template-columns: 1fr 160px 220px; gap: .8rem; align-items: center; padding: 4px 0;
   font-size: .87rem; }
 .infl .bar { height: 8px; background: var(--track); border-radius: 4px; overflow: hidden; }
 .infl .bar span { display: block; height: 100%; }

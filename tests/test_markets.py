@@ -196,3 +196,12 @@ def test_asian_whole_line_ev_counts_the_refund():
     sel = PricedSelection("HANDICAP_-1", "H", 0.45, 2.0, push_probability=0.25)
     assert sel.ev == pytest.approx(0.15) and sel.lose_probability == pytest.approx(0.30)
     assert PricedSelection("1X2", "H", 0.45, 2.0).ev == pytest.approx(-0.10)
+
+
+def test_risk_never_bets_against_main():
+    main = _ps("TOTAL_3.5", "UNDER", 0.68)
+    sels = [main, _ps("TOTAL_3.5", "OVER", 0.32, 3.2), _ps("BTTS", "YES", 0.30, 3.3)]
+    assert risk_prediction(sels, main).pick.market == "BTTS"           # not "over 3.5"
+    main = _ps("1X2", "H", 0.50, 2.0)
+    sels = [main, _ps("DOUBLE_CHANCE", "X2", 0.50, 2.0), _ps("1X2", "D", 0.26, 3.5)]
+    assert risk_prediction(sels, main).pick.selection == "D"           # draw: an alternative, not the opposite

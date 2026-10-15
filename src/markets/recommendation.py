@@ -21,8 +21,11 @@ MAIN PREDICTION — the most defensible prediction of the match.
 RISK PREDICTION — the most sensible higher-odds alternative.
 
     Candidates: every selection except European handicaps, the Main
-    selection and any selection that wins on exactly the same scores as Main
-    (e.g. "home -0.5" when Main is "home win"), with p >= RISK_MIN_PROBABILITY.
+    selection, any selection that wins on exactly the same scores as Main
+    (e.g. "home -0.5" when Main is "home win") and any bet AGAINST Main (wins
+    exactly when Main loses, e.g. "over 3.5" when Main is "under 3.5"), with
+    p >= RISK_MIN_PROBABILITY. A different outcome of the same market (a draw
+    when Main is a home win) is allowed: it is an alternative, not the opposite.
 
         score = reliability(market) x p^RISK_PROBABILITY_POWER x odds_preference(effective odds, RISK_PREFERRED_ODDS)
                 x (1 + RISK_EV_WEIGHT x clip(EV))      with a real price
@@ -154,11 +157,20 @@ def same_outcome(a: PricedSelection, b: PricedSelection) -> bool:
     return _footprint(a.market, a.selection) == _footprint(b.market, b.selection)
 
 
+def opposite_outcome(a: PricedSelection, b: PricedSelection) -> bool:
+    """True if ``a`` wins exactly when ``b`` loses (a bet against the other), e.g. over / under the
+    same line, BTTS yes / no, double chance 1X / away win."""
+    if a.group == "CORNERS" or b.group == "CORNERS":
+        return a.market == b.market and a.selection != b.selection
+    flip = {"WON": "LOST", "LOST": "WON", "PUSH": "PUSH"}
+    return _footprint(a.market, a.selection) == tuple(flip.get(x, x) for x in _footprint(b.market, b.selection))
+
+
 def risk_prediction(selections: list[PricedSelection], main: PricedSelection | None = None,
                     params: RuleParams | None = None) -> Recommendation | None:
     """Always returns a risk prediction when there is any eligible selection."""
     params = params or risk_params()
     eligible = [s for s in selections if s.group not in EXCLUDED_GROUPS
-                and not (main is not None and same_outcome(s, main))]
+                and not (main is not None and (same_outcome(s, main) or opposite_outcome(s, main)))]
     candidates = [s for s in eligible if s.probability >= params.min_probability]
     return _choose(candidates or eligible, params, "risk")
