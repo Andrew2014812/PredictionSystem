@@ -160,7 +160,7 @@ def render() -> None:
         (t("Main predictions") if key == "main" else t("Predictions"), f"{s['settled']:,}",
          t("{a} won · {b} lost", a=s["won"], b=s["lost"])),
         (t("Main hit rate") if key == "main" else t("Hit rate"), pct(s["hit_rate"], 1), ""),
-        (t("Main profit") if key == "main" else t("Profit"), f"{signed(s['profit'])} u" if s["bets"] else "—",
+        (t("Main profit") if key == "main" else t("Profit"), f"{signed(s['profit'])} {t('u')}" if s["bets"] else "—",
          t("{n} predictions with odds", n=s["bets"]), tone(s["profit"])),
         (t("Main ROI") if key == "main" else t("ROI"), signed(s["roi"], 1, "%"), t("profit / amount staked"),
          tone(s["roi"])),

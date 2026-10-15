@@ -68,7 +68,7 @@ def render() -> None:
     kpi_row([
         (t("Predictions"), f"{s['settled']:,}", t("{a} won · {b} lost", a=s["won"], b=s["lost"])),
         (t("Hit rate"), pct(s["hit_rate"], 1), ""),
-        (t("Profit"), f"{signed(s['profit'])} u" if s["bets"] else "—", t("{n} predictions with odds", n=s["bets"]),
+        (t("Profit"), f"{signed(s['profit'])} {t('u')}" if s["bets"] else "—", t("{n} predictions with odds", n=s["bets"]),
          tone(s["profit"])),
         (t("ROI"), signed(s["roi"], 1, "%"), t("profit / amount staked"), tone(s["roi"])),
         (t("Average odds"), num(s["avg_odds"]), ""),

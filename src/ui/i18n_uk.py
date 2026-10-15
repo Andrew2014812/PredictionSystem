@@ -12,8 +12,8 @@ UK: dict[str, str] = {
     "All leagues": "Усі ліги", "Market": "Ринок", "All markets": "Усі ринки", "Season": "Сезон",
     "Period": "Період", "Group by": "Групувати за", "Status": "Статус", "Score": "Рахунок", "Result": "Результат",
     "Type": "Тип", "Team": "Команда", "Match": "Матч", "Page": "Сторінка", "Total": "Разом", "Show": "Показати",
-    "FT": "Завершено", "Full time": "Матч завершено", "Upcoming": "Попереду", "Won": "Виграш", "Lost": "Програш",
-    "Void": "Повернення", "Won and lost": "Виграші та програші",
+    "FT": "Завершено", "Full time": "Матч завершено", 'Upcoming': 'Очікується', "Won": "Виграш", "Lost": "Програш",
+    'Void': 'Анульовано', "Won and lost": "Виграші та програші",
     "Mon": "Пн", "Tue": "Вт", "Wed": "Ср", "Thu": "Чт", "Fri": "Пт", "Sat": "Сб", "Sun": "Нд",
     "England": "Англія", "Scotland": "Шотландія", "Spain": "Іспанія", "Italy": "Італія", "Germany": "Німеччина",
     "France": "Франція", "Netherlands": "Нідерланди", "Belgium": "Бельгія", "Portugal": "Португалія",
@@ -98,7 +98,7 @@ UK: dict[str, str] = {
     "bookmaker odds.": "Прибуток і ROI розраховано з фіксованою ставкою 1 одиниця на прогноз і лише для прогнозів "
     "із реальними букмекерськими коефіцієнтами.",
     "No completed predictions for this period.": "За цей період немає завершених прогнозів.",
-    "Daily": "Щодня", "Weekly": "Щотижня", "Monthly": "Щомісяця", "Yearly": "Щороку",
+    'Daily': 'Днями', 'Weekly': 'Тижнями', 'Monthly': 'Місяцями', 'Yearly': 'Роками',
     "Summary by period": "Підсумки за періодами", "Main": "Основний", "Risk": "Ризиковий",
     "Page {p} of {n} · {k} predictions": "Сторінка {p} з {n} · прогнозів: {k}",
     # analytics
@@ -359,4 +359,5 @@ UK: dict[str, str] = {
     'November': 'Листопад',
     'December': 'Грудень',
     'Test season (evaluation model)': 'Тестовий сезон (оцінювальна модель)',
+    'u': 'од.',
 }

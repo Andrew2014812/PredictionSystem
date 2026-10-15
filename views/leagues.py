@@ -107,7 +107,7 @@ def render() -> None:
     kpi_row([
         (t("Matches predicted"), f"{main['settled']:,}", ""),
         (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
-        (t("Main profit"), f"{signed(main['profit'])} u" if main["bets"] else "—",
+        (t("Main profit"), f"{signed(main['profit'])} {t('u')}" if main["bets"] else "—",
          t("{n} predictions with odds", n=main["bets"]), tone(main["profit"])),
         (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
     ])
