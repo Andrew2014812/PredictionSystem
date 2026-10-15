@@ -649,15 +649,15 @@
       "ev_weight": 0.0,
       "unpriced_factor": 0.5,
       "probability_power": 1.0,
-      "predictions": 7126,
-      "hit_rate": 0.37117597530171204,
-      "bets": 7116,
-      "priced_share": 0.9985966881841145,
-      "roi": -0.07700252914911176,
-      "avg_odds": 2.5998369872302,
-      "avg_effective_odds": 2.599493312939739,
-      "first_half_roi": -0.093254636183691,
-      "second_half_roi": -0.06075042211453254
+      "predictions": 7114,
+      "hit_rate": 0.3694124262018555,
+      "bets": 6902,
+      "priced_share": 0.970199606409896,
+      "roi": -0.06596348932327585,
+      "avg_odds": 2.6832961431277798,
+      "avg_effective_odds": 2.6747707440731436,
+      "first_half_roi": -0.0799622532244205,
+      "second_half_roi": -0.05202140057962571
     },
     {
       "preferred": [
@@ -668,262 +668,205 @@
       "ev_weight": 0.0,
       "unpriced_factor": 0.5,
       "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.3234675270023846,
-      "bets": 7125,
-      "priced_share": 0.9994389114882872,
-      "roi": -0.07946666443138792,
-      "avg_odds": 2.9851494769380804,
-      "avg_effective_odds": 2.9851251495573803,
-      "first_half_roi": -0.06490878231766985,
-      "second_half_roi": -0.09402863354176902
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7122,
-      "hit_rate": 0.38542544229149117,
-      "bets": 5992,
-      "priced_share": 0.8413367031732659,
-      "roi": -0.07364819591767957,
-      "avg_odds": 2.56068925577426,
-      "avg_effective_odds": 2.533169221696584,
-      "first_half_roi": -0.09082317854724592,
-      "second_half_roi": -0.05599661478536383
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.32458970402581006,
-      "bets": 6775,
-      "priced_share": 0.9503436667134241,
-      "roi": -0.08617416698554345,
-      "avg_odds": 2.958159414340649,
-      "avg_effective_odds": 2.9441462882579006,
-      "first_half_roi": -0.07296728670040023,
-      "second_half_roi": -0.09966875310799357
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7121,
-      "hit_rate": 0.36567897767167534,
-      "bets": 7101,
-      "priced_share": 0.9971914057014464,
-      "roi": -0.07912829153605908,
-      "avg_odds": 2.6491902546385044,
-      "avg_effective_odds": 2.648567386622696,
-      "first_half_roi": -0.09768732319415455,
-      "second_half_roi": -0.060574486301973214
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7125,
-      "hit_rate": 0.3222456140350877,
-      "bets": 7119,
-      "priced_share": 0.9991578947368421,
-      "roi": -0.07663857124715495,
-      "avg_odds": 3.0270164362214427,
-      "avg_effective_odds": 3.0268126004740314,
-      "first_half_roi": -0.07545786329199759,
-      "second_half_roi": -0.07781961095503925
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7122,
-      "hit_rate": 0.37854535242909293,
-      "bets": 5900,
-      "priced_share": 0.8284189834316203,
-      "roi": -0.07575762566873583,
-      "avg_odds": 2.6358220364683764,
-      "avg_effective_odds": 2.593404984684876,
-      "first_half_roi": -0.08965170630974333,
-      "second_half_roi": -0.06152024584922712
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7128,
-      "hit_rate": 0.3247755331088664,
-      "bets": 6555,
-      "priced_share": 0.9196127946127947,
-      "roi": -0.08165064607295801,
-      "avg_odds": 3.0035011473000277,
-      "avg_effective_odds": 2.9768971425416204,
-      "first_half_roi": -0.08344567916208888,
-      "second_half_roi": -0.0798050721388052
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7116,
-      "hit_rate": 0.3608768971332209,
-      "bets": 7074,
-      "priced_share": 0.9940978077571669,
-      "roi": -0.08185043815572889,
-      "avg_odds": 2.6994642348218036,
-      "avg_effective_odds": 2.697924003770271,
-      "first_half_roi": -0.09444695179672327,
-      "second_half_roi": -0.06920396667026596
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7120,
-      "hit_rate": 0.3205056179775281,
-      "bets": 7100,
-      "priced_share": 0.9971910112359551,
-      "roi": -0.07953802696416076,
-      "avg_odds": 3.043438028718384,
-      "avg_effective_odds": 3.0420766407261848,
-      "first_half_roi": -0.07837320417543213,
-      "second_half_roi": -0.08070482013257148
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7119,
-      "hit_rate": 0.3743503301025425,
-      "bets": 5824,
-      "priced_share": 0.8180924287118977,
-      "roi": -0.07464285596058919,
-      "avg_odds": 2.6976081753497594,
-      "avg_effective_odds": 2.6417623019607945,
-      "first_half_roi": -0.08660332372644047,
-      "second_half_roi": -0.062391379246663665
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7125,
-      "hit_rate": 0.3249122807017544,
-      "bets": 6365,
-      "priced_share": 0.8933333333333333,
-      "roi": -0.08210054792387693,
-      "avg_odds": 3.0376245115089864,
-      "avg_effective_odds": 2.9965760023181227,
-      "first_half_roi": -0.08278896603969955,
-      "second_half_roi": -0.08139260488380058
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7112,
-      "hit_rate": 0.437429696287964,
-      "bets": 7109,
-      "priced_share": 0.999578177727784,
-      "roi": -0.047923760317535334,
-      "avg_odds": 2.220514836098712,
-      "avg_effective_odds": 2.2204861258072683,
-      "first_half_roi": -0.03754010839325389,
-      "second_half_roi": -0.05829865213051958
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7125,
-      "hit_rate": 0.4089824561403509,
-      "bets": 7122,
-      "priced_share": 0.999578947368421,
-      "roi": -0.06407048637965394,
-      "avg_odds": 2.3506529050340683,
-      "avg_effective_odds": 2.3505886283970945,
-      "first_half_roi": -0.06815220405130834,
-      "second_half_roi": -0.05998876870799955
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
       "predictions": 7117,
-      "hit_rate": 0.44232120275396936,
-      "bets": 6857,
-      "priced_share": 0.9634677532668259,
-      "roi": -0.05108210780416474,
-      "avg_odds": 2.2012498131712097,
-      "avg_effective_odds": 2.1992592875034584,
-      "first_half_roi": -0.04174496813073672,
-      "second_half_roi": -0.06041108088312622
+      "hit_rate": 0.3234508922298721,
+      "bets": 6953,
+      "priced_share": 0.976956582829844,
+      "roi": -0.066054939246428,
+      "avg_odds": 3.072526966824251,
+      "avg_effective_odds": 3.0579468912177092,
+      "first_half_roi": -0.059297638647708664,
+      "second_half_roi": -0.07280252828924229
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7093,
+      "hit_rate": 0.39010291837022415,
+      "bets": 5509,
+      "priced_share": 0.7766812350204427,
+      "roi": -0.0668360855471614,
+      "avg_odds": 2.586841533006179,
+      "avg_effective_odds": 2.543417509582855,
+      "first_half_roi": -0.0819388476207102,
+      "second_half_roi": -0.05145108057667196
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7126,
+      "hit_rate": 0.32739264664608475,
+      "bets": 6421,
+      "priced_share": 0.901066516980073,
+      "roi": -0.07823080337784628,
+      "avg_odds": 3.0217582951860438,
+      "avg_effective_odds": 2.97669489185167,
+      "first_half_roi": -0.06907464345982603,
+      "second_half_roi": -0.08756841597747562
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7108,
+      "hit_rate": 0.3663477771525042,
+      "bets": 6885,
+      "priced_share": 0.9686268992684299,
+      "roi": -0.07052287631218383,
+      "avg_odds": 2.7199520666528283,
+      "avg_effective_odds": 2.709965775998839,
+      "first_half_roi": -0.09518928404943014,
+      "second_half_roi": -0.04597797797265795
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7112,
+      "hit_rate": 0.32297525309336333,
+      "bets": 6940,
+      "priced_share": 0.9758155230596175,
+      "roi": -0.06545100796119624,
+      "avg_odds": 3.106523053446833,
+      "avg_effective_odds": 3.090368707383328,
+      "first_half_roi": -0.07323139004809143,
+      "second_half_roi": -0.05768854270121388
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7097,
+      "hit_rate": 0.384387769480062,
+      "bets": 5518,
+      "priced_share": 0.7775116246301254,
+      "roi": -0.06556904622721214,
+      "avg_odds": 2.659298658889461,
+      "avg_effective_odds": 2.5997243861577783,
+      "first_half_roi": -0.07948220003341351,
+      "second_half_roi": -0.051432224621422586
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7106,
+      "hit_rate": 0.3287362792006755,
+      "bets": 6227,
+      "priced_share": 0.8763017168589924,
+      "roi": -0.07376746268339021,
+      "avg_odds": 3.064290991674864,
+      "avg_effective_odds": 3.006139181856711,
+      "first_half_roi": -0.08067678538098658,
+      "second_half_roi": -0.06663947626583729
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7102,
+      "hit_rate": 0.36299633905941986,
+      "bets": 6855,
+      "priced_share": 0.9652210644888763,
+      "roi": -0.07360321014663061,
+      "avg_odds": 2.7573289535586456,
+      "avg_effective_odds": 2.745021518407218,
+      "first_half_roi": -0.09817863436240727,
+      "second_half_roi": -0.0490492867394417
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7108,
+      "hit_rate": 0.3211873944850872,
+      "bets": 6919,
+      "priced_share": 0.9734102419808667,
+      "roi": -0.07381847044656277,
+      "avg_odds": 3.1119309128976176,
+      "avg_effective_odds": 3.0939660319337743,
+      "first_half_roi": -0.07968777057992892,
+      "second_half_roi": -0.06795086664271492
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7092,
+      "hit_rate": 0.3802876480541455,
+      "bets": 5511,
+      "priced_share": 0.7770727580372251,
+      "roi": -0.06464344008910723,
+      "avg_odds": 2.722436944016353,
+      "avg_effective_odds": 2.6487500196914575,
+      "first_half_roi": -0.07716182204699235,
+      "second_half_roi": -0.05183553608153535
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7100,
+      "hit_rate": 0.3273239436619718,
+      "bets": 6098,
+      "priced_share": 0.8588732394366198,
+      "roi": -0.07975893612571058,
+      "avg_odds": 3.0910200067096634,
+      "avg_effective_odds": 3.0215824764040136,
+      "first_half_roi": -0.07775839678076811,
+      "second_half_roi": -0.0818221172755913
     },
     {
       "preferred": [
@@ -932,36 +875,17 @@
       ],
       "softness": 0.4,
       "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7126,
-      "hit_rate": 0.4101880437833287,
-      "bets": 7095,
-      "priced_share": 0.995649733370755,
-      "roi": -0.06341367219853687,
-      "avg_odds": 2.3472163481137716,
-      "avg_effective_odds": 2.347112693076351,
-      "first_half_roi": -0.06762965015117856,
-      "second_half_roi": -0.059196505642017914
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
       "unpriced_factor": 0.5,
       "probability_power": 1.0,
-      "predictions": 7107,
-      "hit_rate": 0.4366117911917827,
-      "bets": 7102,
-      "priced_share": 0.999296468270719,
-      "roi": -0.038034357644577695,
-      "avg_odds": 2.2654125569773806,
-      "avg_effective_odds": 2.2653451292554045,
-      "first_half_roi": -0.027922188560156744,
-      "second_half_roi": -0.048123770792943686
+      "predictions": 7098,
+      "hit_rate": 0.4449140602986757,
+      "bets": 6945,
+      "priced_share": 0.9784446322907862,
+      "roi": -0.04522246380689936,
+      "avg_odds": 2.2113390881350954,
+      "avg_effective_odds": 2.2109036945146316,
+      "first_half_roi": -0.03221645166003515,
+      "second_half_roi": -0.0581724155565788
     },
     {
       "preferred": [
@@ -969,18 +893,18 @@
         5.0
       ],
       "softness": 0.4,
-      "ev_weight": 0.5,
+      "ev_weight": 0.0,
       "unpriced_factor": 0.5,
       "probability_power": 0.5,
-      "predictions": 7116,
-      "hit_rate": 0.3979763912310287,
-      "bets": 7113,
-      "priced_share": 0.9995784148397976,
-      "roi": -0.062824406487084,
-      "avg_odds": 2.4627105284890227,
-      "avg_effective_odds": 2.462598928726684,
-      "first_half_roi": -0.07592686359389422,
-      "second_half_roi": -0.049732996983230617
+      "predictions": 7102,
+      "hit_rate": 0.4067868206139116,
+      "bets": 7012,
+      "priced_share": 0.9873275133765137,
+      "roi": -0.054205648639306846,
+      "avg_odds": 2.4424443771447444,
+      "avg_effective_odds": 2.439980028306152,
+      "first_half_roi": -0.05193548463869871,
+      "second_half_roi": -0.05647193091178627
     },
     {
       "preferred": [
@@ -988,18 +912,94 @@
         5.0
       ],
       "softness": 0.4,
-      "ev_weight": 0.5,
+      "ev_weight": 0.0,
       "unpriced_factor": 0.8,
       "probability_power": 1.0,
       "predictions": 7111,
-      "hit_rate": 0.4412881451272676,
-      "bets": 6789,
-      "priced_share": 0.9547180424694136,
-      "roi": -0.04320665906430485,
-      "avg_odds": 2.2469111767375676,
-      "avg_effective_odds": 2.243899398453596,
-      "first_half_roi": -0.03618823608931373,
-      "second_half_roi": -0.050247862403038926
+      "hit_rate": 0.4484601321895655,
+      "bets": 6559,
+      "priced_share": 0.9223737870904233,
+      "roi": -0.04818722548908641,
+      "avg_odds": 2.1946958330713917,
+      "avg_effective_odds": 2.195016641243816,
+      "first_half_roi": -0.03254584516318911,
+      "second_half_roi": -0.06375722744416276
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7120,
+      "hit_rate": 0.4151685393258427,
+      "bets": 6750,
+      "priced_share": 0.9480337078651685,
+      "roi": -0.0590533343774301,
+      "avg_odds": 2.381819255705233,
+      "avg_effective_odds": 2.3786947626190758,
+      "first_half_roi": -0.06037399884889444,
+      "second_half_roi": -0.05773735726877487
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7089,
+      "hit_rate": 0.4406827479193116,
+      "bets": 6937,
+      "priced_share": 0.9785583298067428,
+      "roi": -0.03827014688767049,
+      "avg_odds": 2.2746648366914903,
+      "avg_effective_odds": 2.2728719410177556,
+      "first_half_roi": -0.026995957483107614,
+      "second_half_roi": -0.049502159468561624
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7097,
+      "hit_rate": 0.3977737072002254,
+      "bets": 7000,
+      "priced_share": 0.9863322530646752,
+      "roi": -0.05209571547167642,
+      "avg_odds": 2.539927139009748,
+      "avg_effective_odds": 2.5360521071805113,
+      "first_half_roi": -0.05461296879267972,
+      "second_half_roi": -0.049577023309106384
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7107,
+      "hit_rate": 0.4463205290558604,
+      "bets": 6559,
+      "priced_share": 0.9228929224708035,
+      "roi": -0.04041622346231606,
+      "avg_odds": 2.2459384011757013,
+      "avg_effective_odds": 2.2427599262749687,
+      "first_half_roi": -0.029823064258580095,
+      "second_half_roi": -0.050999696753948644
     },
     {
       "preferred": [
@@ -1010,15 +1010,15 @@
       "ev_weight": 0.5,
       "unpriced_factor": 0.8,
       "probability_power": 0.5,
-      "predictions": 7117,
-      "hit_rate": 0.4007306449346635,
-      "bets": 7021,
-      "priced_share": 0.9865111704369819,
-      "roi": -0.06218202580007932,
-      "avg_odds": 2.458513030977335,
-      "avg_effective_odds": 2.4562357434841875,
-      "first_half_roi": -0.07550852278416807,
-      "second_half_roi": -0.04878320563898465
+      "predictions": 7110,
+      "hit_rate": 0.40436005625879046,
+      "bets": 6763,
+      "priced_share": 0.9511954992967652,
+      "roi": -0.054765637608722315,
+      "avg_odds": 2.489239978786758,
+      "avg_effective_odds": 2.480599268876711,
+      "first_half_roi": -0.06481810206317648,
+      "second_half_roi": -0.04471614549739483
     },
     {
       "preferred": [
@@ -1029,15 +1029,15 @@
       "ev_weight": 1.0,
       "unpriced_factor": 0.5,
       "probability_power": 1.0,
-      "predictions": 7099,
-      "hit_rate": 0.4303423017326384,
-      "bets": 7092,
-      "priced_share": 0.9990139456261445,
-      "roi": -0.04345459759537944,
-      "avg_odds": 2.312982231395364,
-      "avg_effective_odds": 2.312884019215521,
-      "first_half_roi": -0.033338040795174065,
-      "second_half_roi": -0.05354266507764562
+      "predictions": 7083,
+      "hit_rate": 0.43442044331497953,
+      "bets": 6929,
+      "priced_share": 0.9782578003670761,
+      "roi": -0.041316208290252045,
+      "avg_odds": 2.32423870371506,
+      "avg_effective_odds": 2.3213718879000713,
+      "first_half_roi": -0.03877279434121293,
+      "second_half_roi": -0.043845711800306775
     },
     {
       "preferred": [
@@ -1048,946 +1048,946 @@
       "ev_weight": 1.0,
       "unpriced_factor": 0.5,
       "probability_power": 0.5,
-      "predictions": 7107,
-      "hit_rate": 0.3896158716758126,
-      "bets": 7104,
-      "priced_share": 0.9995778809624314,
-      "roi": -0.061473818026013205,
-      "avg_odds": 2.552498590704557,
-      "avg_effective_odds": 2.552348948366658,
-      "first_half_roi": -0.07929054043582968,
-      "second_half_roi": -0.043657095616196726
+      "predictions": 7091,
+      "hit_rate": 0.3906360174869553,
+      "bets": 6988,
+      "priced_share": 0.9854745451981385,
+      "roi": -0.05026903380034785,
+      "avg_odds": 2.6188981070747768,
+      "avg_effective_odds": 2.6136865814460073,
+      "first_half_roi": -0.06096109928610123,
+      "second_half_roi": -0.03956472081690173
     },
     {
       "preferred": [
         2.5,
         5.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7102,
+      "hit_rate": 0.4393128696141932,
+      "bets": 6530,
+      "priced_share": 0.9194593072373979,
+      "roi": -0.04034915901435279,
+      "avg_odds": 2.2956921867170523,
+      "avg_effective_odds": 2.2882935979852457,
+      "first_half_roi": -0.0377644540932199,
+      "second_half_roi": -0.0429133629202479
+    },
+    {
+      "preferred": [
+        2.5,
+        5.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7103,
+      "hit_rate": 0.39574827537660145,
+      "bets": 6753,
+      "priced_share": 0.9507250457553147,
+      "roi": -0.055187325327198326,
+      "avg_odds": 2.5807063489177042,
+      "avg_effective_odds": 2.5675510510484023,
+      "first_half_roi": -0.07983441831514301,
+      "second_half_roi": -0.03045980575282013
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7116,
+      "hit_rate": 0.2837268128161889,
+      "bets": 6848,
+      "priced_share": 0.9623383923552558,
+      "roi": -0.06675233629262337,
+      "avg_odds": 3.447162672842496,
+      "avg_effective_odds": 3.4254951909166995,
+      "first_half_roi": -0.06799066744660037,
+      "second_half_roi": -0.0655103832282808
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7117,
+      "hit_rate": 0.2727272727272727,
+      "bets": 6998,
+      "priced_share": 0.9832794716875087,
+      "roi": -0.059692769740165456,
+      "avg_odds": 3.593125173997184,
+      "avg_effective_odds": 3.58269374878126,
+      "first_half_roi": -0.058924792731254824,
+      "second_half_roi": -0.060459869311762275
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7091,
+      "hit_rate": 0.2972782400225638,
+      "bets": 5618,
+      "priced_share": 0.7922718939500776,
+      "roi": -0.07224812996519041,
+      "avg_odds": 3.3155500188591898,
+      "avg_effective_odds": 3.2360881686942937,
+      "first_half_roi": -0.06645774539087859,
+      "second_half_roi": -0.07816774558471723
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7114,
+      "hit_rate": 0.28099522069159405,
+      "bets": 6568,
+      "priced_share": 0.9232499297160529,
+      "roi": -0.05932856292149617,
+      "avg_odds": 3.500770398092328,
+      "avg_effective_odds": 3.461238374260785,
+      "first_half_roi": -0.058432677654202875,
+      "second_half_roi": -0.060235979657139546
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7114,
+      "hit_rate": 0.28282260331740233,
+      "bets": 6780,
+      "priced_share": 0.9530503233061569,
+      "roi": -0.06849704970300725,
+      "avg_odds": 3.477097343027064,
+      "avg_effective_odds": 3.448844589655191,
+      "first_half_roi": -0.073469327067853,
+      "second_half_roi": -0.06347465154646131
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7117,
+      "hit_rate": 0.2671069270760152,
+      "bets": 6995,
+      "priced_share": 0.9828579457636645,
+      "roi": -0.06737526852033068,
+      "avg_odds": 3.666796278391164,
+      "avg_effective_odds": 3.654734439979581,
+      "first_half_roi": -0.08998855852971634,
+      "second_half_roi": -0.044781366870484375
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7091,
+      "hit_rate": 0.29657312085742493,
+      "bets": 5479,
+      "priced_share": 0.7726695811592159,
+      "roi": -0.06831721011511839,
+      "avg_odds": 3.35848695058243,
+      "avg_effective_odds": 3.26450485111765,
+      "first_half_roi": -0.0746630813913106,
+      "second_half_roi": -0.06173298517626517
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7110,
+      "hit_rate": 0.2774964838255978,
+      "bets": 6257,
+      "priced_share": 0.880028129395218,
+      "roi": -0.07358957983080679,
+      "avg_odds": 3.565139840124361,
+      "avg_effective_odds": 3.500731809016478,
+      "first_half_roi": -0.09711229939924242,
+      "second_half_roi": -0.049294997144628455
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7114,
+      "hit_rate": 0.2852122575203823,
+      "bets": 6665,
+      "priced_share": 0.9368850154624684,
+      "roi": -0.06643960935588358,
+      "avg_odds": 3.501510875706197,
+      "avg_effective_odds": 3.4631673482379846,
+      "first_half_roi": -0.08567857046922048,
+      "second_half_roi": -0.0468804839880131
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7117,
+      "hit_rate": 0.26556133202191934,
+      "bets": 6952,
+      "priced_share": 0.9768160741885626,
+      "roi": -0.06960443080637617,
+      "avg_odds": 3.6941196731237054,
+      "avg_effective_odds": 3.6772165606220395,
+      "first_half_roi": -0.09854226581251024,
+      "second_half_roi": -0.040633276473810154
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7091,
+      "hit_rate": 0.2972782400225638,
+      "bets": 5351,
+      "priced_share": 0.7546185305316598,
+      "roi": -0.05941693066793209,
+      "avg_odds": 3.4043487194787008,
+      "avg_effective_odds": 3.292600071462354,
+      "first_half_roi": -0.08390065655384384,
+      "second_half_roi": -0.03376195880584775
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7109,
+      "hit_rate": 0.2744408496272331,
+      "bets": 5991,
+      "priced_share": 0.8427345618230412,
+      "roi": -0.07895843776950572,
+      "avg_odds": 3.5941044869197665,
+      "avg_effective_odds": 3.512654868392131,
+      "first_half_roi": -0.10561500809126538,
+      "second_half_roi": -0.051035543703821046
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7105,
+      "hit_rate": 0.38057705840957073,
+      "bets": 6965,
+      "priced_share": 0.9802955665024631,
+      "roi": -0.06366116375864964,
+      "avg_odds": 2.612222538179232,
+      "avg_effective_odds": 2.6077565987043445,
+      "first_half_roi": -0.0773145493383446,
+      "second_half_roi": -0.05004301777465794
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7115,
+      "hit_rate": 0.30527055516514406,
+      "bets": 7067,
+      "priced_share": 0.9932536893886156,
+      "roi": -0.05848591997681808,
+      "avg_odds": 3.258102447405991,
+      "avg_effective_odds": 3.2541347094228144,
+      "first_half_roi": -0.04713678795499324,
+      "second_half_roi": -0.06981900401784284
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7127,
+      "hit_rate": 0.38094569945278517,
+      "bets": 6373,
+      "priced_share": 0.8942051354005893,
+      "roi": -0.0688325752741348,
+      "avg_odds": 2.5644955266013953,
+      "avg_effective_odds": 2.5623314363177285,
+      "first_half_roi": -0.08364207235572851,
+      "second_half_roi": -0.0540370143566706
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7118,
+      "hit_rate": 0.310199494239955,
+      "bets": 6568,
+      "priced_share": 0.9227311042427648,
+      "roi": -0.06541412818301175,
+      "avg_odds": 3.193922046767083,
+      "avg_effective_odds": 3.1566175207996667,
+      "first_half_roi": -0.056735248681095835,
+      "second_half_roi": -0.07420471866840313
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7102,
+      "hit_rate": 0.37482399324134047,
+      "bets": 6961,
+      "priced_share": 0.9801464376232047,
+      "roi": -0.06699181231526256,
+      "avg_odds": 2.669652345724754,
+      "avg_effective_odds": 2.663942708164757,
+      "first_half_roi": -0.07198965001065132,
+      "second_half_roi": -0.06200114923614625
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7111,
+      "hit_rate": 0.3093798340599072,
+      "bets": 7065,
+      "priced_share": 0.9935311489242019,
+      "roi": -0.06154989344130487,
+      "avg_odds": 3.26631139239266,
+      "avg_effective_odds": 3.262499996546306,
+      "first_half_roi": -0.06832294551914204,
+      "second_half_roi": -0.054786421352262374
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7121,
+      "hit_rate": 0.3764920657211066,
+      "bets": 6368,
+      "priced_share": 0.894256424659458,
+      "roi": -0.0685191588036379,
+      "avg_odds": 2.6300361160394834,
+      "avg_effective_odds": 2.621498253741946,
+      "first_half_roi": -0.07448481083513613,
+      "second_half_roi": -0.06251968575274851
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7117,
+      "hit_rate": 0.3106646058732612,
+      "bets": 6447,
+      "priced_share": 0.905859210341436,
+      "roi": -0.07038622525970899,
+      "avg_odds": 3.224848766113892,
+      "avg_effective_odds": 3.1800961744025904,
+      "first_half_roi": -0.07841425830041548,
+      "second_half_roi": -0.06220482234255931
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7100,
+      "hit_rate": 0.3732394366197183,
+      "bets": 6962,
+      "priced_share": 0.9805633802816901,
+      "roi": -0.06438379870239122,
+      "avg_odds": 2.7147859778256294,
+      "avg_effective_odds": 2.7082944407635097,
+      "first_half_roi": -0.07490511897516497,
+      "second_half_roi": -0.05388059781011019
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7106,
+      "hit_rate": 0.3112862369828314,
+      "bets": 7051,
+      "priced_share": 0.9922600619195047,
+      "roi": -0.07064388038722898,
+      "avg_odds": 3.2602141514988996,
+      "avg_effective_odds": 3.255318162834775,
+      "first_half_roi": -0.08481869667177498,
+      "second_half_roi": -0.05643283196790284
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7118,
+      "hit_rate": 0.3728575442540039,
+      "bets": 6364,
+      "priced_share": 0.8940713683618994,
+      "roi": -0.06714644938201593,
+      "avg_odds": 2.690966371074553,
+      "avg_effective_odds": 2.675801297176211,
+      "first_half_roi": -0.08222118160643455,
+      "second_half_roi": -0.051890610668653935
+    },
+    {
+      "preferred": [
+        3.0,
+        6.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7110,
+      "hit_rate": 0.309704641350211,
+      "bets": 6344,
+      "priced_share": 0.8922644163150493,
+      "roi": -0.0748013867556222,
+      "avg_odds": 3.2460293176232793,
+      "avg_effective_odds": 3.197766201709344,
+      "first_half_roi": -0.08971962564830839,
+      "second_half_roi": -0.05952137818972473
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7124,
+      "hit_rate": 0.2610892756878158,
+      "bets": 7027,
+      "priced_share": 0.9863840539023021,
+      "roi": -0.06023907936262307,
+      "avg_odds": 3.739805029994888,
+      "avg_effective_odds": 3.7364903266225613,
+      "first_half_roi": -0.07139766660810297,
+      "second_half_roi": -0.049083667583063914
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7127,
+      "hit_rate": 0.25213975024554514,
+      "bets": 7032,
+      "priced_share": 0.9866704083064403,
+      "roi": -0.0765756555791601,
+      "avg_odds": 3.7825056803375654,
+      "avg_effective_odds": 3.7892194171662026,
+      "first_half_roi": -0.0901820776981446,
+      "second_half_roi": -0.06297697097630808
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7091,
+      "hit_rate": 0.2676632350867297,
+      "bets": 6219,
+      "priced_share": 0.8770272175997743,
+      "roi": -0.07395240531739822,
+      "avg_odds": 3.603740144109473,
+      "avg_effective_odds": 3.57603597345136,
+      "first_half_roi": -0.09281279763580312,
+      "second_half_roi": -0.054506860396038234
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7127,
+      "hit_rate": 0.25270099621158976,
+      "bets": 6925,
+      "priced_share": 0.9716570787147467,
+      "roi": -0.07764043470582377,
+      "avg_odds": 3.7751985476937966,
+      "avg_effective_odds": 3.7807382664608937,
+      "first_half_roi": -0.08933064143780127,
+      "second_half_roi": -0.06592657042914438
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7123,
+      "hit_rate": 0.2604239786606767,
+      "bets": 6972,
+      "priced_share": 0.978801066966166,
+      "roi": -0.061389846461159844,
+      "avg_odds": 3.775206532652051,
+      "avg_effective_odds": 3.7671657293515874,
+      "first_half_roi": -0.07606989454314757,
+      "second_half_roi": -0.046667626451329575
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7127,
+      "hit_rate": 0.2515785042795005,
+      "bets": 7031,
+      "priced_share": 0.9865300968149291,
+      "roi": -0.06931873273924088,
+      "avg_odds": 3.865635036930491,
+      "avg_effective_odds": 3.871722362380974,
+      "first_half_roi": -0.10692176472920273,
+      "second_half_roi": -0.03172639558204069
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7091,
+      "hit_rate": 0.2682273304188408,
+      "bets": 5988,
+      "priced_share": 0.8444507121703568,
+      "roi": -0.07276720230628748,
+      "avg_odds": 3.6625116829005733,
+      "avg_effective_odds": 3.619050141070524,
+      "first_half_roi": -0.09868911466944565,
+      "second_half_roi": -0.04569477829846883
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7117,
+      "hit_rate": 0.2550231839258114,
+      "bets": 6589,
+      "priced_share": 0.9258114374034003,
+      "roi": -0.0714099270419261,
+      "avg_odds": 3.8374290405880753,
+      "avg_effective_odds": 3.8345129481691735,
+      "first_half_roi": -0.11076830801557379,
+      "second_half_roi": -0.03114522780821592
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7120,
+      "hit_rate": 0.2594101123595506,
+      "bets": 6860,
+      "priced_share": 0.9634831460674157,
+      "roi": -0.06803935978224952,
+      "avg_odds": 3.794848389145932,
+      "avg_effective_odds": 3.779188695022232,
+      "first_half_roi": -0.09966975712969571,
+      "second_half_roi": -0.03600058876012972
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7127,
+      "hit_rate": 0.24975445488985548,
+      "bets": 7031,
+      "priced_share": 0.9865300968149291,
+      "roi": -0.07167686111912451,
+      "avg_odds": 3.9018489466064805,
+      "avg_effective_odds": 3.907448474199675,
+      "first_half_roi": -0.10508961697899939,
+      "second_half_roi": -0.038273608318367916
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7085,
+      "hit_rate": 0.2664784756527876,
+      "bets": 5763,
+      "priced_share": 0.813408609738885,
+      "roi": -0.08104459568793505,
+      "avg_odds": 3.7061755964165655,
+      "avg_effective_odds": 3.6477557291196403,
+      "first_half_roi": -0.1236477352784565,
+      "second_half_roi": -0.03611764848338517
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.2,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7106,
+      "hit_rate": 0.25147762454264,
+      "bets": 6193,
+      "priced_share": 0.871517027863777,
+      "roi": -0.07370095404673138,
+      "avg_odds": 3.8686839907076562,
+      "avg_effective_odds": 3.8593282623830127,
+      "first_half_roi": -0.12228508310583237,
+      "second_half_roi": -0.02295147093580516
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7115,
+      "hit_rate": 0.2971187631763879,
+      "bets": 7015,
+      "priced_share": 0.9859451862262825,
+      "roi": -0.06138132556540067,
+      "avg_odds": 3.3283806109717293,
+      "avg_effective_odds": 3.3210113434975717,
+      "first_half_roi": -0.07149900232294952,
+      "second_half_roi": -0.051254991354836237
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7118,
+      "hit_rate": 0.26552402360213545,
+      "bets": 7050,
+      "priced_share": 0.9904467547063782,
+      "roi": -0.06535886619107943,
+      "avg_odds": 3.654541838219825,
+      "avg_effective_odds": 3.648988808335664,
+      "first_half_roi": -0.06009359070339192,
+      "second_half_roi": -0.07062712991684168
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7109,
+      "hit_rate": 0.2990575327050218,
+      "bets": 6049,
+      "priced_share": 0.8508932339288227,
+      "roi": -0.06868573203916924,
+      "avg_odds": 3.2676987941648608,
+      "avg_effective_odds": 3.21936051256048,
+      "first_half_roi": -0.07669383654735902,
+      "second_half_roi": -0.06044936164124231
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.0,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7116,
+      "hit_rate": 0.26981450252951095,
+      "bets": 6827,
+      "priced_share": 0.9593872962338392,
+      "roi": -0.06359455189803377,
+      "avg_odds": 3.606420091257728,
+      "avg_effective_odds": 3.584172946204311,
+      "first_half_roi": -0.06565521266061897,
+      "second_half_roi": -0.0615089907254085
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7112,
+      "hit_rate": 0.3046962879640045,
+      "bets": 7006,
+      "priced_share": 0.9850956130483689,
+      "roi": -0.052956037680625644,
+      "avg_odds": 3.3261661412815964,
+      "avg_effective_odds": 3.3185392862469674,
+      "first_half_roi": -0.061093036170419494,
+      "second_half_roi": -0.044814392132870744
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7120,
+      "hit_rate": 0.25912921348314605,
+      "bets": 7053,
+      "priced_share": 0.9905898876404494,
+      "roi": -0.0881468884981762,
+      "avg_odds": 3.71076846239365,
+      "avg_effective_odds": 3.7046425330972736,
+      "first_half_roi": -0.1174886622666772,
+      "second_half_roi": -0.05878014300731903
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 1.0,
+      "predictions": 7107,
+      "hit_rate": 0.30336288166596315,
+      "bets": 5939,
+      "priced_share": 0.8356549880399606,
+      "roi": -0.05751136473722983,
+      "avg_odds": 3.283887860148337,
+      "avg_effective_odds": 3.2304876267059535,
+      "first_half_roi": -0.06713152585719803,
+      "second_half_roi": -0.047518021946627784
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 0.5,
+      "unpriced_factor": 0.8,
+      "probability_power": 0.5,
+      "predictions": 7115,
+      "hit_rate": 0.2657765284609979,
+      "bets": 6540,
+      "priced_share": 0.9191848208011244,
+      "roi": -0.0885183491108979,
+      "avg_odds": 3.6529954085291707,
+      "avg_effective_odds": 3.608237835024006,
+      "first_half_roi": -0.12241410490545326,
+      "second_half_roi": -0.053612663907193756
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 1.0,
+      "predictions": 7110,
+      "hit_rate": 0.30168776371308015,
+      "bets": 6987,
+      "priced_share": 0.9827004219409282,
+      "roi": -0.07406326036042404,
+      "avg_odds": 3.3181265182073356,
+      "avg_effective_odds": 3.3093489172643515,
+      "first_half_roi": -0.0910240268884589,
+      "second_half_roi": -0.057078201700438404
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
+      ],
+      "softness": 0.4,
+      "ev_weight": 1.0,
+      "unpriced_factor": 0.5,
+      "probability_power": 0.5,
+      "predictions": 7116,
+      "hit_rate": 0.26292861157953906,
+      "bets": 7053,
+      "priced_share": 0.9911467116357504,
+      "roi": -0.08535800413867015,
+      "avg_odds": 3.7087891633402754,
+      "avg_effective_odds": 3.703145044029723,
+      "first_half_roi": -0.1162602779106138,
+      "second_half_roi": -0.05444696625051212
+    },
+    {
+      "preferred": [
+        3.5,
+        8.0
       ],
       "softness": 0.4,
       "ev_weight": 1.0,
       "unpriced_factor": 0.8,
       "probability_power": 1.0,
       "predictions": 7106,
-      "hit_rate": 0.4358288770053476,
-      "bets": 6731,
-      "priced_share": 0.9472276949057135,
-      "roi": -0.0427811628039038,
-      "avg_odds": 2.2965740579461436,
-      "avg_effective_odds": 2.290703898355415,
-      "first_half_roi": -0.03682549224146922,
-      "second_half_roi": -0.048710348024376765
-    },
-    {
-      "preferred": [
-        2.5,
-        5.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7109,
-      "hit_rate": 0.393444928963286,
-      "bets": 6933,
-      "priced_share": 0.9752426501617668,
-      "roi": -0.058968700940313576,
-      "avg_odds": 2.5516241149229697,
-      "avg_effective_odds": 2.5452956033318106,
-      "first_half_roi": -0.08393730231321575,
-      "second_half_roi": -0.03384838063545801
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7128,
-      "hit_rate": 0.2822671156004489,
-      "bets": 7041,
-      "priced_share": 0.9877946127946128,
-      "roi": -0.0736003400520614,
-      "avg_odds": 3.3831771053622486,
-      "avg_effective_odds": 3.3770538541538904,
-      "first_half_roi": -0.06831113519936116,
-      "second_half_roi": -0.07891514754784135
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.27339037733202415,
-      "bets": 7118,
-      "priced_share": 0.99845700659279,
-      "roi": -0.06471059271444528,
-      "avg_odds": 3.5171368333120365,
-      "avg_effective_odds": 3.516459477163368,
-      "first_half_roi": -0.058125350835820544,
-      "second_half_roi": -0.0712921350189809
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7119,
-      "hit_rate": 0.29400196656833827,
-      "bets": 5796,
-      "priced_share": 0.8141592920353983,
-      "roi": -0.07685645116946876,
-      "avg_odds": 3.2799758487030752,
-      "avg_effective_odds": 3.21899497537344,
-      "first_half_roi": -0.06301056781889756,
-      "second_half_roi": -0.09104086467531067
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7128,
-      "hit_rate": 0.27847923681257014,
-      "bets": 6737,
-      "priced_share": 0.9451459034792368,
-      "roi": -0.06508534924644593,
-      "avg_odds": 3.4592014228941976,
-      "avg_effective_odds": 3.4336511422460023,
-      "first_half_roi": -0.05648066077501259,
-      "second_half_roi": -0.07378507457562347
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7127,
-      "hit_rate": 0.2824470324119545,
-      "bets": 6970,
-      "priced_share": 0.9779710958327487,
-      "roi": -0.0728149200272526,
-      "avg_odds": 3.4096743185174687,
-      "avg_effective_odds": 3.39825998794809,
-      "first_half_roi": -0.0700913226767762,
-      "second_half_roi": -0.07556837793725527
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.26820030859868144,
-      "bets": 7117,
-      "priced_share": 0.9983167344648618,
-      "roi": -0.07158212717352949,
-      "avg_odds": 3.589711954474064,
-      "avg_effective_odds": 3.5888460028836966,
-      "first_half_roi": -0.08763350155194065,
-      "second_half_roi": -0.05553526287502236
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7117,
-      "hit_rate": 0.29422509484333287,
-      "bets": 5605,
-      "priced_share": 0.7875509343824645,
-      "roi": -0.06961998059003083,
-      "avg_odds": 3.3176431784344826,
-      "avg_effective_odds": 3.2443588508100105,
-      "first_half_roi": -0.07272089597720752,
-      "second_half_roi": -0.06640755389761241
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7128,
-      "hit_rate": 0.2756734006734007,
-      "bets": 6410,
-      "priced_share": 0.8992704826038159,
-      "roi": -0.07777535056175196,
-      "avg_odds": 3.520784710164003,
-      "avg_effective_odds": 3.4724499510270603,
-      "first_half_roi": -0.09835738348089774,
-      "second_half_roi": -0.056514430416602014
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7127,
-      "hit_rate": 0.2853935737336888,
-      "bets": 6853,
-      "priced_share": 0.9615546513259436,
-      "roi": -0.06753976244518013,
-      "avg_odds": 3.4371326426493933,
-      "avg_effective_odds": 3.4171231668488713,
-      "first_half_roi": -0.0845499259518128,
-      "second_half_roi": -0.05024426070432792
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.2656754102959742,
-      "bets": 7076,
-      "priced_share": 0.9925655772198064,
-      "roi": -0.07597512710963757,
-      "avg_odds": 3.622239963222588,
-      "avg_effective_odds": 3.617543992397457,
-      "first_half_roi": -0.09418125316828808,
-      "second_half_roi": -0.0577277874096545
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7115,
-      "hit_rate": 0.2951510892480675,
-      "bets": 5452,
-      "priced_share": 0.766268446943078,
-      "roi": -0.06112802505318242,
-      "avg_odds": 3.3604842278332896,
-      "avg_effective_odds": 3.27370191007703,
-      "first_half_roi": -0.0837248546638708,
-      "second_half_roi": -0.03754872458985542
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7126,
-      "hit_rate": 0.27210216110019647,
-      "bets": 6093,
-      "priced_share": 0.8550378894190289,
-      "roi": -0.08225504631638507,
-      "avg_odds": 3.5535073024033523,
-      "avg_effective_odds": 3.4879228590429845,
-      "first_half_roi": -0.10500640566726284,
-      "second_half_roi": -0.05834735735864681
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7124,
-      "hit_rate": 0.3777372262773723,
-      "bets": 7121,
-      "priced_share": 0.9995788882650196,
-      "roi": -0.08169217808429755,
-      "avg_odds": 2.541402892757711,
-      "avg_effective_odds": 2.541258280039911,
-      "first_half_roi": -0.08979494330588352,
-      "second_half_roi": -0.07359168828119558
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.3085986814419975,
-      "bets": 7126,
-      "priced_share": 0.9995791836162154,
-      "roi": -0.07375526107030071,
-      "avg_odds": 3.1339166452300504,
-      "avg_effective_odds": 3.134015586175453,
-      "first_half_roi": -0.05679483427748465,
-      "second_half_roi": -0.09071568786311678
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7127,
-      "hit_rate": 0.37603479724989475,
-      "bets": 6816,
-      "priced_share": 0.9563631261400308,
-      "roi": -0.08100792228685857,
-      "avg_odds": 2.544894366949237,
-      "avg_effective_odds": 2.546972366358541,
-      "first_half_roi": -0.0890773715067954,
-      "second_half_roi": -0.07285756440473426
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.30930004208163836,
-      "bets": 6835,
-      "priced_share": 0.9587599943891149,
-      "roi": -0.07377615048227819,
-      "avg_odds": 3.1292392128649293,
-      "avg_effective_odds": 3.115888037098604,
-      "first_half_roi": -0.05589072761823881,
-      "second_half_roi": -0.09190925009193038
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7121,
-      "hit_rate": 0.37368347142255304,
-      "bets": 7117,
-      "priced_share": 0.9994382811402893,
-      "roi": -0.07503301966336062,
-      "avg_odds": 2.6084895315876464,
-      "avg_effective_odds": 2.608265350587281,
-      "first_half_roi": -0.07038785802842258,
-      "second_half_roi": -0.07967687611098904
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7126,
-      "hit_rate": 0.31209654785293295,
-      "bets": 7123,
-      "priced_share": 0.9995790064552343,
-      "roi": -0.07318405055370489,
-      "avg_odds": 3.1532416121269837,
-      "avg_effective_odds": 3.153332459039569,
-      "first_half_roi": -0.07722830507936722,
-      "second_half_roi": -0.0691409314167359
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7125,
-      "hit_rate": 0.3740350877192982,
-      "bets": 6694,
-      "priced_share": 0.9395087719298245,
-      "roi": -0.07216313101121978,
-      "avg_odds": 2.6146414701818244,
-      "avg_effective_odds": 2.6127225937121934,
-      "first_half_roi": -0.0709325803434385,
-      "second_half_roi": -0.0734084763969786
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7128,
-      "hit_rate": 0.3090628507295174,
-      "bets": 6692,
-      "priced_share": 0.9388327721661055,
-      "roi": -0.07753436788426711,
-      "avg_odds": 3.1613299476480456,
-      "avg_effective_odds": 3.140932803636637,
-      "first_half_roi": -0.08010657007275,
-      "second_half_roi": -0.07491249130228304
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7120,
-      "hit_rate": 0.37134831460674156,
-      "bets": 7109,
-      "priced_share": 0.9984550561797753,
-      "roi": -0.07040793376895241,
-      "avg_odds": 2.663392881683734,
-      "avg_effective_odds": 2.662918734300188,
-      "first_half_roi": -0.0701940928162737,
-      "second_half_roi": -0.07062183489072303
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7121,
-      "hit_rate": 0.3124561157140851,
-      "bets": 7117,
-      "priced_share": 0.9994382811402893,
-      "roi": -0.07855135531544066,
-      "avg_odds": 3.170214977679133,
-      "avg_effective_odds": 3.1702148050336145,
-      "first_half_roi": -0.09223813432818281,
-      "second_half_roi": -0.06484533167529026
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7124,
-      "hit_rate": 0.36973610331274565,
-      "bets": 6613,
-      "priced_share": 0.928270634475014,
-      "roi": -0.0718282170759357,
-      "avg_odds": 2.6706396492926774,
-      "avg_effective_odds": 2.663489280809821,
-      "first_half_roi": -0.07850150145567932,
-      "second_half_roi": -0.06505939679431945
-    },
-    {
-      "preferred": [
-        3.0,
-        6.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7124,
-      "hit_rate": 0.3082537900056148,
-      "bets": 6532,
-      "priced_share": 0.9169006176305446,
-      "roi": -0.07953765971924874,
-      "avg_odds": 3.19349510161992,
-      "avg_effective_odds": 3.1663047020978485,
-      "first_half_roi": -0.09202056744570308,
-      "second_half_roi": -0.06674519445463063
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7129,
-      "hit_rate": 0.2632907841211951,
-      "bets": 7098,
-      "priced_share": 0.9956515640342264,
-      "roi": -0.05901944321556876,
-      "avg_odds": 3.677528874744459,
-      "avg_effective_odds": 3.6774364891290667,
-      "first_half_roi": -0.06653694352119303,
-      "second_half_roi": -0.05151464139019047
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.25403282367793517,
-      "bets": 7096,
-      "priced_share": 0.9953710197783701,
-      "roi": -0.07363162469433825,
-      "avg_odds": 3.741017467408465,
-      "avg_effective_odds": 3.7441715883427005,
-      "first_half_roi": -0.08537940831043152,
-      "second_half_roi": -0.061903690895675705
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7124,
-      "hit_rate": 0.26670409882088714,
-      "bets": 6235,
-      "priced_share": 0.8752105558674902,
-      "roi": -0.07273295998286512,
-      "avg_odds": 3.5921780214944454,
-      "avg_effective_odds": 3.563717690221563,
-      "first_half_roi": -0.08988657873534675,
-      "second_half_roi": -0.05494609754563001
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.2541730958058634,
-      "bets": 6931,
-      "priced_share": 0.9722261186702202,
-      "roi": -0.07609003162232678,
-      "avg_odds": 3.7449271312576577,
-      "avg_effective_odds": 3.743276091380759,
-      "first_half_roi": -0.09002015627051786,
-      "second_half_roi": -0.06209948133222625
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7128,
-      "hit_rate": 0.26304713804713803,
-      "bets": 7041,
-      "priced_share": 0.9877946127946128,
-      "roi": -0.05603607539645719,
-      "avg_odds": 3.716675181430166,
-      "avg_effective_odds": 3.712513309814293,
-      "first_half_roi": -0.07031782084777867,
-      "second_half_roi": -0.041725904520580906
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.25375227942207884,
-      "bets": 7090,
-      "priced_share": 0.994529387010801,
-      "roi": -0.06528349908013606,
-      "avg_odds": 3.8239252396127568,
-      "avg_effective_odds": 3.826874638784307,
-      "first_half_roi": -0.1010330234783839,
-      "second_half_roi": -0.02957428990534268
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7124,
-      "hit_rate": 0.26754632229084785,
-      "bets": 5913,
-      "priced_share": 0.8300112296462662,
-      "roi": -0.06714865618221412,
-      "avg_odds": 3.650674778859103,
-      "avg_effective_odds": 3.6029591966629866,
-      "first_half_roi": -0.09108552650401466,
-      "second_half_roi": -0.041820397992769764
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7126,
-      "hit_rate": 0.2569463934886332,
-      "bets": 6566,
-      "priced_share": 0.9214145383104125,
-      "roi": -0.07105696110546753,
-      "avg_odds": 3.8060995973249487,
-      "avg_effective_odds": 3.791041594852199,
-      "first_half_roi": -0.11573573605076329,
-      "second_half_roi": -0.025080347827397407
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7128,
-      "hit_rate": 0.26248597081930414,
-      "bets": 6918,
-      "priced_share": 0.9705387205387206,
-      "roi": -0.062084418254354914,
-      "avg_odds": 3.7382075682166134,
-      "avg_effective_odds": 3.726896062697099,
-      "first_half_roi": -0.09315517256999838,
-      "second_half_roi": -0.030634091023860662
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.2524898302707252,
-      "bets": 7085,
-      "priced_share": 0.9938280263711601,
-      "roi": -0.06604234423533072,
-      "avg_odds": 3.862028221387466,
-      "avg_effective_odds": 3.8644912256581954,
-      "first_half_roi": -0.09747246624015543,
-      "second_half_roi": -0.03463882786425726
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7121,
-      "hit_rate": 0.26456958292374666,
-      "bets": 5557,
-      "priced_share": 0.7803679258531105,
-      "roi": -0.07956811264948341,
-      "avg_odds": 3.6992135991804758,
-      "avg_effective_odds": 3.629532864191878,
-      "first_half_roi": -0.11178039472161753,
-      "second_half_roi": -0.044737828626168354
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.2,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7126,
-      "hit_rate": 0.25371877631209655,
-      "bets": 6107,
-      "priced_share": 0.8570025259612686,
-      "roi": -0.06886196269211332,
-      "avg_odds": 3.846500730483294,
-      "avg_effective_odds": 3.8147746457698513,
-      "first_half_roi": -0.11799616553067932,
-      "second_half_roi": -0.01723640168409687
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7129,
-      "hit_rate": 0.29990180951045026,
-      "bets": 7125,
-      "priced_share": 0.9994389114882872,
-      "roi": -0.0703915779046845,
-      "avg_odds": 3.233312281240497,
-      "avg_effective_odds": 3.233276705616569,
-      "first_half_roi": -0.06911310572788817,
-      "second_half_roi": -0.07167040900123849
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.26988357413381964,
-      "bets": 7126,
-      "priced_share": 0.9995791836162154,
-      "roi": -0.06628824063241398,
-      "avg_odds": 3.553703335875244,
-      "avg_effective_odds": 3.5536256237035286,
-      "first_half_roi": -0.05490036463088411,
-      "second_half_roi": -0.07767611663394385
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7123,
-      "hit_rate": 0.298890916748561,
-      "bets": 6286,
-      "priced_share": 0.8824933314614629,
-      "roi": -0.07109290302615237,
-      "avg_odds": 3.223316898021279,
-      "avg_effective_odds": 3.1959695355617126,
-      "first_half_roi": -0.07093583541297017,
-      "second_half_roi": -0.071255255347122
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7128,
-      "hit_rate": 0.2711840628507295,
-      "bets": 6958,
-      "priced_share": 0.9761503928170595,
-      "roi": -0.06708536969755326,
-      "avg_odds": 3.5327321032608814,
-      "avg_effective_odds": 3.5220280338319454,
-      "first_half_roi": -0.06037999970572335,
-      "second_half_roi": -0.07387218143017461
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7126,
-      "hit_rate": 0.3057816446814482,
-      "bets": 7118,
-      "priced_share": 0.9988773505472917,
-      "roi": -0.061149198424785986,
-      "avg_odds": 3.2339870752696074,
-      "avg_effective_odds": 3.233686097863674,
-      "first_half_roi": -0.06351305687906232,
-      "second_half_roi": -0.05878268170966705
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7129,
-      "hit_rate": 0.2635713283770515,
-      "bets": 7122,
-      "priced_share": 0.9990180951045028,
-      "roi": -0.08654591411862672,
-      "avg_odds": 3.614375172455436,
-      "avg_effective_odds": 3.613909874381679,
-      "first_half_roi": -0.11057848871440507,
-      "second_half_roi": -0.06251333952284836
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7123,
-      "hit_rate": 0.30254106415836024,
-      "bets": 6112,
-      "priced_share": 0.8580654218728064,
-      "roi": -0.06109620275765813,
-      "avg_odds": 3.236416887394421,
-      "avg_effective_odds": 3.2041406495344815,
-      "first_half_roi": -0.07241268663672215,
-      "second_half_roi": -0.04928786234088822
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 0.5,
-      "unpriced_factor": 0.8,
-      "probability_power": 0.5,
-      "predictions": 7127,
-      "hit_rate": 0.2679949487863056,
-      "bets": 6661,
-      "priced_share": 0.9346148449558018,
-      "roi": -0.08681429203808298,
-      "avg_odds": 3.5819291374451083,
-      "avg_effective_odds": 3.552029666644158,
-      "first_half_roi": -0.11884182409087629,
-      "second_half_roi": -0.053899543724466495
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 1.0,
-      "predictions": 7123,
-      "hit_rate": 0.30169872244840656,
-      "bets": 7101,
-      "priced_share": 0.9969114137301699,
-      "roi": -0.08135755457285172,
-      "avg_odds": 3.2365033091533153,
-      "avg_effective_odds": 3.235374167170301,
-      "first_half_roi": -0.09391108475579395,
-      "second_half_roi": -0.06877925001401984
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.5,
-      "probability_power": 0.5,
-      "predictions": 7126,
-      "hit_rate": 0.2684535503788942,
-      "bets": 7118,
-      "priced_share": 0.9988773505472917,
-      "roi": -0.07867237966561057,
-      "avg_odds": 3.618352062633849,
-      "avg_effective_odds": 3.617889612984898,
-      "first_half_roi": -0.09909499656490693,
-      "second_half_roi": -0.0582612361465947
-    },
-    {
-      "preferred": [
-        3.5,
-        8.0
-      ],
-      "softness": 0.4,
-      "ev_weight": 1.0,
-      "unpriced_factor": 0.8,
-      "probability_power": 1.0,
-      "predictions": 7120,
-      "hit_rate": 0.29943820224719103,
-      "bets": 5996,
-      "priced_share": 0.8421348314606741,
-      "roi": -0.0755220133913128,
-      "avg_odds": 3.255126752898723,
-      "avg_effective_odds": 3.2190377278212114,
-      "first_half_roi": -0.09092628675897527,
-      "second_half_roi": -0.05940272938269397
+      "hit_rate": 0.3015761328454827,
+      "bets": 5898,
+      "priced_share": 0.8300028145229383,
+      "roi": -0.07503560471429628,
+      "avg_odds": 3.2967989144182965,
+      "avg_effective_odds": 3.2405384377618,
+      "first_half_roi": -0.09016262776741664,
+      "second_half_roi": -0.05923743471115879
     },
     {
       "preferred": [
@@ -1998,35 +1998,35 @@
       "ev_weight": 1.0,
       "unpriced_factor": 0.8,
       "probability_power": 0.5,
-      "predictions": 7126,
-      "hit_rate": 0.27013752455795675,
-      "bets": 6342,
-      "priced_share": 0.8899803536345776,
-      "roi": -0.08425575496645915,
-      "avg_odds": 3.6003374314315684,
-      "avg_effective_odds": 3.5524289290391806,
-      "first_half_roi": -0.117484605150857,
-      "second_half_roi": -0.04937298011224965
+      "predictions": 7112,
+      "hit_rate": 0.2668728908886389,
+      "bets": 6272,
+      "priced_share": 0.8818897637795275,
+      "roi": -0.09297672229609927,
+      "avg_odds": 3.666010838344085,
+      "avg_effective_odds": 3.604101111725653,
+      "first_half_roi": -0.1333156910215784,
+      "second_half_roi": -0.05063398780386432
     }
   ],
   "risk_chosen": {
     "preferred": [
-      3.5,
-      8.0
+      3.0,
+      6.0
     ],
-    "softness": 0.4,
-    "ev_weight": 0.5,
-    "unpriced_factor": 0.5,
-    "probability_power": 1.0,
-    "predictions": 7126,
-    "hit_rate": 0.3057816446814482,
-    "bets": 7118,
-    "priced_share": 0.9988773505472917,
-    "roi": -0.061149198424785986,
-    "avg_odds": 3.2339870752696074,
-    "avg_effective_odds": 3.233686097863674,
-    "first_half_roi": -0.06351305687906232,
-    "second_half_roi": -0.05878268170966705
+    "softness": 0.2,
+    "ev_weight": 0.0,
+    "unpriced_factor": 0.8,
+    "probability_power": 0.5,
+    "predictions": 7114,
+    "hit_rate": 0.28099522069159405,
+    "bets": 6568,
+    "priced_share": 0.9232499297160529,
+    "roi": -0.05932856292149617,
+    "avg_odds": 3.500770398092328,
+    "avg_effective_odds": 3.461238374260785,
+    "first_half_roi": -0.058432677654202875,
+    "second_half_roi": -0.060235979657139546
   },
   "walk_forward": []
 }

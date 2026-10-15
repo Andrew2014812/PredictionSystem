@@ -201,8 +201,9 @@ DIXON_COLES = False
 
 # Main / Risk ranking (src/markets/recommendation.py). The weights were chosen
 # on the validation season 2024/25 by scripts/decision_study.py (36 Main and
-# 72 Risk variants, real Bet365 prices): Main ROI -3.6 % (v4 rule -3.7 %),
-# Risk present for 7126 of 7129 matches, average odds 3.2, ROI -6.1 %.
+# 72 Risk variants, real Bet365 prices): Main ROI -3.6 % (v4 rule -3.7 %); Risk
+# (never the same bet as Main nor a bet against it) average odds 3.5, hit rate 28 %,
+# real price for 92 %, ROI -5.9 %.
 MAIN_MIN_PROBABILITY = 0.40
 MAIN_MAX_PROBABILITY = 0.85
 MAIN_PREFERRED_ODDS = (1.40, 2.50)       # soft preference, not a hard range
@@ -211,11 +212,11 @@ MAIN_EV_WEIGHT = 0.5                     # bonus / penalty for EV at a real pric
 MAIN_UNPRICED_FACTOR = 0.8               # a selection without a real price must be clearly better
 MAIN_PROBABILITY_POWER = 1.0
 RISK_MIN_PROBABILITY = 0.12              # keeps Risk a model result, not a lottery ticket
-RISK_PREFERRED_ODDS = (3.50, 8.00)       # soft; validation: average Risk odds 3.2
-RISK_ODDS_SOFTNESS = 0.40
-RISK_EV_WEIGHT = 0.5
-RISK_UNPRICED_FACTOR = 0.5
-RISK_PROBABILITY_POWER = 1.0
+RISK_PREFERRED_ODDS = (3.00, 6.00)       # soft; validation: average Risk odds 3.5
+RISK_ODDS_SOFTNESS = 0.20
+RISK_EV_WEIGHT = 0.0                     # no EV requirement or bonus for Risk
+RISK_UNPRICED_FACTOR = 0.8
+RISK_PROBABILITY_POWER = 0.5             # less pull towards the most likely of the long shots
 
 # How much each market's model output is trusted when ranking candidates.
 MARKET_RELIABILITY = {
