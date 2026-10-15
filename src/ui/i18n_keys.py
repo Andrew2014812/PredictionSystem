@@ -14,6 +14,9 @@ EXTRA = {
     "Goals / game", "Conceded / game", "Shots / game", "Shots on target / game", "Corners / game",
     "Yellow cards / game", "Home", "Draw", "Away",
     "Most probable outcome", "Draw-aware rule", "Independent Poisson", "Dixon-Coles",
+    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November",
+    "December", "European handicap", "Test season (evaluation model)", "Current season, predicted afterwards",
+    "Current season", "Refund",
 }
 
 
