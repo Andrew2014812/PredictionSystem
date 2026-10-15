@@ -94,7 +94,8 @@ def predict_matches(matches: pd.DataFrame, bundles: dict[str, ModelBundle], odds
             selections += corner_markets(corners_pmf)
 
         priced = price(selections, odds.get(match["match_id"]))
-        main, risk = main_prediction(priced), risk_prediction(priced)
+        main = main_prediction(priced)
+        risk = risk_prediction(priced, main.pick if main else None)
         outcome = RESULT_CLASSES[int(outcomes[i])]
 
         meta = {"model_version": version, "source": source, "generated_at": generated_at}
@@ -126,6 +127,6 @@ def predict_matches(matches: pd.DataFrame, bundles: dict[str, ModelBundle], odds
             picks.append(_pick_row(match, risk.pick, "risk", meta, risk.kind))
 
     markets_df = pd.DataFrame(market_rows)
-    for col in ("probability", "odds", "ev"):
+    for col in ("probability", "odds", "ev", "push_probability"):
         markets_df[col] = pd.to_numeric(markets_df[col], errors="coerce").astype("float32")
     return PredictionBatch(pd.DataFrame(snapshots), markets_df, pd.DataFrame(picks))
