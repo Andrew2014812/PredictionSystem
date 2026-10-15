@@ -16,7 +16,7 @@ from src.markets.distributions import corners_distribution, prob_over
 from src.ui import data
 from src.ui.components import (date_text, empty_state, esc, form_chips, guard, market_table, missing, num,
                                odds_text, page_header, pct, plotly, recommendation_card, section, signed,
-                               status_badge, team_url, tip, tone)
+                               status_badge, team_badge, team_url, tip, tone)
 from src.ui.i18n import current_language, t
 from src.ui.labels import country_label, league_name, market_title, selection_label
 from src.ui.prefs import pref_params
@@ -51,10 +51,12 @@ def _header(row: pd.Series) -> None:
         f'<div class="match-header"><div class="mh-meta"><span>{esc(country_label(lg.country))} · {esc(league_name(lg.code))}</span>'
         f'<span>{date_text(row["date"])}</span><span>{esc(row.get("time") or "—")}</span>'
         f'<span>{t("Full time") if played else t("Upcoming")}</span></div>'
-        f'<div class="mh-row"><div class="mh-team"><a href="{team_url(row["home_team"], row["country"])}" '
+        f'<div class="mh-row"><div class="mh-team">{team_badge(row["country"], row["home_team"], 40)}'
+        f'<a href="{team_url(row["home_team"], row["country"])}" '
         f'target="_self">{esc(row["home_team"])}</a><span class="sub">{t("Home")}</span></div>'
         f'<div class="mh-score">{centre}</div>'
-        f'<div class="mh-team away"><a href="{team_url(row["away_team"], row["country"])}" target="_self">'
+        f'<div class="mh-team away">{team_badge(row["country"], row["away_team"], 40)}'
+        f'<a href="{team_url(row["away_team"], row["country"])}" target="_self">'
         f'{esc(row["away_team"])}</a><span class="sub">{t("Away")}</span></div></div></div>')
 
 

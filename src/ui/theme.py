@@ -95,6 +95,7 @@ a { text-decoration: none; }
 .card b, .card strong { color: var(--text-strong); }
 .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem 1rem; height: 100%; }
 .kpi .label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+img.badge { object-fit: contain; vertical-align: middle; flex: none; }
 .chip-note { display: inline-block; margin-left: .4rem; padding: 0 .4rem; border-radius: 6px; font-size: .62rem; font-weight: 700; letter-spacing: .02em; text-transform: none; color: var(--risk); border: 1px solid var(--risk); vertical-align: middle; }
 .kpi .value { font-size: 1.45rem; font-weight: 800; margin-top: .15rem; color: var(--text-strong); }
 .kpi .sub { color: var(--faint); font-size: .78rem; min-height: 1.25em; }   /* same height with or without a sub line */
@@ -147,6 +148,8 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .mh-team { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-strong); }
 .mh-team a { color: inherit !important; }
 .mh-team.away { text-align: right; }
+.mh-team img.badge { display: block; margin-bottom: .35rem; } .mh-team.away img.badge { margin-left: auto; }
+.mc-teams .team .nm { display: flex; align-items: center; gap: .4rem; min-width: 0; }
 .mh-team .sub { display: block; font-size: .8rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
 .mh-score { font-size: 2.3rem; font-weight: 800; padding: 0 1.5rem; text-align: center; color: var(--text-strong); }
 .mh-score .vs { font-size: 1rem; color: var(--faint); font-weight: 600; }

@@ -10,7 +10,7 @@ from src.analytics.teams import all_teams, form_summary, league_table, team_matc
 from src.leagues import get_league
 from src.ui import data
 from src.ui.components import (date_text, empty_state, esc, form_chips, guard, kpi_row, match_url, num,
-                               page_header, pct, plotly, section)
+                               page_header, pct, plotly, section, team_badge)
 from src.ui.i18n import t
 from src.ui.labels import country_label, league_name
 from src.ui.theme import colors
@@ -116,8 +116,8 @@ def render() -> None:
     row = table.loc[table["Team"] == team] if not table.empty else table
 
     st.html(f"<div class='match-header'><div class='mh-meta'><span>{esc(country_label(lg.country))} · {esc(league_name(lg.code))}</span>"
-            f"<span>{t('Season')} {config.season_label(season)}</span></div><div class='mh-team' style='margin-top:.5rem'>"
-            f"{esc(team)}</div><div style='margin-top:.5rem'>{form_chips(''.join(tm['result'].head(5)))}</div></div>")
+            f"<span>{t('Season')} {config.season_label(season)}</span></div><div class='mh-team' style='margin-top:.5rem;display:flex;align-items:center;gap:.6rem'>"
+            f"{team_badge(country, team, 40)}{esc(team)}</div><div style='margin-top:.5rem'>{form_chips(''.join(tm['result'].head(5)))}</div></div>")
     if not row.empty:
         r = row.iloc[0]
         kpi_row([(t("League position"), f"{r['Pos']}", t("of {n}", n=len(table))),

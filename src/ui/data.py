@@ -118,6 +118,21 @@ def decision_study() -> dict | None:
     return _decision_study(_mtime(models_storage.path("decision_study.json")))
 
 
+@st.cache_data(show_spinner=False)
+def _team_logos(_mtime_key: float) -> dict:
+    import json
+    from .. import config
+    path = config.DATA_DIR / "teams" / "logos.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
+def team_logo(country: str, team: str) -> str | None:
+    """Badge URL from the prebuilt map (scripts/build_team_logos.py); never looked up at view time."""
+    from .. import config
+    entry = _team_logos(_mtime(config.DATA_DIR / "teams" / "logos.json")).get(f"{country}|{team}")
+    return entry["url"] if entry else None
+
+
 def model_versions() -> dict:
     return registry.list_versions()
 

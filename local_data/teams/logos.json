@@ -1,0 +1,1552 @@
+{
+ "Belgium|Anderlecht": {
+  "url": "https://media.api-sports.io/football/teams/554.png",
+  "source": "api-football",
+  "provider_id": 554
+ },
+ "Belgium|Antwerp": {
+  "url": "https://media.api-sports.io/football/teams/740.png",
+  "source": "api-football",
+  "provider_id": 740
+ },
+ "Belgium|Cercle Brugge": {
+  "url": "https://media.api-sports.io/football/teams/741.png",
+  "source": "api-football",
+  "provider_id": 741
+ },
+ "Belgium|Charleroi": {
+  "url": "https://media.api-sports.io/football/teams/736.png",
+  "source": "api-football",
+  "provider_id": 736
+ },
+ "Belgium|Club Brugge": {
+  "url": "https://media.api-sports.io/football/teams/569.png",
+  "source": "api-football",
+  "provider_id": 569
+ },
+ "Belgium|Dender": {
+  "url": "https://media.api-sports.io/football/teams/6215.png",
+  "source": "api-football",
+  "provider_id": 6215
+ },
+ "Belgium|Genk": {
+  "url": "https://media.api-sports.io/football/teams/742.png",
+  "source": "api-football",
+  "provider_id": 742
+ },
+ "Belgium|Gent": {
+  "url": "https://media.api-sports.io/football/teams/631.png",
+  "source": "api-football",
+  "provider_id": 631
+ },
+ "Belgium|Kortrijk": {
+  "url": "https://media.api-sports.io/football/teams/734.png",
+  "source": "api-football",
+  "provider_id": 734
+ },
+ "Belgium|Mechelen": {
+  "url": "https://media.api-sports.io/football/teams/266.png",
+  "source": "api-football",
+  "provider_id": 266
+ },
+ "Belgium|Oud-Heverlee Leuven": {
+  "url": "https://media.api-sports.io/football/teams/260.png",
+  "source": "api-football",
+  "provider_id": 260
+ },
+ "Belgium|St Truiden": {
+  "url": "https://media.api-sports.io/football/teams/735.png",
+  "source": "api-football",
+  "provider_id": 735
+ },
+ "Belgium|St. Gilloise": {
+  "url": "https://media.api-sports.io/football/teams/1393.png",
+  "source": "api-football",
+  "provider_id": 1393
+ },
+ "Belgium|Standard": {
+  "url": "https://media.api-sports.io/football/teams/733.png",
+  "source": "api-football",
+  "provider_id": 733
+ },
+ "Belgium|Westerlo": {
+  "url": "https://media.api-sports.io/football/teams/261.png",
+  "source": "api-football",
+  "provider_id": 261
+ },
+ "England|Accrington": {
+  "url": "https://media.api-sports.io/football/teams/1360.png",
+  "source": "api-football",
+  "provider_id": 1360
+ },
+ "England|Arsenal": {
+  "url": "https://media.api-sports.io/football/teams/42.png",
+  "source": "api-football",
+  "provider_id": 42
+ },
+ "England|Aston Villa": {
+  "url": "https://media.api-sports.io/football/teams/66.png",
+  "source": "api-football",
+  "provider_id": 66
+ },
+ "England|Barnsley": {
+  "url": "https://media.api-sports.io/football/teams/747.png",
+  "source": "api-football",
+  "provider_id": 747
+ },
+ "England|Barrow": {
+  "url": "https://media.api-sports.io/football/teams/1819.png",
+  "source": "api-football",
+  "provider_id": 1819
+ },
+ "England|Blackburn": {
+  "url": "https://media.api-sports.io/football/teams/67.png",
+  "source": "api-football",
+  "provider_id": 67
+ },
+ "England|Blackpool": {
+  "url": "https://media.api-sports.io/football/teams/1356.png",
+  "source": "api-football",
+  "provider_id": 1356
+ },
+ "England|Bolton": {
+  "url": "https://media.api-sports.io/football/teams/68.png",
+  "source": "api-football",
+  "provider_id": 68
+ },
+ "England|Bournemouth": {
+  "url": "https://media.api-sports.io/football/teams/35.png",
+  "source": "api-football",
+  "provider_id": 35
+ },
+ "England|Brentford": {
+  "url": "https://media.api-sports.io/football/teams/55.png",
+  "source": "api-football",
+  "provider_id": 55
+ },
+ "England|Brighton": {
+  "url": "https://media.api-sports.io/football/teams/51.png",
+  "source": "api-football",
+  "provider_id": 51
+ },
+ "England|Bristol City": {
+  "url": "https://media.api-sports.io/football/teams/56.png",
+  "source": "api-football",
+  "provider_id": 56
+ },
+ "England|Bromley": {
+  "url": "https://media.api-sports.io/football/teams/1832.png",
+  "source": "api-football",
+  "provider_id": 1832
+ },
+ "England|Burnley": {
+  "url": "https://media.api-sports.io/football/teams/44.png",
+  "source": "api-football",
+  "provider_id": 44
+ },
+ "England|Burton": {
+  "url": "https://media.api-sports.io/football/teams/748.png",
+  "source": "api-football",
+  "provider_id": 748
+ },
+ "England|Cambridge": {
+  "url": "https://media.api-sports.io/football/teams/1370.png",
+  "source": "api-football",
+  "provider_id": 1370
+ },
+ "England|Cardiff": {
+  "url": "https://media.api-sports.io/football/teams/43.png",
+  "source": "api-football",
+  "provider_id": 43
+ },
+ "England|Chelsea": {
+  "url": "https://media.api-sports.io/football/teams/49.png",
+  "source": "api-football",
+  "provider_id": 49
+ },
+ "England|Cheltenham": {
+  "url": "https://media.api-sports.io/football/teams/1372.png",
+  "source": "api-football",
+  "provider_id": 1372
+ },
+ "England|Chesterfield": {
+  "url": "https://media.api-sports.io/football/teams/1345.png",
+  "source": "api-football",
+  "provider_id": 1345
+ },
+ "England|Colchester": {
+  "url": "https://media.api-sports.io/football/teams/1361.png",
+  "source": "api-football",
+  "provider_id": 1361
+ },
+ "England|Coventry": {
+  "url": "https://media.api-sports.io/football/teams/1346.png",
+  "source": "api-football",
+  "provider_id": 1346
+ },
+ "England|Crewe": {
+  "url": "https://media.api-sports.io/football/teams/1363.png",
+  "source": "api-football",
+  "provider_id": 1363
+ },
+ "England|Crystal Palace": {
+  "url": "https://media.api-sports.io/football/teams/52.png",
+  "source": "api-football",
+  "provider_id": 52
+ },
+ "England|Derby": {
+  "url": "https://media.api-sports.io/football/teams/69.png",
+  "source": "api-football",
+  "provider_id": 69
+ },
+ "England|Everton": {
+  "url": "https://media.api-sports.io/football/teams/45.png",
+  "source": "api-football",
+  "provider_id": 45
+ },
+ "England|Exeter": {
+  "url": "https://media.api-sports.io/football/teams/1364.png",
+  "source": "api-football",
+  "provider_id": 1364
+ },
+ "England|Fleetwood Town": {
+  "url": "https://media.api-sports.io/football/teams/1336.png",
+  "source": "api-football",
+  "provider_id": 1336
+ },
+ "England|Fulham": {
+  "url": "https://media.api-sports.io/football/teams/36.png",
+  "source": "api-football",
+  "provider_id": 36
+ },
+ "England|Gillingham": {
+  "url": "https://media.api-sports.io/football/teams/1347.png",
+  "source": "api-football",
+  "provider_id": 1347
+ },
+ "England|Grimsby": {
+  "url": "https://media.api-sports.io/football/teams/1365.png",
+  "source": "api-football",
+  "provider_id": 1365
+ },
+ "England|Harrogate": {
+  "url": "https://media.api-sports.io/football/teams/1842.png",
+  "source": "api-football",
+  "provider_id": 1842
+ },
+ "England|Huddersfield": {
+  "url": "https://media.api-sports.io/football/teams/37.png",
+  "source": "api-football",
+  "provider_id": 37
+ },
+ "England|Hull": {
+  "url": "https://media.api-sports.io/football/teams/64.png",
+  "source": "api-football",
+  "provider_id": 64
+ },
+ "England|Ipswich": {
+  "url": "https://media.api-sports.io/football/teams/57.png",
+  "source": "api-football",
+  "provider_id": 57
+ },
+ "England|Leyton Orient": {
+  "url": "https://media.api-sports.io/football/teams/1373.png",
+  "source": "api-football",
+  "provider_id": 1373
+ },
+ "England|Lincoln": {
+  "url": "https://media.api-sports.io/football/teams/1379.png",
+  "source": "api-football",
+  "provider_id": 1379
+ },
+ "England|Liverpool": {
+  "url": "https://media.api-sports.io/football/teams/40.png",
+  "source": "api-football",
+  "provider_id": 40
+ },
+ "England|Man City": {
+  "url": "https://media.api-sports.io/football/teams/50.png",
+  "source": "api-football",
+  "provider_id": 50
+ },
+ "England|Man United": {
+  "url": "https://media.api-sports.io/football/teams/33.png",
+  "source": "api-football",
+  "provider_id": 33
+ },
+ "England|Mansfield": {
+  "url": "https://media.api-sports.io/football/teams/1374.png",
+  "source": "api-football",
+  "provider_id": 1374
+ },
+ "England|Middlesbrough": {
+  "url": "https://media.api-sports.io/football/teams/70.png",
+  "source": "api-football",
+  "provider_id": 70
+ },
+ "England|Millwall": {
+  "url": "https://media.api-sports.io/football/teams/58.png",
+  "source": "api-football",
+  "provider_id": 58
+ },
+ "England|Milton Keynes Dons": {
+  "url": "https://media.api-sports.io/football/teams/1348.png",
+  "source": "api-football",
+  "provider_id": 1348
+ },
+ "England|Newcastle": {
+  "url": "https://media.api-sports.io/football/teams/34.png",
+  "source": "api-football",
+  "provider_id": 34
+ },
+ "England|Newport County": {
+  "url": "https://media.api-sports.io/football/teams/1367.png",
+  "source": "api-football",
+  "provider_id": 1367
+ },
+ "England|Northampton": {
+  "url": "https://media.api-sports.io/football/teams/1337.png",
+  "source": "api-football",
+  "provider_id": 1337
+ },
+ "England|Norwich": {
+  "url": "https://media.api-sports.io/football/teams/71.png",
+  "source": "api-football",
+  "provider_id": 71
+ },
+ "England|Nott'm Forest": {
+  "url": "https://media.api-sports.io/football/teams/65.png",
+  "source": "api-football",
+  "provider_id": 65
+ },
+ "England|Notts County": {
+  "url": "https://media.api-sports.io/football/teams/1376.png",
+  "source": "api-football",
+  "provider_id": 1376
+ },
+ "England|Oxford": {
+  "url": "https://media.api-sports.io/football/teams/1338.png",
+  "source": "api-football",
+  "provider_id": 1338
+ },
+ "England|Peterboro": {
+  "url": "https://media.api-sports.io/football/teams/1350.png",
+  "source": "api-football",
+  "provider_id": 1350
+ },
+ "England|Port Vale": {
+  "url": "https://media.api-sports.io/football/teams/1351.png",
+  "source": "api-football",
+  "provider_id": 1351
+ },
+ "England|Portsmouth": {
+  "url": "https://media.api-sports.io/football/teams/1355.png",
+  "source": "api-football",
+  "provider_id": 1355
+ },
+ "England|Preston": {
+  "url": "https://media.api-sports.io/football/teams/59.png",
+  "source": "api-football",
+  "provider_id": 59
+ },
+ "England|QPR": {
+  "url": "https://media.api-sports.io/football/teams/72.png",
+  "source": "api-football",
+  "provider_id": 72
+ },
+ "England|Reading": {
+  "url": "https://media.api-sports.io/football/teams/53.png",
+  "source": "api-football",
+  "provider_id": 53
+ },
+ "England|Rotherham": {
+  "url": "https://media.api-sports.io/football/teams/73.png",
+  "source": "api-football",
+  "provider_id": 73
+ },
+ "England|Salford": {
+  "url": "https://media.api-sports.io/football/teams/1844.png",
+  "source": "api-football",
+  "provider_id": 1844
+ },
+ "England|Sheffield United": {
+  "url": "https://media.api-sports.io/football/teams/62.png",
+  "source": "api-football",
+  "provider_id": 62
+ },
+ "England|Sheffield Weds": {
+  "url": "https://media.api-sports.io/football/teams/74.png",
+  "source": "api-football",
+  "provider_id": 74
+ },
+ "England|Stevenage": {
+  "url": "https://media.api-sports.io/football/teams/1368.png",
+  "source": "api-football",
+  "provider_id": 1368
+ },
+ "England|Stockport": {
+  "url": "https://media.api-sports.io/football/teams/4686.png",
+  "source": "api-football",
+  "provider_id": 4686
+ },
+ "England|Stoke": {
+  "url": "https://media.api-sports.io/football/teams/75.png",
+  "source": "api-football",
+  "provider_id": 75
+ },
+ "England|Swansea": {
+  "url": "https://media.api-sports.io/football/teams/76.png",
+  "source": "api-football",
+  "provider_id": 76
+ },
+ "England|Swindon": {
+  "url": "https://media.api-sports.io/football/teams/1353.png",
+  "source": "api-football",
+  "provider_id": 1353
+ },
+ "England|Tottenham": {
+  "url": "https://media.api-sports.io/football/teams/47.png",
+  "source": "api-football",
+  "provider_id": 47
+ },
+ "England|Tranmere": {
+  "url": "https://media.api-sports.io/football/teams/1381.png",
+  "source": "api-football",
+  "provider_id": 1381
+ },
+ "England|Walsall": {
+  "url": "https://media.api-sports.io/football/teams/1342.png",
+  "source": "api-football",
+  "provider_id": 1342
+ },
+ "England|Watford": {
+  "url": "https://media.api-sports.io/football/teams/38.png",
+  "source": "api-football",
+  "provider_id": 38
+ },
+ "England|West Brom": {
+  "url": "https://media.api-sports.io/football/teams/60.png",
+  "source": "api-football",
+  "provider_id": 60
+ },
+ "England|West Ham": {
+  "url": "https://media.api-sports.io/football/teams/48.png",
+  "source": "api-football",
+  "provider_id": 48
+ },
+ "England|Wigan": {
+  "url": "https://media.api-sports.io/football/teams/61.png",
+  "source": "api-football",
+  "provider_id": 61
+ },
+ "England|Wolves": {
+  "url": "https://media.api-sports.io/football/teams/39.png",
+  "source": "api-football",
+  "provider_id": 39
+ },
+ "England|Wycombe": {
+  "url": "https://media.api-sports.io/football/teams/1358.png",
+  "source": "api-football",
+  "provider_id": 1358
+ },
+ "France|Amiens": {
+  "url": "https://media.api-sports.io/football/teams/87.png",
+  "source": "api-football",
+  "provider_id": 87
+ },
+ "France|Angers": {
+  "url": "https://media.api-sports.io/football/teams/77.png",
+  "source": "api-football",
+  "provider_id": 77
+ },
+ "France|Annecy": {
+  "url": "https://media.api-sports.io/football/teams/3012.png",
+  "source": "api-football",
+  "provider_id": 3012
+ },
+ "France|Auxerre": {
+  "url": "https://media.api-sports.io/football/teams/108.png",
+  "source": "api-football",
+  "provider_id": 108
+ },
+ "France|Bastia": {
+  "url": "https://media.api-sports.io/football/teams/1305.png",
+  "source": "api-football",
+  "provider_id": 1305
+ },
+ "France|Boulogne": {
+  "url": "https://media.api-sports.io/football/teams/1299.png",
+  "source": "api-football",
+  "provider_id": 1299
+ },
+ "France|Brest": {
+  "url": "https://media.api-sports.io/football/teams/106.png",
+  "source": "api-football",
+  "provider_id": 106
+ },
+ "France|Clermont": {
+  "url": "https://media.api-sports.io/football/teams/99.png",
+  "source": "api-football",
+  "provider_id": 99
+ },
+ "France|Dunkerque": {
+  "url": "https://media.api-sports.io/football/teams/1304.png",
+  "source": "api-football",
+  "provider_id": 1304
+ },
+ "France|Grenoble": {
+  "url": "https://media.api-sports.io/football/teams/101.png",
+  "source": "api-football",
+  "provider_id": 101
+ },
+ "France|Guingamp": {
+  "url": "https://media.api-sports.io/football/teams/90.png",
+  "source": "api-football",
+  "provider_id": 90
+ },
+ "France|Laval": {
+  "url": "https://media.api-sports.io/football/teams/433.png",
+  "source": "api-football",
+  "provider_id": 433
+ },
+ "France|Le Havre": {
+  "url": "https://media.api-sports.io/football/teams/111.png",
+  "source": "api-football",
+  "provider_id": 111
+ },
+ "France|Lens": {
+  "url": "https://media.api-sports.io/football/teams/116.png",
+  "source": "api-football",
+  "provider_id": 116
+ },
+ "France|Lille": {
+  "url": "https://media.api-sports.io/football/teams/79.png",
+  "source": "api-football",
+  "provider_id": 79
+ },
+ "France|Lyon": {
+  "url": "https://media.api-sports.io/football/teams/80.png",
+  "source": "api-football",
+  "provider_id": 80
+ },
+ "France|Marseille": {
+  "url": "https://media.api-sports.io/football/teams/81.png",
+  "source": "api-football",
+  "provider_id": 81
+ },
+ "France|Metz": {
+  "url": "https://media.api-sports.io/football/teams/112.png",
+  "source": "api-football",
+  "provider_id": 112
+ },
+ "France|Monaco": {
+  "url": "https://media.api-sports.io/football/teams/91.png",
+  "source": "api-football",
+  "provider_id": 91
+ },
+ "France|Nantes": {
+  "url": "https://media.api-sports.io/football/teams/83.png",
+  "source": "api-football",
+  "provider_id": 83
+ },
+ "France|Nice": {
+  "url": "https://media.api-sports.io/football/teams/84.png",
+  "source": "api-football",
+  "provider_id": 84
+ },
+ "France|Paris SG": {
+  "url": "https://media.api-sports.io/football/teams/85.png",
+  "source": "api-football",
+  "provider_id": 85
+ },
+ "France|Pau FC": {
+  "url": "https://media.api-sports.io/football/teams/1297.png",
+  "source": "api-football",
+  "provider_id": 1297
+ },
+ "France|Red Star": {
+  "url": "https://media.api-sports.io/football/teams/104.png",
+  "source": "api-football",
+  "provider_id": 104
+ },
+ "France|Rennes": {
+  "url": "https://media.api-sports.io/football/teams/94.png",
+  "source": "api-football",
+  "provider_id": 94
+ },
+ "France|Rodez": {
+  "url": "https://media.api-sports.io/football/teams/1301.png",
+  "source": "api-football",
+  "provider_id": 1301
+ },
+ "France|Strasbourg": {
+  "url": "https://media.api-sports.io/football/teams/95.png",
+  "source": "api-football",
+  "provider_id": 95
+ },
+ "France|Toulouse": {
+  "url": "https://media.api-sports.io/football/teams/96.png",
+  "source": "api-football",
+  "provider_id": 96
+ },
+ "France|Troyes": {
+  "url": "https://media.api-sports.io/football/teams/110.png",
+  "source": "api-football",
+  "provider_id": 110
+ },
+ "Germany|Augsburg": {
+  "url": "https://media.api-sports.io/football/teams/170.png",
+  "source": "api-football",
+  "provider_id": 170
+ },
+ "Germany|Bayern Munich": {
+  "url": "https://media.api-sports.io/football/teams/157.png",
+  "source": "api-football",
+  "provider_id": 157
+ },
+ "Germany|Braunschweig": {
+  "url": "https://media.api-sports.io/football/teams/744.png",
+  "source": "api-football",
+  "provider_id": 744
+ },
+ "Germany|Darmstadt": {
+  "url": "https://media.api-sports.io/football/teams/181.png",
+  "source": "api-football",
+  "provider_id": 181
+ },
+ "Germany|Dortmund": {
+  "url": "https://media.api-sports.io/football/teams/165.png",
+  "source": "api-football",
+  "provider_id": 165
+ },
+ "Germany|Ein Frankfurt": {
+  "url": "https://media.api-sports.io/football/teams/169.png",
+  "source": "api-football",
+  "provider_id": 169
+ },
+ "Germany|Elversberg": {
+  "url": "https://media.api-sports.io/football/teams/1660.png",
+  "source": "api-football",
+  "provider_id": 1660
+ },
+ "Germany|Fortuna Dusseldorf": {
+  "url": "https://media.api-sports.io/football/teams/158.png",
+  "source": "api-football",
+  "provider_id": 158
+ },
+ "Germany|Freiburg": {
+  "url": "https://media.api-sports.io/football/teams/160.png",
+  "source": "api-football",
+  "provider_id": 160
+ },
+ "Germany|Greuther Furth": {
+  "url": "https://media.api-sports.io/football/teams/178.png",
+  "source": "api-football",
+  "provider_id": 178
+ },
+ "Germany|Hannover": {
+  "url": "https://media.api-sports.io/football/teams/166.png",
+  "source": "api-football",
+  "provider_id": 166
+ },
+ "Germany|Heidenheim": {
+  "url": "https://media.api-sports.io/football/teams/180.png",
+  "source": "api-football",
+  "provider_id": 180
+ },
+ "Germany|Hertha": {
+  "url": "https://media.api-sports.io/football/teams/159.png",
+  "source": "api-football",
+  "provider_id": 159
+ },
+ "Germany|Hoffenheim": {
+  "url": "https://media.api-sports.io/football/teams/167.png",
+  "source": "api-football",
+  "provider_id": 167
+ },
+ "Germany|Kaiserslautern": {
+  "url": "https://media.api-sports.io/football/teams/745.png",
+  "source": "api-football",
+  "provider_id": 745
+ },
+ "Germany|Karlsruhe": {
+  "url": "https://media.api-sports.io/football/teams/785.png",
+  "source": "api-football",
+  "provider_id": 785
+ },
+ "Germany|Leverkusen": {
+  "url": "https://media.api-sports.io/football/teams/168.png",
+  "source": "api-football",
+  "provider_id": 168
+ },
+ "Germany|M'gladbach": {
+  "url": "https://media.api-sports.io/football/teams/163.png",
+  "source": "api-football",
+  "provider_id": 163
+ },
+ "Germany|Magdeburg": {
+  "url": "https://media.api-sports.io/football/teams/179.png",
+  "source": "api-football",
+  "provider_id": 179
+ },
+ "Germany|Mainz": {
+  "url": "https://media.api-sports.io/football/teams/164.png",
+  "source": "api-football",
+  "provider_id": 164
+ },
+ "Germany|Nurnberg": {
+  "url": "https://media.api-sports.io/football/teams/171.png",
+  "source": "api-football",
+  "provider_id": 171
+ },
+ "Germany|Paderborn": {
+  "url": "https://media.api-sports.io/football/teams/185.png",
+  "source": "api-football",
+  "provider_id": 185
+ },
+ "Germany|Preußen Münster": {
+  "url": "https://media.api-sports.io/football/teams/1313.png",
+  "source": "api-football",
+  "provider_id": 1313
+ },
+ "Germany|RB Leipzig": {
+  "url": "https://media.api-sports.io/football/teams/173.png",
+  "source": "api-football",
+  "provider_id": 173
+ },
+ "Germany|Schalke 04": {
+  "url": "https://media.api-sports.io/football/teams/174.png",
+  "source": "api-football",
+  "provider_id": 174
+ },
+ "Germany|St Pauli": {
+  "url": "https://media.api-sports.io/football/teams/186.png",
+  "source": "api-football",
+  "provider_id": 186
+ },
+ "Germany|Stuttgart": {
+  "url": "https://media.api-sports.io/football/teams/172.png",
+  "source": "api-football",
+  "provider_id": 172
+ },
+ "Germany|Union Berlin": {
+  "url": "https://media.api-sports.io/football/teams/182.png",
+  "source": "api-football",
+  "provider_id": 182
+ },
+ "Germany|Werder Bremen": {
+  "url": "https://media.api-sports.io/football/teams/162.png",
+  "source": "api-football",
+  "provider_id": 162
+ },
+ "Germany|Wolfsburg": {
+  "url": "https://media.api-sports.io/football/teams/161.png",
+  "source": "api-football",
+  "provider_id": 161
+ },
+ "Greece|AEK": {
+  "url": "https://media.api-sports.io/football/teams/575.png",
+  "source": "api-football",
+  "provider_id": 575
+ },
+ "Greece|Aris": {
+  "url": "https://media.api-sports.io/football/teams/1123.png",
+  "source": "api-football",
+  "provider_id": 1123
+ },
+ "Greece|Asteras Tripolis": {
+  "url": "https://media.api-sports.io/football/teams/955.png",
+  "source": "api-football",
+  "provider_id": 955
+ },
+ "Greece|Atromitos": {
+  "url": "https://media.api-sports.io/football/teams/12260.png",
+  "source": "api-football",
+  "provider_id": 12260
+ },
+ "Greece|Levadeiakos": {
+  "url": "https://media.api-sports.io/football/teams/957.png",
+  "source": "api-football",
+  "provider_id": 957
+ },
+ "Greece|Olympiakos": {
+  "url": "https://media.api-sports.io/football/teams/553.png",
+  "source": "api-football",
+  "provider_id": 553
+ },
+ "Greece|PAOK": {
+  "url": "https://media.api-sports.io/football/teams/619.png",
+  "source": "api-football",
+  "provider_id": 619
+ },
+ "Greece|Panathinaikos": {
+  "url": "https://media.api-sports.io/football/teams/617.png",
+  "source": "api-football",
+  "provider_id": 617
+ },
+ "Greece|Panetolikos": {
+  "url": "https://media.api-sports.io/football/teams/949.png",
+  "source": "api-football",
+  "provider_id": 949
+ },
+ "Greece|Panserraikos": {
+  "url": "https://media.api-sports.io/football/teams/2099.png",
+  "source": "api-football",
+  "provider_id": 2099
+ },
+ "Greece|Volos NFC": {
+  "url": "https://media.api-sports.io/football/teams/2110.png",
+  "source": "api-football",
+  "provider_id": 2110
+ },
+ "Italy|Atalanta": {
+  "url": "https://media.api-sports.io/football/teams/499.png",
+  "source": "api-football",
+  "provider_id": 499
+ },
+ "Italy|Bari": {
+  "url": "https://media.api-sports.io/football/teams/508.png",
+  "source": "api-football",
+  "provider_id": 508
+ },
+ "Italy|Bologna": {
+  "url": "https://media.api-sports.io/football/teams/500.png",
+  "source": "api-football",
+  "provider_id": 500
+ },
+ "Italy|Cagliari": {
+  "url": "https://media.api-sports.io/football/teams/490.png",
+  "source": "api-football",
+  "provider_id": 490
+ },
+ "Italy|Carrarese": {
+  "url": "https://media.api-sports.io/football/teams/1581.png",
+  "source": "api-football",
+  "provider_id": 1581
+ },
+ "Italy|Catanzaro": {
+  "url": "https://media.api-sports.io/football/teams/1687.png",
+  "source": "api-football",
+  "provider_id": 1687
+ },
+ "Italy|Cesena": {
+  "url": "https://media.api-sports.io/football/teams/509.png",
+  "source": "api-football",
+  "provider_id": 509
+ },
+ "Italy|Como": {
+  "url": "https://media.api-sports.io/football/teams/895.png",
+  "source": "api-football",
+  "provider_id": 895
+ },
+ "Italy|Cremonese": {
+  "url": "https://media.api-sports.io/football/teams/520.png",
+  "source": "api-football",
+  "provider_id": 520
+ },
+ "Italy|Fiorentina": {
+  "url": "https://media.api-sports.io/football/teams/502.png",
+  "source": "api-football",
+  "provider_id": 502
+ },
+ "Italy|Frosinone": {
+  "url": "https://media.api-sports.io/football/teams/512.png",
+  "source": "api-football",
+  "provider_id": 512
+ },
+ "Italy|Genoa": {
+  "url": "https://media.api-sports.io/football/teams/495.png",
+  "source": "api-football",
+  "provider_id": 495
+ },
+ "Italy|Inter": {
+  "url": "https://media.api-sports.io/football/teams/505.png",
+  "source": "api-football",
+  "provider_id": 505
+ },
+ "Italy|Juve Stabia": {
+  "url": "https://media.api-sports.io/football/teams/863.png",
+  "source": "api-football",
+  "provider_id": 863
+ },
+ "Italy|Juventus": {
+  "url": "https://media.api-sports.io/football/teams/496.png",
+  "source": "api-football",
+  "provider_id": 496
+ },
+ "Italy|Lazio": {
+  "url": "https://media.api-sports.io/football/teams/487.png",
+  "source": "api-football",
+  "provider_id": 487
+ },
+ "Italy|Lecce": {
+  "url": "https://media.api-sports.io/football/teams/867.png",
+  "source": "api-football",
+  "provider_id": 867
+ },
+ "Italy|Mantova": {
+  "url": "https://media.api-sports.io/football/teams/1693.png",
+  "source": "api-football",
+  "provider_id": 1693
+ },
+ "Italy|Milan": {
+  "url": "https://media.api-sports.io/football/teams/489.png",
+  "source": "api-football",
+  "provider_id": 489
+ },
+ "Italy|Modena": {
+  "url": "https://media.api-sports.io/football/teams/899.png",
+  "source": "api-football",
+  "provider_id": 899
+ },
+ "Italy|Monza": {
+  "url": "https://media.api-sports.io/football/teams/1579.png",
+  "source": "api-football",
+  "provider_id": 1579
+ },
+ "Italy|Napoli": {
+  "url": "https://media.api-sports.io/football/teams/492.png",
+  "source": "api-football",
+  "provider_id": 492
+ },
+ "Italy|Palermo": {
+  "url": "https://media.api-sports.io/football/teams/522.png",
+  "source": "api-football",
+  "provider_id": 522
+ },
+ "Italy|Parma": {
+  "url": "https://media.api-sports.io/football/teams/523.png",
+  "source": "api-football",
+  "provider_id": 523
+ },
+ "Italy|Pisa": {
+  "url": "https://media.api-sports.io/football/teams/801.png",
+  "source": "api-football",
+  "provider_id": 801
+ },
+ "Italy|Reggiana": {
+  "url": "https://media.api-sports.io/football/teams/880.png",
+  "source": "api-football",
+  "provider_id": 880
+ },
+ "Italy|Roma": {
+  "url": "https://media.api-sports.io/football/teams/497.png",
+  "source": "api-football",
+  "provider_id": 497
+ },
+ "Italy|Sampdoria": {
+  "url": "https://media.api-sports.io/football/teams/498.png",
+  "source": "api-football",
+  "provider_id": 498
+ },
+ "Italy|Spezia": {
+  "url": "https://media.api-sports.io/football/teams/515.png",
+  "source": "api-football",
+  "provider_id": 515
+ },
+ "Italy|Sudtirol": {
+  "url": "https://media.api-sports.io/football/teams/1578.png",
+  "source": "api-football",
+  "provider_id": 1578
+ },
+ "Italy|Torino": {
+  "url": "https://media.api-sports.io/football/teams/503.png",
+  "source": "api-football",
+  "provider_id": 503
+ },
+ "Italy|Udinese": {
+  "url": "https://media.api-sports.io/football/teams/494.png",
+  "source": "api-football",
+  "provider_id": 494
+ },
+ "Italy|Venezia": {
+  "url": "https://media.api-sports.io/football/teams/517.png",
+  "source": "api-football",
+  "provider_id": 517
+ },
+ "Italy|Verona": {
+  "url": "https://media.api-sports.io/football/teams/504.png",
+  "source": "api-football",
+  "provider_id": 504
+ },
+ "Netherlands|AZ Alkmaar": {
+  "url": "https://media.api-sports.io/football/teams/201.png",
+  "source": "api-football",
+  "provider_id": 201
+ },
+ "Netherlands|Ajax": {
+  "url": "https://media.api-sports.io/football/teams/194.png",
+  "source": "api-football",
+  "provider_id": 194
+ },
+ "Netherlands|Cambuur": {
+  "url": "https://media.api-sports.io/football/teams/420.png",
+  "source": "api-football",
+  "provider_id": 420
+ },
+ "Netherlands|Den Haag": {
+  "url": "https://media.api-sports.io/football/teams/198.png",
+  "source": "api-football",
+  "provider_id": 198
+ },
+ "Netherlands|Feyenoord": {
+  "url": "https://media.api-sports.io/football/teams/209.png",
+  "source": "api-football",
+  "provider_id": 209
+ },
+ "Netherlands|For Sittard": {
+  "url": "https://media.api-sports.io/football/teams/205.png",
+  "source": "api-football",
+  "provider_id": 205
+ },
+ "Netherlands|Go Ahead Eagles": {
+  "url": "https://media.api-sports.io/football/teams/410.png",
+  "source": "api-football",
+  "provider_id": 410
+ },
+ "Netherlands|Groningen": {
+  "url": "https://media.api-sports.io/football/teams/202.png",
+  "source": "api-football",
+  "provider_id": 202
+ },
+ "Netherlands|Heerenveen": {
+  "url": "https://media.api-sports.io/football/teams/210.png",
+  "source": "api-football",
+  "provider_id": 210
+ },
+ "Netherlands|Heracles": {
+  "url": "https://media.api-sports.io/football/teams/206.png",
+  "source": "api-football",
+  "provider_id": 206
+ },
+ "Netherlands|NAC Breda": {
+  "url": "https://media.api-sports.io/football/teams/203.png",
+  "source": "api-football",
+  "provider_id": 203
+ },
+ "Netherlands|Nijmegen": {
+  "url": "https://media.api-sports.io/football/teams/413.png",
+  "source": "api-football",
+  "provider_id": 413
+ },
+ "Netherlands|PSV Eindhoven": {
+  "url": "https://media.api-sports.io/football/teams/197.png",
+  "source": "api-football",
+  "provider_id": 197
+ },
+ "Netherlands|Sparta Rotterdam": {
+  "url": "https://media.api-sports.io/football/teams/426.png",
+  "source": "api-football",
+  "provider_id": 426
+ },
+ "Netherlands|Telstar": {
+  "url": "https://media.api-sports.io/football/teams/427.png",
+  "source": "api-football",
+  "provider_id": 427
+ },
+ "Netherlands|Twente": {
+  "url": "https://media.api-sports.io/football/teams/415.png",
+  "source": "api-football",
+  "provider_id": 415
+ },
+ "Netherlands|Utrecht": {
+  "url": "https://media.api-sports.io/football/teams/207.png",
+  "source": "api-football",
+  "provider_id": 207
+ },
+ "Netherlands|Willem II": {
+  "url": "https://media.api-sports.io/football/teams/195.png",
+  "source": "api-football",
+  "provider_id": 195
+ },
+ "Netherlands|Zwolle": {
+  "url": "https://media.api-sports.io/football/teams/193.png",
+  "source": "api-football",
+  "provider_id": 193
+ },
+ "Portugal|AVS": {
+  "url": "https://media.api-sports.io/football/teams/21595.png",
+  "source": "api-football",
+  "provider_id": 21595
+ },
+ "Portugal|Arouca": {
+  "url": "https://media.api-sports.io/football/teams/240.png",
+  "source": "api-football",
+  "provider_id": 240
+ },
+ "Portugal|Benfica": {
+  "url": "https://media.api-sports.io/football/teams/211.png",
+  "source": "api-football",
+  "provider_id": 211
+ },
+ "Portugal|Casa Pia": {
+  "url": "https://media.api-sports.io/football/teams/4716.png",
+  "source": "api-football",
+  "provider_id": 4716
+ },
+ "Portugal|Estoril": {
+  "url": "https://media.api-sports.io/football/teams/230.png",
+  "source": "api-football",
+  "provider_id": 230
+ },
+ "Portugal|Estrela": {
+  "url": "https://media.api-sports.io/football/teams/15130.png",
+  "source": "api-football",
+  "provider_id": 15130
+ },
+ "Portugal|Famalicao": {
+  "url": "https://media.api-sports.io/football/teams/242.png",
+  "source": "api-football",
+  "provider_id": 242
+ },
+ "Portugal|Gil Vicente": {
+  "url": "https://media.api-sports.io/football/teams/762.png",
+  "source": "api-football",
+  "provider_id": 762
+ },
+ "Portugal|Guimaraes": {
+  "url": "https://media.api-sports.io/football/teams/224.png",
+  "source": "api-football",
+  "provider_id": 224
+ },
+ "Portugal|Moreirense": {
+  "url": "https://media.api-sports.io/football/teams/215.png",
+  "source": "api-football",
+  "provider_id": 215
+ },
+ "Portugal|Nacional": {
+  "url": "https://media.api-sports.io/football/teams/225.png",
+  "source": "api-football",
+  "provider_id": 225
+ },
+ "Portugal|Porto": {
+  "url": "https://media.api-sports.io/football/teams/212.png",
+  "source": "api-football",
+  "provider_id": 212
+ },
+ "Portugal|Rio Ave": {
+  "url": "https://media.api-sports.io/football/teams/226.png",
+  "source": "api-football",
+  "provider_id": 226
+ },
+ "Portugal|Santa Clara": {
+  "url": "https://media.api-sports.io/football/teams/227.png",
+  "source": "api-football",
+  "provider_id": 227
+ },
+ "Portugal|Sp Braga": {
+  "url": "https://media.api-sports.io/football/teams/217.png",
+  "source": "api-football",
+  "provider_id": 217
+ },
+ "Portugal|Sp Lisbon": {
+  "url": "https://media.api-sports.io/football/teams/228.png",
+  "source": "api-football",
+  "provider_id": 228
+ },
+ "Scotland|Aberdeen": {
+  "url": "https://media.api-sports.io/football/teams/252.png",
+  "source": "api-football",
+  "provider_id": 252
+ },
+ "Scotland|Alloa": {
+  "url": "https://media.api-sports.io/football/teams/1391.png",
+  "source": "api-football",
+  "provider_id": 1391
+ },
+ "Scotland|Celtic": {
+  "url": "https://media.api-sports.io/football/teams/247.png",
+  "source": "api-football",
+  "provider_id": 247
+ },
+ "Scotland|Clyde": {
+  "url": "https://media.api-sports.io/football/teams/6762.png",
+  "source": "api-football",
+  "provider_id": 6762
+ },
+ "Scotland|Cove Rangers": {
+  "url": "https://media.api-sports.io/football/teams/6763.png",
+  "source": "api-football",
+  "provider_id": 6763
+ },
+ "Scotland|Dundee": {
+  "url": "https://media.api-sports.io/football/teams/253.png",
+  "source": "api-football",
+  "provider_id": 253
+ },
+ "Scotland|Dunfermline": {
+  "url": "https://media.api-sports.io/football/teams/1388.png",
+  "source": "api-football",
+  "provider_id": 1388
+ },
+ "Scotland|East Fife": {
+  "url": "https://media.api-sports.io/football/teams/6764.png",
+  "source": "api-football",
+  "provider_id": 6764
+ },
+ "Scotland|East Kilbride": {
+  "url": "https://media.api-sports.io/football/teams/6765.png",
+  "source": "api-football",
+  "provider_id": 6765
+ },
+ "Scotland|Edinburgh City": {
+  "url": "https://media.api-sports.io/football/teams/6766.png",
+  "source": "api-football",
+  "provider_id": 6766
+ },
+ "Scotland|Elgin": {
+  "url": "https://media.api-sports.io/football/teams/6767.png",
+  "source": "api-football",
+  "provider_id": 6767
+ },
+ "Scotland|Forfar": {
+  "url": "https://media.api-sports.io/football/teams/4250.png",
+  "source": "api-football",
+  "provider_id": 4250
+ },
+ "Scotland|Hearts": {
+  "url": "https://media.api-sports.io/football/teams/254.png",
+  "source": "api-football",
+  "provider_id": 254
+ },
+ "Scotland|Hibernian": {
+  "url": "https://media.api-sports.io/football/teams/249.png",
+  "source": "api-football",
+  "provider_id": 249
+ },
+ "Scotland|Inverness C": {
+  "url": "https://media.api-sports.io/football/teams/903.png",
+  "source": "api-football",
+  "provider_id": 903
+ },
+ "Scotland|Kelty Hearts": {
+  "url": "https://media.api-sports.io/football/teams/6773.png",
+  "source": "api-football",
+  "provider_id": 6773
+ },
+ "Scotland|Kilmarnock": {
+  "url": "https://media.api-sports.io/football/teams/250.png",
+  "source": "api-football",
+  "provider_id": 250
+ },
+ "Scotland|Livingston": {
+  "url": "https://media.api-sports.io/football/teams/255.png",
+  "source": "api-football",
+  "provider_id": 255
+ },
+ "Scotland|Montrose": {
+  "url": "https://media.api-sports.io/football/teams/4251.png",
+  "source": "api-football",
+  "provider_id": 4251
+ },
+ "Scotland|Morton": {
+  "url": "https://media.api-sports.io/football/teams/1383.png",
+  "source": "api-football",
+  "provider_id": 1383
+ },
+ "Scotland|Motherwell": {
+  "url": "https://media.api-sports.io/football/teams/256.png",
+  "source": "api-football",
+  "provider_id": 256
+ },
+ "Scotland|Partick": {
+  "url": "https://media.api-sports.io/football/teams/901.png",
+  "source": "api-football",
+  "provider_id": 901
+ },
+ "Scotland|Queens Park": {
+  "url": "https://media.api-sports.io/football/teams/6778.png",
+  "source": "api-football",
+  "provider_id": 6778
+ },
+ "Scotland|Raith Rvs": {
+  "url": "https://media.api-sports.io/football/teams/1385.png",
+  "source": "api-football",
+  "provider_id": 1385
+ },
+ "Scotland|Rangers": {
+  "url": "https://media.api-sports.io/football/teams/257.png",
+  "source": "api-football",
+  "provider_id": 257
+ },
+ "Scotland|Spartans": {
+  "url": "https://media.api-sports.io/football/teams/6781.png",
+  "source": "api-football",
+  "provider_id": 6781
+ },
+ "Scotland|St Johnstone": {
+  "url": "https://media.api-sports.io/football/teams/258.png",
+  "source": "api-football",
+  "provider_id": 258
+ },
+ "Scotland|St Mirren": {
+  "url": "https://media.api-sports.io/football/teams/251.png",
+  "source": "api-football",
+  "provider_id": 251
+ },
+ "Scotland|Stenhousemuir": {
+  "url": "https://media.api-sports.io/football/teams/6784.png",
+  "source": "api-football",
+  "provider_id": 6784
+ },
+ "Scotland|Stirling": {
+  "url": "https://media.api-sports.io/football/teams/4669.png",
+  "source": "api-football",
+  "provider_id": 4669
+ },
+ "Scotland|Stranraer": {
+  "url": "https://media.api-sports.io/football/teams/6785.png",
+  "source": "api-football",
+  "provider_id": 6785
+ },
+ "Spain|Alaves": {
+  "url": "https://media.api-sports.io/football/teams/542.png",
+  "source": "api-football",
+  "provider_id": 542
+ },
+ "Spain|Albacete": {
+  "url": "https://media.api-sports.io/football/teams/722.png",
+  "source": "api-football",
+  "provider_id": 722
+ },
+ "Spain|Almeria": {
+  "url": "https://media.api-sports.io/football/teams/723.png",
+  "source": "api-football",
+  "provider_id": 723
+ },
+ "Spain|Ath Bilbao": {
+  "url": "https://media.api-sports.io/football/teams/531.png",
+  "source": "api-football",
+  "provider_id": 531
+ },
+ "Spain|Ath Madrid": {
+  "url": "https://media.api-sports.io/football/teams/530.png",
+  "source": "api-football",
+  "provider_id": 530
+ },
+ "Spain|Barcelona": {
+  "url": "https://media.api-sports.io/football/teams/529.png",
+  "source": "api-football",
+  "provider_id": 529
+ },
+ "Spain|Betis": {
+  "url": "https://media.api-sports.io/football/teams/543.png",
+  "source": "api-football",
+  "provider_id": 543
+ },
+ "Spain|Burgos": {
+  "url": "https://media.api-sports.io/football/teams/9580.png",
+  "source": "api-football",
+  "provider_id": 9580
+ },
+ "Spain|Cadiz": {
+  "url": "https://media.api-sports.io/football/teams/724.png",
+  "source": "api-football",
+  "provider_id": 724
+ },
+ "Spain|Castellon": {
+  "url": "https://media.api-sports.io/football/teams/5254.png",
+  "source": "api-football",
+  "provider_id": 5254
+ },
+ "Spain|Celta": {
+  "url": "https://media.api-sports.io/football/teams/538.png",
+  "source": "api-football",
+  "provider_id": 538
+ },
+ "Spain|Cordoba": {
+  "url": "https://media.api-sports.io/football/teams/713.png",
+  "source": "api-football",
+  "provider_id": 713
+ },
+ "Spain|Eibar": {
+  "url": "https://media.api-sports.io/football/teams/545.png",
+  "source": "api-football",
+  "provider_id": 545
+ },
+ "Spain|Eldense": {
+  "url": "https://media.api-sports.io/football/teams/9692.png",
+  "source": "api-football",
+  "provider_id": 9692
+ },
+ "Spain|Espanol": {
+  "url": "https://media.api-sports.io/football/teams/540.png",
+  "source": "api-football",
+  "provider_id": 540
+ },
+ "Spain|Getafe": {
+  "url": "https://media.api-sports.io/football/teams/546.png",
+  "source": "api-football",
+  "provider_id": 546
+ },
+ "Spain|Girona": {
+  "url": "https://media.api-sports.io/football/teams/547.png",
+  "source": "api-football",
+  "provider_id": 547
+ },
+ "Spain|Granada": {
+  "url": "https://media.api-sports.io/football/teams/715.png",
+  "source": "api-football",
+  "provider_id": 715
+ },
+ "Spain|Huesca": {
+  "url": "https://media.api-sports.io/football/teams/726.png",
+  "source": "api-football",
+  "provider_id": 726
+ },
+ "Spain|La Coruna": {
+  "url": "https://media.api-sports.io/football/teams/544.png",
+  "source": "api-football",
+  "provider_id": 544
+ },
+ "Spain|Malaga": {
+  "url": "https://media.api-sports.io/football/teams/535.png",
+  "source": "api-football",
+  "provider_id": 535
+ },
+ "Spain|Mallorca": {
+  "url": "https://media.api-sports.io/football/teams/798.png",
+  "source": "api-football",
+  "provider_id": 798
+ },
+ "Spain|Mirandes": {
+  "url": "https://media.api-sports.io/football/teams/799.png",
+  "source": "api-football",
+  "provider_id": 799
+ },
+ "Spain|Osasuna": {
+  "url": "https://media.api-sports.io/football/teams/727.png",
+  "source": "api-football",
+  "provider_id": 727
+ },
+ "Spain|Oviedo": {
+  "url": "https://media.api-sports.io/football/teams/718.png",
+  "source": "api-football",
+  "provider_id": 718
+ },
+ "Spain|Real Madrid": {
+  "url": "https://media.api-sports.io/football/teams/541.png",
+  "source": "api-football",
+  "provider_id": 541
+ },
+ "Spain|Santander": {
+  "url": "https://media.api-sports.io/football/teams/4665.png",
+  "source": "api-football",
+  "provider_id": 4665
+ },
+ "Spain|Sevilla": {
+  "url": "https://media.api-sports.io/football/teams/536.png",
+  "source": "api-football",
+  "provider_id": 536
+ },
+ "Spain|Sociedad": {
+  "url": "https://media.api-sports.io/football/teams/548.png",
+  "source": "api-football",
+  "provider_id": 548
+ },
+ "Spain|Sp Gijon": {
+  "url": "https://media.api-sports.io/football/teams/731.png",
+  "source": "api-football",
+  "provider_id": 731
+ },
+ "Spain|Tenerife": {
+  "url": "https://media.api-sports.io/football/teams/719.png",
+  "source": "api-football",
+  "provider_id": 719
+ },
+ "Spain|Valencia": {
+  "url": "https://media.api-sports.io/football/teams/532.png",
+  "source": "api-football",
+  "provider_id": 532
+ },
+ "Spain|Vallecano": {
+  "url": "https://media.api-sports.io/football/teams/728.png",
+  "source": "api-football",
+  "provider_id": 728
+ },
+ "Spain|Villarreal": {
+  "url": "https://media.api-sports.io/football/teams/533.png",
+  "source": "api-football",
+  "provider_id": 533
+ },
+ "Spain|Zaragoza": {
+  "url": "https://media.api-sports.io/football/teams/732.png",
+  "source": "api-football",
+  "provider_id": 732
+ },
+ "Turkey|Alanyaspor": {
+  "url": "https://media.api-sports.io/football/teams/996.png",
+  "source": "api-football",
+  "provider_id": 996
+ },
+ "Turkey|Antalyaspor": {
+  "url": "https://media.api-sports.io/football/teams/1005.png",
+  "source": "api-football",
+  "provider_id": 1005
+ },
+ "Turkey|Besiktas": {
+  "url": "https://media.api-sports.io/football/teams/549.png",
+  "source": "api-football",
+  "provider_id": 549
+ },
+ "Turkey|Buyuksehyr": {
+  "url": "https://media.api-sports.io/football/teams/564.png",
+  "source": "api-football",
+  "provider_id": 564
+ },
+ "Turkey|Eyupspor": {
+  "url": "https://media.api-sports.io/football/teams/3588.png",
+  "source": "api-football",
+  "provider_id": 3588
+ },
+ "Turkey|Fenerbahce": {
+  "url": "https://media.api-sports.io/football/teams/611.png",
+  "source": "api-football",
+  "provider_id": 611
+ },
+ "Turkey|Galatasaray": {
+  "url": "https://media.api-sports.io/football/teams/645.png",
+  "source": "api-football",
+  "provider_id": 645
+ },
+ "Turkey|Gaziantep": {
+  "url": "https://media.api-sports.io/football/teams/3573.png",
+  "source": "api-football",
+  "provider_id": 3573
+ },
+ "Turkey|Goztep": {
+  "url": "https://media.api-sports.io/football/teams/994.png",
+  "source": "api-football",
+  "provider_id": 994
+ },
+ "Turkey|Kasimpasa": {
+  "url": "https://media.api-sports.io/football/teams/1004.png",
+  "source": "api-football",
+  "provider_id": 1004
+ },
+ "Turkey|Kayserispor": {
+  "url": "https://media.api-sports.io/football/teams/1001.png",
+  "source": "api-football",
+  "provider_id": 1001
+ },
+ "Turkey|Konyaspor": {
+  "url": "https://media.api-sports.io/football/teams/607.png",
+  "source": "api-football",
+  "provider_id": 607
+ },
+ "Turkey|Rizespor": {
+  "url": "https://media.api-sports.io/football/teams/1007.png",
+  "source": "api-football",
+  "provider_id": 1007
+ },
+ "Turkey|Samsunspor": {
+  "url": "https://media.api-sports.io/football/teams/3603.png",
+  "source": "api-football",
+  "provider_id": 3603
+ },
+ "Turkey|Trabzonspor": {
+  "url": "https://media.api-sports.io/football/teams/998.png",
+  "source": "api-football",
+  "provider_id": 998
+ }
+}

@@ -270,3 +270,16 @@ def period_filter(col, key: str, first_date, default: str = "All time"):
                                 key=f"{key}_custom")
     season_start = pd.Timestamp(year=config.current_season(), month=7, day=1)
     return preset_range(preset, today, first, custom, season_start)
+
+
+# Neutral shield shown when no badge is known or the image cannot be loaded.
+SHIELD_SVG = ("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>"
+              "<path d='M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z' fill='%2394a3b8' opacity='.55'/></svg>")
+
+
+def team_badge(country: str, team: str, size: int = 24) -> str:
+    """Small club badge (lazy-loaded from the provider's media server) or a neutral shield."""
+    from . import data
+    url = data.team_logo(country, team) or SHIELD_SVG
+    return (f'<img class="badge" src="{esc(url)}" width="{size}" height="{size}" alt="" loading="lazy" '
+            f'referrerpolicy="no-referrer" onerror="this.onerror=null;this.src=&quot;{SHIELD_SVG}&quot;">')

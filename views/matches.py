@@ -11,7 +11,7 @@ from src.leagues import get_league, leagues_by_country
 from src.modelling.tasks import RESULT_CLASSES
 from src.ui import data
 from src.ui.components import (empty_state, esc, guard, match_url, odds_text, page_header, pct, prob_bar,
-                               team_url)
+                               team_badge, team_url)
 from src.ui.i18n import t
 from src.ui.labels import country_label, league_name
 
@@ -120,8 +120,11 @@ def _card(r: pd.Series) -> str:
     h_cls = a_cls = ""
     if played:
         h_cls, a_cls = ("win", "lose") if hg > ag else (("lose", "win") if hg < ag else ("", ""))
-    teams = (f'<div class="mc-teams"><div class="team {h_cls}">{esc(r["home_team"])}<b>{hg}</b></div>'
-             f'<div class="team {a_cls}">{esc(r["away_team"])}<b>{ag}</b></div></div>')
+    country = r.get("country") or ""
+    teams = (f'<div class="mc-teams"><div class="team {h_cls}"><span class="nm">'
+             f'{team_badge(country, r["home_team"], 16)}{esc(r["home_team"])}</span><b>{hg}</b></div>'
+             f'<div class="team {a_cls}"><span class="nm">{team_badge(country, r["away_team"], 16)}'
+             f'{esc(r["away_team"])}</span><b>{ag}</b></div></div>')
     has_pred = "p_home" in r and r["p_home"] == r["p_home"]
     if not has_pred:
         return (f'<a class="match-card" href="{match_url(r["match_id"])}" target="_self">'
