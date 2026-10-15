@@ -195,6 +195,9 @@ def _collect_env(tmp_path, monkeypatch):
     monkeypatch.setattr(col, "odds_storage", LocalStorage(tmp_path / "odds"))
     monkeypatch.setattr(col, "api_storage", LocalStorage(tmp_path / "api"))
     monkeypatch.setattr(col.ApiFootball, "available", property(lambda self: False))
+    monkeypatch.setattr(col.OddsPapi, "available", property(lambda self: False))    # never a real request
+    from src.providers import teams_registry
+    monkeypatch.setattr(teams_registry, "PATH", tmp_path / "provider_ids.json")
     ledger_path = tmp_path / "ledger.json"
     return col, (lambda: CreditLedger(ledger_path))
 
