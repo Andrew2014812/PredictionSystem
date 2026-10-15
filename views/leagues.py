@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 from src import config
-from src.analytics.performance import group_summary, summarize
+from src.analytics.performance import group_summary, select_dataset, summarize
 from src.analytics.teams import league_table
 from src.leagues import enabled_leagues, get_league
 from src.ui import data
@@ -31,7 +31,7 @@ def _table_html(table: pd.DataFrame, country: str) -> str:
 def _match_rows(matches: pd.DataFrame, played: bool) -> str:
     out = []
     for r in matches.itertuples():
-        centre = f"{int(r.home_goals)}–{int(r.away_goals)}" if played else (r.time or "—")
+        centre = f"{int(r.home_goals)}:{int(r.away_goals)}" if played else (r.time or "—")
         out.append(f"<a class='rm' style='grid-template-columns:80px 1fr 56px 1fr' href='{match_url(r.match_id)}' "
                    f"target='_self'><span class='d'>{date_text(r.date, '%d.%m')}</span>"
                    f"<span style='text-align:right'>{esc(r.home_team)}</span><span class='s' style='text-align:center'>"
@@ -90,12 +90,19 @@ def render() -> None:
         else:
             st.html(_match_rows(recent, True))
 
-    section(t("FootPredict in this league"))
-    picks = data.picks()
+    head = st.columns([3, 2])
+    with head[0]:
+        section(t("FootPredict in this league"))
+    scope = head[1].segmented_control(t("Predictions of"), ["season", "all"], default="season",
+                                      format_func=lambda k: config.season_label(season) if k == "season"
+                                      else t("All time"), key="lg_scope", label_visibility="collapsed") or "season"
+    picks = select_dataset(data.picks(), "recorded")          # predictions recorded before kick-off only
     lp = picks.loc[picks["league"] == league] if not picks.empty else picks
+    if scope == "season" and not lp.empty:
+        lp = lp.loc[lp["season"] == season]
     main = summarize(lp.loc[lp["role"] == "main"]) if not lp.empty else None
     if not main or not main["settled"]:
-        st.caption(t("No completed predictions for this league yet."))
+        st.caption(t("No predictions recorded before kick-off have been settled for this league in this period."))
         return
     kpi_row([
         (t("Matches predicted"), f"{main['settled']:,}", ""),
