@@ -178,18 +178,37 @@ def market_table(rows: pd.DataFrame, home: str, away: str, highlight_best: bool 
     return f"<div style='overflow-x:auto'><table class='mkt'>{head}{''.join(body)}</table></div>"
 
 
-def recommendation_card(role: str, rec: pd.Series | dict, home: str, away: str) -> str:
+def recommendation_card(role: str, rec: pd.Series | dict, home: str, away: str,
+                        settled: pd.Series | dict | None = None) -> str:
+    """Main (green) or Risk (orange) card: market, selection, probability, real odds and EV;
+    for a finished match also the result (Won / Lost / Refund / Void) and the profit."""
     title = t("Main prediction") if role == "main" else t("Risk prediction")
     label = selection_label(rec["market"], rec["selection"], home, away)
-    odds, ev = rec.get("odds"), rec.get("ev")
+    source = settled if settled is not None else rec
+    odds, ev = source.get("odds"), source.get("ev")
+    priced = not missing(odds) and bool(odds)
     cells = [f'<div><div class="l">{t("Probability")}</div><div class="v">{pct(rec["probability"], 1)}</div></div>']
-    if not missing(odds) and odds:
+    push = rec.get("push_probability")
+    if not missing(push) and push and push > 0.001:
+        cells.append(f'<div><div class="l">{t("Refund")}</div><div class="v">{pct(push, 1)}</div></div>')
+    if priced:
         cells.append(f'<div><div class="l">{t("Odds")}</div><div class="v">{odds_text(odds)}</div></div>')
-        cells.append(f'<div><div class="l">{t("Expected Value")}{tip(t(EV_HELP))}</div>'
-                     f'<div class="v {tone(ev)}">{signed(ev * 100, 1, "%")}</div></div>')
+        if not missing(ev):
+            cells.append(f'<div><div class="l">{t("Expected Value")}{tip(t(EV_HELP))}</div>'
+                         f'<div class="v {tone(ev)}">{signed(ev * 100, 1, "%")}</div></div>')
+    else:
+        cells.append(f'<div><div class="l">{t("Odds")}</div><div class="v na">{t("No real odds")}</div></div>')
+    status = ""
+    if settled is not None:
+        st_value = settled.get("status")
+        cells.append(f'<div><div class="l">{t("Result")}</div><div class="v">{status_badge(st_value)}</div></div>')
+        profit = settled.get("profit")
+        if not missing(profit):
+            cells.append(f'<div><div class="l">{t("Profit")}</div><div class="v {tone(profit)}">{signed(profit)}</div></div>')
+        status = f" {st_value}"
     note = (f'<div class="note">{t("Higher odds, higher risk: most such predictions lose, a few pay well.")}</div>'
-            if role == "risk" else "")
-    return (f'<div class="rec {role}"><div class="tag">{title}</div>'
+            if role == "risk" and settled is None else "")
+    return (f'<div class="rec {role}{status}"><div class="tag">{title}</div>'
             f'<div class="pick">{esc(label)}</div><div class="mkt">{esc(market_title(rec["market"]))}</div>'
             f'<div class="grid">{"".join(cells)}</div>{note}</div>')
 
@@ -222,3 +241,32 @@ def bar_html(p: float, color: str) -> str:
 def plotly(fig, height: int = 320) -> None:
     fig.update_layout(**plotly_layout(), height=height)
     st.plotly_chart(fig, width="stretch", theme=None, config={"displayModeBar": False})
+
+
+MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+          "November", "December")
+
+
+def period_filter(col, key: str, first_date, default: str = "All time"):
+    """Period selector with presets, a specific month / year and custom dates; returns (start, end)."""
+    from datetime import date
+
+    from .. import config
+    from ..analytics.performance import DATE_PRESETS, preset_range
+    preset = col.selectbox(t("Period"), DATE_PRESETS, index=DATE_PRESETS.index(default), format_func=t,
+                           key=f"{key}_preset")
+    first = pd.Timestamp(first_date)
+    today = date.today()
+    custom = None
+    if preset == "Specific month":
+        years = list(range(today.year, min(first.year, today.year) - 1, -1))
+        c1, c2 = col.columns(2)
+        month = c1.selectbox(t("Month"), range(1, 13), index=today.month - 1, format_func=lambda m: t(MONTHS[m - 1]),
+                             key=f"{key}_month")
+        year = c2.selectbox(t("Year"), years, key=f"{key}_year")
+        custom = (year, month)
+    elif preset == "Custom dates":
+        custom = col.date_input(t("Date range"), value=(first.date(), today), format="DD.MM.YYYY",
+                                key=f"{key}_custom")
+    season_start = pd.Timestamp(year=config.current_season(), month=7, day=1)
+    return preset_range(preset, today, first, custom, season_start)

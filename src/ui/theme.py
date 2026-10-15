@@ -93,6 +93,7 @@ a { text-decoration: none; }
 .card b, .card strong { color: var(--text-strong); }
 .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem 1rem; height: 100%; }
 .kpi .label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+.chip-note { display: inline-block; margin-left: .4rem; padding: 0 .4rem; border-radius: 6px; font-size: .62rem; font-weight: 700; letter-spacing: .02em; text-transform: none; color: var(--risk); border: 1px solid var(--risk); vertical-align: middle; }
 .kpi .value { font-size: 1.45rem; font-weight: 800; margin-top: .15rem; color: var(--text-strong); }
 .kpi .sub { color: var(--faint); font-size: .78rem; }
 
@@ -156,7 +157,8 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .rec.main .tag { color: var(--accent); } .rec.risk .tag { color: var(--risk); }
 .rec .pick { font-size: 1.35rem; font-weight: 800; margin: .3rem 0 .1rem 0; color: var(--text-strong); }
 .rec .mkt { color: var(--muted); font-size: .82rem; }
-.rec .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: .8rem; }
+.rec .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: .5rem; margin-top: .8rem; }
+.rec .grid .v.na { font-weight: 500; font-size: .85rem; color: var(--muted); }
 .rec .grid .l { color: var(--faint); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
 .rec .grid .v { font-weight: 800; font-size: 1.05rem; color: var(--text-strong); }
 .tip { display: inline-flex; width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--faint);
