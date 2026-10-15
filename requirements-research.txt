@@ -1,0 +1,5 @@
+# Research only (experiments/): never needed by the website or the data pipeline.
+-r requirements.txt
+catboost==1.2.10
+lightgbm==4.7.0
+statsmodels==0.15.0
