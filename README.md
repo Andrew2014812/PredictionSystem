@@ -235,10 +235,12 @@ fair odds 1/p, used only to rank.
   odds preference × (1 + 0.5·EV) for a real price, × 0.8 without one. The odds preference is 1 for
   **1.40–2.50** and decays smoothly outside (1.37 or 2.60 barely lose anything, 1.10 a lot), so a near-certain
   1.10 is not chosen for its hit rate and a big EV alone does not win.
-* **Risk** — the most sensible higher-odds alternative: any selection except the Main one and anything that
-  wins on exactly the same scores (e.g. "home −0.5" when Main is "home win"), probability ≥ 12 %, preference
-  for odds 3.5–8.0 (soft), EV bonus but **no EV requirement**. Validation 2024/25: present for 7,126 of 7,129
-  matches, average odds 3.2, hit rate 31 %, ROI −6.1 %.
+* **Risk** — the most sensible higher-odds alternative: any selection except the Main one, anything that
+  wins on exactly the same scores (e.g. "home −0.5" when Main is "home win") and any bet **against** Main
+  (e.g. "over 3.5" when Main is "under 3.5"); probability ≥ 12 %, soft preference for odds **3.0–6.0**,
+  **no EV requirement**. Validation 2024/25: a Risk for every match, average odds 3.5, hit rate 28 %, ROI
+  −5.9 % (92 % with a real price); test season −5.8 % (v4 rule −12.2 %). Most Risk predictions are draws —
+  the outcome the 1X2 model never names as the most likely but prices well.
 * The weights were chosen on the validation season only (`scripts/decision_study.py`: 36 Main and 72 Risk
   variants, real Bet365 prices). Main ROI −3.6 % vs −3.7 % for the v4 rule — the same within noise; on the test
   season the new rule gave −6.7 % vs −4.9 % (≈2 standard errors, and the test season cannot be used to choose).
