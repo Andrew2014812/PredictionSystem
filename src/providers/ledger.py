@@ -25,8 +25,9 @@ from .. import config
 
 
 class CreditLedger:
-    def __init__(self, path: Path | None = None):
+    def __init__(self, path: Path | None = None, monthly_reserve: int | None = None):
         self.path = path or (config.API_DIR / "the_odds_api" / "ledger.json")
+        self.reserve = config.ODDS_API_MONTHLY_RESERVE if monthly_reserve is None else monthly_reserve
         self.data = {"requests": {}}
         if self.path.exists():
             self.data = json.loads(self.path.read_text(encoding="utf-8"))
@@ -44,20 +45,26 @@ class CreditLedger:
         return datetime.fromisoformat(entry["at"]) if entry else None
 
     def requested_within(self, key: str, hours: float, now: datetime) -> bool:
-        last = self.last_request(key)
-        return last is not None and now - last < timedelta(hours=hours)
+        """True if ``key`` was asked within ``hours`` and got an ANSWER (prices or "no market").
+        A temporary failure (network, 5xx) may be retried at the next run."""
+        entry = self.data["requests"].get(key)
+        if not entry or str(entry.get("status", "200")) not in ("200", "not_found", "cached"):
+            return False
+        return now - datetime.fromisoformat(entry["at"]) < timedelta(hours=hours)
 
     def can_spend(self, cost: int, run_budget: int) -> bool:
         if self.spent_this_run + cost > run_budget:
             return False
-        if self.remaining is not None and self.remaining - cost < config.ODDS_API_MONTHLY_RESERVE:
+        if self.remaining is not None and self.remaining - cost < self.reserve:
             return False
         return True
 
     # -- writing ----------------------------------------------------------------
-    def record(self, key: str, cost: int, items: int, now: datetime, used=None, remaining=None) -> None:
+    def record(self, key: str, cost: int, items: int, now: datetime, used=None, remaining=None,
+               status=200) -> None:
         self.spent_this_run += cost
-        self.data["requests"][key] = {"at": now.isoformat(timespec="seconds"), "cost": cost, "items": items}
+        self.data["requests"][key] = {"at": now.isoformat(timespec="seconds"), "cost": cost, "items": items,
+                                      "status": str(status)}
         month = now.strftime("%Y-%m")
         if self.data.get("month") != month:
             self.data["month"], self.data["month_credits"] = month, 0

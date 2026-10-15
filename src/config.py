@@ -79,6 +79,29 @@ ODDS_API_RUN_BUDGET = 60            # credits one pipeline run may spend
 ODDS_API_MONTHLY_RESERVE = 30       # stop when fewer credits than this are left
 # Additional markets are bought per match: top divisions first, then by kick-off.
 ODDS_API_EXTENDED_TIERS = (1,)
+# The Odds API is the fallback once OddsPapi is configured (no double spending on the same prices).
+ODDS_API_ENABLED = True
+
+# OddsPapi v4 (https://oddspapi.io/en/docs) — key ODDSPAPI_KEY in .env / GitHub Secrets.
+# Free plan: 250 billable requests / month, pre-match odds of all bookmakers;
+# /historical-odds and /account are free (historical archive since January 2026).
+# Cooldowns between calls: odds 0.5 s, fixtures 2 s, historical-odds 5 s, others 1 s.
+ODDSPAPI_URL = "https://api.oddspapi.io/v4"
+ODDSPAPI_SPORT_ID = 10                    # soccer
+ODDSPAPI_MONTHLY_RESERVE = 20             # billable requests never spent (manual checks, retries)
+ODDSPAPI_RUN_BUDGET = 25                  # billable requests one pipeline run may spend
+ODDSPAPI_WINDOW_DAYS = 4                  # price matches starting within the next 4 days
+ODDSPAPI_REFRESH_HOURS = 12               # never ask the same match again sooner (empty answers too)
+# "historical": prices from /historical-odds (free; also works before kick-off if the API allows it —
+# verified with the first key), "odds": /odds per match (1 billable request each).
+ODDSPAPI_ODDS_SOURCE = "historical"
+# Bookmaker priority (max 3 per historical request); exchanges are never used.
+ODDSPAPI_BOOKMAKERS = ("bet365", "pinnacle", "williamhill")
+ODDSPAPI_EXCLUDED_BOOKMAKERS = ("betfair-ex", "matchbook", "smarkets", "4casters", "polymarket", "kalshi")
+# Tournament ids (community-documented; the rest are resolved from /tournaments once and
+# stored in local_data/api/oddspapi/tournaments.json).
+ODDSPAPI_TOURNAMENTS = {"E0": 17, "E1": 18, "SP1": 8, "SC0": 36, "N1": 37, "B1": 38, "P1": 238, "I1": 23,
+                        "D1": 35, "F1": 34}
 
 # ---------------------------------------------------------------------------
 # Seasons
