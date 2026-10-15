@@ -22,7 +22,8 @@ def _open_first_match(app, day):
 def test_brand_and_navigation(app):
     app.open("history")
     expect(app.page.locator(".fp-brand")).to_contain_text("FootPredict")
-    expect(app.page.locator(".fp-brand svg.ball")).to_be_visible()                  # SVG ball, not an emoji
+    expect(app.page.locator(".fp-brand img.ball")).to_be_visible()                  # SVG ball, not an emoji
+    assert "⚽" not in app.page.locator(".fp-brand").inner_text()
     labels = [x.strip() for x in app.nav_links().all_inner_texts()]
     for name in ("Matches", "Prediction History", "Leagues", "Teams", "Analytics", "Model Analysis"):
         assert any(name in label for label in labels), (name, labels)
@@ -276,10 +277,11 @@ def test_team_statistics_are_grouped_and_all_matches_paginated(app):
 def test_model_analysis_features_and_historical_evaluation(app):
     app.open("models")
     expect(app.section("Model Features").first).to_be_visible()
-    app.page.get_by_label("Search features").first.fill("corners")
+    app.page.get_by_label("Search features").first.fill("rest")                # result-model tab is open
     app.page.keyboard.press("Enter")
     app.wait()
-    expect(app.text("Corners (recent form)").first).to_be_visible()
+    expect(app.page.locator("b", has_text="Rest days").locator("visible=true").first).to_be_visible()
+    assert "h_rest_days" not in app.page.locator("[data-testid=stMain]").inner_text()   # no raw column names
     app.tab("Historical evaluation").click()
     expect(app.page.get_by_role("tabpanel").locator("table.mkt").first).to_contain_text("Test season")
     app.assert_healthy()

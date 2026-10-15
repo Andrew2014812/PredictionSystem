@@ -53,11 +53,14 @@ def _set_pref(key: str, widget_key: str) -> None:
 
 
 # Small football used as the logo (inline SVG: crisp at any size, follows the theme colours).
-BALL_SVG = ('<svg class="ball" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">'
-            '<circle cx="12" cy="12" r="10.4" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>'
-            '<path d="M12 7.3l3.5 2.5-1.3 4.1H9.8L8.5 9.8z" fill="currentColor"/>'
-            '<path d="M12 7.3V3.4M15.5 9.8l3.6-1.3M14.2 13.9l2.3 3.2M9.8 13.9l-2.3 3.2M8.5 9.8 4.9 8.5" '
-            'stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>')
+# Small football used as the logo. st.html strips inline <svg>, so it is an <img> with an SVG
+# data URI (crisp at any size; light ball with a dark outline works on both themes).
+BALL_SVG = ('<img class="ball" width="22" height="22" alt="" src="data:image/svg+xml;utf8,'
+            "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>"
+            "<circle cx='12' cy='12' r='10.4' fill='%23ffffff' stroke='%2322c55e' stroke-width='1.6'/>"
+            "<path d='M12 7.3l3.5 2.5-1.3 4.1H9.8L8.5 9.8z' fill='%230f172a'/>"
+            "<path d='M12 7.3V3.4M15.5 9.8l3.6-1.3M14.2 13.9l2.3 3.2M9.8 13.9l-2.3 3.2M8.5 9.8 4.9 8.5' "
+            "stroke='%230f172a' stroke-width='1.3' fill='none' stroke-linecap='round'/></svg>\">")
 
 
 def top_bar() -> None:

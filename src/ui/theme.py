@@ -98,7 +98,8 @@ a { text-decoration: none; }
 img.badge { object-fit: contain; vertical-align: middle; flex: none; }
 .chip-note { display: inline-block; margin-left: .4rem; padding: 0 .4rem; border-radius: 6px; font-size: .62rem; font-weight: 700; letter-spacing: .02em; text-transform: none; color: var(--risk); border: 1px solid var(--risk); vertical-align: middle; }
 .kpi .value { font-size: 1.45rem; font-weight: 800; margin-top: .15rem; color: var(--text-strong); }
-.kpi .sub { color: var(--faint); font-size: .78rem; min-height: 1.25em; }   /* same height with or without a sub line */
+.kpi .sub { color: var(--faint); font-size: .78rem; }
+.kpi .sub:empty::before { content: "\00a0"; }   /* same height with or without a sub line */
 
 /* match list --------------------------------------------------------------- */
 .league-head { display: flex; align-items: center; gap: .55rem; margin: 1.1rem 0 .45rem 0;
