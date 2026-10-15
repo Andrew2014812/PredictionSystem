@@ -6,8 +6,11 @@ For every selection the system distinguishes:
 * real odds — a price published by a bookmaker and collected by a data
   provider (Football-Data, API-Football, The Odds API). Nothing is derived
   or simulated: a selection without a real price simply has no odds;
-* expected value ``EV = p * odds - 1`` per unit stake, only when real odds
-  exist. EV is a theoretical edge at the quoted price, not a profit.
+* expected value per unit stake, only when real odds exist:
+  ``EV = p * odds - 1``; for an Asian whole-line handicap, where the stake is
+  refunded with probability ``p_push``, ``EV = p_win * odds - (1 - p_push)``
+  (win pays odds - 1, refund pays 0, loss costs 1). EV is a theoretical edge
+  at the quoted price, not a profit.
 """
 from __future__ import annotations
 
@@ -24,6 +27,7 @@ class PricedSelection:
     odds: float | None = None
     bookmaker: str | None = None
     provider: str | None = None
+    push_probability: float = 0.0
 
     @property
     def group(self) -> str:
@@ -40,12 +44,17 @@ class PricedSelection:
 
     @property
     def ev(self) -> float | None:
-        return self.probability * self.odds - 1 if self.has_odds else None
+        return self.probability * self.odds - (1 - self.push_probability) if self.has_odds else None
+
+    @property
+    def lose_probability(self) -> float:
+        return max(0.0, 1.0 - self.probability - self.push_probability)
 
     def to_dict(self) -> dict:
         return {"market": self.market, "selection": self.selection, "group": self.group,
                 "probability": self.probability, "odds": self.odds if self.has_odds else None,
-                "bookmaker": self.bookmaker, "provider": self.provider, "ev": self.ev}
+                "bookmaker": self.bookmaker, "provider": self.provider, "ev": self.ev,
+                "push_probability": self.push_probability}
 
 
 def price(selections: list[Selection], match_odds: dict[tuple[str, str], dict] | None) -> list[PricedSelection]:
@@ -57,5 +66,6 @@ def price(selections: list[Selection], match_odds: dict[tuple[str, str], dict] |
         out.append(PricedSelection(s.market, s.selection, s.probability,
                                    quote["odds"] if quote else None,
                                    quote.get("bookmaker") if quote else None,
-                                   quote.get("provider") if quote else None))
+                                   quote.get("provider") if quote else None,
+                                   s.push_probability))
     return out

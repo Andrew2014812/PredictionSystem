@@ -51,8 +51,10 @@ def test_api_football_bets_map_to_system_markets():
     assert ("TOTAL_4.5", "OVER") not in rows                       # line not offered by the system
     assert rows[("BTTS", "YES")] == 1.80 and rows[("DOUBLE_CHANCE", "X2")] == 1.70
     assert rows[("EXACT_SCORE", "2-1")] == 9.00
-    assert rows[("HANDICAP_-1", "H")] == 3.80 and rows[("HANDICAP_-1", "D")] == 3.70
-    assert rows[("HANDICAP_-1", "A")] == 1.80                      # "Away +1" = home line -1
+    # "Handicap Result" is the European 3-way market; "Away +1" = home line -1
+    assert rows[("EHANDICAP_-1", "H")] == 3.80 and rows[("EHANDICAP_-1", "D")] == 3.70
+    assert rows[("EHANDICAP_-1", "A")] == 1.80
+    assert rows[("HANDICAP_-1", "H")] == 3.0                       # Asian whole line (refund on a 1-goal win)
     assert rows[("HANDICAP_-0.5", "H")] == 2.10 and rows[("HANDICAP_-0.5", "A")] == 1.80
     assert not any(m in ("HANDICAP_-0.25",) for m, _ in rows)      # quarter Asian lines are skipped
     assert rows[("CORNERS_9.5", "OVER")] == 1.85
@@ -293,4 +295,4 @@ def test_extended_market_parsing_from_a_real_response():
     assert ("CORNERS_9.5", "OVER") in rows and ("CORNERS_10.5", "UNDER") in rows
     assert ("EXACT_SCORE", "1-0") in rows
     assert all(b != "Betfair" and "Exchange" not in b for _, b in rows.values())     # exchanges skipped
-    assert not any(m == "HANDICAP_-1" for m, _ in rows)                                  # whole Asian lines skipped
+    assert not any(m.startswith("HANDICAP") and float(m.split("_")[1]) % 0.5 for m, _ in rows)   # no quarter lines
