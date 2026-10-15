@@ -284,6 +284,38 @@ Club badges: URLs from API-Football team data (`scripts/build_team_logos.py`, ma
 `local_data/teams/logos.json`; images are not stored in the repository), shown unmodified and small; a neutral
 shield is shown when no badge is known. Badges are the clubs' trademarks.
 
+## ML research: alternative models (not used by the website)
+
+`experiments/model_comparison/` compares, under identical conditions, the current XGBoost, XGBoost with a larger
+search, CatBoost, LightGBM, logistic / Poisson / negative-binomial regression, direct market models (BTTS,
+over 1.5 / 2.5 / 3.5, corners over 9.5) and ensembles. Walk-forward folds: for each evaluated season *s* every
+algorithm is tuned on seasons < *s*−1 vs *s*−1, refitted on all seasons < *s* and scored on *s*; winners are
+chosen on 2023/24 and 2024/25 (2025/26 is reported only — it was looked at in v1–v4). Differences are checked
+with a paired bootstrap over matches. Nothing here changes the production model.
+
+```bash
+pip install -r requirements-research.txt
+python -m experiments.model_comparison.run            # ~1.5 h on 14 cores (--quick: smoke test)
+python -m experiments.model_comparison.report         # -> experiments/model_comparison/report/model_comparison.html
+python experiments/xgb_v5/study.py                    # v5 study of the current XGBoost (Elo, draws, …)
+```
+
+Results (log loss / Poisson deviance, selection folds, bootstrap vs XGBoost):
+
+* **1X2**: CatBoost best on average, not significantly better; LightGBM significantly worse; all within ±0.002.
+* **Home goals**: LightGBM significantly better (−0.002 deviance); Poisson regression close.
+* **Away goals / corners**: Poisson regression best on average, not significant; negative-binomial regression worse.
+* **Bigger XGBoost search**: identical results — the hyperparameter search had converged.
+* **BTTS / totals**: probabilities from the score matrix are as good as direct market models; direct models
+  are almost always consistent (P(over 3.5) ≤ P(over 2.5) violated in < 0.02 % of matches) and a monotone repair
+  is included.
+* **Draws**: every algorithm names a draw in < 4 % of matches; none recognises draws better without losing
+  probability quality.
+* ROI at real Bet365 prices is negative for every system and changes more between seasons than between models.
+
+Recommendation for a next iteration: LightGBM (or Poisson regression) for the goal models is the only change
+with a statistically clear gain; it is small. Nothing is adopted without a separate decision.
+
 ## Installation
 
 Python 3.12.
