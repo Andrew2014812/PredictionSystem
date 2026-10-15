@@ -9,6 +9,7 @@ values stay in the technical view.
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 import pandas as pd
@@ -97,6 +98,10 @@ def influence_level(relative: float, positive: bool, lang: str = "en") -> str:
     return text["pos"] if positive else text["neg"]
 
 
+# Elo ratings stay inside the models (removing them made every model clearly worse on
+# validation, experiments/xgb_v5) but are hard to interpret, so they are never shown
+# to users as a separate argument. Their share still counts in the total.
+HIDDEN_FEATURES = re.compile(r"(?:^[ha]_elo$|^elo_|_opp_elo$|_elo_surprise$)")
 MIN_SUPPORT_SHARE = 0.03     # a supporting factor below 3 % of the reasoning is not worth showing
 MIN_OPPOSE_SHARE = 0.10      # an opposing factor is shown only when it really matters
 
@@ -113,10 +118,11 @@ def key_factors(explanation: pd.DataFrame, lang: str = "en", max_support: int = 
                       feature_topic(row["feature"], lang) + _position(row, text), direction, rel,
                       influence_level(rel, direction == "up", lang), float(row["shap"]))
 
-    ups = explanation.loc[explanation["shap"] > 0].sort_values("shap", ascending=False)
+    shown = explanation.loc[~explanation["feature"].astype(str).str.contains(HIDDEN_FEATURES)]
+    ups = shown.loc[shown["shap"] > 0].sort_values("shap", ascending=False)
     support = [make(r, "up") for _, r in ups.head(max_support).iterrows()]
     support = [f for i, f in enumerate(support) if i < 2 or f.relative >= MIN_SUPPORT_SHARE]
-    downs = explanation.loc[explanation["shap"] < 0].sort_values("shap")
+    downs = shown.loc[shown["shap"] < 0].sort_values("shap")
     against = [make(r, "down") for _, r in downs.head(1).iterrows()]
     return support + [f for f in against if f.relative >= MIN_OPPOSE_SHARE]
 
@@ -153,8 +159,9 @@ def build_narrative(explanation: pd.DataFrame, selection_text: str, lang: str = 
                 break
         return out
 
-    supporting = factors(explanation.loc[explanation["shap"] > 0], "up", n_support)
-    opposing = [f for f in factors(explanation.loc[explanation["shap"] < 0], "down", n_oppose)
+    shown = explanation.loc[~explanation["feature"].astype(str).str.contains(HIDDEN_FEATURES)]
+    supporting = factors(shown.loc[shown["shap"] > 0], "up", n_support)
+    opposing = [f for f in factors(shown.loc[shown["shap"] < 0], "down", n_oppose)
                 if f.relative >= MIN_OPPOSE_SHARE]
     if supporting:
         sentence = text["lead"].format(sel=selection_text, topics=_join([f.topic for f in supporting], text["and"]))

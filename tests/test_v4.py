@@ -103,14 +103,19 @@ def test_result_facts_skip_missing_values():
 
 
 def test_influence_is_a_share_of_the_total():
-    expl = pd.DataFrame({"feature": ["h_elo", "a_elo", "league_draw_rate"], "shap": [0.3, -0.1, 0.1],
-                         "value": [1600, 1500, 0.25], "mean": [1500, 1500, 0.26]})
+    expl = pd.DataFrame({"feature": ["h_form5_ppg", "a_form5_ppg", "league_draw_rate"], "shap": [0.3, -0.1, 0.1],
+                         "value": [2.1, 1.5, 0.25], "mean": [1.4, 1.4, 0.26]})
     factors = key_factors(expl)
     assert [round(f.relative, 2) for f in factors] == [0.6, 0.2, 0.2]          # 2 for, 1 substantial against
     assert [f.direction for f in factors] == ["up", "up", "down"]
     assert factors[0].level == "Supports this prediction" and factors[2].level == "Works against this prediction"
-    small = pd.DataFrame({"feature": ["h_elo", "a_elo"], "shap": [0.9, -0.05], "value": [1, 1], "mean": [1, 1]})
+    small = pd.DataFrame({"feature": ["h_form5_ppg", "a_form5_ppg"], "shap": [0.9, -0.05], "value": [1, 1],
+                          "mean": [1, 1]})
     assert [f.direction for f in key_factors(small)] == ["up"]                 # a 5 % "against" is not shown
+    elo = pd.DataFrame({"feature": ["elo_diff", "h_elo", "h_form5_ppg", "a_form10_opp_elo"],
+                        "shap": [0.5, 0.2, 0.2, -0.1], "value": [1, 1, 1, 1], "mean": [1, 1, 1, 1]})
+    shown = key_factors(elo)
+    assert [f.feature for f in shown] == ["h_form5_ppg"] and round(shown[0].relative, 2) == 0.2   # Elo hidden
 
 
 def test_missing_catches_numpy_nan_of_every_width():
