@@ -4,7 +4,7 @@ import pandas as pd
 
 from src.analytics.performance import best_and_worst, select_dataset
 from src.explain.facts import market_facts
-from src.explain.narrative import influence_table
+from src.explain.narrative import key_factors
 from src.features.builder import build_features
 from src.features.catalog import catalogue, family_of
 from src.features.state import EloRatings
@@ -70,29 +70,47 @@ def test_best_and_worst_need_a_minimum_sample_and_follow_the_given_rows():
 
 
 # -- explanations --------------------------------------------------------------
-def test_goal_market_facts_use_pre_match_numbers():
-    row = pd.Series({"h_venue_gf": 2.1, "a_venue_gf": 1.3, "a_venue_ga": 1.8, "h_venue_ga": 0.9,
-                     "h_freq_over25": 0.7, "a_freq_over25": 0.6, "league_over25_rate": 0.55})
-    facts = market_facts("TOTAL_2.5", row, "Arsenal", "Leeds", limit=10)
-    assert "Arsenal score 2.10 goals per game at home this season" in facts
-    assert "Arsenal: 7 of the last 10 matches had over 2.5 goals" in facts
-    assert "In this league 55% of matches go over 2.5 goals" in facts
-    uk = market_facts("TOTAL_2.5", row, "Арсенал", "Лідс", lang="uk")
+def _history(results, venue):
+    """Team history rows (newest first): results = [(goals for, goals against), ...]."""
+    return pd.DataFrame({"venue": venue, "gf": [g for g, _ in results], "ga": [a for _, a in results],
+                         "corners_for": 5.0, "corners_against": 4.0,
+                         "result": ["W" if g > a else ("L" if g < a else "D") for g, a in results]})
+
+
+def test_total_facts_count_the_exact_line_and_the_real_number_of_matches():
+    home = _history([(2, 0), (1, 0), (3, 2), (0, 0), (1, 1)], "H")         # only 5 home matches
+    away = _history([(1, 2), (0, 3), (2, 2)], "A")
+    facts = market_facts("TOTAL_1.5", "OVER", "Arsenal", "Leeds", home, away, limit=10)
+    assert "Arsenal: 3 of the last 5 home matches had over 1.5 goals" in facts
+    assert "Leeds: 3 of the last 3 away matches had over 1.5 goals" in facts
+    facts = market_facts("TOTAL_2.5", "UNDER", "Arsenal", "Leeds", home, away, limit=10)
+    assert "Arsenal: 4 of the last 5 home matches had under 2.5 goals" in facts
+    assert not any("10" in f for f in facts)                                 # never "x of 10" with 5 matches
+    uk = market_facts("TOTAL_1.5", "OVER", "Арсенал", "Лідс", home, away, lang="uk")
     assert uk and all("goals" not in f for f in uk)
 
 
+def test_handicap_facts_settle_the_line_and_count_refunds():
+    home = _history([(2, 0), (2, 1), (3, 0), (1, 1)], "H")
+    facts = market_facts("HANDICAP_-1", "H", "Arsenal", "Leeds", home, None, limit=10)
+    assert facts[0] == "With -1 Arsenal would have won this bet in 2 and got a refund in 1 of the last 4 home matches"
+
+
 def test_result_facts_skip_missing_values():
-    row = pd.Series({"h_position": 3.0, "a_position": np.nan, "elo_diff": -42.0})
-    facts = market_facts("1X2", row, "A", "B")
-    assert facts == ["A are 3rd in the table", "Strength rating gap (Elo, incl. home advantage): 42 in favour of B"]
+    row = pd.Series({"h_position": 3.0, "a_position": np.nan})
+    facts = market_facts("1X2", "H", "A", "B", _history([(1, 0), (0, 1)], "H"), None, row)
+    assert facts == ["A won 1 of the last 2 home matches", "A are 3rd in the table"]
 
 
 def test_influence_is_a_share_of_the_total():
     expl = pd.DataFrame({"feature": ["h_elo", "a_elo", "league_draw_rate"], "shap": [0.3, -0.1, 0.1],
                          "value": [1600, 1500, 0.25], "mean": [1500, 1500, 0.26]})
-    factors = influence_table(expl, n=3)
-    assert [round(f.relative, 2) for f in factors] == [0.6, 0.2, 0.2]
-    assert factors[0].direction == "up" and factors[1].direction == "down"
+    factors = key_factors(expl)
+    assert [round(f.relative, 2) for f in factors] == [0.6, 0.2, 0.2]          # 2 for, 1 substantial against
+    assert [f.direction for f in factors] == ["up", "up", "down"]
+    assert factors[0].level == "Supports this prediction" and factors[2].level == "Works against this prediction"
+    small = pd.DataFrame({"feature": ["h_elo", "a_elo"], "shap": [0.9, -0.05], "value": [1, 1], "mean": [1, 1]})
+    assert [f.direction for f in key_factors(small)] == ["up"]                 # a 5 % "against" is not shown
 
 
 def test_missing_catches_numpy_nan_of_every_width():
@@ -137,3 +155,42 @@ def test_dixon_coles_rho_zero_is_poisson_and_fit_recovers_rho():
     cells = [rng.choice(121, p=score_matrix(a, b, rho=-0.1).ravel()) for a, b in zip(lh, la)]
     rho = fit_dixon_coles_rho(lh, la, np.array(cells) // 11, np.array(cells) % 11)
     assert -0.2 < rho < -0.03
+
+
+# -- v5: pre-match versions ---------------------------------------------------
+def _live_batch(prob, generated, kickoff="2026-10-12 20:00"):
+    snaps = pd.DataFrame({"match_id": ["m1"], "kickoff": pd.to_datetime([kickoff]), "source": "live",
+                          "p_home": prob, "generated_at": pd.Timestamp(generated)})
+    picks = pd.DataFrame({"pick_id": ["m1|main"], "match_id": ["m1"], "role": "main", "source": "live",
+                          "status": "UPCOMING", "probability": prob})
+    return PredictionBatch(snaps, pd.DataFrame(), picks)
+
+
+def test_every_pre_match_refresh_is_archived_as_a_version(tmp_path, monkeypatch):
+    monkeypatch.setattr(store.predictions_storage, "root", tmp_path)
+    store.save_batch(_live_batch(0.50, "2026-10-12 09:00"), now=pd.Timestamp("2026-10-12 10:00"))
+    store.save_batch(_live_batch(0.60, "2026-10-12 15:00"), now=pd.Timestamp("2026-10-12 16:00"))
+    store.save_batch(_live_batch(0.70, "2026-10-12 21:00"), now=pd.Timestamp("2026-10-12 21:30"))   # after kick-off
+    snap = store.load_snapshots().set_index("match_id").loc["m1"]
+    assert snap["p_home"] == 0.60 and snap["version"] == 2               # the last version BEFORE kick-off
+    versions = store.load_versions()
+    assert list(versions["version"]) == [1, 2] and list(versions["probability"]) == [0.50, 0.60]
+
+
+def test_a_postponed_match_gets_a_new_version(tmp_path, monkeypatch):
+    monkeypatch.setattr(store.predictions_storage, "root", tmp_path)
+    store.save_batch(_live_batch(0.50, "2026-10-12 09:00"), now=pd.Timestamp("2026-10-12 10:00"))
+    # the original kick-off has passed, but the match was moved to a later date
+    store.save_batch(_live_batch(0.55, "2026-10-13 09:00", kickoff="2026-10-20 20:00"),
+                     now=pd.Timestamp("2026-10-13 10:00"))
+    snap = store.load_snapshots().set_index("match_id").loc["m1"]
+    assert snap["p_home"] == 0.55 and snap["version"] == 2
+    assert pd.Timestamp(snap["kickoff"]) == pd.Timestamp("2026-10-20 20:00")
+
+
+def test_prices_collected_after_kick_off_are_not_pre_match_prices():
+    from src.providers import pre_match_only
+    matches = pd.DataFrame({"match_id": ["m1"], "kickoff": pd.to_datetime(["2026-10-12 20:00"])})
+    odds = pd.DataFrame({"match_id": ["m1", "m1"], "odds": [2.0, 2.4],
+                         "collected_at": pd.to_datetime(["2026-10-12 18:00", "2026-10-12 20:30"])})
+    assert list(pre_match_only(odds, matches)["odds"]) == [2.0]

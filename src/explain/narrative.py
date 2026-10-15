@@ -21,16 +21,14 @@ TEXT = {
         "none": "No single factor clearly supports {sel}.",
         "against": " Working against it: {topics}.",
         "and": "and", "above": "above average", "below": "below average",
-        "strong": "Strong", "moderate": "Moderate", "slight": "Slight",
-        "pos": "positive influence", "neg": "negative influence",
+        "pos": "Supports this prediction", "neg": "Works against this prediction",
     },
     "uk": {
         "lead": "FootPredict схиляється до прогнозу «{sel}». Головні чинники: {topics}.",
         "none": "Жоден окремий фактор явно не підтримує прогноз «{sel}».",
         "against": " Проти цього прогнозу свідчать: {topics}.",
         "and": "і", "above": "вище середнього", "below": "нижче середнього",
-        "strong": "Сильний", "moderate": "Помірний", "slight": "Слабкий",
-        "pos": "позитивний вплив", "neg": "негативний вплив",
+        "pos": "На користь прогнозу", "neg": "Проти прогнозу",
     },
 }
 
@@ -38,12 +36,12 @@ TEXT = {
 TARGETS = {
     "en": {"result": "the probability of this result", "goals": "the expected number of goals",
            "corners": "the expected number of corners",
-           "note": "Influence = share of the model's reasoning for {target} carried by the factor "
-                   "(all factors together = 100%). It is not a change in percentage points."},
+           "note": "The percentage is the factor's share of the model's reasoning about {target}, compared "
+                   "with all other factors (together 100%). It is not a change of the probability."},
     "uk": {"result": "ймовірність цього результату", "goals": "очікувану кількість голів",
            "corners": "очікувану кількість кутових",
-           "note": "Вплив — частка міркувань моделі щодо показника «{target}», яку дає фактор "
-                   "(усі фактори разом = 100%). Це не зміна ймовірності у відсоткових пунктах."},
+           "note": "Відсоток — частка фактора в міркуваннях моделі щодо показника «{target}» порівняно з "
+                   "усіма іншими факторами (разом 100%). Це не зміна ймовірності."},
 }
 
 
@@ -67,7 +65,7 @@ class Factor:
     topic: str
     direction: str          # "up" | "down"
     relative: float         # share of total |SHAP| of the explanation (0..1)
-    level: str              # e.g. "Strong positive influence"
+    level: str              # "Supports this prediction" / "Works against this prediction"
     shap: float
 
 
@@ -94,10 +92,33 @@ def _position(row: pd.Series, text: dict) -> str:
 
 
 def influence_level(relative: float, positive: bool, lang: str = "en") -> str:
-    """Words for a share of influence (shares of a ~170-feature model are small)."""
+    """Plain words for the direction of a factor (no ML jargon on regular pages)."""
     text = TEXT.get(lang, TEXT["en"])
-    strength = text["strong"] if relative >= 0.10 else (text["moderate"] if relative >= 0.04 else text["slight"])
-    return f"{strength} {text['pos'] if positive else text['neg']}"
+    return text["pos"] if positive else text["neg"]
+
+
+MIN_SUPPORT_SHARE = 0.03     # a supporting factor below 3 % of the reasoning is not worth showing
+MIN_OPPOSE_SHARE = 0.10      # an opposing factor is shown only when it really matters
+
+
+def key_factors(explanation: pd.DataFrame, lang: str = "en", max_support: int = 4) -> list[Factor]:
+    """2–4 main factors FOR the prediction, plus the strongest factor against it when it is
+    substantial (>= MIN_OPPOSE_SHARE of the reasoning) — no artificial pros-and-cons balance."""
+    total = explanation["shap"].abs().sum() or 1.0
+    text = TEXT.get(lang, TEXT["en"])
+
+    def make(row, direction):
+        rel = abs(row["shap"]) / total
+        return Factor(row["feature"], feature_label(row["feature"], lang),
+                      feature_topic(row["feature"], lang) + _position(row, text), direction, rel,
+                      influence_level(rel, direction == "up", lang), float(row["shap"]))
+
+    ups = explanation.loc[explanation["shap"] > 0].sort_values("shap", ascending=False)
+    support = [make(r, "up") for _, r in ups.head(max_support).iterrows()]
+    support = [f for i, f in enumerate(support) if i < 2 or f.relative >= MIN_SUPPORT_SHARE]
+    downs = explanation.loc[explanation["shap"] < 0].sort_values("shap")
+    against = [make(r, "down") for _, r in downs.head(1).iterrows()]
+    return support + [f for f in against if f.relative >= MIN_OPPOSE_SHARE]
 
 
 def influence_table(explanation: pd.DataFrame, n: int = 8, lang: str = "en") -> list[Factor]:
@@ -114,7 +135,7 @@ def influence_table(explanation: pd.DataFrame, n: int = 8, lang: str = "en") -> 
 
 
 def build_narrative(explanation: pd.DataFrame, selection_text: str, lang: str = "en", n_support: int = 3,
-                    n_oppose: int = 2) -> Narrative:
+                    n_oppose: int = 1) -> Narrative:
     text = TEXT.get(lang, TEXT["en"])
     peak = explanation["shap"].abs().sum() or 1.0
 
@@ -133,7 +154,8 @@ def build_narrative(explanation: pd.DataFrame, selection_text: str, lang: str = 
         return out
 
     supporting = factors(explanation.loc[explanation["shap"] > 0], "up", n_support)
-    opposing = factors(explanation.loc[explanation["shap"] < 0], "down", n_oppose)
+    opposing = [f for f in factors(explanation.loc[explanation["shap"] < 0], "down", n_oppose)
+                if f.relative >= MIN_OPPOSE_SHARE]
     if supporting:
         sentence = text["lead"].format(sel=selection_text, topics=_join([f.topic for f in supporting], text["and"]))
     else:
