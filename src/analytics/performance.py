@@ -5,6 +5,7 @@ Every prediction with a REAL bookmaker price is one bet with a fixed stake of
     win  -> profit = odds - 1
     loss -> profit = -1
     void -> profit = 0, stake returned (not part of the staked total)
+    push -> Asian handicap refund: profit = 0, stake returned (not staked either)
 
     ROI = net profit / total amount staked × 100
         = sum(profit) / number of won or lost bets with real odds × 100
@@ -17,7 +18,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-PERIODS = {"Daily": "D", "Weekly": "W-MON", "Monthly": "MS", "Yearly": "YS"}
+PERIODS = {"Daily": "D", "Weekly": "W-SUN", "Monthly": "MS"}     # weeks run Monday–Sunday
 MIN_MARKET_SAMPLE = 30           # settled bets needed before a market can be "best" / "weakest"
 
 
@@ -62,6 +63,7 @@ def summarize(picks: pd.DataFrame) -> dict:
         "bets": n_bets,
         "pending": int((picks["status"] == "UPCOMING").sum()) if len(picks) else 0,
         "void": int((picks["status"] == "VOID").sum()) if len(picks) else 0,
+        "push": int((picks["status"] == "PUSH").sum()) if len(picks) else 0,
         "hit_rate": won / n if n else np.nan,
         "profit": profit if n_bets else np.nan,
         "roi": profit / n_bets * 100 if n_bets else np.nan,
@@ -93,15 +95,21 @@ def group_summary(picks: pd.DataFrame, by: str | list[str]) -> pd.DataFrame:
 
 def best_and_worst(picks: pd.DataFrame, by: str = "group",
                    min_sample: int = MIN_MARKET_SAMPLE) -> tuple[dict | None, dict | None]:
-    """Best and weakest group by ROI among groups with enough real-odds bets."""
+    """Highest- and lowest-ROI group by real-odds bets.
+
+    Groups with at least ``min_sample`` bets are compared first; only when none
+    reaches it are smaller groups used, and the result is flagged
+    ``small_sample`` so the interface can say so instead of hiding it."""
     g = group_summary(picks, by)
     if g.empty:
         return None, None
-    g = g.loc[g["bets"] >= min_sample]
+    g = g.loc[g["bets"] > 0]
     if g.empty:
         return None, None
-    g = g.sort_values("roi")
-    return g.iloc[-1].to_dict(), (g.iloc[0].to_dict() if len(g) > 1 else None)
+    big = g.loc[g["bets"] >= min_sample]
+    pool = big if len(big) >= 2 else g          # fewer than two solid groups: compare all, flag small ones
+    pool = pool.sort_values("roi").assign(small_sample=lambda d: d["bets"] < min_sample)
+    return pool.iloc[-1].to_dict(), (pool.iloc[0].to_dict() if len(pool) > 1 else None)
 
 
 def timeline(picks: pd.DataFrame, period: str = "Weekly") -> pd.DataFrame:
@@ -126,36 +134,50 @@ def timeline(picks: pd.DataFrame, period: str = "Weekly") -> pd.DataFrame:
     return grouped.reset_index().rename(columns={"date": "period"})
 
 
-def cumulative_by_date(picks: pd.DataFrame, window: int = 200) -> pd.DataFrame:
-    """Bet-by-bet cumulative profit, rolling ROI and hit rate, indexed by match date."""
+def cumulative_by_date(picks: pd.DataFrame, window: int | None = 50) -> pd.DataFrame:
+    """Bet-by-bet cumulative profit plus ROI and hit rate over the last ``window`` bets — or, with
+    ``window=None``, over all bets so far (a cumulative figure, not a rolling one)."""
     bets = staked(picks).sort_values(["date", "match_id"])
     if bets.empty:
         return bets
     out = bets[["date", "profit", "status"]].copy()
     out["cumulative_profit"] = out["profit"].cumsum()
-    out["rolling_hit_rate"] = (out["status"] == "WON").rolling(window, min_periods=20).mean()
-    out["rolling_roi"] = out["profit"].rolling(window, min_periods=20).mean() * 100
+    won = (out["status"] == "WON").astype(float)
+    if window:
+        first = min(window, 10)
+        out["rolling_hit_rate"] = won.rolling(window, min_periods=first).mean()
+        out["rolling_roi"] = out["profit"].rolling(window, min_periods=first).mean() * 100
+    else:
+        out["rolling_hit_rate"] = won.expanding().mean()
+        out["rolling_roi"] = out["profit"].expanding().mean() * 100
     return out
 
 
-DATE_PRESETS = ("Last 7 days", "Last 30 days", "This month", "This season", "This year", "All time", "Custom")
+DATE_PRESETS = ("Last 7 days", "Last 30 days", "Current month", "Previous month", "Current season", "All time",
+                "Specific month", "Custom dates")
 
 
 def preset_range(preset: str, today, first_date, custom: tuple | None = None, season_start=None):
-    """(start, end) dates of a date-range preset (inclusive)."""
+    """(start, end) dates of a date-range preset (inclusive).
+
+    ``custom`` is (start, end) for "Custom dates" and (year, month) for "Specific month"."""
     today = pd.Timestamp(today).normalize()
     first = pd.Timestamp(first_date).normalize()
     if preset == "Last 7 days":
         return today - pd.Timedelta(days=6), today
     if preset == "Last 30 days":
         return today - pd.Timedelta(days=29), today
-    if preset == "This month":
+    if preset == "Current month":
         return today.replace(day=1), today
-    if preset == "This season":
+    if preset == "Previous month":
+        end = today.replace(day=1) - pd.Timedelta(days=1)
+        return end.replace(day=1), end
+    if preset == "Current season":
         return pd.Timestamp(season_start) if season_start is not None else first, today
-    if preset == "This year":
-        return today.replace(month=1, day=1), today
-    if preset == "Custom" and custom and len(custom) == 2:
+    if preset == "Specific month" and custom and len(custom) == 2:
+        start = pd.Timestamp(year=int(custom[0]), month=int(custom[1]), day=1)
+        return start, start + pd.offsets.MonthEnd(0)
+    if preset == "Custom dates" and custom and len(custom) == 2:
         return pd.Timestamp(custom[0]), pd.Timestamp(custom[1])
     return first, max(today, first)
 
@@ -165,7 +187,21 @@ def preset_range(preset: str, today, first_date, custom: tuple | None = None, se
 #   evaluation — after-the-fact model evaluation: the test-season backtest and the
 #                current-season backfill (features are still pre-match, but nothing
 #                was published before the match)
-DATASETS = {"recorded": ("live",), "evaluation": ("backtest", "backfill")}
+DATASETS = {"recorded": ("live",), "evaluation": ("backtest", "backfill"),
+            "season_backtest": ("backfill",)}
+# How each origin is called in the interface.
+ORIGIN_LABELS = {"live": "Recorded", "backfill": "Backtest", "backtest": "Backtest"}
+
+
+def period_label(period_end: pd.Timestamp, period: str) -> str:
+    """Readable label of a timeline row: a day, "12.10 – 18.10.2026" for a week, "October 2026"."""
+    ts = pd.Timestamp(period_end)
+    if period == "Weekly":
+        start = ts - pd.Timedelta(days=6)
+        return f"{start:%d.%m} – {ts:%d.%m.%Y}"
+    if period == "Monthly":
+        return ts.strftime("%B %Y")
+    return ts.strftime("%d.%m.%Y")
 
 
 def select_dataset(picks: pd.DataFrame, key: str) -> pd.DataFrame:

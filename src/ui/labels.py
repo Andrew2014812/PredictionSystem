@@ -7,8 +7,8 @@ from .i18n import t
 
 MARKET_GROUP_TITLES = {
     "1X2": "Match result", "DOUBLE_CHANCE": "Double chance", "TOTAL": "Total goals",
-    "BTTS": "Both teams to score", "EXACT_SCORE": "Exact score", "HANDICAP": "Handicap",
-    "CORNERS": "Total corners",
+    "BTTS": "Both teams to score", "EXACT_SCORE": "Exact score", "HANDICAP": "Asian handicap",
+    "EHANDICAP": "European handicap", "CORNERS": "Total corners",
 }
 
 
@@ -21,8 +21,9 @@ def market_title(market: str) -> str:
     title = group_title(group)
     if group in ("TOTAL", "CORNERS") and line is not None:
         return f"{title} {line:g}"
-    if group == "HANDICAP" and line is not None:
-        return f"{title} {line:+g}"
+    # no line here: the line belongs to the side that is chosen (shown by the selection label,
+    # e.g. "Köln (+0.5)"); printing the home line next to an away pick read as a contradiction
+
     return title
 
 
@@ -41,7 +42,7 @@ def selection_label(market: str, selection: str, home: str | None = None, away: 
         return t("Both teams to score: Yes") if selection == "YES" else t("Both teams to score: No")
     if group == "EXACT_SCORE":
         return t("Exact score {score}", score=selection.replace("-", ":"))
-    if group == "HANDICAP":
+    if group in ("HANDICAP", "EHANDICAP"):
         return {"H": f"{home} ({line:+g})", "D": f"{t('Draw')} ({line:+g})", "A": f"{away} ({-line:+g})"}[selection]
     if group == "CORNERS":
         return (t("Over {line} corners", line=f"{line:g}") if selection == "OVER"
@@ -50,7 +51,7 @@ def selection_label(market: str, selection: str, home: str | None = None, away: 
 
 
 def status_label(status: str) -> str:
-    return t({"WON": "Won", "LOST": "Lost", "UPCOMING": "Upcoming", "VOID": "Void"}.get(status, status))
+    return t({"WON": "Won", "LOST": "Lost", "UPCOMING": "Upcoming", "VOID": "Void", "PUSH": "Refund"}.get(status, status))
 
 
 def country_label(country: str) -> str:

@@ -6,14 +6,14 @@ from datetime import date, timedelta
 import pandas as pd
 import streamlit as st
 
-from src.analytics.teams import all_teams
 from src.leagues import get_league, leagues_by_country
 from src.modelling.tasks import RESULT_CLASSES
 from src.ui import data
 from src.ui.components import (empty_state, esc, guard, match_url, odds_text, page_header, pct, prob_bar,
-                               team_url)
+                               team_badge)
 from src.ui.i18n import t
 from src.ui.labels import country_label, league_name
+from src.ui.timefmt import today_local, with_local_time
 
 
 def _param_date() -> date:
@@ -23,7 +23,7 @@ def _param_date() -> date:
             return date.fromisoformat(raw)
         except ValueError:
             pass
-    today = date.today()
+    today = today_local()
     dates = data.match_dates()
     if len(dates) == 0:
         return today
@@ -40,7 +40,7 @@ def _set(**params) -> None:
 
 
 def _date_strip(selected: date) -> None:
-    today = date.today()
+    today = today_local()
     window = [selected + timedelta(days=i) for i in range(-3, 4)]
     cols = st.columns([0.55] + [1] * len(window) + [0.55, 1.1, 1.9], vertical_alignment="center")
     cols[0].button("‹", key="prev", on_click=_set, kwargs={"date": str(selected - timedelta(days=1))},
@@ -72,33 +72,16 @@ def _league_list(selected: str) -> None:
                       on_click=_set, kwargs={"league": lg.code})
 
 
-@st.cache_data(show_spinner=False)
-def _team_index(_key: int) -> pd.DataFrame:
-    return all_teams(data.features())
-
-
-def _team_search() -> None:
-    query = st.text_input(t("Search team"), placeholder=t("Search team..."), label_visibility="collapsed",
-                          key="team_search")
-    if not query or len(query.strip()) < 2:
-        return
-    teams = _team_index(len(data.features()))
-    hits = teams.loc[teams["team"].str.contains(query.strip(), case=False, regex=False)].head(8)
-    if hits.empty:
-        st.caption(t("No team found."))
-        return
-    st.html("<div class='card search-hit'>" + "".join(
-        f"<div style='padding:3px 0'><a href='{team_url(r.team, r.country)}' target='_self'>{esc(r.team)}</a>"
-        f" <span class='muted small'>{esc(league_name(r.league))} · {esc(country_label(r.country))}</span></div>"
-        for r in hits.itertuples()) + "</div>")
-
-
 def _day_matches(day: date) -> pd.DataFrame:
     f = data.features()
     ts = pd.Timestamp(day)
     cols = ["match_id", "league", "country", "date", "time", "home_team", "away_team", "played",
             "home_goals", "away_goals"]
-    rows = f.loc[f["date"] == ts, cols] if not f.empty else pd.DataFrame(columns=cols)
+    # the visitor's calendar day: a late kick-off in the UK can fall on the next day in their zone
+    near = f.loc[(f["date"] >= ts - pd.Timedelta(days=1)) & (f["date"] <= ts + pd.Timedelta(days=1)),
+                 cols + ["kickoff"]] if not f.empty else pd.DataFrame(columns=cols + ["kickoff"])
+    near = with_local_time(near)
+    rows = near.loc[near["local_date"] == ts].drop(columns=["kickoff"]).assign(time=lambda d: d["local_time"])
     enabled = {lg.code for leagues in leagues_by_country().values() for lg in leagues}
     rows = rows.loc[rows["league"].isin(enabled)]
     snaps = data.snapshots()
@@ -120,8 +103,11 @@ def _card(r: pd.Series) -> str:
     h_cls = a_cls = ""
     if played:
         h_cls, a_cls = ("win", "lose") if hg > ag else (("lose", "win") if hg < ag else ("", ""))
-    teams = (f'<div class="mc-teams"><div class="team {h_cls}">{esc(r["home_team"])}<b>{hg}</b></div>'
-             f'<div class="team {a_cls}">{esc(r["away_team"])}<b>{ag}</b></div></div>')
+    country = r.get("country") or ""
+    teams = (f'<div class="mc-teams"><div class="team {h_cls}"><span class="nm">'
+             f'{team_badge(country, r["home_team"], 16)}{esc(r["home_team"])}</span><b>{hg}</b></div>'
+             f'<div class="team {a_cls}"><span class="nm">{team_badge(country, r["away_team"], 16)}'
+             f'{esc(r["away_team"])}</span><b>{ag}</b></div></div>')
     has_pred = "p_home" in r and r["p_home"] == r["p_home"]
     if not has_pred:
         return (f'<a class="match-card" href="{match_url(r["match_id"])}" target="_self">'
@@ -134,11 +120,9 @@ def _card(r: pd.Series) -> str:
     is_over = over == over and over >= 0.5
     total_p = over if is_over else r.get("u25_p")
     total_odds = r.get("o25_odds") if is_over else r.get("u25_odds")
-    mark = ""
-    if played and over == over:
-        mark = (' <span class="hit">✔</span>' if (hg + ag > 2.5) == is_over else ' <span class="miss">✘</span>')
+    # no won / lost marks here: they read as the status of the Main prediction (shown on Match Details)
     total = (f'<div class="mc-block"><div class="cap">{t("Over 2.5") if is_over else t("Under 2.5")}</div>'
-             f'<div class="val">{pct(total_p)}{mark}'
+             f'<div class="val">{pct(total_p)}'
              + (f'<span class="odd">{odds_text(total_odds)}</span>' if total_odds == total_odds and total_odds else "")
              + "</div></div>")
     return (f'<a class="match-card" href="{match_url(r["match_id"])}" target="_self">'
@@ -175,7 +159,6 @@ def render() -> None:
                     f'<span class="country">{esc(country_label(lg.country))}</span></div>'
                     + "".join(_card(r) for _, r in group.iterrows()))
     with right:
-        _team_search()
         _summary_panel(shown, selected_day)
 
 

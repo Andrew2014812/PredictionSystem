@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 from .. import config
 from ..leagues import by_api_football_id
-from ..markets.markets import handicap_market, is_half_line
+from ..markets.markets import european_handicap_market, handicap_market, is_half_line
 from .cache import ApiCache, fetch_json
 
 log = logging.getLogger(__name__)
@@ -142,14 +142,12 @@ def parse_bet(name: str, values: list[dict]) -> list[tuple[str, float | None, st
                 continue
             side, number = m[1], float(m[2])
             line = -number if side == "Away" else number
-            half = is_half_line(line)
-            if name == "Asian Handicap" and not half:
-                continue          # whole / quarter Asian lines settle differently
-            if name == "Handicap Result" and half:
-                continue
             if line not in config.HANDICAP_LINES:
-                continue
-            add(handicap_market(line), line, {"Home": "H", "Draw": "D", "Away": "A"}[side], odd)
+                continue                  # also drops quarter lines (split stakes)
+            if name == "Asian Handicap" and side != "Draw":
+                add(handicap_market(line), line, {"Home": "H", "Away": "A"}[side], odd)
+            elif name == "Handicap Result" and not is_half_line(line):      # European 3-way
+                add(european_handicap_market(line), line, {"Home": "H", "Draw": "D", "Away": "A"}[side], odd)
         elif name == "Corners Over Under":
             m = re.fullmatch(r"(Over|Under) " + _NUM, value)
             if m:

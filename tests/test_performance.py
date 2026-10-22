@@ -94,9 +94,12 @@ def test_date_presets():
     today = pd.Timestamp("2026-10-07")
     assert preset_range("Last 7 days", today, "2025-01-01") == (pd.Timestamp("2026-10-01"), today)
     assert preset_range("Last 30 days", today, "2025-01-01")[0] == pd.Timestamp("2026-09-08")
-    assert preset_range("This month", today, "2025-01-01")[0] == pd.Timestamp("2026-10-01")
-    assert preset_range("This year", today, "2025-01-01")[0] == pd.Timestamp("2026-01-01")
-    assert preset_range("This season", today, "2025-01-01", season_start="2026-07-01")[0] == pd.Timestamp("2026-07-01")
+    assert preset_range("Current month", today, "2025-01-01")[0] == pd.Timestamp("2026-10-01")
+    assert preset_range("Previous month", today, "2025-01-01") == (pd.Timestamp("2026-09-01"),
+                                                                    pd.Timestamp("2026-09-30"))
+    assert preset_range("Specific month", today, "2025-01-01", (2026, 2)) == (pd.Timestamp("2026-02-01"),
+                                                                               pd.Timestamp("2026-02-28"))
+    assert preset_range("Current season", today, "2025-01-01", season_start="2026-07-01")[0] == pd.Timestamp("2026-07-01")
     assert preset_range("All time", today, "2025-01-01")[0] == pd.Timestamp("2025-01-01")
-    assert preset_range("Custom", today, "2025-01-01", ("2026-02-01", "2026-02-10")) == \
+    assert preset_range("Custom dates", today, "2025-01-01", ("2026-02-01", "2026-02-10")) == \
         (pd.Timestamp("2026-02-01"), pd.Timestamp("2026-02-10"))

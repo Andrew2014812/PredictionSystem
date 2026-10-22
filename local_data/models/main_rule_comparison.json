@@ -1,0 +1,196 @@
+{
+  "seasons_for_choice": [
+    "2023",
+    "2024"
+  ],
+  "reported_only": "2025",
+  "rules": {
+    "v4 (hard band 1.30–3.00, EV ≥ 3 %)": {
+      "2023": {
+        "predictions": 7182,
+        "hit_rate": 0.6087440824282929,
+        "bets": 4196,
+        "priced_share": 0.5842383737120579,
+        "roi": -0.04804099290795958,
+        "avg_odds": 1.9924570988256438,
+        "avg_effective_odds": 1.7104408457831364
+      },
+      "2024": {
+        "predictions": 7073,
+        "hit_rate": 0.6140251661246996,
+        "bets": 3926,
+        "priced_share": 0.5550685706206702,
+        "roi": -0.036775346471530954,
+        "avg_odds": 1.9914060059519247,
+        "avg_effective_odds": 1.689335796092481
+      },
+      "2025": {
+        "predictions": 7039,
+        "hit_rate": 0.6246625941184827,
+        "bets": 3598,
+        "priced_share": 0.51115215229436,
+        "roi": -0.05506392692181056,
+        "avg_odds": 1.995239017405995,
+        "avg_effective_odds": 1.6623841309715492
+      },
+      "selection_roi": -0.04259542187749679,
+      "selection_worst_roi": -0.04804099290795958
+    },
+    "v5 current": {
+      "2023": {
+        "predictions": 7241,
+        "hit_rate": 0.6464576715923215,
+        "bets": 3923,
+        "priced_share": 0.5417759977903605,
+        "roi": -0.02107825402000441,
+        "avg_odds": 1.6824547577171705,
+        "avg_effective_odds": 1.5567328336710113
+      },
+      "2024": {
+        "predictions": 7120,
+        "hit_rate": 0.6435393258426966,
+        "bets": 3744,
+        "priced_share": 0.5258426966292135,
+        "roi": -0.03610042648182975,
+        "avg_odds": 1.6942441248231463,
+        "avg_effective_odds": 1.5577353019122993
+      },
+      "2025": {
+        "predictions": 7089,
+        "hit_rate": 0.6394413880660178,
+        "bets": 3453,
+        "priced_share": 0.48709267879813795,
+        "roi": -0.0672748334298022,
+        "avg_odds": 1.6932783080914937,
+        "avg_effective_odds": 1.545041112354205
+      },
+      "selection_roi": -0.02841398034021754,
+      "selection_worst_roi": -0.03610042648182975
+    },
+    "v5 + value first (EV ≥ 0)": {
+      "2023": {
+        "predictions": 7212,
+        "hit_rate": 0.5210759844703272,
+        "bets": 6489,
+        "priced_share": 0.8997504159733777,
+        "roi": -0.04958699421552686,
+        "avg_odds": 1.9684311892957271,
+        "avg_effective_odds": 1.912552438963747
+      },
+      "2024": {
+        "predictions": 7085,
+        "hit_rate": 0.5246294989414255,
+        "bets": 6303,
+        "priced_share": 0.8896259703599153,
+        "roi": -0.041220054292837705,
+        "avg_odds": 1.9738632385151624,
+        "avg_effective_odds": 1.9111547227399244
+      },
+      "2025": {
+        "predictions": 7047,
+        "hit_rate": 0.5240527884206045,
+        "bets": 6023,
+        "priced_share": 0.8546899389811268,
+        "roi": -0.05871824816020248,
+        "avg_odds": 1.969737669587551,
+        "avg_effective_odds": 1.8877310706070285
+      },
+      "selection_roi": -0.045464353320224346,
+      "selection_worst_roi": -0.04958699421552686
+    },
+    "v5 + value first (EV ≥ 3 %)": {
+      "2023": {
+        "predictions": 7207,
+        "hit_rate": 0.5433606216178715,
+        "bets": 5874,
+        "priced_share": 0.8150409324268073,
+        "roi": -0.04855975477233564,
+        "avg_odds": 1.963818522103595,
+        "avg_effective_odds": 1.8611052211926533
+      },
+      "2024": {
+        "predictions": 7087,
+        "hit_rate": 0.5524199238041484,
+        "bets": 5634,
+        "priced_share": 0.7949767179342458,
+        "roi": -0.034162229538640954,
+        "avg_odds": 1.966116435802021,
+        "avg_effective_odds": 1.8512506173863814
+      },
+      "2025": {
+        "predictions": 7048,
+        "hit_rate": 0.5549091940976163,
+        "bets": 5340,
+        "priced_share": 0.7576617480136209,
+        "roi": -0.05467228579163998,
+        "avg_odds": 1.9590823952178384,
+        "avg_effective_odds": 1.8245657506808244
+      },
+      "selection_roi": -0.04151112276272182,
+      "selection_worst_roi": -0.04855975477233564
+    },
+    "v5 soft 0.30 + value first (EV ≥ 3 %)": {
+      "2023": {
+        "predictions": 7207,
+        "hit_rate": 0.5700013875398918,
+        "bets": 5249,
+        "priced_share": 0.7283196891910643,
+        "roi": -0.05352067102543807,
+        "avg_odds": 2.001285958026654,
+        "avg_effective_odds": 1.8115055273745517
+      },
+      "2024": {
+        "predictions": 7088,
+        "hit_rate": 0.5826749435665914,
+        "bets": 4911,
+        "priced_share": 0.6928611738148984,
+        "roi": -0.02716962003678757,
+        "avg_odds": 2.011286905986232,
+        "avg_effective_odds": 1.794005110380924
+      },
+      "2025": {
+        "predictions": 7049,
+        "hit_rate": 0.589303447297489,
+        "bets": 4598,
+        "priced_share": 0.6522911051212938,
+        "roi": -0.05061983616261858,
+        "avg_odds": 2.0077838170471374,
+        "avg_effective_odds": 1.7642934796905076
+      },
+      "selection_roi": -0.0407834651784634,
+      "selection_worst_roi": -0.05352067102543807
+    },
+    "v5 soft 0.30, EV weight 0 + value first (EV ≥ 3 %)": {
+      "2023": {
+        "predictions": 7209,
+        "hit_rate": 0.5665140796226938,
+        "bets": 5438,
+        "priced_share": 0.7543348592037731,
+        "roi": -0.05173041602187667,
+        "avg_odds": 1.9786373656345844,
+        "avg_effective_odds": 1.8140418682024748
+      },
+      "2024": {
+        "predictions": 7089,
+        "hit_rate": 0.5775144590210185,
+        "bets": 5107,
+        "priced_share": 0.7204119057695021,
+        "roi": -0.026430390225200006,
+        "avg_odds": 1.9880967292623182,
+        "avg_effective_odds": 1.7981515836615234
+      },
+      "2025": {
+        "predictions": 7052,
+        "hit_rate": 0.5853658536585366,
+        "bets": 4782,
+        "priced_share": 0.6781055019852524,
+        "roi": -0.05169803547290816,
+        "avg_odds": 1.9842450841108359,
+        "avg_effective_odds": 1.767664467869934
+      },
+      "selection_roi": -0.03947747797127186,
+      "selection_worst_roi": -0.05173041602187667
+    }
+  },
+  "chosen": "v5 current"
+}

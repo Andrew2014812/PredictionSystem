@@ -1,29 +1,70 @@
-# Manual data update. Open GitHub → Actions → "Update data and predictions" →
-# "Run workflow", pick what to update, press the green button.
+# Data update: results, fixtures, real odds and predictions.
 #
-#   results  — new results and fixtures, refreshed predictions. Free: no API credits.
-#   odds     — real bookmaker odds for matches in the next days (spends The Odds API
-#              credits, at most "credit_budget" per run), refreshed predictions.
-#   full     — both.
+# Every day at about 11:00 Kyiv time (automatic) and on demand: GitHub → Actions →
+# "Update data and predictions" → "Run workflow".
 #
-# The run commits local_data/ to main; Streamlit Cloud redeploys automatically and
-# a local checkout catches up with `git pull`. No schedule: credits are only spent
-# when someone presses the button (to restore a schedule add e.g.
-#   schedule: [{cron: "0 18 * * 1"}, {cron: "0 18 * * 4"}]   # Mon + Thu 18:00 UTC).
+#   results  — new results and fixtures, refreshed predictions. Free: no odds quota.
+#   odds     — real bookmaker odds for matches in the next days: OddsPapi first (one billable
+#              request for all fixtures; prices from the free historical endpoint, ~5 s per match),
+#              The Odds API only for markets OddsPapi did not price (ODDS_API_FALLBACK repository
+#              variable: missing | off | always), refreshed predictions.
+#   full     — both (the daily run).
+#   history  — manual only: OddsPapi price archive of played matches (free endpoint, ~600 matches an
+#              hour, resumable; default the current season from 1 August), then the missing prices of
+#              recorded predictions are filled from it (marked as archived) and the season backtest is
+#              regenerated with the archived prices. Recorded picks are never changed otherwise.
+#
+# Optional (manual runs): limit the odds update to one league (E0, SP1 …), one match day
+# (YYYY-MM-DD) or one match id, and "force" to re-price inside the refresh window.
+#
+# Kyiv is UTC+3 in summer and UTC+2 in winter, and cron runs in UTC, so two schedules exist
+# (08:00 and 09:00 UTC) and the "time" step lets exactly one of them continue each day.
+# GitHub may start scheduled runs late; the check uses the schedule that fired, not the clock.
+#
+# The run commits local_data/ to main; Streamlit Cloud redeploys automatically and a local
+# checkout catches up with `git pull`. Quotas: `python scripts/odds_credits.py` (also printed
+# in the run summary). If an API is down or a quota is exhausted, the run keeps the existing data.
 name: Update data and predictions
 
 on:
+  schedule:
+    - cron: "0 8 * * *"      # 11:00 Kyiv in summer (UTC+3)
+    - cron: "0 9 * * *"      # 11:00 Kyiv in winter (UTC+2)
   workflow_dispatch:
     inputs:
       mode:
         description: "What to update"
         type: choice
-        options: [results, odds, full]
+        options: [results, odds, full, history]
         default: results
       credit_budget:
         description: "Max The Odds API credits for this run (odds / full only)"
         type: number
-        default: 60
+        default: 30
+      league:
+        description: "Only this league code (optional, odds / full)"
+        type: string
+        default: ""
+      day:
+        description: "Only matches on this day, YYYY-MM-DD (optional)"
+        type: string
+        default: ""
+      match_id:
+        description: "Only this match id (optional)"
+        type: string
+        default: ""
+      force:
+        description: "Re-price even if asked recently"
+        type: boolean
+        default: false
+      history_since:
+        description: "history: first day, YYYY-MM-DD (empty = 1 August of the current season)"
+        type: string
+        default: ""
+      history_max:
+        description: "history: at most this many matches in this run (the rest next run)"
+        type: number
+        default: 1600
 
 concurrency:
   group: update-data
@@ -35,25 +76,69 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: ${{ inputs.mode == 'history' && 330 || 75 }}
     steps:
+      - name: Daily run at 11:00 Kyiv only
+        id: time
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          offset=$(TZ=Europe/Kyiv date +%z)          # +0300 in summer, +0200 in winter
+          want="0 9 * * *"; [ "$offset" = "+0300" ] && want="0 8 * * *"
+          if [ "${{ github.event.schedule }}" = "$want" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Kyiv offset $offset: this is the other daily schedule, skipping." >> "$GITHUB_STEP_SUMMARY"
+          fi
       - uses: actions/checkout@v4
+        if: steps.time.outputs.run == 'true'
         with:
           ref: main
       - uses: actions/setup-python@v5
+        if: steps.time.outputs.run == 'true'
         with:
           python-version: "3.12"
           cache: pip
       - name: Install dependencies
+        if: steps.time.outputs.run == 'true'
         run: pip install -r requirements.txt
       - name: Run pipeline
+        if: steps.time.outputs.run == 'true' && inputs.mode != 'history'
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python scripts/run_pipeline.py --mode "${{ inputs.mode }}" --credit-budget "${{ inputs.credit_budget }}"
-      - name: Show The Odds API credits
-        run: python scripts/odds_credits.py
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDS_API_FALLBACK: ${{ vars.ODDS_API_FALLBACK || 'missing' }}
+        run: |
+          mode="${{ inputs.mode || 'full' }}"
+          args=(--mode "$mode" --credit-budget "${{ inputs.credit_budget || 30 }}")
+          [ -n "${{ inputs.league }}" ] && args+=(--odds-league "${{ inputs.league }}")
+          [ -n "${{ inputs.day }}" ] && args+=(--odds-date "${{ inputs.day }}")
+          [ -n "${{ inputs.match_id }}" ] && args+=(--odds-match "${{ inputs.match_id }}")
+          [ "${{ inputs.force }}" = "true" ] && args+=(--force)
+          python scripts/run_pipeline.py "${args[@]}" | tee pipeline.log
+          echo "### Pipeline ($mode)" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"; tail -n 40 pipeline.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Download the price archive and fill recorded prices
+        if: inputs.mode == 'history'
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+        run: |
+          args=(--go --max-matches "${{ inputs.history_max || 1600 }}")
+          [ -n "${{ inputs.history_since }}" ] && args+=(--since "${{ inputs.history_since }}")
+          python scripts/oddspapi_history.py "${args[@]}" | tee history.log
+          python scripts/restore_recorded_odds.py --go | tee -a history.log
+          python scripts/regenerate_predictions.py 2>&1 | grep -v " INFO " | tee -a history.log
+          echo "### Price archive" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"; tail -n 60 history.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Show API quotas
+        if: steps.time.outputs.run == 'true'
+        run: |
+          python scripts/odds_credits.py | tee quotas.log
+          echo "### Quotas" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"; cat quotas.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
       - name: Commit updated data
+        if: steps.time.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -61,7 +146,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No data changes."
           else
-            git commit -m "Update data and predictions (${{ inputs.mode }})"
+            git commit -m "Update data and predictions (${{ inputs.mode || 'daily' }})"
             git pull --rebase origin main
             git push origin HEAD:main
           fi

@@ -36,13 +36,21 @@ def test_market_probabilities_are_consistent():
     assert p[("DOUBLE_CHANCE", "1X")] == pytest.approx(p[("1X2", "H")] + p[("1X2", "D")])
     assert p[("DOUBLE_CHANCE", "X2")] == pytest.approx(p[("1X2", "D")] + p[("1X2", "A")])
     assert p[("DOUBLE_CHANCE", "12")] == pytest.approx(p[("1X2", "H")] + p[("1X2", "A")])
-    # handicap +0 would equal 1X2; -1 home win is "win by 2+" and smaller than a home win
+    # Asian -1: home "wins" only by 2+, a 1-goal win is a refund
     assert p[("HANDICAP_-1", "H")] < p[("1X2", "H")]
+    sels = {(s.market, s.selection): s for s in goal_markets(reconcile_with_1x2(score_matrix(1.5, 1.0),
+                                                                                np.array([.48, .27, .25])))}
     for line in config.HANDICAP_LINES:
-        sels = "HA" if line % 1 else "HDA"
-        assert (f"HANDICAP_{line:+g}", "D") in p or line % 1
-        total = sum(p[(f"HANDICAP_{line:+g}", s)] for s in sels)
-        assert total == pytest.approx(1.0)
+        h, a = sels[(f"HANDICAP_{line:+g}", "H")], sels[(f"HANDICAP_{line:+g}", "A")]
+        assert (f"HANDICAP_{line:+g}", "D") not in p                      # Asian: never a "draw" outcome
+        assert h.probability + a.probability + h.push_probability == pytest.approx(1.0)
+        assert h.push_probability == a.push_probability
+        if line % 1:
+            assert h.push_probability == 0                                # half line: no refund
+        else:                                                             # European 3-way kept separately
+            assert h.push_probability > 0
+            assert sum(p[(f"EHANDICAP_{line:+g}", s)] for s in "HDA") == pytest.approx(1.0)
+            assert p[(f"EHANDICAP_{line:+g}", "D")] == pytest.approx(h.push_probability)
     # half line -0.5 is exactly "home win"; +0.5 home is "home or draw"
     assert p[("HANDICAP_-0.5", "H")] == pytest.approx(p[("1X2", "H")])
     assert p[("HANDICAP_+0.5", "H")] == pytest.approx(p[("DOUBLE_CHANCE", "1X")])
@@ -70,9 +78,15 @@ def test_corner_distribution_and_lines():
     ("1X2", "H", 2, 1, None, True), ("1X2", "D", 2, 1, None, False),
     ("DOUBLE_CHANCE", "X2", 1, 1, None, True), ("TOTAL_2.5", "OVER", 2, 1, None, True),
     ("TOTAL_2.5", "UNDER", 2, 1, None, False), ("BTTS", "YES", 2, 0, None, False),
-    ("EXACT_SCORE", "2-1", 2, 1, None, True), ("HANDICAP_-1", "D", 2, 1, None, True),
-    ("HANDICAP_-1", "H", 3, 1, None, True), ("HANDICAP_+1", "A", 0, 2, None, True),
-    ("HANDICAP_+1", "D", 0, 1, None, True), ("HANDICAP_-2", "D", 2, 0, None, True),
+    ("EXACT_SCORE", "2-1", 2, 1, None, True),
+    # Asian whole lines: an exact margin is a refund (None from selection_won)
+    ("HANDICAP_-1", "H", 3, 1, None, True), ("HANDICAP_-1", "H", 2, 1, None, None),
+    ("HANDICAP_-1", "A", 2, 1, None, None), ("HANDICAP_-1", "A", 1, 1, None, True),
+    ("HANDICAP_+1", "A", 0, 2, None, True), ("HANDICAP_+1", "H", 0, 1, None, None),
+    ("HANDICAP_-2", "H", 2, 0, None, None), ("HANDICAP_-2", "H", 2, 1, None, False),
+    # European 3-way: every score decides
+    ("EHANDICAP_-1", "D", 2, 1, None, True), ("EHANDICAP_+1", "D", 0, 1, None, True),
+    ("EHANDICAP_-2", "H", 3, 0, None, True), ("EHANDICAP_-1", "A", 1, 1, None, True),
     # half lines: two outcomes, no draw after the handicap
     ("HANDICAP_-0.5", "H", 1, 0, None, True), ("HANDICAP_-0.5", "A", 1, 1, None, True),
     ("HANDICAP_+0.5", "H", 1, 1, None, True), ("HANDICAP_-1.5", "H", 2, 1, None, False),
@@ -105,46 +119,99 @@ def _ps(market, selection, p, odds=None):
 
 
 def test_main_prediction_softly_prefers_odds_in_the_preferred_range():
-    sels = [_ps("DOUBLE_CHANCE", "1X", 0.84, 1.22),          # very likely, but odds below 1.40
+    sels = [_ps("DOUBLE_CHANCE", "1X", 0.84, 1.12),          # very likely, but a 1.12 price
             _ps("1X2", "H", 0.55, 1.95)]                     # inside 1.40–2.50
     main = main_prediction(sels)
-    assert main.kind == "value" and (main.pick.market, main.pick.selection) == ("1X2", "H")
+    assert main.kind == "priced" and (main.pick.market, main.pick.selection) == ("1X2", "H")
     # outside the range the weight decays smoothly instead of dropping to zero
-    assert 0 < odds_preference(1.22) < odds_preference(1.35) < odds_preference(1.40) == 1.0
-    assert odds_preference(2.50) == 1.0 > odds_preference(2.8) > odds_preference(3.5) > 0
+    assert 0 < odds_preference(1.12) < odds_preference(1.37) < odds_preference(1.40) == 1.0
+    assert odds_preference(2.50) == 1.0 > odds_preference(2.6) > odds_preference(3.5) > 0
+    assert odds_preference(1.37) > 0.95 and odds_preference(2.6) > 0.95        # barely penalised
 
 
-def test_main_value_pick_needs_a_non_negative_expected_value():
-    sels = [_ps("1X2", "H", 0.50, 1.90),                     # EV -5%
-            _ps("TOTAL_2.5", "OVER", 0.55, 1.90)]            # EV +4.5%
-    main = main_prediction(sels)
-    assert main.kind == "value" and main.pick.market == "TOTAL_2.5"
+def test_main_prediction_does_not_chase_ev_without_probability():
+    sels = [_ps("1X2", "H", 0.56, 1.80),                     # EV +0.8%, likely
+            _ps("1X2", "A", 0.41, 2.60)]                     # EV +6.6%, much less likely
+    assert main_prediction(sels).pick.selection == "H"
 
 
-def test_main_prediction_without_value_is_the_most_reliable_probable_selection():
-    sels = [_ps("1X2", "H", 0.50, 1.80), _ps("TOTAL_2.5", "OVER", 0.58, 1.60), _ps("BTTS", "YES", 0.60)]
-    main = main_prediction(sels)
-    # BTTS 0.60 x 0.95 = 0.57 < TOTAL 0.58 x 1.0
-    assert main.kind == "model" and main.pick.market == "TOTAL_2.5"
+def test_main_prefers_a_real_price_over_a_similar_unpriced_selection():
+    sels = [_ps("1X2", "H", 0.55, 1.85), _ps("BTTS", "YES", 0.57)]
+    assert main_prediction(sels).pick.market == "1X2"
 
 
 def test_main_prediction_exists_without_any_odds():
     sels = [_ps("1X2", "H", 0.48), _ps("1X2", "D", 0.27), _ps("1X2", "A", 0.25), _ps("TOTAL_2.5", "UNDER", 0.55)]
     main = main_prediction(sels)
-    assert main is not None and main.pick.ev is None
+    assert main is not None and main.pick.ev is None and main.kind == "model"
     assert main.pick.market == "TOTAL_2.5"
 
 
 def test_main_prediction_ignores_near_certain_selections():
-    sels = [_ps("TOTAL_1.5", "OVER", 0.92), _ps("1X2", "H", 0.40), _ps("1X2", "A", 0.30), _ps("1X2", "D", 0.30)]
+    sels = [_ps("TOTAL_1.5", "OVER", 0.92), _ps("1X2", "H", 0.38), _ps("1X2", "A", 0.32), _ps("1X2", "D", 0.30)]
     main = main_prediction(sels)
     assert main.pick.market == "1X2" and main.pick.selection == "H"      # falls back to most probable 1X2
 
 
-def test_risk_prediction_rules():
-    assert risk_prediction([_ps("1X2", "A", 0.30, 3.8)]).pick.selection == "A"      # EV +14%
-    assert risk_prediction([_ps("1X2", "A", 0.30, 3.6)]) is None        # EV +8% < 10%
-    assert risk_prediction([_ps("1X2", "A", 0.20, 6.0)]) is None        # probability too low
-    assert risk_prediction([_ps("1X2", "A", 0.30, 3.2)]) is None        # EV below threshold
-    assert risk_prediction([_ps("EXACT_SCORE", "2-1", 0.30, 9.0)]) is None
-    assert risk_prediction([_ps("1X2", "A", 0.40)]) is None            # no real odds -> no risk prediction
+def test_risk_prediction_exists_without_positive_ev():
+    main = _ps("1X2", "H", 0.50, 2.0)
+    sels = [main, _ps("1X2", "D", 0.27, 3.4), _ps("1X2", "A", 0.23, 4.0)]     # both EV negative
+    risk = risk_prediction(sels, main)
+    assert risk is not None and risk.pick.ev < 0
+    assert risk.pick.selection == "D"                    # more likely of two similar prices
+
+
+def test_risk_never_repeats_main_in_another_form():
+    main = _ps("1X2", "H", 0.50, 2.0)
+    sels = [main, _ps("HANDICAP_-0.5", "H", 0.50, 2.02), _ps("1X2", "D", 0.25, 3.6)]
+    assert risk_prediction(sels, main).pick.market == "1X2"           # "home -0.5" is the same bet
+    assert risk_prediction(sels, main).pick.selection == "D"
+
+
+def test_risk_is_not_the_longest_price_on_the_board():
+    main = _ps("1X2", "H", 0.55, 1.8)
+    sels = [main, _ps("TOTAL_3.5", "OVER", 0.30, 3.3), _ps("EXACT_SCORE", "3-2", 0.03, 41.0)]
+    assert risk_prediction(sels, main).pick.market == "TOTAL_3.5"
+
+
+def test_risk_exists_without_any_real_price():
+    main = _ps("1X2", "H", 0.50)
+    risk = risk_prediction([main, _ps("1X2", "A", 0.25), _ps("BTTS", "NO", 0.45)], main)
+    assert risk is not None and risk.kind == "model" and risk.pick.odds is None
+
+
+@pytest.mark.parametrize("market,selection,hg,ag,expected", [
+    ("HANDICAP_-1", "H", 2, 1, "PUSH"), ("HANDICAP_-1", "H", 3, 1, "WON"), ("HANDICAP_-1", "H", 1, 1, "LOST"),
+    ("HANDICAP_+1", "A", 0, 1, "PUSH"), ("HANDICAP_+2", "H", 0, 2, "PUSH"), ("HANDICAP_+2", "H", 0, 1, "WON"),
+    ("HANDICAP_-0.5", "H", 1, 1, "LOST"), ("HANDICAP_+1.5", "H", 0, 1, "WON"), ("HANDICAP_-2.5", "A", 2, 0, "WON"),
+    ("EHANDICAP_-1", "H", 2, 1, "LOST"), ("EHANDICAP_-1", "D", 2, 1, "WON"),
+])
+def test_asian_and_european_handicap_settlement(market, selection, hg, ag, expected):
+    from src.markets.markets import settle_selection
+    assert settle_selection(market, selection, hg, ag) == expected
+
+
+def test_asian_whole_line_ev_counts_the_refund():
+    # p(win) 0.45, p(refund) 0.25, p(loss) 0.30 at odds 2.0 -> 0.45 * 1 - 0.30 = +0.15
+    sel = PricedSelection("HANDICAP_-1", "H", 0.45, 2.0, push_probability=0.25)
+    assert sel.ev == pytest.approx(0.15) and sel.lose_probability == pytest.approx(0.30)
+    assert PricedSelection("1X2", "H", 0.45, 2.0).ev == pytest.approx(-0.10)
+
+
+def test_risk_never_bets_against_main():
+    main = _ps("TOTAL_3.5", "UNDER", 0.68)
+    sels = [main, _ps("TOTAL_3.5", "OVER", 0.32, 3.2), _ps("BTTS", "YES", 0.30, 3.3)]
+    assert risk_prediction(sels, main).pick.market == "BTTS"           # not "over 3.5"
+    main = _ps("1X2", "H", 0.50, 2.0)
+    sels = [main, _ps("DOUBLE_CHANCE", "X2", 0.50, 2.0), _ps("1X2", "D", 0.26, 3.5)]
+    assert risk_prediction(sels, main).pick.selection == "D"           # draw: an alternative, not the opposite
+
+
+@pytest.mark.parametrize("market,sel,label", [
+    ("HANDICAP_-0.5", "A", "Köln (+0.5)"), ("HANDICAP_-0.5", "H", "Bayern (-0.5)"),
+    ("HANDICAP_+1.5", "A", "Köln (-1.5)"), ("HANDICAP_+1.5", "H", "Bayern (+1.5)"),
+])
+def test_handicap_labels_show_the_line_of_the_chosen_side(market, sel, label):
+    from src.markets.markets import market_title, selection_label
+    assert selection_label(market, sel, "Bayern", "Köln") == label
+    assert market_title(market) == "Asian handicap"                   # no contradicting home line

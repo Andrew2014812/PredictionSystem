@@ -34,8 +34,8 @@ STAT_LABELS = {
     "corner_share": "share of corners in its matches",
     "shot_share": "share of shots in its matches",
     "games": "matches played",
-    "opp_elo": "average Elo of opponents",
-    "elo_surprise": "results above Elo expectation",
+    "opp_elo": "average strength of opponents",
+    "elo_surprise": "results above expectation",
     "adj_gf": "goals scored vs opponents' usual",
     "adj_ga": "goals conceded vs opponents' usual",
     "adj_cf": "corners won vs opponents' usual",
@@ -61,10 +61,10 @@ TREND_LABELS = {
 
 OVERRIDES = {
     "league": "League",
-    "h_elo": "Home team · Elo strength rating",
-    "a_elo": "Away team · Elo strength rating",
-    "elo_diff": "Elo strength gap (incl. home advantage)",
-    "elo_exp_home": "Elo expected score of the home team",
+    "h_elo": "Home team · team strength",
+    "a_elo": "Away team · team strength",
+    "elo_diff": "Team strength difference (incl. home advantage)",
+    "elo_exp_home": "Expected result from team strength",
     "h_points": "Home team · league points",
     "a_points": "Away team · league points",
     "h_position": "Home team · league position",
@@ -256,7 +256,7 @@ _TEAM_TOPICS = [
 ]
 
 _GLOBAL_TOPICS = [
-    (r"^elo_", "gap in Elo strength"),
+    (r"^elo_", "difference in team strength"),
     (r"^h_(attack_vs|form_attack_vs|sot_vs)", "home attack against the away defence"),
     (r"^a_(attack_vs|form_attack_vs|sot_vs)", "away attack against the home defence"),
     (r"corners", "corner volume of both teams"),
@@ -290,7 +290,7 @@ _GLOBAL_TOPICS_UK = {
     "gap in league standing": "різниця в турнірному становищі", "gap in recent form": "різниця в поточній формі",
     "difference in rest days": "різниця у відпочинку", "head-to-head record": "історія особистих зустрічей",
     "scoring level of the league": "результативність ліги", "typical results in this league": "типові результати ліги",
-    "league profile": "профіль ліги", "gap in Elo strength": "різниця в силі за Elo", "bookmaker expectations": "очікування букмекерів",
+    "league profile": "профіль ліги", "difference in team strength": "різниця в силі команд", "bookmaker expectations": "очікування букмекерів",
 }
 
 

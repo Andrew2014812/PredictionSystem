@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 from src import config
-from src.analytics.performance import group_summary, summarize
+from src.analytics.performance import group_summary, select_dataset, summarize
 from src.analytics.teams import league_table
 from src.leagues import enabled_leagues, get_league
 from src.ui import data
@@ -31,7 +31,7 @@ def _table_html(table: pd.DataFrame, country: str) -> str:
 def _match_rows(matches: pd.DataFrame, played: bool) -> str:
     out = []
     for r in matches.itertuples():
-        centre = f"{int(r.home_goals)}–{int(r.away_goals)}" if played else (r.time or "—")
+        centre = f"{int(r.home_goals)}:{int(r.away_goals)}" if played else (r.time or "—")
         out.append(f"<a class='rm' style='grid-template-columns:80px 1fr 56px 1fr' href='{match_url(r.match_id)}' "
                    f"target='_self'><span class='d'>{date_text(r.date, '%d.%m')}</span>"
                    f"<span style='text-align:right'>{esc(r.home_team)}</span><span class='s' style='text-align:center'>"
@@ -90,29 +90,40 @@ def render() -> None:
         else:
             st.html(_match_rows(recent, True))
 
-    section(t("FootPredict in this league"))
-    picks = data.picks()
-    lp = picks.loc[picks["league"] == league] if not picks.empty else picks
-    main = summarize(lp.loc[lp["role"] == "main"]) if not lp.empty else None
-    if not main or not main["settled"]:
-        st.caption(t("No completed predictions for this league yet."))
+    section(t("FootPredict in this league"), config.season_label(season))
+    all_picks = data.picks()
+    lp_all = all_picks.loc[(all_picks["league"] == league) & (all_picks["season"] == season)] \
+        if not all_picks.empty else all_picks
+    shown = False
+    # Recorded pre-match predictions and the season backtest are shown apart, never added up.
+    for key, title in (("recorded", "Recorded before kick-off"), ("season_backtest", "Backtest")):
+        lp = select_dataset(lp_all, key)
+        main = summarize(lp.loc[lp["role"] == "main"]) if not lp.empty else None
+        if not main or not main["settled"]:
+            continue
+        shown = True
+        st.html(f"<div class='why-h'>{t(title)}</div>")
+        kpi_row([
+            (t("Main predictions"), f"{main['settled']:,}", t("{n} predictions with odds", n=main["bets"])),
+            (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
+            (t("Main profit"), f"{signed(main['profit'])} {t('u')}" if main["bets"] else "—", "", tone(main["profit"])),
+            (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
+        ])
+    if not shown:
+        st.caption(t("No settled FootPredict predictions for this league in this season yet."))
         return
-    kpi_row([
-        (t("Matches predicted"), f"{main['settled']:,}", ""),
-        (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
-        (t("Main profit"), f"{signed(main['profit'])} u" if main["bets"] else "—",
-         t("{n} predictions with odds", n=main["bets"]), tone(main["profit"])),
-        (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
-    ])
-    section(t("Market performance"))
-    g = group_summary(lp.loc[lp["role"] == "market"], "group")
-    if not g.empty:
-        view = pd.DataFrame({t("Market"): g["group"].map(group_title), t("Predictions"): g["predictions"],
-                             t("Hit rate"): g["hit_rate"], t("Profit"): g["profit"], t("ROI"): g["roi"]})
-        st.html(html_table(view, formats={
-            t("Hit rate"): lambda v: pct(v, 1), t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>",
-            t("ROI"): lambda v: f"<span class='{tone(v)}'>{signed(v, 1, '%')}</span>"},
-            align_right=(t("Predictions"), t("Hit rate"), t("Profit"), t("ROI"))))
-
+    section(t("Market performance"), t("recorded before kick-off"))
+    lp = select_dataset(lp_all, "recorded")
+    g = group_summary(lp.loc[lp["role"] == "market"], "group") if not lp.empty else pd.DataFrame()
+    if g.empty:
+        st.caption(t("No recorded market forecasts settled yet."))
+        return
+    view = pd.DataFrame({t("Market"): g["group"].map(group_title), t("Predictions"): g["predictions"],
+                         t("Hit rate"): g["hit_rate"], t("Bets with odds"): g["bets"], t("Profit"): g["profit"],
+                         t("ROI"): g["roi"]})
+    st.html(html_table(view, formats={
+        t("Hit rate"): lambda v: pct(v, 1), t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>",
+        t("ROI"): lambda v: f"<span class='{tone(v)}'>{signed(v, 1, '%')}</span>"},
+        align_right=(t("Predictions"), t("Hit rate"), t("Bets with odds"), t("Profit"), t("ROI"))))
 
 render()

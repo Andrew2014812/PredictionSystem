@@ -10,11 +10,12 @@ FootPredict:
   opponent-adjusted features;
 * derives consistent probabilities for 1X2, double chance, totals, BTTS, exact score, handicap and corners;
 * attaches **real bookmaker odds only** (never derived or simulated prices) and computes expected value;
-* picks one **Main prediction** per match and, when it qualifies, an optional **Risk prediction**;
-* explains every prediction with **SHAP** in plain language (EN / UA);
-* records predictions **before kick-off only** (frozen once the match starts), settles them and reports profit /
-  ROI of the Main strategy separately for recorded predictions and for historical model evaluation;
-* runs as a multi-page Streamlit website with an English / Ukrainian switch and dark / light theme.
+* picks a **Main prediction** and a **Risk prediction** for every match it can predict;
+* explains every prediction with **SHAP** in plain language;
+* records predictions **before kick-off only** (every pre-match version is archived, the last one before
+  kick-off counts), settles them — Asian handicaps with refunds — and reports profit / ROI;
+* runs as a multi-page Streamlit website in English with dark / light theme, a header team search and times in
+  the visitor's own time zone.
 
 Live: <https://football-prediction-diploma.streamlit.app>
 
@@ -40,19 +41,19 @@ Football-Data CSV (history, Bet365 prices)      API-Football / The Odds API (fre
                                │
              SHAP explanation (on demand, per model version)      src/explain/
                                │
-                     Streamlit UI (EN / UA, dark / light)         app.py, views/, src/ui/
+                     Streamlit UI (English, dark / light)         app.py, views/, src/ui/
 ```
 
 | Path | Content |
 |---|---|
-| `app.py` | entry point: brand, navigation, language and theme switches |
+| `app.py` | entry point: brand, navigation, team search and theme switch |
 | `views/` | pages: matches, match details, history, leagues, teams, analytics, model analysis |
 | `scripts/` | `run_pipeline.py` (update, modes results / odds / full), `retrain_models.py`, `decision_study.py`, `odds_credits.py`, `check_team_aliases.py`, `migrate_prediction_history.py`, `update_data.py`, `build_features.py`, `migrate_real_odds.py` |
 | `src/config.py` | all settings (paths, seasons, API, markets, recommendation thresholds) |
 | `src/leagues.py` | league registry with provider ids, season calendar and full-support flag |
 | `src/data/` | Football-Data download, normalisation, match identity, deduplication |
 | `src/providers/` | API-Football, The Odds API, Football-Data prices, aliases, cache, credit ledger, collection |
-| `src/features/` | feature builder, Elo ratings, feature sets per model, feature dictionary, readable names (EN / UA) |
+| `src/features/` | feature builder, Elo ratings, feature sets per model, feature dictionary, readable names |
 | `src/modelling/` | tasks, preprocessing, Hyperopt training, draw decision rule, evaluation, registry |
 | `src/markets/` | distributions, markets, real-odds layer, main / risk rules |
 | `src/prediction/` | prediction engine, prediction store, settlement |
@@ -65,20 +66,71 @@ Football-Data CSV (history, Bet365 prices)      API-Football / The Odds API (fre
 ## Data sources
 
 Only **real bookmaker prices** are used. A selection without a published price shows no odds and no EV;
-nothing is derived, estimated or simulated, and the history keeps the provider and bookmaker of every price.
+nothing is derived, estimated or simulated, and every price keeps its provider, bookmaker and time.
 
-| Source | Used for | Free plan / licence | Status |
+| Source | Used for | Free plan | Role |
 |---|---|---|---|
-| [Football-Data](https://www.football-data.co.uk) | history of results, shots, corners, cards; Bet365 1X2, total 2.5, Asian handicap (half lines used), pre-match and closing | free download | base of the models (confirmed) |
-| [The Odds API](https://the-odds-api.com) v4 | fixtures (free), 1X2 + totals per league, and per match BTTS, double chance, goal lines 0.5–5.5, corner lines (UK bookmakers) | 500 credits / month | used, budgeted (confirmed live) |
-| [API-Football](https://www.api-football.com) v3 | fixtures and final scores (yesterday … tomorrow) | 100 requests / day; free odds only for seasons 2022–2024 | used for results; odds off (confirmed) |
-| The Odds API historical, Sportmonks, football-data.org, apifootball.com, odds-api.io, Pinnacle, Betfair | — | paid, no useful free odds, paused free keys, academic / personal only | not used (documentation) |
+| [Football-Data](https://www.football-data.co.uk) | history: results, shots, corners, cards; Bet365 1X2, total 2.5, Asian handicap (half and whole lines) | free download | model training, historical prices |
+| [OddsPapi](https://oddspapi.io) v4 | fixtures and real odds of many bookmakers for 1X2, double chance, totals, BTTS, correct score, Asian / European handicap, corner totals; historical odds since January 2026 | 250 requests / month; historical odds free | **main odds provider** (see below) |
+| [API-Football](https://www.api-football.com) v3 | fixtures and final scores (yesterday … tomorrow); club badge URLs | 100 requests / day; seasons 2022–2024 only for odds and team lists | fresh results |
+| [The Odds API](https://the-odds-api.com) v4 | 1X2 / totals per league, BTTS, double chance, goal and corner lines per match (UK bookmakers) | 500 credits / month | fallback (`ODDS_API_ENABLED`) |
 
-Priority when several providers price the same selection: The Odds API (fresh pre-match) → Football-Data.
-Every response is cached in `local_data/api/`; the website never calls an API — it only reads files written by
-the pipeline. Pre-match odds are archived with their collection time and never replaced after kick-off.
+When several providers price a selection: OddsPapi → API-Football → The Odds API → Football-Data. The website
+never calls an API: it only reads files written by the pipeline, so opening it costs no quota.
 
-### The Odds API credits
+### OddsPapi: setup and quota
+
+1. Create a free account at <https://oddspapi.io> and copy the API key.
+2. Locally: add `ODDSPAPI_KEY=...` to `.env` (git-ignored). For the cloud update: GitHub → Settings → Secrets and
+   variables → Actions → *New repository secret* `ODDSPAPI_KEY`. Never put the key in code, tests or commits.
+3. `python scripts/odds_credits.py` shows the requests left (no API call).
+
+Costs per odds update (`--mode odds`): the market catalogue and the tournament list are fetched once and cached
+(months); **one** `/fixtures` request lists the fixtures of the next 4 days in all leagues; prices come from
+`/historical-odds` (free, one call per match with a 5-second pause) or, if that endpoint does not serve upcoming
+matches, from `/odds` (1 request per match within `ODDSPAPI_RUN_BUDGET`). Safeguards
+(`local_data/api/oddspapi/ledger.json`, committed): a match is not asked again within 12 h — also when the
+answer was "no odds" — but a temporary error (network, 5xx) may be retried; a monthly reserve of 20 requests is
+never spent; the API's own counter (`/account`, free) is read every run.
+
+Transport (`src/providers/oddspapi.py`): a minimum gap between any two requests plus each endpoint's own
+cooldown; **429** answers are retried after the `Retry-After` time (or the wait named in the body) with a
+growing back-off, at most 4 attempts; network errors and 5xx back off exponentially; a monthly-quota answer
+stops the run at once (no further requests) and is reported. Successful answers are cached, so a re-run does
+not ask again. Matches are priced in kick-off order and the prices are saved every 25 matches, so an
+interrupted run keeps its work. Every stored price has match id, provider, bookmaker, market, line,
+selection, odds, the bookmaker's quote time, the fetch time and the kick-off. A bookmaker whose lines
+contradict each other (P(over) rising with the line, a handicap ladder in the wrong order — a swapped line)
+is dropped for that market and counted in the run summary. `python scripts/oddspapi_inspect.py --fixture <id>
+--market <name>` prints the raw quotes of one match for checking.
+
+**The Odds API is only a fallback.** `ODDS_API_FALLBACK` (env / GitHub *variable*): `missing` (default) buys
+a market only when no provider has priced it, `off` never calls The Odds API.
+
+### Historical odds (2026)
+
+OddsPapi keeps every price snapshot since January 2026. `scripts/oddspapi_history.py` first prints an
+estimate only (dry run); `--go` downloads, per league, the fixtures (1 request per league, remembered so a
+resumed run does not pay again) and then the snapshots of each played match (free endpoint, ≈600 matches an
+hour), saving every 50 matches. Default range: the current season from 1 August (priority); January–May 2026 is
+optional (`--since 2026-01-01 --until 2026-05-31`). A fixture is used only when it maps to a played match of our
+data (league, UK date, both teams); the pre-match price is the last snapshot strictly before kick-off, never a
+later one. `--report` prints the coverage per league and market group (no request) and saves it to
+`local_data/api/oddspapi/history_coverage.json`. Training still uses Football-Data seasons
+2021/22 onward; the 2026 prices are used to evaluate predictions. A historical prediction is only evaluated
+with the model whose training data ended before that match (the evaluation model for 2025/26, the production
+model for 2026/27 matches), never with a model that saw the result.
+
+### Team and match matching
+
+One internal team id — `"<country>|<Football-Data name>"` — and, per provider, the provider's team ids
+(`local_data/teams/provider_ids.json`). A provider id is learned only from an unambiguous name match inside the
+right league (`src/providers/aliases.py`: accents, prefixes, aliases, unique word-subset match) and never
+re-assigned; an id that contradicts the name is refused and reported. Odds are attached to a match only when
+league, date and both teams agree. Unmatched names: `local_data/api/unmatched_teams.csv`;
+`python scripts/check_team_aliases.py` checks the cached responses.
+
+### The Odds API credits (fallback)
 
 Costs: `/events` 0 credits; `/sports/{league}/odds` 1 credit per market (h2h + totals = 2 per league);
 `/events/{id}/odds` 1 credit per returned market (≈4 per match for BTTS, double chance, goal and corner lines).
@@ -90,13 +142,6 @@ cache does not persist): a league is not asked again within 20 h and a match's e
 — also when the answer was empty; every run has a credit budget (`--credit-budget`, default 60) and a monthly
 reserve of 30 credits is never spent. `python scripts/odds_credits.py` prints the remaining credits and the
 last requests without calling the API.
-
-### Team names
-
-Provider names are mapped to Football-Data names by `src/providers/aliases.py`: normalisation (accents,
-apostrophes, club prefixes such as FC / KVC / SpVgg / TSG, numbers), an alias table, and a unique word-subset
-match inside the same league (ambiguous names are never guessed). Unmatched names are written to
-`local_data/api/unmatched_teams.csv`; `python scripts/check_team_aliases.py` checks all cached responses.
 
 ### Supported leagues — full support only
 
@@ -150,7 +195,7 @@ frequency baseline.
 ### Decision rules (validation season only)
 
 `scripts/decision_study.py` fits the models on the train seasons, predicts 2024/25 (7,129 matches) and compares
-the rules; results are on the Model Analysis page (tab *Decision rules*):
+the rules; results are saved in `local_data/models/decision_study.json` (not shown on the website):
 
 * **Draw rule** `argmax(P(H), 1.4·P(D), P(A))` — draw recall 0.2 % → 26 %, but accuracy 49.7 % → 47.6 %; the
   1X2 return at real odds moves only within noise (−5.9 % vs −5.2 %, ≈1.2 pp standard error). **Removed**: the named outcome is the most
@@ -159,6 +204,21 @@ the rules; results are on the Model Analysis page (tab *Decision rules*):
   scaling changes log loss by less than 0.0001. Not adopted (not needed).
 * **Dixon-Coles** low-score correction — rho unstable between the two halves of the season (−0.06 / +0.007), no
   gain in exact-score log loss or totals / BTTS Brier. Implemented (`DIXON_COLES`), **off**.
+
+### v5 study of the XGBoost models (validation 2024/25, `experiments/xgb_v5`)
+
+Paired bootstrap over matches (95 % interval of the loss difference):
+
+* **Elo**: removing Elo makes every model clearly worse — 1X2 log loss 1.0118 → 1.0152, home goals Poisson
+  deviance 1.1087 → 1.1161, away goals 1.1240 → 1.1283 (intervals exclude 0). Elo stays inside the models but is
+  never shown to users as an argument.
+* **Draws**: P(draw) is well calibrated (mean 25.8 % vs 26.0 % actual) but almost never the largest of the three
+  (maximum 0.36, median gap to the favourite 0.19), so an honest arg-max names a draw in ~0.1 % of matches. Draws
+  are more frequent between close teams (30 % vs 20 %), yet draw-specific features and a separate binary draw
+  model (best blend weight 0) did not improve the probabilities. Draws therefore appear as Risk predictions,
+  not by inflating P(draw).
+* **Feature selection** (top 30 / 60 / 100 by gain) and **per-league corner dispersion**: no improvement.
+* **Calibration** of Asian handicap lines (ECE ≤ 1.6 %, refund rates as predicted) and corner lines (ECE 1.7–2.5 %).
 
 ### Corners
 
@@ -172,58 +232,122 @@ All goal markets come from one score matrix: `Pois(i; λ_home) · Pois(j; λ_awa
 away-win regions rescaled to the classifier probabilities, so 1X2, double chance, totals 1.5 / 2.5 / 3.5,
 BTTS, exact scores and handicaps agree with each other.
 
-**Handicap** (home team's perspective): whole lines ±1, ±2 are 3-way European handicaps (home / draw / away
-after adding the line to the home goals); half lines ±0.5, ±1.5, ±2.5 are 2-way (a draw after the handicap
-is impossible). Settlement is tested for both types.
+### Handicap
 
-## Odds, EV and the Main prediction
+* **Asian handicap, half lines** (±0.5, ±1.5, ±2.5): two outcomes, no refund — `HANDICAP_<line>`.
+* **Asian handicap, whole lines** (±1, ±2): win / **refund (push)** / lose — the stake is returned when the
+  result lands exactly on the line. FootPredict shows P(win), P(refund) and P(lose); EV =
+  P(win)·odds − (1 − P(refund)).
+* **European 3-way handicap** (whole lines, home / draw / away after the handicap) is a different market with
+  different prices: stored separately as `EHANDICAP_<line>` and never mixed with the Asian one.
+* Quarter lines (±0.25, ±0.75) are not supported.
 
-* **Odds** = a real bookmaker price from a provider; if a selection has no real price, the interface shows
-  no odds and no EV.
-* **EV** = model probability × real odds − 1 (theoretical edge, not profit).
-* **Main prediction** — one per match. Candidates: probability 40–85 %, no exact scores. Score =
-  market reliability × probability × odds preference, where the preference is 1 for odds **1.40–2.50** and
-  decays smoothly outside (a soft preference, not a hard band). A candidate with real odds and EV ≥ +3 % is
-  preferred (value pick); without one the best candidate on probability is used (fair odds 1 / p for the
-  preference). Chosen on validation among 144 variants (softness, EV weight, minimum EV, minimum probability):
-  ROI −2.7 % with 61 % of Main predictions priced, vs −4.1 % / 55 % for the v3 rule (hard band 1.30–3.00,
-  EV ≥ 3 %); on the test season −4.9 % vs −6.0 %. Every variant loses against the bookmaker margin and the
-  difference is about one standard error — the rule is better calibrated to the task, not a winning strategy.
-* **Risk prediction** — optional, real odds only: odds 3.0–8.0, probability ≥ 22 %, EV ≥ +10 %, reliable
-  market; hidden when nothing qualifies.
+Settlement: `WON`, `LOST` or `PUSH` (refund, profit 0, not a staked bet in ROI and not counted in the hit rate).
+Stored v4 whole-line rows were European handicaps and were renamed by `scripts/migrate_v5_handicap.py`.
+
+## Main and Risk predictions
+
+Both exist for every match with model probabilities and are shown side by side on Match Details (Main green,
+Risk orange). Neither ever invents a price: "effective odds" are the real odds when they exist, otherwise the
+fair odds 1/p, used only to rank.
+
+* **Main** — candidates with probability 40–85 % (no exact scores). Score = market reliability × probability ×
+  odds preference × (1 + 0.5·EV) for a real price, × 0.8 without one. The odds preference is 1 for
+  **1.40–2.50** and decays smoothly outside (1.37 or 2.60 barely lose anything, 1.10 a lot), so a near-certain
+  1.10 is not chosen for its hit rate and a big EV alone does not win.
+* **Risk** — the most sensible higher-odds alternative: any selection except the Main one, anything that
+  wins on exactly the same scores (e.g. "home −0.5" when Main is "home win") and any bet **against** Main
+  (e.g. "over 3.5" when Main is "under 3.5"); probability ≥ 12 %, soft preference for odds **3.0–6.0**,
+  **no EV requirement**. Validation 2024/25: a Risk for every match, average odds 3.5, hit rate 28 %, ROI
+  −5.9 % (92 % with a real price); test season −5.8 % (v4 rule −12.2 %). Most Risk predictions are draws —
+  the outcome the 1X2 model never names as the most likely but prices well.
+* The weights were chosen on the validation season only (`scripts/decision_study.py`: 36 Main and 72 Risk
+  variants, real Bet365 prices). Main ROI −3.6 % vs −3.7 % for the v4 rule — the same within noise; on the test
+  season the new rule gave −6.7 % vs −4.9 % (≈2 standard errors, and the test season cannot be used to choose).
+  No rule beats the bookmaker margin.
+* **EV** = probability × real odds − 1 (with the refund term for Asian whole lines): a theoretical edge.
 
 ## History, settlement and ROI
 
-**Pre-match only.** The pipeline predicts a match as `live` only while its kick-off (UK time) is in the
-future; once the match has started its recorded prediction is frozen and never rewritten. Every snapshot
-stores kick-off, generation time (UTC), first generation time, model version, Main / Risk, probabilities,
-odds and their provider / bookmaker. `scripts/migrate_prediction_history.py` moved 64 v3 "live" predictions
-that had been generated after kick-off to `backfill`.
+**Pre-match versions.** A prediction is created while the match has not kicked off (UK time). Every later
+pre-match refresh (new data or odds) is a new **version** with its generation time; all versions are kept in
+`local_data/predictions/versions.parquet`, and the history and ROI use the **last version before kick-off**.
+After kick-off nothing is created or changed; a price collected after kick-off is never used as a pre-match
+price; a postponed match gets a new version for its new kick-off.
 
-Two datasets are never mixed:
+**Recorded vs Backtest.** *Recorded* predictions were saved before kick-off — the real track record.
+*Backtest* is the same production model run afterwards on this season's earlier matches, with pre-match
+features and real archived prices — an evaluation, not published bets. Prediction History, Leagues and
+Analytics let you choose Recorded, Backtest or both, and their results are shown side by side, never added up.
+The test-season evaluation (2025/26) stays on Model Analysis (*Historical Model Testing*). A recorded
+prediction is never changed after kick-off: its pick, probability, model version and generation time stay as
+stored; only a missing price may be filled from the archive, and such a price is marked with its origin.
 
-* **Recorded predictions** (`live`) — saved before kick-off: the real track record;
-* **Historical evaluation** (`backtest` test season, `backfill` current season) — the model run afterwards on
-  pre-match data.
-
-After the match: `WON / LOST` (`VOID` only for a match that never took place). Stake 1 unit: win `odds − 1`,
-loss `−1`. **ROI = net profit / number of staked predictions × 100**, counting only predictions with real odds;
-the hit rate counts every settled prediction. Best / weakest market (or league, inside one market) follows the
-active filters and needs at least 30 priced predictions.
+Stake 1 unit with a real price: win `odds − 1`, loss `−1`, refund / void `0` (not staked).
+**ROI = net profit / number of staked predictions × 100**; the hit rate counts won / lost predictions (with or
+without odds). Highest / lowest ROI market follows the active filters; below 30 priced predictions it is marked
+"Small sample".
 
 ## Website
 
-* **Matches** — leagues (Ukrainian names in UA), date strip, team search, 1X2 + totals with real odds.
-* **Match Details** — header → result (score, Main / Risk won or lost, odds, profit) → Main → *Why this
-  prediction?* (football facts first, then 3–5 model factors with their share of influence) → Risk → *Why
-  this risk prediction?* → markets (one handicap table with a tooltip) → team comparison, form, home / away,
-  H2H, rest days.
-* **Prediction History** — Recorded vs Historical evaluation, filters Period / Prediction type (Main by
-  default; Market forecasts explained) / League / Market, summary by period always visible.
-* **Leagues**, **Teams** — statistics grouped Results / Attack / Defence / Corners, readable charts, paging.
-* **Analytics** — filters Prediction set / Period / League / Data; performance over time with its own grouping.
-* **Model Analysis** — metrics with ↑ / ↓ (higher / lower is better) and explanations, baselines,
-  calibration, feature dictionary, SHAP as a share of total influence, decision-rule study, walk-forward.
+* **Header** — FP logo (link to Matches), navigation, team search (magnifier: results while typing,
+  arrow keys, Enter, Esc) and theme switch. All dates and times are in the browser's time zone (Europe/Kyiv when
+  the browser does not tell).
+* **Matches** — leagues, date strip, club badges, 1X2 + totals with real odds.
+* **Match Details** — score; **Main and Risk side by side**; *Why this prediction?* (facts for that exact market,
+  then 3–5 model factors as bars worded *Strong / Moderate / Small support* or *Works against*, no percentages); *Why this risk
+  prediction?*; *Explain another market*; markets (Asian handicap: half lines *Selection · Win probability · Odds*, whole lines *Selection · Win · Refund ·
+  Lose · Odds*, priced lines first, *Show all lines*);
+  team comparison, form, H2H, rest days.
+* **Prediction History** — Recorded / Backtest / both; period presets incl. previous month, a specific month /
+  year and custom dates; Main / Risk / Market forecasts; summary by day, week (Mon–Sun interval) or month
+  (12 rows, *Show all*); scores as 2:1.
+* **Leagues** — season selector drives table, matches and FootPredict statistics of that season (Recorded and
+  Backtest separately).
+* **Teams** — badge, equal KPI cards, statistics grouped Results / Attack / Defence / Corners, paging.
+* **Analytics** — Recorded or Backtest; six charts in two columns: cumulative profit, ROI and hit rate over the
+  last 20 / 50 / 100 bets or cumulative, horizontal ROI by league, ROI by market and hit rate by market (n next
+  to each bar, samples under 30 faded); highest / lowest ROI market.
+* **Model Analysis** — test-season metrics with explanations, draws, calibration, confusion matrix, model
+  features (SHAP chart, gain in an expander, searchable feature dictionary — five most influential groups,
+  *Show all*), hyperparameter search, derived markets, *Historical Model Testing*.
+
+Club badges: URLs from API-Football team data (`scripts/build_team_logos.py`, map in
+`local_data/teams/logos.json`; images are not stored in the repository), shown unmodified and small; a neutral
+shield is shown when no badge is known. Badges are the clubs' trademarks. Coverage: 394 of 400 clubs; missing:
+Airdrie Utd, Queen of Sth, Celta B, Sociedad B, OFI Crete (no unambiguous API-Football team).
+
+## ML research: alternative models (not used by the website)
+
+`experiments/model_comparison/` compares, under identical conditions, the current XGBoost, XGBoost with a larger
+search, CatBoost, LightGBM, logistic / Poisson / negative-binomial regression, direct market models (BTTS,
+over 1.5 / 2.5 / 3.5, corners over 9.5) and ensembles. Walk-forward folds: for each evaluated season *s* every
+algorithm is tuned on seasons < *s*−1 vs *s*−1, refitted on all seasons < *s* and scored on *s*; winners are
+chosen on 2023/24 and 2024/25 (2025/26 is reported only — it was looked at in v1–v4). Differences are checked
+with a paired bootstrap over matches. Nothing here changes the production model.
+
+```bash
+pip install -r requirements-research.txt
+python -m experiments.model_comparison.run            # ~1.5 h on 14 cores (--quick: smoke test)
+python -m experiments.model_comparison.report         # -> experiments/model_comparison/report/model_comparison.html
+python experiments/xgb_v5/study.py                    # v5 study of the current XGBoost (Elo, draws, …)
+```
+
+Results (log loss / Poisson deviance, selection folds, bootstrap vs XGBoost):
+
+* **1X2**: CatBoost best on average, not significantly better; LightGBM significantly worse; all within ±0.002.
+* **Home goals**: LightGBM significantly better (−0.002 deviance); Poisson regression close.
+* **Away goals / corners**: Poisson regression best on average, not significant; negative-binomial regression worse.
+* **Bigger XGBoost search**: identical results — the hyperparameter search had converged.
+* **BTTS / totals**: probabilities from the score matrix are as good as direct market models; direct models
+  are almost always consistent (P(over 3.5) ≤ P(over 2.5) violated in < 0.02 % of matches) and a monotone repair
+  is included.
+* **Draws**: every algorithm names a draw in < 4 % of matches; none recognises draws better without losing
+  probability quality.
+* ROI at real Bet365 prices is negative for every system and changes more between seasons than between models.
+
+Recommendation for a next iteration: LightGBM (or Poisson regression) for the goal models is the only change
+with a statistically clear gain; it is small. Nothing is adopted without a separate decision.
 
 ## Installation
 
@@ -239,17 +363,19 @@ streamlit run app.py
 ## API setup
 
 1. Register at <https://dashboard.api-football.com/register> (free plan) and copy the API key.
-2. Register at <https://the-odds-api.com> (free plan) and copy the API key.
-3. Copy `.env.example` to `.env` (never commit `.env`) and fill in:
+2. Register at <https://oddspapi.io> (free plan) and copy the API key.
+3. Optional fallback: <https://the-odds-api.com> (free plan).
+4. Copy `.env.example` to `.env` (never commit `.env`) and fill in:
 
    ```
    API_FOOTBALL_KEY=your-api-football-key
+   ODDSPAPI_KEY=your-oddspapi-key
    ODDS_API_KEY=your-odds-api-key
    ```
 
-4. Run `python scripts/run_pipeline.py --mode results` (free) or `--mode odds` (spends credits).
-5. For the cloud update (GitHub Actions) add the same two values as GitHub repository secrets
-   (Settings → Secrets and variables → Actions) or with `gh secret set API_FOOTBALL_KEY`.
+5. Run `python scripts/run_pipeline.py --mode results` (free) or `--mode odds` (uses the odds quotas).
+6. For the cloud update (GitHub Actions) add the same values as GitHub repository secrets
+   (Settings → Secrets and variables → Actions).
 
 Without keys the pipeline still works with Football-Data only (results, fixtures and Bet365 prices for
 1X2, total 2.5 and half-line handicaps).
@@ -260,10 +386,17 @@ Without keys the pipeline still works with Football-Data only (results, fixtures
 python scripts/run_pipeline.py --mode results              # fixtures + results, 0 Odds API credits
 python scripts/run_pipeline.py --mode odds --credit-budget 30   # + real odds within the budget
 python scripts/run_pipeline.py --mode full                 # both
+python scripts/run_pipeline.py --mode odds --odds-league E0          # one league
+python scripts/run_pipeline.py --mode odds --odds-date 2026-10-18    # one match day
+python scripts/run_pipeline.py --mode odds --odds-match <match_id> --force   # re-price one match
+python scripts/oddspapi_history.py                         # dry run: estimate for season 2026/27
+python scripts/oddspapi_history.py --go                    # download it (resumable)
+python scripts/oddspapi_history.py --report                # coverage per league and market
 python scripts/run_pipeline.py --offline                   # local files only
 python scripts/odds_credits.py                             # credits left (no API call)
 python scripts/retrain_models.py                           # retrain the four models (≈1 h)
-python scripts/decision_study.py                           # re-run the validation study
+python scripts/decision_study.py                           # re-run the validation study of Main / Risk
+python scripts/regenerate_predictions.py                   # re-apply the rules without retraining
 ```
 
 * `run_pipeline.py` updates data and predictions; it never retrains. Order: providers → Football-Data →
@@ -273,11 +406,13 @@ python scripts/decision_study.py                           # re-run the validati
 
 ### GitHub Actions and deployment
 
-The deployed app (Streamlit Community Cloud) is built from `main`. `.github/workflows/update-data.yml` has
-**no schedule** (to save credits): start it in *Actions → Update data and predictions → Run workflow* and
-choose the mode — `results` (free; before / after match days), `odds` (spends credits — run about a day before
-the matches you care about) or `full` — and the credit budget. It commits the new data to `main`, prints the
-credit ledger, and Streamlit redeploys. A local checkout is synchronised with `git pull`;
+The deployed app (Streamlit Community Cloud) is built from `main`. `.github/workflows/update-data.yml` runs
+**every day at about 11:00 Kyiv time** in `full` mode: two cron lines (08:00 and 09:00 UTC) and a guard step
+that keeps only the one matching Kyiv's current UTC offset, so the time stays right across summer / winter time.
+It can also be started by hand (*Actions → Update data and predictions → Run workflow*) with the mode —
+`results` (free), `odds` or `full` — and optionally one league, one day or one match and *force*. Secrets:
+`API_FOOTBALL_KEY`, `ODDSPAPI_KEY`, `ODDS_API_KEY`; optional variable `ODDS_API_FALLBACK`. It commits the new
+data to `main`, writes the run summary and the quotas to the job summary, and Streamlit redeploys. A local checkout is synchronised with `git pull`;
 `E2E_BASE_URL=<app url>/~/+ pytest tests/e2e --e2e -k sync` checks that the deployed app serves the same data.
 
 ## Tests

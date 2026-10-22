@@ -9,18 +9,19 @@ import streamlit as st
 from src import config
 from src.analytics.teams import form_summary, h2h_summary, head_to_head, team_matches
 from src.explain.facts import market_facts
-from src.explain.narrative import build_narrative, influence_note, influence_table
+from src.explain.narrative import build_narrative, influence_note, key_factors
 from src.explain.shap_explainer import explain_selection
 from src.leagues import get_league
 from src.markets.distributions import corners_distribution, prob_over
 from src.ui import data
 from src.ui.components import (date_text, empty_state, esc, form_chips, guard, market_table, missing, num,
                                odds_text, page_header, pct, plotly, recommendation_card, section, signed,
-                               status_badge, team_url, tip, tone)
+                               status_badge, team_badge, team_url, tip, tone)
 from src.ui.i18n import current_language, t
 from src.ui.labels import country_label, league_name, market_title, selection_label
 from src.ui.prefs import pref_params
 from src.ui.theme import colors
+from src.ui.timefmt import with_local_time
 
 
 def _choose_match() -> str | None:
@@ -44,6 +45,9 @@ def _choose_match() -> str | None:
 
 def _header(row: pd.Series) -> None:
     lg = get_league(row["league"])
+    local = with_local_time(pd.DataFrame([row])).iloc[0]          # the visitor's date and time
+    row = row.copy()
+    row["date"], row["time"] = local["local_date"], local["local_time"]
     played = bool(row.get("played")) and not missing(row.get("home_goals"))
     centre = (f'{int(row["home_goals"])} : {int(row["away_goals"])}' if played
               else f'<span class="vs">{esc(row.get("time") or "—")}</span>')
@@ -51,10 +55,12 @@ def _header(row: pd.Series) -> None:
         f'<div class="match-header"><div class="mh-meta"><span>{esc(country_label(lg.country))} · {esc(league_name(lg.code))}</span>'
         f'<span>{date_text(row["date"])}</span><span>{esc(row.get("time") or "—")}</span>'
         f'<span>{t("Full time") if played else t("Upcoming")}</span></div>'
-        f'<div class="mh-row"><div class="mh-team"><a href="{team_url(row["home_team"], row["country"])}" '
+        f'<div class="mh-row"><div class="mh-team">{team_badge(row["country"], row["home_team"], 40)}'
+        f'<a href="{team_url(row["home_team"], row["country"])}" '
         f'target="_self">{esc(row["home_team"])}</a><span class="sub">{t("Home")}</span></div>'
         f'<div class="mh-score">{centre}</div>'
-        f'<div class="mh-team away"><a href="{team_url(row["away_team"], row["country"])}" target="_self">'
+        f'<div class="mh-team away">{team_badge(row["country"], row["away_team"], 40)}'
+        f'<a href="{team_url(row["away_team"], row["country"])}" target="_self">'
         f'{esc(row["away_team"])}</a><span class="sub">{t("Away")}</span></div></div></div>')
 
 
@@ -75,28 +81,11 @@ def _match_picks(match_id: str) -> pd.DataFrame:
     return picks.loc[picks["match_id"] == match_id] if not picks.empty else picks
 
 
-def _outcome_html(pick: pd.Series, label: str, home: str, away: str) -> str:
-    """One finished prediction: what was predicted, the result, odds and profit."""
-    status = pick["status"]
-    profit = "" if missing(pick.get("profit")) else (
-        f'<div><div class="l">{t("Profit")}</div><div class="v {tone(pick["profit"])}">{signed(pick["profit"])}</div></div>')
-    odds = (f'<div><div class="l">{t("Odds")}</div><div class="v na">'
-            f'{t("No real odds — not counted in ROI")}</div></div>') if missing(pick.get("odds")) else (
-        f'<div><div class="l">{t("Odds")}</div><div class="v">{num(pick["odds"])}</div></div>')
-    return (f'<div class="outcome {status}"><div class="tag">{esc(label)}</div>'
-            f'<div class="pick">{esc(selection_label(pick["market"], pick["selection"], home, away))}</div>'
-            f'<div class="mkt">{esc(market_title(pick["market"]))}</div>'
-            f'<div class="grid"><div><div class="l">{t("Result")}</div><div class="v">{status_badge(status)}</div></div>'
-            f'<div><div class="l">{t("Probability")}</div><div class="v">{pct(pick["probability"], 1)}</div></div>'
-            f'{odds}{profit}</div></div>')
-
-
-def _outcome_cards(match_id: str, home: str, away: str) -> dict[str, str]:
-    """Finished match: role -> card saying whether the Main / Risk prediction won, with odds and profit."""
+def _settled_picks(match_id: str) -> dict[str, pd.Series]:
+    """Finished match: role -> the recorded Main / Risk pick with its result, odds and profit."""
     picks = _match_picks(match_id)
-    done = picks.loc[picks["status"].isin(["WON", "LOST", "VOID"])] if not picks.empty else picks
-    return {role: _outcome_html(r, t("Main prediction") if role == "main" else t("Risk prediction"), home, away)
-            for role in ("main", "risk") for _, r in done.loc[done["role"] == role].head(1).iterrows()}
+    done = picks.loc[picks["status"].isin(["WON", "LOST", "PUSH", "VOID"])] if not picks.empty else picks
+    return {role: r for role in ("main", "risk") for _, r in done.loc[done["role"] == role].head(1).iterrows()}
 
 
 def _all_results(match_id: str, home: str, away: str) -> None:
@@ -117,15 +106,21 @@ def _all_results(match_id: str, home: str, away: str) -> None:
                 f"<th class='num'>{t('Profit')}</th></tr>" + "".join(rows) + "</table></div>")
 
 
+def support_level(ratio: float, supports: bool) -> str:
+    """Words for a factor's strength relative to the strongest factor shown (no percentages: SHAP
+    shares are not changes of the probability)."""
+    if not supports:
+        return "Works against"
+    return "Strong support" if ratio >= 0.66 else ("Moderate support" if ratio >= 0.33 else "Small support")
+
+
 def _explain(feat_row: pd.Series, bundles, market: str, selection: str, home: str, away: str,
-             role: str = "main") -> None:
-    """Football facts first, then the 3–5 main model factors with their share of influence."""
+             histories: tuple, role: str = "main") -> None:
+    """Football facts for this exact market first, then the 2–4 factors behind the prediction."""
     lang = current_language()
-    if feat_row is None:
-        st.info(t("No explanation is available for this prediction."))
-        return
-    facts = market_facts(market, feat_row, home, away, lang)
-    explanation = explain_selection(pd.DataFrame([feat_row]), market, selection, bundles) if bundles else None
+    facts = market_facts(market, selection, home, away, histories[0], histories[1], feat_row, lang)
+    explanation = (explain_selection(pd.DataFrame([feat_row]), market, selection, bundles)
+                   if bundles and feat_row is not None else None)
     if not facts and (explanation is None or explanation.empty):
         st.info(t("No explanation is available for this prediction."))
         return
@@ -136,77 +131,103 @@ def _explain(feat_row: pd.Series, bundles, market: str, selection: str, home: st
     if explanation is not None and not explanation.empty:
         sel_text = selection_label(market, selection, home, away)
         narrative = build_narrative(explanation, sel_text, lang)
-        factors = influence_table(explanation, 5, lang)
-        peak = max(f.relative for f in factors) or 1.0
+        factors = sorted(key_factors(explanation, lang), key=lambda f: -f.relative)[:5]
+        peak = max((f.relative for f in factors), default=1.0) or 1.0
         c = colors()
         rows = []
         for f in factors:
             color = c["pos"] if f.direction == "up" else c["neg"]
+            strength = support_level(f.relative / peak, f.direction == "up")
             rows.append(f'<div class="infl"><span>{"↑" if f.direction == "up" else "↓"} {esc(f.label)}</span>'
-                        f'<div class="bar"><span style="width:{f.relative / peak * 100:.0f}%;background:{color}"></span></div>'
-                        f'<span class="lvl">{f.relative * 100:.0f}% · {esc(f.level)}</span></div>')
+                        f'<div class="bar"><span style="width:{max(f.relative / peak * 100, 6):.0f}%;'
+                        f'background:{color}"></span></div><span class="lvl">{t(strength)}</span></div>')
         parts.append(f'<div class="why-h">{t("What the model weighed")}</div><p>{esc(narrative.sentence)}</p>'
                      + "".join(rows) + f'<div class="note">{esc(influence_note(market, lang))}</div>')
     st.html(f'<div class="why {"risk" if role == "risk" else ""}">{"".join(parts)}</div>')
 
 
-def _predictions(feat_row, snap: pd.Series, markets: pd.DataFrame, home: str, away: str,
-                 outcomes: dict[str, str] | None = None):
-    """Main prediction + its explanation, then the optional risk prediction. For a finished
-    match ``outcomes`` holds the won / lost cards that replace the plain prediction cards."""
-    outcomes = outcomes or {}
+def _predictions(feat_row, snap: pd.Series, markets: pd.DataFrame, home: str, away: str, histories: tuple,
+                 settled: dict[str, pd.Series]) -> None:
+    """Main (green) and Risk (orange) side by side, then their explanations and other markets."""
     main = _pick(markets, snap.get("main_market"), snap.get("main_selection"))
     risk = _pick(markets, snap.get("risk_market"), snap.get("risk_selection"))
+    if main is None and risk is None:
+        st.info(t("There is not enough data for a reliable prediction for this match."))
+        return
+    cols = st.columns(2, gap="medium")
+    for col, role, rec in ((cols[0], "main", main), (cols[1], "risk", risk)):
+        if rec is not None:
+            col.html(recommendation_card(role, rec, home, away, settled.get(role)))
     bundles = data.bundles(snap["model_version"])
-    if main is None:
-        st.info(t("There is not enough data for a reliable main prediction for this match."))
-    else:
-        st.html(outcomes.get("main") or recommendation_card("main", main, home, away))
+    if main is not None:
         section(t("Why this prediction?"))
-        _explain(feat_row, bundles, main["market"], main["selection"], home, away)
+        _explain(feat_row, bundles, main["market"], main["selection"], home, away, histories)
     if risk is not None:
-        st.html(outcomes.get("risk") or recommendation_card("risk", risk, home, away))
         with st.expander(t("Why this risk prediction?"), icon=":material/help:"):
-            _explain(feat_row, bundles, risk["market"], risk["selection"], home, away, role="risk")
-    return main, risk
+            _explain(feat_row, bundles, risk["market"], risk["selection"], home, away, histories, role="risk")
+    _other_explanations(feat_row, bundles, markets, home, away, histories)
 
 
-def _other_explanations(feat_row, snap: pd.Series, markets: pd.DataFrame, home: str, away: str) -> None:
-    bundles = data.bundles(snap["model_version"])
+def _other_explanations(feat_row, bundles, markets: pd.DataFrame, home: str, away: str, histories: tuple) -> None:
     options = {}
-    for market in ("1X2", "TOTAL_2.5", "BTTS", f"CORNERS_{config.DEFAULT_CORNER_LINE}", "DOUBLE_CHANCE"):
+    for market in ("1X2", "DOUBLE_CHANCE", "TOTAL_1.5", "TOTAL_2.5", "TOTAL_3.5", "BTTS",
+                   f"CORNERS_{config.DEFAULT_CORNER_LINE}", "HANDICAP_-0.5", "HANDICAP_-1", "EXACT_SCORE"):
         rows = _rows(markets, market)
         if not rows.empty:
             best = rows.loc[rows["probability"].idxmax()]
-            options[(best["market"], best["selection"])] = market_title(market)
+            options[(best["market"], best["selection"])] = market_title(best["market"])
     if not options:
         return
     with st.expander(t("Explain another market"), icon=":material/tune:"):
         key = st.selectbox(t("Market"), list(options), key="explain_other",
                            format_func=lambda k: f"{options[k]}: {selection_label(k[0], k[1], home, away)}")
-        _explain(feat_row, bundles, key[0], key[1], home, away)
+        _explain(feat_row, bundles, key[0], key[1], home, away, histories)
 
 
-def _handicap_table(markets: pd.DataFrame, home: str, away: str) -> str:
-    """One table: a row per line, home / draw / away (draw only on whole lines)."""
-    rows = []
+def handicap_rows(markets: pd.DataFrame, home: str, away: str) -> tuple[list[dict], list[dict]]:
+    """(half-line rows, whole-line rows): one row per team and line, from the chosen team's side —
+    "Newcastle -0.5" and "Aston Villa +0.5" are two rows of the same market."""
+    half, whole = [], []
     for line in config.HANDICAP_LINES:
         sel = _rows(markets, f"HANDICAP_{line:+g}")
-        if sel.empty:
-            continue
-        by = {r["selection"]: r for _, r in sel.iterrows()}
+        for _, r in sel.iterrows():
+            if r["selection"] not in ("H", "A"):
+                continue
+            team, shown = (home, line) if r["selection"] == "H" else (away, -line)
+            push = 0.0 if missing(r.get("push_probability")) else float(r["push_probability"])
+            row = {"label": f"{team} {shown:+g}", "win": float(r["probability"]), "push": push,
+                   "lose": max(0.0, 1 - float(r["probability"]) - push),
+                   "odds": None if missing(r.get("odds")) else float(r["odds"]), "line": shown}
+            (half if line % 1 else whole).append(row)
+    order = lambda rows: sorted(rows, key=lambda x: (x["odds"] is None, abs(x["line"]), x["line"]))   # noqa: E731
+    return order(half), order(whole)
 
-        def cell(key):
-            r = by.get(key)
-            if r is None:
-                return "<td class='num muted'>·</td>"
-            odds = f" <span class='odd'>{odds_text(r['odds'])}</span>" if not missing(r.get("odds")) else ""
-            return f"<td class='num'>{pct(r['probability'])}{odds}</td>"
-        rows.append(f"<tr><td>{esc(home)} {line:+g}</td>{cell('H')}{cell('D')}{cell('A')}</tr>")
-    if not rows:
-        return f'<span class="muted small">{t("Not available for this match.")}</span>'
-    return (f"<div style='overflow-x:auto'><table class='mkt'><tr><th>{t('Line')}</th><th class='num'>{esc(home)}</th>"
-            f"<th class='num'>{t('Draw')}</th><th class='num'>{esc(away)}</th></tr>" + "".join(rows) + "</table></div>")
+
+def _handicap_tables(markets: pd.DataFrame, home: str, away: str, show_all: bool) -> tuple[str, bool]:
+    """Half lines: Selection | Win probability | Odds. Whole lines: Selection | Win | Refund | Lose | Odds.
+    Lines with a real price first; the rest only when ``show_all``. Returns (html, has hidden rows)."""
+    half, whole = handicap_rows(markets, home, away)
+    hidden = any(r["odds"] is None for r in half + whole) and any(r["odds"] is not None for r in half + whole)
+    if not show_all and hidden:
+        half, whole = [r for r in half if r["odds"]], [r for r in whole if r["odds"]]
+
+    def odds_cell(r):
+        return f"<td class='num'>{odds_text(r['odds'])}</td>" if r["odds"] else "<td class='num muted'>—</td>"
+    out = ""
+    if half:
+        out += (f"<div class='why-h'>{t('Half lines')}</div><div style='overflow-x:auto'><table class='mkt'>"
+                f"<tr><th>{t('Selection')}</th><th class='num'>{t('Win probability')}</th>"
+                f"<th class='num'>{t('Odds')}</th></tr>"
+                + "".join(f"<tr><td>{esc(r['label'])}</td><td class='num'>{pct(r['win'])}</td>{odds_cell(r)}</tr>"
+                          for r in half) + "</table></div>")
+    if whole:
+        out += (f"<div class='why-h'>{t('Whole lines')}</div><div style='overflow-x:auto'><table class='mkt'>"
+                f"<tr><th>{t('Selection')}</th><th class='num'>{t('Win')}</th><th class='num'>{t('Refund')}</th>"
+                f"<th class='num'>{t('Lose')}</th><th class='num'>{t('Odds')}</th></tr>"
+                + "".join(f"<tr><td>{esc(r['label'])}</td><td class='num'>{pct(r['win'])}</td>"
+                          f"<td class='num'>{pct(r['push'])}</td><td class='num'>{pct(r['lose'])}</td>{odds_cell(r)}</tr>"
+                          for r in whole) + "</table></div>")
+    return out or f'<span class="muted small">{t("Not available for this match.")}</span>', hidden
 
 
 def _markets_section(snap: pd.Series, markets: pd.DataFrame, home: str, away: str) -> None:
@@ -247,11 +268,14 @@ def _markets_section(snap: pd.Series, markets: pd.DataFrame, home: str, away: st
                                     "odds": np.nan, "ev": np.nan}])
         st.html(market_table(stored.reset_index(drop=True), home, away))
     with c5:
-        help_text = t("The line is added to the home team's goals. Whole lines (±1, ±2) have three outcomes "
-                      "(home, draw, away after the handicap); half lines (±0.5, ±1.5, ±2.5) have two, because a "
-                      "draw after the handicap is impossible. No refunds.")
-        st.html(f'<div class="card"><b>{t("Handicap")}</b>{tip(help_text)}' + _handicap_table(markets, home, away)
-                + "</div>")
+        help_text = t("Asian handicap: the line is added to the team's goals. Half lines (±0.5, ±1.5, ±2.5) have "
+                      "two outcomes and no refund. On whole lines (±1, ±2) the stake is refunded when the "
+                      "result lands exactly on the line.")
+        show_all = st.session_state.get("hcp_all", False)
+        body, hidden = _handicap_tables(markets, home, away, show_all)
+        st.html(f'<div class="card"><b>{t("Handicap")}</b>{tip(help_text)}' + body + "</div>")
+        if hidden or show_all:
+            st.toggle(t("Show all lines"), key="hcp_all")
 
 
 def _comparison(row: pd.Series, home_tm: pd.DataFrame, away_tm: pd.DataFrame) -> None:
@@ -399,19 +423,20 @@ def render() -> None:
     feat_row = feat_rows.iloc[0] if not feat_rows.empty else row
 
     finished = bool(row.get("played"))
+    home_tm = team_matches(features, home, row["country"], before=row["date"])
+    away_tm = team_matches(features, away, row["country"], before=row["date"])
     markets = data.match_markets(match_id) if snap is not None else pd.DataFrame()
     if snap is None:
         st.info(t("There is no prediction for this match."))
     else:
-        outcomes = _outcome_cards(match_id, home, away) if finished else None
-        _predictions(feat_row if not feat_rows.empty else None, snap, markets, home, away, outcomes)
+        settled = _settled_picks(match_id) if finished else {}
+        _predictions(feat_row if not feat_rows.empty else None, snap, markets, home, away, (home_tm, away_tm),
+                     settled)
         _markets_section(snap, markets, home, away)
         if finished:
             _all_results(match_id, home, away)
 
     section(t("Teams before the match"))
-    home_tm = team_matches(features, home, row["country"], before=row["date"])
-    away_tm = team_matches(features, away, row["country"], before=row["date"])
     tabs = st.tabs([t("Team comparison"), t("Recent form"), t("Home / Away"), t("Head-to-head"), t("Rest days")])
     with tabs[0]:
         _comparison(feat_row, home_tm, away_tm)
@@ -423,9 +448,6 @@ def render() -> None:
         _h2h(row, features, home, away)
     with tabs[4]:
         _rest(feat_row, home, away)
-
-    if snap is not None and not feat_rows.empty:
-        _other_explanations(feat_row, snap, markets, home, away)
 
 
 render()

@@ -8,9 +8,8 @@ import streamlit as st
 from src import config
 from src.features.catalog import catalogue
 from src.features.names import feature_label
-from src.features.sets import MODEL_GROUPS
 from src.ui import data
-from src.ui.components import (empty_state, esc, guard, html_table, kpi_row, num, page_header, pct, plotly,
+from src.ui.components import (empty_state, esc, guard, html_table, kpi_row, num, page_header, pct, plotly, signed,
                                section)
 from src.ui.i18n import current_language, t
 from src.ui.theme import colors
@@ -39,28 +38,17 @@ GROUP_NAMES = {
     "diff_corners": "Corner statistics", "league_result": "League context", "league_goals": "League context",
     "league_corners": "League context", "venue_form_goals": "Home / away", "venue_form_corners": "Corner statistics",
     "corner_pressure": "Attacking pressure", "market": "Bookmaker probabilities",
-    "elo": "Elo strength rating", "opp_adjusted": "Opponent-adjusted form",
+    "elo": "Relative team strength", "opp_adjusted": "Opponent-adjusted form",
     "opp_adjusted_corners": "Opponent-adjusted corners",
 }
-LOWER_IS_BETTER = {"Log loss", "Brier score", "RMSE", "MAE", "Poisson deviance"}
-SOURCES = {
-    "live": ("Recorded before kick-off",
-             "Saved by the pipeline before the match started and never changed afterwards. Only these show how "
-             "FootPredict performs in real use."),
-    "backfill": ("Current season, predicted afterwards",
-                 "Played matches of the current season predicted later by a model trained only on earlier seasons, "
-                 "from pre-match data. An honest evaluation, but not a recorded prediction."),
-    "backtest": ("Test season",
-                 "The test season predicted by the evaluation model, which never saw it. Used for the metrics below."),
-}
+EVALUATION_SOURCES = {"backtest": "Test season (evaluation model)", "backfill": "Current season, predicted afterwards"}
 TASK_TITLES = {"result": "Result model (1X2)", "home_goals": "Home goals model", "away_goals": "Away goals model",
                "corners": "Corners model"}
 
 
 def _k(metric: str, value: str, sub: str = "") -> tuple:
-    """KPI tuple with an (i) tooltip explaining the metric and an arrow saying which way is better."""
-    arrow = " ↓" if metric in LOWER_IS_BETTER else (" ↑" if metric in METRIC_HELP else "")
-    return (t(metric) + arrow, value, sub, "", t(METRIC_HELP[metric]) if metric in METRIC_HELP else "")
+    """KPI tuple with an (i) tooltip explaining the metric (which also says which way is better)."""
+    return (t(metric), value, sub, "", t(METRIC_HELP[metric]) if metric in METRIC_HELP else "")
 
 
 def _versions() -> tuple[str | None, str | None]:
@@ -70,25 +58,23 @@ def _versions() -> tuple[str | None, str | None]:
     return active, (backtests[-1] if backtests else None)
 
 
-def _model_cards(prod: dict | None, bt: dict | None) -> None:
-    cols = st.columns(2)
-    if prod:
-        cols[0].html(f"<div class='kpi'><div class='label'>{t('Active production model')}</div>"
-                     f"<div class='value'>{t('Trained through')} {esc(', '.join(prod['periods']['test']))}</div>"
-                     f"<div class='sub'>{t('Used for the current season')} {esc(prod['periods']['current'])}</div></div>")
+def _model_note(prod: dict | None, bt: dict | None) -> None:
+    """One short line about the active model instead of two technical cards."""
+    if not prod:
+        return
+    text = t("Active model: trained on {seasons}, used for {current}.",
+             seasons=f"{prod['periods']['train'][0]}–{prod['periods']['test'][-1]}", current=prod["periods"]["current"])
     if bt:
-        cols[1].html(f"<div class='kpi'><div class='label'>{t('Evaluation model')}</div>"
-                     f"<div class='value'>{t('Test season')} {esc(', '.join(bt['periods']['test']))}</div>"
-                     f"<div class='sub'>{t('Trained on')} {esc(', '.join(bt['periods']['train'] + bt['periods']['validation']))}"
-                     f"</div></div>")
+        text += " " + t("Test-season metrics below come from a separate evaluation model that never saw {test}.",
+                        test=", ".join(bt["periods"]["test"]))
+    st.html(f'<div class="note">{esc(text)}</div>')
 
 
 def _periods(meta: dict) -> None:
     p = meta["periods"]
     rows = []
     for name, task in meta["tasks"].items():
-        rows.append({t("Model"): t(TASK_TITLES.get(name, task["title"])), t("Target"): task["target"],
-                     t("Training"): ", ".join(p["train"]), t("Validation"): ", ".join(p["validation"]),
+        rows.append({t("Model"): t(TASK_TITLES.get(name, task["title"])), t("Training"): ", ".join(p["train"]), t("Validation"): ", ".join(p["validation"]),
                      t("Test"): ", ".join(p["test"]), t("Features"): task["n_features"]})
     st.html(html_table(pd.DataFrame(rows), align_right=(t("Features"),)))
 
@@ -205,46 +191,45 @@ def _regressor(task: dict) -> None:
 
 
 def _features(name: str, task: dict) -> None:
-    groups = sorted({t(GROUP_NAMES.get(g, g)) for g in MODEL_GROUPS.get(name, [])})
-    st.html("<div class='card'>" + " · ".join(esc(g) for g in groups)
-            + f" <span class='muted small'>({t('{n} features', n=task['n_features'])})</span></div>")
+    """Model Features: one importance chart (SHAP), gain in an expander, then the feature dictionary."""
     lang = current_language()
-    with st.expander(t("Feature dictionary"), icon=":material/menu_book:"):
-        _dictionary(name, task, lang)
     n = st.segmented_control(t("Features"), [10, 20, 30], default=20, key=f"imp_{name}",
                              format_func=lambda x: t("Top {n}", n=x), label_visibility="collapsed") or 20
     c = colors()
-    c1, c2 = st.columns(2, gap="medium")
     shap_all = pd.DataFrame(task.get("shap_global", []))
     if not shap_all.empty:
         shap_all["share"] = shap_all["mean_abs_shap"] / shap_all["mean_abs_shap"].sum()
-    shap_rows = shap_all.head(n)
+        d = shap_all.head(n).iloc[::-1]
+        fig = go.Figure(go.Bar(x=d["share"], y=[feature_label(f, lang) for f in d["feature"]],
+                               orientation="h", marker_color=c["accent"]))
+        fig.update_layout(title=t("Share of influence on the predictions (SHAP, test season)"), xaxis_tickformat=".0%",
+                          yaxis=dict(automargin=True))
+        plotly(fig, height=max(320, 24 * len(d) + 60))
+    st.html(f'<div class="note">{t("Each bar is a feature\'s share of the model\'s total influence on its test-season "
+            "predictions (all features together = 100%). It shows what matters on average; a match page explains "
+            "one particular prediction.")}</div>')
     gain_rows = pd.DataFrame(task.get("gain_importance", [])).head(n)
-    with c1:
-        if not shap_rows.empty:
-            d = shap_rows.iloc[::-1]
-            fig = go.Figure(go.Bar(x=d["share"], y=[feature_label(f, lang) for f in d["feature"]],
-                                   orientation="h", marker_color=c["accent"]))
-            fig.update_layout(title=t("SHAP: share of total influence (test season)"), xaxis_tickformat=".0%",
-                              yaxis=dict(automargin=True))
-            plotly(fig, height=max(320, 24 * len(d) + 60))
-    with c2:
-        if not gain_rows.empty:
+    if not gain_rows.empty:
+        with st.expander(t("XGBoost gain (technical)"), icon=":material/bar_chart:"):
+            st.caption(t("Gain measures how much a feature improved the training objective when the trees were "
+                         "built; SHAP measures how much it moves actual predictions. They usually agree on the main "
+                         "features but can differ for correlated ones."))
             d = gain_rows.iloc[::-1]
             fig = go.Figure(go.Bar(x=d["gain_share"], y=[feature_label(f, lang) for f in d["feature"]],
                                    orientation="h", marker_color=c["home"]))
             fig.update_layout(title=t("Feature importance (XGBoost gain)"), xaxis_tickformat=".0%",
                               yaxis=dict(automargin=True))
             plotly(fig, height=max(320, 24 * len(d) + 60))
-    st.html(f'<div class="note">{t("Global importance shows what matters on average across many matches; the "
-            "explanation on a match page describes one particular prediction. SHAP share = the feature\'s mean "
-            "absolute SHAP value divided by the sum over all features, so the bars of all features add up to 100%.")}'
-            '</div>')
+    st.html(f"<div class='why-h'>{t('Feature dictionary')}</div>")
+    _dictionary(name, task, lang)
 
 
 def _dictionary(name: str, task: dict, lang: str) -> None:
-    query = st.text_input(t("Search features"), key=f"dict_{name}", placeholder=t("e.g. corners, Elo, form"))
+    """Feature groups in plain words, most influential first: five by default, all on request."""
+    query = st.text_input(t("Search features"), key=f"dict_{name}", placeholder=t("e.g. corners, form, rest"))
     entries = catalogue({name: task["features"]}, lang)
+    shap = {r["feature"]: r["mean_abs_shap"] for r in task.get("shap_global", [])}
+    entries.sort(key=lambda e: -sum(shap.get(c, 0.0) for c in e["columns"]))
     q = (query or "").strip().lower()
     if q:
         entries = [e for e in entries if q in e["name"].lower() or q in e["description"].lower()
@@ -252,17 +237,21 @@ def _dictionary(name: str, task: dict, lang: str) -> None:
     if not entries:
         st.caption(t("No features match the search."))
         return
+    show_all = bool(q) or st.session_state.get(f"dict_all_{name}", False)
+    shown = entries if show_all else entries[:5]
     st.html("<div class='card'>" + "".join(
-        f"<div class='mx'><div class='ic'>•</div><div><b>{esc(e['name'])}</b> "
-        f"<span class='muted small'>({t('{n} features', n=len(e['columns']))})</span>"
-        f"<span>{esc(e['description'])}</span></div></div>" for e in entries) + "</div>")
-    with st.popover(t("Technical column names")):
-        for e in entries:
-            st.caption(f"{e['name']}: " + ", ".join(e["columns"]))
+        f"<div class='mx'><div class='ic'>•</div><div><b>{esc(e['name'])}</b>"
+        f"<span>{esc(e['description'])}</span></div></div>" for e in shown) + "</div>")
+    if not q and len(entries) > 5:
+        st.toggle(t("Show all features ({n} groups)", n=len(entries)), key=f"dict_all_{name}")
 
 
 def _advanced(name: str, task: dict, version: str) -> None:
     with st.expander(t("Advanced: hyperparameter search"), icon=":material/tune:"):
+        st.caption(t("Hyperopt tries different model settings (tree depth, learning rate, regularisation …). Each "
+                     "dot is one try, scored on the validation season — lower is better. The line is the best score "
+                     "found so far. A line that flattens after the first tries means good settings were found early; "
+                     "that is a normal result, not a problem."))
         trials = pd.DataFrame(task.get("trials", []))
         if not trials.empty:
             trials["trial"] = range(1, len(trials) + 1)
@@ -279,69 +268,34 @@ def _advanced(name: str, task: dict, version: str) -> None:
                  "trees": task["n_estimators"], "extra": task.get("extra", {})}, expanded=False)
 
 
-def _study() -> None:
-    study = data.decision_study()
-    if not study:
-        st.info(t("Run scripts/decision_study.py to evaluate the decision rules."))
+def _evaluation() -> None:
+    """How Main / Risk would have done on past matches (test season, current season afterwards).
+    Kept here, separate from the Prediction History of predictions recorded before kick-off."""
+    from src.analytics.performance import select_dataset, summarize
+    picks = select_dataset(data.picks(), "evaluation")
+    if picks.empty:
+        st.caption(t("No historical evaluation available."))
         return
-    st.html(f'<div class="note">{t("Every rule below was chosen on the validation season {s} ({n} matches) with "
-            "models trained only on earlier seasons; nothing here used the test season.", s=study["validation_season"],
-            n=f"{study['matches']:,}")}</div>')
-    section(t("Draw rule"), t("validation, cross-fitted on two halves"))
-    dr = study["draw_rule"]
-    rows = [{t("Rule"): t(label), "Accuracy": dr[key]["accuracy"], "Macro F1": dr[key]["macro_f1"],
-             t("Draw recall"): dr[key]["draw_recall"], t("Predicted draw share"): dr[key]["predicted_draw_share"],
-             t("ROI at real odds"): dr[key]["roi_1x2_at_real_odds"]}
-            for key, label in (("argmax", "Most probable outcome"), ("draw_rule", "Draw-aware rule"))]
-    f = {"Accuracy": lambda v: pct(v, 1), "Macro F1": lambda v: num(v, 3), t("Draw recall"): lambda v: pct(v, 1),
-         t("Predicted draw share"): lambda v: pct(v, 1), t("ROI at real odds"): lambda v: pct(v, 1)}
-    st.html(html_table(pd.DataFrame(rows), formats=f, align_right=tuple(f)))
-
-    section(t("Score model: Dixon-Coles vs independent Poisson"), t("lower is better"))
-    dc = study["dixon_coles"]
-    rows = [{t("Model"): t(label), t("Exact score log loss"): dc[key]["score_log_loss"],
-             t("Over 2.5 Brier"): dc[key]["over25_brier"], t("BTTS Brier"): dc[key]["btts_brier"]}
-            for key, label in (("poisson", "Independent Poisson"), ("dixon_coles", "Dixon-Coles"))]
-    f = {k: (lambda v: num(v, 4)) for k in (t("Exact score log loss"), t("Over 2.5 Brier"), t("BTTS Brier"))}
-    st.html(html_table(pd.DataFrame(rows), formats=f, align_right=tuple(f)))
-    st.caption(t("rho = {r} (halves: {h}). Adopted: {a}.", r=f"{dc['rho_full_validation']:.3f}",
-                 h=", ".join(f"{x:.3f}" for x in dc["rho"]), a=t("yes") if config.DIXON_COLES else t("no")))
-
-    section(t("Calibration by market"), t("expected calibration error, lower is better"))
-    cal = study["calibration"]
-    rows = [{t("Market"): k, "ECE": v, "Brier": cal["brier"][k]} for k, v in cal["ece"].items()]
-    st.html(html_table(pd.DataFrame(rows), formats={"ECE": lambda v: pct(v, 1), "Brier": lambda v: num(v, 4)},
-                       align_right=("ECE", "Brier")))
-    ts = cal["temperature_scaling"]
-    st.caption(t("Temperature scaling of 1X2 (not adopted, negligible gain): log loss {a} → {b} (T = {T}).", a=num(ts["log_loss_raw"], 4),
-                 b=num(ts["log_loss_scaled"], 4), T=", ".join(f"{x:.2f}" for x in ts["T"])))
-
-    section(t("Main prediction rule"), t("validation, real Bet365 prices"))
+    st.html(f'<div class="note">{t("Past matches predicted afterwards from pre-match data by a model trained only on "
+            "earlier seasons. This checks the model; it is not a record of predictions published before the "
+            "matches, so it is never mixed into Prediction History.")}</div>')
     rows = []
-    for label, r in ((t("Previous rule (hard odds band 1.30–3.00)"), study["main_legacy"]),
-                     (t("Current rule (soft preference 1.40–2.50)"), study["main_chosen"])):
-        rows.append({t("Rule"): label, t("Hit rate"): r["hit_rate"], t("With real odds"): r["priced_share"],
-                     t("Average odds"): r["avg_odds"], "ROI": r["roi"]})
-    f = {t("Hit rate"): lambda v: pct(v, 1), t("With real odds"): lambda v: pct(v, 1),
-         t("Average odds"): lambda v: num(v, 2), "ROI": lambda v: pct(v, 1)}
-    st.html(html_table(pd.DataFrame(rows), formats=f, align_right=tuple(f)))
-    ch = study["main_chosen"]
-    st.caption(t("Chosen: softness {s}, EV weight {w}, minimum EV {e}, minimum probability {p}. ROI = total profit "
-                 "/ number of bets with real odds (stake 1).", s=ch["softness"], w=ch["ev_weight"], e=ch["min_ev"],
-                 p=ch["min_probability"]))
-
-    section(t("Walk-forward check of the result model"),
-            t("train on all earlier seasons, evaluate the next one; lower log loss is better"))
-    wf = pd.DataFrame(study.get("walk_forward", []))
-    if not wf.empty:
-        wf = wf.rename(columns={"season": t("Season"), "matches": t("Matches"), "log_loss": "Log loss",
-                                "baseline_log_loss": t("Baseline log loss"), "accuracy": "Accuracy", "brier": "Brier"})
-        f = {"Log loss": lambda v: num(v, 4), t("Baseline log loss"): lambda v: num(v, 4),
-             "Accuracy": lambda v: pct(v, 1), "Brier": lambda v: num(v, 4)}
-        st.html(html_table(wf, formats=f, align_right=tuple(f)))
-    st.html(f'<div class="note">{t("The test season 2025/26 was looked at while FootPredict was developed, so it is "
-            "no longer a strictly untouched test; the walk-forward table is the more honest out-of-sample view.")}'
-            "</div>")
+    for source, label in EVALUATION_SOURCES.items():
+        for role in ("main", "risk"):
+            s_ = summarize(picks.loc[(picks["source"] == source) & (picks["role"] == role)])
+            if s_["settled"]:
+                rows.append({t("Data"): t(label), t("Type"): t("Main") if role == "main" else t("Risk"),
+                             t("Predictions"): s_["settled"], t("Hit rate"): s_["hit_rate"],
+                             t("With real odds"): s_["bets"], "ROI": s_["roi"], t("Average odds"): s_["avg_odds"]})
+    f = {t("Hit rate"): lambda v: pct(v, 1), "ROI": lambda v: signed(v, 1, "%"), t("Average odds"): lambda v: num(v)}
+    st.html(html_table(pd.DataFrame(rows), formats=f,
+                       align_right=(t("Predictions"), t("Hit rate"), t("With real odds"), "ROI", t("Average odds"))))
+    with st.expander(t("How is the Main prediction chosen?"), icon=":material/help:"):
+        st.html(f'<div class="card">{t("Among the selections with a probability of about 40–85 %, FootPredict ranks "
+                "each one by its probability, how reliable the market is for the models, a soft preference for odds "
+                "around 1.40–2.50 and its expected value at a real bookmaker price. The Risk prediction is the best "
+                "higher-odds alternative (about 3.0 and up) that is not the same bet as Main. The weights were chosen "
+                "on the validation season only.")}</div>')
 
 
 def _derived(meta: dict) -> None:
@@ -368,22 +322,15 @@ def render() -> None:
         empty_state(t("No trained models available."))
         return
     bt_meta = data.metadata(backtest) if backtest else None
-    _model_cards(meta, bt_meta)
-    st.html(f'<div class="note">{t("All test-season metrics come from the evaluation model, which never saw the "
-            "test season; the production model is then refitted on all completed seasons with the same settings.")}'
-            "</div>")
+    _model_note(meta, bt_meta)
     section(t("Models and data periods"))
     _periods(meta)
     with st.expander(t("What do these metrics mean?"), icon=":material/help:"):
         st.html("<div class='card'>" + "".join(
-            f"<div class='mx'><div class='ic'>{'↓' if k in LOWER_IS_BETTER else '↑'}</div><div><b>{esc(t(k))}</b>"
+            f"<div class='mx'><div class='ic'>•</div><div><b>{esc(t(k))}</b>"
             f"<span>{esc(t(v))}</span></div></div>" for k, v in METRIC_HELP.items()) + "</div>")
-    with st.expander(t("Where do the stored predictions come from?"), icon=":material/history:"):
-        st.html("<div class='card'>" + "".join(f"<div class='mx'><div class='ic'>•</div><div><b>{esc(t(a))}</b>"
-                                               f"<span>{esc(t(b))}</span></div></div>"
-                                               for a, b in SOURCES.values()) + "</div>")
     tasks = meta["tasks"]
-    tabs = st.tabs([t(TASK_TITLES.get(k, k)) for k in tasks] + [t("Derived markets"), t("Decision rules")])
+    tabs = st.tabs([t(TASK_TITLES.get(k, k)) for k in tasks] + [t("Derived markets"), t("Historical Model Testing")])
     for tab, (name, task) in zip(tabs, tasks.items()):
         with tab:
             section(t("Test-season metrics"))
@@ -391,14 +338,14 @@ def render() -> None:
                 _classifier(task)
             else:
                 _regressor(task)
-            section(t("Features and importance"))
-            _features(name, task)
             _advanced(name, task, active)
+            section(t("Model Features"))
+            _features(name, task)
     with tabs[-2]:
         section(t("Markets derived from the goal and corner models"), t("test season"))
         _derived(meta)
     with tabs[-1]:
-        _study()
+        _evaluation()
     st.caption(t("Model settings: {a} Hyperopt trials for the result model, {b} for each regression model.",
                  a=config.HYPEROPT_EVALS["result"], b=config.HYPEROPT_EVALS["home_goals"]))
 

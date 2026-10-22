@@ -36,7 +36,9 @@ def odds_from_matches(matches: pd.DataFrame) -> pd.DataFrame:
         add("TOTAL_2.5", 2.5, "OVER", r.odds_over25)
         add("TOTAL_2.5", 2.5, "UNDER", r.odds_under25)
         line = r.odds_ah_line
-        if line == line and line is not None and is_half_line(float(line)):
+        # Asian handicap: half lines (no refund) and whole lines (refund on an exact
+        # margin); quarter lines (split stakes) are not supported.
+        if line == line and line is not None and (is_half_line(float(line)) or float(line) % 1 == 0):
             market = handicap_market(float(line))
             add(market, float(line), "H", r.odds_ah_home)
             add(market, float(line), "A", r.odds_ah_away)

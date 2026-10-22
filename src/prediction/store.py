@@ -10,7 +10,12 @@ Files (Parquet, ``local_data/predictions/``):
   (role="market") plus the main and risk predictions.
 
 A recorded pre-match prediction is frozen once its match has kicked off:
-re-running the pipeline only refreshes matches that have not started.
+re-running the pipeline only refreshes matches that have not started. Every
+pre-match refresh is a new VERSION (``version`` 1, 2, …); all versions are
+kept in ``versions.parquet`` (picks of each version with its ``generated_at``)
+while the three main tables hold the latest version before kick-off — the one
+Prediction History and ROI use. A postponed match gets a new version for its
+new kick-off.
 ``generated_at`` is stored as naive UTC; ``kickoff`` as naive UK local time.
 ``source`` tells how a prediction was produced:
 
@@ -29,15 +34,16 @@ import numpy as np
 import pandas as pd
 
 from .. import config
-from ..markets.markets import selection_won
+from ..markets.markets import PUSH, WON, settle_selection
 from ..storage import predictions_storage
 from .engine import PredictionBatch
 
 SNAPSHOTS = "snapshots.parquet"
 MARKETS = "markets.parquet"
 PICKS = "picks.parquet"
+VERSIONS = "versions.parquet"      # archive: every pre-match version of the stored predictions
 
-STATUSES = ("UPCOMING", "WON", "LOST", "VOID")
+STATUSES = ("UPCOMING", "WON", "LOST", "PUSH", "VOID")   # PUSH = Asian handicap refund
 
 
 def load_snapshots() -> pd.DataFrame:
@@ -50,6 +56,10 @@ def load_markets() -> pd.DataFrame:
 
 def load_picks() -> pd.DataFrame:
     return predictions_storage.read_parquet_or_empty(PICKS)
+
+
+def load_versions() -> pd.DataFrame:
+    return predictions_storage.read_parquet_or_empty(VERSIONS)
 
 
 def drop_source(source: str) -> int:
@@ -71,12 +81,43 @@ def _replace(existing: pd.DataFrame, new: pd.DataFrame, drop_ids: set[str]) -> p
     return pd.concat(frames, ignore_index=True) if frames else new
 
 
-def _locked_ids(snapshots: pd.DataFrame, now: pd.Timestamp) -> set[str]:
-    """Recorded pre-match predictions whose match has started: never rewritten."""
+def _locked_ids(snapshots: pd.DataFrame, now: pd.Timestamp, batch: pd.DataFrame | None = None) -> set[str]:
+    """Recorded pre-match predictions whose match has started: never rewritten.
+
+    A match that was postponed (the batch carries a NEW kick-off that is still
+    in the future) is not locked: it gets a new pre-match version, the old one
+    stays in the version archive."""
     if snapshots.empty or "kickoff" not in snapshots:
         return set()
     started = pd.to_datetime(snapshots["kickoff"]) <= now
-    return set(snapshots.loc[started & (snapshots["source"] == "live"), "match_id"])
+    locked = set(snapshots.loc[started & (snapshots["source"] == "live"), "match_id"])
+    if batch is not None and not batch.empty and "kickoff" in batch:
+        moved = batch.loc[pd.to_datetime(batch["kickoff"]) > now, ["match_id", "kickoff"]]
+        old = snapshots.set_index("match_id")["kickoff"]
+        rescheduled = {m for m, k in zip(moved["match_id"], pd.to_datetime(moved["kickoff"]))
+                       if m in locked and pd.Timestamp(old.get(m)) != k}
+        locked -= rescheduled
+    return locked
+
+
+def _archive_versions(batch: PredictionBatch, snapshots: pd.DataFrame) -> pd.DataFrame:
+    """Append the pre-match ("live") picks of the batch to the version archive and
+    return the batch snapshots with their version numbers."""
+    snaps = batch.snapshots.copy()
+    previous = (snapshots.set_index("match_id")["version"] if "version" in snapshots and not snapshots.empty
+                else pd.Series(dtype=float))
+    known = set(snapshots["match_id"]) if not snapshots.empty else set()
+    prev = snaps["match_id"].map(previous)
+    prev = prev.where(prev.notna(), snaps["match_id"].isin(known).astype(float))   # pre-v5 rows = version 1
+    snaps["version"] = (prev.fillna(0) + 1).astype(int)
+    live = snaps.loc[snaps["source"] == "live", ["match_id", "version", "kickoff", "generated_at"]]
+    if not live.empty and not batch.picks.empty:
+        rows = batch.picks.merge(live, on="match_id", suffixes=("", "_snap"))
+        if not rows.empty:
+            rows = rows.drop(columns=[c for c in rows.columns if c.endswith("_snap")])
+            frames = [f for f in (load_versions(), rows) if not f.empty]
+            predictions_storage.write_parquet(VERSIONS, pd.concat(frames, ignore_index=True))
+    return snaps
 
 
 def save_batch(batch: PredictionBatch, replace_source: str | None = None,
@@ -92,7 +133,7 @@ def save_batch(batch: PredictionBatch, replace_source: str | None = None,
     from .pipeline import uk_now
     now = now if now is not None else uk_now()
     snapshots, markets, picks = load_snapshots(), load_markets(), load_picks()
-    locked = _locked_ids(snapshots, now)
+    locked = _locked_ids(snapshots, now, batch.snapshots)
     if locked and not batch.snapshots.empty:
         keep = ~batch.snapshots["match_id"].isin(locked)
         batch = PredictionBatch(batch.snapshots.loc[keep],
@@ -104,6 +145,7 @@ def save_batch(batch: PredictionBatch, replace_source: str | None = None,
         new = batch.snapshots.copy()
         new["first_generated_at"] = pd.to_datetime(new["match_id"].map(first)).fillna(pd.to_datetime(new["generated_at"]))
         batch = PredictionBatch(new, batch.markets, batch.picks)
+        batch = PredictionBatch(_archive_versions(batch, snapshots), batch.markets, batch.picks)
     if replace_source and not snapshots.empty:
         old = set(snapshots.loc[snapshots["source"] == replace_source, "match_id"])
         snapshots = snapshots.loc[~snapshots["match_id"].isin(old)]
@@ -166,19 +208,22 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     profit[~has_result & overdue] = 0.0
     for idx in scores.index[has_result]:
         pick, row = pending.loc[idx], scores.loc[idx]
-        won = selection_won(pick["market"], pick["selection"], row["home_goals"], row["away_goals"],
-                            row["total_corners"])
+        outcome = settle_selection(pick["market"], pick["selection"], row["home_goals"], row["away_goals"],
+                                   row["total_corners"])
         odds = pick["odds"] if pick["odds"] == pick["odds"] and pick["odds"] else None
-        if won is None:
+        if outcome is None:
             # e.g. corners not (yet) reported: an API result carries goals only,
             # the statistics arrive with Football-Data. Void only when overdue.
             if overdue[idx]:
                 status[idx], profit[idx] = "VOID", 0.0
             continue
-        status[idx] = "WON" if won else "LOST"
+        status[idx] = outcome
         # profit only with a real bookmaker price; otherwise the pick is settled
-        # (hit / miss) but has no profit
-        profit[idx] = (odds - 1 if won else -1.0) if odds else np.nan
+        # (hit / miss) but has no profit. A refund (PUSH) returns the stake.
+        if outcome == PUSH:
+            profit[idx] = 0.0 if odds else np.nan
+        else:
+            profit[idx] = (odds - 1 if outcome == WON else -1.0) if odds else np.nan
 
     decided = status != "UPCOMING"
     picks.loc[pending.index[has_result], score_cols] = scores.loc[has_result, score_cols].to_numpy()

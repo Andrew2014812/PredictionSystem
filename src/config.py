@@ -79,6 +79,39 @@ ODDS_API_RUN_BUDGET = 60            # credits one pipeline run may spend
 ODDS_API_MONTHLY_RESERVE = 30       # stop when fewer credits than this are left
 # Additional markets are bought per match: top divisions first, then by kick-off.
 ODDS_API_EXTENDED_TIERS = (1,)
+# The Odds API is the fallback once OddsPapi is configured (no double spending on the same prices).
+ODDS_API_ENABLED = True
+# ODDS_API_FALLBACK (environment or GitHub variable): "missing" (default) — only matches / markets that no
+# other provider priced; "off" — never call The Odds API; "always" — v4 behaviour.
+ODDS_API_FALLBACK_DEFAULT = "missing"
+
+
+def odds_api_fallback() -> str:
+    import os
+    _load_dotenv()
+    value = (os.environ.get("ODDS_API_FALLBACK") or ODDS_API_FALLBACK_DEFAULT).strip().lower()
+    return value if value in ("missing", "off", "always") else ODDS_API_FALLBACK_DEFAULT
+
+# OddsPapi v4 (https://oddspapi.io/en/docs) — key ODDSPAPI_KEY in .env / GitHub Secrets.
+# Free plan: 250 billable requests / month, pre-match odds of all bookmakers;
+# /historical-odds and /account are free (historical archive since January 2026).
+# Cooldowns between calls: odds 0.5 s, fixtures 2 s, historical-odds 5 s, others 1 s.
+ODDSPAPI_URL = "https://api.oddspapi.io/v4"
+ODDSPAPI_SPORT_ID = 10                    # soccer
+ODDSPAPI_MONTHLY_RESERVE = 20             # billable requests never spent (manual checks, retries)
+ODDSPAPI_RUN_BUDGET = 25                  # billable requests one pipeline run may spend
+ODDSPAPI_WINDOW_DAYS = 4                  # price matches starting within the next 4 days
+ODDSPAPI_REFRESH_HOURS = 12               # never ask the same match again sooner (empty answers too)
+# "historical": prices from /historical-odds (free; also works before kick-off if the API allows it —
+# verified with the first key), "odds": /odds per match (1 billable request each).
+ODDSPAPI_ODDS_SOURCE = "historical"
+# Bookmaker priority (max 3 per historical request); exchanges are never used.
+ODDSPAPI_BOOKMAKERS = ("bet365", "pinnacle", "williamhill")
+ODDSPAPI_EXCLUDED_BOOKMAKERS = ("betfair-ex", "matchbook", "smarkets", "4casters", "polymarket", "kalshi")
+# Tournament ids (community-documented; the rest are resolved from /tournaments once and
+# stored in local_data/api/oddspapi/tournaments.json).
+ODDSPAPI_TOURNAMENTS = {"E0": 17, "E1": 18, "SP1": 8, "SC0": 36, "N1": 37, "B1": 38, "P1": 238, "I1": 23,
+                        "D1": 35, "F1": 34}
 
 # ---------------------------------------------------------------------------
 # Seasons
@@ -176,17 +209,25 @@ HISTORY_MARKETS = ("1X2", "TOTAL_2.5", "BTTS", "DOUBLE_CHANCE", "CORNERS_9.5", "
 DRAW_RULE = False
 DIXON_COLES = False
 
+# Main / Risk ranking (src/markets/recommendation.py). The weights were chosen
+# on the validation season 2024/25 by scripts/decision_study.py (36 Main and
+# 72 Risk variants, real Bet365 prices): Main ROI -3.6 % (v4 rule -3.7 %); Risk
+# (never the same bet as Main nor a bet against it) average odds 3.5, hit rate 28 %,
+# real price for 92 %, ROI -5.9 %.
 MAIN_MIN_PROBABILITY = 0.40
 MAIN_MAX_PROBABILITY = 0.85
 MAIN_PREFERRED_ODDS = (1.40, 2.50)       # soft preference, not a hard range
-MAIN_ODDS_SOFTNESS = 0.30                # width of the decay outside it (log-odds)
-MAIN_EV_WEIGHT = 0.0                     # EV enters through MAIN_MIN_EV; extra weight did not help
-MAIN_MIN_EV = 0.03
-RISK_MIN_ODDS = 3.00
-RISK_MAX_ODDS = 8.00
-RISK_MIN_PROBABILITY = 0.22
-RISK_MIN_EV = 0.10
-RISK_MIN_RELIABILITY = 0.85
+MAIN_ODDS_SOFTNESS = 0.15                # width of the decay outside it (log-odds)
+MAIN_EV_WEIGHT = 0.5                     # bonus / penalty for EV at a real price (EV clipped to ±0.3)
+MAIN_UNPRICED_FACTOR = 0.8               # a selection without a real price must be clearly better
+MAIN_PROBABILITY_POWER = 1.0
+MAIN_VALUE_FIRST_MIN_EV = None          # e.g. 0.03: prefer real prices with EV >= 3 % when available
+RISK_MIN_PROBABILITY = 0.12              # keeps Risk a model result, not a lottery ticket
+RISK_PREFERRED_ODDS = (3.00, 6.00)       # soft; validation: average Risk odds 3.5
+RISK_ODDS_SOFTNESS = 0.20
+RISK_EV_WEIGHT = 0.0                     # no EV requirement or bonus for Risk
+RISK_UNPRICED_FACTOR = 0.8
+RISK_PROBABILITY_POWER = 0.5             # less pull towards the most likely of the long shots
 
 # How much each market's model output is trusted when ranking candidates.
 MARKET_RELIABILITY = {
@@ -195,6 +236,7 @@ MARKET_RELIABILITY = {
     "BTTS": 0.95,
     "DOUBLE_CHANCE": 0.90,
     "HANDICAP": 0.90,
+    "EHANDICAP": 0.85,
     "CORNERS": 0.85,
     "EXACT_SCORE": 0.50,
 }

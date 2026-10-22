@@ -21,6 +21,7 @@ the walk-forward table is the more honest view of out-of-sample quality.
 """
 import itertools
 import json
+import os
 import logging
 import sys
 from pathlib import Path
@@ -36,15 +37,17 @@ from src import config  # noqa: E402
 from src.features.store import load_features  # noqa: E402
 from src.markets.distributions import (fit_dixon_coles_rho, reconcile_with_1x2,  # noqa: E402
                                        score_matrix)
-from src.markets.markets import selection_won  # noqa: E402
+from src.markets.markets import settle_selection  # noqa: E402
 from src.markets.odds import PricedSelection  # noqa: E402
-from src.markets.recommendation import main_prediction, reliability, risk_prediction  # noqa: E402
+from src.markets.recommendation import (effective_odds, main_params, main_prediction, reliability,  # noqa: E402
+                                       risk_params, risk_prediction)
 from src.modelling.decision import choose_draw_multiplier, decide  # noqa: E402
-from src.modelling.evaluation import classifier_metrics, multiclass_brier  # noqa: E402
+from src.modelling.evaluation import classifier_metrics  # noqa: E402
 from src.modelling.pipeline import _subset, season_split  # noqa: E402
 from src.modelling.registry import active_version, version_metadata  # noqa: E402
 from src.modelling.tasks import TASKS  # noqa: E402
 from src.modelling.training import TaskTrainer, corner_leagues, negative_binomial_size  # noqa: E402
+from src.modelling.walk_forward import walk_forward  # noqa: E402
 from src.prediction.engine import predict_matches  # noqa: E402
 from src.providers import real_odds_lookup  # noqa: E402
 from src.storage import models_storage  # noqa: E402
@@ -184,30 +187,34 @@ def legacy_main(sels):
 
 
 def settle(pick, result):
+    """WON / LOST / PUSH, or None (no pick / unknown)."""
     if pick is None:
         return None
-    won = selection_won(pick.market, pick.selection, result["home_goals"], result["away_goals"],
-                        result.get("total_corners"))
-    return won
+    return settle_selection(pick.market, pick.selection, result["home_goals"], result["away_goals"],
+                            result.get("total_corners"))
 
 
 def summarise(picks) -> dict:
-    """picks: list of (won, odds or None)."""
-    picks = [p for p in picks if p[0] is not None]
-    priced = [(w, o) for w, o in picks if o]
-    profit = [o - 1 if w else -1.0 for w, o in priced]
-    return {"predictions": len(picks), "hit_rate": float(np.mean([w for w, _ in picks])) if picks else None,
+    """picks: list of (status, odds or None, effective odds). A refund (PUSH) is not a bet."""
+    picks = [p for p in picks if p[0] in ("WON", "LOST")]
+    priced = [(w, o) for w, o, _ in picks if o]
+    profit = [o - 1 if w == "WON" else -1.0 for w, o in priced]
+    return {"predictions": len(picks),
+            "hit_rate": float(np.mean([w == "WON" for w, _, _ in picks])) if picks else None,
             "bets": len(priced), "priced_share": len(priced) / len(picks) if picks else None,
             "roi": float(np.mean(profit)) if profit else None,
-            "avg_odds": float(np.mean([o for _, o in priced])) if priced else None}
+            "avg_odds": float(np.mean([o for _, o in priced])) if priced else None,
+            "avg_effective_odds": float(np.mean([e for _, _, e in picks])) if picks else None}
 
 
 def ranking_study(batch, va):
     results = va.set_index("match_id")[["home_goals", "away_goals", "total_corners", "date"]].to_dict("index")
     by_match: dict[str, list] = {}
-    for r in batch.markets.itertuples(index=False):
+    push = batch.markets["push_probability"] if "push_probability" in batch.markets else 0.0
+    for r, pp in zip(batch.markets.itertuples(index=False), np.broadcast_to(push, len(batch.markets))):
         odds = None if pd.isna(r.odds) else float(r.odds)
-        by_match.setdefault(r.match_id, []).append(PricedSelection(r.market, r.selection, float(r.probability), odds))
+        by_match.setdefault(r.match_id, []).append(
+            PricedSelection(r.market, r.selection, float(r.probability), odds, push_probability=float(pp or 0)))
     ids = sorted(by_match, key=lambda m: results[m]["date"])
     half = {m: i < len(ids) / 2 for i, m in enumerate(ids)}
 
@@ -215,55 +222,64 @@ def ranking_study(batch, va):
         rows = {True: [], False: []}
         for m in ids:
             pick = choose(by_match[m])
-            won = settle(pick, results[m])
-            rows[half[m]].append((won, pick.odds if pick is not None and pick.has_odds else None))
+            rows[half[m]].append((settle(pick, results[m]), pick.odds if pick is not None and pick.has_odds else None,
+                                  effective_odds(pick) if pick is not None else None))
         both = rows[True] + rows[False]
         return {**summarise(both), "first_half_roi": summarise(rows[True])["roi"],
                 "second_half_roi": summarise(rows[False])["roi"]}
 
-    grid = []
-    for softness, ev_w, min_ev, min_p in itertools.product((0.15, 0.30, 0.60, 5.0), (0.0, 0.5, 1.0, 2.0),
-                                                           (-1.0, 0.0, 0.03), (0.40, 0.45, 0.50)):
-        r = evaluate(lambda s: (lambda rec: rec.pick if rec else None)(
-            main_prediction(s, min_ev=min_ev, ev_weight=ev_w, softness=softness, min_probability=min_p)))
-        grid.append({"softness": softness, "ev_weight": ev_w, "min_ev": min_ev, "min_probability": min_p, **r})
-        log.info("main %s", grid[-1])
+    main_grid = []
+    base = main_params()
+    for softness, ev_w, unpriced, power in itertools.product((0.15, 0.30), (0.0, 0.5, 1.0), (0.5, 0.65, 0.8),
+                                                             (1.0, 0.5)):
+        params = base.with_(softness=softness, ev_weight=ev_w, unpriced_factor=unpriced, probability_power=power)
+        r = evaluate(lambda s: (lambda rec: rec.pick if rec else None)(main_prediction(s, params)))
+        main_grid.append({"softness": softness, "ev_weight": ev_w, "unpriced_factor": unpriced,
+                          "probability_power": power, **r})
+        log.info("main %s", main_grid[-1])
     legacy = evaluate(legacy_main)
-    risk = []
-    for min_ev in (0.05, 0.10, 0.15, 0.20):
-        risk.append({"min_ev": min_ev, **evaluate(lambda s: (lambda rec: rec.pick if rec else None)(
-            risk_prediction(s, min_ev=min_ev)))})
-    return {"main_grid": grid, "main_legacy": legacy, "risk_grid": risk}
+    chosen = choose_main(main_grid)
+    main_rule = base.with_(**{k: chosen[k] for k in ("softness", "ev_weight", "unpriced_factor", "probability_power")})
+    mains = {m: main_prediction(by_match[m], main_rule) for m in ids}
+
+    risk_grid = []
+    rbase = risk_params()
+    for window, softness, ev_w, unpriced, power in itertools.product(((2.5, 5.0), (3.0, 6.0), (3.5, 8.0)),
+                                                                     (0.2, 0.4), (0.0, 0.5, 1.0), (0.5, 0.8),
+                                                                     (1.0, 0.5)):
+        params = rbase.with_(preferred=window, softness=softness, ev_weight=ev_w, unpriced_factor=unpriced,
+                             probability_power=power)
+        lookup = iter(ids)
+
+        def choose_risk(sels, params=params, lookup=lookup):
+            main = mains[next(lookup)]
+            rec = risk_prediction(sels, main.pick if main else None, params)
+            return rec.pick if rec else None
+        r = evaluate(choose_risk)
+        risk_grid.append({"preferred": list(window), "softness": softness, "ev_weight": ev_w,
+                          "unpriced_factor": unpriced, "probability_power": power, **r})
+        log.info("risk %s", risk_grid[-1])
+    return {"main_grid": main_grid, "main_legacy": legacy, "main_chosen": chosen,
+            "risk_grid": risk_grid, "risk_chosen": choose_risk_rule(risk_grid)}
 
 
 def choose_main(grid: list[dict]) -> dict:
-    """Highest ROI among rules that price most main predictions and are profitable-or-best in
-    BOTH halves of the validation season (stability), ties -> higher hit rate."""
-    ok = [g for g in grid if g["roi"] is not None and (g["priced_share"] or 0) >= 0.6
+    """Highest worst-half ROI among rules that price most main predictions, ties -> higher hit rate."""
+    ok = [g for g in grid if g["roi"] is not None and (g["priced_share"] or 0) >= 0.5
           and g["first_half_roi"] is not None and g["second_half_roi"] is not None]
     return max(ok, key=lambda g: (min(g["first_half_roi"], g["second_half_roi"]), g["hit_rate"]))
 
 
-# -- 5. walk-forward ------------------------------------------------------------
-def walk_forward(features, meta):
-    task, info = TASKS["result"], meta["tasks"]["result"]
-    seasons = sorted(int(s) for s in features.loc[features["played"].astype(bool), "season"].unique())
-    rows = []
-    for s in seasons[2:]:
-        if s >= config.current_season():
-            continue
-        tr = _subset(features, [x for x in seasons if x < s])
-        ev = _subset(features, [s])
-        ev = ev.loc[task.trainable(ev)]
-        p = TaskTrainer(task, features.columns).fit(tr, info["params"], info["n_estimators"]).predict(ev)
-        y = task.target_values(ev).to_numpy()
-        prior = np.bincount(task.target_values(tr.loc[task.trainable(tr)]).to_numpy(), minlength=3) / len(task.target_values(tr.loc[task.trainable(tr)]))
-        rows.append({"season": config.season_label(s), "matches": len(ev),
-                     "log_loss": float(log_loss(y, p, labels=[0, 1, 2])),
-                     "brier": multiclass_brier(y, p), "accuracy": float((p.argmax(1) == y).mean()),
-                     "baseline_log_loss": float(log_loss(y, np.tile(prior, (len(y), 1)), labels=[0, 1, 2]))})
-        log.info("walk-forward %s", rows[-1])
-    return rows
+def choose_risk_rule(grid: list[dict]) -> dict:
+    """Risk must stay risky (average odds >= 3) and mostly priced; then highest worst-half ROI."""
+    ok = [g for g in grid if g["roi"] is not None and (g["avg_effective_odds"] or 0) >= 3.0
+          and (g["priced_share"] or 0) >= 0.4 and g["first_half_roi"] is not None
+          and g["second_half_roi"] is not None]
+    return max(ok or grid, key=lambda g: (min(g["first_half_roi"] or -9, g["second_half_roi"] or -9),
+                                          g["hit_rate"] or 0))
+
+
+# -- 5. walk-forward (src/modelling/walk_forward.py: per-fold hyperparameter search) --
 
 
 def main() -> None:
@@ -292,11 +308,11 @@ def main() -> None:
     bundles["home_goals"].extra["dc_rho"] = rho
     batch = predict_matches(va, bundles, real_odds_lookup(va), "study", "study")
     study.update(ranking_study(batch, va))
-    study["main_chosen"] = choose_main(study["main_grid"])
-    study["walk_forward"] = walk_forward(features, meta)
+    evals = int(os.environ.get("WALK_FORWARD_EVALS", "15"))
+    study["walk_forward"] = walk_forward(features, max_evals=evals) if evals > 0 else []
     models_storage.write_json(OUT, study)
     print(json.dumps({k: study[k] for k in ("draw_rule", "dixon_coles", "calibration", "main_legacy",
-                                             "main_chosen", "risk_grid", "walk_forward")}, indent=1, default=str))
+                                             "main_chosen", "risk_chosen", "walk_forward")}, indent=1, default=str))
 
 
 if __name__ == "__main__":

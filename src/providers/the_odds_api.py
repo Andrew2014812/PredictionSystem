@@ -23,7 +23,7 @@ import requests
 
 from .. import config
 from ..leagues import by_odds_api_key
-from ..markets.markets import handicap_market, is_half_line
+from ..markets.markets import handicap_market
 from .cache import ApiCache
 from .ledger import CreditLedger
 
@@ -147,7 +147,7 @@ def _parse_market(key: str, outcomes: list[dict], home: str, away: str) -> list[
         elif key in ("spreads", "alternate_spreads") and point is not None and name in (home, away):
             # the point is the named team's handicap; the system's line is the home team's
             line = float(point) if name == home else -float(point)
-            if is_half_line(line) and line in config.HANDICAP_LINES:
+            if line in config.HANDICAP_LINES:              # Asian: half and whole lines (refund)
                 out.append((handicap_market(line), line, "H" if name == home else "A", price))
     return out
 

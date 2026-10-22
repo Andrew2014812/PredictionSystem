@@ -51,8 +51,10 @@ def test_api_football_bets_map_to_system_markets():
     assert ("TOTAL_4.5", "OVER") not in rows                       # line not offered by the system
     assert rows[("BTTS", "YES")] == 1.80 and rows[("DOUBLE_CHANCE", "X2")] == 1.70
     assert rows[("EXACT_SCORE", "2-1")] == 9.00
-    assert rows[("HANDICAP_-1", "H")] == 3.80 and rows[("HANDICAP_-1", "D")] == 3.70
-    assert rows[("HANDICAP_-1", "A")] == 1.80                      # "Away +1" = home line -1
+    # "Handicap Result" is the European 3-way market; "Away +1" = home line -1
+    assert rows[("EHANDICAP_-1", "H")] == 3.80 and rows[("EHANDICAP_-1", "D")] == 3.70
+    assert rows[("EHANDICAP_-1", "A")] == 1.80
+    assert rows[("HANDICAP_-1", "H")] == 3.0                       # Asian whole line (refund on a 1-goal win)
     assert rows[("HANDICAP_-0.5", "H")] == 2.10 and rows[("HANDICAP_-0.5", "A")] == 1.80
     assert not any(m in ("HANDICAP_-0.25",) for m, _ in rows)      # quarter Asian lines are skipped
     assert rows[("CORNERS_9.5", "OVER")] == 1.85
@@ -193,6 +195,9 @@ def _collect_env(tmp_path, monkeypatch):
     monkeypatch.setattr(col, "odds_storage", LocalStorage(tmp_path / "odds"))
     monkeypatch.setattr(col, "api_storage", LocalStorage(tmp_path / "api"))
     monkeypatch.setattr(col.ApiFootball, "available", property(lambda self: False))
+    monkeypatch.setattr(col.OddsPapi, "available", property(lambda self: False))    # never a real request
+    from src.providers import teams_registry
+    monkeypatch.setattr(teams_registry, "PATH", tmp_path / "provider_ids.json")
     ledger_path = tmp_path / "ledger.json"
     return col, (lambda: CreditLedger(ledger_path))
 
@@ -293,4 +298,35 @@ def test_extended_market_parsing_from_a_real_response():
     assert ("CORNERS_9.5", "OVER") in rows and ("CORNERS_10.5", "UNDER") in rows
     assert ("EXACT_SCORE", "1-0") in rows
     assert all(b != "Betfair" and "Exchange" not in b for _, b in rows.values())     # exchanges skipped
-    assert not any(m == "HANDICAP_-1" for m, _ in rows)                                  # whole Asian lines skipped
+    assert not any(m.startswith("HANDICAP") and float(m.split("_")[1]) % 0.5 for m, _ in rows)   # no quarter lines
+
+
+def _store_oddspapi_prices(col, event, markets):
+    from src.providers.the_odds_api import parse_event
+    ev = parse_event(event, "soccer_epl")
+    match_id = col._canonical({**ev, "played": False}, "Arsenal", "Chelsea")["match_id"]
+    col._save_odds([{"match_id": match_id, "provider": "oddspapi", "provider_fixture_id": "f1",
+                     "bookmaker": "bet365", "market": m, "line": None, "selection": s, "odds": 2.0,
+                     "collected_at": pd.Timestamp("2026-10-20 10:00")} for m, s in markets])
+
+
+def test_the_odds_api_does_not_buy_what_oddspapi_already_priced(tmp_path, monkeypatch):
+    col, ledger = _collect_env(tmp_path, monkeypatch)
+    monkeypatch.delenv("ODDS_API_FALLBACK", raising=False)
+    calls = []
+    fake, event = _fake_api(col, ledger, calls)
+    monkeypatch.setattr(col, "TheOddsApi", fake)
+    _store_oddspapi_prices(col, event, [("1X2", "H"), ("TOTAL_2.5", "OVER"), ("BTTS", "YES"),
+                                        ("DOUBLE_CHANCE", "1X"), ("CORNERS_9.5", "OVER")])
+    summary = col.collect(MATCHES, mode="odds")
+    assert not [c for c in calls if c.endswith("/odds")]                  # no credits spent
+    assert "fallback=missing" in summary["the_odds_api"]
+
+
+def test_the_odds_api_fallback_can_be_switched_off(tmp_path, monkeypatch):
+    col, ledger = _collect_env(tmp_path, monkeypatch)
+    monkeypatch.setenv("ODDS_API_FALLBACK", "off")
+    calls = []
+    monkeypatch.setattr(col, "TheOddsApi", _fake_api(col, ledger, calls)[0])
+    summary = col.collect(MATCHES, mode="odds")
+    assert calls == [] and "the_odds_api" not in summary or "not used" in summary["the_odds_api"]

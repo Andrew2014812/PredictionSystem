@@ -14,10 +14,13 @@ from __future__ import annotations
 import pandas as pd
 
 ODDS_COLUMNS = ["match_id", "provider", "provider_fixture_id", "bookmaker", "market", "line",
-                "selection", "odds", "collected_at"]
+                "selection", "odds", "collected_at", "priced_at", "fetched_at", "kickoff"]
+# collected_at — the time the price is valid from (for OddsPapi the bookmaker's quote time); it is
+# what the "before kick-off" check uses. priced_at / fetched_at / kickoff are kept when known
+# (older rows: empty).
 
 # When several providers price the same selection, the first one wins.
-PROVIDER_PRIORITY = ("api_football", "the_odds_api", "football_data")
+PROVIDER_PRIORITY = ("oddspapi", "api_football", "the_odds_api", "football_data")
 
 
 def empty_odds() -> pd.DataFrame:
@@ -30,7 +33,8 @@ def odds_frame(records: list[dict]) -> pd.DataFrame:
     df = pd.DataFrame(records).reindex(columns=ODDS_COLUMNS)
     df["odds"] = pd.to_numeric(df["odds"], errors="coerce")
     df = df.loc[df["odds"] > 1.0]
-    df["collected_at"] = pd.to_datetime(df["collected_at"])
+    for col in ("collected_at", "priced_at", "fetched_at", "kickoff"):
+        df[col] = pd.to_datetime(df[col])
     return df.reset_index(drop=True)
 
 
@@ -50,5 +54,6 @@ def odds_lookup(odds: pd.DataFrame) -> dict[str, dict[tuple[str, str], dict]]:
     out: dict[str, dict] = {}
     for r in best_prices(odds).itertuples():
         out.setdefault(r.match_id, {})[(r.market, r.selection)] = {
-            "odds": float(r.odds), "bookmaker": r.bookmaker, "provider": r.provider}
+            "odds": float(r.odds), "bookmaker": r.bookmaker, "provider": r.provider,
+            "priced_at": getattr(r, "collected_at", None)}
     return out
