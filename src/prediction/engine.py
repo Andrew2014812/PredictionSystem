@@ -37,6 +37,7 @@ def _pick_row(match: dict, sel: PricedSelection, role: str, meta: dict, kind: st
         "market": sel.market, "group": sel.group, "selection": sel.selection,
         "probability": sel.probability, "odds": sel.odds if sel.has_odds else np.nan,
         "bookmaker": sel.bookmaker, "provider": sel.provider, "real_odds": sel.has_odds,
+        "odds_priced_at": pd.Timestamp(sel.priced_at) if sel.has_odds and sel.priced_at is not None else pd.NaT,
         "ev": sel.ev if sel.has_odds else np.nan,
         "status": "UPCOMING", "home_goals": np.nan, "away_goals": np.nan,
         "total_corners": np.nan, "profit": np.nan, "settled_at": pd.NaT, **meta,
@@ -127,6 +128,8 @@ def predict_matches(matches: pd.DataFrame, bundles: dict[str, ModelBundle], odds
             picks.append(_pick_row(match, risk.pick, "risk", meta, risk.kind))
 
     markets_df = pd.DataFrame(market_rows)
+    if "priced_at" in markets_df:
+        markets_df["priced_at"] = pd.to_datetime(markets_df["priced_at"], errors="coerce")
     for col in ("probability", "odds", "ev", "push_probability"):
         markets_df[col] = pd.to_numeric(markets_df[col], errors="coerce").astype("float32")
     return PredictionBatch(pd.DataFrame(snapshots), markets_df, pd.DataFrame(picks))

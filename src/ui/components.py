@@ -178,6 +178,19 @@ def market_table(rows: pd.DataFrame, home: str, away: str, highlight_best: bool 
     return f"<div style='overflow-x:auto'><table class='mkt'>{head}{''.join(body)}</table></div>"
 
 
+PROVIDER_NAMES = {"oddspapi": "OddsPapi", "the_odds_api": "The Odds API", "api_football": "API-Football",
+                  "football_data": "Football-Data"}
+
+
+def price_origin(row) -> str:
+    """"Bet365 · OddsPapi · 17 Oct, 15:42" (the visitor's time) for the small tooltip next to a price."""
+    from .timefmt import local_stamp
+    parts = [str(row.get("bookmaker") or "").strip(), PROVIDER_NAMES.get(row.get("provider"), row.get("provider"))]
+    when = row.get("priced_at") if not missing(row.get("priced_at")) else row.get("odds_priced_at")
+    parts.append(local_stamp(when) if not missing(when) else "")
+    return " · ".join(p for p in parts if p) or t("Real bookmaker price")
+
+
 def recommendation_card(role: str, rec: pd.Series | dict, home: str, away: str,
                         settled: pd.Series | dict | None = None) -> str:
     """Main (green) or Risk (orange) card: market, selection, probability, real odds and EV;
@@ -192,7 +205,8 @@ def recommendation_card(role: str, rec: pd.Series | dict, home: str, away: str,
     if not missing(push) and push and push > 0.001:
         cells.append(f'<div><div class="l">{t("Refund")}</div><div class="v">{pct(push, 1)}</div></div>')
     if priced:
-        cells.append(f'<div><div class="l">{t("Odds")}</div><div class="v">{odds_text(odds)}</div></div>')
+        cells.append(f'<div><div class="l">{t("Odds")}{tip(price_origin(source))}</div>'
+                     f'<div class="v">{odds_text(odds)}</div></div>')
         if not missing(ev):
             cells.append(f'<div><div class="l">{t("Expected Value")}{tip(t(EV_HELP))}</div>'
                          f'<div class="v {tone(ev)}">{signed(ev * 100, 1, "%")}</div></div>')

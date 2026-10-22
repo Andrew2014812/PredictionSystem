@@ -28,6 +28,7 @@ class PricedSelection:
     bookmaker: str | None = None
     provider: str | None = None
     push_probability: float = 0.0
+    priced_at: object = None                 # when the bookmaker's price was valid (UK time)
 
     @property
     def group(self) -> str:
@@ -54,7 +55,7 @@ class PricedSelection:
         return {"market": self.market, "selection": self.selection, "group": self.group,
                 "probability": self.probability, "odds": self.odds if self.has_odds else None,
                 "bookmaker": self.bookmaker, "provider": self.provider, "ev": self.ev,
-                "push_probability": self.push_probability}
+                "push_probability": self.push_probability, "priced_at": self.priced_at}
 
 
 def price(selections: list[Selection], match_odds: dict[tuple[str, str], dict] | None) -> list[PricedSelection]:
@@ -67,5 +68,6 @@ def price(selections: list[Selection], match_odds: dict[tuple[str, str], dict] |
                                    quote["odds"] if quote else None,
                                    quote.get("bookmaker") if quote else None,
                                    quote.get("provider") if quote else None,
-                                   s.push_probability))
+                                   s.push_probability,
+                                   quote.get("priced_at") if quote else None))
     return out

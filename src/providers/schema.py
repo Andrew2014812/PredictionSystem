@@ -54,5 +54,6 @@ def odds_lookup(odds: pd.DataFrame) -> dict[str, dict[tuple[str, str], dict]]:
     out: dict[str, dict] = {}
     for r in best_prices(odds).itertuples():
         out.setdefault(r.match_id, {})[(r.market, r.selection)] = {
-            "odds": float(r.odds), "bookmaker": r.bookmaker, "provider": r.provider}
+            "odds": float(r.odds), "bookmaker": r.bookmaker, "provider": r.provider,
+            "priced_at": getattr(r, "collected_at", None)}
     return out

@@ -360,4 +360,12 @@ UK: dict[str, str] = {
     'December': 'Грудень',
     'Test season (evaluation model)': 'Тестовий сезон (оцінювальна модель)',
     'u': 'од.',
+    'Real bookmaker price': 'Реальний коефіцієнт букмекера',
+    'Show all lines': 'Показати всі лінії',
+    'Start typing a club, e.g. Man': 'Почніть вводити назву клубу, напр. Man',
+    'Win probability': 'Ймовірність виграшу',
+    'Strong support': 'Сильно на користь',
+    'Moderate support': 'Помірно на користь',
+    'Small support': 'Трохи на користь',
+    'Works against': 'Проти прогнозу',
 }

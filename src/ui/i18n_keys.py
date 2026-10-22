@@ -16,7 +16,7 @@ EXTRA = {
     "Most probable outcome", "Draw-aware rule", "Independent Poisson", "Dixon-Coles",
     "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November",
     "December", "European handicap", "Test season (evaluation model)", "Current season, predicted afterwards",
-    "Current season", "Refund",
+    "Current season", "Refund", "Strong support", "Moderate support", "Small support", "Works against",
 }
 
 
