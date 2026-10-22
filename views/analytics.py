@@ -95,7 +95,7 @@ def _hbar(df: pd.DataFrame, label_fn, value: str, count: str, title: str, pct_ax
     fig = go.Figure(go.Bar(
         x=d[value], y=[label_fn(v) for v in d.iloc[:, 0]], orientation="h", marker_color=base,
         marker_opacity=[0.35 if s_ else 1.0 for s_ in small],
-        text=[f"{(v * 100 if pct_axis else v):.0f}{'%' if pct_axis else '%'} · n={int(n)}"
+        text=[f"{(v * 100 if pct_axis else v):.0f}{'%' if pct_axis else ''} · n={int(n)}"
               for v, n in zip(d[value], d[count])],
         textposition="outside", cliponaxis=False))
     fig.update_layout(title=title, xaxis_tickformat=".0%" if pct_axis else None, yaxis=dict(automargin=True),
