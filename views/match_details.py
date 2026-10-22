@@ -21,6 +21,7 @@ from src.ui.i18n import current_language, t
 from src.ui.labels import country_label, league_name, market_title, selection_label
 from src.ui.prefs import pref_params
 from src.ui.theme import colors
+from src.ui.timefmt import with_local_time
 
 
 def _choose_match() -> str | None:
@@ -44,6 +45,9 @@ def _choose_match() -> str | None:
 
 def _header(row: pd.Series) -> None:
     lg = get_league(row["league"])
+    local = with_local_time(pd.DataFrame([row])).iloc[0]          # the visitor's date and time
+    row = row.copy()
+    row["date"], row["time"] = local["local_date"], local["local_time"]
     played = bool(row.get("played")) and not missing(row.get("home_goals"))
     centre = (f'{int(row["home_goals"])} : {int(row["away_goals"])}' if played
               else f'<span class="vs">{esc(row.get("time") or "—")}</span>')

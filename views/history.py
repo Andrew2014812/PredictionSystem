@@ -11,6 +11,7 @@ from src.ui import data
 from src.ui.components import (date_text, empty_state, esc, guard, html_table, kpi_row, match_url, missing, num,
                                odds_text, page_header, pct, period_filter, section, signed, status_badge, tone)
 from src.ui.i18n import t
+from src.ui.timefmt import with_local_time
 from src.ui.labels import MARKET_GROUP_TITLES, group_title, league_label, market_title, selection_label
 
 ROLES = {"main": "Main predictions", "risk": "Risk predictions", "market": "Market forecasts"}
@@ -102,10 +103,10 @@ def render() -> None:
     table = df.sort_values(["date", "time", "match_id"], ascending=[False, False, True])
     pages = max(1, (len(table) - 1) // PAGE_SIZE + 1)
     page = st.number_input(t("Page"), 1, pages, 1, key="h_page") if pages > 1 else 1
-    chunk = table.iloc[(page - 1) * PAGE_SIZE: page * PAGE_SIZE]
+    chunk = with_local_time(table.iloc[(page - 1) * PAGE_SIZE: page * PAGE_SIZE])   # visitor's date
     roles = {"main": t("Main"), "risk": t("Risk"), "market": t("Forecast")}
     view = pd.DataFrame({
-        t("Date"): [date_text(d, "%d.%m.%Y") for d in chunk["date"]],
+        t("Date"): [date_text(d, "%d.%m.%Y") for d in chunk["local_date"]],
         t("League"): [league_label(x) for x in chunk["league"]],
         t("Match"): [f"<a href='{match_url(m)}' target='_self'>{esc(h)} – {esc(a)}</a>"
                      for m, h, a in zip(chunk["match_id"], chunk["home_team"], chunk["away_team"])],
