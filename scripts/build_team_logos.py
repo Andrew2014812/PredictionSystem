@@ -55,6 +55,15 @@ def call(path: str, params: dict, key: str) -> list:
     return body.get("response", [])
 
 
+def search_terms(team: str) -> list[str]:
+    """Full alias names (longest first), then the stored name, then its longest word (API minimum 3 letters)."""
+    from src.providers.aliases import TEAM_ALIASES
+    aliases = sorted((a for a, t in TEAM_ALIASES.items() if t == team), key=len, reverse=True)
+    words = sorted((w for w in team.replace("'", " ").split() if len(w) >= 4), key=len, reverse=True)
+    terms = [*aliases[:1], team, *words[:1]]
+    return [t for i, t in enumerate(terms) if len(t) >= 3 and t.lower() not in [x.lower() for x in terms[:i]]]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--by-name", type=int, default=0, help="max lookups by team name for unmatched clubs")
@@ -83,13 +92,19 @@ def main() -> None:
     print(f"matched from league lists: {len(logos)}; still missing: {len(missing)}")
 
     for lg, team in missing[:args.by_name]:
-        # the API does not accept "country" together with "search": filter the country in the answer
-        for item in call("teams", {"search": team[:30]}, key):
-            if item["team"].get("country") != lg.country:
-                continue
-            if resolve(item["team"]["name"], {team}) == team and item["team"].get("logo"):
-                logos[team_key(lg.country, team)] = {"url": item["team"]["logo"], "source": "api-football",
-                                                     "provider_id": item["team"]["id"]}
+        # the API does not accept "country" together with "search": filter the country in the answer.
+        # Football-Data abbreviates ("Bristol Rvs"), so the full alias name is searched first.
+        for term in search_terms(team):
+            hit = None
+            for item in call("teams", {"search": term[:30]}, key):
+                if item["team"].get("country") != lg.country or not item["team"].get("logo"):
+                    continue
+                if resolve(item["team"]["name"], {team}) == team:
+                    hit = item
+                    break
+            if hit:
+                logos[team_key(lg.country, team)] = {"url": hit["team"]["logo"], "source": "api-football",
+                                                     "provider_id": hit["team"]["id"]}
                 break
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(dict(sorted(logos.items())), indent=1, ensure_ascii=False), encoding="utf-8")
