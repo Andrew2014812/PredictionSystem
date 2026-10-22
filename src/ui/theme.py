@@ -96,6 +96,8 @@ a { text-decoration: none; }
 .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem 1rem; height: 100%; }
 .kpi .label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
 img.badge { object-fit: contain; vertical-align: middle; flex: none; }
+.origin { font-size: .7rem; font-weight: 700; padding: 1px 6px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); }
+.origin.live { color: var(--accent); border-color: var(--accent); }
 .chip-note { display: inline-block; margin-left: .4rem; padding: 0 .4rem; border-radius: 6px; font-size: .62rem; font-weight: 700; letter-spacing: .02em; text-transform: none; color: var(--risk); border: 1px solid var(--risk); vertical-align: middle; }
 .kpi .value { font-size: 1.45rem; font-weight: 800; margin-top: .15rem; color: var(--text-strong); }
 .kpi .sub { color: var(--faint); font-size: .78rem; }

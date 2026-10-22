@@ -18,7 +18,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-PERIODS = {"Daily": "D", "Weekly": "W-MON", "Monthly": "MS", "Yearly": "YS"}
+PERIODS = {"Daily": "D", "Weekly": "W-SUN", "Monthly": "MS"}     # weeks run Monday–Sunday
 MIN_MARKET_SAMPLE = 30           # settled bets needed before a market can be "best" / "weakest"
 
 
@@ -134,15 +134,22 @@ def timeline(picks: pd.DataFrame, period: str = "Weekly") -> pd.DataFrame:
     return grouped.reset_index().rename(columns={"date": "period"})
 
 
-def cumulative_by_date(picks: pd.DataFrame, window: int = 200) -> pd.DataFrame:
-    """Bet-by-bet cumulative profit, rolling ROI and hit rate, indexed by match date."""
+def cumulative_by_date(picks: pd.DataFrame, window: int | None = 50) -> pd.DataFrame:
+    """Bet-by-bet cumulative profit plus ROI and hit rate over the last ``window`` bets — or, with
+    ``window=None``, over all bets so far (a cumulative figure, not a rolling one)."""
     bets = staked(picks).sort_values(["date", "match_id"])
     if bets.empty:
         return bets
     out = bets[["date", "profit", "status"]].copy()
     out["cumulative_profit"] = out["profit"].cumsum()
-    out["rolling_hit_rate"] = (out["status"] == "WON").rolling(window, min_periods=20).mean()
-    out["rolling_roi"] = out["profit"].rolling(window, min_periods=20).mean() * 100
+    won = (out["status"] == "WON").astype(float)
+    if window:
+        first = min(window, 10)
+        out["rolling_hit_rate"] = won.rolling(window, min_periods=first).mean()
+        out["rolling_roi"] = out["profit"].rolling(window, min_periods=first).mean() * 100
+    else:
+        out["rolling_hit_rate"] = won.expanding().mean()
+        out["rolling_roi"] = out["profit"].expanding().mean() * 100
     return out
 
 
@@ -180,7 +187,21 @@ def preset_range(preset: str, today, first_date, custom: tuple | None = None, se
 #   evaluation — after-the-fact model evaluation: the test-season backtest and the
 #                current-season backfill (features are still pre-match, but nothing
 #                was published before the match)
-DATASETS = {"recorded": ("live",), "evaluation": ("backtest", "backfill")}
+DATASETS = {"recorded": ("live",), "evaluation": ("backtest", "backfill"),
+            "season_backtest": ("backfill",)}
+# How each origin is called in the interface.
+ORIGIN_LABELS = {"live": "Recorded", "backfill": "Backtest", "backtest": "Backtest"}
+
+
+def period_label(period_end: pd.Timestamp, period: str) -> str:
+    """Readable label of a timeline row: a day, "12.10 – 18.10.2026" for a week, "October 2026"."""
+    ts = pd.Timestamp(period_end)
+    if period == "Weekly":
+        start = ts - pd.Timedelta(days=6)
+        return f"{start:%d.%m} – {ts:%d.%m.%Y}"
+    if period == "Monthly":
+        return ts.strftime("%B %Y")
+    return ts.strftime("%d.%m.%Y")
 
 
 def select_dataset(picks: pd.DataFrame, key: str) -> pd.DataFrame:

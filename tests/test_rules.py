@@ -67,5 +67,6 @@ def test_history_shows_completed_predictions_by_default():
     namespace: dict = {}
     exec(compile(ast.Module([fn], type_ignores=[]), "history", "exec"), namespace)
     assert namespace["default_statuses"]() == ["WON", "LOST", "PUSH"]
-    assert "Show upcoming" not in source and "origin" not in source.lower().split("def render")[1]
+    assert "Show upcoming" not in source and 't("Origin")' not in source       # no technical source filter
+    assert 'DATA_VIEWS = {"recorded": "Recorded", "backtest": "Backtest {season}", "both": "Both"}' in source
     assert spec is not None

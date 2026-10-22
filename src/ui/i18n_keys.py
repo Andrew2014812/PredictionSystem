@@ -39,7 +39,7 @@ def registry_keys() -> set[str]:
     from .labels import MARKET_GROUP_TITLES
     keys = set(DATE_PRESETS) | set(PERIODS) | set(WEEKDAYS) | set(MARKET_GROUP_TITLES.values())
     keys |= {lg.country for lg in LEAGUES}
-    for module, names in (("views.history", ("ROLES", "DATASET_HELP", "DATASET_LABELS")),
+    for module, names in (("views.history", ("ROLES", "DATA_VIEWS", "DATA_HELP")),
                           ("views.analytics", ("PREDICTION_SETS", "DATASET_LABELS")),
                           ("views.teams", ("PERIODS",)), ("views.model_analysis",
                                                             ("METRIC_HELP", "GROUP_NAMES", "TASK_TITLES", "SOURCES"))):
