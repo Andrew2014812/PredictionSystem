@@ -18,7 +18,8 @@ def test_daily_schedule_and_manual_modes_exist():
     data, on = _wf()
     assert {c["cron"] for c in on["schedule"]} == {"0 8 * * *", "0 9 * * *"}
     inputs = on["workflow_dispatch"]["inputs"]
-    assert inputs["mode"]["options"] == ["results", "odds", "full"]
+    assert inputs["mode"]["options"] == ["results", "odds", "full", "history"]
+    assert len(inputs) <= 10                                          # GitHub's limit for manual inputs
     assert {"league", "day", "match_id", "force", "credit_budget"} <= set(inputs)
     assert data["concurrency"]["group"] == "update-data" and data["concurrency"]["cancel-in-progress"] is False
     steps = data["jobs"]["update"]["steps"]
@@ -61,3 +62,14 @@ def test_the_chosen_schedule_is_11_00_in_kyiv_all_year():
                 chosen.append(run_at)
         assert len(chosen) == 1 and chosen[0].astimezone(kyiv).hour == 11, day   # incl. both DST switch days
         day += timedelta(days=1)
+
+
+def test_history_mode_downloads_then_fills_recorded_prices_only_by_hand():
+    data, _ = _wf()
+    steps = data["jobs"]["update"]["steps"]
+    hist = next(s for s in steps if s.get("name", "").startswith("Download the price archive"))
+    assert hist["if"] == "inputs.mode == 'history'"                     # never on the daily schedule
+    run = hist["run"]
+    assert run.index("oddspapi_history.py") < run.index("restore_recorded_odds.py --go") < run.index(
+        "regenerate_predictions.py")
+    assert next(s for s in steps if s.get("name") == "Run pipeline")["if"].endswith("inputs.mode != 'history'")
