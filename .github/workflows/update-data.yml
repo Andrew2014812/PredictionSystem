@@ -64,7 +64,7 @@ on:
       history_max:
         description: "history: at most this many matches in this run (the rest next run)"
         type: number
-        default: 1500
+        default: 1600
 
 concurrency:
   group: update-data
@@ -124,7 +124,7 @@ jobs:
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
         run: |
-          args=(--go --max-matches "${{ inputs.history_max || 1500 }}")
+          args=(--go --max-matches "${{ inputs.history_max || 1600 }}")
           [ -n "${{ inputs.history_since }}" ] && args+=(--since "${{ inputs.history_since }}")
           python scripts/oddspapi_history.py "${args[@]}" | tee history.log
           python scripts/restore_recorded_odds.py --go | tee -a history.log
