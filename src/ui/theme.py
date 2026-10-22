@@ -70,7 +70,7 @@ a { text-decoration: none; }
   font-weight: 800; font-size: 1.22rem; letter-spacing: -0.03em; color: var(--text-strong); }
 .fp-brand a { display: flex; align-items: center; gap: .45rem; color: var(--text-strong) !important;
   pointer-events: auto; text-decoration: none; }
-.fp-brand .ball { flex: none; }
+.fp-brand .mark { flex: none; display: block; }
 .fp-brand .accent { color: var(--accent); }
 .st-key-fp_prefs { position: fixed; top: .55rem; right: 1.2rem; z-index: 999992; width: auto !important; }
 .st-key-fp_prefs [data-testid="stHorizontalBlock"] { gap: .4rem; }
