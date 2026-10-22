@@ -394,4 +394,6 @@ UK: dict[str, str] = {
     'last {n} bets': 'останні {n} ставок',
     'recorded before kick-off': 'збережені до початку матчу',
     'Backtest': 'Бектест',
+    'added later from the price archive': 'додано пізніше з архіву цін',
+    '* Price added later from the OddsPapi archive: the last quote before kick-off. The prediction itself was recorded before kick-off and is unchanged.': '* Ціну додано пізніше з архіву OddsPapi: остання котировка до початку матчу. Сам прогноз збережено до початку матчу, і він не змінювався.',
 }

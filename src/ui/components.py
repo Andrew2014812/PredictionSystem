@@ -188,6 +188,8 @@ def price_origin(row) -> str:
     parts = [str(row.get("bookmaker") or "").strip(), PROVIDER_NAMES.get(row.get("provider"), row.get("provider"))]
     when = row.get("priced_at") if not missing(row.get("priced_at")) else row.get("odds_priced_at")
     parts.append(local_stamp(when) if not missing(when) else "")
+    if row.get("odds_origin") == "archive":
+        parts.append(t("added later from the price archive"))
     return " · ".join(p for p in parts if p) or t("Real bookmaker price")
 
 

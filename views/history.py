@@ -141,17 +141,23 @@ def render() -> None:
         t("Prediction"): [selection_label(m, s_, h, a) for m, s_, h, a in
                           zip(chunk["market"], chunk["selection"], chunk["home_team"], chunk["away_team"])],
         t("Probability"): chunk["probability"],
-        t("Odds"): chunk["odds"],
+        t("Odds"): [None if missing(o) else (o, g == "archive") for o, g in
+                    zip(chunk["odds"], chunk.get("odds_origin", pd.Series(None, index=chunk.index)))],
         t("Score"): [f"{int(h)}:{int(a)}" if h == h else "" for h, a in zip(chunk["home_goals"], chunk["away_goals"])],
         t("Result"): chunk["status"],
         t("Profit"): chunk["profit"],
     })
     st.html(html_table(view, formats={
-        t("Match"): lambda v: v, t("Data"): lambda v: v, t("Probability"): lambda v: pct(v, 1), t("Odds"): odds_text,
+        t("Match"): lambda v: v, t("Data"): lambda v: v, t("Probability"): lambda v: pct(v, 1),
+        t("Odds"): lambda v: "—" if v is None else (odds_text(v[0]) + ("<sup title='{}'>*</sup>".format(
+            t("added later from the price archive")) if v[1] else "")),
         t("Result"): status_badge,
         t("Profit"): lambda v: "—" if missing(v) else f"<span class='{tone(v)}'>{signed(v)}</span>"},
         align_right=(t("Probability"), t("Odds"), t("Profit"))))
     st.caption(t("Page {p} of {n} · {k} predictions", p=page, n=pages, k=f"{len(table):,}"))
+    if "odds_origin" in table and (table["odds_origin"] == "archive").any():
+        st.caption(t("* Price added later from the OddsPapi archive: the last quote before kick-off. The "
+                     "prediction itself was recorded before kick-off and is unchanged."))
 
 
 render()
