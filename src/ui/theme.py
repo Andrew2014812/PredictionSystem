@@ -119,7 +119,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .mc-block .cap { color: var(--faint); font-size: .66rem; text-transform: uppercase; letter-spacing: .06em;
   font-weight: 600; margin-bottom: 4px; }
 .mc-block .val { font-weight: 700; font-size: .95rem; color: var(--text-strong); }
-.mc-block .odd { color: var(--muted); font-size: .8rem; font-weight: 500; margin-left: .35rem; }
+.mc-block .odd { color: var(--muted); font-size: .84rem; font-weight: 600; margin-left: .35rem; }
 .hit { color: var(--pos); } .miss { color: var(--neg); }
 
 /* probability bar --------------------------------------------------------- */
@@ -130,7 +130,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .p3 div:nth-child(2) { text-align: center; } .p3 div:nth-child(3) { text-align: right; }
 .p3 b { color: var(--text-strong); font-size: .86rem; font-weight: 700; }
 .p3 .best b { color: var(--accent); }
-.p3 .o { display: block; color: var(--faint); font-size: .72rem; }
+.p3 .o { display: block; color: var(--muted); font-size: .8rem; font-weight: 600; }   /* real odds: readable, still secondary */
 
 /* chips --------------------------------------------------------------------- */
 .chip { display: inline-flex; width: 22px; height: 22px; border-radius: 6px; align-items: center; justify-content: center;

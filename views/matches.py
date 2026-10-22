@@ -120,11 +120,9 @@ def _card(r: pd.Series) -> str:
     is_over = over == over and over >= 0.5
     total_p = over if is_over else r.get("u25_p")
     total_odds = r.get("o25_odds") if is_over else r.get("u25_odds")
-    mark = ""
-    if played and over == over:
-        mark = (' <span class="hit">✔</span>' if (hg + ag > 2.5) == is_over else ' <span class="miss">✘</span>')
+    # no won / lost marks here: they read as the status of the Main prediction (shown on Match Details)
     total = (f'<div class="mc-block"><div class="cap">{t("Over 2.5") if is_over else t("Under 2.5")}</div>'
-             f'<div class="val">{pct(total_p)}{mark}'
+             f'<div class="val">{pct(total_p)}'
              + (f'<span class="odd">{odds_text(total_odds)}</span>' if total_odds == total_odds and total_odds else "")
              + "</div></div>")
     return (f'<a class="match-card" href="{match_url(r["match_id"])}" target="_self">'
