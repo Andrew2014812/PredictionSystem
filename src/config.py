@@ -221,6 +221,7 @@ MAIN_ODDS_SOFTNESS = 0.15                # width of the decay outside it (log-od
 MAIN_EV_WEIGHT = 0.5                     # bonus / penalty for EV at a real price (EV clipped to ±0.3)
 MAIN_UNPRICED_FACTOR = 0.8               # a selection without a real price must be clearly better
 MAIN_PROBABILITY_POWER = 1.0
+MAIN_VALUE_FIRST_MIN_EV = None          # e.g. 0.03: prefer real prices with EV >= 3 % when available
 RISK_MIN_PROBABILITY = 0.12              # keeps Risk a model result, not a lottery ticket
 RISK_PREFERRED_ODDS = (3.00, 6.00)       # soft; validation: average Risk odds 3.5
 RISK_ODDS_SOFTNESS = 0.20

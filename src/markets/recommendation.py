@@ -62,6 +62,7 @@ class RuleParams:
     ev_weight: float
     unpriced_factor: float
     probability_power: float = 1.0      # < 1 weakens the pull towards the most likely (lowest-odds) selection
+    value_first_min_ev: float | None = None   # Main: first look only at real prices with EV >= this
 
     def with_(self, **kw) -> "RuleParams":
         return replace(self, **kw)
@@ -70,7 +71,7 @@ class RuleParams:
 def main_params() -> RuleParams:
     return RuleParams(config.MAIN_MIN_PROBABILITY, config.MAIN_MAX_PROBABILITY, config.MAIN_PREFERRED_ODDS,
                       config.MAIN_ODDS_SOFTNESS, config.MAIN_EV_WEIGHT, config.MAIN_UNPRICED_FACTOR,
-                      config.MAIN_PROBABILITY_POWER)
+                      config.MAIN_PROBABILITY_POWER, config.MAIN_VALUE_FIRST_MIN_EV)
 
 
 def risk_params() -> RuleParams:
@@ -128,6 +129,11 @@ def main_prediction(selections: list[PricedSelection], params: RuleParams | None
     params = params or main_params()
     eligible = [s for s in selections if s.group not in EXCLUDED_GROUPS | {"EXACT_SCORE"}]
     candidates = [s for s in eligible if params.min_probability <= s.probability <= params.max_probability]
+    if params.value_first_min_ev is not None:                     # good prices first, when there are any
+        value = [s for s in candidates if s.has_odds and s.ev >= params.value_first_min_ev]
+        rec = _choose(value, params, "main")
+        if rec is not None:
+            return rec
     rec = _choose(candidates, params, "main")
     if rec is not None:
         return rec
