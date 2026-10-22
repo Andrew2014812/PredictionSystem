@@ -17,6 +17,7 @@ as market information only and never enter the feature matrix unless
 """
 from __future__ import annotations
 
+import logging
 import re
 
 import numpy as np
@@ -24,6 +25,8 @@ import pandas as pd
 
 from .. import config
 from ..leagues import get_league, league_country
+
+log = logging.getLogger(__name__)
 
 STAT_COLUMNS = {
     "FTHG": "home_goals", "FTAG": "away_goals", "FTR": "result",
@@ -166,3 +169,35 @@ def drop_stale_fixtures(df: pd.DataFrame, window_days: int = 60) -> pd.DataFrame
     close = (pairs["date_res"] - pairs["date"]).dt.days.abs() <= window_days
     stale = set(pairs.loc[close, "index"])
     return df.drop(index=list(stale)).reset_index(drop=True)
+
+
+def _double_booked(df: pd.DataFrame) -> list[set]:
+    sides = [df[["league", "date", side]].rename(columns={side: "team"}).assign(row=df.index)
+             for side in ("home_team", "away_team")]
+    long = pd.concat(sides)
+    long = long.loc[long.groupby(["league", "date", "team"])["row"].transform("nunique") > 1]
+    return list(long.groupby(["league", "date", "team"])["row"].apply(set))
+
+
+def drop_double_bookings(df: pd.DataFrame, source_col: str = "_source") -> pd.DataFrame:
+    """A team plays at most one match per league and day.
+
+    When two rows put a team into two different matches, a provider row next to a Football-Data row is
+    a mis-resolved team name and is dropped; that settles first, so a phantom does not take its
+    opponent's real match with it. Provider rows that still contradict each other are all dropped
+    (neither can be trusted). ``source_col`` is "fd" for Football-Data rows."""
+    if df.empty:
+        return df
+    drop: set = set()
+    for rows in _double_booked(df):
+        fd = {r for r in rows if df.at[r, source_col] == "fd"}
+        if fd:
+            drop |= rows - fd
+    rest = df.drop(index=list(drop))
+    for rows in _double_booked(rest):
+        if all(rest.at[r, source_col] != "fd" for r in rows):
+            drop |= rows
+    if drop:
+        log.warning("dropped %d provider rows that book a team twice on one day: %s", len(drop),
+                    sorted(df.loc[list(drop), "match_id"]))
+    return df.drop(index=list(drop)).reset_index(drop=True)

@@ -15,7 +15,7 @@ import pandas as pd
 from .. import config
 from ..leagues import league_codes
 from ..storage import fixtures_storage, results_storage
-from .cleaning import CANONICAL_COLUMNS, deduplicate, drop_stale_fixtures, normalise
+from .cleaning import CANONICAL_COLUMNS, deduplicate, drop_double_bookings, drop_stale_fixtures, normalise
 
 log = logging.getLogger(__name__)
 
@@ -74,10 +74,12 @@ def build_matches(leagues: list[str] | None = None) -> pd.DataFrame:
     results = load_results(leagues=leagues)
     fixtures = load_fixtures(leagues)
     live = load_live(leagues)
-    matches = pd.concat([f for f in (results, fixtures, live) if not f.empty], ignore_index=True)
+    frames = [f.assign(_source=src) for f, src in ((results, "fd"), (fixtures, "fd"), (live, "api")) if not f.empty]
+    matches = pd.concat(frames, ignore_index=True)
     before = len(matches)
     matches = deduplicate(matches)
     matches = drop_stale_fixtures(matches)
+    matches = drop_double_bookings(matches).drop(columns="_source")
     log.info("matches: %d rows (%d duplicates/stale removed), %d upcoming",
              len(matches), before - len(matches), int((~matches["played"]).sum()))
     return matches.sort_values(["date", "kickoff", "league", "home_team"]).reset_index(drop=True)

@@ -102,6 +102,15 @@ def test_team_registry_never_merges_two_clubs(tmp_path):
     assert TeamRegistry(tmp_path / "ids.json").data["oddspapi"]["35"] == "England|Man United"
 
 
+def test_team_registry_gives_one_club_one_id(tmp_path):
+    reg = TeamRegistry(tmp_path / "ids.json")
+    known = {"Barcelona", "Santander"}                     # the league's Espanol is spelt differently
+    assert reg.resolve("oddspapi", "SP1", "Spain", "FC Barcelona", 2814, known) == "Barcelona"
+    # a second id for the same club is a mis-read name of another club: refused, not learned
+    assert reg.resolve("oddspapi", "SP1", "Spain", "Barcelona", 2817, known) is None
+    assert "2817" not in reg.data["oddspapi"] and reg.conflicts
+
+
 def test_quota_ledger_retries_errors_but_not_empty_answers(tmp_path):
     ledger = CreditLedger(tmp_path / "l.json", monthly_reserve=20)
     now = datetime(2026, 10, 17, 12, 0)

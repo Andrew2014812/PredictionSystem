@@ -120,6 +120,10 @@ def test_the_odds_api_event_and_score():
     ("Stade Brestois 29", {"Brest", "Lens"}, "Brest"),
     ("Gençlerbirliği S.K.", {"Genclerbirligi", "Konyaspor"}, "Genclerbirligi"),
     ("Real", {"Real Madrid", "Real Sociedad"}, None),                 # ambiguous -> no match
+    ("Dundee Utd", {"Dundee", "Dundee United", "St Johnstone"}, "Dundee United"),
+    ("Dundee Rovers", {"Dundee", "Dundee United"}, None),             # "Dundee" sits inside another club
+    ("Espanyol Barcelona", {"Barcelona", "Espanol", "Santander"}, "Espanol"),
+    ("Espanyola Barcelona", {"Barcelona", "Espanol"}, None),          # extra word looks like another club
     ("Some Unknown Club", {"Arsenal"}, None),                        # never guessed
     ("Manchester United", {"Arsenal"}, None),                        # alias outside the league is rejected
 ])
