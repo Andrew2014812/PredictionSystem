@@ -1,7 +1,6 @@
 provider,league,name
-api_football,B1,KVC Westerlo
-api_football,D2,SpVgg Greuther Fürth
-api_football,F1,Estac Troyes
-api_football,G1,Aris Thessalonikis
-api_football,G1,Iraklis 1908
-api_football,SC1,Queen's Park
+api_football,G1,OFI
+api_football,SC1,Ayr Utd
+api_football,SC2,Airdrie United
+api_football,SC2,Queen of the South
+api_football,SP2,Real Sociedad II
