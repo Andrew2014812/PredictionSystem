@@ -73,7 +73,7 @@ TEAM_ALIASES: dict[str, str] = {
     # Scotland
     "glasgow rangers": "Rangers", "heart of midlothian": "Hearts", "hearts": "Hearts",
     "hibernian": "Hibernian", "st mirren": "St Mirren", "st johnstone": "St Johnstone",
-    "dundee united": "Dundee United", "inverness ct": "Inverness C", "inverness caledonian thistle": "Inverness C",
+    "dundee united": "Dundee United", "dundee utd": "Dundee United", "inverness ct": "Inverness C", "inverness caledonian thistle": "Inverness C",
     "queen of the south": "Queen of Sth", "airdrieonians": "Airdrie Utd", "raith rovers": "Raith Rvs",
     "greenock morton": "Morton", "partick thistle": "Partick", "dunfermline athletic": "Dunfermline",
     "ayr united": "Ayr", "hamilton academical": "Hamilton", "queens park": "Queens Park",
@@ -81,7 +81,8 @@ TEAM_ALIASES: dict[str, str] = {
     "atletico madrid": "Ath Madrid", "atletico de madrid": "Ath Madrid",
     "athletic bilbao": "Ath Bilbao", "athletic": "Ath Bilbao",
     "real betis": "Betis", "betis": "Betis", "celta vigo": "Celta", "celta": "Celta",
-    "espanyol": "Espanol", "rayo vallecano": "Vallecano", "real sociedad": "Sociedad",
+    "espanyol": "Espanol", "espanyol barcelona": "Espanol", "rcd espanyol": "Espanol",
+    "rcd espanyol barcelona": "Espanol", "rayo vallecano": "Vallecano", "real sociedad": "Sociedad",
     "deportivo alaves": "Alaves", "alaves": "Alaves", "real valladolid": "Valladolid",
     "real oviedo": "Oviedo", "sporting gijon": "Sp Gijon", "racing santander": "Santander",
     "deportivo la coruna": "La Coruna", "deportivo": "La Coruna", "real zaragoza": "Zaragoza",
@@ -174,5 +175,21 @@ def resolve(name: str, known: set[str] | None = None) -> str | None:
             candidates = {k for norm, k in by_norm.items() if norm and
                           (set(norm.split()) <= words or words <= set(norm.split()))}
             if len(candidates) == 1:
-                return candidates.pop()
+                team = candidates.pop()
+                return None if _ambiguous(words, normalise(team), by_norm) else team
     return None
+
+
+def _ambiguous(words: set[str], team: str, by_norm: dict[str, str]) -> bool:
+    """A word-subset match that may be another club: "Dundee Utd" is not "Dundee" when "Dundee United"
+    is in the league, and "Espanyol Barcelona" is not "Barcelona" when an extra word looks like another
+    club's name (espanyol ~ Espanol)."""
+    own = set(team.split())
+    extra = words - own
+    if not extra:
+        return False
+    others = [n for n in by_norm if n and n != team]
+    if any(own < set(n.split()) for n in others):
+        return True
+    stems = {w[:5] for n in others for w in n.split() if len(w) >= 5}
+    return any(len(w) >= 5 and w[:5] in stems for w in extra)
