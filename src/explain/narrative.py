@@ -37,8 +37,9 @@ TEXT = {
 TARGETS = {
     "en": {"result": "the probability of this result", "goals": "the expected number of goals",
            "corners": "the expected number of corners",
-           "note": "The percentage is the factor's share of the model's reasoning about {target}, compared "
-                   "with all other factors (together 100%). It is not a change of the probability."},
+           "note": "Green helps this prediction, red works against it. The bar shows how strongly a factor "
+                   "moved the model's estimate of {target} compared with the strongest factor shown — not a "
+                   "change in percentage points."},
     "uk": {"result": "ймовірність цього результату", "goals": "очікувану кількість голів",
            "corners": "очікувану кількість кутових",
            "note": "Відсоток — частка фактора в міркуваннях моделі щодо показника «{target}» порівняно з "
