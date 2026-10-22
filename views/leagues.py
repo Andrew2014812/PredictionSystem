@@ -90,36 +90,40 @@ def render() -> None:
         else:
             st.html(_match_rows(recent, True))
 
-    head = st.columns([3, 2])
-    with head[0]:
-        section(t("FootPredict in this league"))
-    scope = head[1].segmented_control(t("Predictions of"), ["season", "all"], default="season",
-                                      format_func=lambda k: config.season_label(season) if k == "season"
-                                      else t("All time"), key="lg_scope", label_visibility="collapsed") or "season"
-    picks = select_dataset(data.picks(), "recorded")          # predictions recorded before kick-off only
-    lp = picks.loc[picks["league"] == league] if not picks.empty else picks
-    if scope == "season" and not lp.empty:
-        lp = lp.loc[lp["season"] == season]
-    main = summarize(lp.loc[lp["role"] == "main"]) if not lp.empty else None
-    if not main or not main["settled"]:
-        st.caption(t("No predictions recorded before kick-off have been settled for this league in this period."))
+    section(t("FootPredict in this league"), config.season_label(season))
+    all_picks = data.picks()
+    lp_all = all_picks.loc[(all_picks["league"] == league) & (all_picks["season"] == season)] \
+        if not all_picks.empty else all_picks
+    shown = False
+    # Recorded pre-match predictions and the season backtest are shown apart, never added up.
+    for key, title in (("recorded", "Recorded before kick-off"), ("season_backtest", "Backtest")):
+        lp = select_dataset(lp_all, key)
+        main = summarize(lp.loc[lp["role"] == "main"]) if not lp.empty else None
+        if not main or not main["settled"]:
+            continue
+        shown = True
+        st.html(f"<div class='why-h'>{t(title)}</div>")
+        kpi_row([
+            (t("Main predictions"), f"{main['settled']:,}", t("{n} predictions with odds", n=main["bets"])),
+            (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
+            (t("Main profit"), f"{signed(main['profit'])} {t('u')}" if main["bets"] else "—", "", tone(main["profit"])),
+            (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
+        ])
+    if not shown:
+        st.caption(t("No settled FootPredict predictions for this league in this season yet."))
         return
-    kpi_row([
-        (t("Matches predicted"), f"{main['settled']:,}", ""),
-        (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
-        (t("Main profit"), f"{signed(main['profit'])} {t('u')}" if main["bets"] else "—",
-         t("{n} predictions with odds", n=main["bets"]), tone(main["profit"])),
-        (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
-    ])
-    section(t("Market performance"))
-    g = group_summary(lp.loc[lp["role"] == "market"], "group")
-    if not g.empty:
-        view = pd.DataFrame({t("Market"): g["group"].map(group_title), t("Predictions"): g["predictions"],
-                             t("Hit rate"): g["hit_rate"], t("Profit"): g["profit"], t("ROI"): g["roi"]})
-        st.html(html_table(view, formats={
-            t("Hit rate"): lambda v: pct(v, 1), t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>",
-            t("ROI"): lambda v: f"<span class='{tone(v)}'>{signed(v, 1, '%')}</span>"},
-            align_right=(t("Predictions"), t("Hit rate"), t("Profit"), t("ROI"))))
-
+    section(t("Market performance"), t("recorded before kick-off"))
+    lp = select_dataset(lp_all, "recorded")
+    g = group_summary(lp.loc[lp["role"] == "market"], "group") if not lp.empty else pd.DataFrame()
+    if g.empty:
+        st.caption(t("No recorded market forecasts settled yet."))
+        return
+    view = pd.DataFrame({t("Market"): g["group"].map(group_title), t("Predictions"): g["predictions"],
+                         t("Hit rate"): g["hit_rate"], t("Bets with odds"): g["bets"], t("Profit"): g["profit"],
+                         t("ROI"): g["roi"]})
+    st.html(html_table(view, formats={
+        t("Hit rate"): lambda v: pct(v, 1), t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>",
+        t("ROI"): lambda v: f"<span class='{tone(v)}'>{signed(v, 1, '%')}</span>"},
+        align_right=(t("Predictions"), t("Hit rate"), t("Bets with odds"), t("Profit"), t("ROI"))))
 
 render()
