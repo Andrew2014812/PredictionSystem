@@ -56,6 +56,12 @@ class TeamRegistry:
                 self.conflicts.append((provider, pid, ids[pid], iid))
                 log.warning("team id conflict %s %s: %s vs %s", provider, pid, ids[pid], iid)
                 return None
+            if pid not in ids and iid in ids.values():
+                # one club, one id per provider: a second id for the same club is a mis-read name
+                other = next(k for k, v in ids.items() if v == iid)
+                self.conflicts.append((provider, pid, iid, f"already id {other}"))
+                log.warning("team id conflict %s %s: %s already has id %s", provider, pid, iid, other)
+                return None
             ids[pid] = iid
         return team
 
