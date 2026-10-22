@@ -38,7 +38,7 @@ GROUP_NAMES = {
     "diff_corners": "Corner statistics", "league_result": "League context", "league_goals": "League context",
     "league_corners": "League context", "venue_form_goals": "Home / away", "venue_form_corners": "Corner statistics",
     "corner_pressure": "Attacking pressure", "market": "Bookmaker probabilities",
-    "elo": "Elo strength rating", "opp_adjusted": "Opponent-adjusted form",
+    "elo": "Relative team strength", "opp_adjusted": "Opponent-adjusted form",
     "opp_adjusted_corners": "Opponent-adjusted corners",
 }
 EVALUATION_SOURCES = {"backtest": "Test season (evaluation model)", "backfill": "Current season, predicted afterwards"}
@@ -225,8 +225,11 @@ def _features(name: str, task: dict) -> None:
 
 
 def _dictionary(name: str, task: dict, lang: str) -> None:
-    query = st.text_input(t("Search features"), key=f"dict_{name}", placeholder=t("e.g. corners, Elo, form"))
+    """Feature groups in plain words, most influential first: five by default, all on request."""
+    query = st.text_input(t("Search features"), key=f"dict_{name}", placeholder=t("e.g. corners, form, rest"))
     entries = catalogue({name: task["features"]}, lang)
+    shap = {r["feature"]: r["mean_abs_shap"] for r in task.get("shap_global", [])}
+    entries.sort(key=lambda e: -sum(shap.get(c, 0.0) for c in e["columns"]))
     q = (query or "").strip().lower()
     if q:
         entries = [e for e in entries if q in e["name"].lower() or q in e["description"].lower()
@@ -234,13 +237,13 @@ def _dictionary(name: str, task: dict, lang: str) -> None:
     if not entries:
         st.caption(t("No features match the search."))
         return
+    show_all = bool(q) or st.session_state.get(f"dict_all_{name}", False)
+    shown = entries if show_all else entries[:5]
     st.html("<div class='card'>" + "".join(
-        f"<div class='mx'><div class='ic'>•</div><div><b>{esc(e['name'])}</b> "
-        f"<span class='muted small'>({t('{n} features', n=len(e['columns']))})</span>"
-        f"<span>{esc(e['description'])}</span></div></div>" for e in entries) + "</div>")
-    with st.popover(t("Technical column names")):
-        for e in entries:
-            st.caption(f"{e['name']}: " + ", ".join(e["columns"]))
+        f"<div class='mx'><div class='ic'>•</div><div><b>{esc(e['name'])}</b>"
+        f"<span>{esc(e['description'])}</span></div></div>" for e in shown) + "</div>")
+    if not q and len(entries) > 5:
+        st.toggle(t("Show all features ({n} groups)", n=len(entries)), key=f"dict_all_{name}")
 
 
 def _advanced(name: str, task: dict, version: str) -> None:
@@ -327,7 +330,7 @@ def render() -> None:
             f"<div class='mx'><div class='ic'>•</div><div><b>{esc(t(k))}</b>"
             f"<span>{esc(t(v))}</span></div></div>" for k, v in METRIC_HELP.items()) + "</div>")
     tasks = meta["tasks"]
-    tabs = st.tabs([t(TASK_TITLES.get(k, k)) for k in tasks] + [t("Derived markets"), t("Historical evaluation")])
+    tabs = st.tabs([t(TASK_TITLES.get(k, k)) for k in tasks] + [t("Derived markets"), t("Historical Model Testing")])
     for tab, (name, task) in zip(tabs, tasks.items()):
         with tab:
             section(t("Test-season metrics"))
