@@ -11,3 +11,6 @@ local_data/api/*/*.json
 !local_data/api/oddspapi/tournaments.json
 experiments/model_comparison/results/*_quick*
 experiments/model_comparison/report/*_quick*
+!local_data/api/oddspapi/history_progress.json
+!local_data/api/oddspapi/history_coverage.json
+!local_data/api/oddspapi/outcome_map.json
