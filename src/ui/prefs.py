@@ -104,9 +104,15 @@ def _team_options(_key: int) -> dict[str, str]:
     from ..analytics.teams import all_teams
     from . import data
     from .labels import league_name
+    from ..providers.aliases import TEAM_ALIASES
+    full: dict[str, str] = {}
+    for alias, team in TEAM_ALIASES.items():          # "Man City" is also found as "Manchester City"
+        if len(alias) > len(full.get(team, "")) and alias.replace(" ", "") != team.lower().replace(" ", ""):
+            full[team] = alias.title()
     teams = all_teams(data.features())
     recent = teams.loc[teams["date"] >= teams["date"].max() - pd.Timedelta(days=550)]
-    return {f"{r.team}|{r.country}": f"{r.team} · {league_name(r.league)}" for r in recent.itertuples()}
+    return {f"{r.team}|{r.country}": f"{r.team}{f' ({full[r.team]})' if r.team in full else ''} · "
+                                     f"{league_name(r.league)}" for r in recent.itertuples()}
 
 
 def _remember_team() -> None:

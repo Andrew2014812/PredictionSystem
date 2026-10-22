@@ -64,7 +64,7 @@ a { text-decoration: none; }
 
 /* brand + top navigation ------------------------------------------------------ */
 [data-testid="stHeader"] { border-bottom: 1px solid var(--border); }
-[data-testid="stToolbar"] .rc-overflow { padding-left: 190px; padding-right: 190px; box-sizing: border-box; }
+[data-testid="stToolbar"] .rc-overflow { padding-left: 222px; padding-right: 190px; box-sizing: border-box; }
 .fp-brand { position: fixed; top: 0; left: 0; height: 3.75rem; z-index: 999991; display: flex;
   align-items: center; padding-left: 1.4rem; pointer-events: none;
   font-weight: 800; font-size: 1.22rem; letter-spacing: -0.03em; color: var(--text-strong); }
@@ -74,6 +74,8 @@ a { text-decoration: none; }
 .fp-brand .accent { color: var(--accent); }
 .st-key-fp_prefs { position: fixed; top: .55rem; right: 1.2rem; z-index: 999992; width: auto !important; }
 .st-key-fp_prefs [data-testid="stHorizontalBlock"] { gap: .4rem; }
+.st-key-fp_prefs [data-testid="stElementContainer"]:has(iframe), .st-key-fp_prefs .stIFrame { display: none !important; }
+.st-key-fp_prefs, .st-key-fp_prefs [data-testid="stHorizontalBlock"] { flex-wrap: nowrap !important; align-items: center; }
 .st-key-fp_prefs button { min-height: 2rem !important; padding: .1rem .6rem !important; }
 
 /* headings ------------------------------------------------------------------- */
@@ -296,6 +298,12 @@ input, textarea { background: var(--input) !important; color: var(--text) !impor
 [data-baseweb="select"] svg, [data-baseweb="input"] svg { fill: var(--muted) !important; color: var(--muted) !important; }
 [data-testid="stSelectbox"] [role="group"], [data-testid="stMultiSelect"] [role="group"],
 [data-testid="stDateInput"] [role="group"] { background-color: var(--input) !important; border-color: var(--border) !important; }
+[data-testid="stDateInput"] [role="spinbutton"], [data-testid="stDateInput"] [role="group"] span { color: var(--text) !important; }
+[data-testid="stDateInput"] [role="group"] span:not([role]) { color: var(--muted) !important; }
+[data-testid="stDateInput"] [role="spinbutton"][aria-valuetext="Empty"] { color: var(--faint) !important; }
+[data-testid="stDateInput"] [role="spinbutton"]:focus { background: var(--accent-soft) !important; color: var(--text-strong) !important; }
+[data-testid="stDateInput"] button svg { fill: var(--muted) !important; color: var(--muted) !important; }
+[aria-disabled="true"], [disabled] { color: var(--faint) !important; }
 [data-testid="stSelectbox"] [role="group"]:focus-within,
 [data-testid="stMultiSelect"] [role="group"]:focus-within { border-color: var(--accent) !important; }
 [data-testid="stSelectbox"] [role="group"] svg, [data-testid="stMultiSelect"] [role="group"] svg {
