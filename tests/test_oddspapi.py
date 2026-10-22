@@ -171,7 +171,7 @@ def test_retry_after_header_is_respected(tmp_path, monkeypatch):
 
 def test_rate_limit_never_loops_forever(tmp_path, monkeypatch):
     client, calls, _, _ = _client(tmp_path, monkeypatch, [_Resp(429, text="RATE_LIMITED wait 0.1 s")] * 10)
-    body, status = client.historical_odds("f1", NOW) , None
+    body = client.historical_odds("f1", NOW)
     assert body is None and len(calls) == 4                       # bounded attempts
     assert "historical|f1" not in client.ledger.data["requests"]   # not remembered: retried next run
 
