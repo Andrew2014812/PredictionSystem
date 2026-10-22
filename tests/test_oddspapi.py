@@ -198,3 +198,17 @@ def test_empty_answer_is_remembered_for_the_refresh_window(tmp_path, monkeypatch
     client, _, _, _ = _client(tmp_path, monkeypatch, [_Resp(200, {"bookmakers": {}})])
     client.historical_odds("f9", NOW)
     assert client.ledger.requested_within("historical|f9", 12, NOW)          # "no odds" is an answer
+
+
+def test_quotes_that_contradict_other_lines_are_dropped():
+    from src.providers.oddspapi import inconsistent_quotes
+    ok = {("TOTAL_2.5", "OVER"): (2.5, 1.85, None), ("TOTAL_2.5", "UNDER"): (2.5, 1.95, None),
+          ("TOTAL_3.5", "OVER"): (3.5, 3.40, None), ("TOTAL_3.5", "UNDER"): (3.5, 1.30, None)}
+    assert inconsistent_quotes(ok) == set()
+    swapped = {**ok, ("TOTAL_3.5", "OVER"): (3.5, 1.30, None), ("TOTAL_3.5", "UNDER"): (3.5, 3.40, None)}
+    assert ("TOTAL_3.5", "UNDER") in inconsistent_quotes(swapped)          # "under 3.5 at 3.40" is not used
+    hcp = {("HANDICAP_-1.5", "H"): (-1.5, 3.2, None), ("HANDICAP_-1.5", "A"): (-1.5, 1.35, None),
+           ("HANDICAP_-0.5", "H"): (-0.5, 1.6, None), ("HANDICAP_-0.5", "A"): (-0.5, 2.4, None)}
+    assert inconsistent_quotes(hcp) == set()
+    flipped = {**hcp, ("HANDICAP_-1.5", "H"): (-1.5, 1.35, None), ("HANDICAP_-1.5", "A"): (-1.5, 3.2, None)}
+    assert inconsistent_quotes(flipped)

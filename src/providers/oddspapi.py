@@ -308,7 +308,8 @@ def _parse_time(value) -> datetime | None:
         return None
 
 
-def parse_odds(body: dict, outcomes: dict, kickoff_utc: datetime | None = None) -> list[tuple]:
+def parse_odds(body: dict, outcomes: dict, kickoff_utc: datetime | None = None,
+               stats: dict | None = None) -> list[tuple]:
     """[(market, line, selection, price, bookmaker, priced_at)] — one price per selection, from the first
     bookmaker in priority order that quotes it. Works for both payloads:
 
@@ -316,6 +317,10 @@ def parse_odds(body: dict, outcomes: dict, kickoff_utc: datetime | None = None) 
     * ``/historical-odds``: ``bookmakers.{slug}.markets.{id}.outcomes.{id}.players."0": [{createdAt, price,
       active}, ...]`` — the last active snapshot BEFORE kick-off is used (the pre-match closing price);
       a snapshot at or after kick-off is never used.
+
+    Quotes of one bookmaker that contradict each other across lines (e.g. "over 3.5" priced as more likely
+    than "over 2.5" — the sign of swapped outcomes or a wrong line) are dropped, not repaired; their count
+    is added to ``stats["inconsistent"]``.
     """
     books = body.get("bookmakerOdds") or body.get("bookmakers") or {}
     seen, rows = set(), []
@@ -323,21 +328,52 @@ def parse_odds(body: dict, outcomes: dict, kickoff_utc: datetime | None = None) 
         book = books[slug] or {}
         if book.get("bookmakerIsActive") is False or book.get("suspended"):
             continue
+        quotes = {}
         for market in (book.get("markets") or {}).values():
             if market.get("marketActive") is False:
                 continue
             for outcome_id, outcome in (market.get("outcomes") or {}).items():
                 key = outcomes.get(str(outcome_id))
-                if key is None or (key[0], key[2]) in seen:
+                if key is None:
                     continue
-                player = (outcome.get("players") or {}).get("0")
-                quote = _pick_quote(player, kickoff_utc)
-                if quote is None:
-                    continue
-                price, priced_at = quote
-                seen.add((key[0], key[2]))
-                rows.append((key[0], key[1], key[2], price, slug, priced_at))
+                quote = _pick_quote((outcome.get("players") or {}).get("0"), kickoff_utc)
+                if quote is not None:
+                    quotes[(key[0], key[2])] = (key[1], quote[0], quote[1])
+        bad = inconsistent_quotes(quotes)
+        if stats is not None and bad:
+            stats["inconsistent"] = stats.get("inconsistent", 0) + len(bad)
+        for (market, sel), (line, price, priced_at) in quotes.items():
+            if (market, sel) in seen or (market, sel) in bad:
+                continue
+            seen.add((market, sel))
+            rows.append((market, line, sel, price, slug, priced_at))
     return rows
+
+
+def _fair_over(quotes: dict, market: str, yes: str, no: str) -> float | None:
+    a, b = quotes.get((market, yes)), quotes.get((market, no))
+    if a is None:
+        return None
+    pa = 1 / a[1]
+    return pa / (pa + 1 / b[1]) if b is not None else pa
+
+
+def inconsistent_quotes(quotes: dict, tolerance: float = 0.03) -> set:
+    """Selections of ONE bookmaker whose implied probabilities break the order between lines:
+    P(over L) must not grow with L (goals, corners) and P(home covers L) must not fall as L grows."""
+    bad: set = set()
+    families = [("TOTAL_", "OVER", "UNDER", -1), ("CORNERS_", "OVER", "UNDER", -1), ("HANDICAP_", "H", "A", +1)]
+    for prefix, yes, no, direction in families:
+        lines = sorted({float(m.split("_")[1]) for m, _ in quotes if m.startswith(prefix)})
+        probs = [(ln, _fair_over(quotes, f"{prefix}{ln:+g}" if prefix == "HANDICAP_" else f"{prefix}{ln}", yes, no))
+                 for ln in lines]
+        probs = [(ln, p) for ln, p in probs if p is not None]
+        for (l1, p1), (l2, p2) in zip(probs, probs[1:]):
+            if direction * (p2 - p1) < -tolerance:                     # order broken between l1 and l2
+                for ln in (l1, l2):
+                    m = f"{prefix}{ln:+g}" if prefix == "HANDICAP_" else f"{prefix}{ln}"
+                    bad |= {(m, yes), (m, no)}
+    return bad
 
 
 def _pick_quote(player, kickoff_utc):

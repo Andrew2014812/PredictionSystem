@@ -233,6 +233,7 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
         if not targets or _targeted(canonical, targets):
             todo.append((row, canonical))
     priced = asked = 0
+    quality: dict = {}
     for row, canonical in sorted(todo, key=lambda rc: rc[0]["kickoff_utc"]):
         if odp.quota_exhausted:
             break
@@ -243,7 +244,7 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
         asked += 1
         body = (odp.historical_odds(fid, now) if config.ODDSPAPI_ODDS_SOURCE == "historical"
                 else odp.odds(fid, now, run_budget))
-        rows = parse_oddspapi(body or {}, omap, row["kickoff_utc"])
+        rows = parse_oddspapi(body or {}, omap, row["kickoff_utc"], quality)
         if rows:
             priced += 1
             records += _oddspapi_records(canonical["match_id"], fid, rows, now, row["kickoff_utc"])
@@ -257,6 +258,7 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
     summary["oddspapi"] = (f"{odp.ledger.spent_this_run} billable requests this run, "
                            f"{odp.ledger.remaining if odp.ledger.remaining is not None else '?'} left; "
                            f"{asked} matches asked, {priced} priced, {odp.rate_limited} rate-limit waits, "
+                           f"{quality.get('inconsistent', 0)} contradictory quotes dropped, "
                            f"{(time.time() - started) / 60:.1f} min"
                            + ("; MONTHLY LIMIT REACHED" if odp.quota_exhausted else ""))
     return live_rows, records, summary, covered

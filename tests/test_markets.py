@@ -205,3 +205,13 @@ def test_risk_never_bets_against_main():
     main = _ps("1X2", "H", 0.50, 2.0)
     sels = [main, _ps("DOUBLE_CHANCE", "X2", 0.50, 2.0), _ps("1X2", "D", 0.26, 3.5)]
     assert risk_prediction(sels, main).pick.selection == "D"           # draw: an alternative, not the opposite
+
+
+@pytest.mark.parametrize("market,sel,label", [
+    ("HANDICAP_-0.5", "A", "Köln (+0.5)"), ("HANDICAP_-0.5", "H", "Bayern (-0.5)"),
+    ("HANDICAP_+1.5", "A", "Köln (-1.5)"), ("HANDICAP_+1.5", "H", "Bayern (+1.5)"),
+])
+def test_handicap_labels_show_the_line_of_the_chosen_side(market, sel, label):
+    from src.markets.markets import market_title, selection_label
+    assert selection_label(market, sel, "Bayern", "Köln") == label
+    assert market_title(market) == "Asian handicap"                   # no contradicting home line

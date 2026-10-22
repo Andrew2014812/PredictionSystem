@@ -21,8 +21,9 @@ def market_title(market: str) -> str:
     title = group_title(group)
     if group in ("TOTAL", "CORNERS") and line is not None:
         return f"{title} {line:g}"
-    if group in ("HANDICAP", "EHANDICAP") and line is not None:
-        return f"{title} {line:+g}"
+    # no line here: the line belongs to the side that is chosen (shown by the selection label,
+    # e.g. "Köln (+0.5)"); printing the home line next to an away pick read as a contradiction
+
     return title
 
 
