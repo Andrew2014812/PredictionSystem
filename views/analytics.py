@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from src import config
 from src.analytics.performance import (MIN_MARKET_SAMPLE, PERIODS, best_and_worst, cumulative_by_date,
                                        group_summary, select_dataset, summarize, timeline)
 from src.leagues import league_codes
@@ -78,66 +79,98 @@ def _market_highlight(df: pd.DataFrame, set_key: str) -> None:
                  f'</div></div>')
 
 
-def _bar(fig_x, fig_y, colors_, title, horizontal=False, text=None, height=None, pct_axis=False) -> None:
-    fig = go.Figure(go.Bar(x=fig_x, y=fig_y, orientation="h" if horizontal else "v", marker_color=colors_,
-                           text=text, textposition="outside" if text is not None else None, cliponaxis=False))
-    fig.update_layout(title=title)
-    if pct_axis:
-        fig.update_layout(**({"xaxis_tickformat": ".0%"} if horizontal else {"yaxis_tickformat": ".0%"}))
-    plotly(fig, height=height)
+WINDOWS = {"20": 20, "50": 50, "100": 100, "All": None}
+
+
+def _hbar(df: pd.DataFrame, label_fn, value: str, count: str, title: str, pct_axis: bool,
+          colorize: bool) -> None:
+    """Horizontal bars sorted best on top, the sample size next to each bar; small samples muted."""
+    c = colors()
+    d = df.dropna(subset=[value]).sort_values(value)
+    if d.empty:
+        st.caption(t("No data for this chart yet."))
+        return
+    small = d[count] < MIN_MARKET_SAMPLE
+    base = [c["pos"] if v > 0 else c["neg"] for v in d[value]] if colorize else [c["home"]] * len(d)
+    fig = go.Figure(go.Bar(
+        x=d[value], y=[label_fn(v) for v in d.iloc[:, 0]], orientation="h", marker_color=base,
+        marker_opacity=[0.35 if s_ else 1.0 for s_ in small],
+        text=[f"{(v * 100 if pct_axis else v):.0f}{'%' if pct_axis else '%'} · n={int(n)}"
+              for v, n in zip(d[value], d[count])],
+        textposition="outside", cliponaxis=False))
+    fig.update_layout(title=title, xaxis_tickformat=".0%" if pct_axis else None, yaxis=dict(automargin=True),
+                      margin=dict(r=90))
+    plotly(fig, height=max(300, 34 * len(d) + 90))
 
 
 def _charts(df: pd.DataFrame) -> None:
-    """The six charts: cumulative profit, rolling ROI, rolling hit rate, ROI by league,
-    ROI by market and hit rate by market (with sample sizes)."""
-    section(t("Charts"))
+    """The six charts, two per row: cumulative profit, ROI and hit rate over the last N bets, ROI by
+    league, ROI by market and hit rate by market (sample sizes shown, small samples muted)."""
+    head = st.columns([3, 2])
+    with head[0]:
+        section(t("Charts"))
+    choice = head[1].segmented_control(t("Window"), list(WINDOWS), default="50", key="a_window",
+                                       format_func=lambda k: t("All") if k == "All" else t("Last {n}", n=k),
+                                       help=t("ROI and hit rate over the last N bets; All = cumulative since "
+                                              "the first bet.")) or "50"
+    window = WINDOWS[choice]
+    over = t("cumulative") if window is None else t("last {n} bets", n=window)
     c = colors()
-    bets = cumulative_by_date(df)
-    c1, c2, c3 = st.columns(3, gap="medium")
+    bets = cumulative_by_date(df, window)
+    row1 = st.columns(2, gap="medium")
+    row2 = st.columns(2, gap="medium")
+    row3 = st.columns(2, gap="medium")
     if bets.empty:
-        st.caption(t("No predictions with odds in this selection."))
+        row1[0].caption(t("No predictions with odds in this selection."))
     else:
-        with c1:
+        with row1[0]:
             fig = go.Figure(go.Scatter(x=bets["date"], y=bets["cumulative_profit"], mode="lines",
-                                       line=dict(color=c["accent"])))
-            fig.update_layout(title=t("Cumulative profit (units)"))
-            plotly(fig)
-        with c2:
-            fig = go.Figure(go.Scatter(x=bets["date"], y=bets["rolling_roi"], mode="lines", line=dict(color=c["home"])))
+                                       line=dict(color=c["accent"], width=2.5)))
             fig.add_hline(y=0, line_dash="dot", line_color=c["faint"])
-            fig.update_layout(title=t("Rolling ROI, last 200 predictions (%)"))
-            plotly(fig)
-        with c3:
+            fig.update_layout(title=t("Cumulative profit (units)"))
+            plotly(fig, height=330)
+        with row1[1]:
+            fig = go.Figure(go.Scatter(x=bets["date"], y=bets["rolling_roi"], mode="lines",
+                                       line=dict(color=c["home"], width=2.5)))
+            fig.add_hline(y=0, line_dash="dot", line_color=c["faint"])
+            fig.update_layout(title=t("ROI (%), {over}", over=over))
+            plotly(fig, height=330)
+        with row2[0]:
             fig = go.Figure(go.Scatter(x=bets["date"], y=bets["rolling_hit_rate"], mode="lines",
-                                       line=dict(color=c["away"])))
-            fig.update_layout(title=t("Rolling hit rate, last 200 predictions"), yaxis_tickformat=".0%")
-            plotly(fig)
-    c4, c5, c6 = st.columns(3, gap="medium")
-    with c4:
-        lg = group_summary(df, "league").dropna(subset=["roi"]).sort_values("roi")
+                                       line=dict(color=c["away"], width=2.5)))
+            fig.update_layout(title=t("Hit rate, {over}", over=over), yaxis_tickformat=".0%")
+            plotly(fig, height=330)
+    with row2[1]:
+        lg = group_summary(df, "league")
         if not lg.empty:
-            _bar(lg["roi"], [league_label(x) for x in lg["league"]],
-                 [c["pos"] if v > 0 else c["neg"] for v in lg["roi"]], t("ROI by league (%)"), horizontal=True,
-                 height=max(320, 22 * len(lg)))
-    with c5:
-        mk = group_summary(df, "group").dropna(subset=["roi"])
+            _hbar(lg[["league", "roi", "bets"]].assign(roi=lg["roi"] / 100), lambda x: league_label(x),
+                  "roi", "bets", t("ROI by league (n = bets with real odds)"), True, True)
+    mk = group_summary(df, "group")
+    with row3[0]:
         if not mk.empty:
-            _bar([group_title(g) for g in mk["group"]], mk["roi"],
-                 [c["pos"] if v > 0 else c["neg"] for v in mk["roi"]], t("ROI by market (%)"),
-                 text=[f"n={int(n)}" for n in mk["bets"]])
-    with c6:
-        hr = group_summary(df, "group")
-        if not hr.empty:
-            _bar([group_title(g) for g in hr["group"]], hr["hit_rate"], c["home"], t("Hit rate by market"),
-                 text=[f"n={int(n)}" for n in hr["predictions"]], pct_axis=True)
-    st.caption(t("n = number of settled predictions (for ROI: with real odds). Small samples swing a lot."))
+            _hbar(mk[["group", "roi", "bets"]].assign(roi=mk["roi"] / 100), group_title, "roi", "bets",
+                  t("ROI by market (n = bets with real odds)"), True, True)
+    with row3[1]:
+        if not mk.empty:
+            _hbar(mk[["group", "hit_rate", "predictions"]], group_title, "hit_rate", "predictions",
+                  t("Hit rate by market (n = settled predictions)"), True, False)
+    st.caption(t("Faded bars: fewer than {n} predictions — too few to judge a market or league.",
+                 n=MIN_MARKET_SAMPLE))
 
 
 @guard
 def render() -> None:
     page_header(t("Analytics"))
-    # recorded pre-match predictions only; the historical model evaluation is on Model Analysis
-    picks = select_dataset(data.picks(), "recorded")
+    origin = st.segmented_control(t("Data"), ["recorded", "backtest"], default="recorded", key="a_data",
+                                  format_func=lambda k: t("Recorded") if k == "recorded"
+                                  else t("Backtest {season}").format(season=config.season_label(config.current_season())),
+                                  help=t("Recorded = predictions saved before kick-off. Backtest = the production "
+                                         "model run afterwards on this season's earlier matches with pre-match data "
+                                         "and real archived prices; it is an evaluation, not published bets.")) \
+        or "recorded"
+    picks = select_dataset(data.picks(), "recorded" if origin == "recorded" else "season_backtest")
+    if origin == "backtest" and not picks.empty:
+        picks = picks.loc[picks["season"] == config.current_season()]
     if picks.empty:
         empty_state(t("No completed predictions yet."))
         return
