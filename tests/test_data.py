@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.data.cleaning import deduplicate, drop_stale_fixtures, make_match_id, normalise
+from src.data.cleaning import deduplicate, drop_double_bookings, drop_stale_fixtures, make_match_id, normalise
 from tests.conftest import raw_row
 
 
@@ -32,6 +32,26 @@ def test_rescheduled_fixture_is_dropped_but_later_meeting_kept(make_matches):
     out = drop_stale_fixtures(deduplicate(m))
     assert len(out) == 2
     assert set(out["date"].dt.strftime("%Y-%m-%d")) == {"2025-08-20", "2026-03-01"}
+
+
+def test_a_team_booked_twice_on_one_day_keeps_the_football_data_match():
+    day = pd.Timestamp("2026-10-17")
+    rows = pd.DataFrame([
+        {"match_id": "real", "league": "SC0", "date": day, "home_team": "St Johnstone", "away_team": "Dundee United",
+         "_source": "fd"},
+        {"match_id": "phantom", "league": "SC0", "date": day, "home_team": "St Johnstone", "away_team": "Dundee",
+         "_source": "api"},
+        {"match_id": "other", "league": "SC0", "date": day, "home_team": "Dundee", "away_team": "Rangers",
+         "_source": "api"},
+        {"match_id": "a", "league": "SP1", "date": day, "home_team": "Santander", "away_team": "Barcelona",
+         "_source": "api"},
+        {"match_id": "b", "league": "SP1", "date": day, "home_team": "Santander", "away_team": "Espanol",
+         "_source": "api"},
+    ])
+    out = drop_double_bookings(rows)
+    assert set(out["match_id"]) == {"real", "other"}       # two provider rows contradicting: neither trusted
+    both_fd = rows.loc[rows["match_id"].isin(["a", "b"])].assign(_source="fd")
+    assert len(drop_double_bookings(both_fd)) == 2         # Football-Data itself is never dropped
 
 
 def test_unplayed_rows_have_no_result_or_stats(make_matches):
