@@ -1,0 +1,11305 @@
+{
+  "built_at": "2026-10-22T12:03:42",
+  "outcomes": {
+    "103": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "102": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "101": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "104": [
+      "BTTS",
+      null,
+      "YES"
+    ],
+    "105": [
+      "BTTS",
+      null,
+      "NO"
+    ],
+    "109": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "108": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "1011": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "1010": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "1013": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "1012": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "1052": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "1053": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "1056": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "1057": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "1061": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "1060": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "1064": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "1065": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "1069": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "1068": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "1076": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "1077": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "1081": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "1080": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "1085": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "1084": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "1088": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1089": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "1093": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "1092": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "10134": [
+      "EHANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "10135": [
+      "EHANDICAP_+2",
+      2.0,
+      "D"
+    ],
+    "10136": [
+      "EHANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "10137": [
+      "EHANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "10138": [
+      "EHANDICAP_+1",
+      1.0,
+      "D"
+    ],
+    "10139": [
+      "EHANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "10142": [
+      "EHANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "10141": [
+      "EHANDICAP_-1",
+      -1.0,
+      "D"
+    ],
+    "10140": [
+      "EHANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "10143": [
+      "EHANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "10145": [
+      "EHANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "10144": [
+      "EHANDICAP_-2",
+      -2.0,
+      "D"
+    ],
+    "10365": [
+      "EXACT_SCORE",
+      null,
+      "5-3"
+    ],
+    "10362": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "10397": [
+      "EXACT_SCORE",
+      null,
+      "5-7"
+    ],
+    "10395": [
+      "EXACT_SCORE",
+      null,
+      "3-7"
+    ],
+    "10368": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "10342": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "10343": [
+      "EXACT_SCORE",
+      null,
+      "7-0"
+    ],
+    "10384": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "10382": [
+      "EXACT_SCORE",
+      null,
+      "6-5"
+    ],
+    "10376": [
+      "EXACT_SCORE",
+      null,
+      "0-5"
+    ],
+    "10349": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "10372": [
+      "EXACT_SCORE",
+      null,
+      "4-4"
+    ],
+    "10361": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "10346": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "10364": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "10399": [
+      "EXACT_SCORE",
+      null,
+      "7-7"
+    ],
+    "10347": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "10369": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "10341": [
+      "EXACT_SCORE",
+      null,
+      "5-0"
+    ],
+    "10388": [
+      "EXACT_SCORE",
+      null,
+      "4-6"
+    ],
+    "10391": [
+      "EXACT_SCORE",
+      null,
+      "7-6"
+    ],
+    "10352": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "10373": [
+      "EXACT_SCORE",
+      null,
+      "5-4"
+    ],
+    "10354": [
+      "EXACT_SCORE",
+      null,
+      "2-2"
+    ],
+    "10380": [
+      "EXACT_SCORE",
+      null,
+      "4-5"
+    ],
+    "10338": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "10387": [
+      "EXACT_SCORE",
+      null,
+      "3-6"
+    ],
+    "10350": [
+      "EXACT_SCORE",
+      null,
+      "6-1"
+    ],
+    "10390": [
+      "EXACT_SCORE",
+      null,
+      "6-6"
+    ],
+    "10340": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "10355": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "10394": [
+      "EXACT_SCORE",
+      null,
+      "2-7"
+    ],
+    "10371": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "10386": [
+      "EXACT_SCORE",
+      null,
+      "2-6"
+    ],
+    "10375": [
+      "EXACT_SCORE",
+      null,
+      "7-4"
+    ],
+    "10345": [
+      "EXACT_SCORE",
+      null,
+      "1-1"
+    ],
+    "10378": [
+      "EXACT_SCORE",
+      null,
+      "2-5"
+    ],
+    "10358": [
+      "EXACT_SCORE",
+      null,
+      "6-2"
+    ],
+    "10389": [
+      "EXACT_SCORE",
+      null,
+      "5-6"
+    ],
+    "10379": [
+      "EXACT_SCORE",
+      null,
+      "3-5"
+    ],
+    "10363": [
+      "EXACT_SCORE",
+      null,
+      "3-3"
+    ],
+    "10381": [
+      "EXACT_SCORE",
+      null,
+      "5-5"
+    ],
+    "10377": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "10356": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "10398": [
+      "EXACT_SCORE",
+      null,
+      "6-7"
+    ],
+    "10393": [
+      "EXACT_SCORE",
+      null,
+      "1-7"
+    ],
+    "10336": [
+      "EXACT_SCORE",
+      null,
+      "0-0"
+    ],
+    "10392": [
+      "EXACT_SCORE",
+      null,
+      "0-7"
+    ],
+    "10367": [
+      "EXACT_SCORE",
+      null,
+      "7-3"
+    ],
+    "10385": [
+      "EXACT_SCORE",
+      null,
+      "1-6"
+    ],
+    "10383": [
+      "EXACT_SCORE",
+      null,
+      "7-5"
+    ],
+    "10357": [
+      "EXACT_SCORE",
+      null,
+      "5-2"
+    ],
+    "10366": [
+      "EXACT_SCORE",
+      null,
+      "6-3"
+    ],
+    "10351": [
+      "EXACT_SCORE",
+      null,
+      "7-1"
+    ],
+    "10374": [
+      "EXACT_SCORE",
+      null,
+      "6-4"
+    ],
+    "10396": [
+      "EXACT_SCORE",
+      null,
+      "4-7"
+    ],
+    "10337": [
+      "EXACT_SCORE",
+      null,
+      "1-0"
+    ],
+    "10359": [
+      "EXACT_SCORE",
+      null,
+      "7-2"
+    ],
+    "10360": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "10339": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "10353": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "10344": [
+      "EXACT_SCORE",
+      null,
+      "0-1"
+    ],
+    "10348": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "10370": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "10768": [
+      "CORNERS_0.5",
+      0.5,
+      "UNDER"
+    ],
+    "10767": [
+      "CORNERS_0.5",
+      0.5,
+      "OVER"
+    ],
+    "10772": [
+      "CORNERS_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "10771": [
+      "CORNERS_1.5",
+      1.5,
+      "OVER"
+    ],
+    "10776": [
+      "CORNERS_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "10775": [
+      "CORNERS_2.5",
+      2.5,
+      "OVER"
+    ],
+    "10779": [
+      "CORNERS_3.5",
+      3.5,
+      "OVER"
+    ],
+    "10780": [
+      "CORNERS_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "10784": [
+      "CORNERS_4.5",
+      4.5,
+      "UNDER"
+    ],
+    "10783": [
+      "CORNERS_4.5",
+      4.5,
+      "OVER"
+    ],
+    "10787": [
+      "CORNERS_5.5",
+      5.5,
+      "OVER"
+    ],
+    "10788": [
+      "CORNERS_5.5",
+      5.5,
+      "UNDER"
+    ],
+    "10792": [
+      "CORNERS_6.5",
+      6.5,
+      "UNDER"
+    ],
+    "10791": [
+      "CORNERS_6.5",
+      6.5,
+      "OVER"
+    ],
+    "10796": [
+      "CORNERS_7.5",
+      7.5,
+      "UNDER"
+    ],
+    "10795": [
+      "CORNERS_7.5",
+      7.5,
+      "OVER"
+    ],
+    "10799": [
+      "CORNERS_8.5",
+      8.5,
+      "OVER"
+    ],
+    "10800": [
+      "CORNERS_8.5",
+      8.5,
+      "UNDER"
+    ],
+    "10803": [
+      "CORNERS_9.5",
+      9.5,
+      "OVER"
+    ],
+    "10804": [
+      "CORNERS_9.5",
+      9.5,
+      "UNDER"
+    ],
+    "10807": [
+      "CORNERS_10.5",
+      10.5,
+      "OVER"
+    ],
+    "10808": [
+      "CORNERS_10.5",
+      10.5,
+      "UNDER"
+    ],
+    "10811": [
+      "CORNERS_11.5",
+      11.5,
+      "OVER"
+    ],
+    "10812": [
+      "CORNERS_11.5",
+      11.5,
+      "UNDER"
+    ],
+    "10815": [
+      "CORNERS_12.5",
+      12.5,
+      "OVER"
+    ],
+    "10816": [
+      "CORNERS_12.5",
+      12.5,
+      "UNDER"
+    ],
+    "10820": [
+      "CORNERS_13.5",
+      13.5,
+      "UNDER"
+    ],
+    "10819": [
+      "CORNERS_13.5",
+      13.5,
+      "OVER"
+    ],
+    "10823": [
+      "CORNERS_14.5",
+      14.5,
+      "OVER"
+    ],
+    "10824": [
+      "CORNERS_14.5",
+      14.5,
+      "UNDER"
+    ],
+    "10827": [
+      "CORNERS_15.5",
+      15.5,
+      "OVER"
+    ],
+    "10828": [
+      "CORNERS_15.5",
+      15.5,
+      "UNDER"
+    ],
+    "10832": [
+      "CORNERS_16.5",
+      16.5,
+      "UNDER"
+    ],
+    "10831": [
+      "CORNERS_16.5",
+      16.5,
+      "OVER"
+    ],
+    "10835": [
+      "CORNERS_17.5",
+      17.5,
+      "OVER"
+    ],
+    "10836": [
+      "CORNERS_17.5",
+      17.5,
+      "UNDER"
+    ],
+    "10839": [
+      "CORNERS_18.5",
+      18.5,
+      "OVER"
+    ],
+    "10840": [
+      "CORNERS_18.5",
+      18.5,
+      "UNDER"
+    ],
+    "10844": [
+      "CORNERS_19.5",
+      19.5,
+      "UNDER"
+    ],
+    "10843": [
+      "CORNERS_19.5",
+      19.5,
+      "OVER"
+    ],
+    "101902": [
+      "DOUBLE_CHANCE",
+      null,
+      "1X"
+    ],
+    "101904": [
+      "DOUBLE_CHANCE",
+      null,
+      "X2"
+    ],
+    "101903": [
+      "DOUBLE_CHANCE",
+      null,
+      "12"
+    ],
+    "113": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "114": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "115": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "11339": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "11340": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "11338": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "11342": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "11341": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "11343": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "11446": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "11447": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "11448": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "11449": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "11451": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "11450": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "11452": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "11453": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "11455": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "11454": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "11459": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "11458": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "11460": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "11461": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "11463": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "11462": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "11465": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "11464": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "11466": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "11467": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "119699": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "119698": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "119701": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "119700": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "119702": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "119703": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "119704": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "119705": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "119707": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "119706": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "119710": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "119711": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "119713": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "119712": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "119715": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "119714": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "119717": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "119716": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "119719": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "119718": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "119980": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "119981": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "119983": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "119982": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "119984": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "119985": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "119987": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "119986": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "119988": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "119989": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "119992": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "119993": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "119995": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "119994": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "119996": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "119997": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "119999": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "119998": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1110000": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "1110001": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "12232": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "12231": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "12233": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "12234": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "12238": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "12237": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "12239": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "12240": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "12242": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "12241": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "12244": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "12243": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "12254": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "12253": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "12256": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "12255": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "12258": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "12257": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "12284": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "12283": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "12285": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "12286": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "12288": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "12287": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "12632": [
+      "EXACT_SCORE",
+      null,
+      "1-6"
+    ],
+    "12629": [
+      "EXACT_SCORE",
+      null,
+      "7-5"
+    ],
+    "12628": [
+      "EXACT_SCORE",
+      null,
+      "6-4"
+    ],
+    "12635": [
+      "EXACT_SCORE",
+      null,
+      "4-6"
+    ],
+    "12630": [
+      "EXACT_SCORE",
+      null,
+      "7-6"
+    ],
+    "12627": [
+      "EXACT_SCORE",
+      null,
+      "6-3"
+    ],
+    "12633": [
+      "EXACT_SCORE",
+      null,
+      "2-6"
+    ],
+    "12637": [
+      "EXACT_SCORE",
+      null,
+      "6-7"
+    ],
+    "12625": [
+      "EXACT_SCORE",
+      null,
+      "6-1"
+    ],
+    "12634": [
+      "EXACT_SCORE",
+      null,
+      "3-6"
+    ],
+    "12636": [
+      "EXACT_SCORE",
+      null,
+      "5-7"
+    ],
+    "12624": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "12631": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "12626": [
+      "EXACT_SCORE",
+      null,
+      "6-2"
+    ],
+    "12639": [
+      "EXACT_SCORE",
+      null,
+      "1-1"
+    ],
+    "12640": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "12638": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "12641": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "12645": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "12644": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "12643": [
+      "EXACT_SCORE",
+      null,
+      "2-2"
+    ],
+    "12642": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "12651": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "12648": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "12650": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "12647": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "12649": [
+      "EXACT_SCORE",
+      null,
+      "3-3"
+    ],
+    "12652": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "12646": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "12742": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "12746": [
+      "EXACT_SCORE",
+      null,
+      "4-6"
+    ],
+    "12744": [
+      "EXACT_SCORE",
+      null,
+      "2-6"
+    ],
+    "12736": [
+      "EXACT_SCORE",
+      null,
+      "6-1"
+    ],
+    "12747": [
+      "EXACT_SCORE",
+      null,
+      "5-7"
+    ],
+    "12745": [
+      "EXACT_SCORE",
+      null,
+      "3-6"
+    ],
+    "12739": [
+      "EXACT_SCORE",
+      null,
+      "6-4"
+    ],
+    "12740": [
+      "EXACT_SCORE",
+      null,
+      "7-5"
+    ],
+    "12743": [
+      "EXACT_SCORE",
+      null,
+      "1-6"
+    ],
+    "12738": [
+      "EXACT_SCORE",
+      null,
+      "6-3"
+    ],
+    "12741": [
+      "EXACT_SCORE",
+      null,
+      "7-6"
+    ],
+    "12735": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "12748": [
+      "EXACT_SCORE",
+      null,
+      "6-7"
+    ],
+    "12737": [
+      "EXACT_SCORE",
+      null,
+      "6-2"
+    ],
+    "12750": [
+      "EXACT_SCORE",
+      null,
+      "1-1"
+    ],
+    "12749": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "12751": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "12752": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "12755": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "12753": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "12756": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "12754": [
+      "EXACT_SCORE",
+      null,
+      "2-2"
+    ],
+    "12762": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "12760": [
+      "EXACT_SCORE",
+      null,
+      "3-3"
+    ],
+    "12757": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "12761": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "12758": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "12759": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "12763": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "12850": [
+      "EXACT_SCORE",
+      null,
+      "6-4"
+    ],
+    "12846": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "12849": [
+      "EXACT_SCORE",
+      null,
+      "6-3"
+    ],
+    "12847": [
+      "EXACT_SCORE",
+      null,
+      "6-1"
+    ],
+    "12857": [
+      "EXACT_SCORE",
+      null,
+      "4-6"
+    ],
+    "12853": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "12852": [
+      "EXACT_SCORE",
+      null,
+      "7-6"
+    ],
+    "12854": [
+      "EXACT_SCORE",
+      null,
+      "1-6"
+    ],
+    "12859": [
+      "EXACT_SCORE",
+      null,
+      "6-7"
+    ],
+    "12848": [
+      "EXACT_SCORE",
+      null,
+      "6-2"
+    ],
+    "12856": [
+      "EXACT_SCORE",
+      null,
+      "3-6"
+    ],
+    "12858": [
+      "EXACT_SCORE",
+      null,
+      "5-7"
+    ],
+    "12851": [
+      "EXACT_SCORE",
+      null,
+      "7-5"
+    ],
+    "12855": [
+      "EXACT_SCORE",
+      null,
+      "2-6"
+    ],
+    "12861": [
+      "EXACT_SCORE",
+      null,
+      "1-1"
+    ],
+    "12862": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "12860": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "12866": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "12864": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "12863": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "12865": [
+      "EXACT_SCORE",
+      null,
+      "2-2"
+    ],
+    "12867": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "12869": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "12872": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "12873": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "12871": [
+      "EXACT_SCORE",
+      null,
+      "3-3"
+    ],
+    "12870": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "12874": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "12868": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "12883": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "12885": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "12884": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "12886": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "12890": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "12892": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "12889": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "12887": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "12891": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "12888": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "12896": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "12895": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "12897": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "12898": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "12899": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "12900": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "12965": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "12966": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "12968": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "12967": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "12969": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "12970": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "133": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "134": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "135": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "137": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "136": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "1365": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "1364": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "1367": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "1366": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "1369": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "1368": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "1370": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "1371": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "1373": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "1372": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "1377": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "1376": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "1379": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "1378": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "1380": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "1381": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "1382": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1383": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "1385": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "1384": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "13106": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "13108": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "13107": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "13110": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "13109": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "13111": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "13114": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "13112": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "13113": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "13117": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "13116": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "13115": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "13118": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "13119": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "13120": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "13123": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "13122": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "13121": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "13125": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "13124": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "13126": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "13299": [
+      "EXACT_SCORE",
+      null,
+      "14-1"
+    ],
+    "13328": [
+      "EXACT_SCORE",
+      null,
+      "11-3"
+    ],
+    "13411": [
+      "EXACT_SCORE",
+      null,
+      "14-8"
+    ],
+    "13507": [
+      "EXACT_SCORE",
+      null,
+      "14-14"
+    ],
+    "13412": [
+      "EXACT_SCORE",
+      null,
+      "15-8"
+    ],
+    "13335": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "13382": [
+      "EXACT_SCORE",
+      null,
+      "1-7"
+    ],
+    "13312": [
+      "EXACT_SCORE",
+      null,
+      "11-2"
+    ],
+    "13405": [
+      "EXACT_SCORE",
+      null,
+      "8-8"
+    ],
+    "13285": [
+      "EXACT_SCORE",
+      null,
+      "0-1"
+    ],
+    "13332": [
+      "EXACT_SCORE",
+      null,
+      "15-3"
+    ],
+    "13423": [
+      "EXACT_SCORE",
+      null,
+      "10-9"
+    ],
+    "13351": [
+      "EXACT_SCORE",
+      null,
+      "2-5"
+    ],
+    "13517": [
+      "EXACT_SCORE",
+      null,
+      "8-15"
+    ],
+    "13470": [
+      "EXACT_SCORE",
+      null,
+      "9-12"
+    ],
+    "13509": [
+      "EXACT_SCORE",
+      null,
+      "0-15"
+    ],
+    "13441": [
+      "EXACT_SCORE",
+      null,
+      "12-10"
+    ],
+    "13324": [
+      "EXACT_SCORE",
+      null,
+      "7-3"
+    ],
+    "13288": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "13514": [
+      "EXACT_SCORE",
+      null,
+      "5-15"
+    ],
+    "13489": [
+      "EXACT_SCORE",
+      null,
+      "12-13"
+    ],
+    "13393": [
+      "EXACT_SCORE",
+      null,
+      "12-7"
+    ],
+    "13482": [
+      "EXACT_SCORE",
+      null,
+      "5-13"
+    ],
+    "13281": [
+      "EXACT_SCORE",
+      null,
+      "12-0"
+    ],
+    "13364": [
+      "EXACT_SCORE",
+      null,
+      "15-5"
+    ],
+    "13431": [
+      "EXACT_SCORE",
+      null,
+      "2-10"
+    ],
+    "13366": [
+      "EXACT_SCORE",
+      null,
+      "1-6"
+    ],
+    "13391": [
+      "EXACT_SCORE",
+      null,
+      "10-7"
+    ],
+    "13287": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "13276": [
+      "EXACT_SCORE",
+      null,
+      "7-0"
+    ],
+    "13291": [
+      "EXACT_SCORE",
+      null,
+      "6-1"
+    ],
+    "13487": [
+      "EXACT_SCORE",
+      null,
+      "10-13"
+    ],
+    "13463": [
+      "EXACT_SCORE",
+      null,
+      "2-12"
+    ],
+    "13290": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "13354": [
+      "EXACT_SCORE",
+      null,
+      "5-5"
+    ],
+    "13316": [
+      "EXACT_SCORE",
+      null,
+      "15-2"
+    ],
+    "13272": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "13477": [
+      "EXACT_SCORE",
+      null,
+      "0-13"
+    ],
+    "13524": [
+      "EXACT_SCORE",
+      null,
+      "15-15"
+    ],
+    "13427": [
+      "EXACT_SCORE",
+      null,
+      "14-9"
+    ],
+    "13472": [
+      "EXACT_SCORE",
+      null,
+      "11-12"
+    ],
+    "13495": [
+      "EXACT_SCORE",
+      null,
+      "2-14"
+    ],
+    "13368": [
+      "EXACT_SCORE",
+      null,
+      "3-6"
+    ],
+    "13385": [
+      "EXACT_SCORE",
+      null,
+      "4-7"
+    ],
+    "13323": [
+      "EXACT_SCORE",
+      null,
+      "6-3"
+    ],
+    "13476": [
+      "EXACT_SCORE",
+      null,
+      "15-12"
+    ],
+    "13321": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "13453": [
+      "EXACT_SCORE",
+      null,
+      "8-11"
+    ],
+    "13447": [
+      "EXACT_SCORE",
+      null,
+      "2-11"
+    ],
+    "13464": [
+      "EXACT_SCORE",
+      null,
+      "3-12"
+    ],
+    "13370": [
+      "EXACT_SCORE",
+      null,
+      "5-6"
+    ],
+    "13317": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "13289": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "13275": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "13516": [
+      "EXACT_SCORE",
+      null,
+      "7-15"
+    ],
+    "13522": [
+      "EXACT_SCORE",
+      null,
+      "13-15"
+    ],
+    "13499": [
+      "EXACT_SCORE",
+      null,
+      "6-14"
+    ],
+    "13278": [
+      "EXACT_SCORE",
+      null,
+      "9-0"
+    ],
+    "13269": [
+      "EXACT_SCORE",
+      null,
+      "0-0"
+    ],
+    "13399": [
+      "EXACT_SCORE",
+      null,
+      "2-8"
+    ],
+    "13459": [
+      "EXACT_SCORE",
+      null,
+      "14-11"
+    ],
+    "13327": [
+      "EXACT_SCORE",
+      null,
+      "10-3"
+    ],
+    "13444": [
+      "EXACT_SCORE",
+      null,
+      "15-10"
+    ],
+    "13284": [
+      "EXACT_SCORE",
+      null,
+      "15-0"
+    ],
+    "13295": [
+      "EXACT_SCORE",
+      null,
+      "10-1"
+    ],
+    "13410": [
+      "EXACT_SCORE",
+      null,
+      "13-8"
+    ],
+    "13389": [
+      "EXACT_SCORE",
+      null,
+      "8-7"
+    ],
+    "13404": [
+      "EXACT_SCORE",
+      null,
+      "7-8"
+    ],
+    "13442": [
+      "EXACT_SCORE",
+      null,
+      "13-10"
+    ],
+    "13446": [
+      "EXACT_SCORE",
+      null,
+      "1-11"
+    ],
+    "13308": [
+      "EXACT_SCORE",
+      null,
+      "7-2"
+    ],
+    "13347": [
+      "EXACT_SCORE",
+      null,
+      "14-4"
+    ],
+    "13363": [
+      "EXACT_SCORE",
+      null,
+      "14-5"
+    ],
+    "13436": [
+      "EXACT_SCORE",
+      null,
+      "7-10"
+    ],
+    "13296": [
+      "EXACT_SCORE",
+      null,
+      "11-1"
+    ],
+    "13360": [
+      "EXACT_SCORE",
+      null,
+      "11-5"
+    ],
+    "13282": [
+      "EXACT_SCORE",
+      null,
+      "13-0"
+    ],
+    "13451": [
+      "EXACT_SCORE",
+      null,
+      "6-11"
+    ],
+    "13424": [
+      "EXACT_SCORE",
+      null,
+      "11-9"
+    ],
+    "13496": [
+      "EXACT_SCORE",
+      null,
+      "3-14"
+    ],
+    "13346": [
+      "EXACT_SCORE",
+      null,
+      "13-4"
+    ],
+    "13418": [
+      "EXACT_SCORE",
+      null,
+      "5-9"
+    ],
+    "13274": [
+      "EXACT_SCORE",
+      null,
+      "5-0"
+    ],
+    "13355": [
+      "EXACT_SCORE",
+      null,
+      "6-5"
+    ],
+    "13515": [
+      "EXACT_SCORE",
+      null,
+      "6-15"
+    ],
+    "13362": [
+      "EXACT_SCORE",
+      null,
+      "13-5"
+    ],
+    "13490": [
+      "EXACT_SCORE",
+      null,
+      "13-13"
+    ],
+    "13303": [
+      "EXACT_SCORE",
+      null,
+      "2-2"
+    ],
+    "13338": [
+      "EXACT_SCORE",
+      null,
+      "5-4"
+    ],
+    "13416": [
+      "EXACT_SCORE",
+      null,
+      "3-9"
+    ],
+    "13443": [
+      "EXACT_SCORE",
+      null,
+      "14-10"
+    ],
+    "13403": [
+      "EXACT_SCORE",
+      null,
+      "6-8"
+    ],
+    "13425": [
+      "EXACT_SCORE",
+      null,
+      "12-9"
+    ],
+    "13497": [
+      "EXACT_SCORE",
+      null,
+      "4-14"
+    ],
+    "13371": [
+      "EXACT_SCORE",
+      null,
+      "6-6"
+    ],
+    "13352": [
+      "EXACT_SCORE",
+      null,
+      "3-5"
+    ],
+    "13279": [
+      "EXACT_SCORE",
+      null,
+      "10-0"
+    ],
+    "13319": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "13504": [
+      "EXACT_SCORE",
+      null,
+      "11-14"
+    ],
+    "13396": [
+      "EXACT_SCORE",
+      null,
+      "15-7"
+    ],
+    "13302": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "13521": [
+      "EXACT_SCORE",
+      null,
+      "12-15"
+    ],
+    "13322": [
+      "EXACT_SCORE",
+      null,
+      "5-3"
+    ],
+    "13341": [
+      "EXACT_SCORE",
+      null,
+      "8-4"
+    ],
+    "13300": [
+      "EXACT_SCORE",
+      null,
+      "15-1"
+    ],
+    "13305": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "13307": [
+      "EXACT_SCORE",
+      null,
+      "6-2"
+    ],
+    "13408": [
+      "EXACT_SCORE",
+      null,
+      "11-8"
+    ],
+    "13375": [
+      "EXACT_SCORE",
+      null,
+      "10-6"
+    ],
+    "13512": [
+      "EXACT_SCORE",
+      null,
+      "3-15"
+    ],
+    "13486": [
+      "EXACT_SCORE",
+      null,
+      "9-13"
+    ],
+    "13438": [
+      "EXACT_SCORE",
+      null,
+      "9-10"
+    ],
+    "13415": [
+      "EXACT_SCORE",
+      null,
+      "2-9"
+    ],
+    "13413": [
+      "EXACT_SCORE",
+      null,
+      "0-9"
+    ],
+    "13435": [
+      "EXACT_SCORE",
+      null,
+      "6-10"
+    ],
+    "13510": [
+      "EXACT_SCORE",
+      null,
+      "1-15"
+    ],
+    "13491": [
+      "EXACT_SCORE",
+      null,
+      "14-13"
+    ],
+    "13433": [
+      "EXACT_SCORE",
+      null,
+      "4-10"
+    ],
+    "13434": [
+      "EXACT_SCORE",
+      null,
+      "5-10"
+    ],
+    "13485": [
+      "EXACT_SCORE",
+      null,
+      "8-13"
+    ],
+    "13437": [
+      "EXACT_SCORE",
+      null,
+      "8-10"
+    ],
+    "13318": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "13518": [
+      "EXACT_SCORE",
+      null,
+      "9-15"
+    ],
+    "13337": [
+      "EXACT_SCORE",
+      null,
+      "4-4"
+    ],
+    "13386": [
+      "EXACT_SCORE",
+      null,
+      "5-7"
+    ],
+    "13400": [
+      "EXACT_SCORE",
+      null,
+      "3-8"
+    ],
+    "13498": [
+      "EXACT_SCORE",
+      null,
+      "5-14"
+    ],
+    "13414": [
+      "EXACT_SCORE",
+      null,
+      "1-9"
+    ],
+    "13277": [
+      "EXACT_SCORE",
+      null,
+      "8-0"
+    ],
+    "13483": [
+      "EXACT_SCORE",
+      null,
+      "6-13"
+    ],
+    "13398": [
+      "EXACT_SCORE",
+      null,
+      "1-8"
+    ],
+    "13471": [
+      "EXACT_SCORE",
+      null,
+      "10-12"
+    ],
+    "13505": [
+      "EXACT_SCORE",
+      null,
+      "12-14"
+    ],
+    "13519": [
+      "EXACT_SCORE",
+      null,
+      "10-15"
+    ],
+    "13478": [
+      "EXACT_SCORE",
+      null,
+      "1-13"
+    ],
+    "13297": [
+      "EXACT_SCORE",
+      null,
+      "12-1"
+    ],
+    "13439": [
+      "EXACT_SCORE",
+      null,
+      "10-10"
+    ],
+    "13406": [
+      "EXACT_SCORE",
+      null,
+      "9-8"
+    ],
+    "13380": [
+      "EXACT_SCORE",
+      null,
+      "15-6"
+    ],
+    "13420": [
+      "EXACT_SCORE",
+      null,
+      "7-9"
+    ],
+    "13409": [
+      "EXACT_SCORE",
+      null,
+      "12-8"
+    ],
+    "13474": [
+      "EXACT_SCORE",
+      null,
+      "13-12"
+    ],
+    "13392": [
+      "EXACT_SCORE",
+      null,
+      "11-7"
+    ],
+    "13388": [
+      "EXACT_SCORE",
+      null,
+      "7-7"
+    ],
+    "13394": [
+      "EXACT_SCORE",
+      null,
+      "13-7"
+    ],
+    "13339": [
+      "EXACT_SCORE",
+      null,
+      "6-4"
+    ],
+    "13481": [
+      "EXACT_SCORE",
+      null,
+      "4-13"
+    ],
+    "13384": [
+      "EXACT_SCORE",
+      null,
+      "3-7"
+    ],
+    "13373": [
+      "EXACT_SCORE",
+      null,
+      "8-6"
+    ],
+    "13503": [
+      "EXACT_SCORE",
+      null,
+      "10-14"
+    ],
+    "13329": [
+      "EXACT_SCORE",
+      null,
+      "12-3"
+    ],
+    "13450": [
+      "EXACT_SCORE",
+      null,
+      "5-11"
+    ],
+    "13374": [
+      "EXACT_SCORE",
+      null,
+      "9-6"
+    ],
+    "13310": [
+      "EXACT_SCORE",
+      null,
+      "9-2"
+    ],
+    "13270": [
+      "EXACT_SCORE",
+      null,
+      "1-0"
+    ],
+    "13376": [
+      "EXACT_SCORE",
+      null,
+      "11-6"
+    ],
+    "13488": [
+      "EXACT_SCORE",
+      null,
+      "11-13"
+    ],
+    "13475": [
+      "EXACT_SCORE",
+      null,
+      "14-12"
+    ],
+    "13286": [
+      "EXACT_SCORE",
+      null,
+      "1-1"
+    ],
+    "13432": [
+      "EXACT_SCORE",
+      null,
+      "3-10"
+    ],
+    "13304": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "13500": [
+      "EXACT_SCORE",
+      null,
+      "7-14"
+    ],
+    "13342": [
+      "EXACT_SCORE",
+      null,
+      "9-4"
+    ],
+    "13353": [
+      "EXACT_SCORE",
+      null,
+      "4-5"
+    ],
+    "13367": [
+      "EXACT_SCORE",
+      null,
+      "2-6"
+    ],
+    "13511": [
+      "EXACT_SCORE",
+      null,
+      "2-15"
+    ],
+    "13397": [
+      "EXACT_SCORE",
+      null,
+      "0-8"
+    ],
+    "13468": [
+      "EXACT_SCORE",
+      null,
+      "7-12"
+    ],
+    "13462": [
+      "EXACT_SCORE",
+      null,
+      "1-12"
+    ],
+    "13452": [
+      "EXACT_SCORE",
+      null,
+      "7-11"
+    ],
+    "13480": [
+      "EXACT_SCORE",
+      null,
+      "3-13"
+    ],
+    "13379": [
+      "EXACT_SCORE",
+      null,
+      "14-6"
+    ],
+    "13283": [
+      "EXACT_SCORE",
+      null,
+      "14-0"
+    ],
+    "13334": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "13492": [
+      "EXACT_SCORE",
+      null,
+      "15-13"
+    ],
+    "13390": [
+      "EXACT_SCORE",
+      null,
+      "9-7"
+    ],
+    "13377": [
+      "EXACT_SCORE",
+      null,
+      "12-6"
+    ],
+    "13426": [
+      "EXACT_SCORE",
+      null,
+      "13-9"
+    ],
+    "13348": [
+      "EXACT_SCORE",
+      null,
+      "15-4"
+    ],
+    "13513": [
+      "EXACT_SCORE",
+      null,
+      "4-15"
+    ],
+    "13461": [
+      "EXACT_SCORE",
+      null,
+      "0-12"
+    ],
+    "13455": [
+      "EXACT_SCORE",
+      null,
+      "10-11"
+    ],
+    "13320": [
+      "EXACT_SCORE",
+      null,
+      "3-3"
+    ],
+    "13273": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "13301": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "13369": [
+      "EXACT_SCORE",
+      null,
+      "4-6"
+    ],
+    "13333": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "13501": [
+      "EXACT_SCORE",
+      null,
+      "8-14"
+    ],
+    "13445": [
+      "EXACT_SCORE",
+      null,
+      "0-11"
+    ],
+    "13381": [
+      "EXACT_SCORE",
+      null,
+      "0-7"
+    ],
+    "13357": [
+      "EXACT_SCORE",
+      null,
+      "8-5"
+    ],
+    "13449": [
+      "EXACT_SCORE",
+      null,
+      "4-11"
+    ],
+    "13365": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "13292": [
+      "EXACT_SCORE",
+      null,
+      "7-1"
+    ],
+    "13309": [
+      "EXACT_SCORE",
+      null,
+      "8-2"
+    ],
+    "13465": [
+      "EXACT_SCORE",
+      null,
+      "4-12"
+    ],
+    "13428": [
+      "EXACT_SCORE",
+      null,
+      "15-9"
+    ],
+    "13345": [
+      "EXACT_SCORE",
+      null,
+      "12-4"
+    ],
+    "13448": [
+      "EXACT_SCORE",
+      null,
+      "3-11"
+    ],
+    "13469": [
+      "EXACT_SCORE",
+      null,
+      "8-12"
+    ],
+    "13407": [
+      "EXACT_SCORE",
+      null,
+      "10-8"
+    ],
+    "13349": [
+      "EXACT_SCORE",
+      null,
+      "0-5"
+    ],
+    "13440": [
+      "EXACT_SCORE",
+      null,
+      "11-10"
+    ],
+    "13293": [
+      "EXACT_SCORE",
+      null,
+      "8-1"
+    ],
+    "13493": [
+      "EXACT_SCORE",
+      null,
+      "0-14"
+    ],
+    "13402": [
+      "EXACT_SCORE",
+      null,
+      "5-8"
+    ],
+    "13466": [
+      "EXACT_SCORE",
+      null,
+      "5-12"
+    ],
+    "13340": [
+      "EXACT_SCORE",
+      null,
+      "7-4"
+    ],
+    "13356": [
+      "EXACT_SCORE",
+      null,
+      "7-5"
+    ],
+    "13430": [
+      "EXACT_SCORE",
+      null,
+      "1-10"
+    ],
+    "13429": [
+      "EXACT_SCORE",
+      null,
+      "0-10"
+    ],
+    "13372": [
+      "EXACT_SCORE",
+      null,
+      "7-6"
+    ],
+    "13494": [
+      "EXACT_SCORE",
+      null,
+      "1-14"
+    ],
+    "13520": [
+      "EXACT_SCORE",
+      null,
+      "11-15"
+    ],
+    "13473": [
+      "EXACT_SCORE",
+      null,
+      "12-12"
+    ],
+    "13506": [
+      "EXACT_SCORE",
+      null,
+      "13-14"
+    ],
+    "13417": [
+      "EXACT_SCORE",
+      null,
+      "4-9"
+    ],
+    "13311": [
+      "EXACT_SCORE",
+      null,
+      "10-2"
+    ],
+    "13419": [
+      "EXACT_SCORE",
+      null,
+      "6-9"
+    ],
+    "13460": [
+      "EXACT_SCORE",
+      null,
+      "15-11"
+    ],
+    "13458": [
+      "EXACT_SCORE",
+      null,
+      "13-11"
+    ],
+    "13422": [
+      "EXACT_SCORE",
+      null,
+      "9-9"
+    ],
+    "13456": [
+      "EXACT_SCORE",
+      null,
+      "11-11"
+    ],
+    "13378": [
+      "EXACT_SCORE",
+      null,
+      "13-6"
+    ],
+    "13358": [
+      "EXACT_SCORE",
+      null,
+      "9-5"
+    ],
+    "13401": [
+      "EXACT_SCORE",
+      null,
+      "4-8"
+    ],
+    "13325": [
+      "EXACT_SCORE",
+      null,
+      "8-3"
+    ],
+    "13421": [
+      "EXACT_SCORE",
+      null,
+      "8-9"
+    ],
+    "13484": [
+      "EXACT_SCORE",
+      null,
+      "7-13"
+    ],
+    "13330": [
+      "EXACT_SCORE",
+      null,
+      "13-3"
+    ],
+    "13454": [
+      "EXACT_SCORE",
+      null,
+      "9-11"
+    ],
+    "13383": [
+      "EXACT_SCORE",
+      null,
+      "2-7"
+    ],
+    "13326": [
+      "EXACT_SCORE",
+      null,
+      "9-3"
+    ],
+    "13467": [
+      "EXACT_SCORE",
+      null,
+      "6-12"
+    ],
+    "13314": [
+      "EXACT_SCORE",
+      null,
+      "13-2"
+    ],
+    "13313": [
+      "EXACT_SCORE",
+      null,
+      "12-2"
+    ],
+    "13350": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "13294": [
+      "EXACT_SCORE",
+      null,
+      "9-1"
+    ],
+    "13395": [
+      "EXACT_SCORE",
+      null,
+      "14-7"
+    ],
+    "13315": [
+      "EXACT_SCORE",
+      null,
+      "14-2"
+    ],
+    "13479": [
+      "EXACT_SCORE",
+      null,
+      "2-13"
+    ],
+    "13331": [
+      "EXACT_SCORE",
+      null,
+      "14-3"
+    ],
+    "13343": [
+      "EXACT_SCORE",
+      null,
+      "10-4"
+    ],
+    "13508": [
+      "EXACT_SCORE",
+      null,
+      "15-14"
+    ],
+    "13359": [
+      "EXACT_SCORE",
+      null,
+      "10-5"
+    ],
+    "13457": [
+      "EXACT_SCORE",
+      null,
+      "12-11"
+    ],
+    "13523": [
+      "EXACT_SCORE",
+      null,
+      "14-15"
+    ],
+    "13306": [
+      "EXACT_SCORE",
+      null,
+      "5-2"
+    ],
+    "13344": [
+      "EXACT_SCORE",
+      null,
+      "11-4"
+    ],
+    "13298": [
+      "EXACT_SCORE",
+      null,
+      "13-1"
+    ],
+    "13336": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "13387": [
+      "EXACT_SCORE",
+      null,
+      "6-7"
+    ],
+    "13502": [
+      "EXACT_SCORE",
+      null,
+      "9-14"
+    ],
+    "13271": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "13361": [
+      "EXACT_SCORE",
+      null,
+      "12-5"
+    ],
+    "13280": [
+      "EXACT_SCORE",
+      null,
+      "11-0"
+    ],
+    "13911": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "13910": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "13915": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "13914": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "13918": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "13919": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "13931": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "13930": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "13932": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "13933": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "13934": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "13935": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "13936": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "13937": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "13939": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "13938": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "13942": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "13943": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "13945": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "13944": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "13947": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "13946": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "13949": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "13948": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "13950": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "13951": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "13960": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "13961": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "13964": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "13965": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "13969": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "13968": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "13981": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "13980": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "13983": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "13982": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "13984": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "13985": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "13987": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "13986": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "13989": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "13988": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "13993": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "13992": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "13995": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "13994": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "13997": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "13996": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "13998": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "13999": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "131001": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "131000": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "131011": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "131010": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "131014": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "131015": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "131018": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "131019": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "131030": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "131031": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "131032": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "131033": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "131034": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "131035": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "131037": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "131036": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "131039": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "131038": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "131042": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "131043": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "131044": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "131045": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "131047": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "131046": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "131048": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "131049": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "131050": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "131051": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "131060": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "131061": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "131065": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "131064": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "131068": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "131069": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "131080": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "131081": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "131083": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "131082": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "131085": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "131084": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "131087": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "131086": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "131089": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "131088": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "131093": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "131092": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "131095": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "131094": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "131096": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "131097": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "131099": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "131098": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "131100": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "131101": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "131111": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "131110": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "131115": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "131114": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "131118": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "131119": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "131130": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "131131": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "131132": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "131133": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "131134": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "131135": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "131136": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "131137": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "131138": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "131139": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "131142": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "131143": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "131144": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "131145": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "131147": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "131146": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "131149": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "131148": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "131151": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "131150": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "131161": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "131160": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "131165": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "131164": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "131169": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "131168": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "131180": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "131181": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "131182": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "131183": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "131185": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "131184": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "131187": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "131186": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "131188": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "131189": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "131192": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "131193": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "131194": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "131195": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "131197": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "131196": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "131199": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "131198": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "131201": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "131200": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "131211": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "131210": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "131215": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "131214": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "131219": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "131218": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "131230": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "131231": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "131233": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "131232": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "131235": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "131234": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "131237": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "131236": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "131239": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "131238": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "131243": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "131242": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "131244": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "131245": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "131247": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "131246": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "131248": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "131249": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "131251": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "131250": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "131974": [
+      "EXACT_SCORE",
+      null,
+      "3-3"
+    ],
+    "132008": [
+      "EXACT_SCORE",
+      null,
+      "4-6"
+    ],
+    "132041": [
+      "EXACT_SCORE",
+      null,
+      "4-9"
+    ],
+    "132024": [
+      "EXACT_SCORE",
+      null,
+      "9-7"
+    ],
+    "132029": [
+      "EXACT_SCORE",
+      null,
+      "3-8"
+    ],
+    "131965": [
+      "EXACT_SCORE",
+      null,
+      "5-2"
+    ],
+    "131987": [
+      "EXACT_SCORE",
+      null,
+      "5-4"
+    ],
+    "132014": [
+      "EXACT_SCORE",
+      null,
+      "10-6"
+    ],
+    "131973": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "132003": [
+      "EXACT_SCORE",
+      null,
+      "10-5"
+    ],
+    "132056": [
+      "EXACT_SCORE",
+      null,
+      "8-10"
+    ],
+    "131962": [
+      "EXACT_SCORE",
+      null,
+      "2-2"
+    ],
+    "132012": [
+      "EXACT_SCORE",
+      null,
+      "8-6"
+    ],
+    "131961": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "131988": [
+      "EXACT_SCORE",
+      null,
+      "6-4"
+    ],
+    "132002": [
+      "EXACT_SCORE",
+      null,
+      "9-5"
+    ],
+    "132032": [
+      "EXACT_SCORE",
+      null,
+      "6-8"
+    ],
+    "131959": [
+      "EXACT_SCORE",
+      null,
+      "10-1"
+    ],
+    "132015": [
+      "EXACT_SCORE",
+      null,
+      "0-7"
+    ],
+    "132017": [
+      "EXACT_SCORE",
+      null,
+      "2-7"
+    ],
+    "131939": [
+      "EXACT_SCORE",
+      null,
+      "1-0"
+    ],
+    "132057": [
+      "EXACT_SCORE",
+      null,
+      "9-10"
+    ],
+    "131938": [
+      "EXACT_SCORE",
+      null,
+      "0-0"
+    ],
+    "131991": [
+      "EXACT_SCORE",
+      null,
+      "9-4"
+    ],
+    "131980": [
+      "EXACT_SCORE",
+      null,
+      "9-3"
+    ],
+    "132049": [
+      "EXACT_SCORE",
+      null,
+      "1-10"
+    ],
+    "131984": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "131989": [
+      "EXACT_SCORE",
+      null,
+      "7-4"
+    ],
+    "131950": [
+      "EXACT_SCORE",
+      null,
+      "1-1"
+    ],
+    "131953": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "131998": [
+      "EXACT_SCORE",
+      null,
+      "5-5"
+    ],
+    "132037": [
+      "EXACT_SCORE",
+      null,
+      "0-9"
+    ],
+    "132054": [
+      "EXACT_SCORE",
+      null,
+      "6-10"
+    ],
+    "131964": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "132013": [
+      "EXACT_SCORE",
+      null,
+      "9-6"
+    ],
+    "131993": [
+      "EXACT_SCORE",
+      null,
+      "0-5"
+    ],
+    "132001": [
+      "EXACT_SCORE",
+      null,
+      "8-5"
+    ],
+    "131963": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "131948": [
+      "EXACT_SCORE",
+      null,
+      "10-0"
+    ],
+    "131970": [
+      "EXACT_SCORE",
+      null,
+      "10-2"
+    ],
+    "132018": [
+      "EXACT_SCORE",
+      null,
+      "3-7"
+    ],
+    "132020": [
+      "EXACT_SCORE",
+      null,
+      "5-7"
+    ],
+    "132044": [
+      "EXACT_SCORE",
+      null,
+      "7-9"
+    ],
+    "131994": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "132021": [
+      "EXACT_SCORE",
+      null,
+      "6-7"
+    ],
+    "131945": [
+      "EXACT_SCORE",
+      null,
+      "7-0"
+    ],
+    "131975": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "131943": [
+      "EXACT_SCORE",
+      null,
+      "5-0"
+    ],
+    "131944": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "131967": [
+      "EXACT_SCORE",
+      null,
+      "7-2"
+    ],
+    "132026": [
+      "EXACT_SCORE",
+      null,
+      "0-8"
+    ],
+    "132046": [
+      "EXACT_SCORE",
+      null,
+      "9-9"
+    ],
+    "131977": [
+      "EXACT_SCORE",
+      null,
+      "6-3"
+    ],
+    "132051": [
+      "EXACT_SCORE",
+      null,
+      "3-10"
+    ],
+    "131940": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "132052": [
+      "EXACT_SCORE",
+      null,
+      "4-10"
+    ],
+    "131997": [
+      "EXACT_SCORE",
+      null,
+      "4-5"
+    ],
+    "132033": [
+      "EXACT_SCORE",
+      null,
+      "7-8"
+    ],
+    "131954": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "132007": [
+      "EXACT_SCORE",
+      null,
+      "3-6"
+    ],
+    "132025": [
+      "EXACT_SCORE",
+      null,
+      "10-7"
+    ],
+    "132034": [
+      "EXACT_SCORE",
+      null,
+      "8-8"
+    ],
+    "132004": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "131968": [
+      "EXACT_SCORE",
+      null,
+      "8-2"
+    ],
+    "132042": [
+      "EXACT_SCORE",
+      null,
+      "5-9"
+    ],
+    "132000": [
+      "EXACT_SCORE",
+      null,
+      "7-5"
+    ],
+    "131969": [
+      "EXACT_SCORE",
+      null,
+      "9-2"
+    ],
+    "131976": [
+      "EXACT_SCORE",
+      null,
+      "5-3"
+    ],
+    "131947": [
+      "EXACT_SCORE",
+      null,
+      "9-0"
+    ],
+    "131971": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "132028": [
+      "EXACT_SCORE",
+      null,
+      "2-8"
+    ],
+    "131978": [
+      "EXACT_SCORE",
+      null,
+      "7-3"
+    ],
+    "131957": [
+      "EXACT_SCORE",
+      null,
+      "8-1"
+    ],
+    "131999": [
+      "EXACT_SCORE",
+      null,
+      "6-5"
+    ],
+    "131960": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "132035": [
+      "EXACT_SCORE",
+      null,
+      "9-8"
+    ],
+    "131986": [
+      "EXACT_SCORE",
+      null,
+      "4-4"
+    ],
+    "132016": [
+      "EXACT_SCORE",
+      null,
+      "1-7"
+    ],
+    "132022": [
+      "EXACT_SCORE",
+      null,
+      "7-7"
+    ],
+    "131941": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "132030": [
+      "EXACT_SCORE",
+      null,
+      "4-8"
+    ],
+    "132055": [
+      "EXACT_SCORE",
+      null,
+      "7-10"
+    ],
+    "132047": [
+      "EXACT_SCORE",
+      null,
+      "10-9"
+    ],
+    "131992": [
+      "EXACT_SCORE",
+      null,
+      "10-4"
+    ],
+    "132006": [
+      "EXACT_SCORE",
+      null,
+      "2-6"
+    ],
+    "132011": [
+      "EXACT_SCORE",
+      null,
+      "7-6"
+    ],
+    "131990": [
+      "EXACT_SCORE",
+      null,
+      "8-4"
+    ],
+    "131972": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "132036": [
+      "EXACT_SCORE",
+      null,
+      "10-8"
+    ],
+    "132005": [
+      "EXACT_SCORE",
+      null,
+      "1-6"
+    ],
+    "132048": [
+      "EXACT_SCORE",
+      null,
+      "0-10"
+    ],
+    "132050": [
+      "EXACT_SCORE",
+      null,
+      "2-10"
+    ],
+    "132040": [
+      "EXACT_SCORE",
+      null,
+      "3-9"
+    ],
+    "132010": [
+      "EXACT_SCORE",
+      null,
+      "6-6"
+    ],
+    "132043": [
+      "EXACT_SCORE",
+      null,
+      "6-9"
+    ],
+    "131982": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "131979": [
+      "EXACT_SCORE",
+      null,
+      "8-3"
+    ],
+    "131956": [
+      "EXACT_SCORE",
+      null,
+      "7-1"
+    ],
+    "131996": [
+      "EXACT_SCORE",
+      null,
+      "3-5"
+    ],
+    "131966": [
+      "EXACT_SCORE",
+      null,
+      "6-2"
+    ],
+    "132045": [
+      "EXACT_SCORE",
+      null,
+      "8-9"
+    ],
+    "132031": [
+      "EXACT_SCORE",
+      null,
+      "5-8"
+    ],
+    "131952": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "131983": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "131958": [
+      "EXACT_SCORE",
+      null,
+      "9-1"
+    ],
+    "131995": [
+      "EXACT_SCORE",
+      null,
+      "2-5"
+    ],
+    "131949": [
+      "EXACT_SCORE",
+      null,
+      "0-1"
+    ],
+    "131981": [
+      "EXACT_SCORE",
+      null,
+      "10-3"
+    ],
+    "132027": [
+      "EXACT_SCORE",
+      null,
+      "1-8"
+    ],
+    "131942": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "132009": [
+      "EXACT_SCORE",
+      null,
+      "5-6"
+    ],
+    "132019": [
+      "EXACT_SCORE",
+      null,
+      "4-7"
+    ],
+    "132058": [
+      "EXACT_SCORE",
+      null,
+      "10-10"
+    ],
+    "132038": [
+      "EXACT_SCORE",
+      null,
+      "1-9"
+    ],
+    "132053": [
+      "EXACT_SCORE",
+      null,
+      "5-10"
+    ],
+    "132023": [
+      "EXACT_SCORE",
+      null,
+      "8-7"
+    ],
+    "131985": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "132039": [
+      "EXACT_SCORE",
+      null,
+      "2-9"
+    ],
+    "131946": [
+      "EXACT_SCORE",
+      null,
+      "8-0"
+    ],
+    "131951": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "131955": [
+      "EXACT_SCORE",
+      null,
+      "6-1"
+    ],
+    "132061": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "132063": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "132062": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "132068": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "132069": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "132073": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "132072": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "132077": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "132076": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "132174": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "132175": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "132176": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "132177": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "132179": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "132178": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "132181": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "132180": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "132183": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "132182": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "132186": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "132187": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "132189": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "132188": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "132190": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "132191": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "132192": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "132193": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "132195": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "132194": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "144": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "143": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "145": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "14277": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "14276": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "14278": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "14279": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "14280": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "14281": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "14282": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "14283": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "14285": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "14284": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "14288": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "14289": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "14290": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "14291": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "14292": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "14293": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "14294": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "14295": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "14296": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "14297": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "143277": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "143276": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "143278": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "143284": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "143283": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "143287": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "143288": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "143292": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "143291": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "143509": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "143510": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "143511": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "143512": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "143513": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "143514": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "143516": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "143515": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "143517": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "143518": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "143521": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "143522": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "143523": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "143524": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "143526": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "143525": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "143528": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "143527": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "143530": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "143529": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "143843": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "143845": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "143844": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "143850": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "143851": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "143854": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "143855": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "143859": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "143858": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "144076": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "144077": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "144079": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "144078": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "144080": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "144081": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "144083": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "144082": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "144085": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "144084": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "144089": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "144088": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "144090": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "144091": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "144092": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "144093": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "144094": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "144095": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "144096": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "144097": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "147992": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "147991": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "147995": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "147996": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "147999": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "148000": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "148217": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "148218": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "148220": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "148219": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "148221": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "148222": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "148224": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "148223": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "148226": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "148225": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "148230": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "148229": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "148231": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "148232": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "148233": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "148234": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "148236": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "148235": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "148237": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "148238": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "149525": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "149526": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "149530": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "149529": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "149533": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "149534": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "155": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "154": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "153": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "1511": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "1510": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "1515": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "1514": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "1518": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "1519": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "1577": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "1576": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "1578": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "1579": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "1580": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "1581": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "1583": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "1582": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "1585": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "1584": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "1589": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "1588": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "1590": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "1591": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "1593": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "1592": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "1595": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "1594": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1597": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "1596": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "15678": [
+      "EXACT_SCORE",
+      null,
+      "2-8"
+    ],
+    "15558": [
+      "EXACT_SCORE",
+      null,
+      "10-0"
+    ],
+    "15757": [
+      "EXACT_SCORE",
+      null,
+      "1-13"
+    ],
+    "15573": [
+      "EXACT_SCORE",
+      null,
+      "9-1"
+    ],
+    "15593": [
+      "EXACT_SCORE",
+      null,
+      "13-2"
+    ],
+    "15695": [
+      "EXACT_SCORE",
+      null,
+      "3-9"
+    ],
+    "15760": [
+      "EXACT_SCORE",
+      null,
+      "4-13"
+    ],
+    "15743": [
+      "EXACT_SCORE",
+      null,
+      "3-12"
+    ],
+    "15651": [
+      "EXACT_SCORE",
+      null,
+      "7-6"
+    ],
+    "15622": [
+      "EXACT_SCORE",
+      null,
+      "10-4"
+    ],
+    "15686": [
+      "EXACT_SCORE",
+      null,
+      "10-8"
+    ],
+    "15634": [
+      "EXACT_SCORE",
+      null,
+      "6-5"
+    ],
+    "15735": [
+      "EXACT_SCORE",
+      null,
+      "11-11"
+    ],
+    "15644": [
+      "EXACT_SCORE",
+      null,
+      "0-6"
+    ],
+    "15795": [
+      "EXACT_SCORE",
+      null,
+      "7-15"
+    ],
+    "15685": [
+      "EXACT_SCORE",
+      null,
+      "9-8"
+    ],
+    "15554": [
+      "EXACT_SCORE",
+      null,
+      "6-0"
+    ],
+    "15563": [
+      "EXACT_SCORE",
+      null,
+      "15-0"
+    ],
+    "15671": [
+      "EXACT_SCORE",
+      null,
+      "11-7"
+    ],
+    "15745": [
+      "EXACT_SCORE",
+      null,
+      "5-12"
+    ],
+    "15641": [
+      "EXACT_SCORE",
+      null,
+      "13-5"
+    ],
+    "15768": [
+      "EXACT_SCORE",
+      null,
+      "12-13"
+    ],
+    "15648": [
+      "EXACT_SCORE",
+      null,
+      "4-6"
+    ],
+    "15728": [
+      "EXACT_SCORE",
+      null,
+      "4-11"
+    ],
+    "15623": [
+      "EXACT_SCORE",
+      null,
+      "11-4"
+    ],
+    "15680": [
+      "EXACT_SCORE",
+      null,
+      "4-8"
+    ],
+    "15717": [
+      "EXACT_SCORE",
+      null,
+      "9-10"
+    ],
+    "15601": [
+      "EXACT_SCORE",
+      null,
+      "5-3"
+    ],
+    "15626": [
+      "EXACT_SCORE",
+      null,
+      "14-4"
+    ],
+    "15606": [
+      "EXACT_SCORE",
+      null,
+      "10-3"
+    ],
+    "15747": [
+      "EXACT_SCORE",
+      null,
+      "7-12"
+    ],
+    "15681": [
+      "EXACT_SCORE",
+      null,
+      "5-8"
+    ],
+    "15675": [
+      "EXACT_SCORE",
+      null,
+      "15-7"
+    ],
+    "15684": [
+      "EXACT_SCORE",
+      null,
+      "8-8"
+    ],
+    "15725": [
+      "EXACT_SCORE",
+      null,
+      "1-11"
+    ],
+    "15643": [
+      "EXACT_SCORE",
+      null,
+      "15-5"
+    ],
+    "15763": [
+      "EXACT_SCORE",
+      null,
+      "7-13"
+    ],
+    "15783": [
+      "EXACT_SCORE",
+      null,
+      "11-14"
+    ],
+    "15592": [
+      "EXACT_SCORE",
+      null,
+      "12-2"
+    ],
+    "15688": [
+      "EXACT_SCORE",
+      null,
+      "12-8"
+    ],
+    "15631": [
+      "EXACT_SCORE",
+      null,
+      "3-5"
+    ],
+    "15773": [
+      "EXACT_SCORE",
+      null,
+      "1-14"
+    ],
+    "15609": [
+      "EXACT_SCORE",
+      null,
+      "13-3"
+    ],
+    "15782": [
+      "EXACT_SCORE",
+      null,
+      "10-14"
+    ],
+    "15756": [
+      "EXACT_SCORE",
+      null,
+      "0-13"
+    ],
+    "15750": [
+      "EXACT_SCORE",
+      null,
+      "10-12"
+    ],
+    "15668": [
+      "EXACT_SCORE",
+      null,
+      "8-7"
+    ],
+    "15560": [
+      "EXACT_SCORE",
+      null,
+      "12-0"
+    ],
+    "15583": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "15676": [
+      "EXACT_SCORE",
+      null,
+      "0-8"
+    ],
+    "15698": [
+      "EXACT_SCORE",
+      null,
+      "6-9"
+    ],
+    "15700": [
+      "EXACT_SCORE",
+      null,
+      "8-9"
+    ],
+    "15670": [
+      "EXACT_SCORE",
+      null,
+      "10-7"
+    ],
+    "15618": [
+      "EXACT_SCORE",
+      null,
+      "6-4"
+    ],
+    "15772": [
+      "EXACT_SCORE",
+      null,
+      "0-14"
+    ],
+    "15649": [
+      "EXACT_SCORE",
+      null,
+      "5-6"
+    ],
+    "15690": [
+      "EXACT_SCORE",
+      null,
+      "14-8"
+    ],
+    "15673": [
+      "EXACT_SCORE",
+      null,
+      "13-7"
+    ],
+    "15582": [
+      "EXACT_SCORE",
+      null,
+      "2-2"
+    ],
+    "15790": [
+      "EXACT_SCORE",
+      null,
+      "2-15"
+    ],
+    "15712": [
+      "EXACT_SCORE",
+      null,
+      "4-10"
+    ],
+    "15758": [
+      "EXACT_SCORE",
+      null,
+      "2-13"
+    ],
+    "15640": [
+      "EXACT_SCORE",
+      null,
+      "12-5"
+    ],
+    "15665": [
+      "EXACT_SCORE",
+      null,
+      "5-7"
+    ],
+    "15561": [
+      "EXACT_SCORE",
+      null,
+      "13-0"
+    ],
+    "15732": [
+      "EXACT_SCORE",
+      null,
+      "8-11"
+    ],
+    "15635": [
+      "EXACT_SCORE",
+      null,
+      "7-5"
+    ],
+    "15729": [
+      "EXACT_SCORE",
+      null,
+      "5-11"
+    ],
+    "15672": [
+      "EXACT_SCORE",
+      null,
+      "12-7"
+    ],
+    "15781": [
+      "EXACT_SCORE",
+      null,
+      "9-14"
+    ],
+    "15625": [
+      "EXACT_SCORE",
+      null,
+      "13-4"
+    ],
+    "15569": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "15723": [
+      "EXACT_SCORE",
+      null,
+      "15-10"
+    ],
+    "15642": [
+      "EXACT_SCORE",
+      null,
+      "14-5"
+    ],
+    "15555": [
+      "EXACT_SCORE",
+      null,
+      "7-0"
+    ],
+    "15570": [
+      "EXACT_SCORE",
+      null,
+      "6-1"
+    ],
+    "15661": [
+      "EXACT_SCORE",
+      null,
+      "1-7"
+    ],
+    "15718": [
+      "EXACT_SCORE",
+      null,
+      "10-10"
+    ],
+    "15549": [
+      "EXACT_SCORE",
+      null,
+      "1-0"
+    ],
+    "15657": [
+      "EXACT_SCORE",
+      null,
+      "13-6"
+    ],
+    "15748": [
+      "EXACT_SCORE",
+      null,
+      "8-12"
+    ],
+    "15784": [
+      "EXACT_SCORE",
+      null,
+      "12-14"
+    ],
+    "15588": [
+      "EXACT_SCORE",
+      null,
+      "8-2"
+    ],
+    "15755": [
+      "EXACT_SCORE",
+      null,
+      "15-12"
+    ],
+    "15652": [
+      "EXACT_SCORE",
+      null,
+      "8-6"
+    ],
+    "15736": [
+      "EXACT_SCORE",
+      null,
+      "12-11"
+    ],
+    "15704": [
+      "EXACT_SCORE",
+      null,
+      "12-9"
+    ],
+    "15620": [
+      "EXACT_SCORE",
+      null,
+      "8-4"
+    ],
+    "15742": [
+      "EXACT_SCORE",
+      null,
+      "2-12"
+    ],
+    "15715": [
+      "EXACT_SCORE",
+      null,
+      "7-10"
+    ],
+    "15792": [
+      "EXACT_SCORE",
+      null,
+      "4-15"
+    ],
+    "15759": [
+      "EXACT_SCORE",
+      null,
+      "3-13"
+    ],
+    "15793": [
+      "EXACT_SCORE",
+      null,
+      "5-15"
+    ],
+    "15575": [
+      "EXACT_SCORE",
+      null,
+      "11-1"
+    ],
+    "15638": [
+      "EXACT_SCORE",
+      null,
+      "10-5"
+    ],
+    "15691": [
+      "EXACT_SCORE",
+      null,
+      "15-8"
+    ],
+    "15624": [
+      "EXACT_SCORE",
+      null,
+      "12-4"
+    ],
+    "15584": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "15572": [
+      "EXACT_SCORE",
+      null,
+      "8-1"
+    ],
+    "15590": [
+      "EXACT_SCORE",
+      null,
+      "10-2"
+    ],
+    "15619": [
+      "EXACT_SCORE",
+      null,
+      "7-4"
+    ],
+    "15667": [
+      "EXACT_SCORE",
+      null,
+      "7-7"
+    ],
+    "15696": [
+      "EXACT_SCORE",
+      null,
+      "4-9"
+    ],
+    "15703": [
+      "EXACT_SCORE",
+      null,
+      "11-9"
+    ],
+    "15709": [
+      "EXACT_SCORE",
+      null,
+      "1-10"
+    ],
+    "15770": [
+      "EXACT_SCORE",
+      null,
+      "14-13"
+    ],
+    "15567": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "15721": [
+      "EXACT_SCORE",
+      null,
+      "13-10"
+    ],
+    "15683": [
+      "EXACT_SCORE",
+      null,
+      "7-8"
+    ],
+    "15724": [
+      "EXACT_SCORE",
+      null,
+      "0-11"
+    ],
+    "15662": [
+      "EXACT_SCORE",
+      null,
+      "2-7"
+    ],
+    "15653": [
+      "EXACT_SCORE",
+      null,
+      "9-6"
+    ],
+    "15586": [
+      "EXACT_SCORE",
+      null,
+      "6-2"
+    ],
+    "15720": [
+      "EXACT_SCORE",
+      null,
+      "12-10"
+    ],
+    "15799": [
+      "EXACT_SCORE",
+      null,
+      "11-15"
+    ],
+    "15713": [
+      "EXACT_SCORE",
+      null,
+      "5-10"
+    ],
+    "15741": [
+      "EXACT_SCORE",
+      null,
+      "1-12"
+    ],
+    "15786": [
+      "EXACT_SCORE",
+      null,
+      "14-14"
+    ],
+    "15689": [
+      "EXACT_SCORE",
+      null,
+      "13-8"
+    ],
+    "15614": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "15753": [
+      "EXACT_SCORE",
+      null,
+      "13-12"
+    ],
+    "15778": [
+      "EXACT_SCORE",
+      null,
+      "6-14"
+    ],
+    "15553": [
+      "EXACT_SCORE",
+      null,
+      "5-0"
+    ],
+    "15762": [
+      "EXACT_SCORE",
+      null,
+      "6-13"
+    ],
+    "15636": [
+      "EXACT_SCORE",
+      null,
+      "8-5"
+    ],
+    "15605": [
+      "EXACT_SCORE",
+      null,
+      "9-3"
+    ],
+    "15627": [
+      "EXACT_SCORE",
+      null,
+      "15-4"
+    ],
+    "15650": [
+      "EXACT_SCORE",
+      null,
+      "6-6"
+    ],
+    "15779": [
+      "EXACT_SCORE",
+      null,
+      "7-14"
+    ],
+    "15733": [
+      "EXACT_SCORE",
+      null,
+      "9-11"
+    ],
+    "15674": [
+      "EXACT_SCORE",
+      null,
+      "14-7"
+    ],
+    "15550": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "15794": [
+      "EXACT_SCORE",
+      null,
+      "6-15"
+    ],
+    "15564": [
+      "EXACT_SCORE",
+      null,
+      "0-1"
+    ],
+    "15621": [
+      "EXACT_SCORE",
+      null,
+      "9-4"
+    ],
+    "15602": [
+      "EXACT_SCORE",
+      null,
+      "6-3"
+    ],
+    "15548": [
+      "EXACT_SCORE",
+      null,
+      "0-0"
+    ],
+    "15777": [
+      "EXACT_SCORE",
+      null,
+      "5-14"
+    ],
+    "15711": [
+      "EXACT_SCORE",
+      null,
+      "3-10"
+    ],
+    "15613": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "15577": [
+      "EXACT_SCORE",
+      null,
+      "13-1"
+    ],
+    "15751": [
+      "EXACT_SCORE",
+      null,
+      "11-12"
+    ],
+    "15802": [
+      "EXACT_SCORE",
+      null,
+      "14-15"
+    ],
+    "15776": [
+      "EXACT_SCORE",
+      null,
+      "4-14"
+    ],
+    "15639": [
+      "EXACT_SCORE",
+      null,
+      "11-5"
+    ],
+    "15714": [
+      "EXACT_SCORE",
+      null,
+      "6-10"
+    ],
+    "15797": [
+      "EXACT_SCORE",
+      null,
+      "9-15"
+    ],
+    "15615": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "15697": [
+      "EXACT_SCORE",
+      null,
+      "5-9"
+    ],
+    "15607": [
+      "EXACT_SCORE",
+      null,
+      "11-3"
+    ],
+    "15791": [
+      "EXACT_SCORE",
+      null,
+      "3-15"
+    ],
+    "15765": [
+      "EXACT_SCORE",
+      null,
+      "9-13"
+    ],
+    "15571": [
+      "EXACT_SCORE",
+      null,
+      "7-1"
+    ],
+    "15739": [
+      "EXACT_SCORE",
+      null,
+      "15-11"
+    ],
+    "15556": [
+      "EXACT_SCORE",
+      null,
+      "8-0"
+    ],
+    "15595": [
+      "EXACT_SCORE",
+      null,
+      "15-2"
+    ],
+    "15801": [
+      "EXACT_SCORE",
+      null,
+      "13-15"
+    ],
+    "15767": [
+      "EXACT_SCORE",
+      null,
+      "11-13"
+    ],
+    "15660": [
+      "EXACT_SCORE",
+      null,
+      "0-7"
+    ],
+    "15632": [
+      "EXACT_SCORE",
+      null,
+      "4-5"
+    ],
+    "15761": [
+      "EXACT_SCORE",
+      null,
+      "5-13"
+    ],
+    "15706": [
+      "EXACT_SCORE",
+      null,
+      "14-9"
+    ],
+    "15731": [
+      "EXACT_SCORE",
+      null,
+      "7-11"
+    ],
+    "15655": [
+      "EXACT_SCORE",
+      null,
+      "11-6"
+    ],
+    "15693": [
+      "EXACT_SCORE",
+      null,
+      "1-9"
+    ],
+    "15722": [
+      "EXACT_SCORE",
+      null,
+      "14-10"
+    ],
+    "15597": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "15598": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "15727": [
+      "EXACT_SCORE",
+      null,
+      "3-11"
+    ],
+    "15596": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "15749": [
+      "EXACT_SCORE",
+      null,
+      "9-12"
+    ],
+    "15800": [
+      "EXACT_SCORE",
+      null,
+      "12-15"
+    ],
+    "15707": [
+      "EXACT_SCORE",
+      null,
+      "15-9"
+    ],
+    "15780": [
+      "EXACT_SCORE",
+      null,
+      "8-14"
+    ],
+    "15710": [
+      "EXACT_SCORE",
+      null,
+      "2-10"
+    ],
+    "15785": [
+      "EXACT_SCORE",
+      null,
+      "13-14"
+    ],
+    "15552": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "15737": [
+      "EXACT_SCORE",
+      null,
+      "13-11"
+    ],
+    "15769": [
+      "EXACT_SCORE",
+      null,
+      "13-13"
+    ],
+    "15740": [
+      "EXACT_SCORE",
+      null,
+      "0-12"
+    ],
+    "15796": [
+      "EXACT_SCORE",
+      null,
+      "8-15"
+    ],
+    "15647": [
+      "EXACT_SCORE",
+      null,
+      "3-6"
+    ],
+    "15591": [
+      "EXACT_SCORE",
+      null,
+      "11-2"
+    ],
+    "15637": [
+      "EXACT_SCORE",
+      null,
+      "9-5"
+    ],
+    "15679": [
+      "EXACT_SCORE",
+      null,
+      "3-8"
+    ],
+    "15705": [
+      "EXACT_SCORE",
+      null,
+      "13-9"
+    ],
+    "15738": [
+      "EXACT_SCORE",
+      null,
+      "14-11"
+    ],
+    "15568": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "15608": [
+      "EXACT_SCORE",
+      null,
+      "12-3"
+    ],
+    "15580": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "15628": [
+      "EXACT_SCORE",
+      null,
+      "0-5"
+    ],
+    "15611": [
+      "EXACT_SCORE",
+      null,
+      "15-3"
+    ],
+    "15666": [
+      "EXACT_SCORE",
+      null,
+      "6-7"
+    ],
+    "15566": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "15617": [
+      "EXACT_SCORE",
+      null,
+      "5-4"
+    ],
+    "15669": [
+      "EXACT_SCORE",
+      null,
+      "9-7"
+    ],
+    "15633": [
+      "EXACT_SCORE",
+      null,
+      "5-5"
+    ],
+    "15787": [
+      "EXACT_SCORE",
+      null,
+      "15-14"
+    ],
+    "15754": [
+      "EXACT_SCORE",
+      null,
+      "14-12"
+    ],
+    "15551": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "15766": [
+      "EXACT_SCORE",
+      null,
+      "10-13"
+    ],
+    "15730": [
+      "EXACT_SCORE",
+      null,
+      "6-11"
+    ],
+    "15646": [
+      "EXACT_SCORE",
+      null,
+      "2-6"
+    ],
+    "15682": [
+      "EXACT_SCORE",
+      null,
+      "6-8"
+    ],
+    "15708": [
+      "EXACT_SCORE",
+      null,
+      "0-10"
+    ],
+    "15764": [
+      "EXACT_SCORE",
+      null,
+      "8-13"
+    ],
+    "15589": [
+      "EXACT_SCORE",
+      null,
+      "9-2"
+    ],
+    "15576": [
+      "EXACT_SCORE",
+      null,
+      "12-1"
+    ],
+    "15557": [
+      "EXACT_SCORE",
+      null,
+      "9-0"
+    ],
+    "15659": [
+      "EXACT_SCORE",
+      null,
+      "15-6"
+    ],
+    "15654": [
+      "EXACT_SCORE",
+      null,
+      "10-6"
+    ],
+    "15744": [
+      "EXACT_SCORE",
+      null,
+      "4-12"
+    ],
+    "15645": [
+      "EXACT_SCORE",
+      null,
+      "1-6"
+    ],
+    "15562": [
+      "EXACT_SCORE",
+      null,
+      "14-0"
+    ],
+    "15771": [
+      "EXACT_SCORE",
+      null,
+      "15-13"
+    ],
+    "15694": [
+      "EXACT_SCORE",
+      null,
+      "2-9"
+    ],
+    "15726": [
+      "EXACT_SCORE",
+      null,
+      "2-11"
+    ],
+    "15616": [
+      "EXACT_SCORE",
+      null,
+      "4-4"
+    ],
+    "15663": [
+      "EXACT_SCORE",
+      null,
+      "3-7"
+    ],
+    "15734": [
+      "EXACT_SCORE",
+      null,
+      "10-11"
+    ],
+    "15579": [
+      "EXACT_SCORE",
+      null,
+      "15-1"
+    ],
+    "15574": [
+      "EXACT_SCORE",
+      null,
+      "10-1"
+    ],
+    "15581": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "15604": [
+      "EXACT_SCORE",
+      null,
+      "8-3"
+    ],
+    "15629": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "15559": [
+      "EXACT_SCORE",
+      null,
+      "11-0"
+    ],
+    "15664": [
+      "EXACT_SCORE",
+      null,
+      "4-7"
+    ],
+    "15702": [
+      "EXACT_SCORE",
+      null,
+      "10-9"
+    ],
+    "15587": [
+      "EXACT_SCORE",
+      null,
+      "7-2"
+    ],
+    "15599": [
+      "EXACT_SCORE",
+      null,
+      "3-3"
+    ],
+    "15687": [
+      "EXACT_SCORE",
+      null,
+      "11-8"
+    ],
+    "15719": [
+      "EXACT_SCORE",
+      null,
+      "11-10"
+    ],
+    "15603": [
+      "EXACT_SCORE",
+      null,
+      "7-3"
+    ],
+    "15600": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "15775": [
+      "EXACT_SCORE",
+      null,
+      "3-14"
+    ],
+    "15699": [
+      "EXACT_SCORE",
+      null,
+      "7-9"
+    ],
+    "15803": [
+      "EXACT_SCORE",
+      null,
+      "15-15"
+    ],
+    "15585": [
+      "EXACT_SCORE",
+      null,
+      "5-2"
+    ],
+    "15594": [
+      "EXACT_SCORE",
+      null,
+      "14-2"
+    ],
+    "15701": [
+      "EXACT_SCORE",
+      null,
+      "9-9"
+    ],
+    "15774": [
+      "EXACT_SCORE",
+      null,
+      "2-14"
+    ],
+    "15612": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "15716": [
+      "EXACT_SCORE",
+      null,
+      "8-10"
+    ],
+    "15798": [
+      "EXACT_SCORE",
+      null,
+      "10-15"
+    ],
+    "15692": [
+      "EXACT_SCORE",
+      null,
+      "0-9"
+    ],
+    "15610": [
+      "EXACT_SCORE",
+      null,
+      "14-3"
+    ],
+    "15752": [
+      "EXACT_SCORE",
+      null,
+      "12-12"
+    ],
+    "15746": [
+      "EXACT_SCORE",
+      null,
+      "6-12"
+    ],
+    "15789": [
+      "EXACT_SCORE",
+      null,
+      "1-15"
+    ],
+    "15658": [
+      "EXACT_SCORE",
+      null,
+      "14-6"
+    ],
+    "15630": [
+      "EXACT_SCORE",
+      null,
+      "2-5"
+    ],
+    "15656": [
+      "EXACT_SCORE",
+      null,
+      "12-6"
+    ],
+    "15565": [
+      "EXACT_SCORE",
+      null,
+      "1-1"
+    ],
+    "15677": [
+      "EXACT_SCORE",
+      null,
+      "1-8"
+    ],
+    "15578": [
+      "EXACT_SCORE",
+      null,
+      "14-1"
+    ],
+    "15788": [
+      "EXACT_SCORE",
+      null,
+      "0-15"
+    ],
+    "151077": [
+      "EHANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "151075": [
+      "EHANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "151076": [
+      "EHANDICAP_+2",
+      2.0,
+      "D"
+    ],
+    "151080": [
+      "EHANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "151079": [
+      "EHANDICAP_+1",
+      1.0,
+      "D"
+    ],
+    "151078": [
+      "EHANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "151085": [
+      "EHANDICAP_-1",
+      -1.0,
+      "D"
+    ],
+    "151086": [
+      "EHANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "151084": [
+      "EHANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "151087": [
+      "EHANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "151089": [
+      "EHANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "151088": [
+      "EHANDICAP_-2",
+      -2.0,
+      "D"
+    ],
+    "151243": [
+      "BTTS",
+      null,
+      "NO"
+    ],
+    "151242": [
+      "BTTS",
+      null,
+      "YES"
+    ],
+    "164": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "163": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "166": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "165": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "1621": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "1622": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "1623": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "1624": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "1626": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "1625": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "1627": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "1628": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "1629": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "1630": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "1633": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "1634": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "1635": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "1636": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "1637": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "1638": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "1640": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "1639": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1642": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "1641": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "1657": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "1662": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "1661": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "1658": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "1660": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "1663": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "1664": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "1666": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "1665": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "1659": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "167601": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "167603": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "167602": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "174": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "173": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "175": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "176": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "1721": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "1722": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "1723": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "1724": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "1726": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "1725": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "1727": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "1728": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "1729": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "1730": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "1733": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "1734": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "1735": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "1736": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "1738": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "1737": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "1739": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1740": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "1741": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "1742": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "1762": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "1765": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "1766": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "1763": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "1764": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "1757": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "1760": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "1759": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "1761": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "1758": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "1775": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "1776": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "1777": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "1778": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "1779": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "1780": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "172622": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "172621": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "172624": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "172623": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "172625": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "172626": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "172707": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "172708": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "172709": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "172710": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "172711": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "172712": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "172794": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "172793": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "172796": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "172795": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "172797": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "172798": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "178078": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "178077": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "178079": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "184": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "183": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "186": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "185": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "1821": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "1822": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "1823": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "1824": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "1826": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "1825": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "1828": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "1827": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "1830": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "1829": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "1834": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "1833": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "1836": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "1835": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "1838": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "1837": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "1839": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1840": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "1842": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "1841": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "1857": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "1861": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "1862": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "1863": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "1860": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "1866": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "1864": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "1859": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "1858": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "1865": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "187975": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "187977": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "187976": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "196": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "197": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "1965": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "1964": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "1967": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "1966": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "1968": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "1969": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "1971": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "1970": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "1972": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "1973": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "1977": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "1976": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "1979": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "1978": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "1980": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "1981": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "1982": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "1983": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "1985": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "1984": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "204": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "203": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "205": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "209": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "208": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "2011": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "2010": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "2012": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "2013": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "215": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "213": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "214": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "217": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "216": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "225": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "223": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "224": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "22297": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "22296": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "22298": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "22299": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "22300": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "22301": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "22303": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "22302": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "22304": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "22305": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "22308": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "22309": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "22310": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "22311": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "22313": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "22312": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "22314": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "22315": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "22316": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "22317": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "2314": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "2313": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "2319": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "2320": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "2321": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "2322": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "2324": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "2323": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "2326": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "2325": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "2328": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "2327": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "2332": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "2331": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "2333": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "2334": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "2335": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "2336": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "2337": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "2338": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "2340": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "2339": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "244": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "243": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "24158": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "24157": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "24159": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "24160": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "24162": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "24161": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "24163": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "24164": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "24166": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "24165": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "24170": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "24169": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "24172": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "24171": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "24174": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "24173": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "24176": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "24175": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "24177": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "24178": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "264": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "265": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "263": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "26336": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "26337": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "26339": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "26338": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "26340": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "26341": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "26342": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "26343": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "26344": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "26345": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "26349": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "26348": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "26351": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "26350": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "26353": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "26352": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "26355": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "26354": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "26356": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "26357": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "275": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "274": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "273": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "285": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "283": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "284": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "295": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "294": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "293": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "304": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "305": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "303": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "313": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "315": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "314": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "323": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "324": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "325": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "334": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "335": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "333": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "345": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "344": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "343": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "353": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "355": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "354": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "364": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "365": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "363": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "375": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "373": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "374": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "385": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "383": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "384": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "394": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "395": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "393": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "405": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "404": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "403": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "415": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "413": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "414": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "423": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "424": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "425": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "434": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "433": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "435": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "445": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "443": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "444": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "454": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "453": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "455": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "464": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "463": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "465": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "474": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "475": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "473": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "483": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "484": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "485": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "494": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "493": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "495": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "504": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "503": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "505": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "515": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "514": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "513": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "523": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "524": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "525": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "533": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "534": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "535": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "543": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "544": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "545": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "554": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "553": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "555": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "563": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "564": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "565": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "5624": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "5625": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "5627": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "5626": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "5646": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "5647": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "5649": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "5648": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "5651": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "5650": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "5653": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "5652": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "5654": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "5655": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "5658": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "5659": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "5660": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "5661": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "5663": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "5662": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "5665": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "5664": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "5666": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "5667": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "5691": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "5696": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "5687": [
+      "EXACT_SCORE",
+      null,
+      "5-2"
+    ],
+    "5680": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "5692": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "5677": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "5690": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "5679": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "5688": [
+      "EXACT_SCORE",
+      null,
+      "5-3"
+    ],
+    "5684": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "5678": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "5676": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "5697": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "5685": [
+      "EXACT_SCORE",
+      null,
+      "5-0"
+    ],
+    "56103": [
+      "EXACT_SCORE",
+      null,
+      "4-5"
+    ],
+    "5694": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "5682": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "5686": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "5693": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "56100": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "5683": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "5699": [
+      "EXACT_SCORE",
+      null,
+      "0-5"
+    ],
+    "5689": [
+      "EXACT_SCORE",
+      null,
+      "5-4"
+    ],
+    "5681": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "56101": [
+      "EXACT_SCORE",
+      null,
+      "2-5"
+    ],
+    "5698": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "5695": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "56102": [
+      "EXACT_SCORE",
+      null,
+      "3-5"
+    ],
+    "575": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "574": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "573": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "5721": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "5720": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "5723": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "5722": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "5739": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "5738": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "5741": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "5740": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "5743": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "5742": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "5744": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "5745": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "5747": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "5746": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "5750": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "5751": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "5752": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "5753": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "5754": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "5755": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "5757": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "5756": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "5758": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "5759": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "5780": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "5768": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "5773": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "5769": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "5776": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "5771": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "5781": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "5778": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "5770": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "5777": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "5765": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "5766": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "5774": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "5775": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "5764": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "5767": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "5772": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "5779": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "584": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "585": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "583": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "5817": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "5816": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "5819": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "5818": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "5835": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "5834": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "5836": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "5837": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "5839": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "5838": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "5840": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "5841": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "5843": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "5842": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "5847": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "5846": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "5848": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "5849": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "5850": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "5851": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "5852": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "5853": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "5855": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "5854": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "5862": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "5865": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "5868": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "5863": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "5864": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "5867": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "5866": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "5861": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "5869": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "5860": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "5878": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "5879": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "5880": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "5881": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "5882": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "5883": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "58314": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "58315": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "58317": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "58316": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "58318": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "58319": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "58361": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "58360": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "58363": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "58362": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "58365": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "58364": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "58407": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "58406": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "58408": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "58409": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "58410": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "58411": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "593": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "594": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "595": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "5925": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "5924": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "5926": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "5927": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "5946": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "5947": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "5948": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "5949": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "5951": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "5950": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "5953": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "5952": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "5955": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "5954": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "5959": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "5958": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "5960": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "5961": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "5963": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "5962": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "5965": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "5964": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "5967": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "5966": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "5997": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "5993": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "5989": [
+      "EXACT_SCORE",
+      null,
+      "5-4"
+    ],
+    "5986": [
+      "EXACT_SCORE",
+      null,
+      "5-1"
+    ],
+    "59101": [
+      "EXACT_SCORE",
+      null,
+      "2-5"
+    ],
+    "5999": [
+      "EXACT_SCORE",
+      null,
+      "0-5"
+    ],
+    "5981": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "5983": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "5987": [
+      "EXACT_SCORE",
+      null,
+      "5-2"
+    ],
+    "5980": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "5992": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "5991": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "5979": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "5994": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "5985": [
+      "EXACT_SCORE",
+      null,
+      "5-0"
+    ],
+    "59103": [
+      "EXACT_SCORE",
+      null,
+      "4-5"
+    ],
+    "5996": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "5998": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "5977": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "5995": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "59100": [
+      "EXACT_SCORE",
+      null,
+      "1-5"
+    ],
+    "5984": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "5978": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "59102": [
+      "EXACT_SCORE",
+      null,
+      "3-5"
+    ],
+    "5988": [
+      "EXACT_SCORE",
+      null,
+      "5-3"
+    ],
+    "5990": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "5976": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "5982": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "604": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "605": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "603": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "6021": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "6020": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "6022": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "6023": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "6039": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "6038": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "6040": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "6041": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "6042": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "6043": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "6044": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "6045": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "6047": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "6046": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "6051": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "6050": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "6052": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "6053": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "6054": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "6055": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "6057": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "6056": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "6058": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "6059": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "6075": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "6078": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "6066": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "6064": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "6079": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "6069": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "6067": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "6065": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "6068": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "6077": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "6073": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "6081": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "6076": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "6074": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "6072": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "6070": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "6080": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "6071": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "613": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "614": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "615": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "6117": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "6116": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "6118": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "6119": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "6135": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "6134": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "6136": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "6137": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "6139": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "6138": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "6141": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "6140": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "6142": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "6143": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "6146": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "6147": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "6149": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "6148": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "6151": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "6150": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "6152": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "6153": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "6155": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "6154": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "6160": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "6168": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "6165": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "6169": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "6161": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "6164": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "6166": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "6163": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "6167": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "6162": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "6179": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "6178": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "6181": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "6180": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "6182": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "6183": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "61877": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "61876": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "61878": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "61879": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "61881": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "61880": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "61963": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "61962": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "61965": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "61964": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "61967": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "61966": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "611049": [
+      "TOTAL_1.5",
+      1.5,
+      "UNDER"
+    ],
+    "611048": [
+      "TOTAL_1.5",
+      1.5,
+      "OVER"
+    ],
+    "611050": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "611051": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "611052": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "611053": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "624": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "625": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "623": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "6221": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "6220": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "6222": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "6223": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "6239": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "6238": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "6241": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "6240": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "6242": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "6243": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "6245": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "6244": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "6246": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "6247": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "6251": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "6250": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "6253": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "6252": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "6254": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "6255": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "6257": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "6256": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "6258": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "6259": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "6268": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "6275": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "6267": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "6271": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "6270": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "6269": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "6279": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "6277": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "6280": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "6264": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "6281": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "6273": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "6272": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "6276": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "6274": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "6278": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "6266": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "6265": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "633": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "634": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "635": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "6320": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "6321": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "6323": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "6322": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "6338": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "6339": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "6340": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "6341": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "6343": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "6342": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "6345": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "6344": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "6346": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "6347": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "6351": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "6350": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "6352": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "6353": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "6355": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "6354": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "6357": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "6356": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "6359": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "6358": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "6379": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "6375": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "6365": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "6370": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "6380": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "6374": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "6372": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "6368": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "6376": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "6371": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "6378": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "6366": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "6367": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "6377": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "6369": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "6381": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "6364": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "6373": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "644": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "645": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "643": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "654": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "653": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "655": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "6521": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "6520": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "6522": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "6523": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "6538": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "6539": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "6540": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "6541": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "6543": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "6542": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "6545": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "6544": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "6547": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "6546": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "6551": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "6550": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "6552": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "6553": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "6555": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "6554": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "6557": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "6556": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "6558": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "6559": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "6573": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "6580": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "6572": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "6571": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "6569": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "6570": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "6575": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "6577": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "6581": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "6564": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "6567": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "6576": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "6566": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "6565": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "6578": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "6568": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "6574": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "6579": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "664": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "663": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "665": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "673": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "674": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "675": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "684": [
+      "1X2",
+      null,
+      "D"
+    ],
+    "685": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "683": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "8318": [
+      "TOTAL_2.5",
+      2.5,
+      "UNDER"
+    ],
+    "8317": [
+      "TOTAL_2.5",
+      2.5,
+      "OVER"
+    ],
+    "8320": [
+      "TOTAL_3.5",
+      3.5,
+      "UNDER"
+    ],
+    "8319": [
+      "TOTAL_3.5",
+      3.5,
+      "OVER"
+    ],
+    "8335": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "H"
+    ],
+    "8336": [
+      "HANDICAP_-2.5",
+      -2.5,
+      "A"
+    ],
+    "8337": [
+      "HANDICAP_-2",
+      -2.0,
+      "H"
+    ],
+    "8338": [
+      "HANDICAP_-2",
+      -2.0,
+      "A"
+    ],
+    "8340": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "A"
+    ],
+    "8339": [
+      "HANDICAP_-1.5",
+      -1.5,
+      "H"
+    ],
+    "8342": [
+      "HANDICAP_-1",
+      -1.0,
+      "A"
+    ],
+    "8341": [
+      "HANDICAP_-1",
+      -1.0,
+      "H"
+    ],
+    "8344": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "A"
+    ],
+    "8343": [
+      "HANDICAP_-0.5",
+      -0.5,
+      "H"
+    ],
+    "8347": [
+      "HANDICAP_+0.5",
+      0.5,
+      "H"
+    ],
+    "8348": [
+      "HANDICAP_+0.5",
+      0.5,
+      "A"
+    ],
+    "8349": [
+      "HANDICAP_+1",
+      1.0,
+      "H"
+    ],
+    "8350": [
+      "HANDICAP_+1",
+      1.0,
+      "A"
+    ],
+    "8352": [
+      "HANDICAP_+1.5",
+      1.5,
+      "A"
+    ],
+    "8351": [
+      "HANDICAP_+1.5",
+      1.5,
+      "H"
+    ],
+    "8353": [
+      "HANDICAP_+2",
+      2.0,
+      "H"
+    ],
+    "8354": [
+      "HANDICAP_+2",
+      2.0,
+      "A"
+    ],
+    "8356": [
+      "HANDICAP_+2.5",
+      2.5,
+      "A"
+    ],
+    "8355": [
+      "HANDICAP_+2.5",
+      2.5,
+      "H"
+    ],
+    "8377": [
+      "EXACT_SCORE",
+      null,
+      "2-4"
+    ],
+    "8369": [
+      "EXACT_SCORE",
+      null,
+      "4-3"
+    ],
+    "8366": [
+      "EXACT_SCORE",
+      null,
+      "4-0"
+    ],
+    "8376": [
+      "EXACT_SCORE",
+      null,
+      "1-4"
+    ],
+    "8372": [
+      "EXACT_SCORE",
+      null,
+      "0-3"
+    ],
+    "8363": [
+      "EXACT_SCORE",
+      null,
+      "3-0"
+    ],
+    "8371": [
+      "EXACT_SCORE",
+      null,
+      "1-2"
+    ],
+    "8374": [
+      "EXACT_SCORE",
+      null,
+      "2-3"
+    ],
+    "8362": [
+      "EXACT_SCORE",
+      null,
+      "2-1"
+    ],
+    "8370": [
+      "EXACT_SCORE",
+      null,
+      "0-2"
+    ],
+    "8361": [
+      "EXACT_SCORE",
+      null,
+      "2-0"
+    ],
+    "8367": [
+      "EXACT_SCORE",
+      null,
+      "4-1"
+    ],
+    "8373": [
+      "EXACT_SCORE",
+      null,
+      "1-3"
+    ],
+    "8378": [
+      "EXACT_SCORE",
+      null,
+      "3-4"
+    ],
+    "8368": [
+      "EXACT_SCORE",
+      null,
+      "4-2"
+    ],
+    "8375": [
+      "EXACT_SCORE",
+      null,
+      "0-4"
+    ],
+    "8365": [
+      "EXACT_SCORE",
+      null,
+      "3-2"
+    ],
+    "8364": [
+      "EXACT_SCORE",
+      null,
+      "3-1"
+    ],
+    "8387": [
+      "1X2",
+      null,
+      "H"
+    ],
+    "8389": [
+      "1X2",
+      null,
+      "A"
+    ],
+    "8388": [
+      "1X2",
+      null,
+      "D"
+    ]
+  }
+}

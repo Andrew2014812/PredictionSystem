@@ -1,13 +1,19 @@
 {
- "checked_at": "2026-10-17T17:25:38",
+ "checked_at": "2026-10-22T12:03:42",
  "month": "2026-10",
- "month_credits": 66,
- "remaining": 195,
+ "month_credits": 94,
+ "remaining": 108,
  "requests": {
   "event|acd5bd945dd953ad1e300df5bfe696f9": {
    "at": "2026-10-12T15:20:00",
    "cost": 6,
    "items": 6
+  },
+  "odds|soccer_belgium_first_div": {
+   "at": "2026-10-22T12:03:42",
+   "cost": 4,
+   "items": 9,
+   "status": "200"
   },
   "odds|soccer_efl_champ": {
    "at": "2026-10-17T17:25:38",
@@ -30,14 +36,16 @@
    "items": 17
   },
   "odds|soccer_france_ligue_one": {
-   "at": "2026-10-17T17:25:38",
+   "at": "2026-10-22T12:03:42",
    "cost": 4,
-   "items": 17
+   "items": 18,
+   "status": "200"
   },
   "odds|soccer_france_ligue_two": {
-   "at": "2026-10-17T17:25:38",
+   "at": "2026-10-22T12:03:42",
    "cost": 4,
-   "items": 6
+   "items": 10,
+   "status": "200"
   },
   "odds|soccer_germany_bundesliga": {
    "at": "2026-10-17T17:25:38",
@@ -45,9 +53,16 @@
    "items": 12
   },
   "odds|soccer_germany_bundesliga2": {
-   "at": "2026-10-17T17:25:38",
+   "at": "2026-10-22T12:03:42",
    "cost": 4,
-   "items": 9
+   "items": 9,
+   "status": "200"
+  },
+  "odds|soccer_greece_super_league": {
+   "at": "2026-10-22T12:03:42",
+   "cost": 4,
+   "items": 21,
+   "status": "200"
   },
   "odds|soccer_italy_serie_a": {
    "at": "2026-10-17T17:25:38",
@@ -70,9 +85,10 @@
    "items": 10
   },
   "odds|soccer_spain_la_liga": {
-   "at": "2026-10-17T17:25:38",
+   "at": "2026-10-22T12:03:42",
    "cost": 4,
-   "items": 18
+   "items": 20,
+   "status": "200"
   },
   "odds|soccer_spain_segunda_division": {
    "at": "2026-10-17T17:25:38",
@@ -83,7 +99,13 @@
    "at": "2026-10-17T17:25:38",
    "cost": 4,
    "items": 6
+  },
+  "odds|soccer_turkey_super_league": {
+   "at": "2026-10-22T12:03:42",
+   "cost": 4,
+   "items": 9,
+   "status": "200"
   }
  },
- "used": 305
+ "used": 392
 }
