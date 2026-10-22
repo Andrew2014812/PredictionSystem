@@ -41,6 +41,21 @@ PROVIDER = "oddspapi"
 UK = ZoneInfo("Europe/London")
 COOLDOWN = {"odds": 0.5, "fixture": 0.5, "fixtures": 2.0, "settlements": 2.0, "historical-odds": 5.0}
 FREE = {"account", "historical-odds"}
+MIN_GAP = 0.35                # seconds between any two calls (the rate limit is not only per endpoint)
+MAX_ATTEMPTS = 4
+BACKOFF = 1.0
+
+
+def retry_after(response) -> float:
+    """Seconds to wait from a 429 answer: the Retry-After header, else "wait 0.12 seconds" in the body."""
+    header = response.headers.get("Retry-After")
+    if header:
+        try:
+            return max(float(header), 0.0)
+        except ValueError:
+            pass
+    m = re.search(r"wait\s+([0-9]*\.?[0-9]+)\s*s", response.text or "", re.I)
+    return float(m[1]) if m else 1.0
 _NON_FULL_TIME = re.compile(r"half|1st|2nd|first|second|period|minute|interval|\b1h\b|\b2h\b", re.I)
 _OTHER_STATS = re.compile(r"card|booking|shot|offside|foul|throw|goal ?kick|player|penalt|half ?time", re.I)
 
@@ -51,6 +66,9 @@ class OddsPapi:
         self.cache = cache or ApiCache(PROVIDER)
         self.ledger = ledger or CreditLedger(config.API_DIR / PROVIDER / "ledger.json", config.ODDSPAPI_MONTHLY_RESERVE)
         self._last_call: dict[str, float] = {}
+        self._last_any = 0.0
+        self.quota_exhausted = False
+        self.rate_limited = 0                      # 429 "please wait" answers seen in this run
 
     @property
     def available(self) -> bool:
@@ -58,44 +76,71 @@ class OddsPapi:
 
     # -- transport ---------------------------------------------------------------------------------
     def _wait(self, endpoint: str) -> None:
-        gap = COOLDOWN.get(endpoint, 1.0)
-        last = self._last_call.get(endpoint)
-        if last is not None and time.time() - last < gap:
-            time.sleep(gap - (time.time() - last) + 0.05)
-        self._last_call[endpoint] = time.time()
+        """Respect the endpoint cooldown (+10 %) and a global minimum gap between any two calls."""
+        gap = COOLDOWN.get(endpoint, 1.0) * 1.1
+        now = time.time()
+        waits = [MIN_GAP - (now - self._last_any)]
+        if endpoint in self._last_call:
+            waits.append(gap - (now - self._last_call[endpoint]))
+        pause = max(waits)
+        if pause > 0:
+            time.sleep(pause)
+        self._last_call[endpoint] = self._last_any = time.time()
 
     def _get(self, endpoint: str, params: dict, ledger_key: str | None, now: datetime, run_budget: int,
              max_age: float | None = None):
-        """GET with cache, cooldown and quota accounting. Returns (body or None, status)."""
+        """GET with cache, cooldown, retries and quota accounting. Returns (body or None, status).
+
+        status: 200 | "cached" | "not_found" (an answer: no such odds) | "budget" | "quota" (monthly limit
+        reached — the run stops asking) | "rate_limited" / "network" / 5xx (temporary: retried at the
+        next run, never recorded as an answer)."""
         url = f"{config.ODDSPAPI_URL}/{endpoint}"
         if max_age is not None:
             cached = self.cache.get(url, params, max_age)
             if cached is not None:
                 return cached, "cached"
+        if self.quota_exhausted:
+            return None, "quota"
         billable = endpoint not in FREE
         if billable and not self.ledger.can_spend(1, run_budget):
             log.info("OddsPapi budget reached; skipping %s %s", endpoint, params)
             return None, "budget"
-        self._wait(endpoint)
-        try:
-            r = requests.get(url, params={**params, "apiKey": self.key}, timeout=config.HTTP_TIMEOUT)
-        except requests.RequestException as exc:          # network failure: not counted by the API
-            log.warning("OddsPapi %s failed: %s", endpoint, exc)
-            return None, "network"
-        status = r.status_code
-        if status == 429 and "REQUEST_LIMIT" in r.text:
-            self.ledger.data["remaining"] = 0             # quota exhausted (also blocks the free endpoints)
-            return None, "quota"
-        counted = billable and not (status in (401, 403) or status == 429)
-        body = None
+        status, body = None, None
+        for attempt in range(MAX_ATTEMPTS):
+            self._wait(endpoint)
+            try:
+                r = requests.get(url, params={**params, "apiKey": self.key}, timeout=config.HTTP_TIMEOUT)
+            except requests.RequestException as exc:          # network failure: not counted by the API
+                log.warning("OddsPapi %s failed (attempt %d): %s", endpoint, attempt + 1, exc)
+                status = "network"
+                time.sleep(BACKOFF * 2 ** attempt)
+                continue
+            status = r.status_code
+            if status == 429:
+                if "REQUEST_LIMIT" in r.text:                 # monthly quota: stop asking in this run
+                    self.quota_exhausted = True
+                    self.ledger.data["remaining"] = 0
+                    log.warning("OddsPapi monthly request limit reached")
+                    return None, "quota"
+                self.rate_limited += 1
+                pause = retry_after(r) * 1.2 + 0.25 + BACKOFF * attempt
+                log.info("OddsPapi rate limited on %s; waiting %.2f s", endpoint, pause)
+                time.sleep(pause)
+                status = "rate_limited"
+                continue
+            if status >= 500:
+                time.sleep(BACKOFF * 2 ** attempt)
+                continue
+            break
+        counted = billable and isinstance(status, int) and status not in (401, 403, 429)
         if status == 200:
             body = r.json()
             self.cache.put(url, params, body)
         elif status == 404:
-            body, status = None, "not_found"                # e.g. no odds for this match: an answer, not an error
-        else:
+            status = "not_found"                              # e.g. no odds for this match: an answer
+        elif status not in ("rate_limited", "network"):
             log.warning("OddsPapi HTTP %s for %s: %s", status, endpoint, r.text[:200])
-        if counted:
+        if counted or (billable and status == "not_found"):
             self.ledger.record(ledger_key or f"{endpoint}|{sorted(params.items())}", 1,
                                _count_items(body), now, remaining=self._remaining_after(1), status=status)
         return body, status
@@ -141,8 +186,9 @@ class OddsPapi:
     def historical_odds(self, fixture_id: str, now: datetime) -> dict | None:
         params = {"fixtureId": fixture_id, "bookmakers": ",".join(config.ODDSPAPI_BOOKMAKERS[:3])}
         body, status = self._get("historical-odds", params, None, now, 0)
-        self.ledger.data.setdefault("requests", {})[f"historical|{fixture_id}"] = {
-            "at": now.isoformat(timespec="seconds"), "cost": 0, "items": _count_items(body), "status": str(status)}
+        if status in (200, "not_found"):                 # an answer (also "no odds"): remembered
+            self.ledger.data.setdefault("requests", {})[f"historical|{fixture_id}"] = {
+                "at": now.isoformat(timespec="seconds"), "cost": 0, "items": _count_items(body), "status": str(status)}
         return body if isinstance(body, dict) else None
 
 

@@ -117,3 +117,84 @@ def test_quota_ledger_retries_errors_but_not_empty_answers(tmp_path):
 def test_registry_uses_aliases_for_provider_names(tmp_path, league, name):
     known = {"Wolves", "Ath Bilbao"}
     assert TeamRegistry(tmp_path / "x.json").resolve("oddspapi", league, "C", name, None, known) in known
+
+
+# -- transport: rate limits, retries, quota --------------------------------------------------------
+class _Resp:
+    def __init__(self, status, body=None, text="", headers=None):
+        self.status_code, self._body, self.text, self.headers = status, body, text, headers or {}
+
+    def json(self):
+        return self._body
+
+
+def _client(tmp_path, monkeypatch, responses):
+    import requests as rq
+
+    from src.providers import oddspapi as op
+    from src.providers.cache import ApiCache
+    calls, sleeps = [], []
+    seq = iter(responses)
+
+    def fake_get(url, params=None, timeout=None):
+        calls.append((url, params))
+        item = next(seq)
+        if isinstance(item, Exception):
+            raise item
+        return item
+    monkeypatch.setattr(op.requests, "get", fake_get)
+    monkeypatch.setattr(op.time, "sleep", lambda s: sleeps.append(s))
+    client = op.OddsPapi("k", ApiCache("oddspapi", tmp_path), CreditLedger(tmp_path / "l.json", 20))
+    client.ledger.data["remaining"] = 200
+    return client, calls, sleeps, rq
+
+
+NOW = datetime(2026, 10, 22, 9, 0)
+
+
+def test_rate_limit_waits_as_asked_and_retries(tmp_path, monkeypatch):
+    client, calls, sleeps, _ = _client(tmp_path, monkeypatch, [
+        _Resp(429, text='{"code":"RATE_LIMITED","message":"Please wait 0.12 seconds"}'),
+        _Resp(200, {"bookmakers": {}})])
+    body, status = client._get("historical-odds", {"fixtureId": "f1"}, None, NOW, 0)
+    assert status == 200 and body == {"bookmakers": {}} and len(calls) == 2
+    assert any(0.12 < s < 1.0 for s in sleeps)                    # waited about what the API asked
+    assert client.rate_limited == 1
+
+
+def test_retry_after_header_is_respected(tmp_path, monkeypatch):
+    from src.providers.oddspapi import retry_after
+    assert retry_after(_Resp(429, headers={"Retry-After": "2"})) == 2.0
+    assert retry_after(_Resp(429, text="Please wait 0.4 seconds")) == 0.4
+    assert retry_after(_Resp(429, text="slow down")) == 1.0
+
+
+def test_rate_limit_never_loops_forever(tmp_path, monkeypatch):
+    client, calls, _, _ = _client(tmp_path, monkeypatch, [_Resp(429, text="RATE_LIMITED wait 0.1 s")] * 10)
+    body, status = client.historical_odds("f1", NOW) , None
+    assert body is None and len(calls) == 4                       # bounded attempts
+    assert "historical|f1" not in client.ledger.data["requests"]   # not remembered: retried next run
+
+
+def test_monthly_quota_stops_the_run(tmp_path, monkeypatch):
+    client, calls, _, _ = _client(tmp_path, monkeypatch, [_Resp(429, text='{"code":"REQUEST_LIMIT_EXCEEDED"}')])
+    assert client._get("odds", {"fixtureId": "f1"}, "odds|f1", NOW, 50) == (None, "quota")
+    assert client._get("odds", {"fixtureId": "f2"}, "odds|f2", NOW, 50) == (None, "quota")
+    assert len(calls) == 1 and client.quota_exhausted
+
+
+def test_server_errors_back_off_and_are_not_recorded_as_answers(tmp_path, monkeypatch):
+    import requests as rq
+    client, calls, sleeps, _ = _client(tmp_path, monkeypatch, [
+        _Resp(502, text="bad gateway"), rq.ConnectionError("down"), _Resp(200, {"bookmakers": {"bet365": {}}})])
+    body, status = client._get("odds", {"fixtureId": "f1"}, "odds|f1", NOW, 50)
+    assert status == 200 and len(calls) == 3 and any(s >= 2 for s in sleeps)   # exponential backoff
+    client2, _, _, _ = _client(tmp_path / "b", monkeypatch, [rq.ConnectionError("down")] * 4)
+    assert client2._get("odds", {"fixtureId": "f1"}, "odds|f1", NOW, 50) == (None, "network")
+    assert not client2.ledger.requested_within("odds|f1", 12, NOW)
+
+
+def test_empty_answer_is_remembered_for_the_refresh_window(tmp_path, monkeypatch):
+    client, _, _, _ = _client(tmp_path, monkeypatch, [_Resp(200, {"bookmakers": {}})])
+    client.historical_odds("f9", NOW)
+    assert client.ledger.requested_within("historical|f9", 12, NOW)          # "no odds" is an answer
