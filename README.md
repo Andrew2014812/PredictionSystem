@@ -407,8 +407,9 @@ python scripts/regenerate_predictions.py                   # re-apply the rules 
 ### GitHub Actions and deployment
 
 The deployed app (Streamlit Community Cloud) is built from `main`. `.github/workflows/update-data.yml` runs
-**every day at about 11:00 Kyiv time** in `full` mode: two cron lines (08:00 and 09:00 UTC) and a guard step
-that keeps only the one matching Kyiv's current UTC offset, so the time stays right across summer / winter time.
+**every day at about 11:15 Kyiv time** in `full` mode: two cron lines (08:17 and 09:17 UTC — off the full
+hour, when GitHub often drops scheduled runs) and a guard step that keeps only the one matching Kyiv's current
+UTC offset, so the time stays right across summer / winter time.
 It can also be started by hand (*Actions → Update data and predictions → Run workflow*) with the mode —
 `results` (free), `odds` or `full` — and optionally one league, one day or one match and *force*. Secrets:
 `API_FOOTBALL_KEY`, `ODDSPAPI_KEY`, `ODDS_API_KEY`; optional variable `ODDS_API_FALLBACK`. It commits the new

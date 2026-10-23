@@ -18,7 +18,7 @@
 # (YYYY-MM-DD) or one match id, and "force" to re-price inside the refresh window.
 #
 # Kyiv is UTC+3 in summer and UTC+2 in winter, and cron runs in UTC, so two schedules exist
-# (08:00 and 09:00 UTC) and the "time" step lets exactly one of them continue each day.
+# (08:17 and 09:17 UTC) and the "time" step lets exactly one of them continue each day.
 # GitHub may start scheduled runs late; the check uses the schedule that fired, not the clock.
 #
 # The run commits local_data/ to main; Streamlit Cloud redeploys automatically and a local
@@ -28,8 +28,8 @@ name: Update data and predictions
 
 on:
   schedule:
-    - cron: "0 8 * * *"      # 11:00 Kyiv in summer (UTC+3)
-    - cron: "0 9 * * *"      # 11:00 Kyiv in winter (UTC+2)
+    - cron: "17 8 * * *"     # 11:17 Kyiv in summer (UTC+3); not on the hour, when GitHub drops runs
+    - cron: "17 9 * * *"     # 11:17 Kyiv in winter (UTC+2)
   workflow_dispatch:
     inputs:
       mode:
@@ -83,7 +83,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
           offset=$(TZ=Europe/Kyiv date +%z)          # +0300 in summer, +0200 in winter
-          want="0 9 * * *"; [ "$offset" = "+0300" ] && want="0 8 * * *"
+          want="17 9 * * *"; [ "$offset" = "+0300" ] && want="17 8 * * *"
           if [ "${{ github.event.schedule }}" = "$want" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
