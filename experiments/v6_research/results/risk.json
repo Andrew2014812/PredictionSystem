@@ -1,0 +1,721 @@
+{
+ "folds": {
+  "2023": {
+   "nb_size_inner": 60.257029141763546,
+   "current (no EV rule)": {
+    "predictions": 7224,
+    "hit_rate": 0.2799003322259136,
+    "bets": 6605,
+    "priced_share": 0.9143133997785161,
+    "roi": -0.07170476911430734,
+    "avg_odds": 3.5371476154428465,
+    "avg_effective_odds": 3.4903831738161615,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.023943861047183348,
+    "roi_ci95": [
+     -0.10993058289174866,
+     -0.03359049962149886
+    ],
+    "step_shares": {
+     "current": 1.0
+    },
+    "seconds": 7.4510674476623535
+   },
+   "EV >= 0 first, else current": {
+    "predictions": 7199,
+    "hit_rate": 0.3180997360744548,
+    "bets": 7011,
+    "priced_share": 0.9738852618419225,
+    "roi": -0.0683354728284125,
+    "avg_odds": 3.289487947511054,
+    "avg_effective_odds": 3.28103478989965,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.09007994121769733,
+    "roi_ci95": [
+     -0.1031648837541007,
+     -0.03475506347168736
+    ],
+    "step_shares": {
+     "fallback_current": 0.14461156340554712,
+     "positive_ev": 0.8553884365944529
+    },
+    "seconds": 5.799121856689453
+   },
+   "floor -3 % (least_negative)": {
+    "predictions": 7206,
+    "hit_rate": 0.33388842631140714,
+    "bets": 7118,
+    "priced_share": 0.9877879544823758,
+    "roi": -0.06388030345602698,
+    "avg_odds": 3.181900814835628,
+    "avg_effective_odds": 3.179589754665962,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.093869452153686,
+    "roi_ci95": [
+     -0.09740120118010677,
+     -0.02987457853329587
+    ],
+    "step_shares": {
+     "within_floor": 0.10183524216917345,
+     "positive_ev": 0.8553884365944529,
+     "fallback_current": 0.04277632123637367
+    },
+    "seconds": 6.438072443008423
+   },
+   "floor -3 % (best_scored)": {
+    "predictions": 7207,
+    "hit_rate": 0.3321770500901901,
+    "bets": 7119,
+    "priced_share": 0.9877896489524074,
+    "roi": -0.06262536873156342,
+    "avg_odds": 3.1979631970782414,
+    "avg_effective_odds": 3.1954563302515506,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.09372047388346533,
+    "roi_ci95": [
+     -0.09524192302289648,
+     -0.026703820761342915
+    ],
+    "step_shares": {
+     "within_floor": 0.10183524216917345,
+     "positive_ev": 0.8553884365944529,
+     "fallback_current": 0.04277632123637367
+    },
+    "seconds": 6.5201256275177
+   },
+   "floor -5 % (least_negative)": {
+    "predictions": 7208,
+    "hit_rate": 0.33976137624861263,
+    "bets": 7172,
+    "priced_share": 0.9950055493895672,
+    "roi": -0.06369074177356387,
+    "avg_odds": 3.147912716118238,
+    "avg_effective_odds": 3.1470226477493015,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.09422720025442236,
+    "roi_ci95": [
+     -0.09792251115448969,
+     -0.03155601645287229
+    ],
+    "step_shares": {
+     "within_floor": 0.13371050089692285,
+     "positive_ev": 0.8553884365944529,
+     "fallback_current": 0.010901062508624259
+    },
+    "seconds": 5.6921632289886475
+   },
+   "floor -5 % (best_scored)": {
+    "predictions": 7209,
+    "hit_rate": 0.33263975586072964,
+    "bets": 7173,
+    "priced_share": 0.9950062421972534,
+    "roi": -0.06434825038338214,
+    "avg_odds": 3.191387146242855,
+    "avg_effective_odds": 3.1902801005655386,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.09354404077160536,
+    "roi_ci95": [
+     -0.09570796737766625,
+     -0.03179252056322321
+    ],
+    "step_shares": {
+     "within_floor": 0.13371050089692285,
+     "positive_ev": 0.8553884365944529,
+     "fallback_current": 0.010901062508624259
+    },
+    "seconds": 6.9307146072387695
+   },
+   "floor -8 % (least_negative)": {
+    "predictions": 7210,
+    "hit_rate": 0.3435506241331484,
+    "bets": 7196,
+    "priced_share": 0.9980582524271845,
+    "roi": -0.06006253474152307,
+    "avg_odds": 3.135372429127293,
+    "avg_effective_odds": 3.1350570272656313,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.09402863429214217,
+    "roi_ci95": [
+     -0.09273961228460256,
+     -0.027391224291272942
+    ],
+    "step_shares": {
+     "within_floor": 0.14254174141023873,
+     "positive_ev": 0.8553884365944529,
+     "fallback_current": 0.0020698219953084033
+    },
+    "seconds": 6.527827262878418
+   },
+   "floor -8 % (best_scored)": {
+    "predictions": 7211,
+    "hit_rate": 0.3285258632644571,
+    "bets": 7197,
+    "priced_share": 0.9980585217029538,
+    "roi": -0.06694733916909824,
+    "avg_odds": 3.218653605669029,
+    "avg_effective_odds": 3.21817655894955,
+    "matches": 7247,
+    "coverage": 1.0,
+    "matches_with_main": 7247,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.09197319952984083,
+    "roi_ci95": [
+     -0.10000500208420175,
+     -0.03251208837015424
+    ],
+    "step_shares": {
+     "within_floor": 0.14254174141023873,
+     "positive_ev": 0.8553884365944529,
+     "fallback_current": 0.0020698219953084033
+    },
+    "seconds": 7.000450372695923
+   }
+  },
+  "2024": {
+   "nb_size_inner": 63.91145935663603,
+   "current (no EV rule)": {
+    "predictions": 7115,
+    "hit_rate": 0.2809557273366128,
+    "bets": 6568,
+    "priced_share": 0.9231201686577652,
+    "roi": -0.05932856272838004,
+    "avg_odds": 3.5007704019488424,
+    "avg_effective_odds": 3.4611195768133407,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.01609560532995425,
+    "roi_ci95": [
+     -0.09620013702801461,
+     -0.02319937576126676
+    ],
+    "step_shares": {
+     "current": 1.0
+    },
+    "seconds": 9.38483214378357
+   },
+   "EV >= 0 first, else current": {
+    "predictions": 7092,
+    "hit_rate": 0.31782289904117317,
+    "bets": 6952,
+    "priced_share": 0.9802594472645234,
+    "roi": -0.07611334867663982,
+    "avg_odds": 3.2631645569620256,
+    "avg_effective_odds": 3.257432170624716,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.08163115354471455,
+    "roi_ci95": [
+     -0.11148748561565017,
+     -0.041338859321058706
+    ],
+    "step_shares": {
+     "positive_ev": 0.8372843316033104,
+     "fallback_current": 0.16271566839668958
+    },
+    "seconds": 7.325233221054077
+   },
+   "floor -3 % (least_negative)": {
+    "predictions": 7090,
+    "hit_rate": 0.33342736248236954,
+    "bets": 7031,
+    "priced_share": 0.9916784203102962,
+    "roi": -0.07410752382306927,
+    "avg_odds": 3.160975679135258,
+    "avg_effective_odds": 3.1595148088459633,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.08625358667004804,
+    "roi_ci95": [
+     -0.10736900867586403,
+     -0.04022546579433937
+    ],
+    "step_shares": {
+     "positive_ev": 0.8372843316033104,
+     "fallback_current": 0.04488708093701781,
+     "within_floor": 0.11782858745967176
+    },
+    "seconds": 5.832157373428345
+   },
+   "floor -3 % (best_scored)": {
+    "predictions": 7089,
+    "hit_rate": 0.32994780646071376,
+    "bets": 7030,
+    "priced_share": 0.9916772464381436,
+    "roi": -0.076298719772404,
+    "avg_odds": 3.178883357041252,
+    "avg_effective_odds": 3.1772732394862295,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.08607735449162034,
+    "roi_ci95": [
+     -0.10797094594594595,
+     -0.042414509246088236
+    ],
+    "step_shares": {
+     "positive_ev": 0.8372843316033104,
+     "fallback_current": 0.04488708093701781,
+     "within_floor": 0.11782858745967176
+    },
+    "seconds": 9.069578647613525
+   },
+   "floor -5 % (least_negative)": {
+    "predictions": 7092,
+    "hit_rate": 0.3391144952058658,
+    "bets": 7062,
+    "priced_share": 0.9957698815566836,
+    "roi": -0.07006230529595017,
+    "avg_odds": 3.1296587369017272,
+    "avg_effective_odds": 3.1292578803413074,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.08715395710561474,
+    "roi_ci95": [
+     -0.10232200509770603,
+     -0.03633025346927217
+    ],
+    "step_shares": {
+     "positive_ev": 0.8372843316033104,
+     "within_floor": 0.15121335390657875,
+     "fallback_current": 0.011502314490110814
+    },
+    "seconds": 7.646578073501587
+   },
+   "floor -5 % (best_scored)": {
+    "predictions": 7092,
+    "hit_rate": 0.3310772701635646,
+    "bets": 7062,
+    "priced_share": 0.9957698815566836,
+    "roi": -0.07268620787312377,
+    "avg_odds": 3.1811144151798363,
+    "avg_effective_odds": 3.1804958950057176,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.0863408677607403,
+    "roi_ci95": [
+     -0.10724674313225717,
+     -0.03941475502690458
+    ],
+    "step_shares": {
+     "positive_ev": 0.8372843316033104,
+     "within_floor": 0.15121335390657875,
+     "fallback_current": 0.011502314490110814
+    },
+    "seconds": 4.760040044784546
+   },
+   "floor -8 % (least_negative)": {
+    "predictions": 7093,
+    "hit_rate": 0.3411814464965459,
+    "bets": 7087,
+    "priced_share": 0.9991540955871987,
+    "roi": -0.07063778749823621,
+    "avg_odds": 3.1191124594327646,
+    "avg_effective_odds": 3.1192541348650673,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.08683492816377265,
+    "roi_ci95": [
+     -0.10289336108367435,
+     -0.03784217581487232
+    ],
+    "step_shares": {
+     "positive_ev": 0.8372843316033104,
+     "within_floor": 0.1617337635011923,
+     "fallback_current": 0.0009819048954972647
+    },
+    "seconds": 6.889145612716675
+   },
+   "floor -8 % (best_scored)": {
+    "predictions": 7096,
+    "hit_rate": 0.3289177001127396,
+    "bets": 7090,
+    "priced_share": 0.9991544532130778,
+    "roi": -0.07053737658674189,
+    "avg_odds": 3.212787023977433,
+    "avg_effective_odds": 3.2128494332860655,
+    "matches": 7129,
+    "coverage": 1.0,
+    "matches_with_main": 7129,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.0844300608148716,
+    "roi_ci95": [
+     -0.10480870944992948,
+     -0.03800324400564177
+    ],
+    "step_shares": {
+     "positive_ev": 0.8372843316033104,
+     "within_floor": 0.1617337635011923,
+     "fallback_current": 0.0009819048954972647
+    },
+    "seconds": 8.317893266677856
+   }
+  },
+  "2025": {
+   "nb_size_inner": 71.08005748615068,
+   "current (no EV rule)": {
+    "predictions": 7082,
+    "hit_rate": 0.2787348206721265,
+    "bets": 6617,
+    "priced_share": 0.934340581756566,
+    "roi": -0.0583542390811546,
+    "avg_odds": 3.4792458818195553,
+    "avg_effective_odds": 3.4467874409566357,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.00018222537000613646,
+    "roi_ci95": [
+     -0.09364606317062112,
+     -0.019737909928970843
+    ],
+    "step_shares": {
+     "current": 1.0
+    },
+    "seconds": 3.46254563331604
+   },
+   "EV >= 0 first, else current": {
+    "predictions": 7047,
+    "hit_rate": 0.31573719313182913,
+    "bets": 6882,
+    "priced_share": 0.9765857811834824,
+    "roi": -0.0908442313281023,
+    "avg_odds": 3.2296178436501015,
+    "avg_effective_odds": 3.22307400338846,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.06304683569860835,
+    "roi_ci95": [
+     -0.12528716216216215,
+     -0.059088673350770136
+    ],
+    "step_shares": {
+     "positive_ev": 0.7874259937975754,
+     "fallback_current": 0.2125740062024246
+    },
+    "seconds": 2.8121085166931152
+   },
+   "floor -3 % (least_negative)": {
+    "predictions": 7042,
+    "hit_rate": 0.3366941209883556,
+    "bets": 6952,
+    "priced_share": 0.9872195399034365,
+    "roi": -0.08650028768699654,
+    "avg_odds": 3.103614787111623,
+    "avg_effective_odds": 3.1019740580729898,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.06980529216656782,
+    "roi_ci95": [
+     -0.11616944764096661,
+     -0.05402118095512084
+    ],
+    "step_shares": {
+     "positive_ev": 0.7874259937975754,
+     "fallback_current": 0.07372427403439526,
+     "within_floor": 0.13884973216802932
+    },
+    "seconds": 3.117729663848877
+   },
+   "floor -3 % (best_scored)": {
+    "predictions": 7045,
+    "hit_rate": 0.3356990773598297,
+    "bets": 6955,
+    "priced_share": 0.9872249822569198,
+    "roi": -0.08271603163191947,
+    "avg_odds": 3.125522645578721,
+    "avg_effective_odds": 3.123602741937543,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.06957308553028593,
+    "roi_ci95": [
+     -0.11342703091301222,
+     -0.048951473759885
+    ],
+    "step_shares": {
+     "positive_ev": 0.7874259937975754,
+     "fallback_current": 0.07372427403439526,
+     "within_floor": 0.13884973216802932
+    },
+    "seconds": 2.8005785942077637
+   },
+   "floor -5 % (least_negative)": {
+    "predictions": 7043,
+    "hit_rate": 0.3458753372142553,
+    "bets": 7000,
+    "priced_share": 0.9938946471674003,
+    "roi": -0.08590285714285713,
+    "avg_odds": 3.047414285714286,
+    "avg_effective_odds": 3.047139499246034,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.07140810615244145,
+    "roi_ci95": [
+     -0.11346899999999999,
+     -0.053445571428571446
+    ],
+    "step_shares": {
+     "positive_ev": 0.7874259937975754,
+     "fallback_current": 0.01903016633775021,
+     "within_floor": 0.19354383986467438
+    },
+    "seconds": 3.3707752227783203
+   },
+   "floor -5 % (best_scored)": {
+    "predictions": 7046,
+    "hit_rate": 0.3379222253760999,
+    "bets": 7003,
+    "priced_share": 0.9938972466647743,
+    "roi": -0.08502356133085821,
+    "avg_odds": 3.1061373696987005,
+    "avg_effective_odds": 3.105504327730601,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.07036783523893825,
+    "roi_ci95": [
+     -0.11613701270883908,
+     -0.05077127659574468
+    ],
+    "step_shares": {
+     "positive_ev": 0.7874259937975754,
+     "fallback_current": 0.01903016633775021,
+     "within_floor": 0.19354383986467438
+    },
+    "seconds": 3.079367160797119
+   },
+   "floor -8 % (least_negative)": {
+    "predictions": 7046,
+    "hit_rate": 0.3489923360772069,
+    "bets": 7023,
+    "priced_share": 0.9967357365881351,
+    "roi": -0.08270539655417913,
+    "avg_odds": 3.035081873843087,
+    "avg_effective_odds": 3.0350868717159827,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.07132406452443076,
+    "roi_ci95": [
+     -0.1141051188950591,
+     -0.05357503915705539
+    ],
+    "step_shares": {
+     "positive_ev": 0.7874259937975754,
+     "within_floor": 0.2070764025937412,
+     "fallback_current": 0.005497603608683395
+    },
+    "seconds": 2.7770323753356934
+   },
+   "floor -8 % (best_scored)": {
+    "predictions": 7054,
+    "hit_rate": 0.33243549759001984,
+    "bets": 7031,
+    "priced_share": 0.9967394386163879,
+    "roi": -0.08499075522685252,
+    "avg_odds": 3.1469620253164554,
+    "avg_effective_odds": 3.1466022254197354,
+    "matches": 7094,
+    "coverage": 1.0,
+    "matches_with_main": 7094,
+    "risk_for_every_main": true,
+    "matches_with_main_but_no_risk": 0,
+    "risk_equal_to_main": 0,
+    "avg_ev_priced": 0.06813191696489841,
+    "roi_ci95": [
+     -0.11689496515431662,
+     -0.05069431802019628
+    ],
+    "step_shares": {
+     "positive_ev": 0.7874259937975754,
+     "within_floor": 0.2070764025937412,
+     "fallback_current": 0.005497603608683395
+    },
+    "seconds": 3.1483306884765625
+   }
+  }
+ },
+ "variants": [
+  "current (no EV rule)",
+  "EV >= 0 first, else current",
+  "floor -3 % (least_negative)",
+  "floor -3 % (best_scored)",
+  "floor -5 % (least_negative)",
+  "floor -5 % (best_scored)",
+  "floor -8 % (least_negative)",
+  "floor -8 % (best_scored)"
+ ],
+ "selection": {
+  "table": {
+   "current (no EV rule)": {
+    "worst_roi": -0.07170476911430734,
+    "pooled_roi": -0.06553404691414257,
+    "min_avg_effective_odds": 3.4611195768133407,
+    "min_priced_share": 0.9143133997785161,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   },
+   "EV >= 0 first, else current": {
+    "worst_roi": -0.07611334867663982,
+    "pooled_roi": -0.07220797822817447,
+    "min_avg_effective_odds": 3.257432170624716,
+    "min_priced_share": 0.9738852618419225,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   },
+   "floor -3 % (least_negative)": {
+    "worst_roi": -0.07410752382306927,
+    "pooled_roi": -0.06896247084599619,
+    "min_avg_effective_odds": 3.1595148088459633,
+    "min_priced_share": 0.9877879544823758,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   },
+   "floor -3 % (best_scored)": {
+    "worst_roi": -0.076298719772404,
+    "pooled_roi": -0.06941904021485618,
+    "min_avg_effective_odds": 3.1772732394862295,
+    "min_priced_share": 0.9877896489524074,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   },
+   "floor -5 % (least_negative)": {
+    "worst_roi": -0.07006230529595017,
+    "pooled_roi": -0.06685190389208938,
+    "min_avg_effective_odds": 3.1292578803413074,
+    "min_priced_share": 0.9950055493895672,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   },
+   "floor -5 % (best_scored)": {
+    "worst_roi": -0.07268620787312377,
+    "pooled_roi": -0.06848472075869337,
+    "min_avg_effective_odds": 3.1804958950057176,
+    "min_priced_share": 0.9950062421972534,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   },
+   "floor -8 % (least_negative)": {
+    "worst_roi": -0.07063778749823621,
+    "pooled_roi": -0.06530980886368411,
+    "min_avg_effective_odds": 3.1192541348650673,
+    "min_priced_share": 0.9980582524271845,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   },
+   "floor -8 % (best_scored)": {
+    "worst_roi": -0.07053737658674189,
+    "pooled_roi": -0.0687289143977042,
+    "min_avg_effective_odds": 3.2128494332860655,
+    "min_priced_share": 0.9980585217029538,
+    "risk_for_every_main_both": true,
+    "roi_better_than_current_both": false
+   }
+  },
+  "eligible": [
+   "current (no EV rule)",
+   "EV >= 0 first, else current",
+   "floor -3 % (least_negative)",
+   "floor -3 % (best_scored)",
+   "floor -5 % (least_negative)",
+   "floor -5 % (best_scored)",
+   "floor -8 % (least_negative)",
+   "floor -8 % (best_scored)"
+  ],
+  "worst_fold_roi_winner": "floor -5 % (least_negative)",
+  "better_than_current_on_both": [],
+  "chosen": "current (no EV rule)",
+  "rule": "avg effective odds >= 3.0 and priced share >= 40 % on both folds, a Risk for every Main; a variant replaces the current rule only if its ROI is higher on BOTH 2023 and 2024; among those the highest worst-fold ROI (2023+2024 only)"
+ },
+ "minutes": 2.9561030149459837
+}
