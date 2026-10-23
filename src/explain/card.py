@@ -103,6 +103,6 @@ def card_factors(explanation: pd.DataFrame, home: str, away: str, lang: str = "e
     support = sorted((f for f in out if f.supports), key=lambda f: -f.share)
     against = sorted((f for f in out if not f.supports), key=lambda f: -f.share)
     chosen = [f for i, f in enumerate(support[:limit]) if i < 3 or f.share >= MIN_SHARE]
-    if against and against[0].share >= 0.10 and len(chosen) >= 3:
-        chosen = chosen[:limit - 1] + [against[0]]
+    if against and against[0].share >= 0.10:            # a factor against is shown only when it really matters
+        chosen = (chosen[:limit - 1] if len(chosen) >= limit else chosen) + [against[0]]
     return chosen
