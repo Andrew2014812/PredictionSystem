@@ -12,7 +12,7 @@ from src.ui.prefs import init_prefs, top_bar
 
 logging.basicConfig(level=logging.WARNING)
 
-st.set_page_config(page_title="FootPredict", page_icon="assets/favicon.png", layout="wide",
+st.set_page_config(page_title="FootPredict", page_icon="assets/favicon-48.png", layout="wide",
                    initial_sidebar_state="collapsed")
 init_prefs()
 
