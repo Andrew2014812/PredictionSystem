@@ -368,7 +368,7 @@ def build() -> Path:
     story += [Spacer(1, 5 * cm), Paragraph("FootPredict", S["title"]), Spacer(1, 6),
               Paragraph("Информационная система прогнозирования результатов и статистических показателей "
                         "футбольных матчей на основе машинного обучения", S["subtitle"]), Spacer(1, 1.2 * cm),
-              Paragraph("Исследовательский и технический отчёт · версия v6", S["h2"]),
+              Paragraph("Исследовательский и технический отчёт · версия v6", S["h3"]),
               Paragraph(f"Дата исследования: {date.today():%d.%m.%Y}", S["body"]),
               Paragraph(f"Git commit: {esc(sha)}", S["body"]),
               Paragraph(f"Активная модель: {esc(active)}", S["body"]), PageBreak()]
@@ -483,7 +483,7 @@ def build() -> Path:
         story += [P("Архив OddsPapi на момент сборки отчёта ещё не был загружен или не содержит фикстур; "
                     "таблицы ниже отражают имеющиеся данные.")]
     if after.get("leagues"):
-        rows = [["Лига", "Матчей", "Фикстур ODP", "Сопост.", "С ценой", "Main с ценой", "Risk с ценой",
+        rows = [["Лига", "Матч.", "Фикстур ODP", "Сопост.", "С ценой", "Main с ценой", "Risk с ценой",
                  "1X2", "Тотал", "BTTS", "Фора", "Углов."]]
         for r in after["leagues"]:
             rows.append([r["league"], r["matches"], r["oddspapi_fixtures"], r["mapped"], r["with_any_price"],
@@ -511,10 +511,15 @@ def build() -> Path:
     reasons = after.get("missing_reasons", {})
     if reasons:
         story += [H2("Причины отсутствия цены у рассчитанных прогнозов")]
+        ru = {"match not found at OddsPapi (or not mapped safely)": "матч не найден у OddsPapi или не сопоставлен надёжно",
+              "no pre-match price snapshot for the match": "нет предматчевого снимка цен для матча",
+              "selection / line not offered by the bookmakers": "исход / линия не предлагались букмекерами",
+              "this line of the market not offered": "эта линия рынка не предлагалась",
+              "market not offered for the match": "рынок не предлагался для матча"}
         rows = [["Тип", "Причина", "Прогнозов"]]
         for role, rs in reasons.items():
             for why, n in sorted(rs.items(), key=lambda kv: -kv[1]):
-                rows.append([role.capitalize(), why, n])
+                rows.append([role.capitalize(), ru.get(why, why), n])
         story += [table(rows, widths=[2 * cm, 12 * cm, 3 * cm])]
         story += [P("Объяснение причин: матч не найден — у OddsPapi нет фикстуры этого матча или "
                     "соответствие команд было сомнительным, и цена не привязывалась; нет снимка — фикстура "
