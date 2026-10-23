@@ -10,6 +10,12 @@ from src.providers.football_data import odds_from_matches
 from src.providers.schema import best_prices, odds_frame, odds_lookup
 from src.providers.the_odds_api import parse_event, parse_event_odds, parse_score
 
+@pytest.fixture(autouse=True)
+def _odds_api_on_for_missing_markets(monkeypatch):
+    """These tests exercise The Odds API collection, which is off by default."""
+    monkeypatch.setenv("ODDS_API_FALLBACK", "missing")
+
+
 AF_FIXTURE = {
     "fixture": {"id": 1208021, "date": "2026-10-04T14:00:00+00:00", "status": {"short": "FT"}},
     "league": {"id": 39, "season": 2026},
@@ -316,7 +322,7 @@ def _store_oddspapi_prices(col, event, markets):
 
 def test_the_odds_api_does_not_buy_what_oddspapi_already_priced(tmp_path, monkeypatch):
     col, ledger = _collect_env(tmp_path, monkeypatch)
-    monkeypatch.delenv("ODDS_API_FALLBACK", raising=False)
+    monkeypatch.setenv("ODDS_API_FALLBACK", "missing")
     calls = []
     fake, event = _fake_api(col, ledger, calls)
     monkeypatch.setattr(col, "TheOddsApi", fake)
@@ -334,3 +340,12 @@ def test_the_odds_api_fallback_can_be_switched_off(tmp_path, monkeypatch):
     monkeypatch.setattr(col, "TheOddsApi", _fake_api(col, ledger, calls)[0])
     summary = col.collect(MATCHES, mode="odds")
     assert calls == [] and "the_odds_api" not in summary or "not used" in summary["the_odds_api"]
+
+
+def test_the_odds_api_is_off_unless_switched_on(monkeypatch):
+    from src import config
+    monkeypatch.delenv("ODDS_API_FALLBACK", raising=False)
+    monkeypatch.setattr(config, "_load_dotenv", lambda: None)
+    assert config.odds_api_fallback() == "off"
+    monkeypatch.setenv("ODDS_API_FALLBACK", "nonsense")
+    assert config.odds_api_fallback() == "off"

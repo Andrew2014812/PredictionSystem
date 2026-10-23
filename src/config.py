@@ -81,9 +81,10 @@ ODDS_API_MONTHLY_RESERVE = 30       # stop when fewer credits than this are left
 ODDS_API_EXTENDED_TIERS = (1,)
 # The Odds API is the fallback once OddsPapi is configured (no double spending on the same prices).
 ODDS_API_ENABLED = True
-# ODDS_API_FALLBACK (environment or GitHub variable): "missing" (default) — only matches / markets that no
-# other provider priced; "off" — never call The Odds API; "always" — v4 behaviour.
-ODDS_API_FALLBACK_DEFAULT = "missing"
+# ODDS_API_FALLBACK (environment or GitHub variable): "off" (default) — never call The Odds API (its prices
+# already stored are still read); "missing" — only matches / markets that no other provider priced;
+# "always" — v4 behaviour. The free credits are kept for a decision made by hand.
+ODDS_API_FALLBACK_DEFAULT = "off"
 
 
 def odds_api_fallback() -> str:

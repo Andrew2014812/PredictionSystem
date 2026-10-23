@@ -16,7 +16,7 @@ def _wf():
 
 def test_daily_schedule_and_manual_modes_exist():
     data, on = _wf()
-    assert {c["cron"] for c in on["schedule"]} == {"0 8 * * *", "0 9 * * *"}
+    assert {c["cron"] for c in on["schedule"]} == {"17 8 * * *", "17 9 * * *"}
     inputs = on["workflow_dispatch"]["inputs"]
     assert inputs["mode"]["options"] == ["results", "odds", "full", "history"]
     assert len(inputs) <= 10                                          # GitHub's limit for manual inputs
@@ -26,6 +26,7 @@ def test_daily_schedule_and_manual_modes_exist():
     assert any(s.get("with", {}).get("ref") == "main" for s in steps)
     env = next(s for s in steps if s.get("name") == "Run pipeline")["env"]
     assert env["ODDSPAPI_KEY"] == "${{ secrets.ODDSPAPI_KEY }}"            # the key only from Secrets
+    assert env["ODDS_API_FALLBACK"].endswith("|| 'off' }}")                # no The Odds API credits by default
 
 
 def _guard_script() -> str:
@@ -46,7 +47,7 @@ def _run_guard(schedule: str, offset: str, tmp_path) -> bool:
 
 def test_exactly_one_daily_run_in_summer_and_in_winter(tmp_path):
     for offset in ("+0300", "+0200"):
-        runs = [_run_guard(s, offset, tmp_path) for s in ("0 8 * * *", "0 9 * * *")]
+        runs = [_run_guard(s, offset, tmp_path) for s in ("17 8 * * *", "17 9 * * *")]
         assert runs.count(True) == 1, (offset, runs)
 
 
@@ -55,10 +56,10 @@ def test_the_chosen_schedule_is_11_00_in_kyiv_all_year():
     day = datetime(2026, 1, 1, tzinfo=timezone.utc)
     for _ in range(366):
         chosen = []
-        for hour, cron in ((8, "0 8 * * *"), (9, "0 9 * * *")):
-            run_at = day.replace(hour=hour)
+        for hour, cron in ((8, "17 8 * * *"), (9, "17 9 * * *")):
+            run_at = day.replace(hour=hour, minute=17)
             offset = run_at.astimezone(kyiv).strftime("%z")          # what the guard sees when it runs
-            if cron == ("0 8 * * *" if offset == "+0300" else "0 9 * * *"):
+            if cron == ("17 8 * * *" if offset == "+0300" else "17 9 * * *"):
                 chosen.append(run_at)
         assert len(chosen) == 1 and chosen[0].astimezone(kyiv).hour == 11, day   # incl. both DST switch days
         day += timedelta(days=1)
@@ -67,9 +68,15 @@ def test_the_chosen_schedule_is_11_00_in_kyiv_all_year():
 def test_history_mode_downloads_then_fills_recorded_prices_only_by_hand():
     data, _ = _wf()
     steps = data["jobs"]["update"]["steps"]
-    hist = next(s for s in steps if s.get("name", "").startswith("Download the price archive"))
-    assert hist["if"] == "inputs.mode == 'history'"                     # never on the daily schedule
-    run = hist["run"]
-    assert run.index("oddspapi_history.py") < run.index("restore_recorded_odds.py --go") < run.index(
-        "regenerate_predictions.py")
+    names = [s.get("name", "") for s in steps]
+    download, keep, fill = (steps[names.index(n)] for n in (
+        "Download the price archive", "Keep the downloaded archive", "Fill recorded prices on the newest data and commit"))
+    assert download["if"] == fill["if"] == "inputs.mode == 'history'"     # never on the daily schedule
+    assert "always()" in keep["if"]                                        # the archive survives a failure
+    assert "oddspapi_history.py" in download["run"] and 'merge_history_archive.py" save' in download["run"]
+    run = fill["run"]
+    # newest main first, then the archive, then the prices and the backtest
+    assert (run.index("git reset -q --hard origin/main") < run.index('merge_history_archive.py" merge')
+            < run.index("restore_recorded_odds.py --go") < run.index("regenerate_predictions.py"))
     assert next(s for s in steps if s.get("name") == "Run pipeline")["if"].endswith("inputs.mode != 'history'")
+    assert next(s for s in steps if s.get("name") == "Commit updated data")["if"].endswith("inputs.mode != 'history'")
