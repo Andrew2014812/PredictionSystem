@@ -1,0 +1,21 @@
+{
+ "season_fold": 2024,
+ "train_rows": 21841,
+ "seconds": {
+  "result: production XGBoost": 6.217929005622864,
+  "result: draw-weighted refit (b)": 5.812216401100159,
+  "result: binary draw model (d), one fit": 1.563791275024414,
+  "calibration: temperature fit": 0.014616012573242188,
+  "calibration: vector scaling fit": 0.1526484489440918,
+  "home_goals: production XGBoost": 0.5404828786849976,
+  "home_goals: Poisson GLM": 1.5090632438659668,
+  "away_goals: production XGBoost": 3.1287182569503784,
+  "away_goals: Poisson GLM": 1.4775481224060059,
+  "corners: extra feature computation (all seasons)": 0.6837565898895264,
+  "corners: production XGBoost": 3.169562816619873,
+  "corners: XGBoost enriched": 2.6500251293182373,
+  "corners: home + away XGBoost (2 fits)": 7.84061598777771,
+  "corners: Poisson GLM": 2.7788150310516357,
+  "corners: negative-binomial GLM": 14.529874563217163
+ }
+}
