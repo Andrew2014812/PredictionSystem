@@ -277,8 +277,19 @@ def _evaluation() -> None:
         st.caption(t("No historical evaluation available."))
         return
     st.html(f'<div class="note">{t("Past matches predicted afterwards from pre-match data by a model trained only on "
-            "earlier seasons. This checks the model; it is not a record of predictions published before the "
-            "matches, so it is never mixed into Prediction History.")}</div>')
+            "earlier seasons. This checks the model on matches it never saw.")}</div>')
+    with st.expander(t("How is the Prediction History built?"), icon=":material/history:"):
+        st.html(f'<div class="card">{t("Prediction History, Leagues and Analytics use one history of the current "
+                "season with one Main and one Risk per match. When a prediction was saved before kick-off, that "
+                "saved prediction is used and never changed. For earlier matches of the season, which FootPredict "
+                "did not publish before kick-off, the production model's prediction from pre-match data is used "
+                "(trained on seasons before this one, so it never saw these results). A match is never counted "
+                "twice. Matches saved before the Risk rule existed got their Risk afterwards from the same saved "
+                "probabilities and pre-match prices, never from the result. Prices found later in the OddsPapi "
+                "archive (the last quote before kick-off) are added to predictions saved without one; the "
+                "selection and probability stay as they were. Profit and ROI count only predictions with a real "
+                "price: stake 1 unit, win = odds − 1, loss = −1, refund = 0. The overall figures are therefore "
+                "a historical evaluation that combines saved and reconstructed predictions.")}</div>')
     rows = []
     for source, label in EVALUATION_SOURCES.items():
         for role in ("main", "risk"):
