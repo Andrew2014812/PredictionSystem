@@ -14,6 +14,7 @@ from src.ui.components import (date_text, empty_state, esc, form_chips, guard, k
 from src.ui.i18n import t
 from src.ui.labels import country_label, league_name
 from src.ui.theme import colors
+from src.ui.timefmt import with_local_time
 
 PERIODS = {"5": "Last 5", "10": "Last 10", "15": "Last 15", "season": "Current season", "all": "All available"}
 MAX_LIST = 60
@@ -81,7 +82,8 @@ def _trend_charts(matches: pd.DataFrame) -> None:
         fig = go.Figure(go.Scatter(x=chron["date"], y=roll["points"], line=dict(color=c["home"]), name=t("Points")))
         fig.update_layout(title=t("Points per game"), yaxis_range=[0, 3], showlegend=False)
         plotly(fig, height=300)
-    st.caption(t("{n}-match rolling averages.", n=window))
+    st.caption(t("{n}-match average: each point averages that match and the {k} before it, so one unusual "
+                 "game does not dominate the line.", n=window, k=window - 1))
 
 
 @guard
@@ -148,13 +150,14 @@ def render() -> None:
             f"style='background:var(--track)'>·</span><span class='d'>{date_text(m.date, '%d.%m.%y')}</span>"
             f"<span class='v'>{t('H') if m.home_team == team else t('A')}</span>"
             f"<span>{esc(m.away_team if m.home_team == team else m.home_team)}</span><span class='s'>{m.time or ''}</span></a>"
-            for m in upcoming.sort_values("date").itertuples()]
+            for m in with_local_time(upcoming.sort_values("date")).assign(
+                date=lambda d: d["local_date"], time=lambda d: d["local_time"]).itertuples()]
     pages = max(1, (len(chosen) - 1) // MAX_LIST + 1)
     page = st.number_input(t("Page"), 1, pages, 1, key="team_page") if pages > 1 else 1
     listed = chosen.iloc[(page - 1) * MAX_LIST: page * MAX_LIST]
     rows += [f"<a class='rm' href='{match_url(m.match_id)}' target='_self'>{form_chips(m.result)}"
              f"<span class='d'>{date_text(m.date, '%d.%m.%y')}</span><span class='v'>{t('H') if m.venue == 'H' else t('A')}</span>"
-             f"<span>{esc(m.opponent)}</span><span class='s'>{int(m.gf)}–{int(m.ga)}</span></a>"
+             f"<span>{esc(m.opponent)}</span><span class='s'>{int(m.gf)}:{int(m.ga)}</span></a>"
              for m in listed.itertuples()]
     st.html("<div class='card'>" + "".join(rows) + "</div>")
     if pages > 1:
