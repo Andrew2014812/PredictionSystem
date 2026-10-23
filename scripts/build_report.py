@@ -118,8 +118,19 @@ def bullets(items) -> list:
     return [Paragraph(inline(i), S["bullet"], bulletText="•") for i in items]
 
 
+def auto_widths(rows: list[list], total: float = 17 * cm) -> list[float]:
+    """Column widths proportional to the longest text of each column (clamped)."""
+    n = max(len(r) for r in rows)
+    longest = [max(min(len(str(r[i])) if i < len(r) else 0, 34) for r in rows) for i in range(n)]
+    longest = [max(x, 6) for x in longest]
+    return [total * x / sum(longest) for x in longest]
+
+
 def table(rows: list[list], widths=None, header=True, zebra=True) -> Table:
-    data = [[Paragraph(inline(str(c)), S["cellb" if (header and r == 0) else "cell"]) for c in row]
+    wide = max(len(r) for r in rows) >= 9
+    body = ParagraphStyle("cw", parent=S["cell"], fontSize=6.5, leading=8) if wide else S["cell"]
+    head = ParagraphStyle("cwb", parent=S["cellb"], fontSize=6.5, leading=8) if wide else S["cellb"]
+    data = [[Paragraph(inline(str(c)), head if (header and r == 0) else body) for c in row]
             for r, row in enumerate(rows)]
     tbl = Table(data, colWidths=widths, repeatRows=1 if header else 0, hAlign="LEFT")
     style = [("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#cbd5e1")),
@@ -180,7 +191,7 @@ def markdown(md: str, heading_offset: int = 0) -> list:
                 i += 1
             n = max(len(r) for r in rows)
             rows = [r + [""] * (n - len(r)) for r in rows]
-            out.append(table(rows, widths=[17 * cm / n] * n))
+            out.append(table(rows, widths=auto_widths(rows)))
             out.append(Spacer(1, 4))
             continue
         elif re.match(r"^\s*([-*]|\d+\.) ", line):
