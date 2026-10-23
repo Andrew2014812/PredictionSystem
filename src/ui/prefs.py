@@ -138,7 +138,7 @@ def _team_search() -> None:
         team, country = target.split("|", 1)
         st.switch_page("views/teams.py", query_params={"team": team, "country": country, **pref_params()})
     options = _team_options(len(data.features()))
-    st.selectbox(t("Search team"), list(options), index=None, format_func=options.get, key="global_search",
+    st.selectbox(t("Find a club"), list(options), index=None, format_func=options.get, key="global_search",
                  placeholder=t("Search..."), label_visibility="collapsed", filter_mode="fuzzy",
                  on_change=_remember_team)
     components.html(_TITLE_JS, height=0)
