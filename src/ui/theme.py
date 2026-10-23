@@ -68,7 +68,7 @@ a { text-decoration: none; }
 
 /* brand + top navigation ------------------------------------------------------ */
 [data-testid="stHeader"] { border-bottom: 1px solid var(--border); }
-[data-testid="stToolbar"] .rc-overflow { padding-left: 200px; padding-right: 250px; box-sizing: border-box; }
+[data-testid="stToolbar"] .rc-overflow { padding-left: 200px; padding-right: 285px; box-sizing: border-box; }
 .fp-brand { position: fixed; top: 0; left: 0; height: 3.75rem; z-index: 999991; display: flex;
   align-items: center; padding-left: 1.4rem; pointer-events: none;
   font-weight: 800; font-size: 1.22rem; letter-spacing: -0.03em; color: var(--text-strong); }
@@ -81,6 +81,14 @@ a { text-decoration: none; }
 .st-key-fp_prefs [data-testid="stElementContainer"]:has(iframe), .st-key-fp_prefs .stIFrame { display: none !important; }
 .st-key-fp_prefs, .st-key-fp_prefs [data-testid="stHorizontalBlock"] { flex-wrap: nowrap !important; align-items: center; }
 .st-key-fp_prefs button { min-height: 2rem !important; padding: .1rem .6rem !important; }
+/* laptops at 125 % zoom: a slimmer top menu so it never runs under the search field */
+@media (max-width: 1250px) {
+  [data-testid="stTopNavLink"] { padding: .25rem .4rem !important; }
+  [data-testid="stTopNavLink"] p, [data-testid="stTopNavLink"] span { font-size: .8rem !important; }
+  [data-testid="stTopNavLink"] > span:first-child { display: none !important; }
+  .fp-brand a > span { display: none; }             /* the ball alone; the name returns on wider screens */
+  [data-testid="stToolbar"] .rc-overflow { padding-left: 70px; }
+}
 /* header search: a compact translucent field with a magnifier, a little wider while typing */
 .st-key-global_search { width: 145px !important; transition: width .18s ease; }
 .st-key-global_search:focus-within { width: 250px !important; }
@@ -122,8 +130,8 @@ img.badge { object-fit: contain; vertical-align: middle; flex: none; }
 .league-head { display: flex; align-items: center; gap: .55rem; margin: 1.1rem 0 .45rem 0;
   color: var(--text); font-weight: 700; font-size: .9rem; }
 .league-head .country { color: var(--faint); font-weight: 500; }
-a.match-card { display: grid; grid-template-columns: 62px minmax(170px, 1.3fr) minmax(300px, 2.2fr) minmax(120px, .9fr);
-  gap: 1.2rem; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+a.match-card { display: grid; grid-template-columns: 56px minmax(135px, 1.3fr) minmax(230px, 2.2fr) minmax(92px, .9fr);
+  gap: clamp(.6rem, 1.2vw, 1.2rem); align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
   padding: .75rem 1.1rem; margin-bottom: .45rem; color: var(--text) !important; transition: border-color .12s ease; }
 a.match-card:hover { border-color: var(--accent); background: var(--surface-2); }
 .mc-time { text-align: center; font-weight: 700; font-size: .95rem; color: var(--text-strong); }
@@ -167,7 +175,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .pbar span { display: block; height: 100%; }
 .pbar span:first-child { border-radius: 6px 0 0 6px; } .pbar span:last-child { border-radius: 0 6px 6px 0; }
 .p3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: 6px; }
-.p3 div { font-size: .76rem; color: var(--muted); }
+.p3 div { font-size: .76rem; color: var(--muted); white-space: nowrap; }
 .p3 div:nth-child(2) { text-align: center; } .p3 div:nth-child(3) { text-align: right; }
 .p3 b { color: var(--text-strong); font-size: .86rem; font-weight: 700; }
 .p3 .best b { color: var(--accent); }
