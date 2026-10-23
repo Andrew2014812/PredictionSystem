@@ -104,8 +104,8 @@ contradict each other (P(over) rising with the line, a handicap ladder in the wr
 is dropped for that market and counted in the run summary. `python scripts/oddspapi_inspect.py --fixture <id>
 --market <name>` prints the raw quotes of one match for checking.
 
-**The Odds API is only a fallback.** `ODDS_API_FALLBACK` (env / GitHub *variable*): `missing` (default) buys
-a market only when no provider has priced it, `off` never calls The Odds API.
+**The Odds API is off by default.** `ODDS_API_FALLBACK` (env / GitHub *variable*): `off` (default) never calls
+it — its prices already stored are still used; `missing` buys a market only when no provider has priced it.
 
 ### Historical odds (2026)
 
