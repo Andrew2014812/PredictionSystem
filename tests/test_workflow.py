@@ -26,6 +26,7 @@ def test_daily_schedule_and_manual_modes_exist():
     assert any(s.get("with", {}).get("ref") == "main" for s in steps)
     env = next(s for s in steps if s.get("name") == "Run pipeline")["env"]
     assert env["ODDSPAPI_KEY"] == "${{ secrets.ODDSPAPI_KEY }}"            # the key only from Secrets
+    assert env["ODDS_API_FALLBACK"].endswith("|| 'off' }}")                # no The Odds API credits by default
 
 
 def _guard_script() -> str:
@@ -67,9 +68,15 @@ def test_the_chosen_schedule_is_11_00_in_kyiv_all_year():
 def test_history_mode_downloads_then_fills_recorded_prices_only_by_hand():
     data, _ = _wf()
     steps = data["jobs"]["update"]["steps"]
-    hist = next(s for s in steps if s.get("name", "").startswith("Download the price archive"))
-    assert hist["if"] == "inputs.mode == 'history'"                     # never on the daily schedule
-    run = hist["run"]
-    assert run.index("oddspapi_history.py") < run.index("restore_recorded_odds.py --go") < run.index(
-        "regenerate_predictions.py")
+    names = [s.get("name", "") for s in steps]
+    download, keep, fill = (steps[names.index(n)] for n in (
+        "Download the price archive", "Keep the downloaded archive", "Fill recorded prices on the newest data and commit"))
+    assert download["if"] == fill["if"] == "inputs.mode == 'history'"     # never on the daily schedule
+    assert "always()" in keep["if"]                                        # the archive survives a failure
+    assert "oddspapi_history.py" in download["run"] and 'merge_history_archive.py" save' in download["run"]
+    run = fill["run"]
+    # newest main first, then the archive, then the prices and the backtest
+    assert (run.index("git reset -q --hard origin/main") < run.index('merge_history_archive.py" merge')
+            < run.index("restore_recorded_odds.py --go") < run.index("regenerate_predictions.py"))
     assert next(s for s in steps if s.get("name") == "Run pipeline")["if"].endswith("inputs.mode != 'history'")
+    assert next(s for s in steps if s.get("name") == "Commit updated data")["if"].endswith("inputs.mode != 'history'")
