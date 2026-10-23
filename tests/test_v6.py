@@ -60,3 +60,17 @@ def test_search_label_keeps_the_club_name_first():
     from src.ui.prefs import search_label
     assert search_label("Arsenal", "Premier League", None) == "Arsenal · Premier League"
     assert search_label("Man City", "Premier League", "Manchester City").startswith("Man City · ")
+
+
+def test_draw_rule_names_a_draw_only_in_close_matches_and_keeps_probabilities():
+    from src import config
+    from src.modelling.decision import decide
+    p = np.array([[0.36, 0.30, 0.34],      # close, P(D) high      -> draw
+                  [0.50, 0.29, 0.21],      # P(D) high, not close  -> home
+                  [0.37, 0.26, 0.37],      # close, P(D) too low   -> arg-max
+                  [0.20, 0.30, 0.50]])
+    before = p.copy()
+    out = decide(p, 1.0, config.DRAW_THRESHOLD, config.DRAW_MAX_GAP)
+    assert list(out) == [1, 0, 0, 2]
+    assert np.array_equal(p, before)                                  # probabilities untouched
+    assert list(decide(p)) == [0, 0, 0, 2]                           # without the rule: plain arg-max

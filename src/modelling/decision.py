@@ -23,10 +23,18 @@ DRAW = 1
 MULTIPLIER_GRID = np.round(np.arange(1.0, 1.801, 0.05), 2)
 
 
-def decide(proba: np.ndarray, draw_multiplier: float = 1.0) -> np.ndarray:
-    """Outcome index (0 = H, 1 = D, 2 = A) for every row of ``proba``."""
-    weights = np.array([1.0, draw_multiplier, 1.0])
-    return np.argmax(np.asarray(proba) * weights, axis=1)
+def decide(proba: np.ndarray, draw_multiplier: float = 1.0, draw_threshold: float | None = None,
+           max_gap: float | None = None) -> np.ndarray:
+    """Outcome index (0 = H, 1 = D, 2 = A) for every row of ``proba``.
+
+    With ``draw_threshold`` (v6 rule) a draw is named when P(D) >= threshold and the two sides are close
+    (|P(H) - P(A)| <= ``max_gap``); every other match keeps the arg-max. Probabilities are never changed."""
+    proba = np.asarray(proba)
+    out = np.argmax(proba * np.array([1.0, draw_multiplier, 1.0]), axis=1)
+    if draw_threshold is not None:
+        close = np.abs(proba[:, 0] - proba[:, 2]) <= (max_gap if max_gap is not None else 1.0)
+        out = np.where((proba[:, DRAW] >= draw_threshold) & close, DRAW, out)
+    return out
 
 
 def choose_draw_multiplier(proba: np.ndarray, y: np.ndarray, max_draw_share: float) -> dict:

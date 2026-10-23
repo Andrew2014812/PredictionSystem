@@ -98,7 +98,18 @@ def _draw_section(task: dict) -> None:
                                               t("Average probability"))}
     st.html(html_table(pd.DataFrame(rows), formats=fmt, align_right=tuple(fmt)))
     multiplier = task.get("extra", {}).get("draw_multiplier") or 1.0
-    if multiplier > 1.0:
+    rule = _draw_rule_study()
+    if config.DRAW_THRESHOLD is not None and rule:
+        st.html(f'<div class="note">{t("A draw is rarely the single most likely outcome, even for bookmakers, so a "
+                "plain arg-max almost never names one. The draw probabilities are well calibrated and stay as they "
+                "are (every market uses them). FootPredict names a draw when P(draw) ≥ {t} and the two teams are "
+                "close (|P(home) − P(away)| ≤ {g}), chosen walk-forward on 2023/24 and 2024/25.",
+                t=f"{config.DRAW_THRESHOLD:.2f}", g=f"{config.DRAW_MAX_GAP:.2f}")}</div>')
+        st.html(html_table(pd.DataFrame(rule), formats={k: (lambda v: pct(v, 1)) for k in (
+            t("Accuracy"), t("Draw recall"), t("Draw precision"), t("Predicted draw share"))} | {
+            "Macro F1": lambda v: num(v, 3)}, align_right=(t("Accuracy"), "Macro F1", t("Draw recall"),
+                                                         t("Draw precision"), t("Predicted draw share"))))
+    elif multiplier > 1.0:
         st.html(f'<div class="note">{t("A draw is rarely the single most likely outcome, so a plain arg-max almost "
                 "never predicts one. FootPredict keeps the probabilities and names an outcome with "
                 "argmax(P(H), m·P(D), P(A)); the multiplier m is chosen on the validation season only.")}'
@@ -109,7 +120,7 @@ def _draw_section(task: dict) -> None:
                 "lowers accuracy, and the return at real odds stays practically the same. Draw probabilities "
                 "themselves are unchanged and are used by every market.")}</div>')
     compare = []
-    for label, metrics in ((t("Validation · arg-max"), val.get("argmax")),
+    for label, metrics in () if rule else ((t("Validation · arg-max"), val.get("argmax")),
                            (t("Validation · draw-aware rule"), val.get("draw_rule")),
                            (t("Test · arg-max"), task.get("test_metrics_argmax")),
                            (t("Test · draw-aware rule"), test)):
@@ -266,6 +277,28 @@ def _advanced(name: str, task: dict, version: str) -> None:
             plotly(fig, height=260)
         st.json({"model_id": version, "objective": task["objective"], "params": task["params"],
                  "trees": task["n_estimators"], "extra": task.get("extra", {})}, expanded=False)
+
+
+@st.cache_data(show_spinner=False)
+def _draw_rule_study() -> list[dict]:
+    """Arg-max vs the draw rule per walk-forward season (experiments/v6_research/results/draw.json)."""
+    import json
+    from pathlib import Path
+    path = Path(__file__).resolve().parents[1] / "experiments/v6_research/results/draw.json"
+    if not path.exists():
+        return []
+    study = json.loads(path.read_text(encoding="utf-8"))
+    rows = []
+    rule = study.get("decision_rules", {}).get("a_baseline", {}).get("final_rule_metrics", {})
+    for season, fold in study.get("folds", {}).items():
+        argmax = fold.get("variants", {}).get("a_baseline")
+        for label, m in ((t("Arg-max"), argmax), (t("Draw rule"), rule.get(season))):
+            if m:
+                rows.append({t("Season"): f"{season}/{int(season) % 100 + 1:02d}" + (" *" if season == "2025" else ""),
+                             t("Named outcome"): label, t("Accuracy"): m["accuracy"], "Macro F1": m["macro_f1"],
+                             t("Draw recall"): m["recall"]["D"], t("Draw precision"): m["precision"]["D"],
+                             t("Predicted draw share"): m["predicted_share"]["D"]})
+    return rows
 
 
 def _evaluation() -> None:

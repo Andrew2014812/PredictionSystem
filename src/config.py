@@ -209,6 +209,14 @@ HISTORY_MARKETS = ("1X2", "TOTAL_2.5", "BTTS", "DOUBLE_CHANCE", "CORNERS_9.5", "
 # unstable between the two halves of the season with no gain, so both are off.
 DRAW_RULE = False
 DIXON_COLES = False
+# v6 (experiments/v6_research, walk-forward 2023/24 + 2024/25, 2025/26 reported only): the probabilities stay
+# as they are (they were already well calibrated — mean P(draw) 0.25–0.26 vs 26 % draws; class weights,
+# temperature / vector scaling, a binary draw model and Dixon–Coles did not improve log loss on both folds).
+# Only the NAMED outcome changes: a draw when P(D) >= 0.28 and |P(H) - P(A)| <= 0.20. Macro F1 0.37 -> 0.44,
+# draw recall 0.2 % -> 25–35 %, accuracy 49.7 % -> 46–48 %. Main / Risk, EV and all markets use the
+# probabilities and are not affected.
+DRAW_THRESHOLD = 0.28
+DRAW_MAX_GAP = 0.20
 
 # Main / Risk ranking (src/markets/recommendation.py). The weights were chosen
 # on the validation season 2024/25 by scripts/decision_study.py (36 Main and

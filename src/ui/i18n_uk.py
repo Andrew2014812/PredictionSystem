@@ -429,4 +429,7 @@ UK: dict[str, str] = {
     '{n} bets': '{n} ставок',
     '{n} bets with real odds': '{n} ставок із реальними коефіцієнтами',
     '{n}-match average: each point averages that match and the {k} before it, so one unusual game does not dominate the line.': 'Середнє за {n} матчі: кожна точка — середнє цього матчу і {k} попередніх, тож один незвичний матч не домінує.',
+    'A draw is rarely the single most likely outcome, even for bookmakers, so a plain arg-max almost never names one. The draw probabilities are well calibrated and stay as they are (every market uses them). FootPredict names a draw when P(draw) ≥ {t} and the two teams are close (|P(home) − P(away)| ≤ {g}), chosen walk-forward on 2023/24 and 2024/25.': 'Нічия рідко буває найімовірнішим результатом навіть для букмекерів, тож звичайний arg-max майже ніколи її не називає. Імовірності нічиїх добре відкалібровані й не змінюються (їх використовують усі ринки). FootPredict називає нічию, коли P(нічия) ≥ {t} і команди близькі (|P(господарі) − P(гості)| ≤ {g}); правило обрано walk-forward на 2023/24 і 2024/25.',
+    'Arg-max': 'Arg-max',
+    'Named outcome': 'Названий результат',
 }

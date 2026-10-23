@@ -76,7 +76,7 @@ def predict_matches(matches: pd.DataFrame, bundles: dict[str, ModelBundle], odds
     generated_at = pd.Timestamp(datetime.now(timezone.utc).replace(tzinfo=None)).floor("s")   # naive UTC
     result = bundles["result"]
     p1x2 = result.predict(matches)
-    outcomes = decide(p1x2, result.extra.get("draw_multiplier", 1.0))
+    outcomes = decide(p1x2, result.extra.get("draw_multiplier", 1.0), config.DRAW_THRESHOLD, config.DRAW_MAX_GAP)
     lam_home = bundles["home_goals"].predict(matches)
     lam_away = bundles["away_goals"].predict(matches)
     rho = bundles["home_goals"].extra.get("dc_rho", 0.0)            # Dixon-Coles (0 = independent Poisson)
