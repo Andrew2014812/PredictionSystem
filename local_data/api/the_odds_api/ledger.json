@@ -1,13 +1,61 @@
 {
- "checked_at": "2026-10-22T12:03:42",
+ "checked_at": "2026-10-23T13:58:28",
  "month": "2026-10",
- "month_credits": 94,
- "remaining": 108,
+ "month_credits": 123,
+ "remaining": 79,
  "requests": {
+  "event|35a5ac1fb9cd77d3a814f13b7e6fda8b": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 3,
+   "items": 3,
+   "status": "200"
+  },
+  "event|4edf31eae6f0c764186d3d537a80787c": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 3,
+   "items": 3,
+   "status": "200"
+  },
+  "event|70df1835c3b5ddff1c99e0189532136b": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 4,
+   "items": 4,
+   "status": "200"
+  },
+  "event|81bfedfcca305af30f0f7cb7a739c878": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 3,
+   "items": 3,
+   "status": "200"
+  },
+  "event|99d0a781893c9d0640e334eec0d7c941": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 3,
+   "items": 3,
+   "status": "200"
+  },
+  "event|9d4a5d0073f360c5def0e967b50b646e": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 3,
+   "items": 3,
+   "status": "200"
+  },
   "event|acd5bd945dd953ad1e300df5bfe696f9": {
    "at": "2026-10-12T15:20:00",
    "cost": 6,
    "items": 6
+  },
+  "event|dc96970d397d25e8cf9b68ad9eacebc6": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 3,
+   "items": 3,
+   "status": "200"
+  },
+  "event|f626d14899701e5e245b843a22273b2d": {
+   "at": "2026-10-23T13:58:28",
+   "cost": 3,
+   "items": 3,
+   "status": "200"
   },
   "odds|soccer_belgium_first_div": {
    "at": "2026-10-22T12:03:42",
@@ -101,11 +149,11 @@
    "items": 6
   },
   "odds|soccer_turkey_super_league": {
-   "at": "2026-10-22T12:03:42",
+   "at": "2026-10-23T13:58:28",
    "cost": 4,
    "items": 9,
    "status": "200"
   }
  },
- "used": 392
+ "used": 421
 }
