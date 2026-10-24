@@ -1,14 +1,7 @@
 provider,league,name
-api_football,I2,Vicenza Virtus
-api_football,SC1,Ayr Utd
-api_football,SC2,Airdrie United
-api_football,SC2,Queen of the South
-api_football,SP2,Celta de Vigo II
-api_football,SP2,Real Sociedad II
 oddspapi,B1,St. Truidense VV
 oddspapi,D2,1 FC Nuremberg
 oddspapi,F1,Stade Rennais FC
-oddspapi,F2,Stade Lavallois MFC
 oddspapi,G1,APO Levadiakos FC
 oddspapi,G1,Olympiacos Piraeus
 oddspapi,G1,Panaitolikos Agrinio
