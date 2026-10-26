@@ -6,8 +6,8 @@
 #   results  — new results and fixtures, refreshed predictions. Free: no odds quota.
 #   odds     — real bookmaker odds for matches in the next days: OddsPapi first (one billable
 #              request for all fixtures; prices from the free historical endpoint, ~5 s per match),
-#              The Odds API only for markets OddsPapi did not price (ODDS_API_FALLBACK repository
-#              variable: missing | off | always), refreshed predictions.
+#              The Odds API is off unless the ODDS_API_FALLBACK repository variable says
+#              missing | always (its stored prices are still used), refreshed predictions.
 #   full     — both (the daily run).
 #   history  — manual only: OddsPapi price archive of played matches (free endpoint, ~600 matches an
 #              hour, resumable; default the current season from 1 August), then the missing prices of
@@ -18,7 +18,7 @@
 # (YYYY-MM-DD) or one match id, and "force" to re-price inside the refresh window.
 #
 # Kyiv is UTC+3 in summer and UTC+2 in winter, and cron runs in UTC, so two schedules exist
-# (08:00 and 09:00 UTC) and the "time" step lets exactly one of them continue each day.
+# (08:17 and 09:17 UTC) and the "time" step lets exactly one of them continue each day.
 # GitHub may start scheduled runs late; the check uses the schedule that fired, not the clock.
 #
 # The run commits local_data/ to main; Streamlit Cloud redeploys automatically and a local
@@ -28,8 +28,8 @@ name: Update data and predictions
 
 on:
   schedule:
-    - cron: "0 8 * * *"      # 11:00 Kyiv in summer (UTC+3)
-    - cron: "0 9 * * *"      # 11:00 Kyiv in winter (UTC+2)
+    - cron: "17 8 * * *"     # 11:17 Kyiv in summer (UTC+3); not on the hour, when GitHub drops runs
+    - cron: "17 9 * * *"     # 11:17 Kyiv in winter (UTC+2)
   workflow_dispatch:
     inputs:
       mode:
@@ -83,7 +83,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
           offset=$(TZ=Europe/Kyiv date +%z)          # +0300 in summer, +0200 in winter
-          want="0 9 * * *"; [ "$offset" = "+0300" ] && want="0 8 * * *"
+          want="17 9 * * *"; [ "$offset" = "+0300" ] && want="17 8 * * *"
           if [ "${{ github.event.schedule }}" = "$want" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
@@ -108,7 +108,7 @@ jobs:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
-          ODDS_API_FALLBACK: ${{ vars.ODDS_API_FALLBACK || 'missing' }}
+          ODDS_API_FALLBACK: ${{ vars.ODDS_API_FALLBACK || 'off' }}
         run: |
           mode="${{ inputs.mode || 'full' }}"
           args=(--mode "$mode" --credit-budget "${{ inputs.credit_budget || 30 }}")
@@ -119,16 +119,44 @@ jobs:
           python scripts/run_pipeline.py "${args[@]}" | tee pipeline.log
           echo "### Pipeline ($mode)" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"; tail -n 40 pipeline.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
-      - name: Download the price archive and fill recorded prices
+      - name: Download the price archive
         if: inputs.mode == 'history'
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
         run: |
           args=(--go --max-matches "${{ inputs.history_max || 1600 }}")
           [ -n "${{ inputs.history_since }}" ] && args+=(--since "${{ inputs.history_since }}")
+          # this script comes from the commit the run was started from (main may not have it yet)
+          git fetch -q --depth 1 origin "${{ github.sha }}"
+          git show "${{ github.sha }}:scripts/merge_history_archive.py" > "$RUNNER_TEMP/merge_history_archive.py"
           python scripts/oddspapi_history.py "${args[@]}" | tee history.log
-          python scripts/restore_recorded_odds.py --go | tee -a history.log
-          python scripts/regenerate_predictions.py 2>&1 | grep -v " INFO " | tee -a history.log
+          python "$RUNNER_TEMP/merge_history_archive.py" save "$RUNNER_TEMP/archive"
+      - name: Keep the downloaded archive
+        if: always() && inputs.mode == 'history'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oddspapi-archive
+          path: ${{ runner.temp }}/archive
+          retention-days: 14
+          if-no-files-found: ignore
+      - name: Fill recorded prices on the newest data and commit
+        if: inputs.mode == 'history'
+        run: |
+          # The daily run may have committed while the download ran (hours): start from the newest
+          # main, add only the downloaded archive, then fill prices and regenerate the backtest.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python "$RUNNER_TEMP/merge_history_archive.py" merge "$RUNNER_TEMP/archive" | tee -a history.log
+            python scripts/restore_recorded_odds.py --go | tee -a history.log
+            python scripts/regenerate_predictions.py 2>&1 | sed '/ INFO /d' | tee -a history.log
+            git add local_data
+            git diff --cached --quiet && { echo "No data changes."; break; }
+            git commit -q -m "Add the OddsPapi price archive and fill recorded prices"
+            if git push origin HEAD:main; then break; fi
+            echo "main moved during the update, attempt $attempt failed; starting again from the newest main"
+          done
           echo "### Price archive" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"; tail -n 60 history.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
       - name: Show API quotas
@@ -138,7 +166,7 @@ jobs:
           echo "### Quotas" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"; cat quotas.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
       - name: Commit updated data
-        if: steps.time.outputs.run == 'true'
+        if: steps.time.outputs.run == 'true' && inputs.mode != 'history'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

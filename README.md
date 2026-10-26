@@ -104,8 +104,8 @@ contradict each other (P(over) rising with the line, a handicap ladder in the wr
 is dropped for that market and counted in the run summary. `python scripts/oddspapi_inspect.py --fixture <id>
 --market <name>` prints the raw quotes of one match for checking.
 
-**The Odds API is only a fallback.** `ODDS_API_FALLBACK` (env / GitHub *variable*): `missing` (default) buys
-a market only when no provider has priced it, `off` never calls The Odds API.
+**The Odds API is off by default.** `ODDS_API_FALLBACK` (env / GitHub *variable*): `off` (default) never calls
+it — its prices already stored are still used; `missing` buys a market only when no provider has priced it.
 
 ### Historical odds (2026)
 
@@ -407,8 +407,9 @@ python scripts/regenerate_predictions.py                   # re-apply the rules 
 ### GitHub Actions and deployment
 
 The deployed app (Streamlit Community Cloud) is built from `main`. `.github/workflows/update-data.yml` runs
-**every day at about 11:00 Kyiv time** in `full` mode: two cron lines (08:00 and 09:00 UTC) and a guard step
-that keeps only the one matching Kyiv's current UTC offset, so the time stays right across summer / winter time.
+**every day at about 11:15 Kyiv time** in `full` mode: two cron lines (08:17 and 09:17 UTC — off the full
+hour, when GitHub often drops scheduled runs) and a guard step that keeps only the one matching Kyiv's current
+UTC offset, so the time stays right across summer / winter time.
 It can also be started by hand (*Actions → Update data and predictions → Run workflow*) with the mode —
 `results` (free), `odds` or `full` — and optionally one league, one day or one match and *force*. Secrets:
 `API_FOOTBALL_KEY`, `ODDSPAPI_KEY`, `ODDS_API_KEY`; optional variable `ODDS_API_FALLBACK`. It commits the new
