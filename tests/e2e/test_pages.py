@@ -298,6 +298,24 @@ def test_kick_off_times_follow_the_browser_time_zone(browser, base_url, predicte
     assert london[2] != tokyo[2]
 
 
+def test_cloud_toolbar_buttons_do_not_cover_the_theme_switch(app):
+    app.open("")
+    # Streamlit Cloud puts a "Fork" button for visitors into the header toolbar; locally it is absent,
+    # so the same element is added here the way Cloud renders it
+    app.page.evaluate("""() => {
+        const bar = document.querySelector('[data-testid="stToolbar"]');
+        const actions = document.createElement('div');
+        actions.setAttribute('data-testid', 'stToolbarActions');
+        actions.innerHTML = '<div data-testid="stToolbarActionButton"><button>Fork</button></div>';
+        actions.style.cssText = 'position:fixed; top:20px; right:60px; z-index:999999;';
+        bar.appendChild(actions);
+    }""")
+    expect(app.page.locator('[data-testid="stToolbarActions"]')).to_be_hidden()
+    app.pref("light_mode").click()                                   # the switch can still be clicked
+    app.wait()
+    assert app.background() == "rgb(233, 238, 244)"
+
+
 def test_theme_switch(app):
     app.open("")
     dark = app.background()

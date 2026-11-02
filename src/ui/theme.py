@@ -69,6 +69,8 @@ a { text-decoration: none; }
 /* brand + top navigation ------------------------------------------------------ */
 [data-testid="stHeader"] { border-bottom: 1px solid var(--border); }
 [data-testid="stToolbar"] .rc-overflow { padding-left: 200px; padding-right: 285px; box-sizing: border-box; }
+/* Streamlit Cloud adds "Fork" / GitHub buttons for visitors right under the theme switch */
+[data-testid="stToolbarActions"] { display: none !important; }
 .fp-brand { position: fixed; top: 0; left: 0; height: 3.75rem; z-index: 999991; display: flex;
   align-items: center; padding-left: 1.4rem; pointer-events: none;
   font-weight: 800; font-size: 1.22rem; letter-spacing: -0.03em; color: var(--text-strong); }
