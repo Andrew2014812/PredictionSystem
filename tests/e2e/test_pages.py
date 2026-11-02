@@ -133,8 +133,8 @@ def test_handicap_separates_half_and_whole_asian_lines(app, predicted_day):
         return
     for table in tables.all():
         head = table.locator("tr").first.inner_text()
-        assert re.search(r"Selection\s*Win probability\s*Odds", head) or re.search(
-            r"Selection\s*Win\s*Refund\s*Lose\s*Odds", head), head
+        assert re.search(r"Selection\s*Win probability\s*Odds", head, re.I) or re.search(
+            r"Selection\s*Win\s*Refund\s*Lose\s*Odds", head, re.I), head          # headers are upper-cased by CSS
         odds = table.locator("td:last-child").all_inner_texts()
         assert odds and all(re.fullmatch(r"\d+\.\d\d", o) for o in odds), odds   # every listed line is priced
         lines = [re.search(r"([+-]\d+(\.5)?)$", r) for r in table.locator("td:first-child").all_inner_texts()]
