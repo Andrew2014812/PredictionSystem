@@ -95,6 +95,25 @@ def print_coverage(report: dict) -> None:
     print(df.to_string(index=False))
 
 
+def remap_unmapped(entry: dict, code: str, ours: set, resolver, registry) -> int:
+    """Map again the stored fixtures that found no match before (aliases may have improved)."""
+    country = get_league(code).country
+    found = 0
+    for item in entry.get("items", []):
+        if item.get("match_id"):
+            continue
+        home = registry.resolve("oddspapi", code, country, item["home"], None, resolver.known.get(code))
+        away = registry.resolve("oddspapi", code, country, item["away"], None, resolver.known.get(code))
+        if not (home and away):
+            continue
+        day = pd.Timestamp(datetime.fromisoformat(item["kickoff_utc"]).astimezone(UK).date())
+        mid = make_match_id(code, day, home, away)
+        if mid in ours:
+            item["match_id"] = mid
+            found += 1
+    return found
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--since", default=None, help="default: 1 August of the current season")
@@ -161,6 +180,9 @@ def main() -> None:
                               "home": row["home_name"], "away": row["away_name"],
                               "match_id": mid if mid in ours else None})
             entry = progress["fixtures"][lg.code] = {"period": [str(start.date()), str(end.date())], "items": items}
+            save_progress(progress)
+            registry.save()
+        elif remap_unmapped(entry, lg.code, ours, resolver, registry):     # better names since: no API call
             save_progress(progress)
             registry.save()
         records = []

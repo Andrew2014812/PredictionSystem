@@ -82,7 +82,16 @@ TEAM_ALIASES: dict[str, str] = {
     "athletic bilbao": "Ath Bilbao", "athletic": "Ath Bilbao",
     "real betis": "Betis", "betis": "Betis", "celta vigo": "Celta", "celta": "Celta",
     "espanyol": "Espanol", "espanyol barcelona": "Espanol", "rcd espanyol": "Espanol",
-    "rcd espanyol barcelona": "Espanol", "rayo vallecano": "Vallecano", "real sociedad": "Sociedad",
+    "rcd espanyol barcelona": "Espanol",
+    "rc deportivo de a coruna": "La Coruna", "deportivo de a coruna": "La Coruna", "deportivo a coruna": "La Coruna",
+    "rennais": "Rennes", "lavallois mfc": "Laval", "lavallois": "Laval",
+    "real betis seville": "Betis", "real betis sevilla": "Betis",
+    "inter milano": "Inter", "1 fc nuremberg": "Nurnberg", "fc nuremberg": "Nurnberg", "nuremberg": "Nurnberg",
+    "stade rennais fc": "Rennes", "stade rennais": "Rennes", "stade lavallois mfc": "Laval", "stade lavallois": "Laval",
+    "st truidense vv": "St Truiden", "st truidense": "St Truiden", "sint truidense": "St Truiden",
+    "olympiacos piraeus": "Olympiakos", "olympiacos": "Olympiakos", "volos nps": "Volos NFC",
+    "apo levadiakos fc": "Levadeiakos", "apo levadiakos": "Levadeiakos", "levadiakos": "Levadeiakos",
+    "panaitolikos agrinio": "Panetolikos", "panaitolikos": "Panetolikos", "rayo vallecano": "Vallecano", "real sociedad": "Sociedad",
     "deportivo alaves": "Alaves", "alaves": "Alaves", "real valladolid": "Valladolid",
     "real oviedo": "Oviedo", "sporting gijon": "Sp Gijon", "racing santander": "Santander",
     "deportivo la coruna": "La Coruna", "deportivo": "La Coruna", "real zaragoza": "Zaragoza",
@@ -183,7 +192,8 @@ def resolve(name: str, known: set[str] | None = None) -> str | None:
 def _ambiguous(words: set[str], team: str, by_norm: dict[str, str]) -> bool:
     """A word-subset match that may be another club: "Dundee Utd" is not "Dundee" when "Dundee United"
     is in the league, and "Espanyol Barcelona" is not "Barcelona" when an extra word looks like another
-    club's name (espanyol ~ Espanol)."""
+    club's own name (espanyol ~ Espanol). A town in the name is fine: "Excelsior Rotterdam" stays Excelsior
+    although "Sparta Rotterdam" plays in the league — only another club's FIRST (distinctive) word counts."""
     own = set(team.split())
     extra = words - own
     if not extra:
@@ -191,5 +201,5 @@ def _ambiguous(words: set[str], team: str, by_norm: dict[str, str]) -> bool:
     others = [n for n in by_norm if n and n != team]
     if any(own < set(n.split()) for n in others):
         return True
-    stems = {w[:5] for n in others for w in n.split() if len(w) >= 5}
+    stems = {n.split()[0][:5] for n in others if len(n.split()[0]) >= 5}
     return any(len(w) >= 5 and w[:5] in stems for w in extra)

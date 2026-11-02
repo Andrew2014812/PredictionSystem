@@ -275,13 +275,19 @@ pre-match refresh (new data or odds) is a new **version** with its generation ti
 After kick-off nothing is created or changed; a price collected after kick-off is never used as a pre-match
 price; a postponed match gets a new version for its new kick-off.
 
-**Recorded vs Backtest.** *Recorded* predictions were saved before kick-off — the real track record.
-*Backtest* is the same production model run afterwards on this season's earlier matches, with pre-match
-features and real archived prices — an evaluation, not published bets. Prediction History, Leagues and
-Analytics let you choose Recorded, Backtest or both, and their results are shown side by side, never added up.
-The test-season evaluation (2025/26) stays on Model Analysis (*Historical Model Testing*). A recorded
-prediction is never changed after kick-off: its pick, probability, model version and generation time stay as
-stored; only a missing price may be filled from the archive, and such a price is marked with its origin.
+**One prediction history.** Prediction History, Leagues and Analytics show one history of the current season:
+per match one Main and one Risk — the prediction saved before kick-off when it exists, otherwise the
+production model's prediction rebuilt from pre-match data for an early-season match that was not published
+in advance (`unified_history`). A match is never counted twice; the origin of each row (`source`, `origin`,
+`odds_origin`, generation / reconstruction time) stays in the data and is explained on Model Analysis. The
+test-season evaluation (2025/26) stays on Model Analysis (*Historical Model Testing*).
+
+**Completing stored predictions** (`src/prediction/history_repair.py`, run by every pipeline run and by
+`scripts/restore_recorded_odds.py`): a prediction stored without a price gets the last real OddsPapi quote
+before kick-off from the archive (`odds_origin = "archive"`), and EV and profit are computed from it; a
+match recorded before the Risk rule existed gets its Risk from the same stored probabilities and pre-match
+prices (`origin = "risk_reconstructed"`). Selection, probability, model version and generation time of a
+stored prediction are never changed, and a Main is never re-chosen.
 
 Stake 1 unit with a real price: win `odds − 1`, loss `−1`, refund / void `0` (not staked).
 **ROI = net profit / number of staked predictions × 100**; the hit rate counts won / lost predictions (with or
@@ -290,24 +296,27 @@ without odds). Highest / lowest ROI market follows the active filters; below 30 
 
 ## Website
 
-* **Header** — FP logo (link to Matches), navigation, team search (magnifier: results while typing,
-  arrow keys, Enter, Esc) and theme switch. All dates and times are in the browser's time zone (Europe/Kyiv when
+* **Header** — football mark + Foot**Predict** (link to Matches; favicon from the same mark; the tab is always
+  called FootPredict), navigation, a compact *Search…* field (results while typing — exact and starting matches
+  first —, arrow keys, Enter, Esc) and theme switch. All dates and times are in the browser's time zone (Europe/Kyiv when
   the browser does not tell).
-* **Matches** — leagues, date strip, club badges, 1X2 + totals with real odds.
-* **Match Details** — score; **Main and Risk side by side**; *Why this prediction?* (facts for that exact market,
-  then 3–5 model factors as bars worded *Strong / Moderate / Small support* or *Works against*, no percentages); *Why this risk
-  prediction?*; *Explain another market*; markets (Asian handicap: half lines *Selection · Win probability · Odds*, whole lines *Selection · Win · Refund ·
-  Lose · Odds*, priced lines first, *Show all lines*);
+* **Matches** — leagues, date strip, club badges, 1X2 + totals with real odds (larger, higher-contrast prices).
+* **Match Details** — score; **Main (60 %) and Risk (40 %) side by side**, equal height; *Why …?* — one card:
+  the model probability, 3–5 factors with both teams' numbers and each factor's share of the model's reasoning
+  (|SHAP| share of the model output that market is derived from; no shares for exact scores), the recent record
+  for that exact market and one summary line; *Why this risk prediction?*; *Explain another market*; markets
+  (Asian handicap: priced lines only — half lines *Selection · Win probability · Odds*, whole lines
+  *Selection · Win · Refund · Lose · Odds*);
   team comparison, form, H2H, rest days.
-* **Prediction History** — Recorded / Backtest / both; period presets incl. previous month, a specific month /
-  year and custom dates; Main / Risk / Market forecasts; summary by day, week (Mon–Sun interval) or month
-  (12 rows, *Show all*); scores as 2:1.
-* **Leagues** — season selector drives table, matches and FootPredict statistics of that season (Recorded and
-  Backtest separately).
-* **Teams** — badge, equal KPI cards, statistics grouped Results / Attack / Defence / Corners, paging.
-* **Analytics** — Recorded or Backtest; six charts in two columns: cumulative profit, ROI and hit rate over the
-  last 20 / 50 / 100 bets or cumulative, horizontal ROI by league, ROI by market and hit rate by market (n next
-  to each bar, samples under 30 faded); highest / lowest ROI market.
+* **Prediction History** — one history; filters Period (presets, a specific month / year, custom dates),
+  Prediction type, League, Team or match (market under *More filters*); one set of figures; summary by day, week
+  (Mon–Sun interval) or month (12 rows, *Show all*); scores as 2:1.
+* **Leagues** — season selector drives table, matches (in the visitor's time zone) and FootPredict statistics
+  of that season from the same history.
+* **Analytics** — the same history; highest / lowest ROI market (sample size in the tooltip); six charts:
+  cumulative profit, ROI and hit rate over the last 20 / 50 / 100 bets or cumulative, ROI by market, ROI by
+  league (full width, 12 largest samples, *Show all*), hit rate by market (sample sizes on hover, small
+  samples faded).
 * **Model Analysis** — test-season metrics with explanations, draws, calibration, confusion matrix, model
   features (SHAP chart, gain in an expander, searchable feature dictionary — five most influential groups,
   *Show all*), hyperparameter search, derived markets, *Historical Model Testing*.
@@ -397,6 +406,10 @@ python scripts/odds_credits.py                             # credits left (no AP
 python scripts/retrain_models.py                           # retrain the four models (≈1 h)
 python scripts/decision_study.py                           # re-run the validation study of Main / Risk
 python scripts/regenerate_predictions.py                   # re-apply the rules without retraining
+python scripts/restore_recorded_odds.py --go               # archived prices + missing Risk predictions
+python -m experiments.v6_research.run --all                # the v6 model research (experiments/v6_research)
+python scripts/v6_audit.py --out reports/v6/audit_after.json   # price coverage and history audit
+python scripts/build_report.py                             # reports/FootPredict_v6_Research_Report.pdf
 ```
 
 * `run_pipeline.py` updates data and predictions; it never retrains. Order: providers → Football-Data →
@@ -411,7 +424,9 @@ The deployed app (Streamlit Community Cloud) is built from `main`. `.github/work
 hour, when GitHub often drops scheduled runs) and a guard step that keeps only the one matching Kyiv's current
 UTC offset, so the time stays right across summer / winter time.
 It can also be started by hand (*Actions → Update data and predictions → Run workflow*) with the mode —
-`results` (free), `odds` or `full` — and optionally one league, one day or one match and *force*. Secrets:
+`results` (free), `odds`, `full` or `history` (the OddsPapi archive of played matches: download, then — on
+the newest `main` — add the archive, complete stored predictions and regenerate the season backtest; the
+archive is also kept as a run artifact) — and optionally one league, one day or one match and *force*. Secrets:
 `API_FOOTBALL_KEY`, `ODDSPAPI_KEY`, `ODDS_API_KEY`; optional variable `ODDS_API_FALLBACK`. It commits the new
 data to `main`, writes the run summary and the quotas to the job summary, and Streamlit redeploys. A local checkout is synchronised with `git pull`;
 `E2E_BASE_URL=<app url>/~/+ pytest tests/e2e --e2e -k sync` checks that the deployed app serves the same data.

@@ -207,4 +207,17 @@ def period_label(period_end: pd.Timestamp, period: str) -> str:
 def select_dataset(picks: pd.DataFrame, key: str) -> pd.DataFrame:
     if picks.empty or "source" not in picks:
         return picks
+    if key == "history":
+        return unified_history(picks)
     return picks.loc[picks["source"].isin(DATASETS[key])]
+
+
+def unified_history(picks: pd.DataFrame) -> pd.DataFrame:
+    """The one prediction history the website shows: per match, the predictions recorded before kick-off
+    when they exist, otherwise the current-season reconstruction from pre-match data (never both, so no
+    bet is counted twice). The origin stays in the data (``source``, ``origin``, ``odds_origin``)."""
+    if picks.empty or "source" not in picks:
+        return picks
+    live = picks.loc[picks["source"] == "live"]
+    rebuilt = picks.loc[(picks["source"] == "backfill") & ~picks["match_id"].isin(set(live["match_id"]))]
+    return pd.concat([live, rebuilt], ignore_index=True)

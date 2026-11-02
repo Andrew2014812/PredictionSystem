@@ -35,6 +35,7 @@ from src import config  # noqa: E402
 from src.data.dataset import build_matches  # noqa: E402
 from src.data.download import download_fixtures, download_results  # noqa: E402
 from src.features.store import rebuild_features  # noqa: E402
+from src.prediction.history_repair import repair_history  # noqa: E402
 from src.prediction.pipeline import generate_live_predictions, settle_predictions  # noqa: E402
 from src.providers.collect import collect  # noqa: E402
 from src.storage import LocalStorage  # noqa: E402
@@ -62,6 +63,7 @@ def main() -> None:
         download_fixtures()
     features = rebuild_features()
     picks = settle_predictions(features)
+    summary["history_repair"] = repair_history(features)       # archived prices, missing Risk predictions
     summary["predicted_matches"] = generate_live_predictions(features)
     summary["picks"] = picks["status"].value_counts().to_dict() if not picks.empty else {}
     summary["updated_at"] = datetime.now().isoformat(timespec="seconds")

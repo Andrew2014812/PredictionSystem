@@ -13,6 +13,7 @@ from src.ui.components import (date_text, empty_state, esc, form_chips, guard, h
                                num, page_header, pct, section, signed, team_url, tone)
 from src.ui.i18n import t
 from src.ui.labels import group_title, league_label
+from src.ui.timefmt import with_local_time
 
 
 def _table_html(table: pd.DataFrame, country: str) -> str:
@@ -30,10 +31,10 @@ def _table_html(table: pd.DataFrame, country: str) -> str:
 
 def _match_rows(matches: pd.DataFrame, played: bool) -> str:
     out = []
-    for r in matches.itertuples():
-        centre = f"{int(r.home_goals)}:{int(r.away_goals)}" if played else (r.time or "—")
+    for r in with_local_time(matches).itertuples():          # the visitor's date and time, as on Matches
+        centre = f"{int(r.home_goals)}:{int(r.away_goals)}" if played else (r.local_time or "—")
         out.append(f"<a class='rm' style='grid-template-columns:80px 1fr 56px 1fr' href='{match_url(r.match_id)}' "
-                   f"target='_self'><span class='d'>{date_text(r.date, '%d.%m')}</span>"
+                   f"target='_self'><span class='d'>{date_text(r.local_date, '%d.%m')}</span>"
                    f"<span style='text-align:right'>{esc(r.home_team)}</span><span class='s' style='text-align:center'>"
                    f"{centre}</span><span>{esc(r.away_team)}</span></a>")
     return "<div class='card'>" + "".join(out) + "</div>"
@@ -94,36 +95,30 @@ def render() -> None:
     all_picks = data.picks()
     lp_all = all_picks.loc[(all_picks["league"] == league) & (all_picks["season"] == season)] \
         if not all_picks.empty else all_picks
-    shown = False
-    # Recorded pre-match predictions and the season backtest are shown apart, never added up.
-    for key, title in (("recorded", "Recorded before kick-off"), ("season_backtest", "Backtest")):
-        lp = select_dataset(lp_all, key)
-        main = summarize(lp.loc[lp["role"] == "main"]) if not lp.empty else None
-        if not main or not main["settled"]:
-            continue
-        shown = True
-        st.html(f"<div class='why-h'>{t(title)}</div>")
-        kpi_row([
-            (t("Main predictions"), f"{main['settled']:,}", t("{n} predictions with odds", n=main["bets"])),
-            (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
-            (t("Main profit"), f"{signed(main['profit'])} {t('u')}" if main["bets"] else "—", "", tone(main["profit"])),
-            (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
-        ])
-    if not shown:
+    lp = select_dataset(lp_all, "history")                    # the same predictions as Prediction History
+    main = summarize(lp.loc[lp["role"] == "main"]) if not lp.empty else None
+    if not main or not main["settled"]:
         st.caption(t("No settled FootPredict predictions for this league in this season yet."))
         return
-    section(t("Market performance"), t("recorded before kick-off"))
-    lp = select_dataset(lp_all, "recorded")
+    kpi_row([
+        (t("Main predictions"), f"{main['settled']:,}", t("{n} bets", n=main["bets"])),
+        (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
+        (t("Main profit"), f"{signed(main['profit'])} {t('u')}" if main["bets"] else "—", "", tone(main["profit"])),
+        (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
+    ])
+    section(t("Market performance"))
     g = group_summary(lp.loc[lp["role"] == "market"], "group") if not lp.empty else pd.DataFrame()
     if g.empty:
-        st.caption(t("No recorded market forecasts settled yet."))
+        st.caption(t("No market forecasts settled yet."))
         return
     view = pd.DataFrame({t("Market"): g["group"].map(group_title), t("Predictions"): g["predictions"],
-                         t("Hit rate"): g["hit_rate"], t("Bets with odds"): g["bets"], t("Profit"): g["profit"],
-                         t("ROI"): g["roi"]})
+                         t("Hit rate"): g["hit_rate"], t("Bets"): g["bets"], t("Average odds"): g["avg_odds"],
+                         t("Profit"): g["profit"], t("ROI"): g["roi"]})
     st.html(html_table(view, formats={
-        t("Hit rate"): lambda v: pct(v, 1), t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>",
+        t("Hit rate"): lambda v: pct(v, 1), t("Average odds"): lambda v: "—" if v != v else f"{v:.2f}",
+        t("Profit"): lambda v: f"<span class='{tone(v)}'>{signed(v)}</span>",
         t("ROI"): lambda v: f"<span class='{tone(v)}'>{signed(v, 1, '%')}</span>"},
-        align_right=(t("Predictions"), t("Hit rate"), t("Bets with odds"), t("Profit"), t("ROI"))))
+        align_right=(t("Predictions"), t("Hit rate"), t("Bets"), t("Average odds"), t("Profit"), t("ROI"))))
+
 
 render()

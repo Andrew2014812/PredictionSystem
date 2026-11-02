@@ -74,16 +74,17 @@ def test_date_navigation_moves_one_day(app, predicted_day):
 def test_global_team_search_from_the_header(app, predicted_day):
     day, _ = predicted_day
     app.open(f"?date={day}")
-    assert app.page.get_by_placeholder("Search team...").count() == 0          # no second search on Matches
-    app.page.get_by_role("button", name="search").first.click()                  # the magnifier
-    app.page.wait_for_timeout(500)
-    app.page.keyboard.type("Manchester")                                         # focused at once, no Enter
-    expect(app.page.get_by_role("option", name=re.compile("Man City"))).to_be_visible()
-    expect(app.page.get_by_role("option", name=re.compile("Man United"))).to_be_visible()
-    app.page.keyboard.press("ArrowDown")
+    field = app.page.locator(".st-key-global_search")
+    box = field.bounding_box()
+    assert 110 <= box["width"] <= 160, box                                     # compact field, not an icon
+    expect(field.locator("input")).to_have_attribute("placeholder", "Search...")
+    field.locator("input").click()
+    app.page.keyboard.type("Arse")                                              # results while typing, no Enter
+    first = app.page.get_by_role("option").first
+    expect(first).to_contain_text("Arsenal")                                    # the club starting with it first
     app.page.keyboard.press("Enter")
     app.wait()
-    expect(app.page.locator(".mh-team")).to_contain_text("Man")
+    expect(app.page.locator(".mh-team")).to_contain_text("Arsenal")
     assert "teams" in app.page.url
 
 
@@ -95,13 +96,21 @@ def test_match_details_main_explanation_and_no_synthetic_odds(app, predicted_day
     expect(risk_card).to_be_visible()                                 # Risk exists for every predicted match
     m_box, r_box = main_card.bounding_box(), risk_card.bounding_box()
     assert abs(m_box["y"] - r_box["y"]) < 5 and r_box["x"] > m_box["x"]            # side by side
+    assert m_box["width"] > r_box["width"] * 1.3                                   # Main 60 %, Risk 40 %
+    assert abs(m_box["height"] - r_box["height"]) < 2                              # the same height
     expect(app.section("Why this prediction?")).to_be_visible()
-    expect(app.page.locator(".why p").first).to_contain_text("FootPredict favours")
-    levels = [x for x in app.page.locator(".why .lvl").all_inner_texts() if x]          # visible ones
-    assert levels and set(levels) <= {"Strong support", "Moderate support", "Small support", "Works against"}, levels
-    assert 3 <= len(app.page.locator(".why").first.locator(".lvl").all()) <= 5          # 3–5 factors, no %
+    card = app.page.locator(".why").first
+    expect(card.locator(".why-t")).to_have_text(re.compile(r"^Why .+\?$"))
+    expect(card.locator(".why-p")).to_contain_text("model probability")
+    factors = card.locator(".fx")
+    assert 3 <= factors.count() <= 5
+    shares = [int(x.rstrip("%")) for x in card.locator(".fx-s").all_inner_texts()]
+    assert shares and all(0 < x <= 100 for x in shares) and sum(shares) <= 100      # real shares of the reasoning
+    assert all(e.strip() for e in card.locator(".fx-e").all_inner_texts())         # each factor has its numbers
     body = app.page.locator("[data-testid=stMain]").inner_text()
-    assert "influence" not in body.lower().replace("share of influence", "")         # no ML jargon labels
+    for template in ("Strong support", "Moderate support", "Small support", "Works against", "The numbers",
+                     "What the model weighed"):
+        assert template not in body, template
     order = body.lower()
     assert order.index("why this risk prediction?") < order.index("explain another market") < order.index("markets")
     assert not SYNTHETIC.search(body), SYNTHETIC.search(body).group()
@@ -116,18 +125,20 @@ def test_match_details_main_explanation_and_no_synthetic_odds(app, predicted_day
 def test_handicap_separates_half_and_whole_asian_lines(app, predicted_day):
     day, _ = predicted_day
     _open_first_match(app, day)
-    toggle = app.page.get_by_text("Show all lines")
-    if toggle.count():
-        toggle.first.click()
-        app.wait()
+    assert app.page.get_by_text("Show all lines").count() == 0                 # only priced lines, no toggle
     card = app.page.locator(".card").filter(has_text="Handicap").first
-    expect(card).to_contain_text("Half lines")
-    expect(card).to_contain_text("Whole lines")
-    half, whole = card.locator("table").first, card.locator("table").last
-    expect(half.locator("tr").first).to_have_text(re.compile(r"Selection\s*Win probability\s*Odds"))
-    expect(whole.locator("tr").first).to_have_text(re.compile(r"Selection\s*Win\s*Refund\s*Lose\s*Odds"))
-    lines = [re.search(r"([+-]\d+(\.5)?)$", r) for r in half.locator("td:first-child").all_inner_texts()]
-    assert lines and all(lines)                                        # every row names the side and its line
+    tables = card.locator("table")
+    if tables.count() == 0:
+        expect(card).to_contain_text("No bookmaker prices")
+        return
+    for table in tables.all():
+        head = table.locator("tr").first.inner_text()
+        assert re.search(r"Selection\s*Win probability\s*Odds", head, re.I) or re.search(
+            r"Selection\s*Win\s*Refund\s*Lose\s*Odds", head, re.I), head          # headers are upper-cased by CSS
+        odds = table.locator("td:last-child").all_inner_texts()
+        assert odds and all(re.fullmatch(r"\d+\.\d\d", o) for o in odds), odds   # every listed line is priced
+        lines = [re.search(r"([+-]\d+(\.5)?)$", r) for r in table.locator("td:first-child").all_inner_texts()]
+        assert all(lines)                                              # every row names the side and its line
     assert "Draw" not in card.inner_text()                            # a refund is never called a draw
 
 
@@ -137,7 +148,7 @@ def test_history_shows_completed_predictions_by_default(app):
     app.select("Period", "All time")
     statuses = set(app.page.locator("table.mkt .status").all_inner_texts())
     assert statuses and statuses <= {"Won", "Lost", "Refund"}, statuses
-    scores = [s for s in app.page.locator("table.mkt").last.locator("tr td:nth-child(10)").all_inner_texts() if s]
+    scores = [s for s in app.page.locator("table.mkt").last.locator("tr td:nth-child(9)").all_inner_texts() if s]
     assert scores and all(re.fullmatch(r"\d+:\d+", s) for s in scores), scores[:3]      # 2:1, not 2-1
     expect(app.kpi("ROI")).to_be_visible()
     app.select("Prediction type", "Risk predictions")
@@ -145,19 +156,26 @@ def test_history_shows_completed_predictions_by_default(app):
     app.assert_healthy()
 
 
-def test_history_separates_recorded_and_backtest(app):
+def test_history_is_one_history_with_simple_filters(app):
     app.open("history")
     app.select("Period", "All time")
-    expect(app.option("Recorded")).to_be_visible()
-    app.option("Both").click()
-    app.wait()
-    expect(app.page.locator(".why-h").filter(has_text="Recorded before kick-off")).to_be_visible()
-    expect(app.page.locator(".why-h").filter(has_text="Backtest")).to_be_visible()     # two KPI rows, never summed
-    tags = set(app.page.locator("table.mkt .origin").all_inner_texts())
-    assert tags <= {"Recorded", "Backtest"} and tags, tags
+    body = app.page.locator("[data-testid=stMain]").inner_text()
+    for gone in ("Recorded", "Backtest", "Both"):                     # one history, no data switch
+        assert app.option(gone).count() == 0, gone
+    labels = [x.strip() for x in app.page.locator('[data-testid="stWidgetLabel"]').all_inner_texts()]
+    for label in ("Period", "Prediction type", "League", "Team or match"):
+        assert label in labels, labels
+    assert "Market" not in labels and "Data" not in labels             # market filter only under "More filters"
+    assert app.page.locator(".kpi").filter(has_text="ROI").count() == 1   # one set of figures
+    assert "predictions with odds" not in body
     assert app.page.get_by_role("radio", name="Yearly").count() == 0
     weeks = app.page.locator("table.mkt").first.locator("tr td:first-child").all_inner_texts()
     assert weeks and re.fullmatch(r"\d\d\.\d\d – \d\d\.\d\d\.\d{4}", weeks[0]), weeks[:2]   # Mon–Sun interval
+    app.page.get_by_label("Team or match").fill("Arsenal")
+    app.page.keyboard.press("Enter")
+    app.wait()
+    teams = app.page.locator("table.mkt").last.locator("td:nth-child(3)").all_inner_texts()
+    assert teams and all("Arsenal" in x for x in teams), teams[:3]
 
 
 def test_history_period_filter_changes_summary(app):
@@ -175,7 +193,23 @@ def test_leagues_table_and_main_performance(app):
     expect(app.section("League table")).to_be_visible()
     expect(app.page.locator("table.mkt").first).to_contain_text("Pts")
     assert app.option("All time").count() == 0                         # season statistics only
+    body = app.page.locator("[data-testid=stMain]").inner_text()
+    assert "Recorded before kick-off" not in body and "Backtest" not in body   # one set of figures
     app.assert_healthy()
+
+
+def test_leagues_show_kick_off_times_like_matches(browser, base_url):
+    from tests.e2e.harness import App
+    ctx = browser.new_context(timezone_id="Europe/Kyiv", viewport={"width": 1500, "height": 1100})
+    app = App(ctx.new_page(), base_url)
+    app.open("leagues")
+    row = app.page.locator("a.rm").filter(has=app.page.locator(".s", has_text=re.compile(r"^\d\d:\d\d$"))).first
+    expect(row).to_be_visible()
+    href, league_time = row.get_attribute("href"), row.locator(".s").inner_text()
+    app.page.goto(f"{base_url}/match?{href.split('?', 1)[1]}")
+    app.wait()
+    assert league_time in app.page.locator(".match-header .mh-meta").inner_text()   # the same local time
+    ctx.close()
 
 
 def test_team_period_controls_the_match_list(app):
@@ -212,7 +246,11 @@ def test_analytics_defaults_to_main_predictions(app):
     assert app.charts().count() == 6
     boxes = [c.bounding_box() for c in app.charts().all()]
     assert abs(boxes[0]["y"] - boxes[1]["y"]) < 5 and boxes[1]["x"] > boxes[0]["x"]      # two per row
-    expect(app.page.locator(".gtitle").filter(has_text="n = bets with real odds").first).to_be_visible()
+    league = app.page.locator(".stPlotlyChart, [data-testid=stPlotlyChart]").filter(
+        has=app.page.locator(".gtitle", has_text="ROI by league")).first
+    assert league.bounding_box()["width"] > boxes[0]["width"] * 1.6              # ROI by league: full width
+    assert "n=" not in app.page.locator(".gtitle").filter(has_text="Hit rate by market").first.text_content()
+    assert app.page.get_by_text("Window", exact=True).locator("visible=true").count() == 0   # no label above the buttons
     assert "volume" not in app.page.locator("[data-testid=stMain]").inner_text().lower()
     app.assert_healthy()
 
@@ -287,8 +325,7 @@ def test_finished_match_shows_result_before_predictions(app, predicted_day):
     expect(app.page.locator(".rec.risk .status")).to_have_text(re.compile("^(Won|Lost|Refund)$"))
     order = main.inner_text().lower()                                   # labels may be upper-cased by CSS
     assert order.index("main prediction") < order.index("why this prediction?") < order.index("markets")
-    expect(app.page.locator(".why .why-h").first).to_have_text("The numbers")   # facts before model factors
-    expect(app.page.locator(".why .lvl").first).not_to_contain_text("%")       # words, not percentages
+    expect(app.page.locator(".why .why-sum").first).to_be_visible()     # one closing line
     assert not NAN.search(order), NAN.search(order).group()
     app.assert_healthy()
 
@@ -308,8 +345,11 @@ def test_history_is_one_simple_record_with_month_selection(app):
 
 def test_analytics_highlights_follow_the_filters(app):
     app.open("analytics")
-    expect(app.option("Recorded")).to_be_visible()                          # Recorded vs Backtest, never mixed
+    assert app.option("Recorded").count() == 0                              # the same one history
     expect(app.section("Performance over time")).to_be_visible()
+    highlight = app.page.locator(".kpi").filter(has_text="Highest ROI market").first
+    assert "predictions with odds" not in highlight.inner_text()            # sample size in the tooltip
+    assert "bets with real odds" in (highlight.get_attribute("title") or "")
     app.select("Prediction set", "Total goals")
     expect(app.text("Highest ROI league").first).to_be_visible()             # one market: leagues compared
     app.assert_healthy()
@@ -386,3 +426,14 @@ def test_light_theme_date_field_is_readable(app, predicted_day):
     assert _contrast(color, bg) >= 4.5, (color, bg)
     app.pref("dark_mode").click()
     app.wait()
+
+
+def test_browser_tab_title_and_favicon(app):
+    app.open("history")
+    expect(app.page).to_have_title("FootPredict")                    # not the page name, not "Streamlit"
+    icons = app.page.locator("link[rel~='icon']").evaluate_all("els => els.map(e => e.href)")
+    assert icons and not any("favicon.png" == i.rsplit("/", 1)[-1] and "streamlit" in i for i in icons), icons
+    href = icons[0]
+    resp = app.page.request.get(href)
+    assert resp.ok and resp.headers.get("content-type", "").startswith("image/"), href
+    assert "FP" not in app.page.locator(".fp-brand").inner_text().replace("FootPredict", "")   # no FP repeat

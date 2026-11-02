@@ -130,6 +130,12 @@ def test_the_odds_api_event_and_score():
     ("Dundee Rovers", {"Dundee", "Dundee United"}, None),             # "Dundee" sits inside another club
     ("Espanyol Barcelona", {"Barcelona", "Espanol", "Santander"}, "Espanol"),
     ("Espanyola Barcelona", {"Barcelona", "Espanol"}, None),          # extra word looks like another club
+    ("Excelsior Rotterdam", {"Excelsior", "Sparta Rotterdam", "Feyenoord"}, "Excelsior"),   # a town is fine
+    ("Feyenoord Rotterdam", {"Excelsior", "Sparta Rotterdam", "Feyenoord"}, "Feyenoord"),
+    ("Casa Pia Lisbon", {"Casa Pia", "Sp Lisbon"}, "Casa Pia"),
+    ("RC Deportivo de A Coruna", {"La Coruna", "Barcelona"}, "La Coruna"),
+    ("Stade Rennais FC", {"Rennes", "Lens"}, "Rennes"),
+    ("Olympiacos Piraeus", {"Olympiakos", "PAOK"}, "Olympiakos"),
     ("Some Unknown Club", {"Arsenal"}, None),                        # never guessed
     ("Manchester United", {"Arsenal"}, None),                        # alias outside the league is rejected
 ])

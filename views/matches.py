@@ -105,8 +105,8 @@ def _card(r: pd.Series) -> str:
         h_cls, a_cls = ("win", "lose") if hg > ag else (("lose", "win") if hg < ag else ("", ""))
     country = r.get("country") or ""
     teams = (f'<div class="mc-teams"><div class="team {h_cls}"><span class="nm">'
-             f'{team_badge(country, r["home_team"], 16)}{esc(r["home_team"])}</span><b>{hg}</b></div>'
-             f'<div class="team {a_cls}"><span class="nm">{team_badge(country, r["away_team"], 16)}'
+             f'{team_badge(country, r["home_team"], 20)}{esc(r["home_team"])}</span><b>{hg}</b></div>'
+             f'<div class="team {a_cls}"><span class="nm">{team_badge(country, r["away_team"], 20)}'
              f'{esc(r["away_team"])}</span><b>{ag}</b></div></div>')
     has_pred = "p_home" in r and r["p_home"] == r["p_home"]
     if not has_pred:
