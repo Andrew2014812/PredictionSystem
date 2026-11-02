@@ -202,8 +202,8 @@ def add_abs_features(df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
 
 def run_fold(season: int, inner: pd.DataFrame, outer: pd.DataFrame) -> tuple[dict, dict, dict]:
     df = C.features()
-    tr_out, tr_in = C.before(df, season), C.before(df, season - 1)
-    y_out, y_in = outer["y"].to_numpy(), inner["y"].to_numpy()
+    tr_out = C.before(df, season)
+    y_in = inner["y"].to_numpy()
     p_out, p_in = outer[["pH", "pD", "pA"]].to_numpy(), inner[["pH", "pD", "pA"]].to_numpy()
     probs, params, secs = {"a_baseline": p_out}, {}, {}
     info = C.base_predictions(season)[2]

@@ -183,7 +183,6 @@ def before_after(R: Path) -> str:
     d, g, c, k, t = (json.loads((R / f).read_text()) for f in ("draw.json", "goals.json", "corners.json", "risk.json", "timing.json"))
     T = t["seconds"]
     F = ["2023", "2024", "2025"]
-    SEL = ["2023", "2024"]
 
 
     def verdict(vals, base, lower=True):
@@ -195,7 +194,6 @@ def before_after(R: Path) -> str:
         return "смешанно (лучше на одном фолде)"
 
 
-    rows = []
     TIME = {
         "a_baseline": T["result: production XGBoost"],
         "b_w1.2": T["result: draw-weighted refit (b)"], "b_w1.4": T["result: draw-weighted refit (b)"],

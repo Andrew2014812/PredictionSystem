@@ -268,8 +268,8 @@ def chart_market_bars(rows: list[dict], value: str, title: str, name: str, colou
     ax.axvline(0, color=MUTED, lw=0.8)
     ax.xaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0))
     for y, (v, n) in enumerate(zip(vals, df["bets" if value == "roi" else "predictions"])):
-        ax.text(v + (0.004 if v >= 0 else -0.004), y, f"{v * 100:+.1f}% (n={int(n)})" if value == "roi"
-                else f"{v * 100:.0f}% (n={int(n)})", va="center", ha="left" if v >= 0 else "right", fontsize=7)
+        ax.text(max(v, 0) + 0.004, y, f"{v * 100:+.1f}% (n={int(n)})" if value == "roi"     # labels right of zero
+                else f"{v * 100:.0f}% (n={int(n)})", va="center", ha="left", fontsize=7)
     ax.set_title(title, fontsize=10)
     ax.grid(axis="x", color=GRID)
     return _save(fig, name)
@@ -568,7 +568,7 @@ def build() -> Path:
             key = re.sub(r"_(form5|form10|form15|season|venue).*", "", key)
             groups.setdefault(key, 0)
             groups[key] += 1
-    story += [P(f"Число признаков по моделям: " + ", ".join(
+    story += [P("Число признаков по моделям: " + ", ".join(
         f"{name} — {len(t.get('features', []))}" for name, t in meta.get("tasks", {}).items()) + ".")]
     story += bullets([
         "окна формы 5 / 10 / 15 последних матчей и весь сезон, отдельно дома и в гостях;",
@@ -694,6 +694,17 @@ def build() -> Path:
         lg = chart_market_bars(after.get("main_by_league", []), "roi", "ROI Main по лигам", "roi_league.png", True)
         if lg:
             story += figure(lg, "Рисунок 5. ROI Main по лигам.", width=14 * cm)
+        if before:
+            hb = before["history_roles"]["main"]
+            story += [P(f"Почему ROI Main изменился с {pct(hb['roi'], signed=True)} до "
+                        f"{pct(after['history_roles']['main']['roi'], signed=True)}: до загрузки архива реальная цена была "
+                        f"лишь у {hb['bets']} из {hb['settled']} рассчитанных Main — в основном у рынков, которые "
+                        "покрывает Football-Data (1X2, тотал 2.5, одна линия форы). Теперь цена есть у "
+                        f"{after['history_roles']['main']['bets']} из {after['history_roles']['main']['settled']}, включая "
+                        "прогнозы с низкими коэффициентами (средний коэффициент Main снизился с "
+                        f"{num(hb['avg_odds'], 2)} до {num(after['history_roles']['main']['avg_odds'], 2)}). Прежняя цифра "
+                        "была оценкой по неслучайной половине прогнозов; новая — по почти всем. Кроме того, «после» "
+                        f"включает матчи по {esc(after['built_at'][:10])}.")]
         story += [P("Малые выборки (менее 30 ставок) не позволяют уверенно называть рынок или лигу лучшими: "
                     "стандартная ошибка ROI при коэффициентах около 1.8 и 100 ставках составляет порядка 9 п.п.")]
 

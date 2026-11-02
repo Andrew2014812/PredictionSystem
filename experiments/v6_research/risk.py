@@ -25,7 +25,6 @@ import time
 from pathlib import Path
 
 import numpy as np
-import pandas as pd
 
 from src import config
 from src.markets.distributions import corners_distribution, reconcile_with_1x2, score_matrix

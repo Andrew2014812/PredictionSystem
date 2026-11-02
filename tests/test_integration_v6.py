@@ -10,7 +10,10 @@ from src.modelling.training import TaskTrainer, corner_leagues
 from src.prediction import history_repair, store
 from src.prediction.engine import predict_matches
 from src.storage import LocalStorage
-from tests.test_prediction import PARAMS, synthetic  # noqa: F401  (module fixture)
+from tests import test_prediction
+from tests.test_prediction import PARAMS
+
+synthetic = test_prediction.synthetic          # the module fixture of the synthetic league
 
 
 @pytest.fixture
@@ -32,7 +35,7 @@ def _bundles(frame):
     return out
 
 
-def test_prediction_to_roi_and_a_later_archive_price(synthetic, tmp_store):  # noqa: F811
+def test_prediction_to_roi_and_a_later_archive_price(synthetic, tmp_store):
     upcoming = synthetic.loc[~synthetic["played"]]
     bundles = _bundles(synthetic)
     priced_match, unpriced_match = upcoming["match_id"].iloc[0], upcoming["match_id"].iloc[1]
