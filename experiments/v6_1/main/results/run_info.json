@@ -1,0 +1,65 @@
+{
+ "steps": {
+  "strategies": {
+   "minutes": 2.59,
+   "finished": "2026-11-04 12:44:16"
+  },
+  "calibration": {
+   "minutes": 0.07,
+   "finished": "2026-11-04 12:44:21"
+  },
+  "bias": {
+   "minutes": 0.16,
+   "finished": "2026-11-04 12:44:30"
+  },
+  "mix": {
+   "minutes": 0.67,
+   "finished": "2026-11-04 12:45:11"
+  },
+  "betting": {
+   "minutes": 0.74,
+   "finished": "2026-11-04 12:45:55"
+  },
+  "prices": {
+   "minutes": 0.2,
+   "finished": "2026-11-04 12:46:07"
+  },
+  "models": {
+   "minutes": 4.24,
+   "finished": "2026-11-04 12:50:21"
+  },
+  "select": {
+   "minutes": 0.0,
+   "finished": "2026-11-04 12:50:21"
+  },
+  "candidates": {
+   "minutes": 0.35,
+   "finished": "2026-11-04 12:41:35"
+  },
+  "figures": {
+   "minutes": 0.07,
+   "finished": "2026-11-04 12:50:41"
+  }
+ },
+ "environment": {
+  "python": "3.12.12",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "libraries": {
+   "numpy": "2.2.6",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "sklearn": "1.7.2",
+   "xgboost": "3.0.5",
+   "lightgbm": "4.7.0",
+   "catboost": "1.2.10",
+   "statsmodels": "0.15.0",
+   "matplotlib": "3.11.2",
+   "reportlab": "5.1.0",
+   "pypdfium2": null
+  },
+  "git_sha": "77daa4f1f022293190826b20bff24c23b737a0cc",
+  "n_jobs": 3,
+  "seed": 20261104,
+  "n_boot": 2000
+ }
+}
