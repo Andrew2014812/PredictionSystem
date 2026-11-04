@@ -98,6 +98,17 @@ HIDE_CLOUD_BADGES = True     # Streamlit Community Cloud's own corner badges (se
 # right corner are hidden there. If Cloud ever serves that page from another origin, the browser blocks the
 # access and nothing happens (no error); the badges then stay, which is the only visible effect.
 _TITLE_JS = """<script>
+// The interface is English: Streamlit's date picker follows the browser language (a Russian browser
+// showed "ноябрь" and Russian weekdays), so the page reports British English to it — day-first like
+// FootPredict's DD.MM.YYYY dates — and asks it to re-read the language.
+try {
+  const app = window.parent;
+  if (app.navigator.language !== "en-GB") {
+    Object.defineProperty(app.navigator, "language", {get: () => "en-GB", configurable: true});
+    Object.defineProperty(app.navigator, "languages", {get: () => ["en-GB", "en"], configurable: true});
+    app.dispatchEvent(new Event("languagechange"));
+  }
+} catch (e) {}
 const docs = [window.parent.document];
 try { if (window.top !== window.parent && window.top.document) docs.push(window.top.document); } catch (e) {}
 for (const doc of docs) {
@@ -106,13 +117,13 @@ for (const doc of docs) {
   new MutationObserver(fix).observe(doc.querySelector("title") || doc.head, {childList: true, subtree: true,
                                                                            characterData: true});
 }
-const top = docs[docs.length - 1];
-if (HIDE && docs.length > 1 && !top.getElementById("fp-cloud-chrome")) {
-  const style = top.createElement("style");
+const outer = docs[docs.length - 1];          // ("top" is a reserved global name in browsers)
+if (HIDE && docs.length > 1 && !outer.getElementById("fp-cloud-chrome")) {
+  const style = outer.createElement("style");
   style.id = "fp-cloud-chrome";
   style.textContent = '[class*="viewerBadge"], [class*="_profileContainer"], [class*="profilePreview"] ' +
                       '{ display: none !important; }';
-  top.head.appendChild(style);
+  outer.head.appendChild(style);
 }
 </script>"""
 
