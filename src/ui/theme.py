@@ -1,14 +1,27 @@
-"""Theme of the web interface: one stylesheet driven by CSS variables.
+"""Theme of the web interface: one stylesheet driven by CSS variables, in versioned designs.
 
-``PALETTES`` holds the dark (default) and light colour sets; the stylesheet
-only uses ``var(--...)``. For the light theme a second block re-colours the
-built-in Streamlit widgets, which are rendered dark by the app config.
+A design = colour palettes (dark, light), two font families and the heavy / title font weights. The
+stylesheet only uses ``var(--...)``, so a design is switched without touching the CSS:
+
+* ``"v6.1"`` (default): graphite-green dark theme, warmer light theme, IBM Plex Sans for headings and
+  navigation, Source Sans 3 for text and tables, lighter headings (600–700 instead of 800);
+* ``"v6"``: the FootPredict v6 look (navy dark theme, Inter, weight 800), kept unchanged for a rollback.
+
+The design is chosen by ``UI_DESIGN`` in src/config.py, or by the environment variable / Streamlit secret
+``FP_DESIGN`` (no switch on the site). Rollback to v6: ``python scripts/use_design.py v6`` — it sets
+``UI_DESIGN`` and restores the v6 widget colours in ``.streamlit/config.toml`` (see README).
+In the v6.1 design the built-in Streamlit widgets are re-coloured from the palette in both themes; in the
+v6 design only the light theme is, the dark one uses config.toml, exactly as in v6.
 """
 from __future__ import annotations
 
+import os
+
 import streamlit as st
 
-PALETTES = {
+from .. import config as app_config
+
+PALETTES_V6 = {
     "dark": {
         "bg": "#0b1120", "surface": "#131c2e", "surface-2": "#16213a", "border": "#1f2a40",
         "border-soft": "#172036", "text": "#e2e8f0", "text-strong": "#ffffff", "muted": "#94a3b8",
@@ -31,14 +44,68 @@ PALETTES = {
     },
 }
 
+PALETTES_V61 = {
+    "dark": {
+        "bg": "#101820", "surface": "#1b292d", "surface-2": "#203135", "border": "#2b3c40",
+        "border-soft": "#213236", "text": "#e1e7e5", "text-strong": "#f5f8f7", "muted": "#9fb1ab",
+        "faint": "#889a95", "accent": "#269d7d", "accent-soft": "rgba(38,157,125,.16)",
+        "risk": "#e2a336", "risk-soft": "rgba(226,163,54,.14)", "home": "#5b93d3", "draw": "#9aa6a8",
+        "away": "#df7d45", "pos": "#33b88b", "neg": "#e2615c", "track": "#26373b",
+        "bar-pos": "rgba(51,184,139,.74)", "bar-neg": "rgba(226,97,92,.62)", "bar-hit": "#6aa0c2",
+        "search-bg": "rgba(159,177,171,.10)",
+        "header-grad": "linear-gradient(135deg, #1b292d 0%, #16302a 100%)", "input": "#1b292d",
+    },
+    "light": {
+        "bg": "#f5f6f3", "surface": "#ffffff", "surface-2": "#eef1ed", "border": "#d5dbd6",
+        "border-soft": "#e5e9e4", "text": "#1f2a2c", "text-strong": "#111a1c", "muted": "#4a5855",
+        "faint": "#56645f", "accent": "#167c66", "accent-soft": "rgba(22,124,102,.10)",
+        "risk": "#b8761a", "risk-soft": "rgba(184,118,26,.10)", "home": "#2f6db5", "draw": "#8b979a",
+        "away": "#c6602a", "pos": "#167c66", "neg": "#c0392b", "track": "#e2e7e2",
+        "bar-pos": "rgba(22,124,102,.74)", "bar-neg": "rgba(192,57,43,.60)", "bar-hit": "#3b7ea1",
+        "search-bg": "rgba(17,26,28,.05)",
+        "header-grad": "linear-gradient(135deg, #ffffff 0%, #edf5f1 100%)", "input": "#ffffff",
+    },
+}
+
+DESIGNS = {
+    "v6": {"palettes": PALETTES_V6, "body": "'Inter', sans-serif", "head": "'Inter', sans-serif",
+           "fonts": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+           "w_heavy": 800, "w_title": 800, "size": "1rem", "widgets_dark": False},
+    "v6.1": {"palettes": PALETTES_V61, "body": "'Source Sans 3', 'Source Sans Pro', sans-serif",
+             "head": "'IBM Plex Sans', sans-serif",
+             "fonts": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700"
+                      "&family=Source+Sans+3:wght@400;500;600;700&display=swap",
+             "w_heavy": 700, "w_title": 600, "size": "1.04rem", "widgets_dark": True},
+}
+DEFAULT_DESIGN = "v6.1"
+
+
+def design_name() -> str:
+    """The active design: FP_DESIGN (environment or Streamlit secret), else config.UI_DESIGN."""
+    name = os.environ.get("FP_DESIGN")
+    if not name:
+        try:
+            name = st.secrets.get("FP_DESIGN")
+        except Exception:                                     # noqa: BLE001 - no secrets file locally
+            name = None
+    name = name or getattr(app_config, "UI_DESIGN", DEFAULT_DESIGN)
+    return name if name in DESIGNS else DEFAULT_DESIGN
+
+
+def design() -> dict:
+    return DESIGNS[design_name()]
+
+
+# the active design's palettes (kept as a name: tests and older code read PALETTES)
+PALETTES = PALETTES_V61
 
 def current_theme() -> str:
     return st.session_state.get("theme", "dark")
 
 
 def colors() -> dict:
-    """Palette of the active theme (for Plotly and inline styles)."""
-    return PALETTES[current_theme()]
+    """Palette of the active theme of the active design (for Plotly and inline styles)."""
+    return design()["palettes"][current_theme()]
 
 
 def plotly_layout() -> dict:
@@ -46,21 +113,31 @@ def plotly_layout() -> dict:
     return dict(
         template="plotly_dark" if current_theme() == "dark" else "plotly_white",
         paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="Inter, sans-serif", size=12, color=c["muted"]),
+        font=dict(family=design()["body"].replace("'", ""), size=12, color=c["muted"]),
         title_font_color=c["text-strong"], legend_font_color=c["text"],
         margin=dict(l=10, r=10, t=48, b=10),
-        hoverlabel=dict(font_family="Inter, sans-serif"),
+        hoverlabel=dict(font_family=design()["body"].replace("'", "")),
         xaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"]),
         yaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"]),
     )
 
 
 CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html, body, [class*="css"], .stMarkdown, .stText, button, input, select, textarea {
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--font-body) !important;
 }
+html { font-size: var(--font-size); }
+h1, h2, h3, h4, .page-title, .fp-brand, [data-testid="stTopNavLink"] p, .mh-team, .why .why-t, .rec .pick,
+.outcome .pick, .kpi .value, .section-title, [data-testid="stExpander"] summary p {
+  font-family: var(--font-head) !important; }
+.kpi .value, .rec .grid .v, .outcome .grid .v, .mc-odds, td, .rm .s { font-variant-numeric: tabular-nums; }
+/* Streamlit's own controls are not part of FootPredict: menu, deploy / fork buttons, run indicator,
+   decoration bar and footer are hidden (the run indicator stays in the page for the tests, only unseen) */
+[data-testid="stMainMenu"], [data-testid="stAppDeployButton"], [data-testid="stToolbarActions"],
+[data-testid="stStatusWidget"], [data-testid="stDecoration"], footer, #MainMenu,
+[data-testid="manage-app-button"], [data-testid="stBottomBlockContainer"] .stCaption:empty {
+  display: none !important; visibility: hidden !important; }
 .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] { background: var(--bg) !important; }
 .block-container { padding-top: 4.6rem; padding-bottom: 3rem; max-width: 1480px; }
 .stApp, .stMarkdown, .stMarkdown p, label, [data-testid="stWidgetLabel"] p { color: var(--text); }
@@ -69,11 +146,9 @@ a { text-decoration: none; }
 /* brand + top navigation ------------------------------------------------------ */
 [data-testid="stHeader"] { border-bottom: 1px solid var(--border); }
 [data-testid="stToolbar"] .rc-overflow { padding-left: 200px; padding-right: 285px; box-sizing: border-box; }
-/* Streamlit Cloud adds "Fork" / GitHub buttons for visitors right under the theme switch */
-[data-testid="stToolbarActions"] { display: none !important; }
 .fp-brand { position: fixed; top: 0; left: 0; height: 3.75rem; z-index: 999991; display: flex;
   align-items: center; padding-left: 1.4rem; pointer-events: none;
-  font-weight: 800; font-size: 1.22rem; letter-spacing: -0.03em; color: var(--text-strong); }
+  font-weight: var(--w-heavy); font-size: 1.22rem; letter-spacing: -0.03em; color: var(--text-strong); }
 .fp-brand a { display: flex; align-items: center; gap: .45rem; color: var(--text-strong) !important;
   pointer-events: auto; text-decoration: none; }
 .fp-brand .mark { flex: none; display: block; }
@@ -102,7 +177,7 @@ a { text-decoration: none; }
 .st-key-global_search [data-baseweb="select"] svg { display: none; }
 
 /* headings ------------------------------------------------------------------- */
-.page-title { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 .9rem 0;
+.page-title { font-size: 1.7rem; font-weight: var(--w-title); letter-spacing: -0.03em; margin: 0 0 .9rem 0;
   color: var(--text-strong); }
 .page-subtitle { color: var(--muted); font-size: .92rem; margin: -.6rem 0 1.1rem 0; }
 .section-title { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 .6rem 0; color: var(--text-strong);
@@ -124,7 +199,7 @@ img.badge { object-fit: contain; vertical-align: middle; flex: none; }
 .origin { font-size: .7rem; font-weight: 700; padding: 1px 6px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); }
 .origin.live { color: var(--accent); border-color: var(--accent); }
 .chip-note { display: inline-block; margin-left: .4rem; padding: 0 .4rem; border-radius: 6px; font-size: .62rem; font-weight: 700; letter-spacing: .02em; text-transform: none; color: var(--risk); border: 1px solid var(--risk); vertical-align: middle; }
-.kpi .value { font-size: 1.45rem; font-weight: 800; margin-top: .15rem; color: var(--text-strong); }
+.kpi .value { font-size: 1.45rem; font-weight: var(--w-heavy); margin-top: .15rem; color: var(--text-strong); }
 .kpi .sub { color: var(--faint); font-size: .78rem; }
 .kpi .sub:empty::before { content: " "; }   /* same height with or without a sub line */
 
@@ -141,7 +216,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .mc-time .st.ft { color: var(--accent); }
 .mc-teams .team { display: flex; justify-content: space-between; font-weight: 600; font-size: .93rem; padding: 2px 0;
   color: var(--text); }
-.mc-teams .team b { font-weight: 800; min-width: 18px; text-align: right; }
+.mc-teams .team b { font-weight: var(--w-heavy); min-width: 18px; text-align: right; }
 .mc-teams .team.win { color: var(--text-strong); } .mc-teams .team.lose { color: var(--faint); }
 .mc-block .cap { color: var(--faint); font-size: .66rem; text-transform: uppercase; letter-spacing: .06em;
   font-weight: 600; margin-bottom: 4px; }
@@ -153,7 +228,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .recs { display: grid; grid-template-columns: 3fr 2fr; gap: 1rem; align-items: stretch; margin-bottom: .6rem; }
 .recs > .rec { height: 100%; box-sizing: border-box; margin: 0 !important; }
 /* the "Why …?" card */
-.why .why-t { font-size: 1.05rem; font-weight: 800; color: var(--text-strong); margin-bottom: .15rem; }
+.why .why-t { font-size: 1.05rem; font-weight: var(--w-heavy); color: var(--text-strong); margin-bottom: .15rem; }
 .why .why-p { color: var(--muted); font-size: .9rem; margin-bottom: .7rem; }
 .why .why-p b { color: var(--accent); font-size: 1.05rem; }
 .why.risk .why-p b { color: var(--risk); }
@@ -185,7 +260,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 
 /* chips --------------------------------------------------------------------- */
 .chip { display: inline-flex; width: 22px; height: 22px; border-radius: 6px; align-items: center; justify-content: center;
-  font-size: .72rem; font-weight: 800; color: #0b1120; margin-right: 3px; }
+  font-size: .72rem; font-weight: var(--w-heavy); color: #0b1120; margin-right: 3px; }
 .chip.W { background: var(--pos); } .chip.D { background: var(--draw); } .chip.L { background: var(--neg); }
 .status { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .68rem; font-weight: 700;
   border: 1px solid currentColor; }
@@ -197,27 +272,27 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
   padding: 1.4rem 1.6rem; margin-bottom: 1rem; }
 .mh-meta { color: var(--muted); font-size: .85rem; display: flex; gap: 1.1rem; flex-wrap: wrap; }
 .mh-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: .8rem; }
-.mh-team { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-strong); }
+.mh-team { font-size: 1.6rem; font-weight: var(--w-heavy); letter-spacing: -0.02em; color: var(--text-strong); }
 .mh-team a { color: inherit !important; }
 .mh-team.away { text-align: right; }
 .mh-team img.badge { display: block; margin-bottom: .35rem; } .mh-team.away img.badge { margin-left: auto; }
 .mc-teams .team .nm { display: flex; align-items: center; gap: .4rem; min-width: 0; }
 .mh-team .sub { display: block; font-size: .8rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
-.mh-score { font-size: 2.3rem; font-weight: 800; padding: 0 1.5rem; text-align: center; color: var(--text-strong); }
+.mh-score { font-size: 2.3rem; font-weight: var(--w-heavy); padding: 0 1.5rem; text-align: center; color: var(--text-strong); }
 .mh-score .vs { font-size: 1rem; color: var(--faint); font-weight: 600; }
 
 /* recommendation cards ------------------------------------------------------ */
 .rec { border-radius: 16px; padding: 1.1rem 1.25rem; border: 1px solid var(--border); height: 100%; background: var(--surface); }
 .rec.main { background: linear-gradient(135deg, var(--accent-soft), var(--surface) 65%); border-color: var(--accent); }
 .rec.risk { background: linear-gradient(135deg, var(--risk-soft), var(--surface) 65%); border-color: var(--risk); }
-.rec .tag { font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.rec .tag { font-size: .7rem; font-weight: var(--w-heavy); letter-spacing: .1em; text-transform: uppercase; }
 .rec.main .tag { color: var(--accent); } .rec.risk .tag { color: var(--risk); }
-.rec .pick { font-size: 1.35rem; font-weight: 800; margin: .3rem 0 .1rem 0; color: var(--text-strong); }
+.rec .pick { font-size: 1.35rem; font-weight: var(--w-heavy); margin: .3rem 0 .1rem 0; color: var(--text-strong); }
 .rec .mkt { color: var(--muted); font-size: .82rem; }
 .rec .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: .5rem; margin-top: .8rem; }
 .rec .grid .v.na { font-weight: 500; font-size: .85rem; color: var(--muted); }
 .rec .grid .l { color: var(--faint); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
-.rec .grid .v { font-weight: 800; font-size: 1.05rem; color: var(--text-strong); }
+.rec .grid .v { font-weight: var(--w-heavy); font-size: 1.05rem; color: var(--text-strong); }
 .tip { display: inline-flex; width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--faint);
   color: var(--faint); font-size: .62rem; align-items: center; justify-content: center; cursor: help;
   margin-left: 4px; font-weight: 700; text-transform: none; letter-spacing: 0; }
@@ -246,14 +321,14 @@ table.mkt a { color: var(--accent) !important; font-weight: 600; }
 .outcome { border-radius: 16px; padding: 1rem 1.2rem; border: 1px solid var(--border); background: var(--surface); }
 .outcome.WON { border-color: var(--pos); background: linear-gradient(135deg, var(--accent-soft), var(--surface) 70%); }
 .outcome.LOST { border-color: var(--neg); background: linear-gradient(135deg, rgba(239,68,68,.12), var(--surface) 70%); }
-.outcome .tag { font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.outcome .pick { font-size: 1.2rem; font-weight: 800; margin: .25rem 0 .1rem; color: var(--text-strong); }
+.outcome .tag { font-size: .7rem; font-weight: var(--w-heavy); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.outcome .pick { font-size: 1.2rem; font-weight: var(--w-heavy); margin: .25rem 0 .1rem; color: var(--text-strong); }
 .outcome .mkt { color: var(--muted); font-size: .82rem; }
 .outcome .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; margin-top: .7rem; }
 .outcome .grid .l { color: var(--faint); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
-.outcome .grid .v { font-weight: 800; font-size: 1.02rem; color: var(--text-strong); }
+.outcome .grid .v { font-weight: var(--w-heavy); font-size: 1.02rem; color: var(--text-strong); }
 .outcome .grid .v.na { font-weight: 500; font-size: .82rem; color: var(--muted); }
-.why-h { font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+.why-h { font-size: .74rem; font-weight: var(--w-heavy); letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
   margin: .2rem 0 .4rem; }
 ul.facts { margin: 0 0 .9rem 1.1rem; padding: 0; color: var(--text); font-size: .9rem; line-height: 1.55; }
 .odd { color: var(--muted); font-size: .78rem; margin-left: .25rem; }
@@ -285,7 +360,7 @@ ul.facts { margin: 0 0 .9rem 1.1rem; padding: 0; color: var(--text); font-size: 
   padding: 4px 0; border-bottom: 1px solid var(--border-soft); color: var(--text) !important; }
 .rm:last-child { border-bottom: none; }
 .rm .d { color: var(--faint); font-size: .76rem; } .rm .v { color: var(--faint); font-size: .72rem; font-weight: 700; }
-.rm .s { font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; color: var(--text-strong); }
+.rm .s { font-weight: var(--w-heavy); text-align: right; font-variant-numeric: tabular-nums; color: var(--text-strong); }
 .country-label { color: var(--faint); font-size: .7rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .08em; margin: .8rem 0 .2rem .2rem; }
 .st-key-league_nav { gap: .15rem; }
@@ -373,7 +448,11 @@ input, textarea { background: var(--input) !important; color: var(--text) !impor
 
 
 def inject_css() -> None:
-    palette = PALETTES[current_theme()]
-    variables = ":root{" + "".join(f"--{k}:{v};" for k, v in palette.items()) + "}"
-    extra = LIGHT_WIDGETS if current_theme() == "light" else ""
-    st.html(f"<style>{variables}{CSS}{extra}</style>")
+    d = design()
+    palette = d["palettes"][current_theme()]
+    variables = ":root{" + "".join(f"--{k}:{v};" for k, v in palette.items()) + \
+        f"--font-body:{d['body']};--font-head:{d['head']};--w-heavy:{d['w_heavy']};--w-title:{d['w_title']};" \
+        f"--font-size:{d['size']};}}"
+    widgets = current_theme() == "light" or d["widgets_dark"]
+    extra = LIGHT_WIDGETS if widgets else ""
+    st.html(f"<style>@import url('{d['fonts']}');{variables}{CSS}{extra}</style>")

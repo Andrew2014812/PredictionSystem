@@ -31,6 +31,10 @@ FOOTBALL_DATA_URL = "https://www.football-data.co.uk"
 FOOTBALL_DATA_RESULTS_PATH = "mmz4281"      # /mmz4281/2526/E0.csv
 FOOTBALL_DATA_FIXTURES_FILE = "fixtures.csv"
 HTTP_TIMEOUT = 30
+# Look of the website: "v6.1" (default) or "v6" (the previous design, kept for a rollback). Can also be set
+# with the environment variable / Streamlit secret FP_DESIGN; scripts/use_design.py switches both this and
+# the widget colours in .streamlit/config.toml.
+UI_DESIGN = "v6.1"
 
 # ---------------------------------------------------------------------------
 # API providers (keys come from the environment or a local, uncommitted .env)

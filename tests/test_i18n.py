@@ -23,7 +23,9 @@ def test_translate_switches_language_and_formats():
 
 
 def test_theme_palettes_define_the_same_variables():
-    from src.ui.theme import CSS, LIGHT_WIDGETS, PALETTES
-    assert PALETTES["dark"].keys() == PALETTES["light"].keys()
+    from src.ui.theme import CSS, DESIGNS, LIGHT_WIDGETS
+    design_vars = {"font-body", "font-head", "w-heavy", "w-title", "font-size"}
     used = set(re.findall(r"var\(--([\w-]+)\)", CSS + LIGHT_WIDGETS))
-    assert used <= set(PALETTES["dark"]), used - set(PALETTES["dark"])
+    for name, d in DESIGNS.items():                       # every design (v6 kept for a rollback) is complete
+        assert d["palettes"]["dark"].keys() == d["palettes"]["light"].keys(), name
+        assert used <= set(d["palettes"]["dark"]) | design_vars, (name, used - set(d["palettes"]["dark"]))
