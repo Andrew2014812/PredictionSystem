@@ -19,6 +19,17 @@ from . import aliases
 log = logging.getLogger(__name__)
 PATH = config.DATA_DIR / "teams" / "provider_ids.json"
 
+# Provider ids checked by hand against the provider's own team names. They replace a stored entry
+# that an earlier, looser name rule learned wrongly, and the normal conflict check protects them
+# afterwards like any other id.
+#   OddsPapi 2814 is "Espanyol Barcelona" and 2817 is "FC Barcelona" (fixture names in the OddsPapi
+#   archive, e.g. 25.10.2026 FC Barcelona – Real Madrid, 24.10.2026 Racing Santander – Espanyol
+#   Barcelona). Before v6.1 the registry held 2814 as Barcelona, so both clubs were refused
+#   ("2814: Barcelona vs Espanol", "2817: Barcelona already id 2814") and their matches got no prices.
+VERIFIED_IDS = {
+    "oddspapi": {"2814": "Spain|Espanol", "2817": "Spain|Barcelona"},
+}
+
 
 def internal_id(country: str, team: str) -> str:
     return f"{country}|{team}"
@@ -28,6 +39,13 @@ class TeamRegistry:
     def __init__(self, path: Path | None = None):
         self.path = path or PATH
         self.data: dict[str, dict[str, str]] = json.loads(self.path.read_text()) if self.path.exists() else {}
+        self.corrected: list[tuple] = []
+        for provider, fixed in VERIFIED_IDS.items():
+            ids = self.data.setdefault(provider, {})
+            for pid, iid in fixed.items():
+                if ids.get(pid) != iid:
+                    self.corrected.append((provider, pid, ids.get(pid), iid))
+                    ids[pid] = iid
         self.conflicts: list[tuple] = []
         self.unmatched: set[tuple] = set()
 
