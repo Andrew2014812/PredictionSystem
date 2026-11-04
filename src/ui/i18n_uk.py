@@ -404,6 +404,9 @@ UK: dict[str, str] = {
     'FootPredict expects {n} corners in total': 'FootPredict очікує {n} кутових разом',
     'How is the Prediction History built?': 'Як побудована історія прогнозів?',
     'Main factors': 'Головні чинники',
+    'Relative model influence': 'Відносний вплив у моделі',
+    'Only the most influential factors are shown. Percentages represent their share of total model influence.':
+        'Показано лише найвпливовіші чинники. Відсоток — їхня частка в загальному впливі моделі.',
     'Model 1X2: home {h} · draw {d} · away {a}': 'Модель 1X2: господарі {h} · нічия {d} · гості {a}',
     'More filters': 'Інші фільтри',
     'No bookmaker prices for handicap lines in this match.': 'Для фор цього матчу немає цін букмекерів.',

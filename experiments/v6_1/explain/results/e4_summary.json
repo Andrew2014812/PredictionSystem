@@ -1,0 +1,65 @@
+{
+ "picks": 600,
+ "with_facts": 1.0,
+ "short_history_k_below_10": 0.03333333333333333,
+ "rate_vs_p_corr": 0.8667276204816502,
+ "agree_direction": 0.925,
+ "mean_abs_gap_pp": 8.915899390882236,
+ "by_group": [
+  {
+   "group": "1X2",
+   "n": 255,
+   "p": 0.3353,
+   "rate": 0.3223,
+   "corr": 0.6858
+  },
+  {
+   "group": "BTTS",
+   "n": 2,
+   "p": 0.3887,
+   "rate": 0.35,
+   "corr": NaN
+  },
+  {
+   "group": "CORNERS",
+   "n": 6,
+   "p": 0.5101,
+   "rate": 0.5051,
+   "corr": 0.7845
+  },
+  {
+   "group": "DOUBLE_CHANCE",
+   "n": 4,
+   "p": 0.3553,
+   "rate": 0.4375,
+   "corr": 0.2421
+  },
+  {
+   "group": "HANDICAP",
+   "n": 66,
+   "p": 0.6287,
+   "rate": 0.6102,
+   "corr": 0.8208
+  },
+  {
+   "group": "TOTAL",
+   "n": 267,
+   "p": 0.6267,
+   "rate": 0.6087,
+   "corr": 0.7952
+  }
+ ],
+ "prematch": {
+  "matches": 300,
+  "history_before_kickoff": 1.0,
+  "form_features_checked": 1186,
+  "form_max_abs_diff": 0.0
+ },
+ "model_inputs_post_match": [],
+ "seconds": 92.31412672996521,
+ "live_snapshots": {
+  "n": 865,
+  "with_kickoff": 865,
+  "first_saved_before_kickoff": 1.0
+ }
+}
