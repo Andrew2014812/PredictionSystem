@@ -1,0 +1,13 @@
+{
+ "python": "3.12.12",
+ "xgboost": "3.0.5",
+ "lightgbm": "4.7.0",
+ "catboost": "1.2.10",
+ "sklearn": "1.7.2",
+ "statsmodels": "0.15.0",
+ "scipy": "1.18.1",
+ "numpy": "2.2.6",
+ "pandas": "2.3.3",
+ "git_sha": "f282856602dc2c261b005d88d11d498c64c2b08d",
+ "n_jobs": 3
+}

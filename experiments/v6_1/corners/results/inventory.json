@@ -1,0 +1,2004 @@
+{
+ "coverage_by_league": {
+  "B1": {
+   "home_corners": 0.9963,
+   "away_corners": 0.9963,
+   "home_shots": 0.9963,
+   "away_shots": 0.9963,
+   "home_sot": 0.9963,
+   "away_sot": 0.9963,
+   "home_fouls": 0.9963,
+   "away_fouls": 0.9963,
+   "home_yellows": 0.9969,
+   "away_yellows": 0.9969,
+   "home_reds": 0.9969,
+   "away_reds": 0.9969
+  },
+  "D1": {
+   "home_corners": 0.9994,
+   "away_corners": 0.9994,
+   "home_shots": 0.9994,
+   "away_shots": 0.9994,
+   "home_sot": 0.9994,
+   "away_sot": 0.9994,
+   "home_fouls": 0.9994,
+   "away_fouls": 0.9994,
+   "home_yellows": 0.9994,
+   "away_yellows": 0.9994,
+   "home_reds": 0.9994,
+   "away_reds": 0.9994
+  },
+  "D2": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "E0": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "E1": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "E2": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "E3": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "F1": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "F2": {
+   "home_corners": 0.9989,
+   "away_corners": 0.9989,
+   "home_shots": 0.9989,
+   "away_shots": 0.9989,
+   "home_sot": 0.9989,
+   "away_sot": 0.9989,
+   "home_fouls": 0.9989,
+   "away_fouls": 0.9989,
+   "home_yellows": 0.9989,
+   "away_yellows": 0.9989,
+   "home_reds": 0.9989,
+   "away_reds": 0.9989
+  },
+  "G1": {
+   "home_corners": 0.9992,
+   "away_corners": 0.9992,
+   "home_shots": 0.9992,
+   "away_shots": 0.9992,
+   "home_sot": 0.9992,
+   "away_sot": 0.9992,
+   "home_fouls": 0.9992,
+   "away_fouls": 0.9992,
+   "home_yellows": 0.9992,
+   "away_yellows": 0.9992,
+   "home_reds": 0.9992,
+   "away_reds": 0.9992
+  },
+  "I1": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "I2": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "N1": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "P1": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "SC0": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "SC1": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "SC2": {
+   "home_corners": 0.999,
+   "away_corners": 0.999,
+   "home_shots": 0.999,
+   "away_shots": 0.999,
+   "home_sot": 0.999,
+   "away_sot": 0.999,
+   "home_fouls": 0.9979,
+   "away_fouls": 0.9979,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "SC3": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 0.999,
+   "away_fouls": 0.999,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "SP1": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "SP2": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "T1": {
+   "home_corners": 0.9832,
+   "away_corners": 0.9832,
+   "home_shots": 0.9832,
+   "away_shots": 0.9832,
+   "home_sot": 0.9832,
+   "away_sot": 0.9832,
+   "home_fouls": 0.9832,
+   "away_fouls": 0.9832,
+   "home_yellows": 0.9832,
+   "away_yellows": 0.9832,
+   "home_reds": 0.9832,
+   "away_reds": 0.9832
+  }
+ },
+ "coverage_by_season": {
+  "2021": {
+   "home_corners": 0.9995,
+   "away_corners": 0.9995,
+   "home_shots": 0.9995,
+   "away_shots": 0.9995,
+   "home_sot": 0.9995,
+   "away_sot": 0.9995,
+   "home_fouls": 0.9992,
+   "away_fouls": 0.9992,
+   "home_yellows": 0.9996,
+   "away_yellows": 0.9996,
+   "home_reds": 0.9996,
+   "away_reds": 0.9996
+  },
+  "2022": {
+   "home_corners": 0.9956,
+   "away_corners": 0.9956,
+   "home_shots": 0.9956,
+   "away_shots": 0.9956,
+   "home_sot": 0.9956,
+   "away_sot": 0.9956,
+   "home_fouls": 0.9956,
+   "away_fouls": 0.9956,
+   "home_yellows": 0.9956,
+   "away_yellows": 0.9956,
+   "home_reds": 0.9956,
+   "away_reds": 0.9956
+  },
+  "2023": {
+   "home_corners": 0.9997,
+   "away_corners": 0.9997,
+   "home_shots": 0.9997,
+   "away_shots": 0.9997,
+   "home_sot": 0.9997,
+   "away_sot": 0.9997,
+   "home_fouls": 0.9997,
+   "away_fouls": 0.9997,
+   "home_yellows": 0.9997,
+   "away_yellows": 0.9997,
+   "home_reds": 0.9997,
+   "away_reds": 0.9997
+  },
+  "2024": {
+   "home_corners": 0.9994,
+   "away_corners": 0.9994,
+   "home_shots": 0.9994,
+   "away_shots": 0.9994,
+   "home_sot": 0.9994,
+   "away_sot": 0.9994,
+   "home_fouls": 0.9994,
+   "away_fouls": 0.9994,
+   "home_yellows": 0.9996,
+   "away_yellows": 0.9996,
+   "home_reds": 0.9996,
+   "away_reds": 0.9996
+  },
+  "2025": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  },
+  "2026": {
+   "home_corners": 1.0,
+   "away_corners": 1.0,
+   "home_shots": 1.0,
+   "away_shots": 1.0,
+   "home_sot": 1.0,
+   "away_sot": 1.0,
+   "home_fouls": 1.0,
+   "away_fouls": 1.0,
+   "home_yellows": 1.0,
+   "away_yellows": 1.0,
+   "home_reds": 1.0,
+   "away_reds": 1.0
+  }
+ },
+ "matches_by_league_season": {
+  "B1": {
+   "2021": 306,
+   "2022": 306,
+   "2023": 312,
+   "2024": 312,
+   "2025": 311,
+   "2026": 89
+  },
+  "D1": {
+   "2021": 306,
+   "2022": 306,
+   "2023": 306,
+   "2024": 306,
+   "2025": 306,
+   "2026": 72
+  },
+  "D2": {
+   "2021": 306,
+   "2022": 306,
+   "2023": 306,
+   "2024": 306,
+   "2025": 306,
+   "2026": 90
+  },
+  "E0": {
+   "2021": 380,
+   "2022": 380,
+   "2023": 380,
+   "2024": 380,
+   "2025": 380,
+   "2026": 90
+  },
+  "E1": {
+   "2021": 552,
+   "2022": 552,
+   "2023": 552,
+   "2024": 552,
+   "2025": 552,
+   "2026": 156
+  },
+  "E2": {
+   "2021": 552,
+   "2022": 552,
+   "2023": 552,
+   "2024": 552,
+   "2025": 552,
+   "2026": 155
+  },
+  "E3": {
+   "2021": 552,
+   "2022": 552,
+   "2023": 552,
+   "2024": 552,
+   "2025": 552,
+   "2026": 163
+  },
+  "F1": {
+   "2021": 380,
+   "2022": 380,
+   "2023": 306,
+   "2024": 306,
+   "2025": 306,
+   "2026": 81
+  },
+  "F2": {
+   "2021": 380,
+   "2022": 380,
+   "2023": 379,
+   "2024": 306,
+   "2025": 305,
+   "2026": 99
+  },
+  "G1": {
+   "2021": 240,
+   "2022": 240,
+   "2023": 240,
+   "2024": 233,
+   "2025": 236,
+   "2026": 62
+  },
+  "I1": {
+   "2021": 380,
+   "2022": 380,
+   "2023": 380,
+   "2024": 380,
+   "2025": 380,
+   "2026": 100
+  },
+  "I2": {
+   "2021": 380,
+   "2022": 380,
+   "2023": 380,
+   "2024": 380,
+   "2025": 380,
+   "2026": 100
+  },
+  "N1": {
+   "2021": 306,
+   "2022": 306,
+   "2023": 306,
+   "2024": 306,
+   "2025": 306,
+   "2026": 99
+  },
+  "P1": {
+   "2021": 306,
+   "2022": 306,
+   "2023": 306,
+   "2024": 306,
+   "2025": 306,
+   "2026": 90
+  },
+  "SC0": {
+   "2021": 228,
+   "2022": 228,
+   "2023": 228,
+   "2024": 228,
+   "2025": 228,
+   "2026": 69
+  },
+  "SC1": {
+   "2021": 180,
+   "2022": 180,
+   "2023": 180,
+   "2024": 180,
+   "2025": 180,
+   "2026": 64
+  },
+  "SC2": {
+   "2021": 180,
+   "2022": 180,
+   "2023": 180,
+   "2024": 180,
+   "2025": 180,
+   "2026": 64
+  },
+  "SC3": {
+   "2021": 180,
+   "2022": 180,
+   "2023": 180,
+   "2024": 180,
+   "2025": 180,
+   "2026": 60
+  },
+  "SP1": {
+   "2021": 380,
+   "2022": 380,
+   "2023": 380,
+   "2024": 380,
+   "2025": 380,
+   "2026": 109
+  },
+  "SP2": {
+   "2021": 462,
+   "2022": 462,
+   "2023": 462,
+   "2024": 462,
+   "2025": 462,
+   "2026": 131
+  },
+  "T1": {
+   "2021": 380,
+   "2022": 342,
+   "2023": 380,
+   "2024": 342,
+   "2025": 306,
+   "2026": 90
+  }
+ },
+ "season_stats": {
+  "2021": {
+   "n": 7312,
+   "mean": 9.75875273522976,
+   "var": 11.287982468191158,
+   "home": 5.322483588621444,
+   "away": 4.436269146608315,
+   "corr_home_away": -0.2421882269310405
+  },
+  "2022": {
+   "n": 7246,
+   "mean": 9.763179685343637,
+   "var": 11.47185870808139,
+   "home": 5.337427546232404,
+   "away": 4.425752139111234,
+   "corr_home_away": -0.2522795983311109
+  },
+  "2023": {
+   "n": 7245,
+   "mean": 9.983022774327122,
+   "var": 11.767933710828615,
+   "home": 5.484057971014493,
+   "away": 4.49896480331263,
+   "corr_home_away": -0.25425741715493777
+  },
+  "2024": {
+   "n": 7125,
+   "mean": 9.711719298245614,
+   "var": 11.531705704463311,
+   "home": 5.332210526315789,
+   "away": 4.3795087719298245,
+   "corr_home_away": -0.25360708936651827
+  },
+  "2025": {
+   "n": 7094,
+   "mean": 9.738793346489992,
+   "var": 11.43310081362555,
+   "home": 5.332111643642515,
+   "away": 4.406681702847477,
+   "corr_home_away": -0.24975610585100028
+  },
+  "2026": {
+   "n": 2033,
+   "mean": 9.929660600098376,
+   "var": 12.048691666247079,
+   "home": 5.355632070831284,
+   "away": 4.574028529267093,
+   "corr_home_away": -0.24402313403453715
+  }
+ },
+ "league_stats": {
+  "B1": {
+   "n": 1630,
+   "mean": 10.104294478527608,
+   "var": 11.617108617955981
+  },
+  "D1": {
+   "n": 1601,
+   "mean": 9.775765146783261,
+   "var": 11.025312304809487
+  },
+  "D2": {
+   "n": 1620,
+   "mean": 10.212345679012346,
+   "var": 11.396512097850367
+  },
+  "E0": {
+   "n": 1990,
+   "mean": 10.299497487437186,
+   "var": 11.452739817741287
+  },
+  "E1": {
+   "n": 2916,
+   "mean": 10.206447187928669,
+   "var": 11.652733719679903
+  },
+  "E2": {
+   "n": 2915,
+   "mean": 10.153344768439108,
+   "var": 12.05918149914472
+  },
+  "E3": {
+   "n": 2923,
+   "mean": 9.82962709544988,
+   "var": 11.02024445363932
+  },
+  "F1": {
+   "n": 1759,
+   "mean": 9.458783399658897,
+   "var": 10.910558473535426
+  },
+  "F2": {
+   "n": 1847,
+   "mean": 9.138061721710882,
+   "var": 10.655359838008529
+  },
+  "G1": {
+   "n": 1250,
+   "mean": 8.7992,
+   "var": 9.715451721377114
+  },
+  "I1": {
+   "n": 2000,
+   "mean": 9.362,
+   "var": 11.541726863431718
+  },
+  "I2": {
+   "n": 2000,
+   "mean": 9.6075,
+   "var": 11.345116308154083
+  },
+  "N1": {
+   "n": 1629,
+   "mean": 10.25598526703499,
+   "var": 11.646347754082543
+  },
+  "P1": {
+   "n": 1620,
+   "mean": 9.837654320987655,
+   "var": 12.139779546893001
+  },
+  "SC0": {
+   "n": 1209,
+   "mean": 10.658395368072787,
+   "var": 12.609203052163966
+  },
+  "SC1": {
+   "n": 964,
+   "mean": 10.21058091286307,
+   "var": 13.526741510580269
+  },
+  "SC2": {
+   "n": 963,
+   "mean": 9.824506749740394,
+   "var": 12.22800586351988
+  },
+  "SC3": {
+   "n": 960,
+   "mean": 9.573958333333334,
+   "var": 10.893377433090034
+  },
+  "SP1": {
+   "n": 2009,
+   "mean": 9.509706321553011,
+   "var": 11.012978449566596
+  },
+  "SP2": {
+   "n": 2441,
+   "mean": 9.315854158131913,
+   "var": 10.49158870659029
+  },
+  "T1": {
+   "n": 1809,
+   "mean": 9.574903261470425,
+   "var": 10.83412644251698
+  }
+ },
+ "feature_counts": {
+  "prod": 114,
+  "enriched": 169,
+  "compact": 36,
+  "extra": 41,
+  "added_groups": 14
+ },
+ "features": [
+  {
+   "feature": "x_exp_total_add",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9849938330820885,
+   "corr_total": 0.1189283211276657
+  },
+  {
+   "feature": "league_avg_corners",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9952035082910785,
+   "corr_total": 0.10494940311950343
+  },
+  {
+   "feature": "form_corners_sum",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9843771412909414,
+   "corr_total": 0.10438683348015584
+  },
+  {
+   "feature": "h_x10_tot",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.09403848586253756
+  },
+  {
+   "feature": "a_x10_tot",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.08864993027079054
+  },
+  {
+   "feature": "league_avg_home_corners",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9952035082910785,
+   "corr_total": 0.08281585239177645
+  },
+  {
+   "feature": "x_exp_total_shots",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9849938330820885,
+   "corr_total": 0.08156382911248494
+  },
+  {
+   "feature": "x_exp_home_add",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9849938330820885,
+   "corr_total": 0.07690966928012939
+  },
+  {
+   "feature": "league_avg_away_corners",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9952035082910785,
+   "corr_total": 0.0740040226677561
+  },
+  {
+   "feature": "x_exp_total_mult",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9686857612717555,
+   "corr_total": 0.07212858985264799
+  },
+  {
+   "feature": "h_corners_vs_a_corners_conceded",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9453199945182952,
+   "corr_total": 0.06774067174806382
+  },
+  {
+   "feature": "x_tot_hist",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9849938330820885,
+   "corr_total": 0.0607565301550559
+  },
+  {
+   "feature": "x_exp_away_add",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9849938330820885,
+   "corr_total": 0.060647315072592606
+  },
+  {
+   "feature": "h_season_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.05804341789277533
+  },
+  {
+   "feature": "h_x10_fa",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": -0.05677253908576019
+  },
+  {
+   "feature": "h_x15_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.05635996935676472
+  },
+  {
+   "feature": "a_x15_ca",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.05552915605566155
+  },
+  {
+   "feature": "h_season_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.05472164484579052
+  },
+  {
+   "feature": "h_form10_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.054355492091378875
+  },
+  {
+   "feature": "h_x5_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.054325841505660485
+  },
+  {
+   "feature": "h_x10_sf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.054021614738917326
+  },
+  {
+   "feature": "h_form5_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9851993970124708,
+   "corr_total": 0.05349721858104149
+  },
+  {
+   "feature": "a_x10_fa",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": -0.05282716374384495
+  },
+  {
+   "feature": "h_venue_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9479238043031383,
+   "corr_total": 0.05255190793482586
+  },
+  {
+   "feature": "a_x5_ca",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.05244922846304396
+  },
+  {
+   "feature": "a_season_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9738933808414417,
+   "corr_total": 0.05227554106430765
+  },
+  {
+   "feature": "h_form15_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.052172584003194356
+  },
+  {
+   "feature": "h_form15_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.051727425717862686
+  },
+  {
+   "feature": "league_avg_home_goals",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9952035082910785,
+   "corr_total": 0.0513582668228563
+  },
+  {
+   "feature": "h_form10_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.05105166891676143
+  },
+  {
+   "feature": "h_x10_ff",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": -0.04950917380451874
+  },
+  {
+   "feature": "x_exp_home_mult",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9686857612717555,
+   "corr_total": 0.04944881275913789
+  },
+  {
+   "feature": "a_form15_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.04931562709875267
+  },
+  {
+   "feature": "h_season_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.04872613694049398
+  },
+  {
+   "feature": "h_form5_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9851993970124708,
+   "corr_total": 0.048662011462654246
+  },
+  {
+   "feature": "a_season_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9738933808414417,
+   "corr_total": 0.04847304740309577
+  },
+  {
+   "feature": "a_x10_sa",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.04814800475890928
+  },
+  {
+   "feature": "h_xv5_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9719747841578731,
+   "corr_total": 0.047968317058498855
+  },
+  {
+   "feature": "h_x15_ca",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.04711544010004047
+  },
+  {
+   "feature": "a_corners_vs_h_corners_conceded",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9453199945182952,
+   "corr_total": 0.046627187443182255
+  },
+  {
+   "feature": "h_venue_form5_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9715636562971084,
+   "corr_total": 0.046489912966287
+  },
+  {
+   "feature": "league_avg_away_goals",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9952035082910785,
+   "corr_total": 0.04644220250138796
+  },
+  {
+   "feature": "h_season_fouls",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": -0.04567332661387672
+  },
+  {
+   "feature": "a_form5_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9854049609428532,
+   "corr_total": 0.04470708582653877
+  },
+  {
+   "feature": "a_form10_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": 0.04469599140550895
+  },
+  {
+   "feature": "a_x10_ff",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": -0.04434437020823579
+  },
+  {
+   "feature": "a_form10_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": 0.04393565387780602
+  },
+  {
+   "feature": "a_form15_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.043934588035918425
+  },
+  {
+   "feature": "h_x5_ca",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.04340404005115761
+  },
+  {
+   "feature": "h_form15_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.043354861453878436
+  },
+  {
+   "feature": "h_venue_form5_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9715636562971084,
+   "corr_total": 0.04299330722162043
+  },
+  {
+   "feature": "h_season_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.04270481706014216
+  },
+  {
+   "feature": "a_venue_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9479238043031383,
+   "corr_total": 0.04246262080540443
+  },
+  {
+   "feature": "a_season_fouls",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9738933808414417,
+   "corr_total": -0.0421654689819937
+  },
+  {
+   "feature": "league_over25_rate",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9952035082910785,
+   "corr_total": 0.04216459479912835
+  },
+  {
+   "feature": "a_form5_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9854049609428532,
+   "corr_total": 0.04197920617871304
+  },
+  {
+   "feature": "a_x15_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.041082092085128384
+  },
+  {
+   "feature": "a_form10_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": 0.040873226803421786
+  },
+  {
+   "feature": "a_x5_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.04075917147700832
+  },
+  {
+   "feature": "a_form15_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.039238344650630454
+  },
+  {
+   "feature": "h_form15_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.03907235634758911
+  },
+  {
+   "feature": "h_x10_sa",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.03891614935956945
+  },
+  {
+   "feature": "h_form15_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.038848082224175684
+  },
+  {
+   "feature": "a_xv5_ca",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9719747841578731,
+   "corr_total": 0.038341553236707314
+  },
+  {
+   "feature": "h_form10_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.038145630622690316
+  },
+  {
+   "feature": "h_x10_tf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.03800497406281306
+  },
+  {
+   "feature": "a_xv5_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9719747841578731,
+   "corr_total": 0.037753629332223586
+  },
+  {
+   "feature": "h_season_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": 0.03768605043759448
+  },
+  {
+   "feature": "h_form10_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.03728985751042852
+  },
+  {
+   "feature": "a_season_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9738933808414417,
+   "corr_total": 0.037267167651115894
+  },
+  {
+   "feature": "h_venue_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9479238043031383,
+   "corr_total": 0.03681767540196972
+  },
+  {
+   "feature": "a_venue_form5_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9717692202274908,
+   "corr_total": 0.03642734093352681
+  },
+  {
+   "feature": "x_abs_elo_diff",
+   "in_production": false,
+   "new": true,
+   "coverage": 1.0,
+   "corr_total": 0.03618894228906896
+  },
+  {
+   "feature": "h_form15_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.035207635807676226
+  },
+  {
+   "feature": "h_form10_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.03486082199678981
+  },
+  {
+   "feature": "a_form15_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.03464701062590324
+  },
+  {
+   "feature": "a_form5_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9854049609428532,
+   "corr_total": 0.03441398807696593
+  },
+  {
+   "feature": "a_x10_sf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.03366062015882733
+  },
+  {
+   "feature": "h_form5_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9851993970124708,
+   "corr_total": 0.0336056030863247
+  },
+  {
+   "feature": "h_form5_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9851993970124708,
+   "corr_total": 0.033587560318747864
+  },
+  {
+   "feature": "a_season_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9738933808414417,
+   "corr_total": 0.03320407465126512
+  },
+  {
+   "feature": "h_form10_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.03251113164241032
+  },
+  {
+   "feature": "a_form10_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": 0.03245992298824927
+  },
+  {
+   "feature": "h_season_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.03150293026072891
+  },
+  {
+   "feature": "x_exp_away_mult",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9686857612717555,
+   "corr_total": 0.031094732470046543
+  },
+  {
+   "feature": "h_form5_shots_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9851993970124708,
+   "corr_total": 0.03098737066743815
+  },
+  {
+   "feature": "a_venue_form5_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9717692202274908,
+   "corr_total": 0.03076437488556676
+  },
+  {
+   "feature": "a_season_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.030639892110973958
+  },
+  {
+   "feature": "a_venue_corners_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9479238043031383,
+   "corr_total": 0.030077858776731862
+  },
+  {
+   "feature": "h_xv5_ca",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9719747841578731,
+   "corr_total": 0.030057316204265834
+  },
+  {
+   "feature": "h_form10_adj_cf",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9717006989173633,
+   "corr_total": 0.030046478408964
+  },
+  {
+   "feature": "a_x10_ta",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.02834294398081378
+  },
+  {
+   "feature": "a_season_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9738933808414417,
+   "corr_total": 0.028204678592394814
+  },
+  {
+   "feature": "a_venue_form5_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9717692202274908,
+   "corr_total": 0.027947730718453107
+  },
+  {
+   "feature": "league_btts_rate",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9952035082910785,
+   "corr_total": 0.02733895354644252
+  },
+  {
+   "feature": "a_form10_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.02701056927164131
+  },
+  {
+   "feature": "a_form10_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": 0.026818647559924715
+  },
+  {
+   "feature": "h_venue_form5_corners_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9715636562971084,
+   "corr_total": 0.026797050916325258
+  },
+  {
+   "feature": "h_form10_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.026655030191465468
+  },
+  {
+   "feature": "a_form5_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9854049609428532,
+   "corr_total": 0.026318522356026695
+  },
+  {
+   "feature": "h_season_yellows",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": -0.026118675309673985
+  },
+  {
+   "feature": "h_form5_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.024549043798914844
+  },
+  {
+   "feature": "h_x10_ta",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.024548303161795144
+  },
+  {
+   "feature": "a_form15_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.024249363156678253
+  },
+  {
+   "feature": "h_venue_form5_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9720433054680006,
+   "corr_total": 0.024178191405626246
+  },
+  {
+   "feature": "a_form15_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.02311941549297315
+  },
+  {
+   "feature": "a_form5_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.02226614350839924
+  },
+  {
+   "feature": "a_form10_adj_ca",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9716321776072359,
+   "corr_total": 0.022210718825748134
+  },
+  {
+   "feature": "h_form15_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.022136316069152864
+  },
+  {
+   "feature": "h_season_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.02198751537070761
+  },
+  {
+   "feature": "a_venue_form5_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9720433054680006,
+   "corr_total": 0.02185758931997992
+  },
+  {
+   "feature": "elo_diff",
+   "in_production": false,
+   "new": false,
+   "coverage": 1.0,
+   "corr_total": 0.021628920026414013
+  },
+  {
+   "feature": "a_season_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9738933808414417,
+   "corr_total": 0.019680703011442712
+  },
+  {
+   "feature": "a_form15_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.0196317005720314
+  },
+  {
+   "feature": "a_form5_shots_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9854049609428532,
+   "corr_total": 0.01919486141926633
+  },
+  {
+   "feature": "elo_exp_home",
+   "in_production": false,
+   "new": false,
+   "coverage": 1.0,
+   "corr_total": 0.018879390055264778
+  },
+  {
+   "feature": "h_rest_days",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": -0.0187048778575863
+  },
+  {
+   "feature": "a_x10_tf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.018325853403323867
+  },
+  {
+   "feature": "a_rest_days",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": -0.018199449172463748
+  },
+  {
+   "feature": "a_season_yellows",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": -0.01790483821409095
+  },
+  {
+   "feature": "h_form5_sot_against",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9851993970124708,
+   "corr_total": 0.017746605579130707
+  },
+  {
+   "feature": "a_form10_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": 0.016337506088067458
+  },
+  {
+   "feature": "a_form10_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.01584128282142995
+  },
+  {
+   "feature": "h_season_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": 0.015797478802488853
+  },
+  {
+   "feature": "a_season_reds",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": -0.015591509346824758
+  },
+  {
+   "feature": "a_form15_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.015417632919810846
+  },
+  {
+   "feature": "a_form5_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.01526219809610622
+  },
+  {
+   "feature": "h_season_gd",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": 0.01515500176295335
+  },
+  {
+   "feature": "a_points",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": -0.014685559460440404
+  },
+  {
+   "feature": "a_position_norm",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.014496429071795592
+  },
+  {
+   "feature": "a_season_ppg",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": -0.014441338555370551
+  },
+  {
+   "feature": "h_season_reds",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": -0.013923001007299995
+  },
+  {
+   "feature": "h_season_ppg",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": 0.013830136629293305
+  },
+  {
+   "feature": "h_position",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": -0.012707729599574061
+  },
+  {
+   "feature": "h_form15_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.011923057503413867
+  },
+  {
+   "feature": "h_elo",
+   "in_production": false,
+   "new": false,
+   "coverage": 1.0,
+   "corr_total": 0.01187999452746543
+  },
+  {
+   "feature": "a_season_gd",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": -0.011656942667660711
+  },
+  {
+   "feature": "h_form10_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.011621147087701279
+  },
+  {
+   "feature": "h_form10_shot_share",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.011037639788900183
+  },
+  {
+   "feature": "h_form10_corner_share",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.010638414234728258
+  },
+  {
+   "feature": "h_position_norm",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": -0.010619291564867316
+  },
+  {
+   "feature": "h_form10_corner_diff",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9856105248732355,
+   "corr_total": 0.010587762892266936
+  },
+  {
+   "feature": "a_season_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.010135865144583095
+  },
+  {
+   "feature": "diff_form10_corners",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9843771412909414,
+   "corr_total": 0.009905077921648596
+  },
+  {
+   "feature": "a_form10_adj_cf",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9716321776072359,
+   "corr_total": 0.009880907329105681
+  },
+  {
+   "feature": "h_form10_adj_ca",
+   "in_production": false,
+   "new": false,
+   "coverage": 0.9717006989173633,
+   "corr_total": 0.009616333503315701
+  },
+  {
+   "feature": "h_venue_form5_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9720433054680006,
+   "corr_total": 0.008881903072832356
+  },
+  {
+   "feature": "a_venue_form5_gf",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9720433054680006,
+   "corr_total": 0.008375258756846827
+  },
+  {
+   "feature": "a_trend_corners_conceded",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9733452103604221,
+   "corr_total": 0.008111469359314692
+  },
+  {
+   "feature": "a_trend_corners",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9733452103604221,
+   "corr_total": 0.00776792077919059
+  },
+  {
+   "feature": "a_form5_sot_for",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9854049609428532,
+   "corr_total": 0.007453759044037767
+  },
+  {
+   "feature": "a_form10_shot_share",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": -0.0070911550846506485
+  },
+  {
+   "feature": "a_position",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9739619021515692,
+   "corr_total": 0.006484126073826957
+  },
+  {
+   "feature": "h_x_cps",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9858846101137454,
+   "corr_total": 0.006136185038643613
+  },
+  {
+   "feature": "h_trend_corners_conceded",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9732081677401672,
+   "corr_total": -0.005469915751828827
+  },
+  {
+   "feature": "a_elo",
+   "in_production": false,
+   "new": false,
+   "coverage": 1.0,
+   "corr_total": -0.005329908438470334
+  },
+  {
+   "feature": "h_trend_corners",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9732081677401672,
+   "corr_total": 0.005022268170289249
+  },
+  {
+   "feature": "a_x_oppadj_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9849938330820885,
+   "corr_total": -0.004564203500255451
+  },
+  {
+   "feature": "h_form5_ga",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9860216527340002,
+   "corr_total": 0.0034394007545094072
+  },
+  {
+   "feature": "h_points",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9740304234616965,
+   "corr_total": 0.0032339494447314572
+  },
+  {
+   "feature": "a_form10_corner_share",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": -0.0031663813598545305
+  },
+  {
+   "feature": "h_season_games",
+   "in_production": true,
+   "new": false,
+   "coverage": 1.0,
+   "corr_total": 0.0022925245432779823
+  },
+  {
+   "feature": "a_form10_corner_diff",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.985679046183363,
+   "corr_total": -0.0018347452808040831
+  },
+  {
+   "feature": "a_season_games",
+   "in_production": true,
+   "new": false,
+   "coverage": 1.0,
+   "corr_total": 0.0015543136835382656
+  },
+  {
+   "feature": "diff_rest_days",
+   "in_production": true,
+   "new": false,
+   "coverage": 0.9851308757023435,
+   "corr_total": -0.0015020589190247204
+  },
+  {
+   "feature": "a_x_cps",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9859531314238729,
+   "corr_total": 0.0010840132112193777
+  },
+  {
+   "feature": "h_x_oppadj_cf",
+   "in_production": false,
+   "new": true,
+   "coverage": 0.9849938330820885,
+   "corr_total": 0.0008532219760154956
+  },
+  {
+   "feature": "h_x_nhist",
+   "in_production": false,
+   "new": true,
+   "coverage": 1.0,
+   "corr_total": -0.0005893998098283381
+  },
+  {
+   "feature": "a_x_nhist",
+   "in_production": false,
+   "new": true,
+   "coverage": 1.0,
+   "corr_total": 0.0005762650063279995
+  }
+ ],
+ "extra_features": [
+  "h_x5_cf",
+  "h_x15_cf",
+  "h_x5_ca",
+  "h_x15_ca",
+  "h_x10_sf",
+  "h_x10_sa",
+  "h_x10_tf",
+  "h_x10_ta",
+  "h_x10_ff",
+  "h_x10_fa",
+  "h_x10_tot",
+  "h_x_nhist",
+  "h_xv5_cf",
+  "h_xv5_ca",
+  "h_x_cps",
+  "a_x5_cf",
+  "a_x15_cf",
+  "a_x5_ca",
+  "a_x15_ca",
+  "a_x10_sf",
+  "a_x10_sa",
+  "a_x10_tf",
+  "a_x10_ta",
+  "a_x10_ff",
+  "a_x10_fa",
+  "a_x10_tot",
+  "a_x_nhist",
+  "a_xv5_cf",
+  "a_xv5_ca",
+  "a_x_cps",
+  "h_x_oppadj_cf",
+  "a_x_oppadj_cf",
+  "x_exp_home_add",
+  "x_exp_away_add",
+  "x_exp_total_add",
+  "x_exp_home_mult",
+  "x_exp_away_mult",
+  "x_exp_total_mult",
+  "x_exp_total_shots",
+  "x_tot_hist",
+  "x_abs_elo_diff"
+ ],
+ "added_groups": [
+  "h_elo",
+  "a_elo",
+  "elo_diff",
+  "elo_exp_home",
+  "h_season_fouls",
+  "h_season_yellows",
+  "h_season_reds",
+  "h_form10_adj_cf",
+  "h_form10_adj_ca",
+  "a_season_fouls",
+  "a_season_yellows",
+  "a_season_reds",
+  "a_form10_adj_cf",
+  "a_form10_adj_ca"
+ ],
+ "compact": [
+  "league_avg_corners",
+  "league_avg_home_corners",
+  "league_avg_away_corners",
+  "h_x15_cf",
+  "h_x15_ca",
+  "a_x15_cf",
+  "a_x15_ca",
+  "h_x5_cf",
+  "h_x5_ca",
+  "a_x5_cf",
+  "a_x5_ca",
+  "h_xv5_cf",
+  "h_xv5_ca",
+  "a_xv5_cf",
+  "a_xv5_ca",
+  "h_x10_sf",
+  "h_x10_sa",
+  "a_x10_sf",
+  "a_x10_sa",
+  "h_x10_tf",
+  "a_x10_tf",
+  "h_x10_ff",
+  "a_x10_ff",
+  "x_exp_total_add",
+  "x_exp_total_mult",
+  "x_exp_total_shots",
+  "x_tot_hist",
+  "x_abs_elo_diff",
+  "h_season_corners_for",
+  "a_season_corners_for",
+  "h_season_corners_against",
+  "a_season_corners_against",
+  "h_form10_corner_share",
+  "a_form10_corner_share",
+  "h_form10_shot_share",
+  "a_form10_shot_share"
+ ],
+ "leakage_check": {
+  "checked": 120,
+  "max_abs_diff": 0.0
+ }
+}
