@@ -15,7 +15,8 @@ import pandas as pd
 from .. import config
 from ..leagues import league_codes
 from ..storage import fixtures_storage, results_storage
-from .cleaning import CANONICAL_COLUMNS, deduplicate, drop_double_bookings, drop_stale_fixtures, normalise
+from .cleaning import (CANONICAL_COLUMNS, deduplicate, drop_double_bookings, drop_stale_fixtures, make_match_id,
+                       normalise)
 
 log = logging.getLogger(__name__)
 
@@ -63,6 +64,35 @@ def load_live(leagues: list[str] | None = None) -> pd.DataFrame:
     return live.loc[live["league"].isin(leagues or league_codes())].reset_index(drop=True)
 
 
+def harmonise_fixture_names(fixtures: pd.DataFrame, results: pd.DataFrame) -> pd.DataFrame:
+    """Football-Data's fixtures file sometimes spells a club unlike its results files ("KV Mechelen" vs
+    "Mechelen", "Sheffield Utd" vs "Sheffield United"), which would make a new club without history and a
+    second id for the same match. A fixture name unknown to the league's recent results is mapped to the
+    results name with the same unambiguous rule as provider names (aliases.resolve); otherwise it is kept."""
+    if fixtures.empty or results.empty:
+        return fixtures
+    from ..providers import aliases
+    recent = results.loc[results["season"] >= results["season"].max() - 1]
+    known = {lg: set(g["home_team"]) | set(g["away_team"]) for lg, g in recent.groupby("league")}
+    out = fixtures.copy()
+    renamed = {}
+    for col in ("home_team", "away_team"):
+        def fix(row):
+            names = known.get(row["league"])
+            if not names or row[col] in names:
+                return row[col]
+            team = aliases.resolve(row[col], names)
+            if team:
+                renamed[(row["league"], row[col])] = team
+            return team or row[col]
+        out[col] = out.apply(fix, axis=1)
+    if renamed:
+        log.info("fixture names harmonised with the results files: %s", renamed)
+        out["match_id"] = [make_match_id(lg, d, h, a) for lg, d, h, a in
+                           zip(out["league"], out["date"], out["home_team"], out["away_team"])]
+    return out
+
+
 def build_matches(leagues: list[str] | None = None) -> pd.DataFrame:
     """All known matches (played + upcoming), deduplicated and time-ordered.
 
@@ -72,7 +102,7 @@ def build_matches(leagues: list[str] | None = None) -> pd.DataFrame:
     same match as soon as it is published.
     """
     results = load_results(leagues=leagues)
-    fixtures = load_fixtures(leagues)
+    fixtures = harmonise_fixture_names(load_fixtures(leagues), results)
     live = load_live(leagues)
     frames = [f.assign(_source=src) for f, src in ((results, "fd"), (fixtures, "fd"), (live, "api")) if not f.empty]
     matches = pd.concat(frames, ignore_index=True)

@@ -137,3 +137,38 @@ def test_missing_tournaments_are_saved_and_asked_again_only_monthly(tmp_path, mo
     assert FakeApi.calls == 1                                                     # but no billable repeat
     collect.oddspapi_tournaments(FakeApi(), now + timedelta(days=31), 5)
     assert FakeApi.calls == 2
+
+
+# ---------------------------------------------------------------------------------------------- spellings
+def test_fixture_spellings_follow_the_results_files():
+    from src.data.dataset import harmonise_fixture_names
+    results = pd.DataFrame({"league": ["B1", "E1", "E1"], "season": [2026] * 3,
+                            "home_team": ["Mechelen", "Sheffield United", "Sheffield Weds"],
+                            "away_team": ["Genk", "Preston", "Leeds"]})
+    fixtures = pd.DataFrame({"league": ["B1", "E1", "E1"], "date": pd.to_datetime(["2026-11-04", "2026-11-03",
+                                                                                    "2026-11-07"]),
+                             "home_team": ["Kortrijk", "Preston", "Sheffield Weds"],
+                             "away_team": ["KV Mechelen", "Sheffield Utd", "Brand New FC"],
+                             "match_id": ["x", "y", "z"]})
+    out = harmonise_fixture_names(fixtures, results)
+    assert out["away_team"].tolist() == ["Mechelen", "Sheffield United", "Brand New FC"]   # unknown: kept
+    assert out["match_id"].tolist()[:2] == ["B1-20261104-kortrijk-mechelen", "E1-20261103-preston-sheffield-united"]
+
+
+def test_a_club_booked_twice_on_one_day_counts_once_in_the_history():
+    from src.analytics.performance import same_day_duplicates
+    picks = _picks([
+        {"match_id": "B1-20261018-mechelen-genk", "league": "B1", "home_team": "Mechelen", "away_team": "Genk",
+         "date": "2026-10-18", "generated_at": "2026-10-17 10:00", "status": "WON", "home_goals": 1, "away_goals": 0},
+        {"match_id": "B1-20261104-kortrijk-mechelen", "league": "B1", "home_team": "Kortrijk",
+         "away_team": "Mechelen", "date": "2026-11-04", "generated_at": "2026-11-03 20:00", "status": "UPCOMING"},
+        {"match_id": "B1-20261104-kortrijk-kv-mechelen", "league": "B1", "home_team": "Kortrijk",
+         "away_team": "KV Mechelen", "date": "2026-11-04", "generated_at": "2026-11-02 20:00", "status": "UPCOMING"},
+        {"match_id": "B1-20261018-kortrijk-gent", "league": "B1", "home_team": "Kortrijk", "away_team": "Gent",
+         "date": "2026-10-18", "generated_at": "2026-10-17 10:00", "status": "LOST", "home_goals": 0, "away_goals": 1},
+    ])
+    dup = same_day_duplicates(picks)
+    # the real club wins over an earlier prediction under the other spelling
+    assert dup.to_dict("records") == [{"match_id": "B1-20261104-kortrijk-kv-mechelen",
+                                       "kept_match_id": "B1-20261104-kortrijk-mechelen"}]
+    assert "B1-20261104-kortrijk-kv-mechelen" not in set(unified_history(picks)["match_id"])
