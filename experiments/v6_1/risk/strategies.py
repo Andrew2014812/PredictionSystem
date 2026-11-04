@@ -65,6 +65,8 @@ def prepare(df: pd.DataFrame) -> pd.DataFrame:
     df["rel"] = df["group"].map(lambda g: config.MARKET_RELIABILITY.get(g, 0.8)).astype(float)
     df["decided"] = df["status"].isin(["WON", "LOST"])
     df["won"] = (df["status"] == "WON").astype(float)
+    # de-vigged price as P(win): for a whole-line Asian handicap p_mkt is P(win | no refund)
+    df["p_mkt_u"] = df["p_mkt"] * (1.0 - df["push_p"].fillna(0.0))
     df["profit"] = np.where(df["status"] == "WON", df["odds"] - 1.0,
                             np.where(df["status"] == "LOST", -1.0, 0.0))
     # candidate pool of risk_prediction: eligible and p >= min, else the whole eligible pool

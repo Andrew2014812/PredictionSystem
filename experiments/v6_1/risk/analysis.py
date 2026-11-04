@@ -1,7 +1,7 @@
 """Why does a higher model EV not give a better realised ROI?  Diagnostics on the candidate tables.
 
 1. calibration of rare outcomes: model p in 0.12-0.40 by selection type (all Risk candidates, and
-   only the priced ones next to the de-vigged market probability);
+   only the priced ones next to the de-vigged market probability as P(win), ``p_mkt_u``);
 2. favourite-longshot bias of the prices: blind ROI of every priced selection by odds band, implied
    probability 1/odds and de-vigged probability against the observed frequency;
 3. realised ROI by model EV bin (raw model, Platt-calibrated, model + market blend) and the slope
@@ -53,11 +53,11 @@ def _cal_row(g: pd.DataFrame) -> dict:
     se = float(np.sqrt((g["p"] * (1 - g["p"])).sum())) / n
     row = {"n": n, "mean_p": mp, "observed": k / n, "ratio": (k / n) / mp if mp else None,
            "z": ((k / n) - mp) / se if se else None, "observed_ci95": _wilson(k, n)}
-    pm = g["p_mkt"].dropna()
+    pm = g["p_mkt_u"].dropna()
     if len(pm):
-        gm = g.loc[g["p_mkt"].notna()]
+        gm = g.loc[g["p_mkt_u"].notna()]
         row.update({"n_priced": int(len(gm)), "mean_p_priced": float(gm["p"].mean()),
-                    "mean_p_market": float(gm["p_mkt"].mean()), "observed_priced": float(gm["won"].mean())})
+                    "mean_p_market": float(gm["p_mkt_u"].mean()), "observed_priced": float(gm["won"].mean())})
     return row
 
 
@@ -72,7 +72,7 @@ def calibration_rare(df: pd.DataFrame) -> dict:
         g = r.loc[(r["p"] >= lo) & (r["p"] < hi)]
         if len(g):
             out["by_bin"].append({"bin": f"{lo:.2f}–{hi:.2f}", **_cal_row(g)})
-    pr = r.loc[r["p_mkt"].notna()]
+    pr = r.loc[r["p_mkt_u"].notna()]
     if len(pr):
         out["priced_only"] = _cal_row(pr)
         out["priced_only_by_bin"] = []
@@ -80,7 +80,7 @@ def calibration_rare(df: pd.DataFrame) -> dict:
             g = pr.loc[(pr["p"] >= lo) & (pr["p"] < hi)]
             if len(g):
                 out["priced_only_by_bin"].append({"bin": f"{lo:.2f}–{hi:.2f}", **_cal_row(g),
-                                                  "market_observed_gap": float(g["won"].mean() - g["p_mkt"].mean())})
+                                                  "market_observed_gap": float(g["won"].mean() - g["p_mkt_u"].mean())})
     return out
 
 
@@ -120,20 +120,20 @@ def ev_bins(df: pd.DataFrame, ev_col: str = "ev") -> dict:
 
 def who_is_right(df: pd.DataFrame) -> dict:
     """Outcome ~ a·logit(p_model) + b·logit(p_market) + c on priced Risk candidates with a complete book."""
-    r = df.loc[df["cand"] & df["p_mkt"].notna() & df["status"].notna() & (df["p"] >= 0.12)]
-    X = np.column_stack([logit(r["p"]), logit(r["p_mkt"])])
+    r = df.loc[df["cand"] & df["p_mkt_u"].notna() & df["status"].notna() & (df["p"] >= 0.12)]
+    X = np.column_stack([logit(r["p"]), logit(r["p_mkt_u"])])
     y = r["won"].to_numpy()
     m = LogisticRegression(C=1e6, max_iter=1000).fit(X, y)
-    pm, pk = np.clip(r["p"], 1e-6, 1 - 1e-6), np.clip(r["p_mkt"], 1e-6, 1 - 1e-6)
+    pm, pk = np.clip(r["p"], 1e-6, 1 - 1e-6), np.clip(r["p_mkt_u"], 1e-6, 1 - 1e-6)
     ll = lambda p: float(-np.mean(y * np.log(p) + (1 - y) * np.log(1 - p)))  # noqa: E731
     pb = m.predict_proba(X)[:, 1]
-    disagree = r.assign(ratio=r["p"] / r["p_mkt"])
+    disagree = r.assign(ratio=r["p"] / r["p_mkt_u"])
     rows = []
     for lo, hi in ((0, 0.9), (0.9, 1.0), (1.0, 1.1), (1.1, 1.2), (1.2, 1.35), (1.35, np.inf)):
         g = disagree.loc[(disagree["ratio"] >= lo) & (disagree["ratio"] < hi)]
         if len(g) >= 30:
             rows.append({"ratio": f"{lo:.2f}–{hi:.2f}" if np.isfinite(hi) else f"≥ {lo:.2f}", "n": int(len(g)),
-                         "mean_p_model": float(g["p"].mean()), "mean_p_market": float(g["p_mkt"].mean()),
+                         "mean_p_model": float(g["p"].mean()), "mean_p_market": float(g["p_mkt_u"].mean()),
                          "observed": float(g["won"].mean())})
     return {"n": int(len(r)), "w_model": float(m.coef_[0][0]), "w_market": float(m.coef_[0][1]),
             "intercept": float(m.intercept_[0]), "log_loss_model": ll(pm), "log_loss_market": ll(pk),
@@ -174,7 +174,8 @@ def max_selection_mc(df: pd.DataFrame, sigmas=(0.0, 0.1, 0.2, 0.3, 0.4), reps: i
             real_ev.append(true_ev[pick].mean())
         out.append({"sigma": s, "model_ev": float(np.mean(model_ev)), "true_roi": float(np.mean(real_ev)),
                     "inflation": float(np.mean(model_ev) - np.mean(real_ev))})
-    lm, lq = logit(df.loc[df["p_mkt"].notna() & df["cand"], "p"]), logit(df.loc[df["p_mkt"].notna() & df["cand"], "p_mkt"])
+    ok = df["p_mkt"].notna() & df["cand"] & (df["push_p"] < 1e-9)
+    lm, lq = logit(df.loc[ok, "p"]), logit(df.loc[ok, "p_mkt"])
     return {"matches": int(len(k_per_match)), "mean_candidates": float(k_per_match.mean()),
             "sd_logit_model_minus_market": float(np.std(lm - lq)), "rows": out}
 

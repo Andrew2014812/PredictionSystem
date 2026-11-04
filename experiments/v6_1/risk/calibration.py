@@ -40,15 +40,19 @@ def _fit(X, y):
 
 
 class Calibrator:
-    def __init__(self):
+    def __init__(self, market_col: str = "p_mkt"):
+        """``market_col``: "p_mkt" (as pre-registered: for a whole-line Asian handicap the de-vigged
+        price is P(win | no refund)) or "p_mkt_u" (post-hoc correction: P(win) = P(win | no refund)
+        x (1 - model refund probability))."""
+        self.market_col = market_col
         self.platt, self.blend, self.rel = {}, {}, {}
         self.pooled_blend = None
 
     def fit(self, train: pd.DataFrame) -> "Calibrator":
         t = _settled(train)
-        pb = t.loc[t["p"].between(*FIT_RANGE) & t["p_mkt"].notna()]
+        pb = t.loc[t["p"].between(*FIT_RANGE) & t[self.market_col].notna()]
         if len(pb) >= MIN_N:
-            m = _fit(np.column_stack([logit(pb["p"]), logit(pb["p_mkt"])]), pb["won"].to_numpy())
+            m = _fit(np.column_stack([logit(pb["p"]), logit(pb[self.market_col])]), pb["won"].to_numpy())
             if m is not None:
                 self.pooled_blend = (float(m.coef_[0][0]), float(m.coef_[0][1]), float(m.intercept_[0]), int(len(pb)))
         for key, g in t.groupby("key"):
@@ -57,9 +61,9 @@ class Calibrator:
                 m = _fit(logit(r["p"]).reshape(-1, 1), r["won"].to_numpy())
                 if m is not None:
                     self.platt[key] = (float(m.coef_[0][0]), float(m.intercept_[0]), int(len(r)))
-            b = r.loc[r["p_mkt"].notna()]
+            b = r.loc[r[self.market_col].notna()]
             if len(b) >= MIN_N:
-                m = _fit(np.column_stack([logit(b["p"]), logit(b["p_mkt"])]), b["won"].to_numpy())
+                m = _fit(np.column_stack([logit(b["p"]), logit(b[self.market_col])]), b["won"].to_numpy())
                 if m is not None:
                     self.blend[key] = (float(m.coef_[0][0]), float(m.coef_[0][1]), float(m.intercept_[0]),
                                        int(len(b)))
@@ -79,12 +83,12 @@ class Calibrator:
         a = df["key"].map(lambda k: self.platt.get(k, (1.0, 0.0, 0))[0]).to_numpy(float)
         c = df["key"].map(lambda k: self.platt.get(k, (1.0, 0.0, 0))[1]).to_numpy(float)
         df["p_cal"] = 1 / (1 + np.exp(-(a * lp + c)))
-        has = df["p_mkt"].notna().to_numpy() & (df["key"].isin(self.blend.keys()).to_numpy()
+        has = df[self.market_col].notna().to_numpy() & (df["key"].isin(self.blend.keys()).to_numpy()
                                                    | (self.pooled_blend is not None))
         fallback = self.pooled_blend or (1.0, 0.0, 0.0, 0)
         bm = df["key"].map(lambda k: self.blend.get(k, fallback)).tolist()
         b1 = np.array([x[0] for x in bm]); b2 = np.array([x[1] for x in bm]); b0 = np.array([x[2] for x in bm])
-        z = b1 * lp + b2 * logit(df["p_mkt"].fillna(0.5)) + b0
+        z = b1 * lp + b2 * logit(df[self.market_col].fillna(0.5)) + b0
         df["p_blend"] = np.where(has, 1 / (1 + np.exp(-z)), df["p_cal"])
         for col in ("p_cal", "p_blend"):
             df[f"ev_{col}"] = np.where(df["priced"], df[col] * df["odds"] - (1 - df["push_p"]), np.nan)

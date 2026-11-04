@@ -5,6 +5,7 @@
     python -m experiments.v6_1.risk.run --preregister    # writes results/preregistration.json (commit it!)
     python -m experiments.v6_1.risk.run --independent    # 2026/27 production history (needs the committed
                                                          #   pre-registration)
+    python -m experiments.v6_1.risk.run --posthoc        # NOT pre-registered checks after the 2026/27 run
     python -m experiments.v6_1.risk.run --figures
     python -m experiments.v6_1.risk.run --all            # everything in this order
     add --refresh to rebuild the cached model predictions and candidate tables
@@ -322,6 +323,53 @@ def stage_independent() -> dict:
     return out
 
 
+def stage_posthoc() -> dict:
+    """NOT pre-registered, run after the 2026/27 check (reported as such):
+
+    (a) the market blend with the corrected market probability of whole-line Asian handicaps
+        (p_mkt_u = P(win | no refund) x (1 - refund probability); the pre-registered blend used
+        P(win | no refund), which over-states P(win) of a whole line) - every floor, every season;
+    (b) multiplicity: Bonferroni-adjusted paired intervals of the 2026/27 ROI differences for the
+        18 non-current rules evaluated there.
+    """
+    t0 = time.time()
+    out = {"note": "post-hoc, not pre-registered; cannot confirm a strategy", "seasons": {}}
+    pre_name = "Calibrated Risk (бленд с рынком), пол ≥0 %"
+    for s in (*SELECT, INFO, INDEPENDENT):
+        df, _ = season_frame(s)
+        du = Calibrator("p_mkt_u").fit(S.prepare(D.history_season(s - 1))).apply(df)
+        df["p_blend_u"], df["ev_p_blend_u"] = du["p_blend"], du["ev_p_blend"]
+        sea = Season(df, seed=s)
+        _, base = metrics(S.current(df), sea)
+        res = {}
+        for label, f in S.FLOORS.items():
+            m, _ = metrics(S.calibrated(df, f, "p_blend_u"), sea, base)
+            res[f"Бленд (исправленный p рынка), пол {label}"] = m
+        m, _ = metrics(S.calibrated(df, 0.0, "p_blend"), sea, base)
+        res[pre_name + " (предрегистрация)"] = m
+        out["seasons"][str(s)] = {"strategies": res, "ev_bins_blend_u": A.ev_bins(df, "ev_p_blend_u")}
+        if s == INDEPENDENT:
+            _, _, boots, _ = evaluate_season(s, df)
+            cur = boots[(str(s), CURRENT)][0]
+            others = [n for (ss, n) in boots if n != CURRENT]
+            a = 0.05 / len(others)
+            out["bonferroni_2026"] = {"alpha_per_comparison": a, "comparisons": len(others), "rules": {
+                n: [float(np.nanquantile(boots[(str(s), n)][0] - cur, a / 2)),
+                    float(np.nanquantile(boots[(str(s), n)][0] - cur, 1 - a / 2))] for n in others}}
+    sel = [str(s) for s in SELECT]
+    out["pooled_select"] = {}
+    for n in out["seasons"][sel[0]]["strategies"]:
+        rows = [out["seasons"][s]["strategies"][n] for s in sel]
+        bets = sum(r["bets"] for r in rows)
+        out["pooled_select"][n] = {"roi": sum(r["profit"] for r in rows) / bets, "bets": bets,
+                                   "rois": [r["roi"] for r in rows],
+                                   "min_avg_odds": min(r["avg_odds"] for r in rows),
+                                   "min_priced_share": min(r["priced_share"] for r in rows)}
+    out["minutes"] = (time.time() - t0) / 60
+    save("posthoc.json", out)
+    return out
+
+
 def stored_history() -> dict:
     """The Risk history as the website shows it (unified_history), season 2026/27."""
     from src.analytics.performance import summarize, unified_history
@@ -398,7 +446,7 @@ def stage_info(timings: dict) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    for flag in ("history", "analysis", "preregister", "independent", "figures", "all", "refresh",
+    for flag in ("history", "analysis", "preregister", "independent", "posthoc", "figures", "all", "refresh",
                  "force_preregister"):
         ap.add_argument(f"--{flag.replace('_', '-')}", action="store_true")
     a = ap.parse_args()
@@ -419,6 +467,8 @@ def main() -> None:
         timed("preregister", stage_preregister, a.force_preregister)
     if a.all or a.independent:
         timed("independent", stage_independent)
+    if a.all or a.posthoc:
+        timed("posthoc", stage_posthoc)
     if a.all or a.figures:
         from . import figures
         timed("figures", figures.build)
