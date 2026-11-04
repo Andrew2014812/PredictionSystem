@@ -227,3 +227,22 @@ def test_explanations_of_real_models_match_the_engine(synthetic, trained):
             # every feature contribution is TreeSHAP of a model output times its path weight
             via = ex.contributions[[c for c in ex.contributions if c.startswith("via_")]].sum(axis=1)
             assert np.allclose(via, ex.contributions["contribution"])
+
+
+def test_a_goal_total_mentions_the_1x2_forecast_only_when_it_drives_it():
+    lh, la, p = CASES[0]
+    inputs = _inputs(lh, la, p, base=(lh, la, (0.45, 0.22, 0.33)))      # only the 1X2 outputs differ from ū
+    values = chain.chain_values("TOTAL_2.5", "UNDER", _snap(lh, la, p))
+    ex = chain.attribute(inputs, "TOTAL_2.5", "UNDER")
+    text = chain_note("TOTAL_2.5", "UNDER", values, "Como", "Roma", ex)
+    assert "The 1X2 forecast (Como 48% · draw 27% · Roma 25%)" in text
+    goals_only = chain.attribute(_inputs(lh, la, p, base=(1.2, 0.9, p)), "TOTAL_2.5", "UNDER")
+    assert "1X2" not in chain_note("TOTAL_2.5", "UNDER", values, "Como", "Roma", goals_only)
+
+
+def test_note_texts_exist_in_both_languages_with_the_same_placeholders():
+    import re
+    from src.explain.card import NOTE
+    assert NOTE["en"].keys() == NOTE["uk"].keys()
+    for key, text in NOTE["en"].items():
+        assert set(re.findall(r"{\w+}", text)) == set(re.findall(r"{\w+}", NOTE["uk"][key])), key

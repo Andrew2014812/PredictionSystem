@@ -141,11 +141,10 @@ NOTE = {
         "total_under_mid": "{xg}: about {n} in total, below the {line} line.",
         "total_under_near": "{xg}: about {n} in total, only just below the {line} line.",
         "total_under_above": "{xg}: about {n} in total, so under {line} needs a quieter game than forecast.",
-        "result_tight": " A tight game is likely too (draw {d}), and draws are usually low-scoring.",
-        "result_open": " A one-sided game is likely too ({team} win {p}), which tends to add goals.",
-        "result_against": " The 1X2 forecast ({h} · {d} · {a}) works against it.",
+        "result_for": " The 1X2 forecast ({home} {h} · draw {d} · {away} {a}) adds to it.",
+        "result_against": " The 1X2 forecast ({home} {h} · draw {d} · {away} {a}) works against it.",
         "btts": "FootPredict gives {home} a {ph} chance to score and {away} {pa} ({xg}).",
-        "btts_no": " The likeliest blank is {team}'s ({p} chance of no goal).",
+        "btts_no":" The likeliest blank is {team}'s ({p} chance of no goal).",
         "hcp_win": "{team} {line} needs {team} to win by {k} or more goals",
         "hcp_win_refund": "{team} {line} needs {team} to win by {k} or more goals; a {r}-goal win refunds the stake",
         "hcp_avoid": "{team} {line} needs {team} to avoid defeat",
@@ -176,9 +175,8 @@ NOTE = {
         "total_under_mid": "{xg} — разом близько {n}, нижче лінії {line}.",
         "total_under_near": "{xg} — разом близько {n}, лише трохи нижче лінії {line}.",
         "total_under_above": "{xg} — разом близько {n}, тож для менше {line} матч має бути спокійнішим за прогноз.",
-        "result_tight": " Імовірна й щільна гра (нічия {d}), а нічиї зазвичай малорезультативні.",
-        "result_open": " Імовірна й гра в одні ворота (перемога {team} {p}), що зазвичай додає голів.",
-        "result_against": " Прогноз 1X2 ({h} · {d} · {a}) працює проти цього.",
+        "result_for": " Прогноз 1X2 ({home} {h} · нічия {d} · {away} {a}) це підсилює.",
+        "result_against": " Прогноз 1X2 ({home} {h} · нічия {d} · {away} {a}) працює проти цього.",
         "btts": "FootPredict дає {home} {ph} шансів забити, а {away} — {pa} ({xg}).",
         "btts_no": " Найімовірніше без голу залишиться {team} ({p}).",
         "hcp_win": "{team} {line}: потрібна перемога {team} з різницею {k}+ голи",
@@ -302,9 +300,5 @@ def _result_clause(explanation, values, home: str, away: str, tx: dict) -> str:
     if not total or abs(res) / total < MIN_RESULT_SHARE:
         return ""
     ph, pd_, pa = values.p1x2
-    if res > 0:
-        fav, p = max(((home, ph), (away, pa)), key=lambda x: x[1])
-        # the classifier helps an UNDER through the draw, an OVER through a one-sided game
-        return (tx["result_tight"].format(d=_pc(pd_)) if explanation.selection == "UNDER"
-                else tx["result_open"].format(team=fav, p=_pc(p)))
-    return tx["result_against"].format(h=_pc(ph), d=_pc(pd_), a=_pc(pa))
+    return tx["result_for" if res > 0 else "result_against"].format(home=home, away=away, h=_pc(ph), d=_pc(pd_),
+                                                                     a=_pc(pa))
