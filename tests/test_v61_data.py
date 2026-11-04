@@ -172,3 +172,41 @@ def test_a_club_booked_twice_on_one_day_counts_once_in_the_history():
     assert dup.to_dict("records") == [{"match_id": "B1-20261104-kortrijk-kv-mechelen",
                                        "kept_match_id": "B1-20261104-kortrijk-mechelen"}]
     assert "B1-20261104-kortrijk-kv-mechelen" not in set(unified_history(picks)["match_id"])
+
+
+# ---------------------------------------------------------------------------------------------- diagnostics
+def test_diagnostics_lines_say_what_a_source_delivered(tmp_path):
+    from src.providers.diagnostics import RunDiagnostics
+    from src.storage import LocalStorage
+    d = RunDiagnostics()
+    d.add("api_football", "requests", 4)
+    d.http("api_football", 200)
+    d.add("api_football", "returned", 126)
+    d.add("api_football", "in_leagues", 92)
+    d.add("api_football", "matched", 90)
+    d.add("api_football", "finished", 21)
+    d.add("api_football", "new_results", 6)
+    d.skip("api_football", "unknown team name", 2)
+    line = d.line("api_football")
+    assert line.startswith("API-Football: 4 requests · 126 fixtures returned · 92 in our leagues · 90 matched")
+    assert "21 finished" in line and "6 new results" in line and "2 unknown team name" in line
+    d.error("api_football", "fixtures: {'access': 'Your account is suspended'}")
+    assert "suspended" in d.line("api_football")
+    assert d.line("oddspapi") == "OddsPapi: not used"
+    report = d.save(LocalStorage(tmp_path))
+    assert report["sources"]["api_football"]["counts"]["matched"] == 90
+    assert (tmp_path / "diagnostics" / "history.csv").exists()
+
+
+def test_past_days_without_results_are_asked_again_within_the_plan(monkeypatch):
+    from datetime import date, datetime
+
+    from src import config
+    from src.providers.collect import overdue_days
+    m = pd.DataFrame({"played": [False, False, True],
+                      "kickoff": pd.to_datetime(["2026-11-01 15:00", "2026-11-03 20:00", "2026-11-02 15:00"])})
+    now, today = datetime(2026, 11, 5, 1, 17), date(2026, 11, 5)
+    monkeypatch.setattr(config, "API_FOOTBALL_PLAN_DAYS_BACK", 10)            # a paid plan
+    assert overdue_days(m, now, today) == [date(2026, 11, 1), date(2026, 11, 3)]
+    monkeypatch.setattr(config, "API_FOOTBALL_PLAN_DAYS_BACK", 1)             # the free plan
+    assert overdue_days(m, now, today) == []                                  # yesterday is asked anyway

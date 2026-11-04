@@ -88,7 +88,7 @@ class RunDiagnostics:
         if c.get("requests") or c.get("cached"):
             parts.append(f"{c.get('requests', 0)} requests" + (f" (+{c['cached']} cached)" if c.get("cached") else ""))
         order = [("files", "files downloaded"), ("files_unchanged", "files unchanged"),
-                 ("returned", "fixtures returned"), ("in_leagues", "in our leagues"), ("matched", "matched"),
+                 ("season_played", "played matches in the season files"), ("returned", "fixtures returned"), ("in_leagues", "in our leagues"), ("matched", "matched"),
                  ("new_fixtures", "new fixtures"), ("finished", "finished"), ("new_results", "new results"),
                  ("matches_asked", "matches asked"), ("matches_priced", "with real prices"),
                  ("quotes_new", "new quotes"), ("quotes_updated", "updated quotes"),
@@ -99,6 +99,8 @@ class RunDiagnostics:
             parts.append("skipped: " + ", ".join(f"{n} {r}" for r, n in d["skipped"].most_common(4)))
         if d["http"] and set(d["http"]) - {"200"}:
             parts.append("HTTP " + ", ".join(f"{s}×{n}" for s, n in sorted(d["http"].items())))
+        if info.get("waiting_for_a_result"):
+            parts.append(f"{info['waiting_for_a_result']} past matches still waiting for a result")
         if "left" in info:
             parts.append(f"{info['left']} left")
         if d["errors"]:

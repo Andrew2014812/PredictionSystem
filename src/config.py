@@ -60,6 +60,7 @@ API_FOOTBALL_DAILY_LIMIT = 100      # free plan
 API_FOOTBALL_ODDS = False
 API_FIXTURE_DAYS_BACK = 1           # fresh results of yesterday and today
 API_FIXTURE_DAYS_AHEAD = 1          # fixtures of tomorrow
+API_FOOTBALL_PLAN_DAYS_BACK = 1     # the free plan serves dates from yesterday only (checked 04.11.2026)
 
 ODDS_API_URL = "https://api.the-odds-api.com/v4"
 # Bookmaker priority (UK region). Exchanges are skipped: their prices are

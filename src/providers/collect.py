@@ -359,7 +359,9 @@ def overdue_days(matches: pd.DataFrame, now: datetime, today: date) -> list[date
     finished_by = pd.Timestamp(now) - pd.Timedelta(hours=3)                 # a match is over by then
     waiting = matches.loc[~matches["played"].astype(bool) & (kickoff < finished_by)
                           & (kickoff >= pd.Timestamp(today) - pd.Timedelta(days=CATCH_UP_DAYS))]
-    days = sorted({k.date() for k in pd.to_datetime(waiting["kickoff"])} - {today, today - timedelta(days=1)})
+    allowed = today - timedelta(days=config.API_FOOTBALL_PLAN_DAYS_BACK)  # older dates: refused by the plan
+    days = sorted({k.date() for k in pd.to_datetime(waiting["kickoff"])
+                   if k.date() >= allowed} - {today, today - timedelta(days=1)})
     return days[-6:]                                                         # at most six extra requests
 
 
