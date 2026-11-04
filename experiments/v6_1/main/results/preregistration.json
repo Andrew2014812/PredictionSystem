@@ -1,0 +1,26 @@
+{
+ "criteria": {
+  "timestamp_utc": "2026-11-04T11:02:19+00:00",
+  "git_sha_before": "f282856602dc2c261b005d88d11d498c64c2b08d",
+  "selection_folds": [
+   "2023/24",
+   "2024/25"
+  ],
+  "information_only": "2025/26 (looked at in earlier development; never used to choose)",
+  "independent_check": "2026/27 so far: production history store (unified_history + markets.parquet), real recorded or archived pre-kick-off prices; evaluated once, after this file's 'strategy' stage is committed",
+  "universe": "identical matches for every strategy: matches with real Bet365 opening prices for 1X2 and total 2.5 (Football-Data); ROI = mean profit per unit stake at the real price; refunds and unpriced picks are not bets",
+  "variant_choice": "among variants of a family, the highest WORST-fold ROI over 2023/24 and 2024/25 (ties: pooled ROI); a variant with fewer than 300 bets on either fold is not eligible",
+  "adoption_rule": [
+   "1. ROI higher than strategy A (current Main) on BOTH 2023/24 and 2024/25 on identical matches",
+   "2. pooled 2023/24+2024/25 paired bootstrap (resampling matches, 2000 draws): 5th percentile of ROI(strategy) - ROI(A) > 0 (one-sided 95 %)",
+   "3. calibration of the shown Main not worse: ECE of the Main picks not higher than A's by more than 0.01 and Brier not higher by more than 0.002 on both folds (a pure betting layer leaves the shown Main unchanged)",
+   "4. 2026/27 confirmation within reason: ROI(strategy) - ROI(A) >= 0 on identical 2026/27 matches (point estimate; the 2026/27 sample is too small to require significance) and the strategy's 2026/27 ROI interval reported",
+   "5. a positive ROI is claimed only if its 95 % bootstrap interval excludes 0; otherwise reported as 'not distinguishable from 0'"
+  ],
+  "never": [
+   "choose on 2025/26 or 2026/27",
+   "use prices recorded after kick-off",
+   "change stored predictions"
+  ]
+ }
+}
