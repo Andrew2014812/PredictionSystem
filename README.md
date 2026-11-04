@@ -313,11 +313,11 @@ without odds). Highest / lowest ROI market follows the active filters; below 30 
   (Mon–Sun interval) or month (12 rows, *Show all*); scores as 2:1.
 * **Leagues** — season selector drives table, matches (in the visitor's time zone) and FootPredict statistics
   of that season from the same history.
-* **Analytics** — the same history; highest / lowest ROI market (sample size in the tooltip); six charts:
+* **Analytics** — the same history; highest / lowest ROI market (from 15 real-odds bets, sample size in the tooltip); profit in units (*Profit · units*, stake 1 unit); six charts:
   cumulative profit, ROI and hit rate over the last 20 / 50 / 100 bets or cumulative, ROI by market, ROI by
   league (full width, 12 largest samples, *Show all*), hit rate by market (sample sizes on hover, small
   samples faded).
-* **Model Analysis** — test-season metrics with explanations, draws, calibration, confusion matrix, model
+* **Model Analysis** — test-season metrics with explanations, draws, calibration, confusion matrix (of the outcome rule really in use, v6.1), model
   features (SHAP chart, gain in an expander, searchable feature dictionary — five most influential groups,
   *Show all*), hyperparameter search, derived markets, *Historical Model Testing*.
 
@@ -325,6 +325,33 @@ Club badges: URLs from API-Football team data (`scripts/build_team_logos.py`, ma
 `local_data/teams/logos.json`; images are not stored in the repository), shown unmodified and small; a neutral
 shield is shown when no badge is known. Badges are the clubs' trademarks. Coverage: 394 of 400 clubs; missing:
 Airdrie Utd, Queen of Sth, Celta B, Sociedad B, OFI Crete (no unambiguous API-Football team).
+
+### Design versions and rollback (v6.1)
+
+The look is versioned in `src/ui/theme.py` (`DESIGNS`): **v6.1** (default) — graphite-green dark theme
+(`#101820` / `#1B292D`, accent `#269D7D`), warm light theme (`#F5F6F3`, accent `#167C66`), IBM Plex Sans for
+headings and navigation, Source Sans 3 for text and tables, headings at weight 600–700; **v6** — the previous
+look (navy, Inter, weight 800), kept unchanged. Main stays green, Risk amber, profit green, loss red.
+
+Rollback to v6 (no switch is shown on the site):
+
+```bash
+python scripts/use_design.py v6      # sets UI_DESIGN in src/config.py and the widget colours in .streamlit/config.toml
+python scripts/use_design.py v6.1    # back to the new look
+```
+
+Without editing files, the environment variable or Streamlit secret `FP_DESIGN=v6` switches the page styles.
+
+### What a visitor does not see (v6.1)
+
+Streamlit's own controls are hidden: main menu, deploy / fork buttons, run indicator, decoration bar, footer.
+On Streamlit Community Cloud the app runs inside a hosting page served from the same address; the app's page
+script hides that page's corner badges ("Hosted with Streamlit" and the creator's avatar) and keeps the tab title
+*FootPredict* (`HIDE_CLOUD_BADGES` in `src/ui/prefs.py`). The owner's *Manage app* button is visible only to the
+signed-in owner. If Cloud ever served the hosting page from another address the browser would block the script
+and only those badges would come back — the remaining option would be self-hosting the same app (e.g. a Docker
+container), which v6.1 does not do. The date picker is kept English in any browser language (the page reports
+British English to it; dates stay DD.MM.YYYY).
 
 ## ML research: alternative models (not used by the website)
 
@@ -432,6 +459,30 @@ archive is also kept as a run artifact) — and optionally one league, one day o
 `API_FOOTBALL_KEY`, `ODDSPAPI_KEY`, `ODDS_API_KEY`; optional variable `ODDS_API_FALLBACK`. It commits the new
 data to `main`, writes the run summary and the quotas to the job summary, and Streamlit redeploys. A local checkout is synchronised with `git pull`;
 `E2E_BASE_URL=<app url>/~/+ pytest tests/e2e --e2e -k sync` checks that the deployed app serves the same data.
+
+### Data diagnostics and checks (v6.1)
+
+Every pipeline run writes what each source really delivered to `local_data/api/diagnostics/last_run.json`
+(appended to `history.csv`) and to the GitHub Actions summary, e.g.
+`API-Football: 4 requests · 126 fixtures returned · 92 in our leagues · 90 matched · 21 finished (6 new results)` —
+requests, HTTP statuses, API errors (e.g. a suspended account), records returned / matched / skipped with the
+reason, new fixtures and results, new and updated quotes, quotas and duration; Football-Data files report
+changed / unchanged files, new results and which statistics and price columns each league's file has.
+After settlement the history invariants are checked (`src/analytics/invariants.py`: one Main and one Risk per
+match, no prediction counted twice, real named bookmaker prices quoted before kick-off, results equal to the
+match, ROI from bets only, Leagues adding up to the History) — problems are reported, never silently deleted.
+
+v6.1 data fixes: verified OddsPapi ids for Barcelona (2817) and Espanyol (2814); tournament lookup that ignores
+accents (Türkiye) and asks OddsPapi's billable tournament list at most monthly, keeping the country's tournaments
+in `local_data/api/oddspapi/tournament_candidates.json`; Football-Data fixture names mapped to the results
+spelling ("KV Mechelen" → Mechelen); a moved match counted once (the prediction for the date it was played); a
+club booked twice on one day counted once; Football-Data market averages replaced by a real bookmaker quote or no
+longer counted as bets (`replaced_average_odds` keeps the average). The Odds API stays off; the repository
+variable `ODDS_API_LEAGUES` (e.g. `T1`) would allow it for named leagues only.
+
+### Research reports (v6.1)
+
+Six Russian research PDFs with their code and data: see `reports/v6_1/README.md`.
 
 ## Tests
 
