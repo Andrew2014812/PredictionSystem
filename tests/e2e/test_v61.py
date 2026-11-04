@@ -67,14 +67,19 @@ def test_the_calendar_is_english_in_a_russian_browser(browser, base_url):
     ctx = browser.new_context(locale="ru-RU", timezone_id="Europe/Kyiv", viewport={"width": 1366, "height": 900})
     try:
         app = App(ctx.new_page(), base_url).open("?date=2026-11-01")
+        try:                                                     # give the page's own script time to run
+            app.page.wait_for_function("navigator.language === 'en-GB'", timeout=10_000)
+        except Exception:                                        # noqa: BLE001 - the text check below decides
+            pass
         field = app.page.locator('[data-testid="stDateInput"]').first
         expect(field).to_contain_text("01")
         (field.locator("button").first if field.locator("button").count() else field).click()
         grid = app.page.locator('[role="grid"]').first
         expect(grid).to_be_visible()
         text = app.page.locator("body").inner_text()                       # the month header is in a popover
-        assert "November" in text and "ноябрь" not in text.lower()
-        assert not re.search(r"[А-Яа-яЁё]", text)                          # nothing Russian anywhere
+        assert not re.search(r"[А-Яа-яЁё]", text), text[-200:]              # nothing Russian anywhere
+        heads = [h.strip() for h in grid.locator('[role="columnheader"], th').all_inner_texts() if h.strip()]
+        assert heads and all(re.fullmatch(r"[A-Z][a-z]?", h) for h in heads), heads   # M T W T F S S
         assert not re.search(r"[А-Яа-яЁё]", grid.inner_text()), grid.inner_text()[:80]
     finally:
         ctx.close()

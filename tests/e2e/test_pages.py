@@ -313,7 +313,7 @@ def test_cloud_toolbar_buttons_do_not_cover_the_theme_switch(app):
     expect(app.page.locator('[data-testid="stToolbarActions"]')).to_be_hidden()
     app.pref("light_mode").click()                                   # the switch can still be clicked
     app.wait()
-    assert app.background() == "rgb(233, 238, 244)"
+    assert app.background() == "rgb(245, 246, 243)"
 
 
 def test_theme_switch(app):
@@ -322,7 +322,7 @@ def test_theme_switch(app):
     app.pref("light_mode").click()
     app.wait()
     light = app.background()
-    assert dark != light and light in ("rgb(233, 238, 244)",), light          # soft grey-blue, not white
+    assert dark != light and light == "rgb(245, 246, 243)", light            # warm off-white (v6.1), not white
     app.nav("Analytics")
     assert app.background() == light                                 # stays light across pages
     app.pref("dark_mode").click()
