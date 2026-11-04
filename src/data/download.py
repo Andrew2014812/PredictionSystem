@@ -20,8 +20,8 @@ STAT_COLUMNS = {"goals": ("FTHG", "FTAG", "FTR"), "half_time": ("HTHG", "HTAG"),
                 "cards": ("HY", "AY", "HR", "AR")}
 PRICE_COLUMNS = {"bet365_1x2": ("B365H",), "pinnacle_1x2": ("PSH",), "max_avg_1x2": ("MaxH", "AvgH"),
                  "bet365_total_2_5": ("B365>2.5",), "pinnacle_total_2_5": ("P>2.5",),
-                 "asian_handicap": ("AHh", "B365AHH"), "closing_1x2": ("B365CH", "PSCH"),
-                 "closing_total_2_5": ("B365C>2.5", "PC>2.5"), "closing_asian": ("AHCh", "B365CAHH")}
+                 "asian_handicap": ("AHh", "B365AHH"), "closing_1x2": ("B365CH",), "pinnacle_closing_1x2": ("PSCH",),
+                 "closing_total_2_5": ("B365C>2.5",), "closing_asian": ("AHCh", "B365CAHH")}
 
 
 def _fetch_csv(url: str) -> bytes | None:
@@ -70,7 +70,7 @@ def describe_results_file(body: bytes, previous: bytes | None) -> dict:
             "last_date": str(played["Date"].iloc[-1]) if len(played) and "Date" in played else None,
             "stats": {k: present(v) for k, v in STAT_COLUMNS.items()},
             "prices": {k: present(v) for k, v in PRICE_COLUMNS.items()},
-            "xg": any(c.lower() in ("hxg", "axg", "xg") for c in new.columns)}
+            "xg": all(c in new and new[c].notna().any() for c in ("HxG", "AxG"))}
 
 
 def download_results(seasons: list[int], leagues: list[str] | None = None) -> list[str]:

@@ -93,12 +93,20 @@ def reason_for(pick, odds_by_match: dict, tours: dict, archive: pd.DataFrame) ->
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
+    parser.add_argument("--with-repairs", action="store_true",
+                        help="apply the history repairs of the next pipeline run in memory (nothing is written)")
     args = parser.parse_args()
     season = config.current_season()
     feats = pd.read_parquet(config.PROCESSED_DIR / "features.parquet",
                             columns=["match_id", "league", "season", "played", "date", "kickoff"])
     played = feats.loc[(feats["season"] == season) & feats["played"].astype(bool)]
     picks = store.load_picks()
+    if args.with_repairs:
+        from src.prediction.history_repair import repair_history
+        held: dict = {}
+        print("repairs applied in memory:", repair_history(pd.read_parquet(config.PROCESSED_DIR / "features.parquet"),
+                                                           write=False, out=held))
+        picks = held.get("picks", picks)
     live = picks.loc[picks["source"] == "live"]
     raw = pd.concat([live, picks.loc[(picks["source"] == "backfill") & ~picks["match_id"].isin(set(live["match_id"]))]])
     raw = raw.loc[raw["season"] == season]

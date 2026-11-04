@@ -180,8 +180,10 @@ def restore_missing_risk(picks: pd.DataFrame, markets: pd.DataFrame, now: pd.Tim
     return out, len(rows)
 
 
-def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, write: bool = True) -> dict:
-    """Both repairs on the stored tables; restored Risk predictions of finished matches are settled."""
+def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, write: bool = True,
+                   out: dict | None = None) -> dict:
+    """The repairs on the stored tables; restored Risk predictions of finished matches are settled.
+    With ``write=False`` nothing is stored; ``out["picks"]`` then receives the repaired table (audits)."""
     picks = store.load_picks()
     if picks.empty:
         return {"risk_restored": 0, "prices_filled": 0}
@@ -203,6 +205,8 @@ def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, writ
     picks, n_replaced, n_removed = replace_average_prices(picks, real, push)
     summary = {"risk_restored": n_risk, "prices_filled": n_odds, "average_prices_replaced": n_replaced,
                "average_prices_removed": n_removed}
+    if out is not None:
+        out["picks"] = picks
     if write and (n_risk or n_odds or n_replaced or n_removed):
         predictions_storage.write_parquet(store.PICKS, picks)
         if n_risk:

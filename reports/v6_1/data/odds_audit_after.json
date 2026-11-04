@@ -1,0 +1,858 @@
+{
+ "built_at": "2026-11-04T13:05:04",
+ "season": 2026,
+ "played_matches": 2033,
+ "history_matches": 2126,
+ "duplicates_removed": {
+  "moved_matches": [
+   {
+    "match_id": "B1-20261023-kortrijk-mechelen",
+    "kept_match_id": "B1-20261104-kortrijk-mechelen"
+   },
+   {
+    "match_id": "F1-20261031-lorient-brest",
+    "kept_match_id": "F1-20261102-lorient-brest"
+   },
+   {
+    "match_id": "F1-20261031-lyon-angers",
+    "kept_match_id": "F1-20261101-lyon-angers"
+   },
+   {
+    "match_id": "F1-20261030-nice-rennes",
+    "kept_match_id": "F1-20261031-nice-rennes"
+   },
+   {
+    "match_id": "F1-20261025-paris-sg-lyon",
+    "kept_match_id": "F1-20261026-paris-sg-lyon"
+   },
+   {
+    "match_id": "F1-20261024-toulouse-troyes",
+    "kept_match_id": "F1-20261025-toulouse-troyes"
+   },
+   {
+    "match_id": "F2-20261024-montpellier-red-star",
+    "kept_match_id": "F2-20261026-montpellier-red-star"
+   },
+   {
+    "match_id": "F2-20261031-reims-sochaux",
+    "kept_match_id": "F2-20261102-reims-sochaux"
+   },
+   {
+    "match_id": "SP2-20261004-sabadell-andorra",
+    "kept_match_id": "SP2-20261003-sabadell-andorra"
+   },
+   {
+    "match_id": "SP2-20261102-tenerife-andorra",
+    "kept_match_id": "SP2-20261101-tenerife-andorra"
+   }
+  ],
+  "club_spelt_twice": [
+   {
+    "match_id": "B1-20261104-kortrijk-kv-mechelen",
+    "kept_match_id": "B1-20261104-kortrijk-mechelen"
+   },
+   {
+    "match_id": "E1-20261103-preston-sheffield-utd",
+    "kept_match_id": "E1-20261103-preston-sheffield-united"
+   },
+   {
+    "match_id": "E2-20261104-oxford-utd-reading",
+    "kept_match_id": "E2-20261104-oxford-reading"
+   }
+  ]
+ },
+ "roles": {
+  "main": {
+   "predictions": 2126,
+   "settled": 2033,
+   "won": 1335,
+   "lost": 698,
+   "bets": 1916,
+   "pending": 93,
+   "void": 0,
+   "push": 0,
+   "hit_rate": 0.6566650270536154,
+   "profit": -71.307,
+   "roi": -3.7216597077244256,
+   "avg_odds": 1.5039300626304801,
+   "avg_probability": 0.7061618893695876,
+   "longest_win_streak": 22,
+   "longest_loss_streak": 12
+  },
+  "risk": {
+   "predictions": 2126,
+   "settled": 2032,
+   "won": 546,
+   "lost": 1486,
+   "bets": 2006,
+   "pending": 93,
+   "void": 0,
+   "push": 1,
+   "hit_rate": 0.2687007874015748,
+   "profit": -216.49300034332276,
+   "roi": -10.792273197573419,
+   "avg_odds": 3.395057327103163,
+   "avg_probability": 0.32532751374193175,
+   "longest_win_streak": 6,
+   "longest_loss_streak": 19
+  }
+ },
+ "main_without_risk": 0,
+ "unpriced_reasons": [
+  {
+   "role": "main",
+   "reason": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+   "n": 10,
+   "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+  },
+  {
+   "role": "main",
+   "reason": "league not found at OddsPapi (no tournament id)",
+   "n": 97,
+   "recoverable": "only if OddsPapi lists the league (checked monthly, see candidates)"
+  },
+  {
+   "role": "main",
+   "reason": "market not offered for the match",
+   "n": 5,
+   "recoverable": "no"
+  },
+  {
+   "role": "main",
+   "reason": "match not in the OddsPapi fixture list",
+   "n": 3,
+   "recoverable": "no (OddsPapi has no such fixture)"
+  },
+  {
+   "role": "main",
+   "reason": "this line of the market not offered",
+   "n": 2,
+   "recoverable": "no"
+  },
+  {
+   "role": "risk",
+   "reason": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+   "n": 2,
+   "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+  },
+  {
+   "role": "risk",
+   "reason": "league not found at OddsPapi (no tournament id)",
+   "n": 21,
+   "recoverable": "only if OddsPapi lists the league (checked monthly, see candidates)"
+  },
+  {
+   "role": "risk",
+   "reason": "market not offered for the match",
+   "n": 2,
+   "recoverable": "no"
+  },
+  {
+   "role": "risk",
+   "reason": "match not in the OddsPapi fixture list",
+   "n": 1,
+   "recoverable": "no (OddsPapi has no such fixture)"
+  }
+ ],
+ "priced_provenance": {
+  "provider": {
+   "oddspapi": 3129,
+   "football_data": 482,
+   "the_odds_api": 312
+  },
+  "bookmaker": {
+   "bet365": 2504,
+   "pinnacle": 625,
+   "Bet365": 482,
+   "William Hill": 280,
+   "LeoVegas": 10,
+   "Sky Bet": 8,
+   "Paddy Power": 7,
+   "Coral": 6,
+   "Virgin Bet": 1
+  },
+  "odds_origin": {
+   "recorded": 3713,
+   "archive": 193,
+   "average_replaced": 17
+  },
+  "with_quote_time": 3274,
+  "quoted_after_kickoff": 0
+ },
+ "leagues": [
+  {
+   "league": "E0",
+   "name": "England Premier League",
+   "played": 90,
+   "tournament": 17,
+   "archive_fixtures": 89,
+   "archive_mapped": 89,
+   "with_any_price": 90,
+   "main_settled": 90,
+   "main_bets": 90,
+   "main_push": 0,
+   "main_roi": 0.02555555555555496,
+   "risk_settled": 90,
+   "risk_bets": 90,
+   "risk_push": 0,
+   "risk_roi": -8.433333259158665
+  },
+  {
+   "league": "E1",
+   "name": "England Championship",
+   "played": 156,
+   "tournament": 18,
+   "archive_fixtures": 158,
+   "archive_mapped": 156,
+   "with_any_price": 156,
+   "main_settled": 156,
+   "main_bets": 156,
+   "main_push": 0,
+   "main_roi": -12.5224358974359,
+   "risk_settled": 156,
+   "risk_bets": 156,
+   "risk_push": 0,
+   "risk_roi": -13.743589774156229
+  },
+  {
+   "league": "E2",
+   "name": "England League One",
+   "played": 155,
+   "tournament": 24,
+   "archive_fixtures": 176,
+   "archive_mapped": 155,
+   "with_any_price": 155,
+   "main_settled": 155,
+   "main_bets": 155,
+   "main_push": 0,
+   "main_roi": -4.373548387096773,
+   "risk_settled": 155,
+   "risk_bets": 155,
+   "risk_push": 0,
+   "risk_roi": -21.287096712666177
+  },
+  {
+   "league": "E3",
+   "name": "England League Two",
+   "played": 163,
+   "tournament": 25,
+   "archive_fixtures": 170,
+   "archive_mapped": 163,
+   "with_any_price": 163,
+   "main_settled": 163,
+   "main_bets": 163,
+   "main_push": 0,
+   "main_roi": -3.135582822085889,
+   "risk_settled": 163,
+   "risk_bets": 163,
+   "risk_push": 0,
+   "risk_roi": 1.388343529028395
+  },
+  {
+   "league": "SC0",
+   "name": "Scotland Premiership",
+   "played": 69,
+   "tournament": 36,
+   "archive_fixtures": 75,
+   "archive_mapped": 68,
+   "with_any_price": 68,
+   "main_settled": 69,
+   "main_bets": 68,
+   "main_push": 0,
+   "main_roi": -2.172058823529413,
+   "risk_settled": 69,
+   "risk_bets": 69,
+   "risk_push": 0,
+   "risk_roi": 13.079710006713869
+  },
+  {
+   "league": "SC1",
+   "name": "Scotland Championship",
+   "played": 64,
+   "tournament": 206,
+   "archive_fixtures": 68,
+   "archive_mapped": 64,
+   "with_any_price": 64,
+   "main_settled": 64,
+   "main_bets": 64,
+   "main_push": 0,
+   "main_roi": 1.678125,
+   "risk_settled": 64,
+   "risk_bets": 64,
+   "risk_push": 0,
+   "risk_roi": 2.3328124254941933
+  },
+  {
+   "league": "SC2",
+   "name": "Scotland League One",
+   "played": 64,
+   "tournament": null,
+   "archive_fixtures": 0,
+   "archive_mapped": 0,
+   "with_any_price": 0,
+   "main_settled": 64,
+   "main_bets": 37,
+   "main_push": 0,
+   "main_roi": -24.72972972972973,
+   "risk_settled": 64,
+   "risk_bets": 57,
+   "risk_push": 0,
+   "risk_roi": -14.035087719298245
+  },
+  {
+   "league": "SC3",
+   "name": "Scotland League Two",
+   "played": 60,
+   "tournament": null,
+   "archive_fixtures": 0,
+   "archive_mapped": 0,
+   "with_any_price": 0,
+   "main_settled": 60,
+   "main_bets": 24,
+   "main_push": 0,
+   "main_roi": 24.791666666666664,
+   "risk_settled": 60,
+   "risk_bets": 54,
+   "risk_push": 0,
+   "risk_roi": -32.1666666313454
+  },
+  {
+   "league": "SP1",
+   "name": "Spain La Liga",
+   "played": 109,
+   "tournament": 8,
+   "archive_fixtures": 111,
+   "archive_mapped": 86,
+   "with_any_price": 92,
+   "main_settled": 109,
+   "main_bets": 98,
+   "main_push": 0,
+   "main_roi": -6.275510204081634,
+   "risk_settled": 109,
+   "risk_bets": 107,
+   "risk_push": 0,
+   "risk_roi": -22.887850511853937
+  },
+  {
+   "league": "SP2",
+   "name": "Spain Segunda División",
+   "played": 131,
+   "tournament": 54,
+   "archive_fixtures": 129,
+   "archive_mapped": 128,
+   "with_any_price": 131,
+   "main_settled": 132,
+   "main_bets": 131,
+   "main_push": 0,
+   "main_roi": -10.169465648854963,
+   "risk_settled": 132,
+   "risk_bets": 131,
+   "risk_push": 0,
+   "risk_roi": -13.358778553154632
+  },
+  {
+   "league": "I1",
+   "name": "Italy Serie A",
+   "played": 100,
+   "tournament": 23,
+   "archive_fixtures": 98,
+   "archive_mapped": 98,
+   "with_any_price": 100,
+   "main_settled": 100,
+   "main_bets": 100,
+   "main_push": 0,
+   "main_roi": 6.636999999999999,
+   "risk_settled": 100,
+   "risk_bets": 100,
+   "risk_push": 0,
+   "risk_roi": -18.185
+  },
+  {
+   "league": "I2",
+   "name": "Italy Serie B",
+   "played": 100,
+   "tournament": 53,
+   "archive_fixtures": 100,
+   "archive_mapped": 100,
+   "with_any_price": 100,
+   "main_settled": 100,
+   "main_bets": 100,
+   "main_push": 0,
+   "main_roi": 5.642999999999999,
+   "risk_settled": 99,
+   "risk_bets": 99,
+   "risk_push": 1,
+   "risk_roi": 1.8888889370542592
+  },
+  {
+   "league": "D1",
+   "name": "Germany Bundesliga",
+   "played": 72,
+   "tournament": 35,
+   "archive_fixtures": 72,
+   "archive_mapped": 72,
+   "with_any_price": 72,
+   "main_settled": 72,
+   "main_bets": 72,
+   "main_push": 0,
+   "main_roi": -14.558333333333337,
+   "risk_settled": 72,
+   "risk_bets": 72,
+   "risk_push": 0,
+   "risk_roi": -2.7249998410542786
+  },
+  {
+   "league": "D2",
+   "name": "Germany 2. Bundesliga",
+   "played": 90,
+   "tournament": 44,
+   "archive_fixtures": 90,
+   "archive_mapped": 90,
+   "with_any_price": 90,
+   "main_settled": 90,
+   "main_bets": 90,
+   "main_push": 0,
+   "main_roi": 0.45666666666666494,
+   "risk_settled": 90,
+   "risk_bets": 90,
+   "risk_push": 0,
+   "risk_roi": -8.418888888888887
+  },
+  {
+   "league": "F1",
+   "name": "France Ligue 1",
+   "played": 81,
+   "tournament": 34,
+   "archive_fixtures": 81,
+   "archive_mapped": 80,
+   "with_any_price": 81,
+   "main_settled": 80,
+   "main_bets": 80,
+   "main_push": 0,
+   "main_roi": -1.777499999999999,
+   "risk_settled": 80,
+   "risk_bets": 80,
+   "risk_push": 0,
+   "risk_roi": -6.3375
+  },
+  {
+   "league": "F2",
+   "name": "France Ligue 2",
+   "played": 99,
+   "tournament": 182,
+   "archive_fixtures": 103,
+   "archive_mapped": 97,
+   "with_any_price": 99,
+   "main_settled": 99,
+   "main_bets": 99,
+   "main_push": 0,
+   "main_roi": -15.558585858585857,
+   "risk_settled": 99,
+   "risk_bets": 99,
+   "risk_push": 0,
+   "risk_roi": -14.595959692290334
+  },
+  {
+   "league": "N1",
+   "name": "Netherlands Eredivisie",
+   "played": 99,
+   "tournament": 37,
+   "archive_fixtures": 101,
+   "archive_mapped": 99,
+   "with_any_price": 99,
+   "main_settled": 99,
+   "main_bets": 98,
+   "main_push": 0,
+   "main_roi": -8.215306122448977,
+   "risk_settled": 99,
+   "risk_bets": 99,
+   "risk_push": 0,
+   "risk_roi": -2.12121216937749
+  },
+  {
+   "league": "B1",
+   "name": "Belgium Pro League",
+   "played": 89,
+   "tournament": 38,
+   "archive_fixtures": 92,
+   "archive_mapped": 89,
+   "with_any_price": 89,
+   "main_settled": 89,
+   "main_bets": 89,
+   "main_push": 0,
+   "main_roi": 0.44943820224718994,
+   "risk_settled": 89,
+   "risk_bets": 89,
+   "risk_push": 0,
+   "risk_roi": -35.91011235955056
+  },
+  {
+   "league": "P1",
+   "name": "Portugal Primeira Liga",
+   "played": 90,
+   "tournament": 238,
+   "archive_fixtures": 89,
+   "archive_mapped": 88,
+   "with_any_price": 90,
+   "main_settled": 90,
+   "main_bets": 90,
+   "main_push": 0,
+   "main_roi": 1.0966666666666662,
+   "risk_settled": 90,
+   "risk_bets": 90,
+   "risk_push": 0,
+   "risk_roi": -5.272222349378798
+  },
+  {
+   "league": "T1",
+   "name": "Turkey Süper Lig",
+   "played": 90,
+   "tournament": null,
+   "archive_fixtures": 0,
+   "archive_mapped": 0,
+   "with_any_price": 18,
+   "main_settled": 90,
+   "main_bets": 51,
+   "main_push": 0,
+   "main_roi": 9.333333333333332,
+   "risk_settled": 90,
+   "risk_bets": 80,
+   "risk_push": 0,
+   "risk_roi": -9.462500238418581
+  },
+  {
+   "league": "G1",
+   "name": "Greece Super League",
+   "played": 62,
+   "tournament": 185,
+   "archive_fixtures": 62,
+   "archive_mapped": 60,
+   "with_any_price": 61,
+   "main_settled": 62,
+   "main_bets": 61,
+   "main_push": 0,
+   "main_roi": -0.5081967213114781,
+   "risk_settled": 62,
+   "risk_bets": 62,
+   "risk_push": 0,
+   "risk_roi": -13.129032334973733
+  }
+ ],
+ "main_by_group": [
+  {
+   "group": "1X2",
+   "predictions": 115,
+   "priced": 114
+  },
+  {
+   "group": "BTTS",
+   "predictions": 5,
+   "priced": 5
+  },
+  {
+   "group": "CORNERS",
+   "predictions": 25,
+   "priced": 21
+  },
+  {
+   "group": "DOUBLE_CHANCE",
+   "predictions": 35,
+   "priced": 33
+  },
+  {
+   "group": "HANDICAP",
+   "predictions": 528,
+   "priced": 526
+  },
+  {
+   "group": "TOTAL",
+   "predictions": 1325,
+   "priced": 1217
+  }
+ ],
+ "main_by_line": [
+  {
+   "line": "TOTAL_3.5",
+   "predictions": 742,
+   "priced": 676
+  },
+  {
+   "line": "TOTAL_1.5",
+   "predictions": 384,
+   "priced": 346
+  },
+  {
+   "line": "TOTAL_2.5",
+   "predictions": 199,
+   "priced": 195
+  },
+  {
+   "line": "HANDICAP_-1.5",
+   "predictions": 156,
+   "priced": 156
+  },
+  {
+   "line": "HANDICAP_+0.5",
+   "predictions": 128,
+   "priced": 128
+  },
+  {
+   "line": "1X2",
+   "predictions": 115,
+   "priced": 114
+  },
+  {
+   "line": "HANDICAP_-0.5",
+   "predictions": 87,
+   "priced": 87
+  },
+  {
+   "line": "HANDICAP_+1.5",
+   "predictions": 70,
+   "priced": 68
+  },
+  {
+   "line": "HANDICAP_-2.5",
+   "predictions": 58,
+   "priced": 58
+  },
+  {
+   "line": "DOUBLE_CHANCE",
+   "predictions": 35,
+   "priced": 33
+  },
+  {
+   "line": "HANDICAP_+2.5",
+   "predictions": 27,
+   "priced": 27
+  },
+  {
+   "line": "CORNERS_8.5",
+   "predictions": 16,
+   "priced": 14
+  },
+  {
+   "line": "CORNERS_9.5",
+   "predictions": 7,
+   "priced": 6
+  },
+  {
+   "line": "BTTS",
+   "predictions": 5,
+   "priced": 5
+  },
+  {
+   "line": "CORNERS_10.5",
+   "predictions": 2,
+   "priced": 1
+  },
+  {
+   "line": "HANDICAP_+1",
+   "predictions": 1,
+   "priced": 1
+  },
+  {
+   "line": "HANDICAP_+2",
+   "predictions": 1,
+   "priced": 1
+  }
+ ],
+ "laliga": {
+  "main_predictions": 109,
+  "bets": 98,
+  "push": 0,
+  "pending": 2,
+  "not_a_bet": [
+   {
+    "date": "2026-08-16 00:00:00",
+    "home_team": "Espanol",
+    "away_team": "Levante",
+    "match_id": "SP1-20260816-espanol-levante",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": 0.7230092180554224,
+    "status": "WON",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-08-22 00:00:00",
+    "home_team": "Espanol",
+    "away_team": "Real Madrid",
+    "match_id": "SP1-20260822-espanol-real-madrid",
+    "market": "TOTAL_1.5",
+    "selection": "OVER",
+    "probability": 0.7335895405164969,
+    "status": "WON",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-09-06 00:00:00",
+    "home_team": "Valencia",
+    "away_team": "Barcelona",
+    "match_id": "SP1-20260906-valencia-barcelona",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": 0.681086686150631,
+    "status": "LOST",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-09-06 00:00:00",
+    "home_team": "Espanol",
+    "away_team": "Sevilla",
+    "match_id": "SP1-20260906-espanol-sevilla",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": 0.7108426526532068,
+    "status": "WON",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-09-12 00:00:00",
+    "home_team": "Osasuna",
+    "away_team": "Espanol",
+    "match_id": "SP1-20260912-osasuna-espanol",
+    "market": "TOTAL_1.5",
+    "selection": "OVER",
+    "probability": 0.7287204791354004,
+    "status": "WON",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-09-16 00:00:00",
+    "home_team": "Barcelona",
+    "away_team": "Santander",
+    "match_id": "SP1-20260916-barcelona-santander",
+    "market": "CORNERS_8.5",
+    "selection": "OVER",
+    "probability": 0.7490069089652993,
+    "status": "WON",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-09-18 00:00:00",
+    "home_team": "Espanol",
+    "away_team": "Elche",
+    "match_id": "SP1-20260918-espanol-elche",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": 0.7299829159066586,
+    "status": "LOST",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-09-19 00:00:00",
+    "home_team": "Sevilla",
+    "away_team": "Barcelona",
+    "match_id": "SP1-20260919-sevilla-barcelona",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": 0.6171592710089836,
+    "status": "LOST",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-10-09 00:00:00",
+    "home_team": "Malaga",
+    "away_team": "Espanol",
+    "match_id": "SP1-20261009-malaga-espanol",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": 0.7293601859828894,
+    "status": "WON",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "this line of the market not offered",
+    "recoverable": "no"
+   },
+   {
+    "date": "2026-10-17 00:00:00",
+    "home_team": "Espanol",
+    "away_team": "Ath Madrid",
+    "match_id": "SP1-20261017-espanol-ath-madrid",
+    "market": "TOTAL_1.5",
+    "selection": "OVER",
+    "probability": 0.7885666073508892,
+    "status": "LOST",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-10-31 00:00:00",
+    "home_team": "Barcelona",
+    "away_team": "Alaves",
+    "match_id": "SP1-20261031-barcelona-alaves",
+    "market": "CORNERS_8.5",
+    "selection": "OVER",
+    "probability": 0.68948436996373,
+    "status": "LOST",
+    "odds": NaN,
+    "has_result": true,
+    "why_not_a_bet": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "date": "2026-11-06 00:00:00",
+    "home_team": "Sevilla",
+    "away_team": "Alaves",
+    "match_id": "SP1-20261106-sevilla-alaves",
+    "market": "TOTAL_1.5",
+    "selection": "OVER",
+    "probability": 0.7554695743853074,
+    "status": "UPCOMING",
+    "odds": 1.33,
+    "has_result": false,
+    "why_not_a_bet": "no result yet",
+    "recoverable": "—"
+   },
+   {
+    "date": "2026-11-07 00:00:00",
+    "home_team": "Malaga",
+    "away_team": "Santander",
+    "match_id": "SP1-20261107-malaga-santander",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": 0.7273913408114852,
+    "status": "UPCOMING",
+    "odds": 1.46,
+    "has_result": false,
+    "why_not_a_bet": "no result yet",
+    "recoverable": "—"
+   }
+  ]
+ },
+ "tournament_candidates": {},
+ "price_rows": {
+  "total": 288130,
+  "by_provider": {
+   "oddspapi": 286414,
+   "the_odds_api": 1716
+  }
+ }
+}
