@@ -90,12 +90,30 @@ def app_root() -> str:
 
 
 # The browser tab is always called "FootPredict" (Streamlit would show the page name).
+HIDE_CLOUD_BADGES = True     # Streamlit Community Cloud's own corner badges (see _TITLE_JS)
+
+# The tab title is "FootPredict" in the app page and, on Streamlit Community Cloud, also in the hosting page
+# around it (Cloud would otherwise show "FootPredict · Streamlit"). That page is served from the app's own
+# address, so the app may style it: the "Hosted with Streamlit" badge and the creator's avatar in the lower
+# right corner are hidden there. If Cloud ever serves that page from another origin, the browser blocks the
+# access and nothing happens (no error); the badges then stay, which is the only visible effect.
 _TITLE_JS = """<script>
-const doc = window.parent.document;
-const fix = () => { if (doc.title !== "FootPredict") doc.title = "FootPredict"; };
-fix();
-new MutationObserver(fix).observe(doc.querySelector("title") || doc.head, {childList: true, subtree: true,
-                                                                         characterData: true});
+const docs = [window.parent.document];
+try { if (window.top !== window.parent && window.top.document) docs.push(window.top.document); } catch (e) {}
+for (const doc of docs) {
+  const fix = () => { if (doc.title !== "FootPredict") doc.title = "FootPredict"; };
+  fix();
+  new MutationObserver(fix).observe(doc.querySelector("title") || doc.head, {childList: true, subtree: true,
+                                                                           characterData: true});
+}
+const top = docs[docs.length - 1];
+if (HIDE && docs.length > 1 && !top.getElementById("fp-cloud-chrome")) {
+  const style = top.createElement("style");
+  style.id = "fp-cloud-chrome";
+  style.textContent = '[class*="viewerBadge"], [class*="_profileContainer"], [class*="profilePreview"] ' +
+                      '{ display: none !important; }';
+  top.head.appendChild(style);
+}
 </script>"""
 
 
@@ -141,7 +159,7 @@ def _team_search() -> None:
     st.selectbox(t("Find a club"), list(options), index=None, format_func=options.get, key="global_search",
                  placeholder=t("Search..."), label_visibility="collapsed", filter_mode="fuzzy",
                  on_change=_remember_team)
-    components.html(_TITLE_JS, height=0)
+    components.html(_TITLE_JS.replace("HIDE", "true" if HIDE_CLOUD_BADGES else "false"), height=0)
 
 
 def top_bar() -> None:
