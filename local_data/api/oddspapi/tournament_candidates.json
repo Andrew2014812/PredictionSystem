@@ -1,0 +1,671 @@
+{
+  "checked_at": "2026-11-04T16:51:57",
+  "tournaments_listed": 2016,
+  "leagues": {
+    "SC2": {
+      "league": "Scotland League One",
+      "found": 207,
+      "names_tried": [
+        "league one",
+        "league 1",
+        "scottish league one",
+        "spfl league one"
+      ],
+      "country_tournaments": [
+        {
+          "tournamentId": 36,
+          "tournamentName": "Premiership",
+          "tournamentSlug": "premiership",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 128,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 206,
+          "tournamentName": "Championship",
+          "tournamentSlug": "championship",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 115,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 207,
+          "tournamentName": "League 1",
+          "tournamentSlug": "league-1",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 116,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 209,
+          "tournamentName": "League 2",
+          "tournamentSlug": "league-2",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 120,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 331,
+          "tournamentName": "Challenge Cup",
+          "tournamentSlug": "challenge-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 16,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 332,
+          "tournamentName": "League Cup",
+          "tournamentSlug": "league-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 347,
+          "tournamentName": "Scottish Cup",
+          "tournamentSlug": "scottish-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 21,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 2090,
+          "tournamentName": "Premier League, Women",
+          "tournamentSlug": "premier-league-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 44,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 25143,
+          "tournamentName": "Scottish Cup, Women",
+          "tournamentSlug": "scottish-cup-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 26248,
+          "tournamentName": "Reserve League",
+          "tournamentSlug": "reserve-league",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 39075,
+          "tournamentName": "Reserve League 2",
+          "tournamentSlug": "reserve-league-2",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 39077,
+          "tournamentName": "Reserve Cup",
+          "tournamentSlug": "reserve-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 40757,
+          "tournamentName": "Highland and Island League, Women",
+          "tournamentSlug": "highland-and-island-league-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 42193,
+          "tournamentName": "Scottish Women League One",
+          "tournamentSlug": "scottish-women-league-one",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 44243,
+          "tournamentName": "Highland Football League",
+          "tournamentSlug": "highland-football-league",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 44245,
+          "tournamentName": "Lowland League",
+          "tournamentSlug": "lowland-league",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 44425,
+          "tournamentName": "Premier League 2, Women",
+          "tournamentSlug": "premier-league-2-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 46,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 48613,
+          "tournamentName": "Premier League Cup, Women",
+          "tournamentSlug": "premier-league-cup-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        }
+      ]
+    },
+    "SC3": {
+      "league": "Scotland League Two",
+      "found": 209,
+      "names_tried": [
+        "league two",
+        "league 2",
+        "scottish league two",
+        "spfl league two"
+      ],
+      "country_tournaments": [
+        {
+          "tournamentId": 36,
+          "tournamentName": "Premiership",
+          "tournamentSlug": "premiership",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 128,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 206,
+          "tournamentName": "Championship",
+          "tournamentSlug": "championship",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 115,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 207,
+          "tournamentName": "League 1",
+          "tournamentSlug": "league-1",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 116,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 209,
+          "tournamentName": "League 2",
+          "tournamentSlug": "league-2",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 120,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 331,
+          "tournamentName": "Challenge Cup",
+          "tournamentSlug": "challenge-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 16,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 332,
+          "tournamentName": "League Cup",
+          "tournamentSlug": "league-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 347,
+          "tournamentName": "Scottish Cup",
+          "tournamentSlug": "scottish-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 21,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 2090,
+          "tournamentName": "Premier League, Women",
+          "tournamentSlug": "premier-league-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 44,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 25143,
+          "tournamentName": "Scottish Cup, Women",
+          "tournamentSlug": "scottish-cup-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 26248,
+          "tournamentName": "Reserve League",
+          "tournamentSlug": "reserve-league",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 39075,
+          "tournamentName": "Reserve League 2",
+          "tournamentSlug": "reserve-league-2",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 39077,
+          "tournamentName": "Reserve Cup",
+          "tournamentSlug": "reserve-cup",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 40757,
+          "tournamentName": "Highland and Island League, Women",
+          "tournamentSlug": "highland-and-island-league-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 42193,
+          "tournamentName": "Scottish Women League One",
+          "tournamentSlug": "scottish-women-league-one",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 44243,
+          "tournamentName": "Highland Football League",
+          "tournamentSlug": "highland-football-league",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 44245,
+          "tournamentName": "Lowland League",
+          "tournamentSlug": "lowland-league",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 44425,
+          "tournamentName": "Premier League 2, Women",
+          "tournamentSlug": "premier-league-2-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 46,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 48613,
+          "tournamentName": "Premier League Cup, Women",
+          "tournamentSlug": "premier-league-cup-women",
+          "categoryName": "Scotland",
+          "categorySlug": "scotland",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        }
+      ]
+    },
+    "T1": {
+      "league": "Turkey Süper Lig",
+      "found": 52,
+      "names_tried": [
+        "super lig",
+        "superlig",
+        "trendyol super lig"
+      ],
+      "country_tournaments": [
+        {
+          "tournamentId": 52,
+          "tournamentName": "Super Lig",
+          "tournamentSlug": "super-lig",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 216,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 95,
+          "tournamentName": "Antalya Tournament",
+          "tournamentSlug": "antalya-tournament",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 96,
+          "tournamentName": "Turkiye Kupasi",
+          "tournamentSlug": "turkiye-kupasi",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 97,
+          "tournamentName": "2. Lig",
+          "tournamentSlug": "2-lig",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 426,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 98,
+          "tournamentName": "1. Lig",
+          "tournamentSlug": "1-lig",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 250,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 99,
+          "tournamentName": "Bilyoner.com Cup",
+          "tournamentSlug": "bilyonercom-cup",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 100,
+          "tournamentName": "Cornerspor Cup",
+          "tournamentSlug": "cornerspor-cup",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 164,
+          "tournamentName": "Urgup Cup",
+          "tournamentSlug": "urgup-cup",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 228,
+          "tournamentName": "Kartepe Tournament",
+          "tournamentSlug": "kartepe-tournament",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 249,
+          "tournamentName": "Mackolik.com Cup",
+          "tournamentSlug": "mackolikcom-cup",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 252,
+          "tournamentName": "Cappadocia Cup",
+          "tournamentSlug": "cappadocia-cup",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 505,
+          "tournamentName": "Super Kupa",
+          "tournamentSlug": "super-kupa",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 847,
+          "tournamentName": "A2 Ligi",
+          "tournamentSlug": "a2-ligi",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 945,
+          "tournamentName": "3. Lig",
+          "tournamentSlug": "3-lig",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 1048,
+          "tournamentName": "Spor Toto Cup",
+          "tournamentSlug": "spor-toto-cup",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 1846,
+          "tournamentName": "U21 Super Lig",
+          "tournamentSlug": "u21-super-lig",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 17314,
+          "tournamentName": "U21 1. Lig",
+          "tournamentSlug": "u21-1-lig",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 26386,
+          "tournamentName": "3. Lig, Group 1",
+          "tournamentSlug": "3-lig-group-1",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 26388,
+          "tournamentName": "3. Lig, Group 2",
+          "tournamentSlug": "3-lig-group-2",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 26390,
+          "tournamentName": "3. Lig, Group 3",
+          "tournamentSlug": "3-lig-group-3",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 28749,
+          "tournamentName": "NIU",
+          "tournamentSlug": "niu",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 29912,
+          "tournamentName": "U19 PAF Ligi",
+          "tournamentSlug": "u19-elit-a",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 221,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 29914,
+          "tournamentName": "U19 Elit B",
+          "tournamentSlug": "u19-elit-b",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 33133,
+          "tournamentName": "3. Lig, Group 4",
+          "tournamentSlug": "3-lig-group-4",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 0,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 34292,
+          "tournamentName": "3. Lig",
+          "tournamentSlug": "3-lig-playoffs",
+          "categoryName": "Turkiye Amateur",
+          "categorySlug": "turkiye-amateur",
+          "futureFixtures": 650,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 48741,
+          "tournamentName": "Super Lig, Women",
+          "tournamentSlug": "super-lig-women",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 169,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        },
+        {
+          "tournamentId": 53654,
+          "tournamentName": "U19 Gelisim Ligi",
+          "tournamentSlug": "u19-gelisim-ligi",
+          "categoryName": "Turkiye",
+          "categorySlug": "turkiye",
+          "futureFixtures": 8,
+          "upcomingFixtures": 0,
+          "liveFixtures": 0
+        }
+      ]
+    }
+  }
+}
