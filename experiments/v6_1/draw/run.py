@@ -56,8 +56,6 @@ def main() -> None:
     t = time.time()
     figures.run()
     times["figures"] = time.time() - t
-    from . import findings
-    findings.write()
     times["total"] = time.time() - t0
     pk = ["numpy", "pandas", "scikit-learn", "scipy", "xgboost", "statsmodels", "matplotlib", "reportlab", "pyarrow"]
     info = {"git_sha": _sha(), "python": platform.python_version(), "platform": platform.platform(),
@@ -66,6 +64,8 @@ def main() -> None:
             "block_seconds": {str(b): blocks.block_info(b) for b in C.BLOCKS},
             "finished": time.strftime("%Y-%m-%d %H:%M:%S")}
     C.save_json("run_info.json", info)
+    from . import findings
+    findings.write()                 # last: it quotes run_info.json
     log.info("done in %.1f min", times["total"] / 60)
 
 
