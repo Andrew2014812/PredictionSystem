@@ -122,6 +122,60 @@ def test_match_details_main_explanation_and_no_synthetic_odds(app, predicted_day
     app.assert_healthy()
 
 
+INFLUENCE_TIP = ("Only the most influential factors are shown. Percentages represent their share of total model "
+                 "influence.")
+
+
+def test_why_card_shows_relative_model_influence_and_the_chain(app, predicted_day):
+    """v6.1 card: factors of the market's own probability with their relative influence, the recent form
+    for this market and a short note on the expected goals / distribution — no repeated factor names."""
+    day, _ = predicted_day
+    _open_first_match(app, day)
+    card = app.page.locator(".why").first
+    header = card.locator(".fx-h")
+    expect(header).to_contain_text("Main factors")
+    expect(header).to_contain_text("Relative model influence")
+    expect(header.locator(".tip")).to_have_attribute("title", INFLUENCE_TIP)
+    expect(card.locator(".why-r > span")).to_have_text("Recent form")
+    rows = card.locator(".fx")
+    assert 3 <= rows.count() <= 5
+    shares = [int(x.rstrip("%")) for x in card.locator(".fx-s").all_inner_texts()]
+    support = [int(x.rstrip("%")) for x in card.locator(".fx:not(:has(.against)) .fx-s").all_inner_texts()]
+    assert all(0 <= x <= 100 for x in shares) and support == sorted(support, reverse=True)   # by influence
+    assert card.locator(".fx .against").count() <= 1
+    text = card.inner_text()
+    for old in ("Share of the model’s reasoning", "SHARE OF THE MODEL", "Recent record", "RECENT RECORD",
+                "biggest reasons", "percentage points", " pp"):
+        assert old not in text, old
+    summary = card.locator(".why-sum").inner_text()
+    names = [n.split("\n")[0].strip() for n in card.locator(".fx-n").all_inner_texts()]
+    assert not any(n.lower() in summary.lower() for n in names), (names, summary)   # the note does not repeat them
+    # another market: the Main / Risk picks are not offered again; an exact score shows no shares
+    app.expander("Explain another market").click()
+    main_label = app.page.locator(".rec.main").first.inner_text()
+    app.wait()
+    box = app.page.locator('[data-testid="stSelectbox"]').filter(has_text="Market").first
+    expect(box).to_be_visible()
+    for _ in range(3):                                         # the expander may still be drawing its content
+        box.locator("input").click()
+        try:
+            app.page.get_by_role("option").first.wait_for(timeout=5_000)
+            break
+        except Exception:                                      # noqa: BLE001 - try the click again
+            app.page.keyboard.press("Escape")
+    options = [o.strip() for o in app.page.get_by_role("option").all_inner_texts()]
+    assert options and not any(o.split(": ", 1)[-1] in main_label for o in options), (options, main_label)
+    exact = app.page.get_by_role("option").filter(has_text="Exact score")
+    if exact.count():
+        exact.first.click()
+        app.wait()
+        other = app.page.locator(".why").last
+        expect(other.locator(".why-t")).to_contain_text("Exact score")
+        expect(other.locator(".fx-s")).to_have_count(0)
+        expect(other.locator(".why-sum")).to_contain_text("expected goals")
+    app.assert_healthy()
+
+
 def test_handicap_separates_half_and_whole_asian_lines(app, predicted_day):
     day, _ = predicted_day
     _open_first_match(app, day)
@@ -298,13 +352,31 @@ def test_kick_off_times_follow_the_browser_time_zone(browser, base_url, predicte
     assert london[2] != tokyo[2]
 
 
+def test_cloud_toolbar_buttons_do_not_cover_the_theme_switch(app):
+    app.open("")
+    # Streamlit Cloud puts a "Fork" button for visitors into the header toolbar; locally it is absent,
+    # so the same element is added here the way Cloud renders it
+    app.page.evaluate("""() => {
+        const bar = document.querySelector('[data-testid="stToolbar"]');
+        const actions = document.createElement('div');
+        actions.setAttribute('data-testid', 'stToolbarActions');
+        actions.innerHTML = '<div data-testid="stToolbarActionButton"><button>Fork</button></div>';
+        actions.style.cssText = 'position:fixed; top:20px; right:60px; z-index:999999;';
+        bar.appendChild(actions);
+    }""")
+    expect(app.page.locator('[data-testid="stToolbarActions"]')).to_be_hidden()
+    app.pref("light_mode").click()                                   # the switch can still be clicked
+    app.wait()
+    assert app.background() == "rgb(245, 246, 243)"
+
+
 def test_theme_switch(app):
     app.open("")
     dark = app.background()
     app.pref("light_mode").click()
     app.wait()
     light = app.background()
-    assert dark != light and light in ("rgb(233, 238, 244)",), light          # soft grey-blue, not white
+    assert dark != light and light == "rgb(245, 246, 243)", light            # warm off-white (v6.1), not white
     app.nav("Analytics")
     assert app.background() == light                                 # stays light across pages
     app.pref("dark_mode").click()

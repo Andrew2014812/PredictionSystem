@@ -1,0 +1,304 @@
+{
+ "by_season": [
+  {
+   "season": 2021,
+   "B365 1X2": 0.9979544873433904,
+   "Pinnacle 1X2": 0.9988493991306571,
+   "Max 1X2": 0.9998721554589619,
+   "Avg 1X2": 0.9998721554589619,
+   "B365 O/U2.5": 0.9973152646382,
+   "Pinnacle O/U2.5": 0.9980823318844285,
+   "B365 AH": 0.9913065712094093,
+   "Pinnacle AH": 0.9988493991306571,
+   "AH line": 0.9998721554589619,
+   "B365 closing 1X2": 1.0,
+   "Pinnacle closing 1X2": 0.9998721554589619,
+   "B365 closing O/U": 0.9998721554589619,
+   "Pinnacle closing O/U": 0.9993607772948095,
+   "B365 closing AH": 0.9988493991306571,
+   "Closing AH line": 1.0,
+   "BW 1X2": 0.9787778061876757,
+   "WH 1X2": 0.9850421886985425,
+   "1XB 1X2": 0.0,
+   "BF 1X2": 0.0,
+   "rows": 7822.0
+  },
+  {
+   "season": 2022,
+   "B365 1X2": 0.9948914431673053,
+   "Pinnacle 1X2": 0.9947637292464878,
+   "Max 1X2": 0.9961685823754789,
+   "Avg 1X2": 0.9961685823754789,
+   "B365 O/U2.5": 0.9950191570881226,
+   "Pinnacle O/U2.5": 0.9923371647509579,
+   "B365 AH": 0.9932311621966794,
+   "Pinnacle AH": 0.9947637292464878,
+   "AH line": 0.9961685823754789,
+   "B365 closing 1X2": 0.9961685823754789,
+   "Pinnacle closing 1X2": 0.9961685823754789,
+   "B365 closing O/U": 0.9962962962962963,
+   "Pinnacle closing O/U": 0.9942528735632183,
+   "B365 closing AH": 0.9956577266922094,
+   "Closing AH line": 0.9962962962962963,
+   "BW 1X2": 0.9923371647509579,
+   "WH 1X2": 0.9049808429118774,
+   "1XB 1X2": 0.0,
+   "BF 1X2": 0.0,
+   "rows": 7830.0
+  },
+  {
+   "season": 2023,
+   "B365 1X2": 0.9989742274650596,
+   "Pinnacle 1X2": 0.9973073470957815,
+   "Max 1X2": 0.9997435568662649,
+   "Avg 1X2": 0.9997435568662649,
+   "B365 O/U2.5": 0.9988460058981921,
+   "Pinnacle O/U2.5": 0.9929478138222849,
+   "B365 AH": 0.9948711373252981,
+   "Pinnacle AH": 0.997435568662649,
+   "AH line": 0.9973073470957815,
+   "B365 closing 1X2": 1.0,
+   "Pinnacle closing 1X2": 1.0,
+   "B365 closing O/U": 1.0,
+   "Pinnacle closing O/U": 0.995768688293371,
+   "B365 closing AH": 0.9998717784331325,
+   "Closing AH line": 0.9998717784331325,
+   "BW 1X2": 0.9747403513270932,
+   "WH 1X2": 0.9351198871650211,
+   "1XB 1X2": 0.0,
+   "BF 1X2": 0.0,
+   "rows": 7799.0
+  },
+  {
+   "season": 2024,
+   "B365 1X2": 0.9996094258560083,
+   "Pinnacle 1X2": 0.9985678948053639,
+   "Max 1X2": 1.0,
+   "Avg 1X2": 1.0,
+   "B365 O/U2.5": 0.9996094258560083,
+   "Pinnacle O/U2.5": 0.9962244499414139,
+   "B365 AH": 0.9966150240854056,
+   "Pinnacle AH": 0.9980471292800417,
+   "AH line": 1.0,
+   "B365 closing 1X2": 1.0,
+   "Pinnacle closing 1X2": 1.0,
+   "B365 closing O/U": 1.0,
+   "Pinnacle closing O/U": 0.997916937898711,
+   "B365 closing AH": 1.0,
+   "Closing AH line": 1.0,
+   "BW 1X2": 0.6322093477411795,
+   "WH 1X2": 0.7525061840906132,
+   "1XB 1X2": 0.9772165082671527,
+   "BF 1X2": 0.9989584689493556,
+   "rows": 7681.0
+  },
+  {
+   "season": 2025,
+   "B365 1X2": 0.9968615143193409,
+   "Pinnacle 1X2": 0.3832875637504904,
+   "Max 1X2": 0.9984307571596704,
+   "Avg 1X2": 0.9984307571596704,
+   "B365 O/U2.5": 0.9968615143193409,
+   "Pinnacle O/U2.5": 0.38224140185693734,
+   "B365 AH": 0.9967307440826468,
+   "Pinnacle AH": 0.38354910422387867,
+   "AH line": 0.9971230547927292,
+   "B365 closing 1X2": 1.0,
+   "Pinnacle closing 1X2": 0.3876029815613966,
+   "B365 closing O/U": 1.0,
+   "Pinnacle closing O/U": 0.3866875899045377,
+   "B365 closing AH": 0.9998692297633058,
+   "Closing AH line": 0.9997384595266118,
+   "BW 1X2": 0.991892245324964,
+   "WH 1X2": 0.0,
+   "1XB 1X2": 0.0,
+   "BF 1X2": 0.0,
+   "rows": 7647.0
+  },
+  {
+   "season": 2026,
+   "B365 1X2": 0.9995381062355658,
+   "Pinnacle 1X2": 0.0,
+   "Max 1X2": 1.0,
+   "Avg 1X2": 1.0,
+   "B365 O/U2.5": 0.9995381062355658,
+   "Pinnacle O/U2.5": 0.0,
+   "B365 AH": 0.9986143187066975,
+   "Pinnacle AH": 0.0,
+   "AH line": 1.0,
+   "B365 closing 1X2": 1.0,
+   "Pinnacle closing 1X2": 0.0,
+   "B365 closing O/U": 1.0,
+   "Pinnacle closing O/U": 0.0,
+   "B365 closing AH": 1.0,
+   "Closing AH line": 1.0,
+   "BW 1X2": 0.9995381062355658,
+   "WH 1X2": 0.0,
+   "1XB 1X2": 0.0,
+   "BF 1X2": 0.0,
+   "rows": 2165.0
+  }
+ ],
+ "leagues_without_pinnacle_closing": [
+  {
+   "season": 2025,
+   "league": "B1"
+  },
+  {
+   "season": 2025,
+   "league": "D1"
+  },
+  {
+   "season": 2025,
+   "league": "D2"
+  },
+  {
+   "season": 2025,
+   "league": "E1"
+  },
+  {
+   "season": 2025,
+   "league": "E2"
+  },
+  {
+   "season": 2025,
+   "league": "E3"
+  },
+  {
+   "season": 2025,
+   "league": "EC"
+  },
+  {
+   "season": 2025,
+   "league": "F2"
+  },
+  {
+   "season": 2025,
+   "league": "G1"
+  },
+  {
+   "season": 2025,
+   "league": "I2"
+  },
+  {
+   "season": 2025,
+   "league": "N1"
+  },
+  {
+   "season": 2025,
+   "league": "SC0"
+  },
+  {
+   "season": 2025,
+   "league": "SC1"
+  },
+  {
+   "season": 2025,
+   "league": "SC2"
+  },
+  {
+   "season": 2025,
+   "league": "SC3"
+  },
+  {
+   "season": 2025,
+   "league": "SP1"
+  },
+  {
+   "season": 2025,
+   "league": "SP2"
+  },
+  {
+   "season": 2025,
+   "league": "T1"
+  },
+  {
+   "season": 2026,
+   "league": "B1"
+  },
+  {
+   "season": 2026,
+   "league": "D1"
+  },
+  {
+   "season": 2026,
+   "league": "D2"
+  },
+  {
+   "season": 2026,
+   "league": "E0"
+  },
+  {
+   "season": 2026,
+   "league": "E1"
+  },
+  {
+   "season": 2026,
+   "league": "E2"
+  },
+  {
+   "season": 2026,
+   "league": "E3"
+  },
+  {
+   "season": 2026,
+   "league": "EC"
+  },
+  {
+   "season": 2026,
+   "league": "F1"
+  },
+  {
+   "season": 2026,
+   "league": "F2"
+  },
+  {
+   "season": 2026,
+   "league": "G1"
+  },
+  {
+   "season": 2026,
+   "league": "I1"
+  },
+  {
+   "season": 2026,
+   "league": "I2"
+  },
+  {
+   "season": 2026,
+   "league": "N1"
+  },
+  {
+   "season": 2026,
+   "league": "P1"
+  },
+  {
+   "season": 2026,
+   "league": "SC0"
+  },
+  {
+   "season": 2026,
+   "league": "SC1"
+  },
+  {
+   "season": 2026,
+   "league": "SC2"
+  },
+  {
+   "season": 2026,
+   "league": "SC3"
+  },
+  {
+   "season": 2026,
+   "league": "SP1"
+  },
+  {
+   "season": 2026,
+   "league": "SP2"
+  },
+  {
+   "season": 2026,
+   "league": "T1"
+  }
+ ]
+}

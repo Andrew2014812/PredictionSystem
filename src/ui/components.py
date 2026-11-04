@@ -114,6 +114,23 @@ def kpi(label: str, value: str, sub: str = "", tone_cls: str = "", help_text: st
             f'<div class="value {tone_cls}">{value}</div><div class="sub">{esc(sub)}</div></div>')
 
 
+PROFIT_HELP = "Profit is calculated using a fixed stake of 1 unit per prediction."
+
+
+def share_axis(top: float) -> tuple[list[float], list[float]]:
+    """x range and ticks of a 0–100 % bar chart whose labels sit outside the bars: the range runs past the
+    longest bar (so a "100%" label is not cut to "1") while the ticks stop at 100 %."""
+    top = float(top) if top == top else 0.0
+    end = max(top * 1.18 + 0.02, 0.2)
+    return [0.0, end], [v / 4 for v in range(5) if v / 4 <= min(top + 0.25, 1.0)]
+
+
+def outcome_counts(s: dict) -> str:
+    """'812 won · 431 lost' (+ ' · 2 refunded' when a handicap ended level)."""
+    text = t("{a} won · {b} lost", a=s["won"], b=s["lost"])
+    return text + (" · " + t("{n} refunded", n=s["push"]) if s.get("push") else "")
+
+
 def kpi_row(items: list[tuple]) -> None:
     cols = st.columns(len(items))
     for col, item in zip(cols, items):
@@ -202,31 +219,36 @@ def recommendation_card(role: str, rec: pd.Series | dict, home: str, away: str,
     source = settled if settled is not None else rec
     odds, ev = source.get("odds"), source.get("ev")
     priced = not missing(odds) and bool(odds)
-    cells = [f'<div><div class="l">{t("Probability")}</div><div class="v">{pct(rec["probability"], 1)}</div></div>']
+    def cell(full: str, short: str, value: str, cls: str = "", help_text: str = "") -> str:
+        """One metric: the full label, a short one for narrow cards (CSS container query), the value."""
+        label = f'<span class="full">{full}</span><span class="short">{short}</span>' if short != full else full
+        return (f'<div><div class="l">{label}{tip(help_text) if help_text else ""}</div>'
+                f'<div class="v {cls}">{value}</div></div>')
+
+    cells = [cell(t("Probability"), t("Prob."), pct(rec["probability"], 1))]
     push = rec.get("push_probability")
     if not missing(push) and push and push > 0.001:
-        cells.append(f'<div><div class="l">{t("Refund")}</div><div class="v">{pct(push, 1)}</div></div>')
+        cells.append(cell(t("Refund"), t("Refund"), pct(push, 1)))
     if priced:
-        cells.append(f'<div><div class="l">{t("Odds")}{tip(price_origin(source))}</div>'
-                     f'<div class="v">{odds_text(odds)}</div></div>')
+        cells.append(cell(t("Odds"), t("Odds"), odds_text(odds), help_text=price_origin(source)))
         if not missing(ev):
-            cells.append(f'<div><div class="l">{t("Expected Value")}{tip(t(EV_HELP))}</div>'
-                         f'<div class="v {tone(ev)}">{signed(ev * 100, 1, "%")}</div></div>')
+            cells.append(cell(t("Expected Value"), t("EV"), signed(ev * 100, 1, "%"), tone(ev), t(EV_HELP)))
     else:
-        cells.append(f'<div><div class="l">{t("Odds")}</div><div class="v na">{t("No real odds")}</div></div>')
+        cells.append(cell(t("Odds"), t("Odds"), t("No real odds"), "na"))
     status = ""
     if settled is not None:
         st_value = settled.get("status")
-        cells.append(f'<div><div class="l">{t("Result")}</div><div class="v">{status_badge(st_value)}</div></div>')
+        cells.append(cell(t("Result"), t("Result"), status_badge(st_value)))
         profit = settled.get("profit")
         if not missing(profit):
-            cells.append(f'<div><div class="l">{t("Profit")}</div><div class="v {tone(profit)}">{signed(profit)}</div></div>')
+            cells.append(cell(t("Profit"), t("Profit"), signed(profit), tone(profit), t(PROFIT_HELP)))
         status = f" {st_value}"
     note = (f'<div class="note">{t("Higher odds, higher risk: most such predictions lose, a few pay well.")}</div>'
             if role == "risk" and settled is None else "")
     return (f'<div class="rec {role}{status}"><div class="tag">{title}</div>'
             f'<div class="pick">{esc(label)}</div><div class="mkt">{esc(market_title(rec["market"]))}</div>'
-            f'<div class="grid">{"".join(cells)}</div>{note}</div>')
+            f'<div class="grid" style="grid-template-columns: repeat({len(cells)}, minmax(0, 1fr))">'
+            f'{"".join(cells)}</div>{note}</div>')
 
 
 def html_table(df: pd.DataFrame, formats: dict | None = None, align_right: tuple = (),

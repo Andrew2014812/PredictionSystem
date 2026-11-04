@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import logging
 import time
+import unicodedata
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -28,6 +29,7 @@ from ..leagues import enabled_leagues, get_league
 from ..storage import LocalStorage
 from . import aliases
 from .api_football import ApiFootball, parse_fixture, parse_odds
+from .diagnostics import diag
 from .schema import ODDS_COLUMNS, empty_odds, odds_frame
 from .oddspapi import OddsPapi, fixture_row, outcome_map
 from .oddspapi import parse_odds as parse_oddspapi
@@ -112,12 +114,28 @@ def _save_odds(records: list[dict]) -> int:
     if new.empty:
         return 0
     old = load_api_odds()
+    _count_quotes(old, new)
     merged = pd.concat([old, new], ignore_index=True) if not old.empty else new
     # keep the whole pre-match history; only drop a quote recorded twice in one collection
     merged = merged.sort_values("collected_at").drop_duplicates(
         ["match_id", "provider", "bookmaker", "market", "selection", "collected_at"], keep="last")
     odds_storage.write_parquet(ODDS_FILE, merged[ODDS_COLUMNS])
     return len(new)
+
+
+def _count_quotes(old: pd.DataFrame, new: pd.DataFrame) -> None:
+    """New quotes (a selection never priced by this bookmaker) and updated ones (a different price)."""
+    key = ["match_id", "provider", "bookmaker", "market", "selection"]
+    latest = (new.sort_values("collected_at").drop_duplicates(key, keep="last"))
+    if old.empty:
+        for provider, g in latest.groupby("provider"):
+            diag.add(provider, "quotes_new", len(g))
+        return
+    before = old.sort_values("collected_at").drop_duplicates(key, keep="last")[key + ["odds"]]
+    both = latest.merge(before, on=key, how="left", suffixes=("", "_before"))
+    for provider, g in both.groupby("provider"):
+        diag.add(provider, "quotes_new", int(g["odds_before"].isna().sum()))
+        diag.add(provider, "quotes_updated", int((g["odds_before"].notna() & (g["odds"] != g["odds_before"])).sum()))
 
 
 def _odds_records(match_id: str, provider: str, fixture_id: str, rows, now) -> list[dict]:
@@ -139,33 +157,72 @@ def _extended_priority(candidate: tuple) -> tuple:
 # Names under which the leagues appear in OddsPapi's tournament list (matched with the country).
 ODDSPAPI_NAMES = {
     "E0": ("premier league",), "E1": ("championship",), "E2": ("league one",), "E3": ("league two",),
-    "SC0": ("premiership",), "SC1": ("championship",), "SC2": ("league one",), "SC3": ("league two",),
+    "SC0": ("premiership",), "SC1": ("championship",),
+    "SC2": ("league one", "league 1", "scottish league one", "spfl league one"),
+    "SC3": ("league two", "league 2", "scottish league two", "spfl league two"),
     "SP1": ("laliga", "la liga"), "SP2": ("laliga 2", "la liga 2", "segunda", "laliga hypermotion"),
     "I1": ("serie a",), "I2": ("serie b",), "D1": ("bundesliga",), "D2": ("2. bundesliga", "2 bundesliga"),
     "F1": ("ligue 1",), "F2": ("ligue 2",), "N1": ("eredivisie",), "B1": ("pro league", "jupiler pro league",
                                                                         "first division a"),
-    "P1": ("liga portugal", "primeira liga", "liga portugal betclic"), "T1": ("super lig", "süper lig", "trendyol super lig"),
+    "P1": ("liga portugal", "primeira liga", "liga portugal betclic"),
+    "T1": ("super lig", "superlig", "trendyol super lig"),
     "G1": ("super league", "super league 1", "stoiximan super league"),
 }
+# The provider's category (country) may use another spelling of the country.
+ODDSPAPI_COUNTRIES = {"Turkey": ("turkey", "turkiye")}
+TOURNAMENT_RECHECK_DAYS = 30           # /tournaments is billable: ask again at most once a month
+CANDIDATES_FILE = "oddspapi/tournament_candidates.json"
+
+
+def _plain(text) -> str:
+    """Lower case without accents: "Türkiye Süper Lig" -> "turkiye super lig"."""
+    folded = unicodedata.normalize("NFKD", str(text or ""))
+    return " ".join("".join(c for c in folded if not unicodedata.combining(c)).lower().split())
+
+
+def match_tournament(league, tours: list[dict]) -> tuple[int | None, list[dict]]:
+    """The OddsPapi tournament of a league (country + one of its names, unique) and every tournament of
+    that country (kept for the diagnosis when nothing or more than one matches)."""
+    countries = ODDSPAPI_COUNTRIES.get(league.country, (_plain(league.country),))
+    names = {_plain(n) for n in ODDSPAPI_NAMES.get(league.code, (league.name,))}
+    in_country = [t for t in tours
+                  if any(c in _plain(f"{t.get('categoryName', '')} {t.get('categorySlug', '')}") for c in countries)]
+    hits = [t for t in in_country if _plain(t.get("tournamentName", "")) in names]
+    keep = ("tournamentId", "tournamentName", "tournamentSlug", "categoryName", "categorySlug",
+            "futureFixtures", "upcomingFixtures", "liveFixtures")
+    candidates = [{k: t[k] for k in keep if k in t} for t in in_country]
+    return (int(hits[0]["tournamentId"]) if len(hits) == 1 else None), candidates
 
 
 def oddspapi_tournaments(odp: OddsPapi, now, budget: int) -> dict[str, int]:
     """League code -> OddsPapi tournament id: configured ids, then a stored map, then one
-    /tournaments request (cached) matched on country + league name; ambiguous names are skipped."""
+    /tournaments request matched on country + league name (accents ignored); ambiguous names are skipped.
+    For leagues still missing, the provider's tournaments of that country are saved to
+    ``tournament_candidates.json`` (committed) so the reason can be read, and the billable list is asked
+    again only after TOURNAMENT_RECHECK_DAYS."""
     stored = api_storage.read_json("oddspapi/tournaments.json") if api_storage.exists("oddspapi/tournaments.json") else {}
     found = {**stored, **config.ODDSPAPI_TOURNAMENTS}
     missing = [lg for lg in enabled_leagues() if lg.code not in found]
-    if missing:
-        tours = odp.tournaments(now, budget)
-        for lg in missing:
-            names = ODDSPAPI_NAMES.get(lg.code, (lg.name.lower(),))
-            hits = [t for t in tours
-                    if lg.country.lower() in f"{t.get('categoryName', '')} {t.get('categorySlug', '')}".lower()
-                    and str(t.get("tournamentName", "")).strip().lower() in names]
-            if len(hits) == 1:
-                found[lg.code] = int(hits[0]["tournamentId"])
-        api_storage.write_json("oddspapi/tournaments.json", {k: v for k, v in found.items()
-                                                             if k not in config.ODDSPAPI_TOURNAMENTS})
+    if not missing:
+        return found
+    report = api_storage.read_json(CANDIDATES_FILE) if api_storage.exists(CANDIDATES_FILE) else {}
+    checked = report.get("checked_at")
+    if checked and now - datetime.fromisoformat(checked) < timedelta(days=TOURNAMENT_RECHECK_DAYS):
+        return found
+    tours = odp.tournaments(now, budget)
+    if not tours:
+        return found
+    report = {"checked_at": now.isoformat(timespec="seconds"), "tournaments_listed": len(tours), "leagues": {}}
+    for lg in missing:
+        tid, candidates = match_tournament(lg, tours)
+        if tid:
+            found[lg.code] = tid
+        report["leagues"][lg.code] = {"league": f"{lg.country} {lg.name}", "found": tid,
+                                      "names_tried": list(ODDSPAPI_NAMES.get(lg.code, (lg.name,))),
+                                      "country_tournaments": candidates}
+    api_storage.write_json(CANDIDATES_FILE, report)
+    api_storage.write_json("oddspapi/tournaments.json", {k: v for k, v in found.items()
+                                                         if k not in config.ODDSPAPI_TOURNAMENTS})
     return found
 
 
@@ -218,16 +275,28 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
     start = pd.Timestamp(now).tz_localize("Europe/London").to_pydatetime()
     end = start + timedelta(days=config.ODDSPAPI_WINDOW_DAYS)
     todo = []
-    for fx in odp.fixtures(now, run_budget, start, end):
+    fixtures = odp.fixtures(now, run_budget, start, end)
+    diag.add(PROVIDER_ODP, "returned", len(fixtures))
+    diag.info(PROVIDER_ODP, leagues_without_tournament=sorted(lg.code for lg in enabled_leagues()
+                                                               if lg.code not in tours))
+    for fx in fixtures:
         league = by_tour.get(int(fx.get("tournamentId") or 0))
         row = fixture_row(fx, league) if league else None
-        if row is None or row["kickoff_utc"] <= start or row.get("status") not in (None, 0):
+        if row is None:
+            diag.skip(PROVIDER_ODP, "not one of our leagues")
+            continue
+        if row["kickoff_utc"] <= start or row.get("status") not in (None, 0):
+            diag.skip(PROVIDER_ODP, "already started")
             continue                                                   # pre-match only
+        diag.add(PROVIDER_ODP, "in_leagues")
         country = get_league(league).country
+        conflicts = len(registry.conflicts)
         home = registry.resolve(PROVIDER_ODP, league, country, row["home_name"], row["home_id"], resolve_names.known.get(league))
         away = registry.resolve(PROVIDER_ODP, league, country, row["away_name"], row["away_id"], resolve_names.known.get(league))
         if not home or not away:
+            diag.skip(PROVIDER_ODP, "team id conflict" if len(registry.conflicts) > conflicts else "unknown team name")
             continue
+        diag.add(PROVIDER_ODP, "matched")
         canonical = _canonical({**row, "played": False}, home, away)
         live_rows.append({**canonical, "provider": PROVIDER_ODP, "provider_fixture_id": row["provider_fixture_id"]})
         if not targets or _targeted(canonical, targets):
@@ -240,6 +309,7 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
         fid = row["provider_fixture_id"]
         key = f"historical|{fid}" if config.ODDSPAPI_ODDS_SOURCE == "historical" else f"odds|{fid}"
         if not force and odp.ledger.requested_within(key, config.ODDSPAPI_REFRESH_HOURS, now):
+            diag.skip(PROVIDER_ODP, "priced recently")
             continue
         asked += 1
         body = (odp.historical_odds(fid, now) if config.ODDSPAPI_ODDS_SOURCE == "historical"
@@ -255,6 +325,11 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
             odp.ledger.save()
     odp.ledger.prune(now)
     odp.ledger.save()
+    diag.add(PROVIDER_ODP, "matches_asked", asked)
+    diag.add(PROVIDER_ODP, "matches_priced", priced)
+    diag.skip(PROVIDER_ODP, "contradictory quote", quality.get("inconsistent", 0))
+    diag.info(PROVIDER_ODP, left=odp.ledger.remaining if odp.ledger.remaining is not None else "?",
+              billable_this_run=odp.ledger.spent_this_run, quota_exhausted=odp.quota_exhausted)
     summary["oddspapi"] = (f"{odp.ledger.spent_this_run} billable requests this run, "
                            f"{odp.ledger.remaining if odp.ledger.remaining is not None else '?'} left; "
                            f"{asked} matches asked, {priced} priced, {odp.rate_limited} rate-limit waits, "
@@ -267,6 +342,27 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
 def _targeted(row: dict, targets: dict) -> bool:
     return all(str(row.get(k)) == str(v) if k != "date" else str(pd.Timestamp(row["date"]).date()) == str(v)
                for k, v in targets.items())
+
+
+CATCH_UP_DAYS = 10            # a result that has not arrived is looked for again for this many days
+
+
+def overdue_days(matches: pd.DataFrame, now: datetime, today: date) -> list[date]:
+    """Past match days (within CATCH_UP_DAYS) that still have a match without a result.
+
+    The daily API-Football request covers yesterday and today only, so a result that a late or failed run
+    missed would otherwise be left to Football-Data alone; these days are asked again (one request per
+    day, a few per run at most)."""
+    if matches.empty or "kickoff" not in matches:
+        return []
+    kickoff = pd.to_datetime(matches["kickoff"], errors="coerce")
+    finished_by = pd.Timestamp(now) - pd.Timedelta(hours=3)                 # a match is over by then
+    waiting = matches.loc[~matches["played"].astype(bool) & (kickoff < finished_by)
+                          & (kickoff >= pd.Timestamp(today) - pd.Timedelta(days=CATCH_UP_DAYS))]
+    allowed = today - timedelta(days=config.API_FOOTBALL_PLAN_DAYS_BACK)  # older dates: refused by the plan
+    days = sorted({k.date() for k in pd.to_datetime(waiting["kickoff"])
+                   if k.date() >= allowed} - {today, today - timedelta(days=1)})
+    return days[-6:]                                                         # at most six extra requests
 
 
 def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full",
@@ -294,21 +390,43 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
     odds_records: list[dict] = []
 
     af = ApiFootball()
+    if not af.available:
+        diag.info(PROVIDER_AF, status="no key")
     if af.available and mode in ("results", "full"):
         days = [today + timedelta(days=d) for d in range(-config.API_FIXTURE_DAYS_BACK,
                                                           config.API_FIXTURE_DAYS_AHEAD + 1)]
+        catch_up = overdue_days(matches, now, today)
+        days = sorted(set(days) | set(catch_up))
+        diag.info(PROVIDER_AF, days_asked=[d.isoformat() for d in days],
+                  catch_up_days=[d.isoformat() for d in catch_up])
+        known = matches.set_index("match_id")["played"].astype(bool).to_dict() if not matches.empty else {}
         fixture_ids: dict[str, str] = {}
         upcoming_leagues: set[str] = set()
         for day in days:
-            for item in af.fixtures(day, max_age=900):
+            items = af.fixtures(day, max_age=900)
+            diag.add(PROVIDER_AF, "returned", len(items))
+            for item in items:
                 fx = parse_fixture(item)
-                if fx is None or fx["cancelled"]:
+                if fx is None:
+                    diag.skip(PROVIDER_AF, "not one of our leagues")
+                    continue
+                diag.add(PROVIDER_AF, "in_leagues")
+                if fx["cancelled"]:
+                    diag.skip(PROVIDER_AF, f"status {fx['status']}")
                     continue
                 home = resolve(PROVIDER_AF, fx["league"], fx["home_name"])
                 away = resolve(PROVIDER_AF, fx["league"], fx["away_name"])
                 if not home or not away:
+                    diag.skip(PROVIDER_AF, "unknown team name")
                     continue
                 row = _canonical(fx, home, away)
+                diag.add(PROVIDER_AF, "matched")
+                if row["match_id"] not in known:
+                    diag.add(PROVIDER_AF, "new_fixtures")
+                if row["played"]:
+                    diag.add(PROVIDER_AF, "finished")
+                    if not known.get(row["match_id"], False):
+                        diag.add(PROVIDER_AF, "new_results")
                 row.update(provider=PROVIDER_AF, provider_fixture_id=fx["provider_fixture_id"])
                 live_rows.append(row)
                 fixture_ids[fx["provider_fixture_id"]] = row["match_id"]
@@ -338,12 +456,23 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
         resolve.unmatched.add(item)
     if registry.conflicts:                     # a provider id claimed by two clubs: nothing was attached
         api_storage.write_csv("team_id_conflicts.csv", pd.DataFrame(
-            registry.conflicts, columns=["provider", "provider_team_id", "registered_as", "name_says"]))
+            registry.conflicts, columns=["provider", "provider_team_id", "registered_as", "name_says", "provider_name"]))
         summary["team_id_conflicts"] = len(registry.conflicts)
 
     toa = TheOddsApi()
     fallback = config.odds_api_fallback()
-    if toa.available and config.ODDS_API_ENABLED and fallback != "off":
+    stored_toa = load_api_odds()
+    diag.info(PROVIDER_TOA, status=("on, fallback " + fallback) if (toa.available and config.ODDS_API_ENABLED
+                                                                   and fallback != "off")
+              else (f"only {', '.join(sorted(config.odds_api_leagues()))}" if config.odds_api_leagues()
+                    else "off (stored prices still used)"),
+              stored_matches=int(stored_toa.loc[stored_toa["provider"] == PROVIDER_TOA, "match_id"].nunique())
+              if not stored_toa.empty else 0,
+              left=toa.ledger.remaining if toa.ledger.remaining is not None else "?")
+    only = config.odds_api_leagues() if fallback == "off" else set()
+    if toa.available and config.ODDS_API_ENABLED and (fallback != "off" or only):
+        if only:
+            fallback = "missing"                           # only the named leagues, only what is missing
         stored = load_api_odds()
         priced = (stored.groupby("match_id")["market"].agg(set).to_dict() if not stored.empty else {})
         if fallback == "missing":                          # never buy what another provider already priced
@@ -354,7 +483,7 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
                       .groupby("match_id")["market"].agg(set).to_dict() if not stored.empty else {})
         extended_candidates = []
         for lg in enabled_leagues():
-            if not lg.odds_api_key:
+            if not lg.odds_api_key or (only and lg.code not in only):
                 continue
             soon = []
             for event in toa.events(lg.odds_api_key):            # free
@@ -396,6 +525,7 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
                     odds_records += _odds_records(match_id, PROVIDER_TOA, fixture_id, parse_event_odds(body), now)
         toa.ledger.prune(now)
         toa.ledger.save()
+        diag.add(PROVIDER_TOA, "credits", toa.credits_used)
         summary["the_odds_api"] = (f"fallback={fallback}: {toa.credits_used} credits this run, "
                                    f"{toa.ledger.remaining if toa.ledger.remaining is not None else '?'} left")
 

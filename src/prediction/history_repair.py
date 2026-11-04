@@ -1,6 +1,6 @@
 """Completing stored predictions afterwards, without changing what was predicted.
 
-Two repairs, both safe to run on every pipeline run (they only fill what is missing):
+Three repairs, all safe to run on every pipeline run (they only fill or correct prices, never picks):
 
 * **Archived prices.** A Main / Risk / market forecast stored without a price gets the last real
   OddsPapi quote strictly before kick-off once the price archive has it (``odds_origin = "archive"``).
@@ -10,6 +10,9 @@ Two repairs, both safe to run on every pipeline run (they only fill what is miss
   The Risk is chosen by the current Risk rule from the probabilities and pre-match prices stored for
   that very version (``markets.parquet``) — never from the result — and stored with
   ``origin = "risk_reconstructed"`` and the reconstruction time; the Main is never touched.
+* **Market averages.** A price that was Football-Data's market average (not one bookmaker's price) is
+  replaced by a real bookmaker quote from before kick-off, or removed (the prediction is then not a bet);
+  see ``replace_average_prices``.
 """
 from __future__ import annotations
 
@@ -76,6 +79,54 @@ def fill_archive_prices(picks: pd.DataFrame, prices: pd.DataFrame, push: pd.Seri
     return out, int(todo.sum())
 
 
+AVERAGE = "Market average"
+AVERAGE_REPLACED = "average_replaced"
+AVERAGE_REMOVED = "average_removed"
+
+
+def replace_average_prices(picks: pd.DataFrame, prices: pd.DataFrame, push: pd.Series,
+                           sources=REPAIRED_SOURCES) -> tuple[pd.DataFrame, int, int]:
+    """Early v3 predictions were priced with Football-Data's market AVERAGE — real market data, but not a
+    price any one bookmaker offered, so it cannot stand for a bet. Such a price is replaced by the real
+    bookmaker quote stored for the same match, market and selection before kick-off (the same choice as
+    for archived prices: provider priority, then the latest quote); without one the prediction keeps its
+    selection and result but is no longer a bet. The average stays in ``replaced_average_odds``."""
+    out = picks.copy()
+    for col in ("odds_origin", "replaced_average_odds"):
+        if col not in out:
+            out[col] = None if col == "odds_origin" else np.nan
+    todo = (out["source"].isin(sources) & (out["bookmaker"] == AVERAGE)).to_numpy()
+    if not todo.any():
+        return out, 0, 0
+    idx = out.index[todo]
+    out.loc[idx, "replaced_average_odds"] = out.loc[idx, "odds"].to_numpy(float)
+    quotes = prices.set_index(["match_id", "market", "selection"]) if not prices.empty else None
+    keys = pd.MultiIndex.from_frame(out.loc[idx, ["match_id", "market", "selection"]])
+    found = keys.isin(quotes.index) if quotes is not None else np.zeros(len(idx), bool)
+    have, lack = idx[found], idx[~found]
+    if len(have):
+        q = quotes.loc[keys[found]]
+        odds = q["odds"].to_numpy(float)
+        p_push = push.reindex(keys[found]).fillna(0.0).to_numpy(float) if len(push) else np.zeros(len(have))
+        out.loc[have, "odds"] = odds
+        out.loc[have, "bookmaker"] = q["bookmaker"].to_numpy()
+        out.loc[have, "provider"] = q["provider"].to_numpy()
+        out.loc[have, "real_odds"] = True
+        out.loc[have, "odds_origin"] = AVERAGE_REPLACED
+        if "odds_priced_at" in out:
+            out.loc[have, "odds_priced_at"] = pd.to_datetime(q["collected_at"]).to_numpy()
+        out.loc[have, "ev"] = out.loc[have, "probability"].to_numpy(float) * odds - (1 - p_push)
+        out.loc[have, "profit"] = _profit(out.loc[have, "status"], odds)
+    if len(lack):
+        out.loc[lack, ["odds", "ev", "profit"]] = np.nan
+        out.loc[lack, ["bookmaker", "provider"]] = None
+        out.loc[lack, "real_odds"] = False
+        out.loc[lack, "odds_origin"] = AVERAGE_REMOVED
+        if "odds_priced_at" in out:
+            out.loc[lack, "odds_priced_at"] = pd.NaT
+    return out, len(have), len(lack)
+
+
 def _selections(rows: pd.DataFrame) -> list[PricedSelection]:
     out = []
     for r in rows.itertuples(index=False):
@@ -129,8 +180,10 @@ def restore_missing_risk(picks: pd.DataFrame, markets: pd.DataFrame, now: pd.Tim
     return out, len(rows)
 
 
-def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, write: bool = True) -> dict:
-    """Both repairs on the stored tables; restored Risk predictions of finished matches are settled."""
+def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, write: bool = True,
+                   out: dict | None = None) -> dict:
+    """The repairs on the stored tables; restored Risk predictions of finished matches are settled.
+    With ``write=False`` nothing is stored; ``out["picks"]`` then receives the repaired table (audits)."""
     picks = store.load_picks()
     if picks.empty:
         return {"risk_restored": 0, "prices_filled": 0}
@@ -142,8 +195,19 @@ def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, writ
             .drop_duplicates(["match_id", "market", "selection"], keep="last")
             .set_index(["match_id", "market", "selection"])["push_probability"]) if not markets.empty else pd.Series()
     picks, n_odds = fill_archive_prices(picks, prices, push)
-    summary = {"risk_restored": n_risk, "prices_filled": n_odds}
-    if write and (n_risk or n_odds):
+    averaged = picks.loc[picks["source"].isin(REPAIRED_SOURCES) & (picks["bookmaker"] == AVERAGE)]
+    real = pd.DataFrame()
+    if not averaged.empty:
+        api = load_api_odds()
+        api = api.loc[api["match_id"].isin(averaged["match_id"])] if not api.empty else api
+        real = best_prices(pre_match_only(api, features.loc[features["match_id"].isin(averaged["match_id"])])) \
+            if not api.empty else api
+    picks, n_replaced, n_removed = replace_average_prices(picks, real, push)
+    summary = {"risk_restored": n_risk, "prices_filled": n_odds, "average_prices_replaced": n_replaced,
+               "average_prices_removed": n_removed}
+    if out is not None:
+        out["picks"] = picks
+    if write and (n_risk or n_odds or n_replaced or n_removed):
         predictions_storage.write_parquet(store.PICKS, picks)
         if n_risk:
             store.settle(features)                     # restored Risk of finished matches gets its result

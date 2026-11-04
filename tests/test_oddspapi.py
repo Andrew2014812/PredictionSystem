@@ -104,11 +104,11 @@ def test_team_registry_never_merges_two_clubs(tmp_path):
 
 def test_team_registry_gives_one_club_one_id(tmp_path):
     reg = TeamRegistry(tmp_path / "ids.json")
-    known = {"Barcelona", "Santander"}                     # the league's Espanol is spelt differently
-    assert reg.resolve("oddspapi", "SP1", "Spain", "FC Barcelona", 2814, known) == "Barcelona"
+    known = {"Valencia", "Santander"}
+    assert reg.resolve("oddspapi", "SP1", "Spain", "Valencia CF", 70001, known) == "Valencia"
     # a second id for the same club is a mis-read name of another club: refused, not learned
-    assert reg.resolve("oddspapi", "SP1", "Spain", "Barcelona", 2817, known) is None
-    assert "2817" not in reg.data["oddspapi"] and reg.conflicts
+    assert reg.resolve("oddspapi", "SP1", "Spain", "Valencia", 70002, known) is None
+    assert "70002" not in reg.data["oddspapi"] and reg.conflicts
 
 
 def test_quota_ledger_retries_errors_but_not_empty_answers(tmp_path):

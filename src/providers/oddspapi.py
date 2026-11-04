@@ -94,10 +94,12 @@ class OddsPapi:
         status: 200 | "cached" | "not_found" (an answer: no such odds) | "budget" | "quota" (monthly limit
         reached — the run stops asking) | "rate_limited" / "network" / 5xx (temporary: retried at the
         next run, never recorded as an answer)."""
+        from .diagnostics import diag
         url = f"{config.ODDSPAPI_URL}/{endpoint}"
         if max_age is not None:
             cached = self.cache.get(url, params, max_age)
             if cached is not None:
+                diag.add(PROVIDER, "cached")
                 return cached, "cached"
         if self.quota_exhausted:
             return None, "quota"
@@ -133,6 +135,11 @@ class OddsPapi:
                 continue
             break
         counted = billable and isinstance(status, int) and status not in (401, 403, 429)
+        diag.add(PROVIDER, "requests")
+        diag.add(PROVIDER, "billable" if billable else "free")
+        diag.http(PROVIDER, status)
+        if isinstance(status, int) and status >= 400 and status != 404:
+            diag.error(PROVIDER, f"{endpoint} HTTP {status}")
         if status == 200:
             body = r.json()
             self.cache.put(url, params, body)

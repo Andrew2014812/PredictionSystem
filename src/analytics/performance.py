@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 
 PERIODS = {"Daily": "D", "Weekly": "W-SUN", "Monthly": "MS"}     # weeks run Monday–Sunday
-MIN_MARKET_SAMPLE = 30           # settled bets needed before a market can be "best" / "weakest"
+MIN_MARKET_SAMPLE = 15           # real-odds bets before a market can be "highest" / "lowest" ROI (display only)
 
 
 def settled(picks: pd.DataFrame) -> pd.DataFrame:
@@ -212,12 +212,94 @@ def select_dataset(picks: pd.DataFrame, key: str) -> pd.DataFrame:
     return picks.loc[picks["source"].isin(DATASETS[key])]
 
 
+RESCHEDULE_DAYS = 60          # the same league pairing within this many days is the same (moved) match
+
+
+def rescheduled_duplicates(picks: pd.DataFrame) -> pd.DataFrame:
+    """Match ids that are a second prediction of a match already predicted under another date.
+
+    A fixture that moves (a postponement, or a provisional date fixed later) can be predicted twice: once
+    under the first date — that prediction is later settled with the moved match's result — and again
+    under the new date. One real match must count once, so per league pairing within RESCHEDULE_DAYS the
+    prediction made for the date the match was really played is kept — the one the site showed on match
+    day, made from the newest pre-match data — and a prediction for a provisional or postponed date is
+    superseded (bookmakers void such bets too). A recorded prediction wins over a reconstruction, then
+    the latest date, then the latest ``generated_at``. The rule never looks at results, except that two
+    settled predictions with different scores are different matches and are both kept. Returns the
+    dropped ids with the id kept instead."""
+    cols = ["match_id", "league", "home_team", "away_team", "date", "source", "generated_at",
+            "status", "home_goals", "away_goals"]
+    if picks.empty or not set(cols) <= set(picks.columns):
+        return pd.DataFrame(columns=["match_id", "kept_match_id"])
+    main = (picks.loc[picks["role"] == "main", cols].drop_duplicates("match_id")
+            .assign(date=lambda d: pd.to_datetime(d["date"]),
+                    order=lambda d: (d["source"] != "live").astype(int)))
+    dropped = []
+    for _, g in main.groupby(["league", "home_team", "away_team"]):
+        if len(g) < 2:
+            continue
+        g = g.sort_values("date")
+        clusters, current = [], [g.iloc[0]]
+        for _, row in g.iloc[1:].iterrows():
+            if (row["date"] - current[0]["date"]).days <= RESCHEDULE_DAYS:
+                current.append(row)
+            else:
+                clusters.append(current)
+                current = [row]
+        clusters.append(current)
+        for cluster in clusters:
+            if len(cluster) < 2:
+                continue
+            frame = pd.DataFrame(cluster)
+            settled = frame.loc[frame["status"].isin(["WON", "LOST", "PUSH"])]
+            if settled[["home_goals", "away_goals"]].drop_duplicates().shape[0] > 1:
+                continue                                          # different results: different matches
+            keep = frame.sort_values(["order", "date", "generated_at"],
+                                     ascending=[True, False, False]).iloc[0]["match_id"]
+            dropped += [(mid, keep) for mid in frame["match_id"] if mid != keep]
+    return pd.DataFrame(dropped, columns=["match_id", "kept_match_id"])
+
+
+def same_day_duplicates(picks: pd.DataFrame) -> pd.DataFrame:
+    """Match ids that book a club twice in one league on one day — the same match under another spelling
+    of a club (e.g. Football-Data's fixtures file once wrote "KV Mechelen" for "Mechelen"), since a club
+    never plays two league matches on one day. Kept: a settled prediction, then the one whose clubs both
+    have a settled record in the league (the real clubs), then the earliest ``generated_at``."""
+    cols = ["match_id", "league", "home_team", "away_team", "date", "generated_at", "status"]
+    if picks.empty or not set(cols) <= set(picks.columns):
+        return pd.DataFrame(columns=["match_id", "kept_match_id"])
+    main = picks.loc[picks["role"] == "main", cols].drop_duplicates("match_id").copy()
+    main["day"] = pd.to_datetime(main["date"]).dt.normalize()
+    done = main.loc[main["status"].isin(["WON", "LOST", "PUSH"])]
+    known = {lg: set(g["home_team"]) | set(g["away_team"]) for lg, g in done.groupby("league")}
+    main["settled_first"] = (~main["status"].isin(["WON", "LOST", "PUSH"])).astype(int)
+    main["unknown_club"] = [int(not ({h, a} <= known.get(lg, set())))
+                            for lg, h, a in zip(main["league"], main["home_team"], main["away_team"])]
+    dropped = []
+    for _, g in main.groupby(["league", "day"]):
+        if len(g) < 2:
+            continue
+        teams = pd.concat([g[["match_id", "home_team"]].rename(columns={"home_team": "team"}),
+                           g[["match_id", "away_team"]].rename(columns={"away_team": "team"})])
+        twice = teams.groupby("team")["match_id"].nunique()
+        for team in twice[twice > 1].index:
+            clash = g.loc[g["match_id"].isin(teams.loc[teams["team"] == team, "match_id"])]
+            keep = clash.sort_values(["settled_first", "unknown_club", "generated_at"]).iloc[0]["match_id"]
+            dropped += [(mid, keep) for mid in clash["match_id"] if mid != keep]
+    return pd.DataFrame(sorted(set(dropped)), columns=["match_id", "kept_match_id"])
+
+
 def unified_history(picks: pd.DataFrame) -> pd.DataFrame:
     """The one prediction history the website shows: per match, the predictions recorded before kick-off
     when they exist, otherwise the current-season reconstruction from pre-match data (never both, so no
-    bet is counted twice). The origin stays in the data (``source``, ``origin``, ``odds_origin``)."""
+    bet is counted twice), and one prediction per real match when a fixture moved to another date
+    (``rescheduled_duplicates``) or a club was spelt two ways (``same_day_duplicates``). The origin stays in the data (``source``, ``origin``, ``odds_origin``)."""
     if picks.empty or "source" not in picks:
         return picks
     live = picks.loc[picks["source"] == "live"]
     rebuilt = picks.loc[(picks["source"] == "backfill") & ~picks["match_id"].isin(set(live["match_id"]))]
-    return pd.concat([live, rebuilt], ignore_index=True)
+    history = pd.concat([live, rebuilt], ignore_index=True)
+    moved = rescheduled_duplicates(history)
+    history = history.loc[~history["match_id"].isin(set(moved["match_id"]))]
+    spelt = same_day_duplicates(history)
+    return history.loc[~history["match_id"].isin(set(spelt["match_id"]))].reset_index(drop=True)

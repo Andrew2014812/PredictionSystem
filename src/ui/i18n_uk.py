@@ -105,6 +105,11 @@ UK: dict[str, str] = {
     "Prediction set": "Набір прогнозів", "All market forecasts": "Усі прогнози ринків",
     "Match result (1X2)": "Результат матчу (1X2)", "FootPredict performance": "Ефективність FootPredict",
     "Main hit rate": "Влучність основних", "Main profit": "Прибуток основних", "Main ROI": "ROI основних",
+    "Main profit · units": "Прибуток основних · одиниці", "Profit · units": "Прибуток · одиниці",
+    "Profit is calculated using a fixed stake of 1 unit per prediction.":
+        "Прибуток розраховано за фіксованої ставки 1 одиниця на прогноз.",
+    "{n} refunded": "повернень: {n}", "Prob.": "Ймов.", "EV": "EV",
+    "test season, {n} matches, outcomes named as on the site": "тестовий сезон, матчів: {n}, результати названі як на сайті",
     "Fixed stake of 1 unit per prediction; profit and ROI use real bookmaker odds only. One main prediction per match.":
         "Фіксована ставка 1 одиниця на прогноз; прибуток і ROI — лише за реальними коефіцієнтами. Один основний "
         "прогноз на матч.",
@@ -404,6 +409,9 @@ UK: dict[str, str] = {
     'FootPredict expects {n} corners in total': 'FootPredict очікує {n} кутових разом',
     'How is the Prediction History built?': 'Як побудована історія прогнозів?',
     'Main factors': 'Головні чинники',
+    'Relative model influence': 'Відносний вплив у моделі',
+    'Only the most influential factors are shown. Percentages represent their share of total model influence.':
+        'Показано лише найвпливовіші чинники. Відсоток — їхня частка в загальному впливі моделі.',
     'Model 1X2: home {h} · draw {d} · away {a}': 'Модель 1X2: господарі {h} · нічия {d} · гості {a}',
     'More filters': 'Інші фільтри',
     'No bookmaker prices for handicap lines in this match.': 'Для фор цього матчу немає цін букмекерів.',

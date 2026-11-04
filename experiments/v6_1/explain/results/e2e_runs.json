@@ -1,0 +1,5 @@
+{
+ "unit": "pytest tests -q --ignore=tests/e2e: 260 passed, 3 warnings in 11.80s",
+ "without_change": "the new spec on the v6 card: 1 failed, 26 deselected in 13.81s — AssertionError: Locator expected to contain text 'Relative model influence'",
+ "with_change": "the whole tests/e2e/test_pages.py on the v6.1 card: 27 passed in 182.74s (0:03:02)"
+}

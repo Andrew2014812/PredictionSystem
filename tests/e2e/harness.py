@@ -40,7 +40,18 @@ class App:
         except Exception:
             pass
         self.page.wait_for_selector(RUNNING, state="detached", timeout=120_000)
-        self.page.wait_for_timeout(400)
+        self.settle()
+
+    def settle(self, quiet_ms: int = 900, timeout_ms: int = 60_000) -> None:
+        """Wait until the page stops changing. Streamlit shows its run indicator only for slow runs, while a
+        page may keep drawing for a few seconds in parts; reading it earlier sees half a page."""
+        self.page.wait_for_function(
+            """([quiet, started]) => {
+                const n = document.querySelectorAll('[data-testid=stMain] *').length;
+                const now = performance.now();
+                if (window.__fpSize !== n) { window.__fpSize = n; window.__fpSince = now; }
+                return n > 0 && now - window.__fpSince >= quiet;
+            }""", arg=[quiet_ms, 0], polling=150, timeout=timeout_ms)
 
     # -- lookups ------------------------------------------------------------------
     @property

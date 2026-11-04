@@ -31,6 +31,10 @@ FOOTBALL_DATA_URL = "https://www.football-data.co.uk"
 FOOTBALL_DATA_RESULTS_PATH = "mmz4281"      # /mmz4281/2526/E0.csv
 FOOTBALL_DATA_FIXTURES_FILE = "fixtures.csv"
 HTTP_TIMEOUT = 30
+# Look of the website: "v6.1" (default) or "v6" (the previous design, kept for a rollback). Can also be set
+# with the environment variable / Streamlit secret FP_DESIGN; scripts/use_design.py switches both this and
+# the widget colours in .streamlit/config.toml.
+UI_DESIGN = "v6.1"
 
 # ---------------------------------------------------------------------------
 # API providers (keys come from the environment or a local, uncommitted .env)
@@ -60,6 +64,7 @@ API_FOOTBALL_DAILY_LIMIT = 100      # free plan
 API_FOOTBALL_ODDS = False
 API_FIXTURE_DAYS_BACK = 1           # fresh results of yesterday and today
 API_FIXTURE_DAYS_AHEAD = 1          # fixtures of tomorrow
+API_FOOTBALL_PLAN_DAYS_BACK = 1     # the free plan serves dates from yesterday only (checked 04.11.2026)
 
 ODDS_API_URL = "https://api.the-odds-api.com/v4"
 # Bookmaker priority (UK region). Exchanges are skipped: their prices are
@@ -92,6 +97,17 @@ def odds_api_fallback() -> str:
     _load_dotenv()
     value = (os.environ.get("ODDS_API_FALLBACK") or ODDS_API_FALLBACK_DEFAULT).strip().lower()
     return value if value in ("missing", "off", "always") else ODDS_API_FALLBACK_DEFAULT
+
+def odds_api_leagues() -> set[str]:
+    """Leagues for which The Odds API may be used although the fallback is off (repository variable
+    ODDS_API_LEAGUES, e.g. "T1"): only where OddsPapi has no league at all. Empty by default, so no credit
+    is spent unless the owner sets it. Cost (checked 04.11.2026): 1X2 + totals of a whole league = 2 credits
+    per request; BTTS / double chance / other lines are bought per match (about 4-5 credits each)."""
+    import os
+    _load_dotenv()
+    raw = os.environ.get("ODDS_API_LEAGUES") or ""
+    return {c.strip().upper() for c in raw.replace(";", ",").split(",") if c.strip()}
+
 
 # OddsPapi v4 (https://oddspapi.io/en/docs) — key ODDSPAPI_KEY in .env / GitHub Secrets.
 # Free plan: 250 billable requests / month, pre-match odds of all bookmakers;

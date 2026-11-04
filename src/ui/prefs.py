@@ -90,12 +90,62 @@ def app_root() -> str:
 
 
 # The browser tab is always called "FootPredict" (Streamlit would show the page name).
+# The interface is English, but Streamlit's date picker follows the browser language (a Russian browser
+# showed "ноябрь" and Russian weekdays). Streamlit hands the picker ``navigator.language`` each time the page
+# draws, so this script — the first element of every page, run in the page itself (st.html) — reports
+# British English (day-first, like the DD.MM.YYYY dates) before the date field arrives; the
+# "languagechange" events also update a picker that was drawn earlier. Our own constant, no user input.
+_LANG_JS = """<script id="fp-lang">
+(function () {
+  const app = window;
+  try {
+    if (app.navigator.language !== "en-GB") {
+      Object.defineProperty(app.navigator, "language", {get: () => "en-GB", configurable: true});
+      Object.defineProperty(app.navigator, "languages", {get: () => ["en-GB", "en"], configurable: true});
+    }
+    const ping = () => app.dispatchEvent(new Event("languagechange"));
+    ping();
+    if (!app.__fpLangWatch) {
+      app.__fpLangWatch = true;
+      new app.MutationObserver((records) => {
+        for (const r of records) for (const node of r.addedNodes) {
+          if (node.nodeType === 1 && (node.matches?.('[data-testid="stDateInput"], [role="dialog"], [role="grid"]')
+              || node.querySelector?.('[data-testid="stDateInput"], [role="grid"]'))) {
+            for (const ms of [40, 200, 600]) app.setTimeout(ping, ms);
+            return;
+          }
+        }
+      }).observe(app.document.body, {childList: true, subtree: true});
+    }
+  } catch (e) {}
+})();
+</script>"""
+
+
+HIDE_CLOUD_BADGES = True     # Streamlit Community Cloud's own corner badges (see _TITLE_JS)
+
+# The tab title is "FootPredict" in the app page and, on Streamlit Community Cloud, also in the hosting page
+# around it (Cloud would otherwise show "FootPredict · Streamlit"). That page is served from the app's own
+# address, so the app may style it: the "Hosted with Streamlit" badge and the creator's avatar in the lower
+# right corner are hidden there. If Cloud ever serves that page from another origin, the browser blocks the
+# access and nothing happens (no error); the badges then stay, which is the only visible effect.
 _TITLE_JS = """<script>
-const doc = window.parent.document;
-const fix = () => { if (doc.title !== "FootPredict") doc.title = "FootPredict"; };
-fix();
-new MutationObserver(fix).observe(doc.querySelector("title") || doc.head, {childList: true, subtree: true,
-                                                                         characterData: true});
+const docs = [window.parent.document];
+try { if (window.top !== window.parent && window.top.document) docs.push(window.top.document); } catch (e) {}
+for (const doc of docs) {
+  const fix = () => { if (doc.title !== "FootPredict") doc.title = "FootPredict"; };
+  fix();
+  new MutationObserver(fix).observe(doc.querySelector("title") || doc.head, {childList: true, subtree: true,
+                                                                           characterData: true});
+}
+const outer = docs[docs.length - 1];          // ("top" is a reserved global name in browsers)
+if (HIDE && docs.length > 1 && !outer.getElementById("fp-cloud-chrome")) {
+  const style = outer.createElement("style");
+  style.id = "fp-cloud-chrome";
+  style.textContent = '[class*="viewerBadge"], [class*="_profileContainer"], [class*="profilePreview"] ' +
+                      '{ display: none !important; }';
+  outer.head.appendChild(style);
+}
 </script>"""
 
 
@@ -141,11 +191,12 @@ def _team_search() -> None:
     st.selectbox(t("Find a club"), list(options), index=None, format_func=options.get, key="global_search",
                  placeholder=t("Search..."), label_visibility="collapsed", filter_mode="fuzzy",
                  on_change=_remember_team)
-    components.html(_TITLE_JS, height=0)
+    components.html(_TITLE_JS.replace("HIDE", "true" if HIDE_CLOUD_BADGES else "false"), height=0)
 
 
 def top_bar() -> None:
     """Brand on the left, language and theme switches on the right."""
+    st.html(_LANG_JS, unsafe_allow_javascript=True)           # first: before any date field is drawn
     inject_css()
     query = urlencode(pref_params())
     target = app_root() + (f"?{query}" if query else "")
