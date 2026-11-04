@@ -19,6 +19,7 @@ import platform
 import subprocess
 import sys
 import time
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -35,6 +36,9 @@ CACHE = HERE / "cache"
 LOGS = HERE / "logs"
 for _d in (RESULTS, FIGURES, CACHE, LOGS):
     _d.mkdir(parents=True, exist_ok=True)
+
+warnings.filterwarnings("ignore", category=RuntimeWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 N_JOBS = 3
 SELECT = (2023, 2024)
