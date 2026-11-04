@@ -153,8 +153,16 @@ def test_why_card_shows_relative_model_influence_and_the_chain(app, predicted_da
     # another market: the Main / Risk picks are not offered again; an exact score shows no shares
     app.expander("Explain another market").click()
     main_label = app.page.locator(".rec.main").first.inner_text()
-    box = app.page.locator('[data-testid="stSelectbox"]').filter(has_text="Market")
-    box.locator("input").click()
+    app.wait()
+    box = app.page.locator('[data-testid="stSelectbox"]').filter(has_text="Market").first
+    expect(box).to_be_visible()
+    for _ in range(3):                                         # the expander may still be drawing its content
+        box.locator("input").click()
+        try:
+            app.page.get_by_role("option").first.wait_for(timeout=5_000)
+            break
+        except Exception:                                      # noqa: BLE001 - try the click again
+            app.page.keyboard.press("Escape")
     options = [o.strip() for o in app.page.get_by_role("option").all_inner_texts()]
     assert options and not any(o.split(": ", 1)[-1] in main_label for o in options), (options, main_label)
     exact = app.page.get_by_role("option").filter(has_text="Exact score")
