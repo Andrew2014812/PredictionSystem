@@ -1,0 +1,20 @@
+{
+ "2023": {
+  "matches": 150,
+  "max_probability_diff": 5.551115123125783e-16,
+  "max_odds_diff": 0.0,
+  "same_main": 150
+ },
+ "2024": {
+  "matches": 150,
+  "max_probability_diff": 5.551115123125783e-16,
+  "max_odds_diff": 0.0,
+  "same_main": 150
+ },
+ "2025": {
+  "matches": 150,
+  "max_probability_diff": 4.440892098500626e-16,
+  "max_odds_diff": 0.0,
+  "same_main": 150
+ }
+}
