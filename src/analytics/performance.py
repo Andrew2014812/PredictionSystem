@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 
 PERIODS = {"Daily": "D", "Weekly": "W-SUN", "Monthly": "MS"}     # weeks run Monday–Sunday
-MIN_MARKET_SAMPLE = 30           # settled bets needed before a market can be "best" / "weakest"
+MIN_MARKET_SAMPLE = 15           # real-odds bets before a market can be "highest" / "lowest" ROI (display only)
 
 
 def settled(picks: pd.DataFrame) -> pd.DataFrame:

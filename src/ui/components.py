@@ -114,6 +114,15 @@ def kpi(label: str, value: str, sub: str = "", tone_cls: str = "", help_text: st
             f'<div class="value {tone_cls}">{value}</div><div class="sub">{esc(sub)}</div></div>')
 
 
+PROFIT_HELP = "Profit is calculated using a fixed stake of 1 unit per prediction."
+
+
+def outcome_counts(s: dict) -> str:
+    """'812 won · 431 lost' (+ ' · 2 refunded' when a handicap ended level)."""
+    text = t("{a} won · {b} lost", a=s["won"], b=s["lost"])
+    return text + (" · " + t("{n} refunded", n=s["push"]) if s.get("push") else "")
+
+
 def kpi_row(items: list[tuple]) -> None:
     cols = st.columns(len(items))
     for col, item in zip(cols, items):

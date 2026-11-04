@@ -8,7 +8,7 @@ import streamlit as st
 from src.analytics.performance import PERIODS, period_label, select_dataset, summarize, timeline
 from src.leagues import league_codes
 from src.ui import data
-from src.ui.components import (date_text, empty_state, esc, guard, html_table, kpi_row, match_url, missing, num,
+from src.ui.components import (PROFIT_HELP, outcome_counts, date_text, empty_state, esc, guard, html_table, kpi_row, match_url, missing, num,
                                odds_text, page_header, pct, period_filter, section, signed, status_badge, tone)
 from src.ui.i18n import t
 from src.ui.timefmt import with_local_time
@@ -71,10 +71,10 @@ def render() -> None:
                     | df["away_team"].str.lower().str.contains(q, regex=False)]
     s = summarize(df)
     kpi_row([
-        (t("Predictions"), f"{s['settled']:,}", t("{a} won · {b} lost", a=s["won"], b=s["lost"])),
+        (t("Predictions"), f"{s['settled']:,}", outcome_counts(s)),
         (t("Hit rate"), pct(s["hit_rate"], 1), ""),
-        (t("Profit"), f"{signed(s['profit'])} {t('u')}" if s["bets"] else "—",
-         t("{n} bets", n=s["bets"]), tone(s["profit"])),
+        (t("Profit · units"), signed(s["profit"]) if s["bets"] else "—",
+         t("{n} bets", n=s["bets"]), tone(s["profit"]), t(PROFIT_HELP)),
         (t("ROI"), signed(s["roi"], 1, "%"), t("profit / amount staked"), tone(s["roi"])),
         (t("Average odds"), num(s["avg_odds"]), ""),
     ])

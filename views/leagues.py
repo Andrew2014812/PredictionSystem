@@ -9,7 +9,7 @@ from src.analytics.performance import group_summary, select_dataset, summarize
 from src.analytics.teams import league_table
 from src.leagues import enabled_leagues, get_league
 from src.ui import data
-from src.ui.components import (date_text, empty_state, esc, form_chips, guard, html_table, kpi_row, match_url,
+from src.ui.components import (PROFIT_HELP, date_text, empty_state, esc, form_chips, guard, html_table, kpi_row, match_url,
                                num, page_header, pct, section, signed, team_url, tone)
 from src.ui.i18n import t
 from src.ui.labels import group_title, league_label
@@ -101,9 +101,11 @@ def render() -> None:
         st.caption(t("No settled FootPredict predictions for this league in this season yet."))
         return
     kpi_row([
-        (t("Main predictions"), f"{main['settled']:,}", t("{n} bets", n=main["bets"])),
+        (t("Main predictions"), f"{main['settled']:,}", t("{n} bets", n=main["bets"])
+         + (" · " + t("{n} refunded", n=main["push"]) if main["push"] else "")),
         (t("Main hit rate"), pct(main["hit_rate"], 1), ""),
-        (t("Main profit"), f"{signed(main['profit'])} {t('u')}" if main["bets"] else "—", "", tone(main["profit"])),
+        (t("Main profit · units"), signed(main["profit"]) if main["bets"] else "—", "", tone(main["profit"]),
+         t(PROFIT_HELP)),
         (t("Main ROI"), signed(main["roi"], 1, "%"), "", tone(main["roi"])),
     ])
     section(t("Market performance"))
