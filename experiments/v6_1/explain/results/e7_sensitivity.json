@@ -1,0 +1,841 @@
+{
+ "examples": {
+  "I1-20261011-como-roma": {
+   "home": "Como",
+   "away": "Roma",
+   "xg_home": 1.4283884763717651,
+   "xg_away": 1.44063401222229,
+   "p": [
+    0.3400179445743561,
+    0.26755455136299133,
+    0.3924275040626526
+   ],
+   "exp_corners": 9.406572012175808,
+   "items": [
+    {
+     "market": "TOTAL_3.5",
+     "selection": "UNDER",
+     "role": "main",
+     "P": 0.6769903223598353,
+     "per_0.1_home_goals_pp": -2.19766962389929,
+     "per_0.1_away_goals_pp": -2.2474592365854473,
+     "per_1pp_home_pp": -0.011949011141054733,
+     "per_1pp_draw_pp": 0.026132685638458053,
+     "per_1pp_away_pp": -0.01418367449740332
+    },
+    {
+     "market": "1X2",
+     "selection": "A",
+     "role": "risk",
+     "P": 0.39242750406265253,
+     "per_0.1_home_goals_pp": -1.6653345369377348e-14,
+     "per_0.1_away_goals_pp": 0.0,
+     "per_1pp_home_pp": -0.500000000000006,
+     "per_1pp_draw_pp": -0.500000000000006,
+     "per_1pp_away_pp": 1.000000000000012
+    },
+    {
+     "market": "DOUBLE_CHANCE",
+     "selection": "12",
+     "role": "panel",
+     "P": 0.7324454486370086,
+     "per_0.1_home_goals_pp": 0.0,
+     "per_0.1_away_goals_pp": 1.1102230246251565e-14,
+     "per_1pp_home_pp": 0.49999999999998934,
+     "per_1pp_draw_pp": -1.0000000000000009,
+     "per_1pp_away_pp": 0.5000000000000115
+    },
+    {
+     "market": "TOTAL_1.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.7802503190422595,
+     "per_0.1_home_goals_pp": 1.605999959918758,
+     "per_0.1_away_goals_pp": 1.6505281960127793,
+     "per_1pp_home_pp": 0.004391544199600084,
+     "per_1pp_draw_pp": -0.010768063904098568,
+     "per_1pp_away_pp": 0.006376519704487382
+    },
+    {
+     "market": "TOTAL_2.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.5409426113985433,
+     "per_0.1_home_goals_pp": 2.164394558012628,
+     "per_0.1_away_goals_pp": 2.1907012789452063,
+     "per_1pp_home_pp": 0.16113854079899959,
+     "per_1pp_draw_pp": -0.32369371896572297,
+     "per_1pp_away_pp": 0.16255517816671228
+    },
+    {
+     "market": "BTTS",
+     "selection": "YES",
+     "role": "panel",
+     "P": 0.584939983197687,
+     "per_0.1_home_goals_pp": 1.9642648820159647,
+     "per_0.1_away_goals_pp": 1.916002608859546,
+     "per_1pp_home_pp": -0.12738606102252747,
+     "per_1pp_draw_pp": 0.25581485044839924,
+     "per_1pp_away_pp": -0.12842878942587177
+    },
+    {
+     "market": "HANDICAP_-0.5",
+     "selection": "A",
+     "role": "panel",
+     "P": 0.659982055425644,
+     "per_0.1_home_goals_pp": -1.1102230246251565e-14,
+     "per_0.1_away_goals_pp": 2.220446049250313e-14,
+     "per_1pp_home_pp": -1.0000000000000009,
+     "per_1pp_draw_pp": 0.5000000000000115,
+     "per_1pp_away_pp": 0.49999999999998934
+    },
+    {
+     "market": "HANDICAP_-1",
+     "selection": "A",
+     "role": "panel",
+     "P": 0.659982055425644,
+     "per_0.1_home_goals_pp": -1.1102230246251565e-14,
+     "per_0.1_away_goals_pp": 2.220446049250313e-14,
+     "per_1pp_home_pp": -1.0000000000000009,
+     "per_1pp_draw_pp": 0.5000000000000115,
+     "per_1pp_away_pp": 0.49999999999998934
+    },
+    {
+     "market": "HANDICAP_-1.5",
+     "selection": "A",
+     "role": "panel",
+     "P": 0.8411457132805407,
+     "per_0.1_home_goals_pp": -0.7489721360242618,
+     "per_0.1_away_goals_pp": 0.15152341463351426,
+     "per_1pp_home_pp": -0.46719383272055826,
+     "per_1pp_draw_pp": 0.23359691636026803,
+     "per_1pp_away_pp": 0.23359691636025692
+    },
+    {
+     "market": "HANDICAP_+1.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.8153885348879667,
+     "per_0.1_home_goals_pp": 0.1768942556217623,
+     "per_0.1_away_goals_pp": -0.8611362656211874,
+     "per_1pp_home_pp": 0.23521728625135463,
+     "per_1pp_draw_pp": 0.23521728625135463,
+     "per_1pp_away_pp": -0.47043457250275367
+    },
+    {
+     "market": "CORNERS_9.5",
+     "selection": "UNDER",
+     "role": "panel",
+     "P": 0.5373633307707804,
+     "per_corner_pp": -12.20761762272371
+    },
+    {
+     "market": "EXACT_SCORE",
+     "selection": "1-1",
+     "role": "panel",
+     "P": 0.1253489730500519,
+     "per_0.1_home_goals_pp": -0.12896244390685624,
+     "per_0.1_away_goals_pp": -0.12787176799912842,
+     "per_1pp_home_pp": -0.23424937533578494,
+     "per_1pp_draw_pp": 0.46849875067156155,
+     "per_1pp_away_pp": -0.23424937533578355
+    }
+   ]
+  },
+  "E1-20261011-southampton-portsmouth": {
+   "home": "Southampton",
+   "away": "Portsmouth",
+   "xg_home": 1.9221937656402588,
+   "xg_away": 1.1223983764648438,
+   "p": [
+    0.5549895167350769,
+    0.24131423234939575,
+    0.20369625091552734
+   ],
+   "exp_corners": 10.695312513480937,
+   "items": [
+    {
+     "market": "HANDICAP_-1.5",
+     "selection": "A",
+     "role": "main",
+     "P": 0.6758180199042569,
+     "per_0.1_home_goals_pp": -1.0288209423996886,
+     "per_0.1_away_goals_pp": 0.34633683699190065,
+     "per_1pp_home_pp": -0.584122709205126,
+     "per_1pp_draw_pp": 0.29206135460256855,
+     "per_1pp_away_pp": 0.29206135460254634
+    },
+    {
+     "market": "HANDICAP_-0.5",
+     "selection": "A",
+     "role": "risk",
+     "P": 0.44501048326492315,
+     "per_0.1_home_goals_pp": 5.551115123125783e-15,
+     "per_0.1_away_goals_pp": -5.551115123125783e-15,
+     "per_1pp_home_pp": -0.9999999999999953,
+     "per_1pp_draw_pp": 0.4999999999999838,
+     "per_1pp_away_pp": 0.4999999999999838
+    },
+    {
+     "market": "1X2",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.5549895167350769,
+     "per_0.1_home_goals_pp": 0.0,
+     "per_0.1_away_goals_pp": 2.220446049250313e-14,
+     "per_1pp_home_pp": 1.0000000000000009,
+     "per_1pp_draw_pp": -0.5000000000000115,
+     "per_1pp_away_pp": -0.5000000000000115
+    },
+    {
+     "market": "DOUBLE_CHANCE",
+     "selection": "1X",
+     "role": "panel",
+     "P": 0.7963037490844728,
+     "per_0.1_home_goals_pp": -1.1102230246251565e-14,
+     "per_0.1_away_goals_pp": 3.3306690738754696e-14,
+     "per_1pp_home_pp": 0.5000000000000226,
+     "per_1pp_draw_pp": 0.5000000000000115,
+     "per_1pp_away_pp": -1.0000000000000009
+    },
+    {
+     "market": "TOTAL_1.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.8075914237221259,
+     "per_0.1_home_goals_pp": 1.301985680117601,
+     "per_0.1_away_goals_pp": 1.6346122148969022,
+     "per_1pp_home_pp": 0.06629247383178605,
+     "per_1pp_draw_pp": -0.011736322091282503,
+     "per_1pp_away_pp": -0.05455615174051465
+    },
+    {
+     "market": "TOTAL_2.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.5803399888064286,
+     "per_0.1_home_goals_pp": 1.8229072613911823,
+     "per_0.1_away_goals_pp": 2.3892124548198557,
+     "per_1pp_home_pp": 0.21010364194764541,
+     "per_1pp_draw_pp": -0.32958022323050784,
+     "per_1pp_away_pp": 0.11947658128287353
+    },
+    {
+     "market": "TOTAL_3.5",
+     "selection": "UNDER",
+     "role": "panel",
+     "P": 0.6374250983429669,
+     "per_0.1_home_goals_pp": -2.040309793964168,
+     "per_0.1_away_goals_pp": -2.467132617559842,
+     "per_1pp_home_pp": -0.09036808114507577,
+     "per_1pp_draw_pp": 0.03387090089813638,
+     "per_1pp_away_pp": 0.056497180246950496
+    },
+    {
+     "market": "BTTS",
+     "selection": "YES",
+     "role": "panel",
+     "P": 0.580836864955102,
+     "per_0.1_home_goals_pp": 1.2830836267825219,
+     "per_0.1_away_goals_pp": 2.6408812341235377,
+     "per_1pp_home_pp": -0.16324895986477017,
+     "per_1pp_draw_pp": 0.25790242142244013,
+     "per_1pp_away_pp": -0.09465346155764776
+    },
+    {
+     "market": "HANDICAP_-0.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.5549895167350769,
+     "per_0.1_home_goals_pp": 0.0,
+     "per_0.1_away_goals_pp": 2.220446049250313e-14,
+     "per_1pp_home_pp": 1.0000000000000009,
+     "per_1pp_draw_pp": -0.5000000000000115,
+     "per_1pp_away_pp": -0.5000000000000115
+    },
+    {
+     "market": "HANDICAP_-1",
+     "selection": "A",
+     "role": "panel",
+     "P": 0.44501048326492315,
+     "per_0.1_home_goals_pp": 5.551115123125783e-15,
+     "per_0.1_away_goals_pp": -5.551115123125783e-15,
+     "per_1pp_home_pp": -0.9999999999999953,
+     "per_1pp_draw_pp": 0.4999999999999838,
+     "per_1pp_away_pp": 0.4999999999999838
+    },
+    {
+     "market": "HANDICAP_+1.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.9227732658484874,
+     "per_0.1_home_goals_pp": 0.0626857265449754,
+     "per_0.1_away_goals_pp": -0.48556868354796556,
+     "per_1pp_home_pp": 0.18956346472854824,
+     "per_1pp_draw_pp": 0.18956346472851493,
+     "per_1pp_away_pp": -0.37912692945704096
+    },
+    {
+     "market": "CORNERS_9.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.6121117312192869,
+     "per_corner_pp": 10.712847226600996
+    },
+    {
+     "market": "EXACT_SCORE",
+     "selection": "1-1",
+     "role": "panel",
+     "P": 0.11217641744993594,
+     "per_0.1_home_goals_pp": -0.10656004775884687,
+     "per_0.1_away_goals_pp": -0.18208745337649213,
+     "per_1pp_home_pp": -0.2324281008165216,
+     "per_1pp_draw_pp": 0.4648562016330529,
+     "per_1pp_away_pp": -0.23242810081652993
+    }
+   ]
+  },
+  "SP1-20260916-barcelona-santander": {
+   "home": "Barcelona",
+   "away": "Santander",
+   "xg_home": 2.697761297225952,
+   "xg_away": 0.9147403836250305,
+   "p": [
+    0.7751902937889099,
+    0.14749714732170105,
+    0.07731252163648605
+   ],
+   "exp_corners": 11.002192038979395,
+   "items": [
+    {
+     "market": "CORNERS_8.5",
+     "selection": "OVER",
+     "role": "main",
+     "P": 0.7490069089097044,
+     "per_corner_pp": 8.570382626955485
+    },
+    {
+     "market": "TOTAL_2.5",
+     "selection": "UNDER",
+     "role": "risk",
+     "P": 0.2973127750453151,
+     "per_0.1_home_goals_pp": -1.3683605228811235,
+     "per_0.1_away_goals_pp": -2.1404518157343566,
+     "per_1pp_home_pp": -0.26438431994433853,
+     "per_1pp_draw_pp": 0.34299797690284795,
+     "per_1pp_away_pp": -0.07861365695852052
+    },
+    {
+     "market": "1X2",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.7751903226669999,
+     "per_0.1_home_goals_pp": 3.3306690738754696e-14,
+     "per_0.1_away_goals_pp": 0.0,
+     "per_1pp_home_pp": 1.0000000372528906,
+     "per_1pp_draw_pp": -0.5000000186264342,
+     "per_1pp_away_pp": -0.5000000186264342
+    },
+    {
+     "market": "DOUBLE_CHANCE",
+     "selection": "1X",
+     "role": "panel",
+     "P": 0.9226874754833979,
+     "per_0.1_home_goals_pp": 1.1102230246251565e-14,
+     "per_0.1_away_goals_pp": -2.220446049250313e-14,
+     "per_1pp_home_pp": 0.5000000186264342,
+     "per_1pp_draw_pp": 0.5000000186264453,
+     "per_1pp_away_pp": -1.0000000372529128
+    },
+    {
+     "market": "TOTAL_1.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.8791627330833665,
+     "per_0.1_home_goals_pp": 0.8084518972963473,
+     "per_0.1_away_goals_pp": 1.1763670831821171,
+     "per_1pp_home_pp": 0.11490452065715528,
+     "per_1pp_draw_pp": -0.013266144798529389,
+     "per_1pp_away_pp": -0.101638375858637
+    },
+    {
+     "market": "TOTAL_2.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.7026872249546848,
+     "per_0.1_home_goals_pp": 1.3683605228811624,
+     "per_0.1_away_goals_pp": 2.1404518157343455,
+     "per_1pp_home_pp": 0.2643843199443108,
+     "per_1pp_draw_pp": -0.34299797690285905,
+     "per_1pp_away_pp": 0.07861365695850386
+    },
+    {
+     "market": "TOTAL_3.5",
+     "selection": "UNDER",
+     "role": "panel",
+     "P": 0.507073961511791,
+     "per_0.1_home_goals_pp": -1.8630555372936064,
+     "per_0.1_away_goals_pp": -2.4930354621502615,
+     "per_1pp_home_pp": -0.19264537285746952,
+     "per_1pp_draw_pp": 0.058450333317838776,
+     "per_1pp_away_pp": 0.13419503953960854
+    },
+    {
+     "market": "BTTS",
+     "selection": "YES",
+     "role": "panel",
+     "P": 0.5563225121480849,
+     "per_0.1_home_goals_pp": 0.7056542379571984,
+     "per_0.1_away_goals_pp": 3.4083910651234506,
+     "per_1pp_home_pp": -0.20953199158220137,
+     "per_1pp_draw_pp": 0.2640397790327098,
+     "per_1pp_away_pp": -0.054507787450541745
+    },
+    {
+     "market": "HANDICAP_-0.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.7751903226669999,
+     "per_0.1_home_goals_pp": 3.3306690738754696e-14,
+     "per_0.1_away_goals_pp": 0.0,
+     "per_1pp_home_pp": 1.0000000372528906,
+     "per_1pp_draw_pp": -0.5000000186264342,
+     "per_1pp_away_pp": -0.5000000186264342
+    },
+    {
+     "market": "HANDICAP_-1",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.5599959519735943,
+     "per_0.1_home_goals_pp": 1.0480233553604168,
+     "per_0.1_away_goals_pp": -0.600073222994979,
+     "per_1pp_home_pp": 0.7223980440163591,
+     "per_1pp_draw_pp": -0.3611990220081851,
+     "per_1pp_away_pp": -0.3611990220081851
+    },
+    {
+     "market": "HANDICAP_-1.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.5599959519735943,
+     "per_0.1_home_goals_pp": 1.0480233553604168,
+     "per_0.1_away_goals_pp": -0.600073222994979,
+     "per_1pp_home_pp": 0.7223980440163591,
+     "per_1pp_draw_pp": -0.3611990220081851,
+     "per_1pp_away_pp": -0.3611990220081851
+    },
+    {
+     "market": "HANDICAP_+1.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.9760668961229043,
+     "per_0.1_home_goals_pp": 0.01597607842681592,
+     "per_0.1_away_goals_pp": -0.18775048951001905,
+     "per_1pp_home_pp": 0.15478155006780625,
+     "per_1pp_draw_pp": 0.15478155006780625,
+     "per_1pp_away_pp": -0.3095631001356791
+    },
+    {
+     "market": "CORNERS_9.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.6442685947151574,
+     "per_corner_pp": 10.204029860427733
+    },
+    {
+     "market": "EXACT_SCORE",
+     "selection": "2-0",
+     "role": "panel",
+     "P": 0.10150341701023585,
+     "per_0.1_home_goals_pp": -0.46256785794969446,
+     "per_0.1_away_goals_pp": -0.7334993379161103,
+     "per_1pp_home_pp": 0.13093999992455224,
+     "per_1pp_draw_pp": -0.06546999996227681,
+     "per_1pp_away_pp": -0.06546999996227681
+    }
+   ]
+  },
+  "G1-20261011-aris-volos-nfc": {
+   "home": "Aris",
+   "away": "Volos NFC",
+   "xg_home": 2.2869720458984375,
+   "xg_away": 0.8403388261795044,
+   "p": [
+    0.6882925033569336,
+    0.19644027948379517,
+    0.11526724696159363
+   ],
+   "exp_corners": 9.257721653035384,
+   "items": [
+    {
+     "market": "1X2",
+     "selection": "H",
+     "role": "main",
+     "P": 0.6882924828442193,
+     "per_0.1_home_goals_pp": 1.1102230246251565e-14,
+     "per_0.1_away_goals_pp": -1.1102230246251565e-14,
+     "per_1pp_home_pp": 0.9999999701976625,
+     "per_1pp_draw_pp": -0.49999998509885346,
+     "per_1pp_away_pp": -0.49999998509886456
+    },
+    {
+     "market": "TOTAL_3.5",
+     "selection": "OVER",
+     "role": "risk",
+     "P": 0.3798346990304056,
+     "per_0.1_home_goals_pp": 1.9321469586344842,
+     "per_0.1_away_goals_pp": 2.6613093989506065,
+     "per_1pp_home_pp": 0.16624801746166762,
+     "per_1pp_draw_pp": -0.0564503515158743,
+     "per_1pp_away_pp": -0.10979766594579887
+    },
+    {
+     "market": "DOUBLE_CHANCE",
+     "selection": "1X",
+     "role": "panel",
+     "P": 0.8847327564736381,
+     "per_0.1_home_goals_pp": 0.0,
+     "per_0.1_away_goals_pp": 0.0,
+     "per_1pp_home_pp": 0.49999998509883126,
+     "per_1pp_draw_pp": 0.49999998509883126,
+     "per_1pp_away_pp": -0.9999999701977069
+    },
+    {
+     "market": "TOTAL_1.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.8183029210030841,
+     "per_0.1_home_goals_pp": 1.1425438434128465,
+     "per_0.1_away_goals_pp": 1.7320812740400204,
+     "per_1pp_home_pp": 0.13044590674183842,
+     "per_1pp_draw_pp": -0.023334311124889595,
+     "per_1pp_away_pp": -0.10711159561697103
+    },
+    {
+     "market": "TOTAL_2.5",
+     "selection": "OVER",
+     "role": "panel",
+     "P": 0.5981009336893909,
+     "per_0.1_home_goals_pp": 1.6546380531699767,
+     "per_0.1_away_goals_pp": 2.6027272493594933,
+     "per_1pp_home_pp": 0.26617348146183994,
+     "per_1pp_draw_pp": -0.35045514040322745,
+     "per_1pp_away_pp": 0.0842816589413542
+    },
+    {
+     "market": "TOTAL_3.5",
+     "selection": "UNDER",
+     "role": "panel",
+     "P": 0.6201653009695942,
+     "per_0.1_home_goals_pp": -1.9321469586344842,
+     "per_0.1_away_goals_pp": -2.6613093989506065,
+     "per_1pp_home_pp": -0.16624801746165652,
+     "per_1pp_draw_pp": 0.05645035151587985,
+     "per_1pp_away_pp": 0.10979766594578777
+    },
+    {
+     "market": "BTTS",
+     "selection": "YES",
+     "role": "panel",
+     "P": 0.51572908476217,
+     "per_0.1_home_goals_pp": 0.9360712426120577,
+     "per_0.1_away_goals_pp": 3.5597156675756523,
+     "per_1pp_home_pp": -0.19490290507011565,
+     "per_1pp_draw_pp": 0.26771903063210756,
+     "per_1pp_away_pp": -0.07281612556202521
+    },
+    {
+     "market": "HANDICAP_-0.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.6882924828442193,
+     "per_0.1_home_goals_pp": 1.1102230246251565e-14,
+     "per_0.1_away_goals_pp": -1.1102230246251565e-14,
+     "per_1pp_home_pp": 0.9999999701976625,
+     "per_1pp_draw_pp": -0.49999998509885346,
+     "per_1pp_away_pp": -0.49999998509886456
+    },
+    {
+     "market": "HANDICAP_-1",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.4591600832392541,
+     "per_0.1_home_goals_pp": 1.1210122343979556,
+     "per_0.1_away_goals_pp": -0.5195867872810345,
+     "per_1pp_home_pp": 0.6671002241050883,
+     "per_1pp_draw_pp": -0.3335501120525275,
+     "per_1pp_away_pp": -0.33355011205254415
+    },
+    {
+     "market": "HANDICAP_-1.5",
+     "selection": "A",
+     "role": "panel",
+     "P": 0.5408399167607458,
+     "per_0.1_home_goals_pp": -1.1210122343979445,
+     "per_0.1_away_goals_pp": 0.5195867872810234,
+     "per_1pp_home_pp": -0.6671002241050661,
+     "per_1pp_draw_pp": 0.3335501120525497,
+     "per_1pp_away_pp": 0.3335501120525386
+    },
+    {
+     "market": "HANDICAP_+1.5",
+     "selection": "H",
+     "role": "panel",
+     "P": 0.9655126114672977,
+     "per_0.1_home_goals_pp": 0.023624473160743786,
+     "per_0.1_away_goals_pp": -0.3042345319371198,
+     "per_1pp_home_pp": 0.14959751985832437,
+     "per_1pp_draw_pp": 0.14959751985830216,
+     "per_1pp_away_pp": -0.29919503971668204
+    },
+    {
+     "market": "CORNERS_9.5",
+     "selection": "UNDER",
+     "role": "panel",
+     "P": 0.5556628898960354,
+     "per_corner_pp": -12.28534704605262
+    },
+    {
+     "market": "EXACT_SCORE",
+     "selection": "2-0",
+     "role": "panel",
+     "P": 0.11278697464850967,
+     "per_0.1_home_goals_pp": -0.4288780730202321,
+     "per_0.1_away_goals_pp": -0.7526249156346019,
+     "per_1pp_home_pp": 0.16386488898023216,
+     "per_1pp_draw_pp": -0.08193244449011539,
+     "per_1pp_away_pp": -0.08193244449011816
+    }
+   ]
+  }
+ },
+ "feature_steps": [
+  {
+   "match_id": "N1-20260905-willem-ii-excelsior",
+   "features": 217,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.018433179723502304,
+    "0.1": 0.2672811059907834,
+    "0.5": 0.6589861751152074
+   }
+  },
+  {
+   "match_id": "I2-20260906-verona-arezzo",
+   "features": 217,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.004608294930875576,
+    "0.1": 0.2764976958525346,
+    "0.5": 0.6866359447004609
+   }
+  },
+  {
+   "match_id": "B1-20260905-mechelen-westerlo",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.004464285714285714,
+    "0.1": 0.28125,
+    "0.5": 0.7053571428571429
+   }
+  },
+  {
+   "match_id": "B1-20260903-gent-oud-heverlee-leuven",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.004464285714285714,
+    "0.01": 0.008928571428571428,
+    "0.1": 0.22767857142857142,
+    "0.5": 0.6339285714285714
+   }
+  },
+  {
+   "match_id": "I2-20260823-palermo-juve-stabia",
+   "features": 159,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.012578616352201259,
+    "0.1": 0.2578616352201258,
+    "0.5": 0.6540880503144654
+   }
+  },
+  {
+   "match_id": "E3-20260901-cheltenham-york",
+   "features": 217,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.009216589861751152,
+    "0.1": 0.2488479262672811,
+    "0.5": 0.695852534562212
+   }
+  },
+  {
+   "match_id": "SP2-20260911-burgos-ceuta",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.03125,
+    "0.1": 0.2857142857142857,
+    "0.5": 0.6473214285714286
+   }
+  },
+  {
+   "match_id": "E0-20260905-newcastle-bournemouth",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.013392857142857142,
+    "0.1": 0.27232142857142855,
+    "0.5": 0.7053571428571429
+   }
+  },
+  {
+   "match_id": "SC3-20260815-annan-athletic-clyde",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.013392857142857142,
+    "0.1": 0.26339285714285715,
+    "0.5": 0.6875
+   }
+  },
+  {
+   "match_id": "E1-20260901-portsmouth-derby",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.026785714285714284,
+    "0.1": 0.3080357142857143,
+    "0.5": 0.6875
+   }
+  },
+  {
+   "match_id": "F2-20261010-st-etienne-rodez",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.022321428571428572,
+    "0.1": 0.32589285714285715,
+    "0.5": 0.7321428571428571
+   }
+  },
+  {
+   "match_id": "P1-20260816-arouca-moreirense",
+   "features": 205,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.014634146341463415,
+    "0.1": 0.22926829268292684,
+    "0.5": 0.6195121951219512
+   }
+  },
+  {
+   "match_id": "SP1-20260824-malaga-la-coruna",
+   "features": 205,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.014634146341463415,
+    "0.1": 0.25365853658536586,
+    "0.5": 0.6878048780487804
+   }
+  },
+  {
+   "match_id": "I2-20260906-cremonese-padova",
+   "features": 217,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.018433179723502304,
+    "0.1": 0.271889400921659,
+    "0.5": 0.6175115207373272
+   }
+  },
+  {
+   "match_id": "SP2-20260829-sabadell-almeria",
+   "features": 200,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.015,
+    "0.1": 0.235,
+    "0.5": 0.6
+   }
+  },
+  {
+   "match_id": "E0-20260828-crystal-palace-man-city",
+   "features": 205,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.024390243902439025,
+    "0.1": 0.24390243902439024,
+    "0.5": 0.6390243902439025
+   }
+  },
+  {
+   "match_id": "SP2-20260906-eibar-granada",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.004464285714285714,
+    "0.001": 0.004464285714285714,
+    "0.01": 0.013392857142857142,
+    "0.1": 0.27232142857142855,
+    "0.5": 0.6830357142857143
+   }
+  },
+  {
+   "match_id": "SP1-20261010-real-madrid-villarreal",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.013392857142857142,
+    "0.1": 0.2544642857142857,
+    "0.5": 0.6294642857142857
+   }
+  },
+  {
+   "match_id": "SC0-20260829-kilmarnock-dundee-united",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.013392857142857142,
+    "0.1": 0.23660714285714285,
+    "0.5": 0.6071428571428571
+   }
+  },
+  {
+   "match_id": "F1-20260919-angers-troyes",
+   "features": 224,
+   "share_moving": {
+    "0.0001": 0.0,
+    "0.001": 0.0,
+    "0.01": 0.004464285714285714,
+    "0.1": 0.26339285714285715,
+    "0.5": 0.7455357142857143
+   }
+  }
+ ],
+ "feature_steps_mean": {
+  "0.0001": 0.0002232142857142857,
+  "0.001": 0.0004464285714285714,
+  "0.01": 0.014855348430288493,
+  "0.1": 0.26376392305582474,
+  "0.5": 0.6661850701565011
+ }
+}

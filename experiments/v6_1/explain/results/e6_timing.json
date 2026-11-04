@@ -1,0 +1,26 @@
+{
+ "matches": 30,
+ "cold_start_explainer_s": {
+  "result": 0.11102914810180664,
+  "home_goals": 0.0057468414306640625,
+  "away_goals": 0.10041403770446777,
+  "corners": 0.07585906982421875
+ },
+ "cold_start_total_s": 0.2930490970611572,
+ "page_three_cards_new_ms": {
+  "median": 97.77307510375977,
+  "p90": 149.47068691253662
+ },
+ "page_three_cards_old_ms": {
+  "median": 121.87981605529785,
+  "p90": 219.01652812957764
+ },
+ "attribution_only_ms": {
+  "median": 2.954721450805664,
+  "p90": 4.7162532806396475
+ },
+ "old_per_selection_ms": {
+  "median": 33.92946720123291,
+  "p90": 70.25270462036134
+ }
+}
