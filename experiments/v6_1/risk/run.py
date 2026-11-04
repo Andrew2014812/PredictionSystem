@@ -265,7 +265,9 @@ def stage_preregister(force: bool = False) -> dict:
             "conservative_window": list(S.CONSERVATIVE), "high_odds_window": list(S.HIGH_ODDS),
             "odds_bands": {k: list(v) for k, v in S.BANDS.items()},
             "calibration": "Platt per selection type on the previous season, p in [0.05, 0.75], >= 300 rows; "
-                           "blend: logistic on logit(p_model), logit(p_market); reliability test z >= -1.96, n >= 100"},
+                           "blend: logistic on logit(p_model), logit(p_market) per selection type (a type without its own "
+                           "fit uses the blend pooled over all types; no complete book -> Platt); reliability "
+                           "test z >= -1.96, n >= 100; all fitted on 2025/26 for the 2026/27 check"},
         "strategies_evaluated_on_2026": list(S.catalogue()) + ["odds band x EV floor grid (25 cells)"],
         "hypotheses": {
             "H1": "No Risk strategy has a positive ROI on 2026/27 (expected: all negative).",
