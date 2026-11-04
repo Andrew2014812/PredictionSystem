@@ -452,7 +452,7 @@ input, textarea { background: var(--input) !important; color: var(--text) !impor
 [data-baseweb="tab-list"] button p, [data-baseweb="tab"] p { color: var(--muted) !important; }
 [data-baseweb="tab-list"] button[aria-selected="true"] p { color: var(--text-strong) !important; }
 [data-baseweb="tab-border"] { background: var(--border) !important; }
-[data-testid="stVerticalBlockBorderWrapper"] { border-color: var(--border) !important; }
+[data-testid="stVerticalBlockBorderWrapper"], [data-testid="stVerticalBlock"] { border-color: var(--border) !important; }
 [data-testid="stSlider"] div, [data-testid="stSliderTickBarMin"], [data-testid="stSliderTickBarMax"] { color: var(--text) !important; }
 [data-testid="stAlertContainer"] { background: var(--surface-2) !important; color: var(--text) !important; }
 [data-testid="stMetricValue"], [data-testid="stMetricLabel"] p { color: var(--text-strong) !important; }
