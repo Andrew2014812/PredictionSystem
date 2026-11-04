@@ -116,9 +116,10 @@ def main() -> None:
     odds = load_api_odds()
     odds = odds.loc[odds["match_id"].isin(set(history["match_id"]) | set(played["match_id"]))] if not odds.empty else odds
     odds_by_match = {m: set(zip(g["market"], g["selection"])) for m, g in odds.groupby("match_id")} if len(odds) else {}
-    tours = {**load_json("tournaments.json", {}), **config.ODDSPAPI_TOURNAMENTS}
-    archive = archive_items()
     candidates = load_json("tournament_candidates.json", {})
+    seen = {code: e["found"] for code, e in candidates.get("leagues", {}).items() if e.get("found")}
+    tours = {**seen, **load_json("tournaments.json", {}), **config.ODDSPAPI_TOURNAMENTS}
+    archive = archive_items()
     settled = history.loc[history["status"].isin(["WON", "LOST", "PUSH"])]
     roles = settled.loc[settled["role"].isin(["main", "risk"])]
 

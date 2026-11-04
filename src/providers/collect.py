@@ -201,11 +201,14 @@ def oddspapi_tournaments(odp: OddsPapi, now, budget: int) -> dict[str, int]:
     ``tournament_candidates.json`` (committed) so the reason can be read, and the billable list is asked
     again only after TOURNAMENT_RECHECK_DAYS."""
     stored = api_storage.read_json("oddspapi/tournaments.json") if api_storage.exists("oddspapi/tournaments.json") else {}
-    found = {**stored, **config.ODDSPAPI_TOURNAMENTS}
+    report = api_storage.read_json(CANDIDATES_FILE) if api_storage.exists(CANDIDATES_FILE) else {}
+    # ids the last lookup found also count when tournaments.json lost them (the file is restored from main
+    # while a long run is merged), so a found league is not left unpriced until the monthly re-check
+    seen = {code: e["found"] for code, e in report.get("leagues", {}).items() if e.get("found")}
+    found = {**seen, **stored, **config.ODDSPAPI_TOURNAMENTS}
     missing = [lg for lg in enabled_leagues() if lg.code not in found]
     if not missing:
         return found
-    report = api_storage.read_json(CANDIDATES_FILE) if api_storage.exists(CANDIDATES_FILE) else {}
     checked = report.get("checked_at")
     if checked and now - datetime.fromisoformat(checked) < timedelta(days=TOURNAMENT_RECHECK_DAYS):
         return found

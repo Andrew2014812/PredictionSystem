@@ -141,6 +141,28 @@ def test_missing_tournaments_are_saved_and_asked_again_only_monthly(tmp_path, mo
     assert FakeApi.calls == 2
 
 
+def test_tournament_ids_found_earlier_are_used_without_asking_again(tmp_path, monkeypatch):
+    """tournaments.json can be restored from main while a long run is merged; the ids the last lookup
+    found (tournament_candidates.json) still count, so those leagues are priced before the monthly re-check."""
+    from datetime import datetime
+
+    from src import config
+    from src.providers import collect
+    from src.storage import LocalStorage
+    monkeypatch.setattr(collect, "api_storage", LocalStorage(tmp_path))
+    monkeypatch.setattr(config, "ODDSPAPI_TOURNAMENTS", {})
+    collect.api_storage.write_json("oddspapi/tournaments.json", {"E2": 24})
+    collect.api_storage.write_json(collect.CANDIDATES_FILE, {
+        "checked_at": "2026-11-04T16:51:57",
+        "leagues": {"T1": {"found": 52}, "SC2": {"found": 207}, "SC3": {"found": None}}})
+
+    class FakeApi:
+        def tournaments(self, now, budget):
+            raise AssertionError("the billable list must not be asked again")
+    found = collect.oddspapi_tournaments(FakeApi(), datetime(2026, 11, 5, 3, 17), 5)
+    assert found["T1"] == 52 and found["SC2"] == 207 and found["E2"] == 24 and "SC3" not in found
+
+
 # ---------------------------------------------------------------------------------------------- spellings
 def test_fixture_spellings_follow_the_results_files():
     from src.data.dataset import harmonise_fixture_names
@@ -281,3 +303,20 @@ def test_markets_are_compared_from_15_real_odds_bets():
     best, worst = best_and_worst(pd.DataFrame(rows), "group")
     assert best["group"] == "TOTALS" and worst["group"] == "BTTS"     # 14 bets: not compared with the others
     assert not best.get("small_sample")
+
+
+# ---------------------------------------------------------------------------------------------- team aliases
+def test_every_alias_is_found_by_its_normalised_name():
+    from src.providers import aliases
+    broken = {k: v for k, v in aliases.TEAM_ALIASES.items() if aliases.resolve(k) != v}
+    assert not broken
+
+
+def test_provider_names_of_the_unmapped_archive_fixtures_resolve():
+    """OddsPapi spellings that left 2026/27 T1 / SC2 fixtures unmapped in the archive."""
+    from src.providers.aliases import resolve
+    t1 = {"Amedspor", "Goztep", "Galatasaray", "Samsunspor", "Erzurumspor", "Kocaelispor"}
+    sc2 = {"Queen of Sth", "Peterhead", "East Kilbride", "Ross County"}
+    assert resolve("Amed Sportif Faaliyetler", t1) == "Amedspor"
+    assert resolve("Goztepe Izmir", t1) == "Goztep"
+    assert resolve("Queen of the South FC", sc2) == "Queen of Sth"
