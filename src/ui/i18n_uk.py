@@ -105,6 +105,11 @@ UK: dict[str, str] = {
     "Prediction set": "Набір прогнозів", "All market forecasts": "Усі прогнози ринків",
     "Match result (1X2)": "Результат матчу (1X2)", "FootPredict performance": "Ефективність FootPredict",
     "Main hit rate": "Влучність основних", "Main profit": "Прибуток основних", "Main ROI": "ROI основних",
+    "Main profit · units": "Прибуток основних · одиниці", "Profit · units": "Прибуток · одиниці",
+    "Profit is calculated using a fixed stake of 1 unit per prediction.":
+        "Прибуток розраховано за фіксованої ставки 1 одиниця на прогноз.",
+    "{n} refunded": "повернень: {n}", "Prob.": "Ймов.", "EV": "EV",
+    "test season, {n} matches, outcomes named as on the site": "тестовий сезон, матчів: {n}, результати названі як на сайті",
     "Fixed stake of 1 unit per prediction; profit and ROI use real bookmaker odds only. One main prediction per match.":
         "Фіксована ставка 1 одиниця на прогноз; прибуток і ROI — лише за реальними коефіцієнтами. Один основний "
         "прогноз на матч.",
