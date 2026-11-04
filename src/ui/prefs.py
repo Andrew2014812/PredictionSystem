@@ -95,7 +95,7 @@ def app_root() -> str:
 # draws, so this script — the first element of every page, run in the page itself (st.html) — reports
 # British English (day-first, like the DD.MM.YYYY dates) before the date field arrives; the
 # "languagechange" events also update a picker that was drawn earlier. Our own constant, no user input.
-_LANG_JS = """<script>
+_LANG_JS = """<script id="fp-lang">
 (function () {
   const app = window;
   try {

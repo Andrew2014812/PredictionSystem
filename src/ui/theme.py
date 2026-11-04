@@ -134,6 +134,7 @@ h1, h2, h3, h4, .page-title, .fp-brand, [data-testid="stTopNavLink"] p, .mh-team
 .kpi .value, .rec .grid .v, .outcome .grid .v, .mc-odds, td, .rm .s { font-variant-numeric: tabular-nums; }
 /* Streamlit's own controls are not part of FootPredict: menu, deploy / fork buttons, run indicator,
    decoration bar and footer are hidden (the run indicator stays in the page for the tests, only unseen) */
+[data-testid="stElementContainer"]:has(#fp-lang),
 [data-testid="stMainMenu"], [data-testid="stAppDeployButton"], [data-testid="stToolbarActions"],
 [data-testid="stStatusWidget"], [data-testid="stDecoration"], footer, #MainMenu,
 [data-testid="manage-app-button"], [data-testid="stBottomBlockContainer"] .stCaption:empty {
@@ -296,7 +297,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
   align-items: end; }
 .rec .grid .l, .rec .grid .v { white-space: nowrap; }
 .rec .grid .l .short { display: none; }
-@container (max-width: 720px) {
+@container (max-width: 640px) {
   .rec .grid .l .full { display: none; }
   .rec .grid .l .short { display: inline; }
 }
