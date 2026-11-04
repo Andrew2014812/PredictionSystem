@@ -90,6 +90,38 @@ def app_root() -> str:
 
 
 # The browser tab is always called "FootPredict" (Streamlit would show the page name).
+# The interface is English, but Streamlit's date picker follows the browser language (a Russian browser
+# showed "ноябрь" and Russian weekdays). Streamlit hands the picker ``navigator.language`` each time the page
+# draws, so this script — the first element of every page, run in the page itself (st.html) — reports
+# British English (day-first, like the DD.MM.YYYY dates) before the date field arrives; the
+# "languagechange" events also update a picker that was drawn earlier. Our own constant, no user input.
+_LANG_JS = """<script>
+(function () {
+  const app = window;
+  try {
+    if (app.navigator.language !== "en-GB") {
+      Object.defineProperty(app.navigator, "language", {get: () => "en-GB", configurable: true});
+      Object.defineProperty(app.navigator, "languages", {get: () => ["en-GB", "en"], configurable: true});
+    }
+    const ping = () => app.dispatchEvent(new Event("languagechange"));
+    ping();
+    if (!app.__fpLangWatch) {
+      app.__fpLangWatch = true;
+      new app.MutationObserver((records) => {
+        for (const r of records) for (const node of r.addedNodes) {
+          if (node.nodeType === 1 && (node.matches?.('[data-testid="stDateInput"], [role="dialog"], [role="grid"]')
+              || node.querySelector?.('[data-testid="stDateInput"], [role="grid"]'))) {
+            for (const ms of [40, 200, 600]) app.setTimeout(ping, ms);
+            return;
+          }
+        }
+      }).observe(app.document.body, {childList: true, subtree: true});
+    }
+  } catch (e) {}
+})();
+</script>"""
+
+
 HIDE_CLOUD_BADGES = True     # Streamlit Community Cloud's own corner badges (see _TITLE_JS)
 
 # The tab title is "FootPredict" in the app page and, on Streamlit Community Cloud, also in the hosting page
@@ -98,17 +130,6 @@ HIDE_CLOUD_BADGES = True     # Streamlit Community Cloud's own corner badges (se
 # right corner are hidden there. If Cloud ever serves that page from another origin, the browser blocks the
 # access and nothing happens (no error); the badges then stay, which is the only visible effect.
 _TITLE_JS = """<script>
-// The interface is English: Streamlit's date picker follows the browser language (a Russian browser
-// showed "ноябрь" and Russian weekdays), so the page reports British English to it — day-first like
-// FootPredict's DD.MM.YYYY dates — and asks it to re-read the language.
-try {
-  const app = window.parent;
-  if (app.navigator.language !== "en-GB") {
-    Object.defineProperty(app.navigator, "language", {get: () => "en-GB", configurable: true});
-    Object.defineProperty(app.navigator, "languages", {get: () => ["en-GB", "en"], configurable: true});
-    app.dispatchEvent(new Event("languagechange"));
-  }
-} catch (e) {}
 const docs = [window.parent.document];
 try { if (window.top !== window.parent && window.top.document) docs.push(window.top.document); } catch (e) {}
 for (const doc of docs) {
@@ -175,6 +196,7 @@ def _team_search() -> None:
 
 def top_bar() -> None:
     """Brand on the left, language and theme switches on the right."""
+    st.html(_LANG_JS, unsafe_allow_javascript=True)           # first: before any date field is drawn
     inject_css()
     query = urlencode(pref_params())
     target = app_root() + (f"?{query}" if query else "")

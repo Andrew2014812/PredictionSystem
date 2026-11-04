@@ -76,6 +76,10 @@ def test_the_calendar_is_english_in_a_russian_browser(browser, base_url):
         (field.locator("button").first if field.locator("button").count() else field).click()
         grid = app.page.locator('[role="grid"]').first
         expect(grid).to_be_visible()
+        try:                                   # the picker switches language right after it is drawn
+            app.page.wait_for_function("!/[А-Яа-яЁё]/.test(document.body.innerText)", timeout=5_000)
+        except Exception:                                        # noqa: BLE001 - the assertion below reports it
+            pass
         text = app.page.locator("body").inner_text()                       # the month header is in a popover
         assert not re.search(r"[А-Яа-яЁё]", text), text[-200:]              # nothing Russian anywhere
         heads = [h.strip() for h in grid.locator('[role="columnheader"], th').all_inner_texts() if h.strip()]
