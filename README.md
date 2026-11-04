@@ -420,9 +420,11 @@ python scripts/build_report.py                             # reports/FootPredict
 ### GitHub Actions and deployment
 
 The deployed app (Streamlit Community Cloud) is built from `main`. `.github/workflows/update-data.yml` runs
-**every day at about 11:15 Kyiv time** in `full` mode: two cron lines (08:17 and 09:17 UTC — off the full
-hour, when GitHub often drops scheduled runs) and a guard step that keeps only the one matching Kyiv's current
-UTC offset, so the time stays right across summer / winter time.
+**every day at about 03:17 Kyiv time** in `full` mode: one cron line written in the `Europe/Kyiv` time zone
+(off the full hour, when GitHub often drops scheduled runs). On the spring clock change 03:17 does not exist
+and GitHub starts the run at the next valid time (about 04:00); on the autumn change 03:17 happens twice, and
+the "Once a day" step skips the repeat because the last daily run's Kyiv date is committed in
+`local_data/daily_run.json`. A run that GitHub starts late still runs.
 It can also be started by hand (*Actions → Update data and predictions → Run workflow*) with the mode —
 `results` (free), `odds`, `full` or `history` (the OddsPapi archive of played matches: download, then — on
 the newest `main` — add the archive, complete stored predictions and regenerate the season backtest; the

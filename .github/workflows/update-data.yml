@@ -1,6 +1,6 @@
 # Data update: results, fixtures, real odds and predictions.
 #
-# Every day at about 11:00 Kyiv time (automatic) and on demand: GitHub → Actions →
+# Every day at about 03:17 Kyiv time (automatic) and on demand: GitHub → Actions →
 # "Update data and predictions" → "Run workflow".
 #
 #   results  — new results and fixtures, refreshed predictions. Free: no odds quota.
@@ -17,10 +17,12 @@
 # Optional (manual runs): limit the odds update to one league (E0, SP1 …), one match day
 # (YYYY-MM-DD) or one match id, and "force" to re-price inside the refresh window.
 #
-# Kyiv is UTC+3 in summer and UTC+2 in winter, and cron runs in UTC, so two schedules exist
-# (08:17 and 09:17 UTC) and the "time" step lets exactly one of them continue each day.
-# GitHub may start scheduled runs late; the check uses the schedule that fired, not the clock.
-#
+# The schedule is written in Kyiv time (IANA time zone, supported by GitHub since March 2026), so
+# summer and winter time need no second schedule. On the spring switch day 03:17 does not exist and
+# GitHub starts the run at the next valid time (about 04:00); on the autumn switch day 03:17 happens
+# twice. The "once a day" step keeps one scheduled run per Kyiv date: it reads the date of the last
+# successful daily run (local_data/daily_run.json, committed with the data) and skips a repeat. A run
+# that GitHub starts late still runs, and a failed run does not block a manual rerun the same day.
 # The run commits local_data/ to main; Streamlit Cloud redeploys automatically and a local
 # checkout catches up with `git pull`. Quotas: `python scripts/odds_credits.py` (also printed
 # in the run summary). If an API is down or a quota is exhausted, the run keeps the existing data.
@@ -28,8 +30,8 @@ name: Update data and predictions
 
 on:
   schedule:
-    - cron: "17 8 * * *"     # 11:17 Kyiv in summer (UTC+3); not on the hour, when GitHub drops runs
-    - cron: "17 9 * * *"     # 11:17 Kyiv in winter (UTC+2)
+    - cron: "17 3 * * *"     # 03:17 in Kyiv all year; not on the hour, when GitHub drops runs
+      timezone: "Europe/Kyiv"
   workflow_dispatch:
     inputs:
       mode:
@@ -78,22 +80,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: ${{ inputs.mode == 'history' && 330 || 75 }}
     steps:
-      - name: Daily run at 11:00 Kyiv only
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Once a day
         id: time
         run: |
           if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
-          offset=$(TZ=Europe/Kyiv date +%z)          # +0300 in summer, +0200 in winter
-          want="17 9 * * *"; [ "$offset" = "+0300" ] && want="17 8 * * *"
-          if [ "${{ github.event.schedule }}" = "$want" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
+          today=$(TZ=Europe/Kyiv date +%F)
+          last=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("kyiv_date",""))' \
+                 local_data/daily_run.json 2>/dev/null || true)
+          if [ "$last" = "$today" ]; then
             echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "Kyiv offset $offset: this is the other daily schedule, skipping." >> "$GITHUB_STEP_SUMMARY"
+            echo "The daily update for $today (Kyiv) has already run, skipping this repeat." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "kyiv_date=$today" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/checkout@v4
-        if: steps.time.outputs.run == 'true'
-        with:
-          ref: main
       - uses: actions/setup-python@v5
         if: steps.time.outputs.run == 'true'
         with:
@@ -170,6 +173,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            printf '{"kyiv_date": "%s", "finished_at_utc": "%s", "run_id": "%s"}\n' \
+              "${{ steps.time.outputs.kyiv_date }}" "$(date -u +%FT%TZ)" "${{ github.run_id }}" > local_data/daily_run.json
+          fi
           git add local_data
           if git diff --cached --quiet; then
             echo "No data changes."
