@@ -102,7 +102,7 @@ def evaluate(V: pd.DataFrame, fit: SE.Fitted, stored: pd.DataFrame | None = None
 
 def clv_live(V2: pd.DataFrame, picks: pd.DataFrame) -> dict:
     u = SE.universe(V2)
-    x = u.iloc[picks["row"].to_numpy()]
+    x = u.iloc[picks.loc[picks["bet"].to_numpy(bool), "row"].to_numpy()]      # only the staked picks
     o, oc = x["o_b365"].to_numpy(float), x["o_b365_c"].to_numpy(float)
     qc = x["q_b365_c_shin"].to_numpy(float)
     st = x["status"].to_numpy()

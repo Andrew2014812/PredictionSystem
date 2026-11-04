@@ -39,6 +39,10 @@
   "figures": {
    "minutes": 0.07,
    "finished": "2026-11-04 12:50:41"
+  },
+  "independent": {
+   "minutes": 0.28,
+   "finished": "2026-11-04 12:52:04"
   }
  },
  "environment": {
@@ -57,7 +61,7 @@
    "reportlab": "5.1.0",
    "pypdfium2": null
   },
-  "git_sha": "77daa4f1f022293190826b20bff24c23b737a0cc",
+  "git_sha": "76dfbfd6ac4cb44621a3a37a29e008be892154e3",
   "n_jobs": 3,
   "seed": 20261104,
   "n_boot": 2000
