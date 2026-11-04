@@ -1,0 +1,153 @@
+{
+ "written_at": "2026-11-04T12:16:20",
+ "code_commit": "602866531aed06e1f4f74a8ec2e77774989396f1",
+ "chosen_on": [
+  "2023/24",
+  "2024/25"
+ ],
+ "information_only": [
+  "2025/26"
+ ],
+ "independent_check": "2026/27 production history: unified_history(store.load_picks()) season 2026 and store.load_markets() (pre-kick-off probabilities, recorded / archived real prices); Main of each match = the stored Main; calibrators fitted on 2025/26 walk-forward predictions; matches settled in the data snapshot below",
+ "data_snapshot": {
+  "local_data_commit": "bf7ccd00976713cc9e6b75d7a590e9ce1ec5423b",
+  "sha256": {
+   "markets.parquet": "43661aa739119428f8db0e0433899141591198335518e5e909b2f739d99b6bb0",
+   "picks.parquet": "1d038e94e994acc9e0b36e08f01b833a6cb0a35c4449a381e495cf131523ee16",
+   "snapshots.parquet": "d0bbf93316b7c44b6180230899050f40643f99e717518ab4457ae6dc95cd472e",
+   "versions.parquet": "4d61b3bc80aff9038b786ab20e0982712d556fea0cecefaaf37116295f967cc2"
+  }
+ },
+ "selection_rule": "constraints on BOTH 2023/24 and 2024/25: a Risk for >= 99.5 % of the matches with a Main, >= 85 % of the settled Risk picks priced, average odds of the bets >= 2.80; preferred = the highest pooled 2023+2024 ROI among the rules whose ROI is higher than the current rule's on BOTH seasons (ties: the higher worst-season ROI), otherwise the current rule; challenger = the best eligible non-current rule by pooled ROI, tested on 2026/27 in any case",
+ "constraints": {
+  "min_coverage_of_main": 0.995,
+  "min_priced_share": 0.85,
+  "min_avg_odds": 2.8
+ },
+ "preferred_strategy": "Calibrated Risk (бленд с рынком), пол ≥0 %",
+ "challenger_strategy": "Calibrated Risk (бленд с рынком), пол ≥0 %",
+ "best_by_family": {
+  "floor": "Пол EV ≥−8 %",
+  "calibrated": "Calibrated Risk, пол ≥−8 %",
+  "calibrated_blend": "Calibrated Risk (бленд с рынком), пол ≥0 %"
+ },
+ "frozen_parameters": {
+  "risk_min_probability": 0.12,
+  "current_preferred_odds": [
+   3.0,
+   6.0
+  ],
+  "softness": 0.2,
+  "probability_power": 0.5,
+  "ev_floors": {
+   "≥0 %": 0.0,
+   "≥−3 %": -0.03,
+   "≥−5 %": -0.05,
+   "≥−8 %": -0.08,
+   "нет": null
+  },
+  "conservative_window": [
+   2.5,
+   3.5
+  ],
+  "high_odds_window": [
+   4.5,
+   8.0
+  ],
+  "odds_bands": {
+   "2.50–3.00": [
+    2.5,
+    3.0
+   ],
+   "3.00–3.50": [
+    3.0,
+    3.5
+   ],
+   "3.50–5.00": [
+    3.5,
+    5.0
+   ],
+   "5.00–6.00": [
+    5.0,
+    6.0
+   ],
+   ">6.00": [
+    6.0,
+    null
+   ]
+  },
+  "calibration": "Platt per selection type on the previous season, p in [0.05, 0.75], >= 300 rows; blend: logistic on logit(p_model), logit(p_market) per selection type (a type without its own fit uses the blend pooled over all types; no complete book -> Platt); reliability test z >= -1.96, n >= 100; all fitted on 2025/26 for the 2026/27 check"
+ },
+ "strategies_evaluated_on_2026": [
+  "Текущий Risk",
+  "Value Risk (EV ≥ 0)",
+  "Пол EV ≥−3 %",
+  "Пол EV ≥−5 %",
+  "Пол EV ≥−8 %",
+  "Max-EV Risk",
+  "Calibrated Risk, пол ≥0 %",
+  "Calibrated Risk (бленд с рынком), пол ≥0 %",
+  "Calibrated Risk, пол ≥−3 %",
+  "Calibrated Risk (бленд с рынком), пол ≥−3 %",
+  "Calibrated Risk, пол ≥−5 %",
+  "Calibrated Risk (бленд с рынком), пол ≥−5 %",
+  "Calibrated Risk, пол ≥−8 %",
+  "Calibrated Risk (бленд с рынком), пол ≥−8 %",
+  "Calibrated Risk, пол нет",
+  "Calibrated Risk (бленд с рынком), пол нет",
+  "Market-specific Risk",
+  "Conservative Risk (2.50–3.50)",
+  "High-odds Risk (4.50–8.00)",
+  "odds band x EV floor grid (25 cells)"
+ ],
+ "hypotheses": {
+  "H1": "No Risk strategy has a positive ROI on 2026/27 (expected: all negative).",
+  "H2": "The preferred / challenger strategy has a higher ROI than the current rule on 2026/27.",
+  "H3": "In p 0.12-0.40 the model over-estimates rare outcomes (observed < mean p) on 2026/27.",
+  "H4": "Among priced Risk candidates realised ROI rises with model EV with a slope well below 1."
+ },
+ "decision_criteria_for_a_future_production_change": {
+  "C1": "challenger (or preferred, if not the current rule) ROI on 2026/27 > current ROI on 2026/27",
+  "C2": "paired match-bootstrap 95 % CI of the ROI difference on 2026/27 entirely above 0",
+  "C3": "ROI difference > 0 in each of 2023/24, 2024/25, 2025/26 and 2026/27",
+  "rule": "replace the current Risk only if C1, C2 and C3 all hold; otherwise keep it and re-test when the 2026/27 history has at least twice as many settled priced Risk bets"
+ },
+ "pre_registration_values_on_history": {
+  "Текущий Risk": {
+   "family": "current",
+   "pooled_roi": -0.06553404691414257,
+   "worst_roi": -0.07170476911430734,
+   "rois": [
+    -0.07170476911430734,
+    -0.05932856272838004
+   ],
+   "min_avg_odds": 3.5007704019488433,
+   "min_priced_share": 0.9143133997785161,
+   "min_coverage_of_main": 1.0,
+   "meets_constraints": true,
+   "better_than_current_both": false,
+   "pooled_diff_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "Calibrated Risk (бленд с рынком), пол ≥0 %": {
+   "family": "calibrated_blend",
+   "pooled_roi": -0.04824873474248288,
+   "worst_roi": -0.05520035487209818,
+   "rois": [
+    -0.04120335681102952,
+    -0.05520035487209818
+   ],
+   "min_avg_odds": 3.105941855237524,
+   "min_priced_share": 0.939991548105367,
+   "min_coverage_of_main": 1.0,
+   "meets_constraints": true,
+   "better_than_current_both": true,
+   "pooled_diff_ci95": [
+    -0.00716128945350647,
+    0.044391434639692307
+   ]
+  }
+ }
+}
