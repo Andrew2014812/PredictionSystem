@@ -169,3 +169,14 @@ def snapshot(match_id: str) -> pd.Series | None:
         return None
     rows = s.loc[s["match_id"] == match_id]
     return rows.iloc[0] if not rows.empty else None
+
+
+def outcome_rule_metrics() -> dict | None:
+    """Test-season class metrics of the outcome rule really in use (Model Analysis)."""
+    return _outcome_rule_metrics(_mtime(predictions_storage.path(store.SNAPSHOTS)))
+
+
+@st.cache_data(show_spinner=False)
+def _outcome_rule_metrics(_key: float) -> dict | None:
+    from ..analytics.outcome_rule import rule_metrics
+    return rule_metrics(snapshots(), features())

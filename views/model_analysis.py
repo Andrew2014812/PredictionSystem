@@ -140,8 +140,21 @@ def _draw_section(task: dict) -> None:
         st.html(html_table(pd.DataFrame(compare), formats=f2, align_right=tuple(f2)))
 
 
+def _rule_metrics(task: dict) -> dict:
+    """The test-season metrics of the stored model with the outcome-choice metrics (matrix, accuracy, F1,
+    shares) of the rule really in use; log loss and Brier are the probabilities' and stay as stored."""
+    m = dict(task["test_metrics"])
+    rule = data.outcome_rule_metrics()
+    if rule and rule["n"] == m.get("n"):
+        for key in ("confusion_matrix", "accuracy", "macro_f1", "balanced_accuracy", "recall", "precision",
+                    "predicted_share", "actual_share"):
+            m[key] = rule[key]
+    return m
+
+
 def _classifier(task: dict) -> None:
-    m = task["test_metrics"]
+    m = _rule_metrics(task)
+    task = {**task, "test_metrics": m}
     _class_metrics(m)
     _draw_section(task)
     bench = task.get("benchmarks", {})
@@ -158,7 +171,7 @@ def _classifier(task: dict) -> None:
     c = colors()
     c1, c2 = st.columns([1, 1.1], gap="medium")
     with c1:
-        section(t("Confusion matrix"), t("test season, {n} matches", n=f"{m['n']:,}"))
+        section(t("Confusion matrix"), t("test season, {n} matches, outcomes named as on the site", n=f"{m['n']:,}"))
         cm = m["confusion_matrix"]
         labels = [t("Home"), t("Draw"), t("Away")]
         z = [[cm[a][p] for a in range(3)] for p in range(3)]
