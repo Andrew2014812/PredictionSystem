@@ -289,7 +289,23 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 .rec.main .tag { color: var(--accent); } .rec.risk .tag { color: var(--risk); }
 .rec .pick { font-size: 1.35rem; font-weight: var(--w-heavy); margin: .3rem 0 .1rem 0; color: var(--text-strong); }
 .rec .mkt { color: var(--muted); font-size: .82rem; }
-.rec .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: .5rem; margin-top: .8rem; }
+.rec { container-type: inline-size; }
+/* one row of metrics in both cards: one column per metric, values on one line; a narrow card (Risk at
+   125 % zoom) shows short labels instead of wrapping */
+.rec .grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; margin-top: .8rem;
+  align-items: end; }
+.rec .grid .l, .rec .grid .v { white-space: nowrap; }
+.rec .grid .l .short { display: none; }
+@container (max-width: 720px) {
+  .rec .grid .l .full { display: none; }
+  .rec .grid .l .short { display: inline; }
+}
+@container (max-width: 470px) {
+  .rec div.grid { gap: .3rem; }
+  .rec .grid div.l { letter-spacing: .02em; font-size: .64rem; }
+  .rec .grid div.v { font-size: .92rem; }
+  .rec .grid div.v .status { padding: 1px 5px; font-size: .64rem; }
+}
 .rec .grid .v.na { font-weight: 500; font-size: .85rem; color: var(--muted); }
 .rec .grid .l { color: var(--faint); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
 .rec .grid .v { font-weight: var(--w-heavy); font-size: 1.05rem; color: var(--text-strong); }

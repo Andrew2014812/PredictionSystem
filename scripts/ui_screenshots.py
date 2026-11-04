@@ -75,8 +75,9 @@ def main() -> None:
                         url += ("&" if "?" in url else "?") + f"theme={theme}"
                         page.goto(url, timeout=120_000)
                         page.wait_for_selector(".fp-brand", timeout=120_000)
-                        page.wait_for_function("document.querySelector('[data-testid=stStatusWidget]') === null",
-                                               timeout=120_000)
+                        page.wait_for_function("document.querySelector('[data-testid=stStatusWidget]') === null"
+                                               " && (document.querySelector('[data-testid=stMainBlockContainer]')"
+                                               "?.innerText.length || 0) > 400", timeout=180_000)
                         page.wait_for_timeout(2500)
                         page.screenshot(path=str(out / f"{name}_{theme}_{size}.png"), full_page=False)
                         print("saved", name, theme, size, flush=True)
