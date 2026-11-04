@@ -180,15 +180,12 @@ def chain_inputs(row: pd.DataFrame, bundles: dict, names: tuple[str, ...]) -> Ch
             bundle = bundles[task]
             X = bundle.matrix(row)
             ex = _explainer(bundle)
-            cache[task] = (X, np.asarray(ex.shap_values(X)), np.atleast_1d(np.asarray(ex.expected_value, float)),
-                           bundle.model.predict(X, output_margin=True))
+            cache[task] = (X, np.asarray(ex.shap_values(X)), np.atleast_1d(np.asarray(ex.expected_value, float)))
             means.update(bundle.extra.get("feature_means", {}))
-        X, sv, ev, margin = cache[task]
-        if task == "result":
-            c = RESULT_CLASSES.index(name[-1])
-            contrib, m, b = sv[0, :, c], float(np.atleast_2d(margin)[0, c]), float(ev[c])
-        else:
-            contrib, m, b = sv[0], float(np.ravel(margin)[0]), float(ev[0])
+        X, sv, ev = cache[task]
+        contrib = sv[0, :, RESULT_CLASSES.index(name[-1])] if task == "result" else sv[0]
+        b = float(ev[RESULT_CLASSES.index(name[-1])] if task == "result" else ev[0])
+        m = b + float(contrib.sum())            # TreeSHAP local accuracy: the model's margin output
         s, v = _collapse_one_hot(pd.Series(contrib, index=X.columns), X.iloc[0])
         cols[name] = s
         values = v if values is None else values.combine_first(v)
