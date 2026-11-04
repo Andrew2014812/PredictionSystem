@@ -1,6 +1,8 @@
 """v6.1 data fixes: verified provider ids (Barcelona / Espanyol) and one prediction per moved match."""
 import json
 
+import pytest
+
 import numpy as np
 import pandas as pd
 
@@ -210,3 +212,24 @@ def test_past_days_without_results_are_asked_again_within_the_plan(monkeypatch):
     assert overdue_days(m, now, today) == [date(2026, 11, 1), date(2026, 11, 3)]
     monkeypatch.setattr(config, "API_FOOTBALL_PLAN_DAYS_BACK", 1)             # the free plan
     assert overdue_days(m, now, today) == []                                  # yesterday is asked anyway
+
+
+def test_a_market_average_price_is_replaced_by_a_real_quote_or_removed():
+    from src.prediction.history_repair import AVERAGE, replace_average_prices
+    picks = pd.DataFrame({
+        "match_id": ["m1", "m2"], "source": ["live", "live"], "role": ["main", "risk"],
+        "market": ["1X2", "TOTAL_2.5"], "selection": ["H", "OVER"], "probability": [0.6, 0.4],
+        "odds": [2.10, 2.60], "bookmaker": [AVERAGE, AVERAGE], "provider": ["football_data"] * 2,
+        "real_odds": [True, True], "ev": [0.26, 0.04], "status": ["WON", "LOST"], "profit": [1.10, -1.0],
+        "odds_priced_at": pd.to_datetime(["2026-10-02", "2026-10-02"])})
+    quotes = pd.DataFrame({"match_id": ["m1"], "market": ["1X2"], "selection": ["H"], "odds": [2.0],
+                           "bookmaker": ["bet365"], "provider": ["oddspapi"],
+                           "collected_at": pd.to_datetime(["2026-10-03 10:00"])})
+    out, replaced, removed = replace_average_prices(picks, quotes, pd.Series(dtype=float))
+    assert (replaced, removed) == (1, 1)
+    a, b = out.iloc[0], out.iloc[1]
+    assert (a["odds"], a["bookmaker"], a["odds_origin"], a["replaced_average_odds"]) == (2.0, "bet365", "average_replaced", 2.10)
+    assert a["profit"] == pytest.approx(1.0) and a["selection"] == "H" and a["status"] == "WON"     # pick unchanged
+    assert np.isnan(b["odds"]) and np.isnan(b["profit"]) and not b["real_odds"] and b["status"] == "LOST"
+    again, r2, d2 = replace_average_prices(out, quotes, pd.Series(dtype=float))
+    assert (r2, d2) == (0, 0)                                                   # safe to run every day
