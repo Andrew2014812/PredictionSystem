@@ -140,7 +140,9 @@ def test_why_card_shows_relative_model_influence_and_the_chain(app, predicted_da
     rows = card.locator(".fx")
     assert 3 <= rows.count() <= 5
     shares = [int(x.rstrip("%")) for x in card.locator(".fx-s").all_inner_texts()]
-    assert all(0 <= x <= 100 for x in shares) and shares == sorted(shares, reverse=True)   # by influence
+    support = [int(x.rstrip("%")) for x in card.locator(".fx:not(:has(.against)) .fx-s").all_inner_texts()]
+    assert all(0 <= x <= 100 for x in shares) and support == sorted(support, reverse=True)   # by influence
+    assert card.locator(".fx .against").count() <= 1
     text = card.inner_text()
     for old in ("Share of the model’s reasoning", "SHARE OF THE MODEL", "Recent record", "RECENT RECORD",
                 "biggest reasons", "percentage points", " pp"):

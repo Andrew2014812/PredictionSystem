@@ -40,6 +40,7 @@ _PREFIX = re.compile(r"^(Home team|Away team) · ")
 NO_SHARE_GROUPS = {"EXACT_SCORE"}
 MAX_FACTORS = 5
 MIN_SHARE = 0.03          # a supporting factor below 3 % of the influence is shown only to make up three
+MIN_AGAINST = 0.10        # the strongest factor against is shown only when it really matters
 MIN_RESULT_SHARE = 0.25   # the 1X2 forecast is mentioned for a goal market when it carries this much
 INFLUENCE_TIP = ("Only the most influential factors are shown. Percentages represent their share of total "
                  "model influence.")
@@ -97,8 +98,9 @@ def factor_table(explanation: pd.DataFrame) -> pd.DataFrame:
 
 def card_factors(explanation: pd.DataFrame, home: str, away: str, lang: str = "en",
                  limit: int = MAX_FACTORS) -> list[CardFactor]:
-    """The most influential factors in order of influence (3–5; one working against the selection
-    is shown and tagged like any other). ``explanation``: columns feature, contribution (or shap), value."""
+    """The most influential factors for the selection in order of influence (3–5), then the strongest
+    factor against it when it carries ≥ 10 % of the influence (tagged on the card).
+    ``explanation``: columns feature, contribution (or shap), value."""
     if explanation is None or explanation.empty:
         return []
     values = {str(r.feature): r.value for r in explanation.itertuples(index=False)}
@@ -117,9 +119,14 @@ def card_factors(explanation: pd.DataFrame, home: str, away: str, lang: str = "e
         else:
             evidence = _fmt(first, values[first])
         out.append(CardFactor(g.key, name, evidence, float(g.share), g.contribution > 0))
-    # the most influential factors whatever their direction (a factor against is tagged on the card),
-    # at least three, then only those with a real part of the influence
-    return [f for i, f in enumerate(out[:limit]) if i < 3 or f.share >= MIN_SHARE]
+    # the card answers "why this selection": the most influential factors FOR it (at least three, then
+    # only those with a real part of the influence), then the strongest factor against it when it matters
+    support = [f for f in out if f.supports]
+    against = [f for f in out if not f.supports]
+    chosen = [f for i, f in enumerate(support[:limit]) if i < 3 or f.share >= MIN_SHARE]
+    if against and against[0].share >= MIN_AGAINST:
+        chosen = (chosen[:limit - 1] if len(chosen) >= limit else chosen) + [against[0]]
+    return chosen
 
 
 # ----------------------------------------------------------------------------- the summary note
