@@ -1,0 +1,78 @@
+{
+ "updated_at": "2026-11-04T12:14:43",
+ "git_head": "f282856602dc2c261b005d88d11d498c64c2b08d",
+ "branch": "worktree-agent-ae2d26de4b5d51249",
+ "python": "3.12.12",
+ "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+ "packages": {
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2",
+  "scipy": "1.18.1",
+  "statsmodels": "0.15.0",
+  "reportlab": "5.1.0",
+  "lightgbm": "4.7.0",
+  "catboost": "1.2.10"
+ },
+ "production_model_version": "prod_20261012",
+ "xgboost_threads": 3,
+ "bootstrap_replicates": 2000,
+ "risk_config": {
+  "RISK_MIN_PROBABILITY": 0.12,
+  "RISK_PREFERRED_ODDS": [
+   3.0,
+   6.0
+  ],
+  "RISK_ODDS_SOFTNESS": 0.2,
+  "RISK_EV_WEIGHT": 0.0,
+  "RISK_UNPRICED_FACTOR": 0.8,
+  "RISK_PROBABILITY_POWER": 0.5
+ },
+ "stage_minutes": {
+  "history": 3.1108073155085245,
+  "analysis": 1.2174762964248658
+ },
+ "model_blocks": {
+  "2022": {
+   "train_rows": 7316,
+   "fit_seconds": {
+    "result": 2.7842726707458496,
+    "home_goals": 0.31595659255981445,
+    "away_goals": 1.5937459468841553,
+    "corners": 2.0194547176361084
+   },
+   "wall_seconds": 7.093082666397095
+  },
+  "2023": {
+   "train_rows": 14594,
+   "fit_seconds": {
+    "result": 4.118256092071533,
+    "home_goals": 0.4330024719238281,
+    "away_goals": 2.5108602046966553,
+    "corners": 2.6163687705993652
+   },
+   "wall_seconds": 9.901319026947021
+  },
+  "2024": {
+   "train_rows": 21841,
+   "fit_seconds": {
+    "result": 6.971525430679321,
+    "home_goals": 0.7395131587982178,
+    "away_goals": 4.617599010467529,
+    "corners": 5.630747556686401
+   },
+   "wall_seconds": 18.26553511619568
+  },
+  "2025": {
+   "train_rows": 28970,
+   "fit_seconds": {
+    "result": 7.581716060638428,
+    "home_goals": 0.905815601348877,
+    "away_goals": 3.8156304359436035,
+    "corners": 3.9379043579101562
+   },
+   "wall_seconds": 16.487360954284668
+  }
+ }
+}
