@@ -94,3 +94,46 @@ def test_a_refund_is_neither_won_nor_lost_but_is_reported():
                      "generated_at": "2026-10-31", "status": "PUSH", "home_goals": 3, "away_goals": 1}])
     s = summarize(picks.loc[picks["role"] == "risk"])
     assert (s["settled"], s["push"], s["bets"]) == (0, 1, 0)
+
+
+# ---------------------------------------------------------------------------------------------- OddsPapi tournaments
+TOURS = [
+    {"tournamentId": 52, "tournamentName": "Süper Lig", "categoryName": "Türkiye", "categorySlug": "turkiye"},
+    {"tournamentId": 98, "tournamentName": "1. Lig", "categoryName": "Türkiye", "categorySlug": "turkiye"},
+    {"tournamentId": 207, "tournamentName": "League One", "categoryName": "Scotland", "categorySlug": "scotland"},
+    {"tournamentId": 24, "tournamentName": "League One", "categoryName": "England", "categorySlug": "england"},
+]
+
+
+def test_a_turkish_league_is_found_under_the_turkiye_spelling():
+    from src.leagues import get_league
+    from src.providers.collect import match_tournament
+    tid, candidates = match_tournament(get_league("T1"), TOURS)
+    assert tid == 52 and {c["tournamentId"] for c in candidates} == {52, 98}
+    assert match_tournament(get_league("SC2"), TOURS)[0] == 207            # not England's League One
+
+
+def test_missing_tournaments_are_saved_and_asked_again_only_monthly(tmp_path, monkeypatch):
+    from datetime import datetime, timedelta
+
+    from src import config
+    from src.providers import collect
+    from src.storage import LocalStorage
+    monkeypatch.setattr(collect, "api_storage", LocalStorage(tmp_path))
+    monkeypatch.setattr(config, "ODDSPAPI_TOURNAMENTS", {})
+
+    class FakeApi:
+        calls = 0
+
+        def tournaments(self, now, budget):
+            FakeApi.calls += 1
+            return TOURS
+    now = datetime(2026, 11, 4, 3, 17)
+    found = collect.oddspapi_tournaments(FakeApi(), now, 5)
+    assert found["T1"] == 52 and found["SC2"] == 207 and "SC3" not in found
+    report = collect.api_storage.read_json(collect.CANDIDATES_FILE)
+    assert report["leagues"]["SC3"]["found"] is None and report["leagues"]["SC3"]["country_tournaments"]
+    collect.oddspapi_tournaments(FakeApi(), now + timedelta(days=1), 5)          # SC3 still missing
+    assert FakeApi.calls == 1                                                     # but no billable repeat
+    collect.oddspapi_tournaments(FakeApi(), now + timedelta(days=31), 5)
+    assert FakeApi.calls == 2

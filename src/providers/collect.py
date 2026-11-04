@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import logging
 import time
+import unicodedata
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -139,33 +140,72 @@ def _extended_priority(candidate: tuple) -> tuple:
 # Names under which the leagues appear in OddsPapi's tournament list (matched with the country).
 ODDSPAPI_NAMES = {
     "E0": ("premier league",), "E1": ("championship",), "E2": ("league one",), "E3": ("league two",),
-    "SC0": ("premiership",), "SC1": ("championship",), "SC2": ("league one",), "SC3": ("league two",),
+    "SC0": ("premiership",), "SC1": ("championship",),
+    "SC2": ("league one", "league 1", "scottish league one", "spfl league one"),
+    "SC3": ("league two", "league 2", "scottish league two", "spfl league two"),
     "SP1": ("laliga", "la liga"), "SP2": ("laliga 2", "la liga 2", "segunda", "laliga hypermotion"),
     "I1": ("serie a",), "I2": ("serie b",), "D1": ("bundesliga",), "D2": ("2. bundesliga", "2 bundesliga"),
     "F1": ("ligue 1",), "F2": ("ligue 2",), "N1": ("eredivisie",), "B1": ("pro league", "jupiler pro league",
                                                                         "first division a"),
-    "P1": ("liga portugal", "primeira liga", "liga portugal betclic"), "T1": ("super lig", "süper lig", "trendyol super lig"),
+    "P1": ("liga portugal", "primeira liga", "liga portugal betclic"),
+    "T1": ("super lig", "superlig", "trendyol super lig"),
     "G1": ("super league", "super league 1", "stoiximan super league"),
 }
+# The provider's category (country) may use another spelling of the country.
+ODDSPAPI_COUNTRIES = {"Turkey": ("turkey", "turkiye")}
+TOURNAMENT_RECHECK_DAYS = 30           # /tournaments is billable: ask again at most once a month
+CANDIDATES_FILE = "oddspapi/tournament_candidates.json"
+
+
+def _plain(text) -> str:
+    """Lower case without accents: "Türkiye Süper Lig" -> "turkiye super lig"."""
+    folded = unicodedata.normalize("NFKD", str(text or ""))
+    return " ".join("".join(c for c in folded if not unicodedata.combining(c)).lower().split())
+
+
+def match_tournament(league, tours: list[dict]) -> tuple[int | None, list[dict]]:
+    """The OddsPapi tournament of a league (country + one of its names, unique) and every tournament of
+    that country (kept for the diagnosis when nothing or more than one matches)."""
+    countries = ODDSPAPI_COUNTRIES.get(league.country, (_plain(league.country),))
+    names = {_plain(n) for n in ODDSPAPI_NAMES.get(league.code, (league.name,))}
+    in_country = [t for t in tours
+                  if any(c in _plain(f"{t.get('categoryName', '')} {t.get('categorySlug', '')}") for c in countries)]
+    hits = [t for t in in_country if _plain(t.get("tournamentName", "")) in names]
+    keep = ("tournamentId", "tournamentName", "tournamentSlug", "categoryName", "categorySlug",
+            "futureFixtures", "upcomingFixtures", "liveFixtures")
+    candidates = [{k: t[k] for k in keep if k in t} for t in in_country]
+    return (int(hits[0]["tournamentId"]) if len(hits) == 1 else None), candidates
 
 
 def oddspapi_tournaments(odp: OddsPapi, now, budget: int) -> dict[str, int]:
     """League code -> OddsPapi tournament id: configured ids, then a stored map, then one
-    /tournaments request (cached) matched on country + league name; ambiguous names are skipped."""
+    /tournaments request matched on country + league name (accents ignored); ambiguous names are skipped.
+    For leagues still missing, the provider's tournaments of that country are saved to
+    ``tournament_candidates.json`` (committed) so the reason can be read, and the billable list is asked
+    again only after TOURNAMENT_RECHECK_DAYS."""
     stored = api_storage.read_json("oddspapi/tournaments.json") if api_storage.exists("oddspapi/tournaments.json") else {}
     found = {**stored, **config.ODDSPAPI_TOURNAMENTS}
     missing = [lg for lg in enabled_leagues() if lg.code not in found]
-    if missing:
-        tours = odp.tournaments(now, budget)
-        for lg in missing:
-            names = ODDSPAPI_NAMES.get(lg.code, (lg.name.lower(),))
-            hits = [t for t in tours
-                    if lg.country.lower() in f"{t.get('categoryName', '')} {t.get('categorySlug', '')}".lower()
-                    and str(t.get("tournamentName", "")).strip().lower() in names]
-            if len(hits) == 1:
-                found[lg.code] = int(hits[0]["tournamentId"])
-        api_storage.write_json("oddspapi/tournaments.json", {k: v for k, v in found.items()
-                                                             if k not in config.ODDSPAPI_TOURNAMENTS})
+    if not missing:
+        return found
+    report = api_storage.read_json(CANDIDATES_FILE) if api_storage.exists(CANDIDATES_FILE) else {}
+    checked = report.get("checked_at")
+    if checked and now - datetime.fromisoformat(checked) < timedelta(days=TOURNAMENT_RECHECK_DAYS):
+        return found
+    tours = odp.tournaments(now, budget)
+    if not tours:
+        return found
+    report = {"checked_at": now.isoformat(timespec="seconds"), "tournaments_listed": len(tours), "leagues": {}}
+    for lg in missing:
+        tid, candidates = match_tournament(lg, tours)
+        if tid:
+            found[lg.code] = tid
+        report["leagues"][lg.code] = {"league": f"{lg.country} {lg.name}", "found": tid,
+                                      "names_tried": list(ODDSPAPI_NAMES.get(lg.code, (lg.name,))),
+                                      "country_tournaments": candidates}
+    api_storage.write_json(CANDIDATES_FILE, report)
+    api_storage.write_json("oddspapi/tournaments.json", {k: v for k, v in found.items()
+                                                         if k not in config.ODDSPAPI_TOURNAMENTS})
     return found
 
 

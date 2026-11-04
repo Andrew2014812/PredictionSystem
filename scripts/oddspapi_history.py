@@ -30,7 +30,9 @@ from src.data.cleaning import make_match_id  # noqa: E402
 from src.data.dataset import build_matches  # noqa: E402
 from src.leagues import enabled_leagues, get_league  # noqa: E402
 from src.markets.markets import market_group  # noqa: E402
-from src.providers.collect import (TeamResolver, _oddspapi_records, _save_odds, load_api_odds,  # noqa: E402
+from src.providers.collect import (CANDIDATES_FILE, TeamResolver, _oddspapi_records, _save_odds,  # noqa: E402
+                                   api_storage,
+                                   load_api_odds,
                                    oddspapi_outcomes, oddspapi_tournaments)
 from src.providers.oddspapi import OddsPapi, fixture_row, parse_odds  # noqa: E402
 from src.providers.teams_registry import TeamRegistry  # noqa: E402
@@ -160,7 +162,11 @@ def main() -> None:
             break
         tid = tours.get(lg.code)
         if not tid:
-            print(f"{lg.code}: no OddsPapi tournament id")
+            seen = (api_storage.read_json(CANDIDATES_FILE) if api_storage.exists(CANDIDATES_FILE) else {})
+            names = [c.get("tournamentName") for c in
+                     seen.get("leagues", {}).get(lg.code, {}).get("country_tournaments", [])]
+            print(f"{lg.code}: no OddsPapi tournament id (tournaments of the country at OddsPapi: "
+                  f"{', '.join(map(str, names)) or 'none listed'})")
             continue
         entry = progress["fixtures"].get(lg.code)
         if entry is None or entry.get("period") != [str(start.date()), str(end.date())]:
