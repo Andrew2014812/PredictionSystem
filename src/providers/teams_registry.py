@@ -22,10 +22,11 @@ PATH = config.DATA_DIR / "teams" / "provider_ids.json"
 # Provider ids checked by hand against the provider's own team names. They replace a stored entry
 # that an earlier, looser name rule learned wrongly, and the normal conflict check protects them
 # afterwards like any other id.
-#   OddsPapi 2814 is "Espanyol Barcelona" and 2817 is "FC Barcelona" (fixture names in the OddsPapi
-#   archive, e.g. 25.10.2026 FC Barcelona – Real Madrid, 24.10.2026 Racing Santander – Espanyol
-#   Barcelona). Before v6.1 the registry held 2814 as Barcelona, so both clubs were refused
-#   ("2814: Barcelona vs Espanol", "2817: Barcelona already id 2814") and their matches got no prices.
+#   OddsPapi 2814 is "Espanyol Barcelona" and 2817 is "FC Barcelona": the run of 03.11.2026 refused id
+#   2814 because its fixture name reads Espanyol, and an earlier run refused 2817 named as Barcelona
+#   ("already id 2814"). History: on 22.10.2026 the old name rule read both names as Barcelona and
+#   learned both ids; the phantom-match clean-up then forgot 2817 and kept 2814 — the wrong one — so
+#   from then on both clubs were refused and their matches got no OddsPapi prices.
 VERIFIED_IDS = {
     "oddspapi": {"2814": "Spain|Espanol", "2817": "Spain|Barcelona"},
 }
@@ -59,7 +60,7 @@ class TeamRegistry:
             team_country, team = iid.split("|", 1)
             if by_name is not None and internal_id(country, by_name) != iid:
                 # the id says one club, the name another: attach nothing
-                self.conflicts.append((provider, str(provider_id), iid, internal_id(country, by_name)))
+                self.conflicts.append((provider, str(provider_id), iid, internal_id(country, by_name), name))
                 log.warning("team id conflict %s %s: %s vs %s", provider, provider_id, iid, by_name)
                 return None
             if team_country == country and (known is None or team in known):
@@ -71,13 +72,13 @@ class TeamRegistry:
         if provider_id is not None:
             iid, pid = internal_id(country, team), str(provider_id)
             if pid in ids and ids[pid] != iid:
-                self.conflicts.append((provider, pid, ids[pid], iid))
+                self.conflicts.append((provider, pid, ids[pid], iid, name))
                 log.warning("team id conflict %s %s: %s vs %s", provider, pid, ids[pid], iid)
                 return None
             if pid not in ids and iid in ids.values():
                 # one club, one id per provider: a second id for the same club is a mis-read name
                 other = next(k for k, v in ids.items() if v == iid)
-                self.conflicts.append((provider, pid, iid, f"already id {other}"))
+                self.conflicts.append((provider, pid, iid, f"already id {other}", name))
                 log.warning("team id conflict %s %s: %s already has id %s", provider, pid, iid, other)
                 return None
             ids[pid] = iid

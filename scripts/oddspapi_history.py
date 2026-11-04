@@ -184,6 +184,7 @@ def main() -> None:
                 mid = make_match_id(lg.code, pd.Timestamp(row["date"]), home, away) if home and away else None
                 items.append({"fixture_id": row["provider_fixture_id"], "kickoff_utc": row["kickoff_utc"].isoformat(),
                               "home": row["home_name"], "away": row["away_name"],
+                              "home_id": row["home_id"], "away_id": row["away_id"],
                               "match_id": mid if mid in ours else None})
             entry = progress["fixtures"][lg.code] = {"period": [str(start.date()), str(end.date())], "items": items}
             save_progress(progress)

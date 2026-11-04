@@ -454,7 +454,7 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
         resolve.unmatched.add(item)
     if registry.conflicts:                     # a provider id claimed by two clubs: nothing was attached
         api_storage.write_csv("team_id_conflicts.csv", pd.DataFrame(
-            registry.conflicts, columns=["provider", "provider_team_id", "registered_as", "name_says"]))
+            registry.conflicts, columns=["provider", "provider_team_id", "registered_as", "name_says", "provider_name"]))
         summary["team_id_conflicts"] = len(registry.conflicts)
 
     toa = TheOddsApi()
