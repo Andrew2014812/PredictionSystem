@@ -212,12 +212,63 @@ def select_dataset(picks: pd.DataFrame, key: str) -> pd.DataFrame:
     return picks.loc[picks["source"].isin(DATASETS[key])]
 
 
+RESCHEDULE_DAYS = 60          # the same league pairing within this many days is the same (moved) match
+
+
+def rescheduled_duplicates(picks: pd.DataFrame) -> pd.DataFrame:
+    """Match ids that are a second prediction of a match already predicted under another date.
+
+    A fixture that moves (a postponement, or a provisional date fixed later) can be predicted twice: once
+    under the first date — that prediction is later settled with the moved match's result — and again
+    under the new date. One real match must count once, so per league pairing within RESCHEDULE_DAYS the
+    prediction made for the date the match was really played is kept — the one the site showed on match
+    day, made from the newest pre-match data — and a prediction for a provisional or postponed date is
+    superseded (bookmakers void such bets too). A recorded prediction wins over a reconstruction, then
+    the latest date, then the latest ``generated_at``. The rule never looks at results, except that two
+    settled predictions with different scores are different matches and are both kept. Returns the
+    dropped ids with the id kept instead."""
+    cols = ["match_id", "league", "home_team", "away_team", "date", "source", "generated_at",
+            "status", "home_goals", "away_goals"]
+    if picks.empty or not set(cols) <= set(picks.columns):
+        return pd.DataFrame(columns=["match_id", "kept_match_id"])
+    main = (picks.loc[picks["role"] == "main", cols].drop_duplicates("match_id")
+            .assign(date=lambda d: pd.to_datetime(d["date"]),
+                    order=lambda d: (d["source"] != "live").astype(int)))
+    dropped = []
+    for _, g in main.groupby(["league", "home_team", "away_team"]):
+        if len(g) < 2:
+            continue
+        g = g.sort_values("date")
+        clusters, current = [], [g.iloc[0]]
+        for _, row in g.iloc[1:].iterrows():
+            if (row["date"] - current[0]["date"]).days <= RESCHEDULE_DAYS:
+                current.append(row)
+            else:
+                clusters.append(current)
+                current = [row]
+        clusters.append(current)
+        for cluster in clusters:
+            if len(cluster) < 2:
+                continue
+            frame = pd.DataFrame(cluster)
+            settled = frame.loc[frame["status"].isin(["WON", "LOST", "PUSH"])]
+            if settled[["home_goals", "away_goals"]].drop_duplicates().shape[0] > 1:
+                continue                                          # different results: different matches
+            keep = frame.sort_values(["order", "date", "generated_at"],
+                                     ascending=[True, False, False]).iloc[0]["match_id"]
+            dropped += [(mid, keep) for mid in frame["match_id"] if mid != keep]
+    return pd.DataFrame(dropped, columns=["match_id", "kept_match_id"])
+
+
 def unified_history(picks: pd.DataFrame) -> pd.DataFrame:
     """The one prediction history the website shows: per match, the predictions recorded before kick-off
     when they exist, otherwise the current-season reconstruction from pre-match data (never both, so no
-    bet is counted twice). The origin stays in the data (``source``, ``origin``, ``odds_origin``)."""
+    bet is counted twice), and one prediction per real match when a fixture moved to another date
+    (``rescheduled_duplicates``). The origin stays in the data (``source``, ``origin``, ``odds_origin``)."""
     if picks.empty or "source" not in picks:
         return picks
     live = picks.loc[picks["source"] == "live"]
     rebuilt = picks.loc[(picks["source"] == "backfill") & ~picks["match_id"].isin(set(live["match_id"]))]
-    return pd.concat([live, rebuilt], ignore_index=True)
+    history = pd.concat([live, rebuilt], ignore_index=True)
+    moved = rescheduled_duplicates(history)
+    return history.loc[~history["match_id"].isin(set(moved["match_id"]))].reset_index(drop=True)
