@@ -22,5 +22,50 @@
    "use prices recorded after kick-off",
    "change stored predictions"
   ]
+ },
+ "strategy": {
+  "timestamp_utc": "2026-11-04T11:50:52+00:00",
+  "git_sha_before": "77daa4f1f022293190826b20bff24c23b737a0cc",
+  "chosen": {
+   "primary": {
+    "name": "G7 EV>0 (meta-model)",
+    "definition": "Main = A; stake if EV with the inner logistic meta-model probability > 0 (groups seen in training)",
+    "passes_fold_rules_1_3": true
+   },
+   "secondary": [
+    {
+     "name": "B3 selection-conditional",
+     "definition": "isotonic map fitted on the inner season's Main picks of A only; rule A on it"
+    },
+    {
+     "name": "C2 value first EV>=0",
+     "definition": "rule A, first among priced candidates with EV >= 0"
+    },
+    {
+     "name": "D2 only 1X2",
+     "definition": "rule A on 1X2 only"
+    },
+    {
+     "name": "E2 candidate-count penalty",
+     "definition": "rule A on p - lambda x log(number of candidates), lambda fitted on the inner season"
+    },
+    {
+     "name": "F1 blend Shin (inner weight)",
+     "definition": "rule A on w p + (1 - w) q_Shin(price of the selection's market), w per group by inner log loss"
+    }
+   ],
+   "baseline": {
+    "name": "A",
+    "definition": "main_prediction() with the production constants (src/config.py MAIN_*, MARKET_RELIABILITY)"
+   },
+   "fitting_for_2026_27": "every fitted component (calibration maps, blend weights, meta-model, lambda, dropped groups) is fitted on 2025/26 predicted by the models trained on < 2025/26 (walk-forward), bettable universe with Football-Data Bet365 prices; nothing is fitted on 2026/27",
+   "universes_2026_27": {
+    "V1 (primary)": "production store: latest pre-kick-off version of every 2026/27 match of the unified history; candidates = every selection with a recorded price or, if none, the last OddsPapi archive quote strictly before kick-off; matches with priced 1X2 and total 2.5; q = de-margined price of the same market (Shin) where all its selections are priced",
+    "V2 (like for like)": "the same 2026/27 matches and model probabilities, but only the Football-Data markets (1X2, total 2.5, the Asian line) at Football-Data Bet365 opening prices",
+    "blend weights outside the fitted groups": "double chance uses the 1X2 weight; BTTS and corners the totals weight (transforms.BLEND_GROUPS)"
+   },
+   "adoption": "production changes only if the primary passes rules 1–3 on the folds AND rule 4 on 2026/27 V1"
+  },
+  "betting_layer_note": "if the primary belongs to family G (the shown Main stays A), adoption means an opt-in stake/skip decision next to the unchanged Main (disabled by default, the interface is outside this study); the Main itself is not changed"
  }
 }

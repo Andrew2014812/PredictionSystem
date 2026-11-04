@@ -65,7 +65,10 @@ def main() -> None:
         sel = C.load_json("selection.json")
         if not sel:
             raise SystemExit("results/selection.json missing: run the fold selection first")
-        write("strategy", {"chosen": sel["preregistered"]})
+        write("strategy", {"chosen": sel["preregistered"],
+                           "betting_layer_note": "if the primary belongs to family G (the shown Main stays A), adoption "
+                           "means an opt-in stake/skip decision next to the unchanged Main (disabled by default, the "
+                           "interface is outside this study); the Main itself is not changed"})
     print(PATH.read_text(encoding="utf-8"))
 
 
