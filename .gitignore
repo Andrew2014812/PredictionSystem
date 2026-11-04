@@ -15,6 +15,7 @@ experiments/model_comparison/report/*_quick*
 !local_data/api/oddspapi/history_coverage.json
 !local_data/api/oddspapi/outcome_map.json
 !local_data/api/oddspapi/tournament_candidates.json
+!local_data/api/diagnostics/last_run.json
 
 # v6.1 research caches (rebuilt by the scripts)
 experiments/v6_1/*/cache/

@@ -51,7 +51,9 @@ class ApiFootball:
                           {"x-apisports-key": self.key}, max_age,
                           remaining_header="x-ratelimit-requests-remaining")
         if body and body.get("errors"):
+            from .diagnostics import diag
             log.warning("API-Football error for %s: %s", path, body["errors"])
+            diag.error(PROVIDER, f"{path}: {body['errors']}")
             return None
         return body
 

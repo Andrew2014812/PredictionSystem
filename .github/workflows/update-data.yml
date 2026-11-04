@@ -120,6 +120,9 @@ jobs:
           [ -n "${{ inputs.match_id }}" ] && args+=(--odds-match "${{ inputs.match_id }}")
           [ "${{ inputs.force }}" = "true" ] && args+=(--force)
           python scripts/run_pipeline.py "${args[@]}" | tee pipeline.log
+          echo "### Data sources" >> "$GITHUB_STEP_SUMMARY"
+          python3 -c 'import json; [print("- " + l) for l in json.load(open("local_data/api/diagnostics/last_run.json"))["lines"]]' \
+            >> "$GITHUB_STEP_SUMMARY" || true
           echo "### Pipeline ($mode)" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"; tail -n 40 pipeline.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
       - name: Download the price archive

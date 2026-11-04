@@ -66,19 +66,27 @@ class ApiCache:
 def fetch_json(cache: ApiCache, url: str, params: dict, headers: dict, max_age_seconds: float,
                cost_header: str | None = None, remaining_header: str | None = None):
     """Cached GET; returns the JSON body or None on any error."""
+    from .diagnostics import diag
     cached = cache.get(url, params, max_age_seconds)
     if cached is not None:
+        diag.add(cache.provider, "cached")
         return cached
+    diag.add(cache.provider, "requests")
     try:
         response = requests.get(url, params=params, headers=headers, timeout=config.HTTP_TIMEOUT)
     except requests.RequestException as exc:
         log.warning("%s request failed: %s", cache.provider, exc)
+        diag.http(cache.provider, "network")
         return None
+    diag.http(cache.provider, response.status_code)
     cost = response.headers.get(cost_header) if cost_header else 1
-    cache.log_request(url, float(cost) if cost not in (None, "") else None,
-                      response.headers.get(remaining_header) if remaining_header else None)
+    remaining = response.headers.get(remaining_header) if remaining_header else None
+    cache.log_request(url, float(cost) if cost not in (None, "") else None, remaining)
+    if remaining not in (None, ""):
+        diag.info(cache.provider, left=remaining)
     if response.status_code != 200:
         log.warning("%s HTTP %s for %s", cache.provider, response.status_code, url)
+        diag.error(cache.provider, f"HTTP {response.status_code}: {response.text[:160]}")
         return None
     body = response.json()
     cache.put(url, params, body)
