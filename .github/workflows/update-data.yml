@@ -7,7 +7,8 @@
 #   odds     — real bookmaker odds for matches in the next days: OddsPapi first (one billable
 #              request for all fixtures; prices from the free historical endpoint, ~5 s per match),
 #              The Odds API is off unless the ODDS_API_FALLBACK repository variable says
-#              missing | always (its stored prices are still used), refreshed predictions.
+#              missing | always, or ODDS_API_LEAGUES names leagues OddsPapi lacks (e.g. "T1"); its
+#              stored prices are always used; refreshed predictions.
 #   full     — both (the daily run).
 #   history  — manual only: OddsPapi price archive of played matches (free endpoint, ~600 matches an
 #              hour, resumable; default the current season from 1 August), then the missing prices of
@@ -112,6 +113,7 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDS_API_FALLBACK: ${{ vars.ODDS_API_FALLBACK || 'off' }}
+          ODDS_API_LEAGUES: ${{ vars.ODDS_API_LEAGUES || '' }}
         run: |
           mode="${{ inputs.mode || 'full' }}"
           args=(--mode "$mode" --credit-budget "${{ inputs.credit_budget || 30 }}")

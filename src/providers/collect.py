@@ -463,11 +463,16 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
     fallback = config.odds_api_fallback()
     stored_toa = load_api_odds()
     diag.info(PROVIDER_TOA, status=("on, fallback " + fallback) if (toa.available and config.ODDS_API_ENABLED
-                                                                   and fallback != "off") else "off (stored prices still used)",
+                                                                   and fallback != "off")
+              else (f"only {', '.join(sorted(config.odds_api_leagues()))}" if config.odds_api_leagues()
+                    else "off (stored prices still used)"),
               stored_matches=int(stored_toa.loc[stored_toa["provider"] == PROVIDER_TOA, "match_id"].nunique())
               if not stored_toa.empty else 0,
               left=toa.ledger.remaining if toa.ledger.remaining is not None else "?")
-    if toa.available and config.ODDS_API_ENABLED and fallback != "off":
+    only = config.odds_api_leagues() if fallback == "off" else set()
+    if toa.available and config.ODDS_API_ENABLED and (fallback != "off" or only):
+        if only:
+            fallback = "missing"                           # only the named leagues, only what is missing
         stored = load_api_odds()
         priced = (stored.groupby("match_id")["market"].agg(set).to_dict() if not stored.empty else {})
         if fallback == "missing":                          # never buy what another provider already priced
@@ -478,7 +483,7 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
                       .groupby("match_id")["market"].agg(set).to_dict() if not stored.empty else {})
         extended_candidates = []
         for lg in enabled_leagues():
-            if not lg.odds_api_key:
+            if not lg.odds_api_key or (only and lg.code not in only):
                 continue
             soon = []
             for event in toa.events(lg.odds_api_key):            # free

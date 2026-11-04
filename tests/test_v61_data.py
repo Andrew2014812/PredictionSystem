@@ -252,3 +252,11 @@ def test_history_invariants_report_problems_instead_of_hiding_them():
     issues = check_history(bad, matches.assign(home_goals=3.0))
     assert {"price without a real bookmaker", "price quoted after kick-off", "result differs from the match"} <= set(issues)
     assert check_history(picks.loc[picks["role"] == "main"], matches) == {"main without a risk": ["F1-20261010-paris-sg-lyon"]}
+
+
+def test_the_odds_api_can_be_limited_to_named_leagues(monkeypatch):
+    from src import config
+    monkeypatch.setenv("ODDS_API_LEAGUES", "t1, sc2")
+    assert config.odds_api_leagues() == {"T1", "SC2"}
+    monkeypatch.setenv("ODDS_API_LEAGUES", "")
+    assert config.odds_api_leagues() == set()                                  # default: nothing is bought
