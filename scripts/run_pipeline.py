@@ -81,6 +81,10 @@ def main() -> None:
         diag.info("predictions", waiting_for_a_result=int(overdue["match_id"].nunique()))
     summary["history_repair"] = repair_history(features)       # archived prices, missing Risk predictions
     summary["predicted_matches"] = generate_live_predictions(features)
+    from src.analytics.invariants import check_history
+    issues = check_history(store.load_picks(), features)
+    summary["history_checks"] = {k: len(v) for k, v in issues.items()} or "all passed"
+    diag.info("predictions", history_checks=summary["history_checks"])
     summary["picks"] = picks["status"].value_counts().to_dict() if not picks.empty else {}
     summary["updated_at"] = datetime.now().isoformat(timespec="seconds")
     LocalStorage(config.DATA_DIR).write_json("data_status.json", {

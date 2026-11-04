@@ -99,6 +99,10 @@ class RunDiagnostics:
             parts.append("skipped: " + ", ".join(f"{n} {r}" for r, n in d["skipped"].most_common(4)))
         if d["http"] and set(d["http"]) - {"200"}:
             parts.append("HTTP " + ", ".join(f"{s}×{n}" for s, n in sorted(d["http"].items())))
+        if isinstance(info.get("history_checks"), dict):
+            parts.append("history checks failed: " + ", ".join(f"{k} ({n})" for k, n in info["history_checks"].items()))
+        elif info.get("history_checks"):
+            parts.append("history checks: all passed")
         if info.get("waiting_for_a_result"):
             parts.append(f"{info['waiting_for_a_result']} past matches still waiting for a result")
         if "left" in info:

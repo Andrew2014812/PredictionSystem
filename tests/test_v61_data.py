@@ -233,3 +233,22 @@ def test_a_market_average_price_is_replaced_by_a_real_quote_or_removed():
     assert np.isnan(b["odds"]) and np.isnan(b["profit"]) and not b["real_odds"] and b["status"] == "LOST"
     again, r2, d2 = replace_average_prices(out, quotes, pd.Series(dtype=float))
     assert (r2, d2) == (0, 0)                                                   # safe to run every day
+
+
+def test_history_invariants_report_problems_instead_of_hiding_them():
+    from src.analytics.invariants import check_history
+    picks = _picks([{"match_id": "F1-20261010-paris-sg-lyon", "date": "2026-10-10", "generated_at": "2026-10-09 10:00",
+                     "status": "WON", "home_goals": 2, "away_goals": 1}])
+    picks["pick_id"] = picks["match_id"] + "|" + picks["role"]
+    picks["bookmaker"], picks["real_odds"] = "bet365", True
+    picks["odds_priced_at"] = pd.Timestamp("2026-10-10 12:00")
+    matches = pd.DataFrame({"match_id": ["F1-20261010-paris-sg-lyon"], "league": ["F1"], "home_team": ["Paris SG"],
+                            "away_team": ["Lyon"], "kickoff": [pd.Timestamp("2026-10-10 20:00")],
+                            "home_goals": [2.0], "away_goals": [1.0]})
+    assert check_history(picks, matches) == {}
+    bad = picks.copy()
+    bad.loc[0, "bookmaker"] = "Market average"
+    bad.loc[1, "odds_priced_at"] = pd.Timestamp("2026-10-10 21:00")                  # after kick-off
+    issues = check_history(bad, matches.assign(home_goals=3.0))
+    assert {"price without a real bookmaker", "price quoted after kick-off", "result differs from the match"} <= set(issues)
+    assert check_history(picks.loc[picks["role"] == "main"], matches) == {"main without a risk": ["F1-20261010-paris-sg-lyon"]}
