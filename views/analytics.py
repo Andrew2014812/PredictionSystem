@@ -9,7 +9,7 @@ from src.analytics.performance import (MIN_MARKET_SAMPLE, PERIODS, best_and_wors
                                        group_summary, select_dataset, summarize, timeline)
 from src.leagues import league_codes
 from src.ui import data
-from src.ui.components import (PROFIT_HELP, outcome_counts, empty_state, esc, guard, html_table, kpi_row, num, page_header, pct, period_filter,
+from src.ui.components import (PROFIT_HELP, outcome_counts, share_axis, empty_state, esc, guard, html_table, kpi_row, num, page_header, pct, period_filter,
                                plotly, section, signed, tone)
 from src.ui.i18n import t
 from src.ui.labels import group_title, league_label
@@ -114,9 +114,8 @@ def _hbar(df: pd.DataFrame, label_fn, value: str, count: str, title: str, kind: 
         span = max(abs(float(d[value].min())), abs(float(d[value].max())), 0.05) * 1.25
         fig.update_xaxes(range=[-span, span])
     else:
-        # room for the label of a 100 % bar beyond the axis end; ticks stop at 100 %
-        top = float(d[value].max())
-        fig.update_xaxes(range=[0, max(top * 1.18 + 0.02, 0.2)], tickvals=[v / 4 for v in range(5) if v / 4 <= top + .25])
+        x_range, ticks = share_axis(d[value].max())
+        fig.update_xaxes(range=x_range, tickvals=ticks)
     plotly(fig, height=height or max(260, 30 * len(d) + 90))
 
 

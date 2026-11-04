@@ -260,3 +260,24 @@ def test_the_odds_api_can_be_limited_to_named_leagues(monkeypatch):
     assert config.odds_api_leagues() == {"T1", "SC2"}
     monkeypatch.setenv("ODDS_API_LEAGUES", "")
     assert config.odds_api_leagues() == set()                                  # default: nothing is bought
+
+
+# ---------------------------------------------------------------------------------------------- interface helpers
+def test_a_100_percent_bar_keeps_room_for_its_label():
+    from src.ui.components import share_axis
+    x_range, ticks = share_axis(1.0)
+    assert x_range[1] >= 1.15 and ticks[-1] == 1.0               # label beyond the bar, no 125 % tick
+    assert share_axis(0.0)[0][1] > 0                               # an all-zero chart still has an axis
+    assert share_axis(0.42)[1] == [0.0, 0.25, 0.5]
+
+
+def test_markets_are_compared_from_15_real_odds_bets():
+    from src.analytics.performance import MIN_MARKET_SAMPLE, best_and_worst
+    assert MIN_MARKET_SAMPLE == 15
+    rows = []
+    for group, n, won in (("TOTALS", 16, 12), ("BTTS", 15, 5), ("CORNERS", 14, 14)):
+        rows += [{"group": group, "status": "WON" if i < won else "LOST", "odds": 1.9,
+                  "profit": 0.9 if i < won else -1.0} for i in range(n)]
+    best, worst = best_and_worst(pd.DataFrame(rows), "group")
+    assert best["group"] == "TOTALS" and worst["group"] == "BTTS"     # 14 bets: not compared with the others
+    assert not best.get("small_sample")

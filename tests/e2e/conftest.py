@@ -42,7 +42,11 @@ def base_url():
         pytest.fail("streamlit did not start")
     yield url
     proc.terminate()
-    proc.wait(timeout=10)
+    try:
+        proc.wait(timeout=20)
+    except subprocess.TimeoutExpired:          # a server busy with a long run: stop it for good
+        proc.kill()
+        proc.wait(timeout=10)
 
 
 @pytest.fixture

@@ -117,6 +117,14 @@ def kpi(label: str, value: str, sub: str = "", tone_cls: str = "", help_text: st
 PROFIT_HELP = "Profit is calculated using a fixed stake of 1 unit per prediction."
 
 
+def share_axis(top: float) -> tuple[list[float], list[float]]:
+    """x range and ticks of a 0–100 % bar chart whose labels sit outside the bars: the range runs past the
+    longest bar (so a "100%" label is not cut to "1") while the ticks stop at 100 %."""
+    top = float(top) if top == top else 0.0
+    end = max(top * 1.18 + 0.02, 0.2)
+    return [0.0, end], [v / 4 for v in range(5) if v / 4 <= min(top + 0.25, 1.0)]
+
+
 def outcome_counts(s: dict) -> str:
     """'812 won · 431 lost' (+ ' · 2 refunded' when a handicap ended level)."""
     text = t("{a} won · {b} lost", a=s["won"], b=s["lost"])
