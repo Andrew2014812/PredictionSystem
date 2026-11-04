@@ -1,0 +1,40 @@
+set,label,rule,actual,pred_H,pred_D,pred_A
+block_2023,"2023/24 (walk-forward, отбор)",argmax,H,2545,9,571
+block_2023,"2023/24 (walk-forward, отбор)",argmax,D,1341,4,555
+block_2023,"2023/24 (walk-forward, отбор)",argmax,A,1157,6,1059
+block_2023,"2023/24 (walk-forward, отбор)",current,H,2130,583,412
+block_2023,"2023/24 (walk-forward, отбор)",current,D,1015,477,408
+block_2023,"2023/24 (walk-forward, отбор)",current,A,848,469,905
+block_2024,"2024/25 (walk-forward, отбор)",argmax,H,2503,2,620
+block_2024,"2024/25 (walk-forward, отбор)",argmax,D,1288,3,562
+block_2024,"2024/25 (walk-forward, отбор)",argmax,A,1113,4,1034
+block_2024,"2024/25 (walk-forward, отбор)",current,H,1939,815,371
+block_2024,"2024/25 (walk-forward, отбор)",current,D,874,612,367
+block_2024,"2024/25 (walk-forward, отбор)",current,A,710,686,755
+block_2025,"2025/26 (walk-forward, информация)",argmax,H,2497,2,554
+block_2025,"2025/26 (walk-forward, информация)",argmax,D,1277,1,611
+block_2025,"2025/26 (walk-forward, информация)",argmax,A,1159,3,990
+block_2025,"2025/26 (walk-forward, информация)",current,H,1869,858,326
+block_2025,"2025/26 (walk-forward, информация)",current,D,833,665,391
+block_2025,"2025/26 (walk-forward, информация)",current,A,702,716,734
+block_2026,"2026/27 (walk-forward, проверка)",argmax,H,721,0,179
+block_2026,"2026/27 (walk-forward, проверка)",argmax,D,365,0,136
+block_2026,"2026/27 (walk-forward, проверка)",argmax,A,343,0,289
+block_2026,"2026/27 (walk-forward, проверка)",current,H,546,238,116
+block_2026,"2026/27 (walk-forward, проверка)",current,D,224,193,84
+block_2026,"2026/27 (walk-forward, проверка)",current,A,183,236,213
+page_backtest_2025,2025/26 — модель backtest_2526 (страница Model Analysis),argmax,H,2497,2,554
+page_backtest_2025,2025/26 — модель backtest_2526 (страница Model Analysis),argmax,D,1277,1,611
+page_backtest_2025,2025/26 — модель backtest_2526 (страница Model Analysis),argmax,A,1159,3,990
+page_backtest_2025,2025/26 — модель backtest_2526 (страница Model Analysis),current,H,1869,858,326
+page_backtest_2025,2025/26 — модель backtest_2526 (страница Model Analysis),current,D,833,665,391
+page_backtest_2025,2025/26 — модель backtest_2526 (страница Model Analysis),current,A,702,716,734
+history_2026,2026/27 — история продакшна (записанные вероятности),argmax,H,723,0,177
+history_2026,2026/27 — история продакшна (записанные вероятности),argmax,D,362,0,139
+history_2026,2026/27 — история продакшна (записанные вероятности),argmax,A,343,0,289
+history_2026,2026/27 — история продакшна (записанные вероятности),current,H,546,239,115
+history_2026,2026/27 — история продакшна (записанные вероятности),current,D,226,189,86
+history_2026,2026/27 — история продакшна (записанные вероятности),current,A,183,239,210
+history_2026,2026/27 — история продакшна (записанные вероятности),recorded_named_outcome,H,589,163,130
+history_2026,2026/27 — история продакшна (записанные вероятности),recorded_named_outcome,D,256,137,102
+history_2026,2026/27 — история продакшна (записанные вероятности),recorded_named_outcome,A,222,168,232

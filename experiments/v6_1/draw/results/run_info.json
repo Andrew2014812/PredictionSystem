@@ -1,0 +1,119 @@
+{
+ "git_sha": "2e7ff98cafea4548b5c09a1a02453f31b0abe312",
+ "python": "3.12.12",
+ "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+ "packages": {
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "scikit-learn": "1.7.2",
+  "scipy": "1.18.1",
+  "xgboost": "3.0.5",
+  "statsmodels": "0.15.0",
+  "matplotlib": "3.11.2",
+  "reportlab": "5.1.0",
+  "pyarrow": "24.0.0"
+ },
+ "n_jobs": 3,
+ "active_model": "prod_20261012",
+ "seconds": {
+  "blocks": 2.064351797103882,
+  "probabilities": 126.99418520927429,
+  "rules": 90.30759382247925,
+  "draw_main": 74.35403394699097,
+  "figures": 8.775551080703735,
+  "total": 304.716055393219
+ },
+ "block_seconds": {
+  "2022": {
+   "block": 2022,
+   "train_seasons": [
+    2021
+   ],
+   "train_rows": 7316,
+   "rows": 7278,
+   "fit_seconds": {
+    "result": 64.00794911384583,
+    "home_goals": 7.838033199310303,
+    "away_goals": 58.74219250679016,
+    "corners": 14.579874515533447
+   },
+   "engine_seconds": 18.043748378753662,
+   "total_seconds": 163.72340393066406
+  },
+  "2023": {
+   "block": 2023,
+   "train_seasons": [
+    2021,
+    2022
+   ],
+   "train_rows": 14594,
+   "rows": 7247,
+   "fit_seconds": {
+    "result": 7.2024126052856445,
+    "home_goals": 0.48097872734069824,
+    "away_goals": 3.4806647300720215,
+    "corners": 4.729685306549072
+   },
+   "engine_seconds": 15.715362310409546,
+   "total_seconds": 31.787260055541992
+  },
+  "2024": {
+   "block": 2024,
+   "train_seasons": [
+    2021,
+    2022,
+    2023
+   ],
+   "train_rows": 21841,
+   "rows": 7129,
+   "fit_seconds": {
+    "result": 29.872392892837524,
+    "home_goals": 1.073240041732788,
+    "away_goals": 5.467060804367065,
+    "corners": 6.4350433349609375
+   },
+   "engine_seconds": 13.93034815788269,
+   "total_seconds": 57.416200399398804
+  },
+  "2025": {
+   "block": 2025,
+   "train_seasons": [
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "train_rows": 28970,
+   "rows": 7094,
+   "fit_seconds": {
+    "result": 12.34475588798523,
+    "home_goals": 1.2146406173706055,
+    "away_goals": 5.4303789138793945,
+    "corners": 5.053283452987671
+   },
+   "engine_seconds": 11.592339038848877,
+   "total_seconds": 35.90275955200195
+  },
+  "2026": {
+   "block": 2026,
+   "train_seasons": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "train_rows": 36064,
+   "rows": 2033,
+   "fit_seconds": {
+    "result": 13.339392900466919,
+    "home_goals": 1.3413887023925781,
+    "away_goals": 5.914013624191284,
+    "corners": 6.9011335372924805
+   },
+   "engine_seconds": 6.835641145706177,
+   "total_seconds": 34.821311473846436
+  }
+ },
+ "finished": "2026-11-04 12:29:18"
+}
