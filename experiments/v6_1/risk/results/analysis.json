@@ -14,7 +14,7 @@
      ],
      "n_priced": 16071,
      "mean_p_priced": 0.27190803595600893,
-     "mean_p_market": 0.2835491742139861,
+     "mean_p_market": 0.2779103641805236,
      "observed_priced": 0.27527845186982763
     },
     "by_key": {
@@ -163,7 +163,7 @@
       ],
       "n_priced": 354,
       "mean_p_priced": 0.34536290443611284,
-      "mean_p_market": 0.49943932888360154,
+      "mean_p_market": 0.3850532202767215,
       "observed_priced": 0.4152542372881356
      },
      "HANDICAP:H": {
@@ -178,7 +178,7 @@
       ],
       "n_priced": 439,
       "mean_p_priced": 0.3310258941894144,
-      "mean_p_market": 0.49355441244065346,
+      "mean_p_market": 0.3793661810034312,
       "observed_priced": 0.3940774487471526
      },
      "TOTAL_1.5:UNDER": {
@@ -249,7 +249,7 @@
       ],
       "n_priced": 1319,
       "mean_p_priced": 0.18093728945200716,
-      "mean_p_market": 0.19599017450179365,
+      "mean_p_market": 0.19580907388015367,
       "observed_priced": 0.18271417740712662
      },
      {
@@ -265,7 +265,7 @@
       ],
       "n_priced": 3226,
       "mean_p_priced": 0.22852563443162524,
-      "mean_p_market": 0.24251228395594532,
+      "mean_p_market": 0.2417296254024343,
       "observed_priced": 0.23496590204587725
      },
      {
@@ -281,7 +281,7 @@
       ],
       "n_priced": 5761,
       "mean_p_priced": 0.2740434491199031,
-      "mean_p_market": 0.28090522879874863,
+      "mean_p_market": 0.277977308192902,
       "observed_priced": 0.28536712376323553
      },
      {
@@ -297,7 +297,7 @@
       ],
       "n_priced": 2825,
       "mean_p_priced": 0.32216754456970303,
-      "mean_p_market": 0.33226803042890574,
+      "mean_p_market": 0.32107520906854253,
       "observed_priced": 0.3217699115044248
      },
      {
@@ -313,7 +313,7 @@
       ],
       "n_priced": 2095,
       "mean_p_priced": 0.3749756565591365,
-      "mean_p_market": 0.3937105390780367,
+      "mean_p_market": 0.3749181205191354,
       "observed_priced": 0.3594272076372315
      }
     ],
@@ -329,7 +329,7 @@
      ],
      "n_priced": 16071,
      "mean_p_priced": 0.27190803595600893,
-     "mean_p_market": 0.2835491742139861,
+     "mean_p_market": 0.2779103641805236,
      "observed_priced": 0.27527845186982763
     },
     "priced_only_by_bin": [
@@ -363,9 +363,9 @@
       ],
       "n_priced": 1319,
       "mean_p_priced": 0.18093728945200716,
-      "mean_p_market": 0.19599017450179365,
+      "mean_p_market": 0.19580907388015367,
       "observed_priced": 0.18271417740712662,
-      "market_observed_gap": -0.013275997094667036
+      "market_observed_gap": -0.013094896473027057
      },
      {
       "bin": "0.20–0.25",
@@ -380,9 +380,9 @@
       ],
       "n_priced": 3226,
       "mean_p_priced": 0.22852563443162524,
-      "mean_p_market": 0.24251228395594532,
+      "mean_p_market": 0.2417296254024343,
       "observed_priced": 0.23496590204587725,
-      "market_observed_gap": -0.007546381910068067
+      "market_observed_gap": -0.006763723356557061
      },
      {
       "bin": "0.25–0.30",
@@ -397,9 +397,9 @@
       ],
       "n_priced": 5761,
       "mean_p_priced": 0.2740434491199031,
-      "mean_p_market": 0.28090522879874863,
+      "mean_p_market": 0.277977308192902,
       "observed_priced": 0.28536712376323553,
-      "market_observed_gap": 0.004461894964486901
+      "market_observed_gap": 0.007389815570333524
      },
      {
       "bin": "0.30–0.35",
@@ -414,9 +414,9 @@
       ],
       "n_priced": 2825,
       "mean_p_priced": 0.32216754456970303,
-      "mean_p_market": 0.33226803042890574,
+      "mean_p_market": 0.32107520906854253,
       "observed_priced": 0.3217699115044248,
-      "market_observed_gap": -0.010498118924480937
+      "market_observed_gap": 0.0006947024358822662
      },
      {
       "bin": "0.35–0.40",
@@ -431,9 +431,9 @@
       ],
       "n_priced": 2095,
       "mean_p_priced": 0.3749756565591365,
-      "mean_p_market": 0.3937105390780367,
+      "mean_p_market": 0.3749181205191354,
       "observed_priced": 0.3594272076372315,
-      "market_observed_gap": -0.0342833314408052
+      "market_observed_gap": -0.015490912881903907
      }
     ]
    },
@@ -822,61 +822,61 @@
    },
    "who_is_right": {
     "n": 32993,
-    "w_model": 0.059220635568785186,
-    "w_market": 0.9914330607731356,
-    "intercept": 0.0010960752448002393,
+    "w_model": -0.10020563338391335,
+    "w_market": 1.1567621005833595,
+    "intercept": 0.02177214117085491,
     "log_loss_model": 0.6317675167359121,
-    "log_loss_market": 0.6255836908061987,
-    "log_loss_blend_in_sample": 0.6254498344105924,
+    "log_loss_market": 0.6248174868060988,
+    "log_loss_blend_in_sample": 0.6246240379528565,
     "by_disagreement": [
      {
       "ratio": "0.00–0.90",
-      "n": 6891,
-      "mean_p_model": 0.3345794404738683,
-      "mean_p_market": 0.41232664295839727,
-      "observed": 0.39805543462487303
+      "n": 6251,
+      "mean_p_model": 0.32881701687348175,
+      "mean_p_market": 0.3964441476938153,
+      "observed": 0.397696368581027
      },
      {
       "ratio": "0.90–1.00",
-      "n": 10640,
-      "mean_p_model": 0.4054654453078922,
-      "mean_p_market": 0.42566633645479224,
-      "observed": 0.431203007518797
+      "n": 10728,
+      "mean_p_model": 0.40347292520106603,
+      "mean_p_market": 0.42351869605236325,
+      "observed": 0.4313944817300522
      },
      {
       "ratio": "1.00–1.10",
-      "n": 8999,
-      "mean_p_model": 0.4203767849703451,
-      "mean_p_market": 0.40263127747421656,
-      "observed": 0.3994888320924547
+      "n": 9202,
+      "mean_p_model": 0.41921079605546097,
+      "mean_p_market": 0.40147133507927363,
+      "observed": 0.3994783742664638
      },
      {
       "ratio": "1.10–1.20",
-      "n": 4017,
-      "mean_p_model": 0.40736714506812327,
-      "mean_p_market": 0.3577363368475948,
-      "observed": 0.3502613890963405
+      "n": 4181,
+      "mean_p_model": 0.40832951550845314,
+      "mean_p_market": 0.3583994335109498,
+      "observed": 0.35135135135135137
      },
      {
       "ratio": "1.20–1.35",
-      "n": 1659,
-      "mean_p_model": 0.36164241574390454,
-      "mean_p_market": 0.2884112840512495,
-      "observed": 0.26763110307414106
+      "n": 1816,
+      "mean_p_model": 0.3720771509984319,
+      "mean_p_market": 0.29658988578836626,
+      "observed": 0.2775330396475771
      },
      {
       "ratio": "≥ 1.35",
-      "n": 787,
-      "mean_p_model": 0.30855887314783326,
-      "mean_p_market": 0.20187792653935083,
-      "observed": 0.1855146124523507
+      "n": 815,
+      "mean_p_model": 0.31597067860754663,
+      "mean_p_market": 0.2078089713943658,
+      "observed": 0.19631901840490798
      }
     ]
    },
    "max_selection_mc": {
     "matches": 7240,
     "mean_candidates": 4.389088397790055,
-    "sd_logit_model_minus_market": 0.24748673804484397,
+    "sd_logit_model_minus_market": 0.22582770111425118,
     "rows": [
      {
       "sigma": 0.0,
@@ -925,7 +925,7 @@
      ],
      "n_priced": 16066,
      "mean_p_priced": 0.2757967811893953,
-     "mean_p_market": 0.28546435701276685,
+     "mean_p_market": 0.27959557436479093,
      "observed_priced": 0.2763600149383792
     },
     "by_key": {
@@ -1074,7 +1074,7 @@
       ],
       "n_priced": 359,
       "mean_p_priced": 0.33984250830852253,
-      "mean_p_market": 0.4970918704496064,
+      "mean_p_market": 0.3791011087052804,
       "observed_priced": 0.3816155988857939
      },
      "HANDICAP:H": {
@@ -1089,7 +1089,7 @@
       ],
       "n_priced": 452,
       "mean_p_priced": 0.3357186434632246,
-      "mean_p_market": 0.49566751957093474,
+      "mean_p_market": 0.3807799563935712,
       "observed_priced": 0.36283185840707965
      },
      "TOTAL_1.5:UNDER": {
@@ -1160,7 +1160,7 @@
       ],
       "n_priced": 1250,
       "mean_p_priced": 0.18178956247966002,
-      "mean_p_market": 0.193553123680926,
+      "mean_p_market": 0.19337533786416625,
       "observed_priced": 0.1912
      },
      {
@@ -1176,7 +1176,7 @@
       ],
       "n_priced": 2900,
       "mean_p_priced": 0.22830649481898513,
-      "mean_p_market": 0.2399751001227326,
+      "mean_p_market": 0.23869388797931967,
       "observed_priced": 0.23896551724137932
      },
      {
@@ -1192,7 +1192,7 @@
       ],
       "n_priced": 5857,
       "mean_p_priced": 0.2757235409654723,
-      "mean_p_market": 0.2799599185803514,
+      "mean_p_market": 0.2773395086477885,
       "observed_priced": 0.2699334130100734
      },
      {
@@ -1208,7 +1208,7 @@
       ],
       "n_priced": 3119,
       "mean_p_priced": 0.3211769029944171,
-      "mean_p_market": 0.33099294590428213,
+      "mean_p_market": 0.3198862896820279,
       "observed_priced": 0.32606604680987494
      },
      {
@@ -1224,7 +1224,7 @@
       ],
       "n_priced": 2169,
       "mean_p_priced": 0.375862192947406,
-      "mean_p_market": 0.39362938278635456,
+      "mean_p_market": 0.3750214008576767,
       "observed_priced": 0.3665283540802213
      }
     ],
@@ -1240,7 +1240,7 @@
      ],
      "n_priced": 16066,
      "mean_p_priced": 0.2757967811893953,
-     "mean_p_market": 0.28546435701276685,
+     "mean_p_market": 0.27959557436479093,
      "observed_priced": 0.2763600149383792
     },
     "priced_only_by_bin": [
@@ -1274,9 +1274,9 @@
       ],
       "n_priced": 1250,
       "mean_p_priced": 0.18178956247966002,
-      "mean_p_market": 0.193553123680926,
+      "mean_p_market": 0.19337533786416625,
       "observed_priced": 0.1912,
-      "market_observed_gap": -0.0023531236809259948
+      "market_observed_gap": -0.002175337864166238
      },
      {
       "bin": "0.20–0.25",
@@ -1291,9 +1291,9 @@
       ],
       "n_priced": 2900,
       "mean_p_priced": 0.22830649481898513,
-      "mean_p_market": 0.2399751001227326,
+      "mean_p_market": 0.23869388797931967,
       "observed_priced": 0.23896551724137932,
-      "market_observed_gap": -0.001009582881353277
+      "market_observed_gap": 0.0002716292620596472
      },
      {
       "bin": "0.25–0.30",
@@ -1308,9 +1308,9 @@
       ],
       "n_priced": 5857,
       "mean_p_priced": 0.2757235409654723,
-      "mean_p_market": 0.2799599185803514,
+      "mean_p_market": 0.2773395086477885,
       "observed_priced": 0.2699334130100734,
-      "market_observed_gap": -0.01002650557027801
+      "market_observed_gap": -0.007406095637715104
      },
      {
       "bin": "0.30–0.35",
@@ -1325,9 +1325,9 @@
       ],
       "n_priced": 3119,
       "mean_p_priced": 0.3211769029944171,
-      "mean_p_market": 0.33099294590428213,
+      "mean_p_market": 0.3198862896820279,
       "observed_priced": 0.32606604680987494,
-      "market_observed_gap": -0.004926899094407189
+      "market_observed_gap": 0.006179757127847019
      },
      {
       "bin": "0.35–0.40",
@@ -1342,9 +1342,9 @@
       ],
       "n_priced": 2169,
       "mean_p_priced": 0.375862192947406,
-      "mean_p_market": 0.39362938278635456,
+      "mean_p_market": 0.3750214008576767,
       "observed_priced": 0.3665283540802213,
-      "market_observed_gap": -0.02710102870613329
+      "market_observed_gap": -0.008493046777455437
      }
     ]
    },
@@ -1722,61 +1722,61 @@
    },
    "who_is_right": {
     "n": 32761,
-    "w_model": 0.13466079950399193,
-    "w_market": 0.8987101103217371,
-    "intercept": -0.0015983796826659915,
+    "w_model": -0.04813198874611287,
+    "w_market": 1.0845982453036551,
+    "intercept": 0.016913883415065847,
     "log_loss_model": 0.6334596645138408,
-    "log_loss_market": 0.6285774456369669,
-    "log_loss_blend_in_sample": 0.6284274217681776,
+    "log_loss_market": 0.6275435035071525,
+    "log_loss_blend_in_sample": 0.6274756221335339,
     "by_disagreement": [
      {
       "ratio": "0.00–0.90",
-      "n": 6628,
-      "mean_p_model": 0.34731746935646884,
-      "mean_p_market": 0.42564800283579307,
-      "observed": 0.416113458056729
+      "n": 5952,
+      "mean_p_model": 0.34232930368901116,
+      "mean_p_market": 0.40973602600879167,
+      "observed": 0.41851478494623656
      },
      {
       "ratio": "0.90–1.00",
-      "n": 10463,
-      "mean_p_model": 0.4065440504903767,
-      "mean_p_market": 0.42675978876097737,
-      "observed": 0.42884449966548793
+      "n": 10573,
+      "mean_p_model": 0.40453612564426256,
+      "mean_p_market": 0.4245642594995032,
+      "observed": 0.42731485860209967
      },
      {
       "ratio": "1.00–1.10",
-      "n": 9416,
-      "mean_p_model": 0.41380243185728777,
-      "mean_p_market": 0.3962089533956159,
-      "observed": 0.3889124893797791
+      "n": 9618,
+      "mean_p_model": 0.4128335536103583,
+      "mean_p_market": 0.39521697485682666,
+      "observed": 0.3896860054065294
      },
      {
       "ratio": "1.10–1.20",
-      "n": 3886,
-      "mean_p_model": 0.3981968432234059,
-      "mean_p_market": 0.3494608635113198,
-      "observed": 0.3512609366958312
+      "n": 4076,
+      "mean_p_model": 0.39985084020191203,
+      "mean_p_market": 0.35077487510594885,
+      "observed": 0.35500490677134444
      },
      {
       "ratio": "1.20–1.35",
-      "n": 1627,
-      "mean_p_model": 0.3594945598587242,
-      "mean_p_market": 0.28668967663691486,
-      "observed": 0.27904118008604795
+      "n": 1773,
+      "mean_p_model": 0.3691553587288591,
+      "mean_p_market": 0.29431553988347126,
+      "observed": 0.2882120699379583
      },
      {
       "ratio": "≥ 1.35",
-      "n": 741,
-      "mean_p_model": 0.3084188378451531,
-      "mean_p_market": 0.20548801857956545,
-      "observed": 0.18353576248313092
+      "n": 769,
+      "mean_p_model": 0.3163084001765893,
+      "mean_p_market": 0.21152555860967895,
+      "observed": 0.19115734720416125
      }
     ]
    },
    "max_selection_mc": {
     "matches": 7126,
     "mean_candidates": 4.422256525399944,
-    "sd_logit_model_minus_market": 0.24032526974323445,
+    "sd_logit_model_minus_market": 0.21663301546221617,
     "rows": [
      {
       "sigma": 0.0,
@@ -1825,7 +1825,7 @@
      ],
      "n_priced": 16046,
      "mean_p_priced": 0.27603378345430307,
-     "mean_p_market": 0.28561048259246,
+     "mean_p_market": 0.2799456085564901,
      "observed_priced": 0.2777639287049732
     },
     "by_key": {
@@ -1974,7 +1974,7 @@
       ],
       "n_priced": 351,
       "mean_p_priced": 0.3400854978197201,
-      "mean_p_market": 0.49621571133657133,
+      "mean_p_market": 0.3764528471296234,
       "observed_priced": 0.34472934472934474
      },
      "HANDICAP:H": {
@@ -1989,7 +1989,7 @@
       ],
       "n_priced": 424,
       "mean_p_priced": 0.33560107415265283,
-      "mean_p_market": 0.493331014871131,
+      "mean_p_market": 0.378090912407606,
       "observed_priced": 0.35141509433962265
      },
      "TOTAL_1.5:UNDER": {
@@ -2060,7 +2060,7 @@
       ],
       "n_priced": 1198,
       "mean_p_priced": 0.18141740181701305,
-      "mean_p_market": 0.1968142656005793,
+      "mean_p_market": 0.19645397198718317,
       "observed_priced": 0.1669449081803005
      },
      {
@@ -2076,7 +2076,7 @@
       ],
       "n_priced": 2829,
       "mean_p_priced": 0.22804922044415904,
-      "mean_p_market": 0.23956967372258514,
+      "mean_p_market": 0.23838856077344628,
       "observed_priced": 0.2417815482502651
      },
      {
@@ -2092,7 +2092,7 @@
       ],
       "n_priced": 6155,
       "mean_p_priced": 0.27627848139763156,
-      "mean_p_market": 0.278356729267881,
+      "mean_p_market": 0.2759451321024919,
       "observed_priced": 0.27717303005686433
      },
      {
@@ -2108,7 +2108,7 @@
       ],
       "n_priced": 2992,
       "mean_p_priced": 0.321237774552417,
-      "mean_p_market": 0.33480164001334367,
+      "mean_p_market": 0.3238223964680957,
       "observed_priced": 0.3165106951871658
      },
      {
@@ -2124,7 +2124,7 @@
       ],
       "n_priced": 2132,
       "mean_p_priced": 0.3754000002021839,
-      "mean_p_market": 0.3928802842311636,
+      "mean_p_market": 0.37438483804971,
       "observed_priced": 0.3799249530956848
      }
     ],
@@ -2140,7 +2140,7 @@
      ],
      "n_priced": 16046,
      "mean_p_priced": 0.27603378345430307,
-     "mean_p_market": 0.28561048259246,
+     "mean_p_market": 0.2799456085564901,
      "observed_priced": 0.2777639287049732
     },
     "priced_only_by_bin": [
@@ -2174,9 +2174,9 @@
       ],
       "n_priced": 1198,
       "mean_p_priced": 0.18141740181701305,
-      "mean_p_market": 0.1968142656005793,
+      "mean_p_market": 0.19645397198718317,
       "observed_priced": 0.1669449081803005,
-      "market_observed_gap": -0.029869357420278797
+      "market_observed_gap": -0.029509063806882674
      },
      {
       "bin": "0.20–0.25",
@@ -2191,9 +2191,9 @@
       ],
       "n_priced": 2829,
       "mean_p_priced": 0.22804922044415904,
-      "mean_p_market": 0.23956967372258514,
+      "mean_p_market": 0.23838856077344628,
       "observed_priced": 0.2417815482502651,
-      "market_observed_gap": 0.002211874527679958
+      "market_observed_gap": 0.0033929874768188206
      },
      {
       "bin": "0.25–0.30",
@@ -2208,9 +2208,9 @@
       ],
       "n_priced": 6155,
       "mean_p_priced": 0.27627848139763156,
-      "mean_p_market": 0.278356729267881,
+      "mean_p_market": 0.2759451321024919,
       "observed_priced": 0.27717303005686433,
-      "market_observed_gap": -0.0011836992110166866
+      "market_observed_gap": 0.0012278979543724478
      },
      {
       "bin": "0.30–0.35",
@@ -2225,9 +2225,9 @@
       ],
       "n_priced": 2992,
       "mean_p_priced": 0.321237774552417,
-      "mean_p_market": 0.33480164001334367,
+      "mean_p_market": 0.3238223964680957,
       "observed_priced": 0.3165106951871658,
-      "market_observed_gap": -0.01829094482617788
+      "market_observed_gap": -0.007311701280929894
      },
      {
       "bin": "0.35–0.40",
@@ -2242,9 +2242,9 @@
       ],
       "n_priced": 2132,
       "mean_p_priced": 0.3754000002021839,
-      "mean_p_market": 0.3928802842311636,
+      "mean_p_market": 0.37438483804971,
       "observed_priced": 0.3799249530956848,
-      "market_observed_gap": -0.01295533113547881
+      "market_observed_gap": 0.005540115045974792
      }
     ]
    },
@@ -2633,61 +2633,61 @@
    },
    "who_is_right": {
     "n": 33404,
-    "w_model": 0.244219327045167,
-    "w_market": 0.7879028711298756,
-    "intercept": -0.0018712236805456005,
+    "w_model": 0.03062809714118885,
+    "w_market": 1.006810628329303,
+    "intercept": 0.014042047042396205,
     "log_loss_model": 0.6349123683517466,
-    "log_loss_market": 0.6316370417237629,
-    "log_loss_blend_in_sample": 0.6312655730265869,
+    "log_loss_market": 0.6300957534184383,
+    "log_loss_blend_in_sample": 0.6300522356567471,
     "by_disagreement": [
      {
       "ratio": "0.00–0.90",
-      "n": 6434,
-      "mean_p_model": 0.34626581015460295,
-      "mean_p_market": 0.4244943313439868,
-      "observed": 0.3957102890892136
+      "n": 5752,
+      "mean_p_model": 0.3407649468679414,
+      "mean_p_market": 0.4080676425658006,
+      "observed": 0.4012517385257302
      },
      {
       "ratio": "0.90–1.00",
-      "n": 10716,
-      "mean_p_model": 0.4104344498822444,
-      "mean_p_market": 0.4305045036324816,
-      "observed": 0.43215752146323255
+      "n": 10845,
+      "mean_p_model": 0.4085754891032462,
+      "mean_p_market": 0.42850475874633387,
+      "observed": 0.43005993545412635
      },
      {
       "ratio": "1.00–1.10",
-      "n": 10170,
-      "mean_p_model": 0.4090512331248757,
-      "mean_p_market": 0.3919765876612072,
-      "observed": 0.39508357915437564
+      "n": 10383,
+      "mean_p_model": 0.4083961740949829,
+      "mean_p_market": 0.391291050761624,
+      "observed": 0.39497255128575554
      },
      {
       "ratio": "1.10–1.20",
-      "n": 4003,
-      "mean_p_model": 0.40117870506795655,
-      "mean_p_market": 0.3521749995868625,
-      "observed": 0.35098675993005246
+      "n": 4204,
+      "mean_p_model": 0.40271718860881983,
+      "mean_p_market": 0.3534112115043851,
+      "observed": 0.35085632730732635
      },
      {
       "ratio": "1.20–1.35",
-      "n": 1462,
-      "mean_p_model": 0.3642374471340992,
-      "mean_p_market": 0.2912040516234708,
-      "observed": 0.2893296853625171
+      "n": 1578,
+      "mean_p_model": 0.3725321051786532,
+      "mean_p_market": 0.2976486064600012,
+      "observed": 0.2965779467680608
      },
      {
       "ratio": "≥ 1.35",
-      "n": 619,
-      "mean_p_model": 0.31236407841611874,
-      "mean_p_market": 0.2072983469321271,
-      "observed": 0.19224555735056542
+      "n": 642,
+      "mean_p_model": 0.3202341818828463,
+      "mean_p_market": 0.21341746293268243,
+      "observed": 0.19626168224299065
      }
     ]
    },
    "max_selection_mc": {
     "matches": 7082,
     "mean_candidates": 4.548432646145157,
-    "sd_logit_model_minus_market": 0.23292018373809276,
+    "sd_logit_model_minus_market": 0.21017867961476938,
     "rows": [
      {
       "sigma": 0.0,
@@ -2737,7 +2737,7 @@
     ],
     "n_priced": 32137,
     "mean_p_priced": 0.2738521060596149,
-    "mean_p_market": 0.2845066166275658,
+    "mean_p_market": 0.27875283817686547,
     "observed_priced": 0.2758191492671998
    },
    "by_key": {
@@ -2886,7 +2886,7 @@
      ],
      "n_priced": 713,
      "mean_p_priced": 0.3425833501446613,
-     "mean_p_market": 0.49825736874642856,
+     "mean_p_market": 0.3820562945345794,
      "observed_priced": 0.39831697054698456
     },
     "HANDICAP:H": {
@@ -2901,7 +2901,7 @@
      ],
      "n_priced": 891,
      "mean_p_priced": 0.3334065032486312,
-     "mean_p_market": 0.49462638148990945,
+     "mean_p_market": 0.38008338243591516,
      "observed_priced": 0.3782267115600449
     },
     "TOTAL_1.5:UNDER": {
@@ -2972,7 +2972,7 @@
      ],
      "n_priced": 2569,
      "mean_p_priced": 0.18135198049309945,
-     "mean_p_market": 0.19480437709965873,
+     "mean_p_market": 0.19462488936478417,
      "observed_priced": 0.18684312962242117
     },
     {
@@ -2988,7 +2988,7 @@
      ],
      "n_priced": 6126,
      "mean_p_priced": 0.22842189547036892,
-     "mean_p_market": 0.24131120117495986,
+     "mean_p_market": 0.24029253129093697,
      "observed_priced": 0.23685928827946456
     },
     {
@@ -3004,7 +3004,7 @@
      ],
      "n_priced": 11618,
      "mean_p_priced": 0.2748904363758421,
-     "mean_p_market": 0.2804286681214244,
+     "mean_p_market": 0.2776557733387335,
      "observed_priced": 0.2775865037011534
     },
     {
@@ -3020,7 +3020,7 @@
      ],
      "n_priced": 5944,
      "mean_p_priced": 0.32164772440259054,
-     "mean_p_market": 0.33159895427946073,
+     "mean_p_market": 0.3204513464227587,
      "observed_priced": 0.3240242261103634
     },
     {
@@ -3036,7 +3036,7 @@
      ],
      "n_priced": 4264,
      "mean_p_priced": 0.37542661749397627,
-     "mean_p_market": 0.3936692567148429,
+     "mean_p_market": 0.3749706568827133,
      "observed_priced": 0.3630393996247655
     }
    ],
@@ -3052,7 +3052,7 @@
     ],
     "n_priced": 32137,
     "mean_p_priced": 0.2738521060596149,
-    "mean_p_market": 0.2845066166275658,
+    "mean_p_market": 0.27875283817686547,
     "observed_priced": 0.2758191492671998
    },
    "priced_only_by_bin": [
@@ -3086,9 +3086,9 @@
      ],
      "n_priced": 2569,
      "mean_p_priced": 0.18135198049309945,
-     "mean_p_market": 0.19480437709965873,
+     "mean_p_market": 0.19462488936478417,
      "observed_priced": 0.18684312962242117,
-     "market_observed_gap": -0.00796124747723756
+     "market_observed_gap": -0.007781759742363004
     },
     {
      "bin": "0.20–0.25",
@@ -3103,9 +3103,9 @@
      ],
      "n_priced": 6126,
      "mean_p_priced": 0.22842189547036892,
-     "mean_p_market": 0.24131120117495986,
+     "mean_p_market": 0.24029253129093697,
      "observed_priced": 0.23685928827946456,
-     "market_observed_gap": -0.004451912895495291
+     "market_observed_gap": -0.003433243011472409
     },
     {
      "bin": "0.25–0.30",
@@ -3120,9 +3120,9 @@
      ],
      "n_priced": 11618,
      "mean_p_priced": 0.2748904363758421,
-     "mean_p_market": 0.2804286681214244,
+     "mean_p_market": 0.2776557733387335,
      "observed_priced": 0.2775865037011534,
-     "market_observed_gap": -0.0028421644202710206
+     "market_observed_gap": -6.926963758008275e-05
     },
     {
      "bin": "0.30–0.35",
@@ -3137,9 +3137,9 @@
      ],
      "n_priced": 5944,
      "mean_p_priced": 0.32164772440259054,
-     "mean_p_market": 0.33159895427946073,
+     "mean_p_market": 0.3204513464227587,
      "observed_priced": 0.3240242261103634,
-     "market_observed_gap": -0.007574728169097322
+     "market_observed_gap": 0.003572879687604724
     },
     {
      "bin": "0.35–0.40",
@@ -3154,9 +3154,9 @@
      ],
      "n_priced": 4264,
      "mean_p_priced": 0.37542661749397627,
-     "mean_p_market": 0.3936692567148429,
+     "mean_p_market": 0.3749706568827133,
      "observed_priced": 0.3630393996247655,
-     "market_observed_gap": -0.030629857090077373
+     "market_observed_gap": -0.011931257257947803
     }
    ]
   },
@@ -3545,54 +3545,54 @@
   },
   "who_is_right": {
    "n": 65754,
-   "w_model": 0.09614691278566559,
-   "w_market": 0.9455826552027689,
-   "intercept": -0.0003589267231899902,
+   "w_model": -0.07471752083415875,
+   "w_market": 1.1210821148322834,
+   "intercept": 0.019306848413420924,
    "log_loss_model": 0.6326106054202921,
-   "log_loss_market": 0.6270752867853148,
-   "log_loss_blend_in_sample": 0.6269478479785633,
+   "log_loss_market": 0.6261756860509087,
+   "log_loss_blend_in_sample": 0.6260535863275138,
    "by_disagreement": [
     {
      "ratio": "0.00–0.90",
-     "n": 13519,
-     "mean_p_model": 0.3408245514609144,
-     "mean_p_market": 0.4188577453526113,
-     "observed": 0.4069087950292181
+     "n": 12203,
+     "mean_p_model": 0.3354076200961345,
+     "mean_p_market": 0.4029272469096426,
+     "observed": 0.4078505285585512
     },
     {
      "ratio": "0.90–1.00",
-     "n": 21103,
-     "mean_p_model": 0.4060002245347478,
-     "mean_p_market": 0.42620847697887015,
-     "observed": 0.43003364450552056
+     "n": 21301,
+     "mean_p_model": 0.40400065715195643,
+     "mean_p_market": 0.4240376736743815,
+     "observed": 0.42936951316839583
     },
     {
      "ratio": "1.00–1.10",
-     "n": 18415,
-     "mean_p_model": 0.4170151716707226,
-     "mean_p_market": 0.39934740000888375,
-     "observed": 0.3940809122997556
+     "n": 18820,
+     "mean_p_model": 0.41595169308856417,
+     "mean_p_market": 0.3982750313269094,
+     "observed": 0.3944739638682253
     },
     {
      "ratio": "1.10–1.20",
-     "n": 7903,
-     "mean_p_model": 0.40285799753319074,
-     "mean_p_market": 0.353667187235452,
-     "observed": 0.3507528786536758
+     "n": 8257,
+     "mean_p_model": 0.4041440873203144,
+     "mean_p_market": 0.3546356330920587,
+     "observed": 0.35315489887368295
     },
     {
      "ratio": "1.20–1.35",
-     "n": 3286,
-     "mean_p_model": 0.3605789460162148,
-     "mean_p_market": 0.28755886309473017,
-     "observed": 0.2732805842970176
+     "n": 3589,
+     "mean_p_model": 0.3706337579379826,
+     "mean_p_market": 0.29546633736558026,
+     "observed": 0.28280858177765394
     },
     {
      "ratio": "≥ 1.35",
-     "n": 1528,
-     "mean_p_model": 0.30849096335772463,
-     "mean_p_market": 0.20362863216880045,
-     "observed": 0.18455497382198952
+     "n": 1584,
+     "mean_p_model": 0.31613463560665883,
+     "mean_p_market": 0.2096132994048303,
+     "observed": 0.19381313131313133
     }
    ]
   }
@@ -3654,5 +3654,5 @@
    "expected_longest_losing": 41.876666666666665
   }
  ],
- "minutes": 1.2145673751831054
+ "minutes": 1.223636476198832
 }

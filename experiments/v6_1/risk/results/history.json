@@ -9094,9 +9094,9 @@
   }
  },
  "seconds": {
-  "2023": 46.64723467826843,
-  "2024": 63.39289879798889,
-  "2025": 76.23133540153503
+  "2023": 71.45687127113342,
+  "2024": 69.79770374298096,
+  "2025": 106.89828538894653
  },
  "pooled_select": {
   "Текущий Risk": {
@@ -10467,5 +10467,5 @@
   "challenger": "Calibrated Risk (бленд с рынком), пол ≥0 %",
   "rule": "constraints on BOTH 2023/24 and 2024/25: a Risk for >= 99.5 % of the matches with a Main, >= 85 % of the settled Risk picks priced, average odds of the bets >= 2.80; preferred = the highest pooled 2023+2024 ROI among the rules whose ROI is higher than the current rule's on BOTH seasons (ties: the higher worst-season ROI), otherwise the current rule; challenger = the best eligible non-current rule by pooled ROI, tested on 2026/27 in any case"
  },
- "minutes": 3.1069533824920654
+ "minutes": 4.13868127266566
 }

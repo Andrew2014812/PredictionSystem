@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-04T12:14:43",
- "git_head": "f282856602dc2c261b005d88d11d498c64c2b08d",
+ "updated_at": "2026-11-04T12:27:54",
+ "git_head": "e3dd1bd99361a3399d6d3e173aef28329ce80b41",
  "branch": "worktree-agent-ae2d26de4b5d51249",
  "python": "3.12.12",
  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
@@ -30,8 +30,12 @@
   "RISK_PROBABILITY_POWER": 0.5
  },
  "stage_minutes": {
-  "history": 3.1108073155085245,
-  "analysis": 1.2174762964248658
+  "history": 4.1479436675707495,
+  "analysis": 1.2274249076843262,
+  "preregister": 0.0011097272237141928,
+  "independent": 0.6362021327018738,
+  "figures": 0.19193705320358276,
+  "posthoc": 1.1762976447741191
  },
  "model_blocks": {
   "2022": {
