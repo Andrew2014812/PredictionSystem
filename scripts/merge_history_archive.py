@@ -30,6 +30,8 @@ FILES = {
     "ids": ROOT / "local_data/teams/provider_ids.json",
     "progress": ROOT / "local_data/api/oddspapi/history_progress.json",
     "coverage": ROOT / "local_data/api/oddspapi/history_coverage.json",
+    "tournaments": ROOT / "local_data/api/oddspapi/tournaments.json",
+    "candidates": ROOT / "local_data/api/oddspapi/tournament_candidates.json",
 }
 KEY = ["match_id", "provider", "bookmaker", "market", "selection", "collected_at"]
 
@@ -79,7 +81,14 @@ def merge(source: Path) -> None:
     _merge_odds(source / FILES["odds"].name)
     _merge_json(source / FILES["ledger"].name, FILES["ledger"], "requests")
     _merge_json(source / FILES["ids"].name, FILES["ids"], None)
-    for name in ("progress", "coverage"):
+    saved = source / FILES["tournaments"].name
+    if saved.exists():                        # league -> tournament id: add the ids the download found
+        ours = json.loads(FILES["tournaments"].read_text(encoding="utf-8")) if FILES["tournaments"].exists() else {}
+        for code, tid in json.loads(saved.read_text(encoding="utf-8")).items():
+            ours.setdefault(code, tid)
+        FILES["tournaments"].write_text(json.dumps(ours, indent=1, ensure_ascii=False), encoding="utf-8")
+        print("merged", saved.name)
+    for name in ("progress", "coverage", "candidates"):
         saved = source / FILES[name].name
         if saved.exists():
             shutil.copy2(saved, FILES[name])
