@@ -3,7 +3,7 @@
   "E0": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -821,7 +821,7 @@
   "E1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -2253,7 +2253,7 @@
      "away": "Stoke City",
      "home_id": 46,
      "away_id": 29,
-     "match_id": null
+     "match_id": "E1-20261103-blackburn-stoke"
     },
     {
      "fixture_id": "id1000001872339988",
@@ -2262,7 +2262,7 @@
      "away": "Norwich City",
      "home_id": 27,
      "away_id": 263,
-     "match_id": null
+     "match_id": "E1-20261103-derby-norwich"
     },
     {
      "fixture_id": "id1000001872339990",
@@ -2271,7 +2271,7 @@
      "away": "Swansea City",
      "home_id": 2,
      "away_id": 74,
-     "match_id": null
+     "match_id": "E1-20261103-portsmouth-swansea"
     },
     {
      "fixture_id": "id1000001872339992",
@@ -2289,7 +2289,7 @@
      "away": "Burnley FC",
      "home_id": 1,
      "away_id": 6,
-     "match_id": null
+     "match_id": "E1-20261103-qpr-burnley"
     },
     {
      "fixture_id": "id1000001872339996",
@@ -2298,7 +2298,7 @@
      "away": "Lincoln City",
      "home_id": 24,
      "away_id": 92,
-     "match_id": null
+     "match_id": "E1-20261103-watford-lincoln"
     },
     {
      "fixture_id": "id1000001872340004",
@@ -2307,7 +2307,7 @@
      "away": "Bolton Wanderers",
      "home_id": 47,
      "away_id": 5,
-     "match_id": null
+     "match_id": "E1-20261103-charlton-bolton"
     },
     {
      "fixture_id": "id1000001872339984",
@@ -2316,7 +2316,7 @@
      "away": "Millwall FC",
      "home_id": 9,
      "away_id": 25,
-     "match_id": null
+     "match_id": "E1-20261103-birmingham-millwall"
     },
     {
      "fixture_id": "id1000001872339998",
@@ -2325,14 +2325,41 @@
      "away": "Southampton FC",
      "home_id": 8,
      "away_id": 45,
-     "match_id": null
+     "match_id": "E1-20261103-west-brom-southampton"
+    },
+    {
+     "fixture_id": "id1000001872340002",
+     "kickoff_utc": "2026-11-04T19:45:00+00:00",
+     "home": "Cardiff City",
+     "away": "West Ham United",
+     "home_id": 61,
+     "away_id": 37,
+     "match_id": "E1-20261104-cardiff-west-ham"
+    },
+    {
+     "fixture_id": "id1000001872340006",
+     "kickoff_utc": "2026-11-04T19:45:00+00:00",
+     "home": "Wrexham AFC",
+     "away": "Middlesbrough FC",
+     "home_id": 64,
+     "away_id": 36,
+     "match_id": "E1-20261104-wrexham-middlesbrough"
+    },
+    {
+     "fixture_id": "id1000001872340000",
+     "kickoff_utc": "2026-11-04T20:00:00+00:00",
+     "home": "Bristol City",
+     "away": "Wolverhampton Wanderers",
+     "home_id": 58,
+     "away_id": 3,
+     "match_id": "E1-20261104-bristol-city-wolves"
     }
    ]
   },
   "E2": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -3926,7 +3953,7 @@
      "away": "Luton Town",
      "home_id": 59,
      "away_id": 72,
-     "match_id": null
+     "match_id": "E2-20261103-huddersfield-luton"
     },
     {
      "fixture_id": "id1000002476029384",
@@ -3935,6 +3962,15 @@
      "away": "Mansfield Town",
      "home_id": 49,
      "away_id": 70,
+     "match_id": "E2-20261103-wigan-mansfield"
+    },
+    {
+     "fixture_id": "id1000002474353170",
+     "kickoff_utc": "2026-11-04T19:45:00+00:00",
+     "home": "Oxford United",
+     "away": "Reading FC",
+     "home_id": 95,
+     "away_id": 28,
      "match_id": null
     }
    ]
@@ -3942,7 +3978,7 @@
   "E3": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -5482,14 +5518,14 @@
      "away": "Oldham Athletic",
      "home_id": 57,
      "away_id": 65,
-     "match_id": null
+     "match_id": "E3-20261103-northampton-oldham"
     }
    ]
   },
   "SC0": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -6172,7 +6208,7 @@
   "SC1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -6792,7 +6828,7 @@
   "SP1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -7808,7 +7844,7 @@
   "SP2": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -9013,7 +9049,7 @@
   "I1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -9921,7 +9957,7 @@
   "I2": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -10829,7 +10865,7 @@
   "D1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -11485,7 +11521,7 @@
   "D2": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -12303,7 +12339,7 @@
   "F1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -13049,7 +13085,7 @@
   "F2": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -14002,7 +14038,7 @@
   "N1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -14919,7 +14955,7 @@
   "B1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -15749,13 +15785,22 @@
      "home_id": 2898,
      "away_id": 752197,
      "match_id": "B1-20261101-charleroi-raal-la-louviere"
+    },
+    {
+     "fixture_id": "id1000003875953678",
+     "kickoff_utc": "2026-11-04T19:30:00+00:00",
+     "home": "KV Kortrijk",
+     "away": "Yellow-Red KV Mechelen",
+     "home_id": 4858,
+     "away_id": 5044,
+     "match_id": null
     }
    ]
   },
   "P1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -16582,7 +16627,7 @@
   "G1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -17166,7 +17211,7 @@
   "SC2": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -17194,7 +17239,7 @@
      "away": "Queen of the South FC",
      "home_id": 170622,
      "away_id": 2368,
-     "match_id": null
+     "match_id": "SC2-20260801-east-kilbride-queen-of-sth"
     },
     {
      "fixture_id": "id1000020772203842",
@@ -17248,7 +17293,7 @@
      "away": "Peterhead FC",
      "home_id": 2368,
      "away_id": 2385,
-     "match_id": null
+     "match_id": "SC2-20260808-queen-of-sth-peterhead"
     },
     {
      "fixture_id": "id1000020772203854",
@@ -17347,7 +17392,7 @@
      "away": "Alloa Athletic FC",
      "home_id": 2368,
      "away_id": 2369,
-     "match_id": null
+     "match_id": "SC2-20260822-queen-of-sth-alloa"
     },
     {
      "fixture_id": "id1000020772203876",
@@ -17383,7 +17428,7 @@
      "away": "Queen of the South FC",
      "home_id": 2386,
      "away_id": 2368,
-     "match_id": null
+     "match_id": "SC2-20260829-montrose-queen-of-sth"
     },
     {
      "fixture_id": "id1000020772203884",
@@ -17437,7 +17482,7 @@
      "away": "Airdrieonians FC",
      "home_id": 2368,
      "away_id": 2367,
-     "match_id": null
+     "match_id": "SC2-20260905-queen-of-sth-airdrie-utd"
     },
     {
      "fixture_id": "id1000020772203896",
@@ -17473,7 +17518,7 @@
      "away": "East Fife FC",
      "home_id": 2368,
      "away_id": 2382,
-     "match_id": null
+     "match_id": "SC2-20260912-queen-of-sth-east-fife"
     },
     {
      "fixture_id": "id1000020772203904",
@@ -17491,7 +17536,7 @@
      "away": "Queen of the South FC",
      "home_id": 2365,
      "away_id": 2368,
-     "match_id": null
+     "match_id": "SC2-20260915-ross-county-queen-of-sth"
     },
     {
      "fixture_id": "id1000020772203906",
@@ -17527,7 +17572,7 @@
      "away": "Queen of the South FC",
      "home_id": 2376,
      "away_id": 2368,
-     "match_id": null
+     "match_id": "SC2-20260919-hamilton-queen-of-sth"
     },
     {
      "fixture_id": "id1000020772203914",
@@ -17563,7 +17608,7 @@
      "away": "Cove Rangers FC",
      "home_id": 2368,
      "away_id": 8062,
-     "match_id": null
+     "match_id": "SC2-20261003-queen-of-sth-cove-rangers"
     },
     {
      "fixture_id": "id1000020772203924",
@@ -17626,7 +17671,7 @@
      "away": "Queen of the South FC",
      "home_id": 2385,
      "away_id": 2368,
-     "match_id": null
+     "match_id": "SC2-20261010-peterhead-queen-of-sth"
     },
     {
      "fixture_id": "id1000020772203938",
@@ -17662,7 +17707,7 @@
      "away": "Ross County FC",
      "home_id": 2368,
      "away_id": 2365,
-     "match_id": null
+     "match_id": "SC2-20261017-queen-of-sth-ross-county"
     },
     {
      "fixture_id": "id1000020772203936",
@@ -17680,7 +17725,7 @@
      "away": "Queen of the South FC",
      "home_id": 2369,
      "away_id": 2368,
-     "match_id": null
+     "match_id": "SC2-20261024-alloa-queen-of-sth"
     },
     {
      "fixture_id": "id1000020772203948",
@@ -17743,7 +17788,7 @@
      "away": "Queen of the South FC",
      "home_id": 2382,
      "away_id": 2368,
-     "match_id": null
+     "match_id": "SC2-20261031-east-fife-queen-of-sth"
     },
     {
      "fixture_id": "id1000020772203960",
@@ -17777,7 +17822,7 @@
   "SC3": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -18325,7 +18370,7 @@
   "T1": {
    "period": [
     "2026-08-01",
-    "2026-11-03"
+    "2026-11-04"
    ],
    "items": [
     {
@@ -18389,7 +18434,7 @@
      "away": "Erzurumspor FK",
      "home_id": 225940,
      "away_id": 55603,
-     "match_id": null
+     "match_id": "T1-20260816-amedspor-erzurumspor"
     },
     {
      "fixture_id": "id1000005272723138",
@@ -18407,7 +18452,7 @@
      "away": "Goztepe Izmir",
      "home_id": 3053,
      "away_id": 3054,
-     "match_id": null
+     "match_id": "T1-20260817-samsunspor-goztep"
     },
     {
      "fixture_id": "id1000005272723158",
@@ -18479,7 +18524,7 @@
      "away": "Genclerbirligi SK",
      "home_id": 3054,
      "away_id": 7802,
-     "match_id": null
+     "match_id": "T1-20260823-goztep-genclerbirligi"
     },
     {
      "fixture_id": "id1000005272723156",
@@ -18488,7 +18533,7 @@
      "away": "Amed Sportif Faaliyetler",
      "home_id": 3065,
      "away_id": 225940,
-     "match_id": null
+     "match_id": "T1-20260824-kocaelispor-amedspor"
     },
     {
      "fixture_id": "id1000005272723168",
@@ -18524,7 +18569,7 @@
      "away": "Goztepe Izmir",
      "home_id": 3061,
      "away_id": 3054,
-     "match_id": null
+     "match_id": "T1-20260829-galatasaray-goztep"
     },
     {
      "fixture_id": "id1000005272723162",
@@ -18560,7 +18605,7 @@
      "away": "Trabzonspor",
      "home_id": 225940,
      "away_id": 3051,
-     "match_id": null
+     "match_id": "T1-20260831-amedspor-trabzonspor"
     },
     {
      "fixture_id": "id1000005272723174",
@@ -18605,7 +18650,7 @@
      "away": "Amed Sportif Faaliyetler",
      "home_id": 6063,
      "away_id": 225940,
-     "match_id": null
+     "match_id": "T1-20260906-kasimpasa-amedspor"
     },
     {
      "fixture_id": "id1000005272723188",
@@ -18650,7 +18695,7 @@
      "away": "Gaziantep FK",
      "home_id": 3054,
      "away_id": 5138,
-     "match_id": null
+     "match_id": "T1-20260907-goztep-gaziantep"
     },
     {
      "fixture_id": "id1000005272723210",
@@ -18686,7 +18731,7 @@
      "away": "Goztepe Izmir",
      "home_id": 6362,
      "away_id": 3054,
-     "match_id": null
+     "match_id": "T1-20260912-alanyaspor-goztep"
     },
     {
      "fixture_id": "id1000005272723206",
@@ -18713,7 +18758,7 @@
      "away": "Istanbul Basaksehir",
      "home_id": 225940,
      "away_id": 3086,
-     "match_id": null
+     "match_id": "T1-20260913-amedspor-buyuksehyr"
     },
     {
      "fixture_id": "id1000005272723208",
@@ -18803,7 +18848,7 @@
      "away": "Besiktas Istanbul",
      "home_id": 225940,
      "away_id": 3050,
-     "match_id": null
+     "match_id": "T1-20260920-amedspor-besiktas"
     },
     {
      "fixture_id": "id1000005272723222",
@@ -18812,7 +18857,7 @@
      "away": "Caykur Rizespor",
      "home_id": 3054,
      "away_id": 3064,
-     "match_id": null
+     "match_id": "T1-20260920-goztep-rizespor"
     },
     {
      "fixture_id": "id1000005272723244",
@@ -18830,7 +18875,7 @@
      "away": "Amed Sportif Faaliyetler",
      "home_id": 7802,
      "away_id": 225940,
-     "match_id": null
+     "match_id": "T1-20261010-genclerbirligi-amedspor"
     },
     {
      "fixture_id": "id1000005272723236",
@@ -18893,7 +18938,7 @@
      "away": "Goztepe Izmir",
      "home_id": 7040,
      "away_id": 3054,
-     "match_id": null
+     "match_id": "T1-20261012-eyupspor-goztep"
     },
     {
      "fixture_id": "id1000005272723260",
@@ -18920,7 +18965,7 @@
      "away": "Konyaspor",
      "home_id": 225940,
      "away_id": 3085,
-     "match_id": null
+     "match_id": "T1-20261017-amedspor-konyaspor"
     },
     {
      "fixture_id": "id1000005272723258",
@@ -18956,7 +19001,7 @@
      "away": "Goztepe Izmir",
      "home_id": 3065,
      "away_id": 3054,
-     "match_id": null
+     "match_id": "T1-20261018-kocaelispor-goztep"
     },
     {
      "fixture_id": "id1000005272723254",
@@ -19010,7 +19055,7 @@
      "away": "Amed Sportif Faaliyetler",
      "home_id": 3053,
      "away_id": 225940,
-     "match_id": null
+     "match_id": "T1-20261024-samsunspor-amedspor"
     },
     {
      "fixture_id": "id1000005272723278",
@@ -19028,7 +19073,7 @@
      "away": "Corum FK",
      "home_id": 3054,
      "away_id": 77629,
-     "match_id": null
+     "match_id": "T1-20261025-goztep-corum"
     },
     {
      "fixture_id": "id1000005272723274",
@@ -19091,7 +19136,7 @@
      "away": "Goztepe Izmir",
      "home_id": 3052,
      "away_id": 3054,
-     "match_id": null
+     "match_id": "T1-20261031-fenerbahce-goztep"
     },
     {
      "fixture_id": "id1000005272723292",
@@ -19100,7 +19145,7 @@
      "away": "Eyupspor",
      "home_id": 225940,
      "away_id": 7040,
-     "match_id": null
+     "match_id": "T1-20261101-amedspor-eyupspor"
     },
     {
      "fixture_id": "id1000005272723286",
