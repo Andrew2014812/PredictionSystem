@@ -1,0 +1,5 @@
+run_at,source,line,n_requests,n_files_unchanged,n_season_played,n_new_results,n_files,n_returned,n_in_leagues,n_matched,n_finished,n_new_fixtures,n_free,n_billable,n_quotes_new,n_quotes_updated,n_matches_asked,n_matches_priced
+2026-11-05T07:57:28,football_data,"Football-Data: 22 requests · 4 files downloaded · 17 files unchanged · 2,050 played matches in the season files · 17 new results · 19 s",22.0,17.0,2050.0,17.0,4.0,,,,,,,,,,,
+2026-11-05T07:57:28,api_football,API-Football: 3 requests · 769 fixtures returned · 26 in our leagues · 26 matched · 1 new fixtures · 5 finished · 5 new results · skipped: 743 not one of our leagues · 97 left · 13.0 min,3.0,,,5.0,,769.0,26.0,26.0,5.0,1.0,,,,,,
+2026-11-05T07:57:28,oddspapi,"OddsPapi: 143 requests · 3,926 fixtures returned · 141 in our leagues · 141 matched · 141 matches asked · 141 with real prices · 8,365 new quotes · 1,295 updated quotes · skipped: 3783 not one of our leagues, 2 already started · ? left",143.0,,,,,3926.0,141.0,141.0,,,142.0,1.0,8365.0,1295.0,141.0,141.0
+2026-11-05T07:57:28,the_odds_api,The Odds API: off (stored prices still used) · 79 left,,,,,,,,,,,,,,,,
