@@ -43,3 +43,18 @@ def test_archive_is_added_to_newer_data_without_losing_either(tmp_path, monkeypa
     assert set(ledger["requests"]) == {"historical|f1", "fixtures|all"}
     assert json.loads(files["ids"].read_text())["oddspapi"] == {"1": "Spain|Espanol", "2": "Spain|Barcelona"}
     assert json.loads(files["progress"].read_text()) == {"fixtures": {"SP1": {}}}
+
+
+def test_tournament_ids_found_by_the_download_survive_the_merge(tmp_path, monkeypatch):
+    """The commit step resets to main before merging: tournaments.json must be carried, not lost."""
+    files = {k: tmp_path / "data" / v.name for k, v in mod.FILES.items()}
+    monkeypatch.setattr(mod, "FILES", files)
+    (tmp_path / "data").mkdir()
+    files["tournaments"].write_text(json.dumps({"E2": 24, "T1": 52, "SC2": 207}))
+    files["candidates"].write_text(json.dumps({"checked_at": "2026-11-04T16:51:57", "leagues": {}}))
+    mod.save(tmp_path / "saved")
+    files["tournaments"].write_text(json.dumps({"E2": 24, "G1": 185}))      # main's copy after the reset
+    files["candidates"].unlink()
+    mod.merge(tmp_path / "saved")
+    assert json.loads(files["tournaments"].read_text()) == {"E2": 24, "G1": 185, "T1": 52, "SC2": 207}
+    assert json.loads(files["candidates"].read_text())["checked_at"] == "2026-11-04T16:51:57"

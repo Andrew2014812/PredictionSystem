@@ -160,9 +160,14 @@ TEAM_ALIASES: dict[str, str] = {
     "real racing santander": "Santander", "ad ceuta": "Ceuta", "celta fortuna": "Celta B",
     "real sociedad b": "Sociedad B", "amed": "Amedspor", "erzurum bb": "Erzurumspor",
     "gazisehir gaziantep": "Gaziantep", "goztepe": "Goztep", "torku konyaspor": "Konyaspor",
-    "caykur rizespor": "Rizespor",
+    "caykur rizespor": "Rizespor", "amed sportif faaliyetler": "Amedspor", "goztepe izmir": "Goztep",
     "brestois": "Brest", "hoffenheim": "Hoffenheim", "aris thessaloniki": "Aris",
 }
+
+
+# The table is looked up by the normalised name, so its keys are normalised too: "queen of the south"
+# becomes "queen of south" ("the" is a noise word) and is found again.
+_ALIASES_BY_KEY: dict[str, str] = {normalise(k): v for k, v in TEAM_ALIASES.items()}
 
 
 def resolve(name: str, known: set[str] | None = None) -> str | None:
@@ -172,7 +177,7 @@ def resolve(name: str, known: set[str] | None = None) -> str | None:
     normalised match and to reject aliases pointing outside the league).
     """
     key = normalise(name)
-    alias = TEAM_ALIASES.get(key)
+    alias = _ALIASES_BY_KEY.get(key)
     if alias is not None and (known is None or alias in known):
         return alias
     if known:
