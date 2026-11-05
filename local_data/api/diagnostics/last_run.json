@@ -1,0 +1,707 @@
+{
+  "started_at": "2026-11-05T07:57:28",
+  "finished_at": "2026-11-05T08:11:52",
+  "sources": {
+    "api_football": {
+      "counts": {
+        "requests": 3,
+        "returned": 769,
+        "in_leagues": 26,
+        "matched": 26,
+        "finished": 5,
+        "new_results": 5,
+        "new_fixtures": 1
+      },
+      "http": {
+        "200": 3
+      },
+      "skipped": {
+        "not one of our leagues": 743
+      },
+      "errors": [],
+      "info": {
+        "days_asked": [
+          "2026-11-04",
+          "2026-11-05",
+          "2026-11-06"
+        ],
+        "catch_up_days": [],
+        "left": "97"
+      },
+      "seconds": 782.6
+    },
+    "oddspapi": {
+      "counts": {
+        "requests": 143,
+        "free": 142,
+        "billable": 1,
+        "returned": 3926,
+        "in_leagues": 141,
+        "matched": 141,
+        "quotes_new": 8365,
+        "quotes_updated": 1295,
+        "matches_asked": 141,
+        "matches_priced": 141
+      },
+      "http": {
+        "200": 143
+      },
+      "skipped": {
+        "not one of our leagues": 3783,
+        "already started": 2
+      },
+      "errors": [],
+      "info": {
+        "leagues_without_tournament": [
+          "SC2",
+          "SC3",
+          "T1"
+        ],
+        "left": "?",
+        "billable_this_run": 1,
+        "quota_exhausted": false
+      },
+      "seconds": 0.0
+    },
+    "the_odds_api": {
+      "counts": {},
+      "http": {},
+      "skipped": {},
+      "errors": [],
+      "info": {
+        "status": "off (stored prices still used)",
+        "stored_matches": 322,
+        "left": 79
+      },
+      "seconds": 0.0
+    },
+    "football_data": {
+      "counts": {
+        "requests": 22,
+        "files_unchanged": 17,
+        "season_played": 2050,
+        "new_results": 17,
+        "files": 4
+      },
+      "http": {
+        "200": 22
+      },
+      "skipped": {},
+      "errors": [],
+      "info": {
+        "leagues": {
+          "E0": {
+            "rows": 90,
+            "played": 90,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "E1": {
+            "rows": 168,
+            "played": 168,
+            "new_results": 12,
+            "last_date": "04/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "E2": {
+            "rows": 158,
+            "played": 158,
+            "new_results": 3,
+            "last_date": "04/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "E3": {
+            "rows": 164,
+            "played": 164,
+            "new_results": 1,
+            "last_date": "03/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "SC0": {
+            "rows": 69,
+            "played": 69,
+            "new_results": 0,
+            "last_date": "01/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "SC1": {
+            "rows": 64,
+            "played": 64,
+            "new_results": 0,
+            "last_date": "31/10/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": false
+          },
+          "SC2": {
+            "rows": 64,
+            "played": 64,
+            "new_results": 0,
+            "last_date": "31/10/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": false
+          },
+          "SC3": {
+            "rows": 60,
+            "played": 60,
+            "new_results": 0,
+            "last_date": "31/10/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": false
+          },
+          "SP1": {
+            "rows": 109,
+            "played": 109,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "SP2": {
+            "rows": 131,
+            "played": 131,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "I1": {
+            "rows": 100,
+            "played": 100,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "I2": {
+            "rows": 100,
+            "played": 100,
+            "new_results": 0,
+            "last_date": "01/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "D1": {
+            "rows": 72,
+            "played": 72,
+            "new_results": 0,
+            "last_date": "01/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "D2": {
+            "rows": 90,
+            "played": 90,
+            "new_results": 0,
+            "last_date": "01/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "F1": {
+            "rows": 81,
+            "played": 81,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "F2": {
+            "rows": 99,
+            "played": 99,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "N1": {
+            "rows": 99,
+            "played": 99,
+            "new_results": 0,
+            "last_date": "01/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "B1": {
+            "rows": 90,
+            "played": 90,
+            "new_results": 1,
+            "last_date": "04/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "P1": {
+            "rows": 90,
+            "played": 90,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "T1": {
+            "rows": 90,
+            "played": 90,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          },
+          "G1": {
+            "rows": 62,
+            "played": 62,
+            "new_results": 0,
+            "last_date": "02/11/2026",
+            "stats": {
+              "goals": true,
+              "half_time": true,
+              "shots": true,
+              "shots_on_target": true,
+              "corners": true,
+              "fouls": true,
+              "cards": true
+            },
+            "prices": {
+              "bet365_1x2": true,
+              "pinnacle_1x2": false,
+              "max_avg_1x2": true,
+              "bet365_total_2_5": true,
+              "pinnacle_total_2_5": false,
+              "asian_handicap": true,
+              "closing_1x2": true,
+              "pinnacle_closing_1x2": false,
+              "closing_total_2_5": true,
+              "closing_asian": true
+            },
+            "xg": true
+          }
+        }
+      },
+      "seconds": 19.1
+    },
+    "predictions": {
+      "counts": {
+        "settled_now": 151,
+        "voided_now": 0
+      },
+      "http": {},
+      "skipped": {},
+      "errors": [],
+      "info": {
+        "waiting_for_a_result": 8,
+        "history_checks": "all passed"
+      },
+      "seconds": 0.0
+    }
+  },
+  "lines": [
+    "Football-Data: 22 requests · 4 files downloaded · 17 files unchanged · 2,050 played matches in the season files · 17 new results · 19 s",
+    "API-Football: 3 requests · 769 fixtures returned · 26 in our leagues · 26 matched · 1 new fixtures · 5 finished · 5 new results · skipped: 743 not one of our leagues · 97 left · 13.0 min",
+    "OddsPapi: 143 requests · 3,926 fixtures returned · 141 in our leagues · 141 matched · 141 matches asked · 141 with real prices · 8,365 new quotes · 1,295 updated quotes · skipped: 3783 not one of our leagues, 2 already started · ? left",
+    "The Odds API: off (stored prices still used) · 79 left",
+    "Predictions: 151 predictions settled · history checks: all passed · 8 past matches still waiting for a result"
+  ]
+}
