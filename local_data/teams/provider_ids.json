@@ -53,6 +53,7 @@
   "21": "England|Preston",
   "22": "England|Bradford",
   "225156": "Scotland|Kelty Hearts",
+  "225940": "Turkey|Amedspor",
   "23": "England|Barnsley",
   "2346": "Scotland|Motherwell",
   "2347": "Scotland|Kilmarnock",
@@ -77,6 +78,7 @@
   "2365": "Scotland|Ross County",
   "2366": "Scotland|Arbroath",
   "2367": "Scotland|Airdrie Utd",
+  "2368": "Scotland|Queen of Sth",
   "2369": "Scotland|Alloa",
   "2370": "Scotland|Stenhousemuir",
   "2371": "Scotland|Stranraer",
@@ -260,6 +262,7 @@
   "3051": "Turkey|Trabzonspor",
   "3052": "Turkey|Fenerbahce",
   "3053": "Turkey|Samsunspor",
+  "3054": "Turkey|Goztep",
   "3061": "Turkey|Galatasaray",
   "3064": "Turkey|Rizespor",
   "3065": "Turkey|Kocaelispor",
@@ -370,9 +373,6 @@
   "9": "England|Birmingham",
   "92": "England|Lincoln",
   "95": "England|Oxford",
-  "96": "England|Hull",
-  "225940": "Turkey|Amedspor",
-  "2368": "Scotland|Queen of Sth",
-  "3054": "Turkey|Goztep"
+  "96": "England|Hull"
  }
 }
