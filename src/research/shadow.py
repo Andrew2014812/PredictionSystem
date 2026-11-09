@@ -11,13 +11,14 @@ whose kick-off is still in the future, and (3) refreshes the comparison report (
 
 Files (``local_data/research/``):
 
-* ``shadow_predictions.parquet`` — append-only log, one row per (run, shadow, match, item); a row is added only
-  when its content differs from the last row of the same (shadow, match, item), so a re-run on the same data
-  adds nothing. Rows are never edited or deleted; a match that has kicked off never gets a new row. Each row
-  carries ``seq``, ``row_hash`` and ``chain`` = sha256(previous chain + row_hash): editing any stored row breaks
-  the chain (``verify_log``).
-* ``shadow_results.parquet`` — append-only results of finished matches (goals, corners, Football-Data Bet365
-  opening prices); a corrected result is a new row, the latest one counts.
+* ``shadow_predictions/<run_id>.parquet`` — append-only log, one immutable file per run that added rows (an old
+  file is never rewritten, so version control stores only the new rows), one row per (run, shadow, match, item); a
+  row is added only when its content differs from the last row of the same (shadow, match, item), so a re-run on
+  the same data adds nothing. Rows are never edited or deleted; a match that has kicked off never gets a new row.
+  Each row carries ``seq``, ``row_hash`` and ``chain`` = sha256(previous chain + row_hash), and the manifest keeps
+  the SHA-256 of every file: editing or removing any stored row breaks the check (``verify_log``).
+* ``shadow_results/<run_id>.parquet`` — append-only results of finished matches (goals, corners, Football-Data
+  Bet365 opening prices); a corrected result is a new row, the latest one counts.
 * ``manifest.json`` — the registry entries as first registered (an entry that later changes is refused), one
   entry per run (rows appended, chain head, runtime) and the decisions of the forward tests once taken.
 * ``shadow_report.json`` — the latest comparison of every shadow with production.
@@ -48,8 +49,8 @@ from . import variants as V
 log = logging.getLogger(__name__)
 
 DEFAULT_DIR = config.DATA_DIR / "research"
-PREDICTIONS = "shadow_predictions.parquet"
-RESULTS = "shadow_results.parquet"
+PREDICTIONS = "shadow_predictions"            # folder of immutable per-run parquet files
+RESULTS = "shadow_results"
 MANIFEST = "manifest.json"
 REPORT = "shadow_report.json"
 UK = ZoneInfo("Europe/London")
@@ -58,13 +59,17 @@ SCHEMA = 1
 KEY = ["shadow_key", "match_id", "item"]
 CONTENT = ["shadow_key", "match_id", "item", "market", "selection", "p", "base_market", "base_selection", "base_p",
            "odds", "bookmaker", "provider", "priced_at", "base_odds", "base_priced_at", "payload",
-           "prod_generated_at", "prod_model_version", "kickoff"]
+           "prod_model_version", "kickoff"]       # not prod_generated_at: an unchanged refresh adds no row
 META_COLUMNS = ["league", "season", "date", "kickoff", "home_team", "away_team"]
 RESULT_COLUMNS = ["match_id", "home_goals", "away_goals", "total_corners", "odds_home", "odds_draw", "odds_away",
                   "odds_over25", "odds_under25"]
 
 
 # ------------------------------------------------------------------------------------------------ time / ids
+def _run_id() -> str:
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+
+
 def uk_now() -> pd.Timestamp:
     return pd.Timestamp(datetime.now(timezone.utc).astimezone(UK).replace(tzinfo=None))
 
@@ -131,15 +136,24 @@ def content_hash(row: dict) -> str:
 
 # ------------------------------------------------------------------------------------------------ files
 def _read(root: Path, name: str) -> pd.DataFrame:
-    path = root / name
-    return pd.read_parquet(path) if path.exists() else pd.DataFrame()
+    folder = root / name
+    files = sorted(folder.glob("*.parquet")) if folder.exists() else []
+    if not files:
+        return pd.DataFrame()
+    return pd.concat([pd.read_parquet(p) for p in files], ignore_index=True)
 
 
-def _write_atomic(root: Path, name: str, df: pd.DataFrame) -> None:
-    root.mkdir(parents=True, exist_ok=True)
-    tmp = root / f".{name}.tmp"
+def _write_new(root: Path, name: str, run_id: str, df: pd.DataFrame) -> tuple[str, str]:
+    """Write the rows of one run as a new immutable file; returns (relative path, sha256)."""
+    folder = root / name
+    folder.mkdir(parents=True, exist_ok=True)
+    target = folder / f"{run_id}.parquet"
+    if target.exists():
+        raise FileExistsError(target)
+    tmp = folder / f".{run_id}.tmp"
     df.to_parquet(tmp, index=False)
-    os.replace(tmp, root / name)
+    os.replace(tmp, target)
+    return f"{name}/{target.name}", hashlib.sha256(target.read_bytes()).hexdigest()
 
 
 def load_manifest(root: Path) -> dict:
@@ -231,10 +245,14 @@ def upcoming(snapshots: pd.DataFrame, now: pd.Timestamp) -> pd.DataFrame:
 
 
 # ------------------------------------------------------------------------------------------------ settlement
-def settle_shadow(features: pd.DataFrame, root: Path | None = None, now: pd.Timestamp | None = None) -> dict:
-    """Append the results of finished matches that have shadow records (a changed result is a new row)."""
+def settle_shadow(features: pd.DataFrame, root: Path | None = None, now: pd.Timestamp | None = None,
+                  run_id: str | None = None) -> dict:
+    """Append the results of finished matches that have shadow records (a changed result is a new row).
+    Called on its own (no ``run_id``), it registers its file in the manifest as a settlement-only run."""
     root = Path(root or DEFAULT_DIR)
     now = now if now is not None else uk_now()
+    standalone = run_id is None
+    run_id = run_id or _run_id()
     log_ = load_predictions(root)
     if log_.empty or features is None or features.empty:
         return {"results_appended": 0, "corrections": 0}
@@ -260,9 +278,13 @@ def settle_shadow(features: pd.DataFrame, root: Path | None = None, now: pd.Time
     if f.empty:
         return {"results_appended": 0, "corrections": 0}
     f["observed_at"] = pd.Series(pd.Timestamp(now), index=f.index).astype("datetime64[ns]")
-    out = pd.concat([old, f], ignore_index=True) if not old.empty else f.reset_index(drop=True)
-    _write_atomic(root, RESULTS, out)
-    return {"results_appended": int(len(f)), "corrections": corrections}
+    path, sha = _write_new(root, RESULTS, run_id, f.reset_index(drop=True))
+    if standalone:
+        manifest = load_manifest(root)
+        manifest["runs"].append({"run_id": run_id, "now_uk": str(now), "kind": "settlement", "files": {path: sha},
+                                 "results_appended": int(len(f))})
+        save_manifest(root, manifest)
+    return {"results_appended": int(len(f)), "corrections": corrections, "file": path, "sha256": sha}
 
 
 # ------------------------------------------------------------------------------------------------ recording
@@ -292,8 +314,9 @@ def _decorate(rows: pd.DataFrame, spec: R.ShadowSpec, snaps: pd.DataFrame, now: 
     return out
 
 
-def _append(root: Path, new: pd.DataFrame) -> tuple[int, str, int]:
-    """Append rows whose content differs from the last stored row of the same key; returns (added, chain, total)."""
+def _append(root: Path, new: pd.DataFrame, run_id: str) -> tuple[int, str, int, dict]:
+    """Append rows whose content differs from the last stored row of the same key as one new file;
+    returns (added, chain head, total rows, {file: sha256})."""
     old = load_predictions(root)
     if not old.empty:
         last = old.drop_duplicates(KEY, keep="last").set_index(KEY)["content_hash"]
@@ -304,7 +327,7 @@ def _append(root: Path, new: pd.DataFrame) -> tuple[int, str, int]:
     head = str(old["chain"].iloc[-1]) if not old.empty else ""
     seq0 = int(old["seq"].iloc[-1]) + 1 if not old.empty else 0
     if new.empty:
-        return 0, head, int(len(old))
+        return 0, head, int(len(old)), {}
     new = new.reset_index(drop=True)
     new["seq"] = np.arange(seq0, seq0 + len(new), dtype=np.int64)
     new["row_hash"] = [_sha(f"{c}|{r}|{s}") for c, r, s in zip(new["content_hash"], new["run_id"], new["seq"])]
@@ -313,9 +336,8 @@ def _append(root: Path, new: pd.DataFrame) -> tuple[int, str, int]:
         head = _sha(head + h, hashlib.sha256)
         chain.append(head)
     new["chain"] = chain
-    out = pd.concat([old, new], ignore_index=True) if not old.empty else new
-    _write_atomic(root, PREDICTIONS, out)
-    return int(len(new)), head, int(len(out))
+    path, sha = _write_new(root, PREDICTIONS, run_id, new)
+    return int(len(new)), head, int(len(old) + len(new)), {path: sha}
 
 
 def verify_log(root: Path | None = None) -> dict:
@@ -343,11 +365,22 @@ def verify_log(root: Path | None = None) -> dict:
         bad = int(np.sum(np.array(recomputed) != df["content_hash"].to_numpy()))
         if bad:
             problems.append(f"{bad} rows whose content no longer matches their hash")
+    known = {}
     for run in manifest.get("runs", []):
         total, chead = run.get("rows_total"), run.get("chain_head")
         if total and chead and heads_by_total.get(total) != chead:
             problems.append(f"run {run.get('run_id')}: stored chain head not found in the log")
-    return {"rows": int(len(df)), "ok": not problems, "problems": problems}
+        known.update(run.get("files", {}))
+    on_disk = {f"{d}/{p.name}": p for d in (PREDICTIONS, RESULTS) for p in sorted((root / d).glob("*.parquet"))}
+    for rel, p in on_disk.items():
+        if rel not in known:
+            problems.append(f"{rel}: file not registered by any run")
+        elif hashlib.sha256(p.read_bytes()).hexdigest() != known[rel]:
+            problems.append(f"{rel}: file changed after it was written")
+    for rel in known:
+        if rel not in on_disk:
+            problems.append(f"{rel}: file missing")
+    return {"rows": int(len(df)), "files": len(on_disk), "ok": not problems, "problems": problems}
 
 
 def record_shadow_predictions(features: pd.DataFrame | None, snapshots_batch_or_store=None,
@@ -362,13 +395,15 @@ def record_shadow_predictions(features: pd.DataFrame | None, snapshots_batch_or_
     t0 = time.time()
     root = Path(root or DEFAULT_DIR)
     now = pd.Timestamp(now) if now is not None else uk_now()
-    run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    run_id = _run_id()
     summary: dict = {"run_id": run_id, "now_uk": str(now), "root": str(root), "recorded": {}, "errors": {}}
     try:
         manifest = load_manifest(root)
         problems = register(manifest, R.active(), now)
         sha = code_sha()
-        summary["settlement"] = settle_shadow(features, root, now)
+        summary["settlement"] = settle_shadow(features, root, now, run_id)
+        settled = summary["settlement"]
+        files = {settled["file"]: settled["sha256"]} if "file" in settled else {}
         snaps, markets, picks = ProductionView(snapshots_batch_or_store).tables()
         todo = upcoming(snaps, now)
         summary["upcoming_matches"] = int(len(todo))
@@ -406,13 +441,16 @@ def record_shadow_predictions(features: pd.DataFrame | None, snapshots_batch_or_
                 log.exception("shadow %s failed", spec.key)
                 summary["errors"][spec.key] = repr(exc)
         frames = [f for f in frames if not f.empty]
-        added, head, total = _append(root, pd.concat(frames, ignore_index=True)) if frames else (
-            0, (str(load_predictions(root)["chain"].iloc[-1]) if not load_predictions(root).empty else ""),
-            int(len(load_predictions(root))))
-        summary.update({"rows_appended": added, "rows_total": total, "chain_head": head})
+        if frames:
+            added, head, total, written = _append(root, pd.concat(frames, ignore_index=True), run_id)
+        else:
+            old = load_predictions(root)
+            added, head, total, written = 0, (str(old["chain"].iloc[-1]) if not old.empty else ""), int(len(old)), {}
+        files.update(written)
+        summary.update({"rows_appended": added, "rows_total": total, "chain_head": head, "files": files})
         manifest["runs"].append({"run_id": run_id, "now_uk": str(now), "code_sha": sha,
                                  "upcoming_matches": summary["upcoming_matches"], "rows_appended": added,
-                                 "rows_total": total, "chain_head": head,
+                                 "rows_total": total, "chain_head": head, "files": files,
                                  "results_appended": summary["settlement"]["results_appended"],
                                  "errors": summary["errors"], "seconds": round(time.time() - t0, 2)})
         save_manifest(root, manifest)

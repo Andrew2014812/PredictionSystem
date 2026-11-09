@@ -173,8 +173,10 @@ def test_production_tables_are_never_written(store):
     feats = _features(store["matches"], {store["matches"][2][0]["match_id"]: (2.0, 1.0)})
     _record(store, now=NOW + pd.Timedelta(days=3), features=feats)
     assert _hashes(store["prod"]) == before
-    written = {p.name for p in store["root"].rglob("*") if p.is_file()}
+    written = {p.relative_to(store["root"]).parts[0] for p in store["root"].rglob("*") if p.is_file()}
     assert written <= {SH.PREDICTIONS, SH.RESULTS, SH.MANIFEST, SH.REPORT}
+    # every run writes NEW files only: the files of the first run are byte-identical afterwards
+    assert SH.verify_log(store["root"])["ok"]
 
 
 def test_settlement_is_appended_once_and_corrections_are_new_rows(store):
@@ -186,7 +188,8 @@ def test_settlement_is_appended_once_and_corrections_are_new_rows(store):
     assert SH.settle_shadow(feats, store["root"], later)["results_appended"] == 0
     fixed = _features(store["matches"], {m1: (2.0, 2.0)})
     res = SH.settle_shadow(fixed, store["root"], later + pd.Timedelta(days=1))
-    assert res == {"results_appended": 1, "corrections": 1}
+    assert (res["results_appended"], res["corrections"]) == (1, 1)
+    assert SH.verify_log(store["root"])["ok"]
     results = SH.load_results(store["root"])
     assert len(results) == 2
     merged = EV.with_results(SH.load_predictions(store["root"]).query("match_id == @m1"), results)
@@ -198,12 +201,23 @@ def test_settlement_is_appended_once_and_corrections_are_new_rows(store):
 
 def test_tampering_breaks_the_chain(store):
     _record(store)
-    path = store["root"] / SH.PREDICTIONS
+    path = sorted((store["root"] / SH.PREDICTIONS).glob("*.parquet"))[0]
     df = pd.read_parquet(path)
     df.loc[0, "p"] = 0.99
     df.to_parquet(path, index=False)
     check = SH.verify_log(store["root"])
     assert not check["ok"] and check["problems"]
+
+
+def test_a_deleted_or_extra_file_is_detected(store):
+    _record(store)
+    files = sorted((store["root"] / SH.PREDICTIONS).glob("*.parquet"))
+    extra = store["root"] / SH.PREDICTIONS / "20990101T000000.000000Z.parquet"
+    pd.read_parquet(files[0]).to_parquet(extra, index=False)
+    assert not SH.verify_log(store["root"])["ok"]
+    extra.unlink()
+    files[0].unlink()
+    assert not SH.verify_log(store["root"])["ok"]
 
 
 def test_changed_preregistration_is_refused(store, monkeypatch):
@@ -352,3 +366,12 @@ def test_x5_weekly_w_reproduces_the_preregistration():
     lam = snaps.rename(columns={"xg_home": "lam_h", "xg_away": "lam_a"})
     w = X.fit_w(xg, lam, pd.Timestamp("2026-09-08"))["w"]
     assert w == pytest.approx(doc["primary"]["w_history"][1], abs=1e-6)
+
+
+def test_an_unchanged_production_refresh_adds_no_row(store):
+    _record(store)
+    later = NOW + pd.Timedelta(hours=1)
+    same = [_match(1, NOW + pd.Timedelta(days=1), gen=later),
+            _match(2, NOW + pd.Timedelta(hours=3), lam=(1.2, 1.4), p=(0.33, 0.29, 0.38), gen=later)]
+    _write_store(store["prod"], same + store["matches"][2:], _history())
+    assert _record(store, now=later + pd.Timedelta(minutes=1))["rows_appended"] == 0
