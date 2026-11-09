@@ -141,14 +141,16 @@ def save_batch(batch: PredictionBatch, replace_source: str | None = None,
         keep = ~batch.snapshots["match_id"].isin(locked)
         batch = PredictionBatch(batch.snapshots.loc[keep],
                                 batch.markets.loc[~batch.markets["match_id"].isin(locked)] if not batch.markets.empty else batch.markets,
-                                batch.picks.loc[~batch.picks["match_id"].isin(locked)] if not batch.picks.empty else batch.picks)
+                                batch.picks.loc[~batch.picks["match_id"].isin(locked)] if not batch.picks.empty else batch.picks,
+                                batch.inputs.loc[~batch.inputs["match_id"].isin(locked)] if not batch.inputs.empty else batch.inputs)
     if not batch.snapshots.empty:
         first = (snapshots.set_index("match_id")["first_generated_at"] if "first_generated_at" in snapshots
                  else snapshots.set_index("match_id")["generated_at"]) if not snapshots.empty else pd.Series(dtype="datetime64[ns]")
         new = batch.snapshots.copy()
         new["first_generated_at"] = pd.to_datetime(new["match_id"].map(first)).fillna(pd.to_datetime(new["generated_at"]))
-        batch = PredictionBatch(new, batch.markets, batch.picks)
-        batch = PredictionBatch(_archive_versions(batch, snapshots), batch.markets, batch.picks)
+        batch = PredictionBatch(new, batch.markets, batch.picks, batch.inputs)
+        batch = PredictionBatch(_archive_versions(batch, snapshots), batch.markets, batch.picks, batch.inputs)
+    old: set[str] = set()
     if replace_source and not snapshots.empty:
         old = set(snapshots.loc[snapshots["source"] == replace_source, "match_id"])
         snapshots = snapshots.loc[~snapshots["match_id"].isin(old)]
@@ -161,6 +163,18 @@ def save_batch(batch: PredictionBatch, replace_source: str | None = None,
     predictions_storage.write_parquet(SNAPSHOTS, _replace(snapshots, batch.snapshots, ids))
     predictions_storage.write_parquet(MARKETS, _replace(markets, batch.markets, ids))
     predictions_storage.write_parquet(PICKS, _replace(picks, batch.picks, ids))
+    _save_inputs(batch.inputs, ids, old)
+
+
+def _save_inputs(new: pd.DataFrame, ids: set[str], dropped: set[str]) -> None:
+    """Model inputs of the stored predictions: one row per match (the stored version)."""
+    from .inputs import INPUTS, load_inputs
+    if new.empty and not dropped:
+        return
+    existing = load_inputs()
+    if not existing.empty and dropped:
+        existing = existing.loc[~existing["match_id"].isin(dropped)]
+    predictions_storage.write_parquet(INPUTS, _replace(existing, new, ids))
 
 
 # ---------------------------------------------------------------------------
