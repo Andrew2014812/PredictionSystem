@@ -21,6 +21,7 @@ def test_daily_schedule_and_manual_modes_exist():
     inputs = on["workflow_dispatch"]["inputs"]
     assert inputs["mode"]["options"] == ["results", "odds", "full", "history"]
     assert len(inputs) <= 10                                          # GitHub's limit for manual inputs
+    assert inputs["daily"]["default"] is False
     assert {"league", "day", "match_id", "force", "credit_budget"} <= set(inputs)
     assert data["concurrency"]["group"] == "update-data" and data["concurrency"]["cancel-in-progress"] is False
     steps = data["jobs"]["update"]["steps"]
@@ -35,8 +36,8 @@ def _guard_script() -> str:
     return next(s for s in data["jobs"]["update"]["steps"] if s.get("id") == "time")["run"]
 
 
-def _run_guard(event: str, today: str, last: str | None, tmp_path) -> tuple[bool, str]:
-    script = (_guard_script().replace("${{ github.event_name }}", event)
+def _run_guard(event: str, today: str, last: str | None, tmp_path, daily: str = "") -> tuple[bool, str]:
+    script = (_guard_script().replace("${{ github.event_name }}", event).replace("${{ inputs.daily }}", daily)
               .replace("$(TZ=Europe/Kyiv date +%F)", today))
     work = tmp_path / today / str(last)
     (work / "local_data").mkdir(parents=True, exist_ok=True)
@@ -99,3 +100,19 @@ def test_history_mode_downloads_then_fills_recorded_prices_only_by_hand():
             < run.index("restore_recorded_odds.py --go") < run.index("regenerate_predictions.py"))
     assert next(s for s in steps if s.get("name") == "Run pipeline")["if"].endswith("inputs.mode != 'history'")
     assert next(s for s in steps if s.get("name") == "Commit updated data")["if"].endswith("inputs.mode != 'history'")
+
+
+def test_an_external_daily_trigger_shares_the_once_a_day_guard(tmp_path):
+    """GitHub's schedule started 6-7 h late in November 2026; an external "daily-update" dispatch at 03:17
+    runs the same daily update, and whichever of the two comes first wins the Kyiv date."""
+    data, on = _wf()
+    assert on["repository_dispatch"]["types"] == ["daily-update"]
+    assert _run_guard("repository_dispatch", "2026-11-10", "2026-11-09", tmp_path)[0]
+    assert not _run_guard("repository_dispatch", "2026-11-10", "2026-11-10", tmp_path)[0]
+    assert not _run_guard("schedule", "2026-11-10", "2026-11-10", tmp_path)[0]      # late schedule skips
+    assert not _run_guard("workflow_dispatch", "2026-11-10", "2026-11-10", tmp_path, daily="true")[0]
+    assert _run_guard("workflow_dispatch", "2026-11-10", "2026-11-10", tmp_path, daily="false")[0]  # manual
+    assert "kyiv_date=2026-11-10" in _run_guard("workflow_dispatch", "2026-11-10", "2026-11-09", tmp_path,
+                                                daily="true")[1]
+    commit = next(s for s in data["jobs"]["update"]["steps"] if s.get("name") == "Commit updated data")["run"]
+    assert "steps.time.outputs.kyiv_date" in commit.split("daily_run.json")[0]       # every daily run records it
