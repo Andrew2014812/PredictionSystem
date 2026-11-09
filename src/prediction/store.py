@@ -28,6 +28,7 @@ new kick-off.
 """
 from __future__ import annotations
 
+import logging
 from datetime import date
 
 import numpy as np
@@ -43,6 +44,8 @@ MARKETS = "markets.parquet"
 PICKS = "picks.parquet"
 VERSIONS = "versions.parquet"      # archive: every pre-match version of the stored predictions
 
+LOST = "LOST"
+log = logging.getLogger(__name__)
 STATUSES = ("UPCOMING", "WON", "LOST", "PUSH", "VOID")   # PUSH = Asian handicap refund
 
 
@@ -173,6 +176,39 @@ def _rescheduled_result(pick: pd.Series, by_pair: dict) -> pd.Series | None:
     return later.iloc[0] if not later.empty else None
 
 
+def reopen_withdrawn(picks: pd.DataFrame, results: pd.DataFrame, by_pair: dict) -> pd.DataFrame:
+    """Settled predictions whose result a source later withdrew go back to waiting.
+
+    API-Football once reported Tenerife – Andorra (02.11.2026) as finished 2–2 and the next day as not
+    played; Football-Data never listed a result. A prediction settled on such a score is reopened when its
+    match is known and not played and no played match of the pairing exists from 3 days before to
+    60 days after its date. It is then settled again by the normal rules (or voided after
+    VOID_AFTER_DAYS). ``reopened_at`` keeps the trace; the prediction itself is not changed."""
+    done = picks["status"].isin([WON, LOST, PUSH])
+    if not done.any() or results.empty:
+        return picks
+    unplayed = set(results.loc[~results["played"].astype(bool), "match_id"])
+    candidates = picks.loc[done & picks["match_id"].isin(unplayed)]
+    reopen = []
+    for idx, pick in candidates.iterrows():
+        played = by_pair.get((pick["league"], pick["home_team"], pick["away_team"]))
+        day = pd.Timestamp(pick["date"])
+        if played is None or not ((played["date"] >= day - pd.Timedelta(days=3))
+                                  & (played["date"] <= day + pd.Timedelta(days=60))).any():
+            reopen.append(idx)
+    if reopen:
+        picks = picks.copy()
+        if "reopened_at" not in picks:
+            picks["reopened_at"] = pd.NaT
+        picks.loc[reopen, ["status"]] = "UPCOMING"
+        picks.loc[reopen, ["profit", "home_goals", "away_goals", "total_corners"]] = np.nan
+        picks.loc[reopen, "settled_at"] = pd.NaT
+        picks.loc[reopen, "reopened_at"] = pd.Timestamp.now().normalize()
+        log.warning("reopened %d predictions whose result was withdrawn: %s", len(reopen),
+                    sorted(set(picks.loc[reopen, "match_id"])))
+    return picks
+
+
 def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     """Settle UPCOMING picks against played matches; returns all picks.
 
@@ -192,6 +228,7 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     by_id = played.set_index("match_id")
     by_pair = {k: g.sort_values("date") for k, g in played.groupby(["league", "home_team", "away_team"])}
 
+    picks = reopen_withdrawn(picks, results, by_pair)
     pending = picks.loc[picks["status"] == "UPCOMING"]
     score_cols = ["home_goals", "away_goals", "total_corners"]
     scores = by_id.reindex(pending["match_id"])[score_cols].set_axis(pending.index)
