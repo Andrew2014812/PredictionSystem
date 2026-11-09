@@ -124,6 +124,15 @@ def main() -> None:
     record_clubs_without_history(features)
     with diag.stage("predictions"):
         summary["predicted_matches"] = generate_live_predictions(features)
+    # frozen research hypotheses, recorded next to production for a fair test on later matches
+    # (local_data/research/, append-only; the website never reads it; it never raises)
+    from src.research.shadow import record_shadow_predictions
+    with diag.stage("shadow"):
+        shadow = record_shadow_predictions(features)
+    summary["shadow"] = {"recorded": {k: v.get("rows", 0) for k, v in shadow.get("recorded", {}).items()},
+                         "errors": shadow.get("errors", {})}
+    diag.info("predictions", shadow_rows=sum(summary["shadow"]["recorded"].values()),
+              shadow_errors=len(summary["shadow"]["errors"]))
     from src.analytics.invariants import check_history
     with diag.stage("checks"):
         issues = check_history(store.load_picks(), features)

@@ -25,7 +25,7 @@ SOURCES = ("football_data", "api_football", "oddspapi", "the_odds_api")
 LABELS = {"football_data": "Football-Data", "api_football": "API-Football", "oddspapi": "OddsPapi",
           "the_odds_api": "The Odds API", "predictions": "Predictions"}
 STAGE_LABELS = {"features": "features", "settlement": "settlement", "history_repair": "history repair",
-                "predictions": "predictions", "checks": "checks", "total": "total"}
+                "predictions": "predictions", "shadow": "research shadows", "checks": "checks", "total": "total"}
 
 
 class RunDiagnostics:
@@ -159,6 +159,9 @@ class RunDiagnostics:
             parts.append(f"{info['waiting_for_a_result']} past matches still waiting for a result")
         if info.get("waiting_reasons"):
             parts.append("waiting: " + ", ".join(f"{n} {r}" for r, n in info["waiting_reasons"].items()))
+        if info.get("shadow_rows") or info.get("shadow_errors"):
+            parts.append(f"{info.get('shadow_rows', 0)} research shadow rows"
+                         + (f" ({info['shadow_errors']} shadow errors)" if info.get("shadow_errors") else ""))
         if "left" in info:
             parts.append(f"{info['left']} left")
         if d["errors"]:
