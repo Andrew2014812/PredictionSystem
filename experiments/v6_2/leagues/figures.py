@@ -155,6 +155,26 @@ def transfer(tr: dict) -> None:
     save_chart(fig, C.FIGURES / "transfer.png")
 
 
+def league_size(var: dict, prof: dict) -> None:
+    """Per-league effect of the specialising variants against the league's training size (fold 2024/25)."""
+    plt = C.plt()
+    n = {r["league"]: r["n"] for r in prof["folds"]["2024"]["profile"]}
+    fig, ax = plt.subplots(figsize=(7.0, 4.4))
+    for k, v in enumerate(("C2", "C3", "M2", "M4a", "M5")):
+        if v not in var["variants"]:
+            continue
+        L = var["variants"][v]["select"]["leagues"]
+        lg = sorted(L)
+        ax.scatter([n[x] for x in lg], [L[x]["mean"] * 1e3 for x in lg], s=16, color=PALETTE[k], label=v)
+    ax.axhline(0, color=NEG, lw=0.8)
+    ax.set_xscale("log")
+    ax.set_xlabel("матчей лиги в обучении до 2024/25 (лог. шкала)")
+    ax.set_ylabel("Δ к эталону по лиге, ×10⁻³ (отбор)")
+    ax.legend(fontsize=8, ncol=5)
+    ax.set_title("Специализация и объём данных лиги", fontsize=10)
+    save_chart(fig, C.FIGURES / "league_size.png")
+
+
 def run() -> None:
     perf = C.load_json("perf.json")
     prof = C.load_json("profiles.json")
@@ -170,5 +190,7 @@ def run() -> None:
         profile_heatmap(prof)
     if var:
         variants_forest(var)
+        if prof:
+            league_size(var, prof)
     if tr:
         transfer(tr)

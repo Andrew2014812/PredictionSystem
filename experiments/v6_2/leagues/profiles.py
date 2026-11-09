@@ -66,7 +66,7 @@ def cluster(prof: pd.DataFrame) -> tuple[dict, dict]:
     lab = fcluster(Z, k, "maxclust")
     # stable names: groups numbered by decreasing goals per match
     order = pd.Series(prof["goals"].to_numpy()).groupby(lab).mean().sort_values(ascending=False).index
-    rename = {old: f"G{i + 1}" for i, old in enumerate(order)}
+    rename = {old: f"K{i + 1}" for i, old in enumerate(order)}   # K = кластер (G1 is a league code)
     groups = {lg: rename[l] for lg, l in zip(prof.index, lab)}
     return groups, {"k": int(k), "silhouette": sil}
 

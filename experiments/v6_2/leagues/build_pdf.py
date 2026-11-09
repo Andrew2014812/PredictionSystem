@@ -30,6 +30,12 @@ def front(rep, R):
     rep.add(H1("Краткие итоги"))
     best = min(var["variants"], key=lambda v: var["variants"][v]["select"][f"d_{var['variants'][v]['metric']}"]["diff"])
     bv = var["variants"][best]
+    n_better = sum(1 for d in var["variants"].values() if d["select"]["d_" + d["metric"]]["diff"] < 0)
+    n_worse_sig = sum(1 for d in var["variants"].values() if d["select"]["d_" + d["metric"]]["ci95"][0] > 0
+                      and (d["select"]["p_holm"] or 1) < 0.05)
+    decs = {}
+    for v, d in var["variants"].items():
+        decs.setdefault(d["decision"], []).append(v)
     L = sel["leagues"]
     worse = sum(1 for r in L.values() if r["d"]["diff"] > 0)
     sig = sum(1 for r in L.values() if r["d"]["ci95"][0] > 0)
@@ -45,9 +51,10 @@ def front(rep, R):
         f"2023/24↔2025/26 ρ = {perf['persistence']['2023-2025']['rho']:.2f}.",
         f"ROI Main по лигам неоднороден не больше случайного: I² = {sel['meta_main_roi']['I2'] * 100:.0f} %, "
         f"p = {pv(sel['meta_main_roi']['p_Q'])}; переоценка Main — I² = {sel['meta_main_gap']['I2'] * 100:.0f} %.",
-        f"Проверено {var['n_variants_tested']} вариантов специализации; лучший по основной метрике — {best} "
-        f"({bv['name']}): {dk(bv['select']['d_' + bv['metric']], 2)} ×10⁻³, p Холма = {pv(bv['select']['p_holm'])}.",
-        "Решения: " + "; ".join(f"{v} — {d['decision']}" for v, d in var["variants"].items()) + ".",
+        f"Проверено {var['n_variants_tested']} вариантов специализации. Лучше эталона на объединённом отборе — "
+        f"{n_better}; значимо хуже (p Холма < 0.05) — {n_worse_sig}. Наименьшая разница — {best} ({bv['name']}): "
+        f"{dk(bv['select']['d_' + bv['metric']], 2)}×10⁻³.",
+        "Решения: " + "; ".join(f"{k} — {', '.join(v)}" for k, v in sorted(decs.items())) + ".",
     ]
     tr = R["transfer"]
     if tr:
@@ -253,18 +260,18 @@ def variants(rep, R):
     V = var["variants"]
     rep.add(H1("6. Варианты специализации"))
     ref = var["reference"]
-    rows = [["Эталон", "Сезон", "LL 1X2", "Девиация голов", "Модель − рынок ×10⁻³", "Main: ставок", "Main ROI"]]
+    rows = [["Эталон", "Сезон", "LL 1X2", "Девиация голов", "Модель − рынок ×10⁻³", "Ставок Main", "ROI Main"]]
     for r in ("B0", "B0bar"):
         for s in [*map(str, SEAS), "select"]:
             x = ref[r][s]
             rows.append(["B0" if r == "B0" else "B0̄", "отбор" if s == "select" else C.short_period(int(s)), f(x["ll"], 4),
                          f(x["dev"], 4), dk(x["vs_market"]), x["main"]["bets"], roi(x["main"]["roi"])])
-    rep.add(*T(rows, [1.4, 2.4, 1.6, 2.2, 3.6, 1.8, 4.0]))
+    rep.add(*T(rows, [1.7, 2.4, 1.6, 2.0, 3.6, 1.7, 3.8]))
     sn = var["seed_noise"]
     rep.add(P("Шум сида (разница с сидом 42 по log loss 1X2, ×10⁻³): " + "; ".join(
         f"{k.replace('B0_seed', 'сид ').replace('B0bar', 'среднее 3 сидов')}: " +
         ", ".join(f"{C.season_label(int(s))} {dk(sn[k][s], 2)}" for s in map(str, C.SELECT)) for k in sn) + "."))
-    rows = [["Вариант", "2023/24", "2024/25", "Отбор (объединённо)", "p", "p Холма", "2025/26 инф.", "2026/27 тек.", "Решение"]]
+    rows = [["Код", "2023/24", "2024/25", "Отбор (вместе)", "p", "p Холма", "2025/26 инф.", "2026/27 тек.", "Реш."]]
     for v, d in V.items():
         m = "d_" + d["metric"]
         rows.append([v, dk(d["seasons"]["2023"][m], 2), dk(d["seasons"]["2024"][m], 2), dk(d["select"][m], 2),
@@ -272,19 +279,21 @@ def variants(rep, R):
                      dk(d["seasons"]["2026"][m], 2), d["decision"]])
     rep.add(P("Разница основной метрики с эталоном (×10⁻³; < 0 — вариант лучше; для G* — девиация голов, для остальных — "
               "log loss 1X2):"))
-    rep.add(*T(rows, [1.2, 2.3, 2.3, 2.4, 1.2, 1.3, 2.3, 2.3, 1.3]))
+    rep.add(*T(rows, [1.1, 2.3, 2.3, 2.4, 1.5, 1.5, 2.3, 2.3, 1.0]))
     rep.add(*figure(C.FIGURES / "variants_forest.png",
                     "Рис. 6. Варианты: разница с эталоном на объединённом отборе (95 % ДИ) и по отдельным сезонам."))
-    rows = [["Вариант", "Модель − рынок ×10⁻³ (отбор)", "Main ставок", "ROI Main", "ΔROI к эталону, п.п.", "Δ переоценки, п.п."]]
+    rep.add(*figure(C.FIGURES / "league_size.png",
+                    "Рис. 7. Эффект вариантов по лигам (отбор) против объёма обучающих данных лиги."))
+    rows = [["Код", "Модель − рынок ×10⁻³ (отбор)", "Ставок Main", "ROI Main", "ΔROI к эталону, п.п.", "Δ gap, п.п."]]
     for v, d in V.items():
         s = d["select"]
         rows.append([v, dk(s["vs_market"]), s["main"]["bets"], roi(s["main"]["roi"]),
                      f"{s['d_roi']['diff'] * 100:+.1f} {ci(s['d_roi']['ci95'])}", f"{s['d_gap'] * 100:+.2f}"])
     rep.add(P("Влияние на рынок и Main (объединённый отбор):"))
-    rep.add(*T(rows, [1.4, 4.0, 1.8, 3.8, 3.6, 2.4]))
+    rep.add(*T(rows, [1.2, 4.0, 1.8, 3.8, 3.6, 2.2]))
     fits = R["variant_fits"] or {}
     if fits:
-        rows = [["Сезон", "τ² наклона b", "τ² сдвига D", "τ² сдвига A", "Глобальная b", "Голы: τ² хозяев", "Голы: τ² гостей"]]
+        rows = [["Сезон", "τ² наклона b", "τ² сдвига D", "τ² сдвига A", "b глобальная", "Голы: τ² хозяев", "Голы: τ² гостей"]]
         for s in SEAS:
             x = fits.get(str(s))
             if not x:
@@ -294,7 +303,7 @@ def variants(rep, R):
                          f(cal["global"][0], 3), f(g["home"]["tau2"], 4), f(g["away"]["tau2"], 4)])
         rep.add(P("Оценённая межлиговая дисперсия параметров (по истории до сезона). Чем меньше τ² по сравнению с "
                   "дисперсией оценки лиги, тем сильнее сжатие к глобальной карте:"))
-        rep.add(*T(rows, [2.4, 2.2, 2.2, 2.2, 2.2, 2.4, 2.4]))
+        rep.add(*T(rows, [2.3, 2.1, 2.1, 2.1, 2.5, 2.4, 2.4]))
         x = fits.get(str(C.INFO))
         if x:
             cal = x["calibration"]
@@ -303,8 +312,8 @@ def variants(rep, R):
                 mle, se, eb = cal["league_mle"][lg], cal["league_se"][lg], cal["league_eb"][lg]
                 rows.append([lg, cal["league_n"][lg], f"{mle[0]:.2f} ± {se[0]:.2f}", f(eb[0], 2), f(mle[1], 2), f(eb[1], 2),
                              f(mle[2], 2), f(eb[2], 2)])
-            rep.add(P("Карта калибровки лиг для 2025/26 (история 2022/23–2024/25): малые лиги сжимаются к глобальной "
-                      "карте сильнее."))
+            rep.add(P("Карта калибровки лиг для 2025/26 (история 2022/23–2024/25). По построению сжатие к глобальной "
+                      "карте тем сильнее, чем больше стандартная ошибка оценки лиги, т. е. чем меньше лига."))
             rep.add(*T(rows, [1.4, 2.4, 2.6, 1.9, 1.9, 2.1, 1.9, 2.1]))
 
 
@@ -319,11 +328,13 @@ def transfer(rep, R):
     for k in ("own", "all", "group", "out"):
         rows.append([names[k], dk(P_[k]["pooled"]), pv(P_[k]["pooled"]["p_two_sided"]), dk(tr["info_2025"][k]["pooled"])])
     rep.add(*T(rows, [6.4, 4.0, 1.6, 4.0]))
+    rep.add(P(f"Матчей в сравнении: {P_['all']['pooled']['n']} (все другие лиги), {P_['group']['pooled']['n']} (своя "
+              "группа: модель не строится, если у других лиг группы меньше 500 обучающих матчей).", "small"))
     g = P_["group_vs_out"]
     rep.add(P(f"Своя группа против чужих групп (без самой лиги): {dk(g)}×10⁻³ (p = {pv(g['p_two_sided'])}); < 0 — "
               "данные похожих лиг полезнее. Модели «без лиги» обучены на меньшем объёме данных, поэтому сравнение "
               "«своя группа / чужие группы» смешивает похожесть и объём выборки."))
-    rep.add(*figure(C.FIGURES / "transfer.png", "Рис. 7. Перенос по лигам: разница log loss с B0, 2023/24 + 2024/25."))
+    rep.add(*figure(C.FIGURES / "transfer.png", "Рис. 8. Перенос по лигам: разница log loss с B0, 2023/24 + 2024/25."))
 
 
 def tail(rep, R):

@@ -33,22 +33,28 @@ def front(rep, R):
     S = sig["select"]["features"]
     top = max(S, key=lambda x: abs(S[x]["r_model"]["rho"] or 0))
     n_sig = sum(1 for x in S.values() if (x["r_model"]["p_holm"] or 1) < 0.05)
+    from .signal import PROD_CONTROLS
+    decs = {}
+    for v, d in V.items():
+        decs.setdefault(d["decision"], []).append(v)
+    n_better = sum(1 for d in V.values() if d["select"]["d_ll"]["ci95"][1] < 0 or d["select"]["d_dev"]["ci95"][1] < 0)
     items = [
         f"Проверка утечки: {'все четыре теста пройдены' if lk['all_passed'] else 'НЕ все тесты пройдены'} "
         "(совпадение с производственными признаками, слепота к будущим результатам у нашего и у "
         "производственного построителя, независимость от собственного результата).",
-        f"Проверено {var['n_variants_tested']} наборов признаков, каждый — walk-forward, среднее трёх сидов. Лучший по "
-        f"log loss 1X2 — {best} ({V[best]['name']}): {dk(V[best]['select']['d_ll'], 2)}×10⁻³, "
-        f"p Холма = {pv(V[best]['select']['p_holm_ll'])}; по девиации голов — {bd}: {dk(V[bd]['select']['d_dev'], 2)}×10⁻³, "
-        f"p Холма = {pv(V[bd]['select']['p_holm_dev'])}.",
+        f"Проверено {var['n_variants_tested']} наборов признаков (walk-forward, среднее трёх сидов). С 95 % ДИ целиком "
+        f"ниже нуля хотя бы по одной метрике — {n_better}. Наименьшая разница по log loss 1X2 — {best} "
+        f"({V[best]['name']}): {dk(V[best]['select']['d_ll'], 2)}×10⁻³, p Холма = {pv(V[best]['select']['p_holm_ll'])}; "
+        f"по девиации голов — {bd}: {dk(V[bd]['select']['d_dev'], 2)}×10⁻³, p Холма = {pv(V[bd]['select']['p_holm_dev'])}.",
         f"Простые сезонные средние без оконной формы и Elo (R0): {dk(V['R0']['select']['d_ll'], 2)}×10⁻³ к "
         f"производственному набору; с Elo (R1): {dk(V['R1']['select']['d_ll'], 2)}; экспоненциальные средние вместо окон "
         f"(R2): {dk(V['R2']['select']['d_ll'], 2)}.",
         f"Остатки модели почти не связаны с новыми признаками: максимальная |r| = {abs(S[top]['r_model']['rho']):.3f} "
-        f"({top}); значимых после Холма — {n_sig} из {len(S)}.",
+        f"({top}); значимых после Холма — {n_sig} из {len(S)} ({len(S) - len(PROD_CONTROLS)} новых и "
+        f"{len(PROD_CONTROLS)} производственных для контроля).",
         "Поправка рыночной цены на форму не обыгрывает рынок: " + "; ".join(
             f"{v}: {dk(mf['select'][v]['d_ll'], 2)}×10⁻³" for v in mf["select"]) + ".",
-        "Решения: " + "; ".join(f"{v} — {d['decision']}" for v, d in V.items()) + ".",
+        "Решения: " + "; ".join(f"{k} — {', '.join(v)}" for k, v in sorted(decs.items())) + ".",
         "Смены тренера и состава не исследованы: надёжного источника с датой до матча локально нет.",
     ]
     rep.add(H1("Краткие итоги"))
@@ -212,35 +218,35 @@ def variants(rep, R):
     V = var["variants"]
     rep.add(H1("6. Варианты наборов признаков"))
     ref = var["reference"]
-    rows = [["Эталон", "Сезон", "LL 1X2", "Девиация голов", "Модель − рынок ×10⁻³", "Main ставок", "ROI Main"]]
+    rows = [["Эталон", "Сезон", "LL 1X2", "Девиация голов", "Модель − рынок ×10⁻³", "Ставок Main", "ROI Main"]]
     for r in ("B0", "T0"):
         for s in [*map(str, SEAS), "select"]:
             x = ref[r][s]
             rows.append([r, "отбор" if s == "select" else C.short_period(int(s)), f(x["ll"], 4), f(x["dev"], 4),
                          dk(x["vs_market"]), x["main"]["bets"], roi(x["main"]["roi"])])
-    rep.add(*T(rows, [1.4, 2.4, 1.6, 2.2, 3.6, 1.8, 4.0]))
+    rep.add(*T(rows, [1.7, 2.4, 1.6, 2.0, 3.6, 1.7, 3.8]))
     rep.add(P("Шум сида: T0 (3 сида) − B0 (сид 42), log loss ×10⁻³: " +
               ", ".join(f"{C.season_label(int(s))} {dk(v['d_ll'], 2)}" for s, v in var["seed_noise"].items()) + "."))
     for m, title, hk in (("d_ll", "log loss 1X2", "p_holm_ll"), ("d_dev", "девиация голов (хозяева + гости)", "p_holm_dev")):
-        rows = [["Вариант", "2023/24", "2024/25", "Отбор", "p", "p Холма", "2025/26 инф.", "2026/27 тек."]]
+        rows = [["Код", "2023/24", "2024/25", "Отбор", "p", "p Холма", "2025/26 инф.", "2026/27 тек."]]
         for v, d in V.items():
             rows.append([v, dk(d["seasons"]["2023"][m], 2), dk(d["seasons"]["2024"][m], 2), dk(d["select"][m], 2),
                          pv(d["select"][m]["p_two_sided"]), pv(d["select"][hk]), dk(d["seasons"]["2025"][m], 2),
                          dk(d["seasons"]["2026"][m], 2)])
         rep.add(P(f"Разница с T0 ×10⁻³, {title} (< 0 — вариант лучше):"))
-        rep.add(*T(rows, [1.2, 2.6, 2.6, 2.6, 1.2, 1.4, 2.6, 2.6]))
+        rep.add(*T(rows, [1.0, 2.6, 2.6, 2.6, 1.4, 1.4, 2.5, 2.5]))
     rep.add(*figure(C.FIGURES / "variants_forest.png", "Рис. 3. Варианты на объединённом отборе (95 % ДИ) и по сезонам."))
     rep.add(*figure(C.FIGURES / "variants_by_season.png",
                     "Рис. 4. Разница log loss с T0 по сезонам; чёрная линия — шум сида (3 сида против сида 42)."))
-    rows = [["Вариант", "Модель − рынок ×10⁻³", "Main ставок", "ROI Main", "ΔROI, п.п.", "Δ переоценки, п.п.", "Решение"]]
+    rows = [["Код", "Модель − рынок ×10⁻³", "Ставок Main", "ROI Main", "ΔROI, п.п.", "Δ gap, п.п.", "Реш."]]
     for v, d in V.items():
         s = d["select"]
         rows.append([v, dk(s["vs_market"]), s["main"]["bets"], roi(s["main"]["roi"]),
                      f"{s['d_roi']['diff'] * 100:+.1f} {ci(s['d_roi']['ci95'])}", f"{s['d_gap'] * 100:+.2f}", d["decision"]])
     rep.add(P("Рынок и Main на объединённом отборе:"))
-    rep.add(*T(rows, [1.3, 3.6, 1.7, 3.8, 3.0, 2.0, 1.4]))
+    rep.add(*T(rows, [1.1, 3.6, 1.8, 3.8, 3.2, 1.9, 1.1]))
     rep.add(H1("7. Где динамика могла бы помочь: фаза сезона, уровень лиги"))
-    rows = [["Вариант", "Начало сезона ×10⁻³", "Остальные ×10⁻³", "Уровень 1", "Уровень 2", "Уровни 3–4"]]
+    rows = [["Код", "Начало сезона ×10⁻³", "Остальные ×10⁻³", "Уровень 1", "Уровень 2", "Уровни 3–4"]]
     for v, d in V.items():
         s = d["select"]
         t = s["d_ll_tier"]
@@ -264,7 +270,7 @@ def market(rep, R):
                      dk(mf["select"][v]["d_ll"], 2), pv(mf["select"][v]["p_holm"]), dk(mf["seasons"]["2025"][v]["d_ll"], 2),
                      dk(mf["seasons"]["2026"][v]["d_ll"], 2),
                      (f"{roi(mf['select'][v]['roi'])} ({mf['select'][v]['roi']['n']})" if mf["select"][v]["roi"]["n"] else "нет ставок")])
-    rep.add(*T(rows, [3.6, 1.9, 1.9, 2.0, 1.3, 1.9, 1.9, 3.2]))
+    rep.add(*T(rows, [3.2, 1.9, 1.9, 2.0, 1.7, 1.9, 1.9, 3.1]))
 
 
 def tail(rep, R):
