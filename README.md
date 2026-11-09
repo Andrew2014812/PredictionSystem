@@ -353,6 +353,34 @@ and only those badges would come back — the remaining option would be self-hos
 container), which v6.1 does not do. The date picker is kept English in any browser language (the page reports
 British English to it; dates stay DD.MM.YYYY).
 
+### Design v6.2, the logo and Streamlit branding (v6.2)
+
+- **Design v6.2** (default): a more neutral dark background (#131618) and off-white (#f3f4f2), calmer and fewer
+  greens (a readable green for text, a darker one behind white text), secondary text that is no longer drawn at
+  Streamlit's 60 % caption opacity, club names in tables as strong text instead of green links, a rule under page
+  and section titles, less rounded cards. Every visible text reaches WCAG 4.5:1 (large text 3:1) in both themes:
+  `python scripts/ui_contrast_audit.py --out <file>` measures it in a real browser (`reports/v6_2/data/contrast_*.json`:
+  v6.1 had 192 texts below the threshold in the dark theme and 26 in the light one, v6.2 none). Rollback: `python scripts/use_design.py v6.1`
+  (or the secret `FP_DESIGN=v6.1`); v6 also stays available.
+- **Logo**: a click anywhere on it opens Matches (today, all leagues) inside the app — `st.switch_page`, no page
+  reload, theme and language kept; on Matches it also clears a chosen day / league.
+- **Charts**: the shared chart helper no longer overrides each chart's margins; the left margin fits the longest
+  label (Plotly's automargin did not widen it inside Streamlit), ROI values sit in a column right of the bars,
+  long feature names wrap. `tests/e2e/test_v62.py` checks at 1920×1080, 1366×768 and 125 % that no chart text
+  leaves its chart or overlaps an axis label.
+- **Streamlit Cloud branding** — measured in a real browser on the deployed app (November 2026): the hosting page
+  draws "Hosted with Streamlit" and the creator's avatar from about 4 s after the request until the app's own
+  script hides them about 3–4 s later. With `?embed=true` the hosting page draws a "Built with Streamlit ·
+  Fullscreen" bar instead, at the same moment. The hosting page belongs to Streamlit and is drawn before any code
+  of the app runs, so on Community Cloud this short flash on a full page load (first visit, Ctrl+R / Ctrl+F5)
+  cannot be prevented; moving inside the app (menu, logo) no longer reloads the page and shows nothing.
+  Removing it needs a host that serves the app directly, without a wrapper page — the same Streamlit app, no
+  rewrite: a Docker container on Render (free tier sleeps after 15 min without traffic, ~30–60 s to wake), Hugging
+  Face Spaces (free CPU sleeps after 48 h; free-tier rules changed in 2026 — check before relying on it), Google
+  Cloud Run (scales to zero, cold start) or a small VPS (always on, a few euros a month; a reverse proxy can also
+  insert the page styles into the first HTML, so even Streamlit's own start-up screen never shows). The hosting
+  is not changed without the owner's decision.
+
 ## ML research: alternative models (not used by the website)
 
 `experiments/model_comparison/` compares, under identical conditions, the current XGBoost, XGBoost with a larger
@@ -520,6 +548,16 @@ variable `ODDS_API_LEAGUES` (e.g. `T1`) would allow it for named leagues only.
   time, kick-off, model version, feature-set id, the raw input values). *Why this prediction?* explains a
   stored prediction with these inputs, so a finished match shows the explanation of the probability that was
   published; older predictions are explained with current data and say so.
+- Every stored Main / Risk price carries `odds_timing` (`src/prediction/price_timing.py`, recomputed each run):
+  recorded with the prediction; on offer at prediction time but added later; a closing price published after the
+  prediction; a retrospective prediction's closing price. Times are compared in UTC (predictions are stored in UTC,
+  quotes in UK time). The price tooltip says which it is, Football-Data prices show no quote time (the files have
+  none), and History adds the ROI of prices that were on offer when the prediction was made.
+- Fixes found by the v6.2 data-quality and research studies: a passing misspelling in the current results files
+  is harmonised like one in the fixtures file; FC Edinburgh (2022/23) is Edinburgh City; a price feed's fixture row
+  never turns a played match back into a fixture; a stale `team_id_conflicts.csv` is removed; three API-Football
+  spellings (OFI, Vicenza Virtus, Real Sociedad II) are matched; an unpriced whole handicap line is judged at its
+  break-even price with the refund, (1 − P(refund)) / P(win), instead of 1 / P(win).
 
 ### Research reports (v6.1)
 
