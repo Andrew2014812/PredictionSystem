@@ -375,3 +375,10 @@ def test_an_unchanged_production_refresh_adds_no_row(store):
             _match(2, NOW + pd.Timedelta(hours=3), lam=(1.2, 1.4), p=(0.33, 0.29, 0.38), gen=later)]
     _write_store(store["prod"], same + store["matches"][2:], _history())
     assert _record(store, now=later + pd.Timedelta(minutes=1))["rows_appended"] == 0
+
+
+def test_every_registered_preregistration_is_the_frozen_file():
+    for spec in R.SHADOWS:
+        assert spec.check() is None, spec.key
+        assert spec.implemented or spec.not_implemented_reason
+        assert len({s.key for s in R.SHADOWS}) == len(R.SHADOWS)

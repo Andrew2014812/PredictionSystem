@@ -77,15 +77,18 @@ MAINCAL = "experiments/v6_2/main_calibration/results/preregistration.json"
 RISK = "experiments/v6_2/risk/results/preregistration.json"
 BOOKMAKER = "experiments/v6_2/bookmaker/results/preregistration.json"
 XG = "experiments/v6_2/xg/results/preregistration.json"
+UNCERTAINTY = "experiments/v6_2/uncertainty/results/preregistration.json"
 
 SHA = {MAINCAL: "d6969f7aa0801e32256cc863b9e3546c72ae84dd01b7b60e715ee3e73957cfe2",
        RISK: "db84ccc1ce00273d708ff0b56f5375a6181e3095b9587b67928601d9bdaed9c3",
        BOOKMAKER: "9f07bd3ecab8399d560efa6108eb5b170896bd92f068fa69efc4c8ecb30da865",
-       XG: "948c5faf795abb6536cb4108aaad10017aa385dcb082e5158edf4b1cb57647e2"}
+       XG: "948c5faf795abb6536cb4108aaad10017aa385dcb082e5158edf4b1cb57647e2",
+       UNCERTAINTY: "049092c556ff2813e931ee49de201b72e2f77d077ce8f1412e50924a912483cd"}
 COMMIT = {MAINCAL: ("24039db5ed13051dc8a9a7bfa0a04ac61667ed17", "2026-11-09T17:05:59Z"),
           RISK: ("8525b600367c109d2ffa7c19a2ac74fc41fac838", "2026-11-09T17:06:18Z"),
           BOOKMAKER: ("7f5d360a8fcd9f1d5546d13812640e60bb4a3485", "2026-11-09T17:08:44Z"),
-          XG: ("7b2a73435bd0a21273a6b7aa6b6d4d59bd675cd8", "2026-11-09T17:03:59Z")}
+          XG: ("7b2a73435bd0a21273a6b7aa6b6d4d59bd675cd8", "2026-11-09T17:03:59Z"),
+          UNCERTAINTY: ("8b089170823efba124d35f11eb9af40d58c5613d", "2026-11-09T18:29:30Z")}
 
 
 def _spec(prereg: str, **kw) -> ShadowSpec:
@@ -148,6 +151,16 @@ SHADOWS: tuple[ShadowSpec, ...] = (
           not_implemented_reason="нужна отдельная версия моделей XGBoost (переобучение на 2021/22–2025/26 с 9 "
                                  "признаками прокси-xG) и её загрузка в ежедневном прогоне; это не «дешёвая» тень "
                                  "без переобучения. Заглушка: запись не ведётся."),
+    _spec(UNCERTAINTY, id="uncertainty_flag_u_1x2", version=1, hypothesis="flag_u_1x2", items=("main",),
+          description="Метка «ненадёжный прогноз» у Main, если разброс 1X2 по 8 бутстреп-моделям выше замороженного "
+                      "порога (0.8-квантиль 2026/27); выбор и вероятность Main не меняются",
+          baseline="Main без метки", metric="β_u в логит-модели выигрыша при logit pc; gap(с меткой) − gap(без)",
+          criterion="95 % ДИ β_u < 0 и 95 % ДИ gap(с меткой) − gap(без) > 0 (бутстреп по матчам, 2000)",
+          min_n=2000, forward_rule={"kind": "kickoff_after_utc", "utc": "2026-11-09T18:29:30Z"},
+          family="uncertainty", implemented=False,
+          not_implemented_reason="нужны 8 бутстреп-моделей 1X2, обученных один раз на сезонах до 2026/27 и "
+                                 "сохранённых рядом с моделями продакшна; после этого ежедневная цена — 8 прогнозов "
+                                 "на матч. Модели в этом исследовании не сохранялись, запись не ведётся."),
 )
 
 
