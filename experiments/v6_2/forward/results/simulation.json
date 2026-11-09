@@ -1,0 +1,1189 @@
+{
+ "pretend_freeze_uk": "2026-10-01 00:00:00",
+ "end_uk": "2026-11-09 07:00:00",
+ "runs": [
+  {
+   "run_uk": "2026-10-02 14:50:00",
+   "matches": 35,
+   "upcoming_seen": 35,
+   "rows_appended": 254,
+   "rerun_rows_appended": 0,
+   "seconds": 29.7,
+   "rerun_seconds": 3.38,
+   "results_appended": 0,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.1,
+    "maincal_ps_group@v1": 0.09,
+    "risk_stacked@v1": 0.25,
+    "risk_market_probability@v1": 0.15,
+    "bookmaker_h2_pool@v1": 0.21,
+    "xg_x5@v1": 27.22
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-09 13:24:00",
+   "matches": 11,
+   "upcoming_seen": 11,
+   "rows_appended": 88,
+   "rerun_rows_appended": 0,
+   "seconds": 4.84,
+   "rerun_seconds": 2.91,
+   "results_appended": 34,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.87,
+    "maincal_ps_group@v1": 0.09,
+    "risk_stacked@v1": 0.06,
+    "risk_market_probability@v1": 0.06,
+    "bookmaker_h2_pool@v1": 0.14,
+    "xg_x5@v1": 2.25
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-10 12:42:00",
+   "matches": 70,
+   "upcoming_seen": 70,
+   "rows_appended": 544,
+   "rerun_rows_appended": 0,
+   "seconds": 6.26,
+   "rerun_seconds": 5.82,
+   "results_appended": 11,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.66,
+    "maincal_ps_group@v1": 0.22,
+    "risk_stacked@v1": 0.36,
+    "risk_market_probability@v1": 0.27,
+    "bookmaker_h2_pool@v1": 0.26,
+    "xg_x5@v1": 3.06
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-11 12:55:00",
+   "matches": 30,
+   "upcoming_seen": 30,
+   "rows_appended": 240,
+   "rerun_rows_appended": 0,
+   "seconds": 4.35,
+   "rerun_seconds": 5.07,
+   "results_appended": 70,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.3,
+    "maincal_ps_group@v1": 0.07,
+    "risk_stacked@v1": 0.16,
+    "risk_market_probability@v1": 0.18,
+    "bookmaker_h2_pool@v1": 0.23,
+    "xg_x5@v1": 2.06
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-11 20:58:00",
+   "matches": 1,
+   "upcoming_seen": 1,
+   "rows_appended": 8,
+   "rerun_rows_appended": 0,
+   "seconds": 2.1,
+   "rerun_seconds": 1.96,
+   "results_appended": 0,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.36,
+    "maincal_ps_group@v1": 0.02,
+    "risk_stacked@v1": 0.03,
+    "risk_market_probability@v1": 0.02,
+    "bookmaker_h2_pool@v1": 0.08,
+    "xg_x5@v1": 0.19
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-12 15:03:00",
+   "matches": 2,
+   "upcoming_seen": 2,
+   "rows_appended": 16,
+   "rerun_rows_appended": 0,
+   "seconds": 2.58,
+   "rerun_seconds": 2.82,
+   "results_appended": 30,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.46,
+    "maincal_ps_group@v1": 0.04,
+    "risk_stacked@v1": 0.04,
+    "risk_market_probability@v1": 0.03,
+    "bookmaker_h2_pool@v1": 0.07,
+    "xg_x5@v1": 0.45
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-12 16:47:00",
+   "matches": 24,
+   "upcoming_seen": 24,
+   "rows_appended": 192,
+   "rerun_rows_appended": 0,
+   "seconds": 9.31,
+   "rerun_seconds": 4.72,
+   "results_appended": 0,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.25,
+    "maincal_ps_group@v1": 0.13,
+    "risk_stacked@v1": 0.14,
+    "risk_market_probability@v1": 0.11,
+    "bookmaker_h2_pool@v1": 0.14,
+    "xg_x5@v1": 7.0
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-16 17:35:00",
+   "matches": 98,
+   "upcoming_seen": 98,
+   "rows_appended": 756,
+   "rerun_rows_appended": 0,
+   "seconds": 10.62,
+   "rerun_seconds": 8.86,
+   "results_appended": 25,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.84,
+    "maincal_ps_group@v1": 0.19,
+    "risk_stacked@v1": 0.63,
+    "risk_market_probability@v1": 0.49,
+    "bookmaker_h2_pool@v1": 0.29,
+    "xg_x5@v1": 6.68
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-17 17:27:00",
+   "matches": 95,
+   "upcoming_seen": 95,
+   "rows_appended": 758,
+   "rerun_rows_appended": 0,
+   "seconds": 13.52,
+   "rerun_seconds": 11.15,
+   "results_appended": 17,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 2.16,
+    "maincal_ps_group@v1": 0.28,
+    "risk_stacked@v1": 0.66,
+    "risk_market_probability@v1": 0.76,
+    "bookmaker_h2_pool@v1": 0.66,
+    "xg_x5@v1": 8.35
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-23 14:15:00",
+   "matches": 3,
+   "upcoming_seen": 3,
+   "rows_appended": 24,
+   "rerun_rows_appended": 0,
+   "seconds": 8.36,
+   "rerun_seconds": 3.21,
+   "results_appended": 177,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.5,
+    "maincal_ps_group@v1": 0.02,
+    "risk_stacked@v1": 0.03,
+    "risk_market_probability@v1": 0.02,
+    "bookmaker_h2_pool@v1": 0.17,
+    "xg_x5@v1": 5.99
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-23 18:28:00",
+   "matches": 33,
+   "upcoming_seen": 33,
+   "rows_appended": 264,
+   "rerun_rows_appended": 0,
+   "seconds": 7.65,
+   "rerun_seconds": 7.4,
+   "results_appended": 0,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 2.22,
+    "maincal_ps_group@v1": 0.07,
+    "risk_stacked@v1": 0.24,
+    "risk_market_probability@v1": 0.14,
+    "bookmaker_h2_pool@v1": 0.11,
+    "xg_x5@v1": 4.19
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-24 13:36:00",
+   "matches": 98,
+   "upcoming_seen": 98,
+   "rows_appended": 764,
+   "rerun_rows_appended": 0,
+   "seconds": 10.11,
+   "rerun_seconds": 9.42,
+   "results_appended": 18,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 2.15,
+    "maincal_ps_group@v1": 0.51,
+    "risk_stacked@v1": 0.9,
+    "risk_market_probability@v1": 0.58,
+    "bookmaker_h2_pool@v1": 0.4,
+    "xg_x5@v1": 4.86
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-25 13:40:00",
+   "matches": 41,
+   "upcoming_seen": 41,
+   "rows_appended": 328,
+   "rerun_rows_appended": 0,
+   "seconds": 5.97,
+   "rerun_seconds": 6.46,
+   "results_appended": 99,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.47,
+    "maincal_ps_group@v1": 0.13,
+    "risk_stacked@v1": 0.31,
+    "risk_market_probability@v1": 0.23,
+    "bookmaker_h2_pool@v1": 0.13,
+    "xg_x5@v1": 2.92
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-26 15:49:00",
+   "matches": 10,
+   "upcoming_seen": 10,
+   "rows_appended": 80,
+   "rerun_rows_appended": 0,
+   "seconds": 3.64,
+   "rerun_seconds": 3.97,
+   "results_appended": 52,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.43,
+    "maincal_ps_group@v1": 0.03,
+    "risk_stacked@v1": 0.06,
+    "risk_market_probability@v1": 0.06,
+    "bookmaker_h2_pool@v1": 0.08,
+    "xg_x5@v1": 1.2
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-27 15:34:00",
+   "matches": 18,
+   "upcoming_seen": 18,
+   "rows_appended": 140,
+   "rerun_rows_appended": 0,
+   "seconds": 12.43,
+   "rerun_seconds": 3.77,
+   "results_appended": 10,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.33,
+    "maincal_ps_group@v1": 0.09,
+    "risk_stacked@v1": 0.32,
+    "risk_market_probability@v1": 0.16,
+    "bookmaker_h2_pool@v1": 0.22,
+    "xg_x5@v1": 9.6
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-28 16:19:00",
+   "matches": 3,
+   "upcoming_seen": 3,
+   "rows_appended": 24,
+   "rerun_rows_appended": 0,
+   "seconds": 2.59,
+   "rerun_seconds": 2.86,
+   "results_appended": 18,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.51,
+    "maincal_ps_group@v1": 0.03,
+    "risk_stacked@v1": 0.03,
+    "risk_market_probability@v1": 0.03,
+    "bookmaker_h2_pool@v1": 0.05,
+    "xg_x5@v1": 0.32
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-28 17:47:00",
+   "matches": 11,
+   "upcoming_seen": 11,
+   "rows_appended": 88,
+   "rerun_rows_appended": 0,
+   "seconds": 3.58,
+   "rerun_seconds": 3.95,
+   "results_appended": 0,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.39,
+    "maincal_ps_group@v1": 0.05,
+    "risk_stacked@v1": 0.15,
+    "risk_market_probability@v1": 0.18,
+    "bookmaker_h2_pool@v1": 0.19,
+    "xg_x5@v1": 0.9
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-29 16:26:00",
+   "matches": 2,
+   "upcoming_seen": 2,
+   "rows_appended": 16,
+   "rerun_rows_appended": 0,
+   "seconds": 3.19,
+   "rerun_seconds": 3.19,
+   "results_appended": 14,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.76,
+    "maincal_ps_group@v1": 0.04,
+    "risk_stacked@v1": 0.03,
+    "risk_market_probability@v1": 0.02,
+    "bookmaker_h2_pool@v1": 0.08,
+    "xg_x5@v1": 0.4
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-30 16:14:00",
+   "matches": 98,
+   "upcoming_seen": 98,
+   "rows_appended": 754,
+   "rerun_rows_appended": 0,
+   "seconds": 10.79,
+   "rerun_seconds": 10.38,
+   "results_appended": 2,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 2.31,
+    "maincal_ps_group@v1": 0.28,
+    "risk_stacked@v1": 0.76,
+    "risk_market_probability@v1": 0.56,
+    "bookmaker_h2_pool@v1": 0.35,
+    "xg_x5@v1": 5.26
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-10-31 15:31:00",
+   "matches": 56,
+   "upcoming_seen": 56,
+   "rows_appended": 448,
+   "rerun_rows_appended": 0,
+   "seconds": 10.69,
+   "rerun_seconds": 11.25,
+   "results_appended": 18,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 3.22,
+    "maincal_ps_group@v1": 0.16,
+    "risk_stacked@v1": 0.47,
+    "risk_market_probability@v1": 0.32,
+    "bookmaker_h2_pool@v1": 0.16,
+    "xg_x5@v1": 5.4
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-01 16:10:00",
+   "matches": 20,
+   "upcoming_seen": 20,
+   "rows_appended": 160,
+   "rerun_rows_appended": 0,
+   "seconds": 6.91,
+   "rerun_seconds": 5.15,
+   "results_appended": 101,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 2.28,
+    "maincal_ps_group@v1": 0.13,
+    "risk_stacked@v1": 0.14,
+    "risk_market_probability@v1": 0.1,
+    "bookmaker_h2_pool@v1": 0.26,
+    "xg_x5@v1": 2.87
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-02 14:44:00",
+   "matches": 6,
+   "upcoming_seen": 6,
+   "rows_appended": 48,
+   "rerun_rows_appended": 0,
+   "seconds": 4.02,
+   "rerun_seconds": 3.87,
+   "results_appended": 49,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.71,
+    "maincal_ps_group@v1": 0.03,
+    "risk_stacked@v1": 0.05,
+    "risk_market_probability@v1": 0.04,
+    "bookmaker_h2_pool@v1": 0.1,
+    "xg_x5@v1": 1.1
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-02 19:36:00",
+   "matches": 12,
+   "upcoming_seen": 12,
+   "rows_appended": 96,
+   "rerun_rows_appended": 0,
+   "seconds": 13.95,
+   "rerun_seconds": 4.84,
+   "results_appended": 0,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 2.21,
+    "maincal_ps_group@v1": 0.1,
+    "risk_stacked@v1": 0.2,
+    "risk_market_probability@v1": 0.13,
+    "bookmaker_h2_pool@v1": 0.2,
+    "xg_x5@v1": 10.17
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-03 17:14:00",
+   "matches": 12,
+   "upcoming_seen": 12,
+   "rows_appended": 96,
+   "rerun_rows_appended": 0,
+   "seconds": 6.7,
+   "rerun_seconds": 4.76,
+   "results_appended": 15,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 2.62,
+    "maincal_ps_group@v1": 0.1,
+    "risk_stacked@v1": 0.13,
+    "risk_market_probability@v1": 0.19,
+    "bookmaker_h2_pool@v1": 0.17,
+    "xg_x5@v1": 2.53
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-04 17:30:00",
+   "matches": 5,
+   "upcoming_seen": 5,
+   "rows_appended": 40,
+   "rerun_rows_appended": 0,
+   "seconds": 5.49,
+   "rerun_seconds": 4.38,
+   "results_appended": 12,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 3.11,
+    "maincal_ps_group@v1": 0.06,
+    "risk_stacked@v1": 0.08,
+    "risk_market_probability@v1": 0.03,
+    "bookmaker_h2_pool@v1": 0.1,
+    "xg_x5@v1": 0.94
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-06 08:15:00",
+   "matches": 21,
+   "upcoming_seen": 21,
+   "rows_appended": 166,
+   "rerun_rows_appended": 0,
+   "seconds": 6.01,
+   "rerun_seconds": 5.79,
+   "results_appended": 5,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.77,
+    "maincal_ps_group@v1": 0.14,
+    "risk_stacked@v1": 0.18,
+    "risk_market_probability@v1": 0.1,
+    "bookmaker_h2_pool@v1": 0.11,
+    "xg_x5@v1": 2.56
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-07 07:31:00",
+   "matches": 81,
+   "upcoming_seen": 81,
+   "rows_appended": 620,
+   "rerun_rows_appended": 0,
+   "seconds": 6.39,
+   "rerun_seconds": 6.31,
+   "results_appended": 20,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.94,
+    "maincal_ps_group@v1": 0.23,
+    "risk_stacked@v1": 0.59,
+    "risk_market_probability@v1": 0.42,
+    "bookmaker_h2_pool@v1": 0.31,
+    "xg_x5@v1": 1.99
+   },
+   "errors": {}
+  },
+  {
+   "run_uk": "2026-11-08 07:35:00",
+   "matches": 59,
+   "upcoming_seen": 59,
+   "rows_appended": 472,
+   "rerun_rows_appended": 0,
+   "seconds": 5.91,
+   "rerun_seconds": 5.93,
+   "results_appended": 77,
+   "per_shadow_seconds": {
+    "maincal_ps_platt_monthly@v1": 1.87,
+    "maincal_ps_group@v1": 0.16,
+    "risk_stacked@v1": 0.38,
+    "risk_market_probability@v1": 0.3,
+    "bookmaker_h2_pool@v1": 0.22,
+    "xg_x5@v1": 1.98
+   },
+   "errors": {}
+  }
+ ],
+ "n_runs": 28,
+ "live_matches": 955,
+ "idempotent_reruns": true,
+ "after_kickoff_call_rows_appended": 0,
+ "rows_recorded_at_or_after_kickoff": 0,
+ "verify": {
+  "rows": 7484,
+  "files": 51,
+  "ok": true,
+  "problems": []
+ },
+ "tamper_detected": true,
+ "tamper_problems": [
+  "1 rows whose content no longer matches their hash",
+  "shadow_predictions/20261109T180750.554665Z.parquet: file changed after it was written"
+ ],
+ "production_unchanged": true,
+ "production_files": [
+  "markets.parquet",
+  "picks.parquet",
+  "snapshots.parquet",
+  "versions.parquet"
+ ],
+ "frozen_decision_stable": true,
+ "evaluations": [
+  {
+   "cutoff": "2026-10-08 00:00:00",
+   "maincal_ps_platt_monthly@v1": {
+    "status": "no_forward_data",
+    "n": 0,
+    "frozen": false
+   },
+   "maincal_ps_group@v1": {
+    "status": "no_forward_data",
+    "n": 0,
+    "frozen": false
+   },
+   "risk_stacked@v1": {
+    "status": "no_forward_data",
+    "n": 0,
+    "frozen": false
+   },
+   "risk_market_probability@v1": {
+    "status": "no_forward_data",
+    "n": 0,
+    "frozen": false
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "no_forward_data",
+    "n": 0,
+    "frozen": false
+   },
+   "xg_x5@v1": {
+    "status": "no_forward_data",
+    "n": 0,
+    "frozen": false
+   }
+  },
+  {
+   "cutoff": "2026-10-15 00:00:00",
+   "maincal_ps_platt_monthly@v1": {
+    "status": "accumulating",
+    "n": 145,
+    "frozen": false
+   },
+   "maincal_ps_group@v1": {
+    "status": "accumulating",
+    "n": 145,
+    "frozen": false
+   },
+   "risk_stacked@v1": {
+    "status": "accumulating",
+    "n": 120,
+    "frozen": false
+   },
+   "risk_market_probability@v1": {
+    "status": "accumulating",
+    "n": 120,
+    "frozen": false
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "accumulating",
+    "n": 145,
+    "frozen": false
+   },
+   "xg_x5@v1": {
+    "status": "accumulating",
+    "n": 124,
+    "frozen": false
+   }
+  },
+  {
+   "cutoff": "2026-10-22 00:00:00",
+   "maincal_ps_platt_monthly@v1": {
+    "status": "accumulating",
+    "n": 187,
+    "frozen": false
+   },
+   "maincal_ps_group@v1": {
+    "status": "accumulating",
+    "n": 187,
+    "frozen": false
+   },
+   "risk_stacked@v1": {
+    "status": "accumulating",
+    "n": 155,
+    "frozen": false
+   },
+   "risk_market_probability@v1": {
+    "status": "accumulating",
+    "n": 155,
+    "frozen": false
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "accumulating",
+    "n": 187,
+    "frozen": false
+   },
+   "xg_x5@v1": {
+    "status": "accumulating",
+    "n": 165,
+    "frozen": false
+   }
+  },
+  {
+   "cutoff": "2026-10-29 00:00:00",
+   "maincal_ps_platt_monthly@v1": {
+    "status": "accumulating",
+    "n": 561,
+    "frozen": false
+   },
+   "maincal_ps_group@v1": {
+    "status": "accumulating",
+    "n": 561,
+    "frozen": false
+   },
+   "risk_stacked@v1": {
+    "status": "accumulating",
+    "n": 517,
+    "frozen": false
+   },
+   "risk_market_probability@v1": {
+    "status": "accumulating",
+    "n": 513,
+    "frozen": false
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "accumulating",
+    "n": 560,
+    "frozen": false
+   },
+   "xg_x5@v1": {
+    "status": "accumulating",
+    "n": 515,
+    "frozen": false
+   }
+  },
+  {
+   "cutoff": "2026-11-05 00:00:00",
+   "maincal_ps_platt_monthly@v1": {
+    "status": "ready",
+    "n": 600,
+    "frozen": false
+   },
+   "maincal_ps_group@v1": {
+    "status": "ready",
+    "n": 600,
+    "frozen": false
+   },
+   "risk_stacked@v1": {
+    "status": "accumulating",
+    "n": 727,
+    "frozen": false
+   },
+   "risk_market_probability@v1": {
+    "status": "accumulating",
+    "n": 720,
+    "frozen": false
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "accumulating",
+    "n": 771,
+    "frozen": false
+   },
+   "xg_x5@v1": {
+    "status": "accumulating",
+    "n": 711,
+    "frozen": false
+   }
+  },
+  {
+   "cutoff": "2026-11-09 07:00:00",
+   "maincal_ps_platt_monthly@v1": {
+    "status": "ready",
+    "n": 600,
+    "frozen": true
+   },
+   "maincal_ps_group@v1": {
+    "status": "ready",
+    "n": 600,
+    "frozen": true
+   },
+   "risk_stacked@v1": {
+    "status": "accumulating",
+    "n": 878,
+    "frozen": false
+   },
+   "risk_market_probability@v1": {
+    "status": "accumulating",
+    "n": 871,
+    "frozen": false
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "accumulating",
+    "n": 776,
+    "frozen": false
+   },
+   "xg_x5@v1": {
+    "status": "accumulating",
+    "n": 855,
+    "frozen": false
+   }
+  }
+ ],
+ "final_report": {
+  "evaluated_at_uk": "2026-11-09 07:00:00",
+  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
+  "shadows": {
+   "maincal_ps_platt_monthly@v1": {
+    "n": 600,
+    "min_n": 600,
+    "unit": "рассчитанных показанных Main",
+    "information_fraction": 1.0,
+    "status": "ready",
+    "ready": true,
+    "point": {
+     "gap_shadow": -0.03273788399543859,
+     "gap_production": 0.033922757491666664
+    },
+    "test": {
+     "gap_shadow": {
+      "gap": -0.03273788399543859,
+      "ci95": [
+       -0.06949449773121182,
+       0.0046250191679585466
+      ],
+      "mean_p": 0.6072621160045615,
+      "hit_rate": 0.64
+     },
+     "gap_production": {
+      "gap": 0.033922757491666664,
+      "ci95": [
+       -0.0029173001998083355,
+       0.07120550623919165
+      ],
+      "mean_p": 0.6739227574916666,
+      "hit_rate": 0.64
+     },
+     "abs_gap_diff": {
+      "diff": -0.0011848734962280755,
+      "ci95": [
+       -0.06625280114400164,
+       0.0664549950496707
+      ],
+      "p": 0.997
+     },
+     "C1": true,
+     "C2": false
+    },
+    "p_for_holm": 0.997,
+    "family": "main_calibration",
+    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
+    "freeze_sha": "24039db5ed13051dc8a9a7bfa0a04ac61667ed17",
+    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2",
+    "decided_at_uk": "2026-11-05 00:00:00",
+    "frozen": true
+   },
+   "maincal_ps_group@v1": {
+    "n": 600,
+    "min_n": 600,
+    "unit": "рассчитанных показанных Main",
+    "information_fraction": 1.0,
+    "status": "ready",
+    "ready": true,
+    "point": {
+     "gap_shadow": -0.007343246638299083,
+     "gap_production": 0.033922757491666664
+    },
+    "test": {
+     "gap_shadow": {
+      "gap": -0.007343246638299083,
+      "ci95": [
+       -0.043444527876846196,
+       0.030486255657582277
+      ],
+      "mean_p": 0.6326567533617009,
+      "hit_rate": 0.64
+     },
+     "gap_production": {
+      "gap": 0.033922757491666664,
+      "ci95": [
+       -0.0029173001998083355,
+       0.07120550623919165
+      ],
+      "mean_p": 0.6739227574916666,
+      "hit_rate": 0.64
+     },
+     "abs_gap_diff": {
+      "diff": -0.02657951085336758,
+      "ci95": [
+       -0.04514659113029484,
+       0.03954435437972208
+      ],
+      "p": 0.505
+     },
+     "C1": true,
+     "C2": false
+    },
+    "p_for_holm": 0.505,
+    "family": "main_calibration",
+    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
+    "freeze_sha": "24039db5ed13051dc8a9a7bfa0a04ac61667ed17",
+    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2",
+    "decided_at_uk": "2026-11-05 00:00:00",
+    "frozen": true
+   },
+   "risk_stacked@v1": {
+    "n": 878,
+    "min_n": 2000,
+    "unit": "матчей с ценой у обоих Risk",
+    "information_fraction": 0.439,
+    "status": "accumulating",
+    "ready": false,
+    "point": {
+     "roi_shadow": -0.17981545501651786,
+     "roi_production": -0.17174458449351745,
+     "changed_picks": 0.3826879271070615
+    },
+    "family": "risk",
+    "prereg": "experiments/v6_2/risk/results/preregistration.json",
+    "freeze_sha": "8525b600367c109d2ffa7c19a2ac74fc41fac838",
+    "criterion": "парный 95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109)"
+   },
+   "risk_market_probability@v1": {
+    "n": 871,
+    "min_n": 1000,
+    "unit": "рассчитанных Risk с полной книгой",
+    "information_fraction": 0.871,
+    "status": "accumulating",
+    "ready": false,
+    "point": {
+     "gap_market": 0.023212256446671645,
+     "gap_model": 0.05824239503616532
+    },
+    "family": "risk",
+    "prereg": "experiments/v6_2/risk/results/preregistration.json",
+    "freeze_sha": "8525b600367c109d2ffa7c19a2ac74fc41fac838",
+    "criterion": "95 % ДИ gap(рынок) содержит 0 и парный ДИ |gap(рынок)| - |gap(модель)| < 0"
+   },
+   "bookmaker_h2_pool@v1": {
+    "markets": {
+     "ou25": {
+      "n": 776,
+      "min_n": 1500,
+      "unit": "матчей с ценами Bet365 открытия",
+      "information_fraction": 0.5173,
+      "status": "accumulating",
+      "ready": false,
+      "point": {
+       "ll_h2_minus_h0": -0.000442410218693558,
+       "ll_model_minus_h0": 0.002193656952226865
+      }
+     },
+     "1x2": {
+      "n": 776,
+      "min_n": 1500,
+      "unit": "матчей с ценами Bet365 открытия",
+      "information_fraction": 0.5173,
+      "status": "accumulating",
+      "ready": false,
+      "point": {
+       "ll_h2_minus_h0": 0.0014059399750983913,
+       "ll_model_minus_h0": 0.01694798219798106
+      }
+     }
+    },
+    "n": 776,
+    "min_n": 1500,
+    "unit": "матчей с ценами Bet365 открытия",
+    "information_fraction": 0.5173,
+    "status": "accumulating",
+    "ready": false,
+    "family": "bookmaker",
+    "prereg": "experiments/v6_2/bookmaker/results/preregistration.json",
+    "freeze_sha": "7f5d360a8fcd9f1d5546d13812640e60bb4a3485",
+    "criterion": "верхняя граница 95 % парного ДИ < 0 для тотала 2.5; 1X2 — вторичный, Холм по двум рынкам"
+   },
+   "xg_x5@v1": {
+    "n": 855,
+    "min_n": 3000,
+    "unit": "сыгранных матчей лиг с xG",
+    "information_fraction": 0.285,
+    "status": "accumulating",
+    "ready": false,
+    "point": {
+     "goals_dev_diff": -0.0025552355033553555,
+     "logloss_1x2_diff": 0.0007519784655327545,
+     "fallback_share": 0.0
+    },
+    "family": "xg",
+    "prereg": "experiments/v6_2/xg/results/preregistration.json",
+    "freeze_sha": "7b2a73435bd0a21273a6b7aa6b6d4d59bd675cd8",
+    "criterion": "разность < 0 при одностороннем бутстреп-p < 0.05; ΔLL 1X2 < +0.002; ΔROI Main > -0.02; переоценка Main не больше, чем у B0"
+   }
+  },
+  "not_implemented": {
+   "xg_t1@v1": "нужна отдельная версия моделей XGBoost (переобучение на 2021/22–2025/26 с 9 признаками прокси-xG) и её загрузка в ежедневном прогоне; это не «дешёвая» тень без переобучения. Заглушка: запись не ведётся."
+  },
+  "families": {
+   "main_calibration": {
+    "holm": {
+     "maincal_ps_group@v1": 1.0,
+     "maincal_ps_platt_monthly@v1": 1.0
+    },
+    "passed": {
+     "maincal_ps_platt_monthly@v1": false,
+     "maincal_ps_group@v1": false
+    },
+    "decision": "C"
+   }
+  }
+ },
+ "storage": {
+  "rows_total": 7484,
+  "bytes_predictions": 2296495,
+  "files_predictions": 28,
+  "bytes_results": 243843,
+  "bytes_manifest": 40423,
+  "bytes_x5_cache": 59549,
+  "days": 37,
+  "results_rows": 929,
+  "by_shadow": [
+   {
+    "shadow_key": "bookmaker_h2_pool@v1",
+    "rows": 1910,
+    "matches": 955
+   },
+   {
+    "shadow_key": "maincal_ps_group@v1",
+    "rows": 955,
+    "matches": 955
+   },
+   {
+    "shadow_key": "maincal_ps_platt_monthly@v1",
+    "rows": 955,
+    "matches": 955
+   },
+   {
+    "shadow_key": "risk_market_probability@v1",
+    "rows": 955,
+    "matches": 955
+   },
+   {
+    "shadow_key": "risk_stacked@v1",
+    "rows": 955,
+    "matches": 955
+   },
+   {
+    "shadow_key": "xg_x5@v1",
+    "rows": 1754,
+    "matches": 877
+   }
+  ],
+  "size_by_run": [
+   {
+    "run_uk": "2026-10-02 14:50:00",
+    "bytes": 77589,
+    "files": 1,
+    "rows_total": 254
+   },
+   {
+    "run_uk": "2026-10-09 13:24:00",
+    "bytes": 120492,
+    "files": 2,
+    "rows_total": 342
+   },
+   {
+    "run_uk": "2026-10-10 12:42:00",
+    "bytes": 259320,
+    "files": 3,
+    "rows_total": 886
+   },
+   {
+    "run_uk": "2026-10-11 12:55:00",
+    "bytes": 334409,
+    "files": 4,
+    "rows_total": 1126
+   },
+   {
+    "run_uk": "2026-10-11 20:58:00",
+    "bytes": 359672,
+    "files": 5,
+    "rows_total": 1134
+   },
+   {
+    "run_uk": "2026-10-12 15:03:00",
+    "bytes": 386687,
+    "files": 6,
+    "rows_total": 1150
+   },
+   {
+    "run_uk": "2026-10-12 16:47:00",
+    "bytes": 451061,
+    "files": 7,
+    "rows_total": 1342
+   },
+   {
+    "run_uk": "2026-10-16 17:35:00",
+    "bytes": 632001,
+    "files": 8,
+    "rows_total": 2098
+   },
+   {
+    "run_uk": "2026-10-17 17:27:00",
+    "bytes": 815032,
+    "files": 9,
+    "rows_total": 2856
+   },
+   {
+    "run_uk": "2026-10-23 14:15:00",
+    "bytes": 844363,
+    "files": 10,
+    "rows_total": 2880
+   },
+   {
+    "run_uk": "2026-10-23 18:28:00",
+    "bytes": 927668,
+    "files": 11,
+    "rows_total": 3144
+   },
+   {
+    "run_uk": "2026-10-24 13:36:00",
+    "bytes": 1120762,
+    "files": 12,
+    "rows_total": 3908
+   },
+   {
+    "run_uk": "2026-10-25 13:40:00",
+    "bytes": 1218415,
+    "files": 13,
+    "rows_total": 4236
+   },
+   {
+    "run_uk": "2026-10-26 15:49:00",
+    "bytes": 1260659,
+    "files": 14,
+    "rows_total": 4316
+   },
+   {
+    "run_uk": "2026-10-27 15:34:00",
+    "bytes": 1316649,
+    "files": 15,
+    "rows_total": 4456
+   },
+   {
+    "run_uk": "2026-10-28 16:19:00",
+    "bytes": 1346072,
+    "files": 16,
+    "rows_total": 4480
+   },
+   {
+    "run_uk": "2026-10-28 17:47:00",
+    "bytes": 1389990,
+    "files": 17,
+    "rows_total": 4568
+   },
+   {
+    "run_uk": "2026-10-29 16:26:00",
+    "bytes": 1417449,
+    "files": 18,
+    "rows_total": 4584
+   },
+   {
+    "run_uk": "2026-10-30 16:14:00",
+    "bytes": 1605827,
+    "files": 19,
+    "rows_total": 5338
+   },
+   {
+    "run_uk": "2026-10-31 15:31:00",
+    "bytes": 1728312,
+    "files": 20,
+    "rows_total": 5786
+   },
+   {
+    "run_uk": "2026-11-01 16:10:00",
+    "bytes": 1788576,
+    "files": 21,
+    "rows_total": 5946
+   },
+   {
+    "run_uk": "2026-11-02 14:44:00",
+    "bytes": 1823445,
+    "files": 22,
+    "rows_total": 5994
+   },
+   {
+    "run_uk": "2026-11-02 19:36:00",
+    "bytes": 1869022,
+    "files": 23,
+    "rows_total": 6090
+   },
+   {
+    "run_uk": "2026-11-03 17:14:00",
+    "bytes": 1914672,
+    "files": 24,
+    "rows_total": 6186
+   },
+   {
+    "run_uk": "2026-11-04 17:30:00",
+    "bytes": 1947641,
+    "files": 25,
+    "rows_total": 6226
+   },
+   {
+    "run_uk": "2026-11-06 08:15:00",
+    "bytes": 2008694,
+    "files": 26,
+    "rows_total": 6392
+   },
+   {
+    "run_uk": "2026-11-07 07:31:00",
+    "bytes": 2168536,
+    "files": 27,
+    "rows_total": 7012
+   },
+   {
+    "run_uk": "2026-11-08 07:35:00",
+    "bytes": 2296495,
+    "files": 28,
+    "rows_total": 7484
+   }
+  ]
+ },
+ "runtime": {
+  "mean_s": 7.773571428571428,
+  "median_s": 6.324999999999999,
+  "max_s": 29.7,
+  "rerun_mean_s": 5.484999999999999,
+  "total_minutes": 6.49
+ }
+}

@@ -1,0 +1,154 @@
+{
+ "features_load_seconds": 0.09,
+ "first": {
+  "run_id": "20261109T183143.365161Z",
+  "now_uk": "2026-11-09 18:31:43.365117",
+  "root": "/home/mlitvinenko/repositories/PredictionSystem/.claude/worktrees/agent-a2e9cc229fc105b64/experiments/v6_2/forward/cache/current_run",
+  "recorded": {
+   "maincal_ps_platt_monthly@v1": {
+    "rows": 3,
+    "seconds": 1.69
+   },
+   "maincal_ps_group@v1": {
+    "rows": 3,
+    "seconds": 0.03
+   },
+   "risk_stacked@v1": {
+    "rows": 3,
+    "seconds": 0.03
+   },
+   "risk_market_probability@v1": {
+    "rows": 3,
+    "seconds": 0.03
+   },
+   "bookmaker_h2_pool@v1": {
+    "rows": 6,
+    "seconds": 0.33
+   },
+   "xg_x5@v1": {
+    "rows": 6,
+    "seconds": 33.53
+   }
+  },
+  "errors": {},
+  "settlement": {
+   "results_appended": 0,
+   "corrections": 0
+  },
+  "upcoming_matches": 3,
+  "rows_appended": 24,
+  "rows_total": 24,
+  "chain_head": "7c3bcb375267c6ae0b74f9fc7c90c2040690a20059ca45abdfb3c459f8332cae",
+  "files": {
+   "shadow_predictions/20261109T183143.365161Z.parquet": "d26941f8849d7bb2c4fdb865e7399fa47783cbd88fe7faf3bfbf94c5076bc44e"
+  },
+  "report": {
+   "maincal_ps_platt_monthly@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "maincal_ps_group@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "risk_stacked@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "risk_market_probability@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "xg_x5@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   }
+  },
+  "seconds": 36.47
+ },
+ "second": {
+  "run_id": "20261109T183219.848773Z",
+  "now_uk": "2026-11-09 18:32:19.848715",
+  "root": "/home/mlitvinenko/repositories/PredictionSystem/.claude/worktrees/agent-a2e9cc229fc105b64/experiments/v6_2/forward/cache/current_run",
+  "recorded": {
+   "maincal_ps_platt_monthly@v1": {
+    "rows": 3,
+    "seconds": 1.93
+   },
+   "maincal_ps_group@v1": {
+    "rows": 3,
+    "seconds": 0.02
+   },
+   "risk_stacked@v1": {
+    "rows": 3,
+    "seconds": 0.04
+   },
+   "risk_market_probability@v1": {
+    "rows": 3,
+    "seconds": 0.02
+   },
+   "bookmaker_h2_pool@v1": {
+    "rows": 6,
+    "seconds": 0.14
+   },
+   "xg_x5@v1": {
+    "rows": 6,
+    "seconds": 1.46
+   }
+  },
+  "errors": {},
+  "settlement": {
+   "results_appended": 0,
+   "corrections": 0
+  },
+  "upcoming_matches": 3,
+  "rows_appended": 0,
+  "rows_total": 24,
+  "chain_head": "7c3bcb375267c6ae0b74f9fc7c90c2040690a20059ca45abdfb3c459f8332cae",
+  "files": {},
+  "report": {
+   "maincal_ps_platt_monthly@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "maincal_ps_group@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "risk_stacked@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "risk_market_probability@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "bookmaker_h2_pool@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   },
+   "xg_x5@v1": {
+    "status": "no_forward_data",
+    "n": 0
+   }
+  },
+  "seconds": 4.32
+ },
+ "production_unchanged": true,
+ "files": {
+  "manifest.json": 12102,
+  "shadow_report.json": 4519,
+  "x5_expected_xg.parquet": 60096,
+  "20261109T183143.365161Z.parquet": 29155
+ },
+ "verify": {
+  "rows": 24,
+  "files": 1,
+  "ok": true,
+  "problems": []
+ }
+}
