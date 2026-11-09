@@ -100,6 +100,8 @@ def _record_results_file(div: str, body: bytes, previous: bytes | None, current:
     info = describe_results_file(body, previous)
     diag.add("football_data", "season_played", info["played"])
     diag.add("football_data", "new_results", info["new_results"])
+    if info["new_results"]:
+        diag.league("football_data", div)
     leagues = diag._src("football_data")["info"].setdefault("leagues", {})
     leagues[div] = info
 

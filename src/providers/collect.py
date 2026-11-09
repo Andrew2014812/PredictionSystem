@@ -322,6 +322,7 @@ def collect_oddspapi(resolve_names, registry: TeamRegistry, now, run_budget: int
             priced += 1
             records += _oddspapi_records(canonical["match_id"], fid, rows, now, row["kickoff_utc"])
             covered[canonical["match_id"]] = {r[0] for r in rows}
+            diag.league(PROVIDER_ODP, canonical["league"])
         if asked % 25 == 0:                                            # intermediate save
             _save_odds(records)
             records = []
@@ -368,6 +369,25 @@ def overdue_days(matches: pd.DataFrame, now: datetime, today: date) -> list[date
     return days[-6:]                                                         # at most six extra requests
 
 
+NOT_PLAYED_FILE = "api_football/not_played.csv"
+
+
+def save_not_played(rows: list[dict]) -> None:
+    """Keep API-Football's postponed / cancelled / abandoned statuses (the free plan sees a day only once),
+    so a match waiting for a result can later be explained. One row per league, date and pairing."""
+    if not rows:
+        return
+    old = api_storage.read_csv(NOT_PLAYED_FILE) if api_storage.exists(NOT_PLAYED_FILE) else pd.DataFrame()
+    merged = pd.concat([old, pd.DataFrame(rows)], ignore_index=True)
+    merged = merged.drop_duplicates(["league", "date", "home_team", "away_team"], keep="last")
+    api_storage.write_csv(NOT_PLAYED_FILE, merged.sort_values(["date", "league"]))
+
+
+def load_not_played() -> pd.DataFrame:
+    return api_storage.read_csv(NOT_PLAYED_FILE) if api_storage.exists(NOT_PLAYED_FILE) else pd.DataFrame(
+        columns=["league", "date", "home_team", "away_team", "status", "seen_at"])
+
+
 def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full",
             run_budget: int | None = None, targets: dict | None = None, force: bool = False) -> dict:
     """Fetch fixtures / results / real odds from the configured providers.
@@ -396,6 +416,8 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
     if not af.available:
         diag.info(PROVIDER_AF, status="no key")
     if af.available and mode in ("results", "full"):
+        diag.begin(PROVIDER_AF)
+        not_played: list[dict] = []
         days = [today + timedelta(days=d) for d in range(-config.API_FIXTURE_DAYS_BACK,
                                                           config.API_FIXTURE_DAYS_AHEAD + 1)]
         catch_up = overdue_days(matches, now, today)
@@ -416,6 +438,11 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
                 diag.add(PROVIDER_AF, "in_leagues")
                 if fx["cancelled"]:
                     diag.skip(PROVIDER_AF, f"status {fx['status']}")
+                    home = resolve(PROVIDER_AF, fx["league"], fx["home_name"])
+                    away = resolve(PROVIDER_AF, fx["league"], fx["away_name"])
+                    not_played.append({"league": fx["league"], "date": str(pd.Timestamp(fx["date"]).date()),
+                                       "home_team": home or fx["home_name"], "away_team": away or fx["away_name"],
+                                       "status": fx["status"], "seen_at": now.isoformat(timespec="seconds")})
                     continue
                 home = resolve(PROVIDER_AF, fx["league"], fx["home_name"])
                 away = resolve(PROVIDER_AF, fx["league"], fx["away_name"])
@@ -426,10 +453,12 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
                 diag.add(PROVIDER_AF, "matched")
                 if row["match_id"] not in known:
                     diag.add(PROVIDER_AF, "new_fixtures")
+                    diag.league(PROVIDER_AF, row["league"])
                 if row["played"]:
                     diag.add(PROVIDER_AF, "finished")
                     if not known.get(row["match_id"], False):
                         diag.add(PROVIDER_AF, "new_results")
+                        diag.league(PROVIDER_AF, row["league"])
                 row.update(provider=PROVIDER_AF, provider_fixture_id=fx["provider_fixture_id"])
                 live_rows.append(row)
                 fixture_ids[fx["provider_fixture_id"]] = row["match_id"]
@@ -445,12 +474,15 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
                     if fixture_id in fixture_ids:
                         odds_records += _odds_records(fixture_ids[fixture_id], PROVIDER_AF, fixture_id, rows, now)
         summary["api_football"] = f"{af.cache.requests_today()} requests today"
+        save_not_played(not_played)
+        diag.end(PROVIDER_AF)
 
     registry = TeamRegistry()
     odp_covered: dict = {}
     if mode in ("odds", "full"):
-        rows, records, part, odp_covered = collect_oddspapi(resolve, registry, now, config.ODDSPAPI_RUN_BUDGET,
-                                                            targets, force)
+        with diag.timer(PROVIDER_ODP):
+            rows, records, part, odp_covered = collect_oddspapi(resolve, registry, now, config.ODDSPAPI_RUN_BUDGET,
+                                                                targets, force)
         live_rows += rows
         odds_records += records
         summary.update(part)
@@ -474,6 +506,7 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
               left=toa.ledger.remaining if toa.ledger.remaining is not None else "?")
     only = config.odds_api_leagues() if fallback == "off" else set()
     if toa.available and config.ODDS_API_ENABLED and (fallback != "off" or only):
+        diag.begin(PROVIDER_TOA)
         if only:
             fallback = "missing"                           # only the named leagues, only what is missing
         stored = load_api_odds()
@@ -531,6 +564,7 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
         diag.add(PROVIDER_TOA, "credits", toa.credits_used)
         summary["the_odds_api"] = (f"fallback={fallback}: {toa.credits_used} credits this run, "
                                    f"{toa.ledger.remaining if toa.ledger.remaining is not None else '?'} left")
+        diag.end(PROVIDER_TOA)
 
     summary["live_rows"] = _save_live(live_rows)
     summary["odds_rows"] = _save_odds(odds_records)
