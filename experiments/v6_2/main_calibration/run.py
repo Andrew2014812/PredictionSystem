@@ -103,6 +103,18 @@ def run_variants() -> dict:
     return res
 
 
+def ncand_summary() -> dict:
+    """Number of Main candidates (probability 0.40-0.85; in ``bet`` with a real price) of the baseline picks."""
+    out = {}
+    for kind in KINDS:
+        for s in C.SEASONS:
+            f = pd.read_parquet(C.CACHE / f"picks_{kind}_{s}_A.parquet", columns=["ncand"])
+            q = f["ncand"].quantile([0.1, 0.5, 0.9]).tolist()
+            out.setdefault(kind, {})[str(s)] = {"mean": float(f["ncand"].mean()), "p10": q[0], "median": q[1], "p90": q[2]}
+    C.save_json("ncand_summary.json", out)
+    return out
+
+
 # ------------------------------------------------------------------------------------------------ league transfer
 def league_transfer() -> dict:
     """PS-Platt fitted on the history picks of the OTHER leagues vs on all leagues, applied to each league."""
@@ -234,8 +246,12 @@ def run_info(timings: dict) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--figures", action="store_true")
+    ap.add_argument("--ncand", action="store_true", help="only the candidate-count summary (needs the picks cache)")
     a = ap.parse_args()
     C.setup_logging()
+    if a.ncand:
+        ncand_summary()
+        return
     if a.figures:
         from . import figures
         figures.all_figures()
@@ -244,6 +260,7 @@ def main() -> None:
     t0 = time.time()
     res = run_variants()
     t["variants"] = round(time.time() - t0, 1)
+    ncand_summary()
     t0 = time.time()
     league_transfer()
     t["league_transfer"] = round(time.time() - t0, 1)
