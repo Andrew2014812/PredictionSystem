@@ -1,0 +1,62 @@
+{
+ "git_sha": "df71b108fd9bf4f3cb944b58364b8ce2d39ad689",
+ "data": {
+  "features": {
+   "rows": 38284,
+   "mtime": "2026-11-09 17:33:59"
+  },
+  "markets": {
+   "rows": 528177,
+   "mtime": "2026-11-09 17:33:59"
+  },
+  "picks": {
+   "rows": 78753,
+   "mtime": "2026-11-09 17:33:59"
+  },
+  "snapshots": {
+   "rows": 9325,
+   "mtime": "2026-11-09 17:33:59"
+  },
+  "odds": {
+   "rows": 358520,
+   "mtime": "2026-11-09 17:33:59"
+  }
+ },
+ "environment": {
+  "python": "3.12.12",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "libraries": {
+   "numpy": "2.2.6",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "sklearn": "1.7.2",
+   "xgboost": "3.0.5",
+   "statsmodels": "0.15.0",
+   "matplotlib": "3.11.2",
+   "reportlab": "5.1.0"
+  },
+  "git_sha": "df71b108fd9bf4f3cb944b58364b8ce2d39ad689",
+  "n_jobs": 2,
+  "seed": 20261109,
+  "n_boot": 2000
+ },
+ "timings_seconds": {
+  "variants": 337.1,
+  "league_transfer": 20.9,
+  "ev_calibration": 3.4
+ },
+ "seasons": {
+  "select": [
+   2023,
+   2024
+  ],
+  "info": 2025,
+  "current": 2026
+ },
+ "band": [
+  0.4,
+  0.85
+ ],
+ "min_fit": 300,
+ "finished": "2026-11-09 18:05:24"
+}

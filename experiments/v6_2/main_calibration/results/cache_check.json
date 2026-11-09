@@ -1,0 +1,13 @@
+{
+ "season": 2024,
+ "rows_cached": 7129,
+ "rows_refit": 7129,
+ "common": 7129,
+ "minutes": 0.2734018405278524,
+ "max_abs_diff_pH": 0.0,
+ "max_abs_diff_pD": 0.0,
+ "max_abs_diff_pA": 0.0,
+ "max_abs_diff_lh": 0.0,
+ "max_abs_diff_la": 0.0,
+ "max_abs_diff_cmu": 0.0
+}
