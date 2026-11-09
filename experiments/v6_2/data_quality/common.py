@@ -188,6 +188,20 @@ def paired_diff_ci(a, b, n_boot: int = N_BOOT, seed: int = SEED) -> dict:
     return out
 
 
+def paired_nanmean_diff(a, b, n_boot: int = N_BOOT, seed: int = SEED) -> dict:
+    """nanmean(b) - nanmean(a) over the same matches (NaN = no bet), bootstrap by match."""
+    a, b = np.asarray(a, float), np.asarray(b, float)
+    if len(a) < 2:
+        return {"diff": None, "ci95": [None, None]}
+    d = []
+    for idx in _boot_idx(len(a), n_boot, seed):
+        with np.errstate(all="ignore"):
+            d.append(np.nanmean(b[idx], 1) - np.nanmean(a[idx], 1))
+    d = np.concatenate(d)
+    return {"diff": float(np.nanmean(b) - np.nanmean(a)),
+            "ci95": [float(np.nanquantile(d, 0.025)), float(np.nanquantile(d, 0.975))]}
+
+
 def group_diff_ci(x_a, x_b, n_boot: int = N_BOOT, seed: int = SEED) -> dict:
     """mean(x_b) - mean(x_a) for two independent groups, each resampled separately."""
     a, b = np.asarray(x_a, float), np.asarray(x_b, float)
