@@ -67,6 +67,66 @@ PALETTES_V61 = {
     },
 }
 
+# v6.2: a more neutral (less blue-graphite) background, fewer and calmer greens, and secondary text that
+# reaches WCAG 4.5:1 on every surface. ``accent`` is the readable green for text, ``accent-fill`` the darker
+# green behind white text (selected buttons); one green cannot do both on a dark surface.
+PALETTES_V62 = {
+    "dark": {
+        "bg": "#131618", "surface": "#1b1f22", "surface-2": "#22272a", "border": "#353c40",
+        "border-soft": "#2a3033", "text": "#e6e9ea", "text-strong": "#fafbfb", "muted": "#b2babd",
+        "faint": "#9ea6aa", "accent": "#45b08f", "accent-fill": "#1f7660", "accent-soft": "rgba(69,176,143,.11)",
+        "risk": "#e8a941", "risk-soft": "rgba(232,169,65,.12)", "home": "#6ea3df", "draw": "#a2abae",
+        "away": "#e98a56", "pos": "#47c196", "neg": "#f07a74", "track": "#2b3134",
+        "bar-pos": "rgba(71,193,150,.72)", "bar-neg": "rgba(240,122,116,.66)", "bar-hit": "#79a9c8",
+        "search-bg": "rgba(178,186,189,.09)",
+        "header-grad": "linear-gradient(135deg, #1b1f22 0%, #1d2325 100%)", "input": "#1b1f22",
+        "chip-text": "#0b1120",
+    },
+    "light": {
+        "bg": "#f3f4f2", "surface": "#ffffff", "surface-2": "#ecedeb", "border": "#cfd3d0",
+        "border-soft": "#e2e5e2", "text": "#1b2123", "text-strong": "#0e1315", "muted": "#444d50",
+        "faint": "#525b5f", "accent": "#12705b", "accent-fill": "#12705b", "accent-soft": "rgba(18,112,91,.08)",
+        "risk": "#94600f", "risk-soft": "rgba(148,96,15,.09)", "home": "#2a63a6", "draw": "#7a8689",
+        "away": "#a9501d", "pos": "#12705b", "neg": "#b3342a", "track": "#e0e4e0",
+        "bar-pos": "rgba(18,112,91,.72)", "bar-neg": "rgba(179,52,42,.62)", "bar-hit": "#356f91",
+        "search-bg": "rgba(14,19,21,.05)",
+        "header-grad": "linear-gradient(135deg, #ffffff 0%, #f1f3f1 100%)", "input": "#ffffff",
+        "chip-text": "#ffffff",
+    },
+}
+
+# v6.2 refinements on top of the shared CSS (only in the v6.2 design, so v6.1 stays exactly as it was).
+V62_CSS = """
+/* secondary text is opaque: Streamlit draws captions at 60 % opacity */
+[data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p, .stCaption { opacity: 1 !important;
+  color: var(--muted) !important; }
+/* selected buttons: darker green behind white text; green text only where it is readable */
+button[kind="primary"], [data-testid="stBaseButton-primary"], [data-testid="stBaseButton-segmented_controlActive"],
+[data-testid="stBaseButton-pills"][aria-checked="true"] {
+  background: var(--accent-fill) !important; border-color: var(--accent-fill) !important; color: #ffffff !important; }
+[data-testid="stButtonGroup"] button[aria-checked="true"] { background: var(--accent-soft) !important;
+  border-color: var(--accent) !important; }
+/* clubs in tables are names, not links in green: strong text, green only on hover */
+table.mkt a, .tablewrap a, .lt a { color: var(--text-strong) !important; font-weight: 600; text-decoration: none;
+  border-bottom: 1px solid var(--border); }
+table.mkt a:hover, .tablewrap a:hover { color: var(--accent) !important; border-bottom-color: var(--accent); }
+table.mkt { font-size: .86rem; }
+table.mkt th { color: var(--muted); font-size: .7rem; letter-spacing: .06em; padding: 6px 6px 5px; }
+table.mkt td { padding: 5px 6px; }
+table.mkt tbody tr:hover td { background: var(--surface-2); }
+/* editorial headings: a rule under the page title and section titles, fewer rounded corners */
+.page-title { padding-bottom: .35rem; border-bottom: 2px solid var(--text-strong); display: inline-block; }
+.section-title { padding-bottom: .3rem; border-bottom: 1px solid var(--border); }
+.card, .kpi, .tablewrap, .why, .empty { border-radius: 8px; }
+.rec, .outcome, .match-header { border-radius: 10px; }
+.mc { border-radius: 8px; }
+.kpi { border-left: 3px solid var(--border); }
+.kpi .label { color: var(--muted); font-size: .74rem; }
+.kpi .value { letter-spacing: -0.01em; }
+.chip { color: var(--chip-text); }
+.chip.D { background: var(--surface-2); color: var(--text-strong); box-shadow: inset 0 0 0 1px var(--border); }
+"""
+
 DESIGNS = {
     "v6": {"palettes": PALETTES_V6, "body": "'Inter', sans-serif", "head": "'Inter', sans-serif",
            "fonts": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
@@ -76,8 +136,13 @@ DESIGNS = {
              "fonts": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700"
                       "&family=Source+Sans+3:wght@400;500;600;700&display=swap",
              "w_heavy": 700, "w_title": 600, "size": "1.04rem", "widgets_dark": True},
+    "v6.2": {"palettes": PALETTES_V62, "body": "'Source Sans 3', 'Source Sans Pro', sans-serif",
+             "head": "'IBM Plex Sans', sans-serif",
+             "fonts": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700"
+                      "&family=Source+Sans+3:wght@400;500;600;700&display=swap",
+             "w_heavy": 700, "w_title": 600, "size": "1.04rem", "widgets_dark": True, "extra_css": V62_CSS},
 }
-DEFAULT_DESIGN = "v6.1"
+DEFAULT_DESIGN = "v6.2"
 
 
 def design_name() -> str:
@@ -97,7 +162,7 @@ def design() -> dict:
 
 
 # the active design's palettes (kept as a name: tests and older code read PALETTES)
-PALETTES = PALETTES_V61
+PALETTES = PALETTES_V62
 
 def current_theme() -> str:
     return st.session_state.get("theme", "dark")
@@ -108,6 +173,32 @@ def colors() -> dict:
     return design()["palettes"][current_theme()]
 
 
+def _rgb(hex_colour: str) -> tuple[float, float, float]:
+    h = hex_colour.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def mix(a: str, b: str, share: float) -> str:
+    """The colour ``share`` of the way from ``a`` to ``b`` (hex), as a heatmap draws it."""
+    share = min(max(float(share), 0.0), 1.0)
+    return "#" + "".join(f"{round(x + (y - x) * share):02x}" for x, y in zip(_rgb(a), _rgb(b)))
+
+
+def contrast(a: str, b: str) -> float:
+    """WCAG contrast ratio of two hex colours."""
+    def lum(c):
+        f = [v / 255 for v in _rgb(c)]
+        f = [v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4 for v in f]
+        return 0.2126 * f[0] + 0.7152 * f[1] + 0.0722 * f[2]
+    x, y = sorted((lum(a), lum(b)), reverse=True)
+    return (x + 0.05) / (y + 0.05)
+
+
+def readable_on(background: str) -> str:
+    """White or near-black, whichever reads better on ``background``."""
+    return max(("#ffffff", "#0e1315"), key=lambda fg: contrast(fg, background))
+
+
 def plotly_layout() -> dict:
     c = colors()
     return dict(
@@ -115,10 +206,13 @@ def plotly_layout() -> dict:
         paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
         font=dict(family=design()["body"].replace("'", ""), size=12, color=c["muted"]),
         title_font_color=c["text-strong"], legend_font_color=c["text"],
-        margin=dict(l=10, r=10, t=48, b=10),
+        margin=dict(l=10, r=16, t=48, b=10),
         hoverlabel=dict(font_family=design()["body"].replace("'", "")),
-        xaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"]),
-        yaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"]),
+        # every axis makes room for its own labels (long league and market names)
+        xaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"], automargin=True,
+                   tickfont=dict(color=c["muted"])),
+        yaxis=dict(gridcolor=c["border-soft"], zerolinecolor=c["border"], automargin=True,
+                   tickfont=dict(color=c["muted"])),
     )
 
 
@@ -153,6 +247,14 @@ a { text-decoration: none; }
 .fp-brand a { display: flex; align-items: center; gap: .45rem; color: var(--text-strong) !important;
   pointer-events: auto; text-decoration: none; }
 .fp-brand .mark { flex: none; display: block; }
+.fp-brand a { pointer-events: none; }
+/* the clickable logo: an in-app button laid over the brand (whole logo, no reload) */
+.st-key-fp_home { position: fixed !important; top: 0; left: 0; width: 13.4rem !important; height: 3.75rem;
+  z-index: 999993; margin: 0 !important; padding: 0 !important; gap: 0 !important; }
+.st-key-fp_home [data-testid="stElementContainer"], .st-key-fp_home .stButton,
+.st-key-fp_home button { display: block !important; width: 100% !important; height: 3.75rem !important; margin: 0 !important;
+  padding: 0 !important; opacity: 0 !important; cursor: pointer; }
+.st-key-fp_home:focus-within { outline: 2px solid var(--accent); outline-offset: -6px; border-radius: 8px; }
 .fp-brand .accent { color: var(--accent); }
 .st-key-fp_prefs { position: fixed; top: .55rem; right: 1.2rem; z-index: 999992; width: auto !important; }
 .st-key-fp_prefs [data-testid="stHorizontalBlock"] { gap: .4rem; }
@@ -165,6 +267,7 @@ a { text-decoration: none; }
   [data-testid="stTopNavLink"] p, [data-testid="stTopNavLink"] span { font-size: .8rem !important; }
   [data-testid="stTopNavLink"] > span:first-child { display: none !important; }
   .fp-brand a > span { display: none; }             /* the ball alone; the name returns on wider screens */
+  .st-key-fp_home { width: 4.6rem !important; }
   [data-testid="stToolbar"] .rc-overflow { padding-left: 70px; }
 }
 /* header search: a compact translucent field with a magnifier, a little wider while typing */
@@ -473,4 +576,4 @@ def inject_css() -> None:
         f"--font-size:{d['size']};}}"
     widgets = current_theme() == "light" or d["widgets_dark"]
     extra = LIGHT_WIDGETS if widgets else ""
-    st.html(f"<style>@import url('{d['fonts']}');{variables}{CSS}{extra}</style>")
+    st.html(f"<style>@import url('{d['fonts']}');{variables}{CSS}{extra}{d.get('extra_css', '')}</style>")
