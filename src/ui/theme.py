@@ -247,6 +247,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
   letter-spacing: .06em; font-weight: 700; }
 .why .why-r ul { margin: .25rem 0 0 1.1rem; padding: 0; color: var(--text); font-size: .86rem; }
 .why .why-sum { margin: .7rem 0 0; color: var(--text); font-size: .9rem; }
+.why .why-note { margin: .6rem 0 0; color: var(--muted); font-size: .82rem; font-style: italic; }
 
 /* probability bar --------------------------------------------------------- */
 .pbar { display: flex; gap: 2px; height: 7px; border-radius: 6px; overflow: hidden; background: transparent; }

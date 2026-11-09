@@ -58,6 +58,13 @@ def picks() -> pd.DataFrame:
     return _prediction_table(store.PICKS, _mtime(predictions_storage.path(store.PICKS)))
 
 
+def prediction_inputs() -> pd.DataFrame:
+    """Model inputs stored with each prediction (src/prediction/inputs.py); empty for older predictions."""
+    from src.prediction.inputs import INPUTS
+    path = predictions_storage.path(INPUTS)
+    return _prediction_table(INPUTS, _mtime(path)) if os.path.exists(path) else pd.DataFrame()
+
+
 @st.cache_resource(show_spinner=False)
 def _markets_by_match(_mtime_key: float) -> dict[str, pd.DataFrame]:
     m = markets()

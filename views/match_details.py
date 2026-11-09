@@ -11,6 +11,7 @@ from src.analytics.teams import form_summary, h2h_summary, head_to_head, team_ma
 from src.explain.facts import market_facts
 from src.explain.card import INFLUENCE_TIP, card_factors, chain_note, shares_are_meaningful
 from src.explain.chain import chain_values, explain_market
+from src.prediction.inputs import explanation_row, stored_inputs
 from src.leagues import get_league
 from src.markets.distributions import corners_distribution, prob_over
 from src.ui import data
@@ -22,6 +23,10 @@ from src.ui.labels import country_label, league_name, market_title, selection_la
 from src.ui.prefs import pref_params
 from src.ui.theme import colors
 from src.ui.timefmt import with_local_time
+
+# A finished match predicted before v6.2: the model inputs of its prediction were not stored.
+OLD_INPUTS_NOTE = ("Explained with the team data available now: the model inputs of this prediction "
+                   "were not stored (predictions made before 10.11.2026).")
 
 
 def _choose_match() -> str | None:
@@ -158,6 +163,8 @@ def _explain(feat_row: pd.Series, bundles, market: str, selection: str, home: st
                      + "".join(f"<li>{esc(f)}</li>" for f in facts[:3]) + "</ul></div>")
     if summary:
         parts.append(f'<p class="why-sum">{esc(summary)}</p>')
+    if not st.session_state.get("_why_reproduced", True):
+        parts.append(f'<p class="why-note">{esc(t(OLD_INPUTS_NOTE))}</p>')
     st.html(f'<div class="why {"risk" if role == "risk" else ""}">{"".join(parts)}</div>')
 
 
@@ -436,6 +443,10 @@ def render() -> None:
     features = data.features()
     feat_rows = features.loc[features["match_id"] == match_id]
     feat_row = feat_rows.iloc[0] if not feat_rows.empty else row
+    # the explanation uses the inputs the models saw when this prediction was made (stored since v6.2)
+    stored = stored_inputs(match_id, snap["generated_at"], data.prediction_inputs()) if snap is not None else None
+    feat_row, reproduced = explanation_row(feat_row, stored)
+    st.session_state["_why_reproduced"] = reproduced or not bool(row.get("played"))
 
     finished = bool(row.get("played"))
     home_tm = team_matches(features, home, row["country"], before=row["date"])

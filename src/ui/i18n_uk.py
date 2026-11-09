@@ -77,7 +77,8 @@ UK: dict[str, str] = {
     "{team} rest": "Відпочинок {team}", "{n} days": "{n} дн.", "Rest difference": "Різниця у відпочинку",
     "Positive = the home team had more rest.": "Додатне значення — господарі відпочивали довше.",
     "Teams before the match": "Команди перед матчем", "Team comparison": "Порівняння команд",
-    "Recent form": "Поточна форма", "Home / Away": "Удома / на виїзді", "Head-to-head": "Особисті зустрічі",
+    "Recent form": "Поточна форма",
+    "Explained with the team data available now: the model inputs of this prediction were not stored (predictions made before 10.11.2026).": "Пояснено за поточними даними команд: вхідні дані моделі для цього прогнозу не збережено (прогнози до 10.11.2026).", "Home / Away": "Удома / на виїзді", "Head-to-head": "Особисті зустрічі",
     "Rest days": "Дні відпочинку",
     "This page could not be displayed right now. Please try again later.":
         "Не вдалося показати сторінку. Спробуйте пізніше.",
