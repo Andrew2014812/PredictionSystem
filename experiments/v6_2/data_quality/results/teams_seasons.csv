@@ -1,0 +1,2255 @@
+league,country,season,team,games,status,origin
+B1,Belgium,2021,Anderlecht,34,first_season,
+B1,Belgium,2021,Antwerp,34,first_season,
+B1,Belgium,2021,Beerschot VA,34,first_season,
+B1,Belgium,2021,Cercle Brugge,34,first_season,
+B1,Belgium,2021,Charleroi,34,first_season,
+B1,Belgium,2021,Club Brugge,34,first_season,
+B1,Belgium,2021,Eupen,34,first_season,
+B1,Belgium,2021,Genk,34,first_season,
+B1,Belgium,2021,Gent,34,first_season,
+B1,Belgium,2021,Kortrijk,34,first_season,
+B1,Belgium,2021,Mechelen,34,first_season,
+B1,Belgium,2021,Oostende,34,first_season,
+B1,Belgium,2021,Oud-Heverlee Leuven,34,first_season,
+B1,Belgium,2021,Seraing,34,first_season,
+B1,Belgium,2021,St Truiden,34,first_season,
+B1,Belgium,2021,St. Gilloise,34,first_season,
+B1,Belgium,2021,Standard,34,first_season,
+B1,Belgium,2021,Waregem,34,first_season,
+B1,Belgium,2022,Anderlecht,34,established,B1
+B1,Belgium,2022,Antwerp,34,established,B1
+B1,Belgium,2022,Cercle Brugge,34,established,B1
+B1,Belgium,2022,Charleroi,34,established,B1
+B1,Belgium,2022,Club Brugge,34,established,B1
+B1,Belgium,2022,Eupen,34,established,B1
+B1,Belgium,2022,Genk,34,established,B1
+B1,Belgium,2022,Gent,34,established,B1
+B1,Belgium,2022,Kortrijk,34,established,B1
+B1,Belgium,2022,Mechelen,34,established,B1
+B1,Belgium,2022,Oostende,34,established,B1
+B1,Belgium,2022,Oud-Heverlee Leuven,34,established,B1
+B1,Belgium,2022,Seraing,34,established,B1
+B1,Belgium,2022,St Truiden,34,established,B1
+B1,Belgium,2022,St. Gilloise,34,established,B1
+B1,Belgium,2022,Standard,34,established,B1
+B1,Belgium,2022,Waregem,34,established,B1
+B1,Belgium,2022,Westerlo,34,outside,
+B1,Belgium,2023,Anderlecht,40,established,B1
+B1,Belgium,2023,Antwerp,40,established,B1
+B1,Belgium,2023,Cercle Brugge,40,established,B1
+B1,Belgium,2023,Charleroi,36,established,B1
+B1,Belgium,2023,Club Brugge,40,established,B1
+B1,Belgium,2023,Eupen,36,established,B1
+B1,Belgium,2023,Genk,41,established,B1
+B1,Belgium,2023,Gent,41,established,B1
+B1,Belgium,2023,Kortrijk,36,established,B1
+B1,Belgium,2023,Mechelen,40,established,B1
+B1,Belgium,2023,Oud-Heverlee Leuven,40,established,B1
+B1,Belgium,2023,RWD Molenbeek,36,outside,
+B1,Belgium,2023,St Truiden,40,established,B1
+B1,Belgium,2023,St. Gilloise,40,established,B1
+B1,Belgium,2023,Standard,39,established,B1
+B1,Belgium,2023,Westerlo,39,established,B1
+B1,Belgium,2024,Anderlecht,40,established,B1
+B1,Belgium,2024,Antwerp,40,established,B1
+B1,Belgium,2024,Beerschot VA,36,returner,last seen 2021/22
+B1,Belgium,2024,Cercle Brugge,36,established,B1
+B1,Belgium,2024,Charleroi,40,established,B1
+B1,Belgium,2024,Club Brugge,40,established,B1
+B1,Belgium,2024,Dender,40,outside,
+B1,Belgium,2024,Genk,40,established,B1
+B1,Belgium,2024,Gent,40,established,B1
+B1,Belgium,2024,Kortrijk,36,established,B1
+B1,Belgium,2024,Mechelen,40,established,B1
+B1,Belgium,2024,Oud-Heverlee Leuven,40,established,B1
+B1,Belgium,2024,St Truiden,36,established,B1
+B1,Belgium,2024,St. Gilloise,40,established,B1
+B1,Belgium,2024,Standard,40,established,B1
+B1,Belgium,2024,Westerlo,40,established,B1
+B1,Belgium,2025,Anderlecht,40,established,B1
+B1,Belgium,2025,Antwerp,40,established,B1
+B1,Belgium,2025,Cercle Brugge,36,established,B1
+B1,Belgium,2025,Charleroi,40,established,B1
+B1,Belgium,2025,Club Brugge,40,established,B1
+B1,Belgium,2025,Dender,35,established,B1
+B1,Belgium,2025,Genk,40,established,B1
+B1,Belgium,2025,Gent,40,established,B1
+B1,Belgium,2025,Mechelen,40,established,B1
+B1,Belgium,2025,Oud-Heverlee Leuven,40,established,B1
+B1,Belgium,2025,RAAL La Louviere,35,outside,
+B1,Belgium,2025,St Truiden,40,established,B1
+B1,Belgium,2025,St. Gilloise,40,established,B1
+B1,Belgium,2025,Standard,40,established,B1
+B1,Belgium,2025,Waregem,36,returner,last seen 2022/23
+B1,Belgium,2025,Westerlo,40,established,B1
+B1,Belgium,2026,Anderlecht,11,established,B1
+B1,Belgium,2026,Antwerp,11,established,B1
+B1,Belgium,2026,Beveren,11,outside,
+B1,Belgium,2026,Cercle Brugge,11,established,B1
+B1,Belgium,2026,Charleroi,11,established,B1
+B1,Belgium,2026,Club Brugge,11,established,B1
+B1,Belgium,2026,Genk,11,established,B1
+B1,Belgium,2026,Gent,11,established,B1
+B1,Belgium,2026,Kortrijk,11,returner,last seen 2024/25
+B1,Belgium,2026,Lommel SK,11,outside,
+B1,Belgium,2026,Mechelen,11,established,B1
+B1,Belgium,2026,Oud-Heverlee Leuven,11,established,B1
+B1,Belgium,2026,RAAL La Louviere,11,established,B1
+B1,Belgium,2026,St Truiden,11,established,B1
+B1,Belgium,2026,St. Gilloise,11,established,B1
+B1,Belgium,2026,Standard,11,established,B1
+B1,Belgium,2026,Waregem,11,established,B1
+B1,Belgium,2026,Westerlo,11,established,B1
+D1,Germany,2021,Augsburg,34,first_season,
+D1,Germany,2021,Bayern Munich,34,first_season,
+D1,Germany,2021,Bielefeld,34,first_season,
+D1,Germany,2021,Bochum,34,first_season,
+D1,Germany,2021,Dortmund,34,first_season,
+D1,Germany,2021,Ein Frankfurt,34,first_season,
+D1,Germany,2021,FC Koln,34,first_season,
+D1,Germany,2021,Freiburg,34,first_season,
+D1,Germany,2021,Greuther Furth,34,first_season,
+D1,Germany,2021,Hertha,34,first_season,
+D1,Germany,2021,Hoffenheim,34,first_season,
+D1,Germany,2021,Leverkusen,34,first_season,
+D1,Germany,2021,M'gladbach,34,first_season,
+D1,Germany,2021,Mainz,34,first_season,
+D1,Germany,2021,RB Leipzig,34,first_season,
+D1,Germany,2021,Stuttgart,34,first_season,
+D1,Germany,2021,Union Berlin,34,first_season,
+D1,Germany,2021,Wolfsburg,34,first_season,
+D1,Germany,2022,Augsburg,34,established,D1
+D1,Germany,2022,Bayern Munich,34,established,D1
+D1,Germany,2022,Bochum,34,established,D1
+D1,Germany,2022,Dortmund,34,established,D1
+D1,Germany,2022,Ein Frankfurt,34,established,D1
+D1,Germany,2022,FC Koln,34,established,D1
+D1,Germany,2022,Freiburg,34,established,D1
+D1,Germany,2022,Hertha,34,established,D1
+D1,Germany,2022,Hoffenheim,34,established,D1
+D1,Germany,2022,Leverkusen,34,established,D1
+D1,Germany,2022,M'gladbach,34,established,D1
+D1,Germany,2022,Mainz,34,established,D1
+D1,Germany,2022,RB Leipzig,34,established,D1
+D1,Germany,2022,Schalke 04,34,moved_within,D2
+D1,Germany,2022,Stuttgart,34,established,D1
+D1,Germany,2022,Union Berlin,34,established,D1
+D1,Germany,2022,Werder Bremen,34,moved_within,D2
+D1,Germany,2022,Wolfsburg,34,established,D1
+D1,Germany,2023,Augsburg,34,established,D1
+D1,Germany,2023,Bayern Munich,34,established,D1
+D1,Germany,2023,Bochum,34,established,D1
+D1,Germany,2023,Darmstadt,34,moved_within,D2
+D1,Germany,2023,Dortmund,34,established,D1
+D1,Germany,2023,Ein Frankfurt,34,established,D1
+D1,Germany,2023,FC Koln,34,established,D1
+D1,Germany,2023,Freiburg,34,established,D1
+D1,Germany,2023,Heidenheim,34,moved_within,D2
+D1,Germany,2023,Hoffenheim,34,established,D1
+D1,Germany,2023,Leverkusen,34,established,D1
+D1,Germany,2023,M'gladbach,34,established,D1
+D1,Germany,2023,Mainz,34,established,D1
+D1,Germany,2023,RB Leipzig,34,established,D1
+D1,Germany,2023,Stuttgart,34,established,D1
+D1,Germany,2023,Union Berlin,34,established,D1
+D1,Germany,2023,Werder Bremen,34,established,D1
+D1,Germany,2023,Wolfsburg,34,established,D1
+D1,Germany,2024,Augsburg,34,established,D1
+D1,Germany,2024,Bayern Munich,34,established,D1
+D1,Germany,2024,Bochum,34,established,D1
+D1,Germany,2024,Dortmund,34,established,D1
+D1,Germany,2024,Ein Frankfurt,34,established,D1
+D1,Germany,2024,Freiburg,34,established,D1
+D1,Germany,2024,Heidenheim,34,established,D1
+D1,Germany,2024,Hoffenheim,34,established,D1
+D1,Germany,2024,Holstein Kiel,34,moved_within,D2
+D1,Germany,2024,Leverkusen,34,established,D1
+D1,Germany,2024,M'gladbach,34,established,D1
+D1,Germany,2024,Mainz,34,established,D1
+D1,Germany,2024,RB Leipzig,34,established,D1
+D1,Germany,2024,St Pauli,34,moved_within,D2
+D1,Germany,2024,Stuttgart,34,established,D1
+D1,Germany,2024,Union Berlin,34,established,D1
+D1,Germany,2024,Werder Bremen,34,established,D1
+D1,Germany,2024,Wolfsburg,34,established,D1
+D1,Germany,2025,Augsburg,34,established,D1
+D1,Germany,2025,Bayern Munich,34,established,D1
+D1,Germany,2025,Dortmund,34,established,D1
+D1,Germany,2025,Ein Frankfurt,34,established,D1
+D1,Germany,2025,FC Koln,34,moved_within,D2
+D1,Germany,2025,Freiburg,34,established,D1
+D1,Germany,2025,Hamburg,34,moved_within,D2
+D1,Germany,2025,Heidenheim,34,established,D1
+D1,Germany,2025,Hoffenheim,34,established,D1
+D1,Germany,2025,Leverkusen,34,established,D1
+D1,Germany,2025,M'gladbach,34,established,D1
+D1,Germany,2025,Mainz,34,established,D1
+D1,Germany,2025,RB Leipzig,34,established,D1
+D1,Germany,2025,St Pauli,34,established,D1
+D1,Germany,2025,Stuttgart,34,established,D1
+D1,Germany,2025,Union Berlin,34,established,D1
+D1,Germany,2025,Werder Bremen,34,established,D1
+D1,Germany,2025,Wolfsburg,34,established,D1
+D1,Germany,2026,Augsburg,9,established,D1
+D1,Germany,2026,Bayern Munich,9,established,D1
+D1,Germany,2026,Dortmund,9,established,D1
+D1,Germany,2026,Ein Frankfurt,9,established,D1
+D1,Germany,2026,Elversberg,9,moved_within,D2
+D1,Germany,2026,FC Koln,9,established,D1
+D1,Germany,2026,Freiburg,9,established,D1
+D1,Germany,2026,Hamburg,9,established,D1
+D1,Germany,2026,Hoffenheim,9,established,D1
+D1,Germany,2026,Leverkusen,9,established,D1
+D1,Germany,2026,M'gladbach,9,established,D1
+D1,Germany,2026,Mainz,9,established,D1
+D1,Germany,2026,Paderborn,9,moved_within,D2
+D1,Germany,2026,RB Leipzig,9,established,D1
+D1,Germany,2026,Schalke 04,9,moved_within,D2
+D1,Germany,2026,Stuttgart,9,established,D1
+D1,Germany,2026,Union Berlin,9,established,D1
+D1,Germany,2026,Werder Bremen,9,established,D1
+D2,Germany,2021,Darmstadt,34,first_season,
+D2,Germany,2021,Dresden,34,first_season,
+D2,Germany,2021,Erzgebirge Aue,34,first_season,
+D2,Germany,2021,Fortuna Dusseldorf,34,first_season,
+D2,Germany,2021,Hamburg,34,first_season,
+D2,Germany,2021,Hannover,34,first_season,
+D2,Germany,2021,Hansa Rostock,34,first_season,
+D2,Germany,2021,Heidenheim,34,first_season,
+D2,Germany,2021,Holstein Kiel,34,first_season,
+D2,Germany,2021,Ingolstadt,34,first_season,
+D2,Germany,2021,Karlsruhe,34,first_season,
+D2,Germany,2021,Nurnberg,34,first_season,
+D2,Germany,2021,Paderborn,34,first_season,
+D2,Germany,2021,Regensburg,34,first_season,
+D2,Germany,2021,Sandhausen,34,first_season,
+D2,Germany,2021,Schalke 04,34,first_season,
+D2,Germany,2021,St Pauli,34,first_season,
+D2,Germany,2021,Werder Bremen,34,first_season,
+D2,Germany,2022,Bielefeld,34,moved_within,D1
+D2,Germany,2022,Braunschweig,34,outside,
+D2,Germany,2022,Darmstadt,34,established,D2
+D2,Germany,2022,Fortuna Dusseldorf,34,established,D2
+D2,Germany,2022,Greuther Furth,34,moved_within,D1
+D2,Germany,2022,Hamburg,34,established,D2
+D2,Germany,2022,Hannover,34,established,D2
+D2,Germany,2022,Hansa Rostock,34,established,D2
+D2,Germany,2022,Heidenheim,34,established,D2
+D2,Germany,2022,Holstein Kiel,34,established,D2
+D2,Germany,2022,Kaiserslautern,34,outside,
+D2,Germany,2022,Karlsruhe,34,established,D2
+D2,Germany,2022,Magdeburg,34,outside,
+D2,Germany,2022,Nurnberg,34,established,D2
+D2,Germany,2022,Paderborn,34,established,D2
+D2,Germany,2022,Regensburg,34,established,D2
+D2,Germany,2022,Sandhausen,34,established,D2
+D2,Germany,2022,St Pauli,34,established,D2
+D2,Germany,2023,Braunschweig,34,established,D2
+D2,Germany,2023,Elversberg,34,outside,
+D2,Germany,2023,Fortuna Dusseldorf,34,established,D2
+D2,Germany,2023,Greuther Furth,34,established,D2
+D2,Germany,2023,Hamburg,34,established,D2
+D2,Germany,2023,Hannover,34,established,D2
+D2,Germany,2023,Hansa Rostock,34,established,D2
+D2,Germany,2023,Hertha,34,moved_within,D1
+D2,Germany,2023,Holstein Kiel,34,established,D2
+D2,Germany,2023,Kaiserslautern,34,established,D2
+D2,Germany,2023,Karlsruhe,34,established,D2
+D2,Germany,2023,Magdeburg,34,established,D2
+D2,Germany,2023,Nurnberg,34,established,D2
+D2,Germany,2023,Osnabruck,34,outside,
+D2,Germany,2023,Paderborn,34,established,D2
+D2,Germany,2023,Schalke 04,34,moved_within,D1
+D2,Germany,2023,St Pauli,34,established,D2
+D2,Germany,2023,Wehen,34,outside,
+D2,Germany,2024,Braunschweig,34,established,D2
+D2,Germany,2024,Darmstadt,34,moved_within,D1
+D2,Germany,2024,Elversberg,34,established,D2
+D2,Germany,2024,FC Koln,34,moved_within,D1
+D2,Germany,2024,Fortuna Dusseldorf,34,established,D2
+D2,Germany,2024,Greuther Furth,34,established,D2
+D2,Germany,2024,Hamburg,34,established,D2
+D2,Germany,2024,Hannover,34,established,D2
+D2,Germany,2024,Hertha,34,established,D2
+D2,Germany,2024,Kaiserslautern,34,established,D2
+D2,Germany,2024,Karlsruhe,34,established,D2
+D2,Germany,2024,Magdeburg,34,established,D2
+D2,Germany,2024,Nurnberg,34,established,D2
+D2,Germany,2024,Paderborn,34,established,D2
+D2,Germany,2024,Preußen Münster,34,outside,
+D2,Germany,2024,Regensburg,34,returner,last seen 2022/23
+D2,Germany,2024,Schalke 04,34,established,D2
+D2,Germany,2024,Ulm,34,outside,
+D2,Germany,2025,Bielefeld,34,returner,last seen 2022/23
+D2,Germany,2025,Bochum,34,moved_within,D1
+D2,Germany,2025,Braunschweig,34,established,D2
+D2,Germany,2025,Darmstadt,34,established,D2
+D2,Germany,2025,Dresden,34,returner,last seen 2021/22
+D2,Germany,2025,Elversberg,34,established,D2
+D2,Germany,2025,Fortuna Dusseldorf,34,established,D2
+D2,Germany,2025,Greuther Furth,34,established,D2
+D2,Germany,2025,Hannover,34,established,D2
+D2,Germany,2025,Hertha,34,established,D2
+D2,Germany,2025,Holstein Kiel,34,moved_within,D1
+D2,Germany,2025,Kaiserslautern,34,established,D2
+D2,Germany,2025,Karlsruhe,34,established,D2
+D2,Germany,2025,Magdeburg,34,established,D2
+D2,Germany,2025,Nurnberg,34,established,D2
+D2,Germany,2025,Paderborn,34,established,D2
+D2,Germany,2025,Preußen Münster,34,established,D2
+D2,Germany,2025,Schalke 04,34,established,D2
+D2,Germany,2026,Bielefeld,11,established,D2
+D2,Germany,2026,Bochum,11,established,D2
+D2,Germany,2026,Braunschweig,11,established,D2
+D2,Germany,2026,Cottbus,11,outside,
+D2,Germany,2026,Darmstadt,11,established,D2
+D2,Germany,2026,Dresden,11,established,D2
+D2,Germany,2026,Greuther Furth,11,established,D2
+D2,Germany,2026,Hannover,11,established,D2
+D2,Germany,2026,Heidenheim,11,moved_within,D1
+D2,Germany,2026,Hertha,11,established,D2
+D2,Germany,2026,Holstein Kiel,11,established,D2
+D2,Germany,2026,Kaiserslautern,11,established,D2
+D2,Germany,2026,Karlsruhe,11,established,D2
+D2,Germany,2026,Magdeburg,11,established,D2
+D2,Germany,2026,Nurnberg,11,established,D2
+D2,Germany,2026,Osnabruck,11,returner,last seen 2023/24
+D2,Germany,2026,St Pauli,11,moved_within,D1
+D2,Germany,2026,Wolfsburg,11,moved_within,D1
+E0,England,2021,Arsenal,38,first_season,
+E0,England,2021,Aston Villa,38,first_season,
+E0,England,2021,Brentford,38,first_season,
+E0,England,2021,Brighton,38,first_season,
+E0,England,2021,Burnley,38,first_season,
+E0,England,2021,Chelsea,38,first_season,
+E0,England,2021,Crystal Palace,38,first_season,
+E0,England,2021,Everton,38,first_season,
+E0,England,2021,Leeds,38,first_season,
+E0,England,2021,Leicester,38,first_season,
+E0,England,2021,Liverpool,38,first_season,
+E0,England,2021,Man City,38,first_season,
+E0,England,2021,Man United,38,first_season,
+E0,England,2021,Newcastle,38,first_season,
+E0,England,2021,Norwich,38,first_season,
+E0,England,2021,Southampton,38,first_season,
+E0,England,2021,Tottenham,38,first_season,
+E0,England,2021,Watford,38,first_season,
+E0,England,2021,West Ham,38,first_season,
+E0,England,2021,Wolves,38,first_season,
+E0,England,2022,Arsenal,38,established,E0
+E0,England,2022,Aston Villa,38,established,E0
+E0,England,2022,Bournemouth,38,moved_within,E1
+E0,England,2022,Brentford,38,established,E0
+E0,England,2022,Brighton,38,established,E0
+E0,England,2022,Chelsea,38,established,E0
+E0,England,2022,Crystal Palace,38,established,E0
+E0,England,2022,Everton,38,established,E0
+E0,England,2022,Fulham,38,moved_within,E1
+E0,England,2022,Leeds,38,established,E0
+E0,England,2022,Leicester,38,established,E0
+E0,England,2022,Liverpool,38,established,E0
+E0,England,2022,Man City,38,established,E0
+E0,England,2022,Man United,38,established,E0
+E0,England,2022,Newcastle,38,established,E0
+E0,England,2022,Nott'm Forest,38,moved_within,E1
+E0,England,2022,Southampton,38,established,E0
+E0,England,2022,Tottenham,38,established,E0
+E0,England,2022,West Ham,38,established,E0
+E0,England,2022,Wolves,38,established,E0
+E0,England,2023,Arsenal,38,established,E0
+E0,England,2023,Aston Villa,38,established,E0
+E0,England,2023,Bournemouth,38,established,E0
+E0,England,2023,Brentford,38,established,E0
+E0,England,2023,Brighton,38,established,E0
+E0,England,2023,Burnley,38,moved_within,E1
+E0,England,2023,Chelsea,38,established,E0
+E0,England,2023,Crystal Palace,38,established,E0
+E0,England,2023,Everton,38,established,E0
+E0,England,2023,Fulham,38,established,E0
+E0,England,2023,Liverpool,38,established,E0
+E0,England,2023,Luton,38,moved_within,E1
+E0,England,2023,Man City,38,established,E0
+E0,England,2023,Man United,38,established,E0
+E0,England,2023,Newcastle,38,established,E0
+E0,England,2023,Nott'm Forest,38,established,E0
+E0,England,2023,Sheffield United,38,moved_within,E1
+E0,England,2023,Tottenham,38,established,E0
+E0,England,2023,West Ham,38,established,E0
+E0,England,2023,Wolves,38,established,E0
+E0,England,2024,Arsenal,38,established,E0
+E0,England,2024,Aston Villa,38,established,E0
+E0,England,2024,Bournemouth,38,established,E0
+E0,England,2024,Brentford,38,established,E0
+E0,England,2024,Brighton,38,established,E0
+E0,England,2024,Chelsea,38,established,E0
+E0,England,2024,Crystal Palace,38,established,E0
+E0,England,2024,Everton,38,established,E0
+E0,England,2024,Fulham,38,established,E0
+E0,England,2024,Ipswich,38,moved_within,E1
+E0,England,2024,Leicester,38,moved_within,E1
+E0,England,2024,Liverpool,38,established,E0
+E0,England,2024,Man City,38,established,E0
+E0,England,2024,Man United,38,established,E0
+E0,England,2024,Newcastle,38,established,E0
+E0,England,2024,Nott'm Forest,38,established,E0
+E0,England,2024,Southampton,38,moved_within,E1
+E0,England,2024,Tottenham,38,established,E0
+E0,England,2024,West Ham,38,established,E0
+E0,England,2024,Wolves,38,established,E0
+E0,England,2025,Arsenal,38,established,E0
+E0,England,2025,Aston Villa,38,established,E0
+E0,England,2025,Bournemouth,38,established,E0
+E0,England,2025,Brentford,38,established,E0
+E0,England,2025,Brighton,38,established,E0
+E0,England,2025,Burnley,38,moved_within,E1
+E0,England,2025,Chelsea,38,established,E0
+E0,England,2025,Crystal Palace,38,established,E0
+E0,England,2025,Everton,38,established,E0
+E0,England,2025,Fulham,38,established,E0
+E0,England,2025,Leeds,38,moved_within,E1
+E0,England,2025,Liverpool,38,established,E0
+E0,England,2025,Man City,38,established,E0
+E0,England,2025,Man United,38,established,E0
+E0,England,2025,Newcastle,38,established,E0
+E0,England,2025,Nott'm Forest,38,established,E0
+E0,England,2025,Sunderland,38,moved_within,E1
+E0,England,2025,Tottenham,38,established,E0
+E0,England,2025,West Ham,38,established,E0
+E0,England,2025,Wolves,38,established,E0
+E0,England,2026,Arsenal,10,established,E0
+E0,England,2026,Aston Villa,10,established,E0
+E0,England,2026,Bournemouth,10,established,E0
+E0,England,2026,Brentford,10,established,E0
+E0,England,2026,Brighton,10,established,E0
+E0,England,2026,Chelsea,10,established,E0
+E0,England,2026,Coventry,10,moved_within,E1
+E0,England,2026,Crystal Palace,10,established,E0
+E0,England,2026,Everton,10,established,E0
+E0,England,2026,Fulham,10,established,E0
+E0,England,2026,Hull,10,moved_within,E1
+E0,England,2026,Ipswich,10,moved_within,E1
+E0,England,2026,Leeds,10,established,E0
+E0,England,2026,Liverpool,10,established,E0
+E0,England,2026,Man City,10,established,E0
+E0,England,2026,Man United,10,established,E0
+E0,England,2026,Newcastle,10,established,E0
+E0,England,2026,Nott'm Forest,10,established,E0
+E0,England,2026,Sunderland,10,established,E0
+E0,England,2026,Tottenham,10,established,E0
+E1,England,2021,Barnsley,46,first_season,
+E1,England,2021,Birmingham,46,first_season,
+E1,England,2021,Blackburn,46,first_season,
+E1,England,2021,Blackpool,46,first_season,
+E1,England,2021,Bournemouth,46,first_season,
+E1,England,2021,Bristol City,46,first_season,
+E1,England,2021,Cardiff,46,first_season,
+E1,England,2021,Coventry,46,first_season,
+E1,England,2021,Derby,46,first_season,
+E1,England,2021,Fulham,46,first_season,
+E1,England,2021,Huddersfield,46,first_season,
+E1,England,2021,Hull,46,first_season,
+E1,England,2021,Luton,46,first_season,
+E1,England,2021,Middlesbrough,46,first_season,
+E1,England,2021,Millwall,46,first_season,
+E1,England,2021,Nott'm Forest,46,first_season,
+E1,England,2021,Peterboro,46,first_season,
+E1,England,2021,Preston,46,first_season,
+E1,England,2021,QPR,46,first_season,
+E1,England,2021,Reading,46,first_season,
+E1,England,2021,Sheffield United,46,first_season,
+E1,England,2021,Stoke,46,first_season,
+E1,England,2021,Swansea,46,first_season,
+E1,England,2021,West Brom,46,first_season,
+E1,England,2022,Birmingham,46,established,E1
+E1,England,2022,Blackburn,46,established,E1
+E1,England,2022,Blackpool,46,established,E1
+E1,England,2022,Bristol City,46,established,E1
+E1,England,2022,Burnley,46,moved_within,E0
+E1,England,2022,Cardiff,46,established,E1
+E1,England,2022,Coventry,46,established,E1
+E1,England,2022,Huddersfield,46,established,E1
+E1,England,2022,Hull,46,established,E1
+E1,England,2022,Luton,46,established,E1
+E1,England,2022,Middlesbrough,46,established,E1
+E1,England,2022,Millwall,46,established,E1
+E1,England,2022,Norwich,46,moved_within,E0
+E1,England,2022,Preston,46,established,E1
+E1,England,2022,QPR,46,established,E1
+E1,England,2022,Reading,46,established,E1
+E1,England,2022,Rotherham,46,moved_within,E2
+E1,England,2022,Sheffield United,46,established,E1
+E1,England,2022,Stoke,46,established,E1
+E1,England,2022,Sunderland,46,moved_within,E2
+E1,England,2022,Swansea,46,established,E1
+E1,England,2022,Watford,46,moved_within,E0
+E1,England,2022,West Brom,46,established,E1
+E1,England,2022,Wigan,46,moved_within,E2
+E1,England,2023,Birmingham,46,established,E1
+E1,England,2023,Blackburn,46,established,E1
+E1,England,2023,Bristol City,46,established,E1
+E1,England,2023,Cardiff,46,established,E1
+E1,England,2023,Coventry,46,established,E1
+E1,England,2023,Huddersfield,46,established,E1
+E1,England,2023,Hull,46,established,E1
+E1,England,2023,Ipswich,46,moved_within,E2
+E1,England,2023,Leeds,46,moved_within,E0
+E1,England,2023,Leicester,46,moved_within,E0
+E1,England,2023,Middlesbrough,46,established,E1
+E1,England,2023,Millwall,46,established,E1
+E1,England,2023,Norwich,46,established,E1
+E1,England,2023,Plymouth,46,moved_within,E2
+E1,England,2023,Preston,46,established,E1
+E1,England,2023,QPR,46,established,E1
+E1,England,2023,Rotherham,46,established,E1
+E1,England,2023,Sheffield Weds,46,moved_within,E2
+E1,England,2023,Southampton,46,moved_within,E0
+E1,England,2023,Stoke,46,established,E1
+E1,England,2023,Sunderland,46,established,E1
+E1,England,2023,Swansea,46,established,E1
+E1,England,2023,Watford,46,established,E1
+E1,England,2023,West Brom,46,established,E1
+E1,England,2024,Blackburn,46,established,E1
+E1,England,2024,Bristol City,46,established,E1
+E1,England,2024,Burnley,46,moved_within,E0
+E1,England,2024,Cardiff,46,established,E1
+E1,England,2024,Coventry,46,established,E1
+E1,England,2024,Derby,46,moved_within,E2
+E1,England,2024,Hull,46,established,E1
+E1,England,2024,Leeds,46,established,E1
+E1,England,2024,Luton,46,moved_within,E0
+E1,England,2024,Middlesbrough,46,established,E1
+E1,England,2024,Millwall,46,established,E1
+E1,England,2024,Norwich,46,established,E1
+E1,England,2024,Oxford,46,moved_within,E2
+E1,England,2024,Plymouth,46,established,E1
+E1,England,2024,Portsmouth,46,moved_within,E2
+E1,England,2024,Preston,46,established,E1
+E1,England,2024,QPR,46,established,E1
+E1,England,2024,Sheffield United,46,moved_within,E0
+E1,England,2024,Sheffield Weds,46,established,E1
+E1,England,2024,Stoke,46,established,E1
+E1,England,2024,Sunderland,46,established,E1
+E1,England,2024,Swansea,46,established,E1
+E1,England,2024,Watford,46,established,E1
+E1,England,2024,West Brom,46,established,E1
+E1,England,2025,Birmingham,46,moved_within,E2
+E1,England,2025,Blackburn,46,established,E1
+E1,England,2025,Bristol City,46,established,E1
+E1,England,2025,Charlton,46,moved_within,E2
+E1,England,2025,Coventry,46,established,E1
+E1,England,2025,Derby,46,established,E1
+E1,England,2025,Hull,46,established,E1
+E1,England,2025,Ipswich,46,moved_within,E0
+E1,England,2025,Leicester,46,moved_within,E0
+E1,England,2025,Middlesbrough,46,established,E1
+E1,England,2025,Millwall,46,established,E1
+E1,England,2025,Norwich,46,established,E1
+E1,England,2025,Oxford,46,established,E1
+E1,England,2025,Portsmouth,46,established,E1
+E1,England,2025,Preston,46,established,E1
+E1,England,2025,QPR,46,established,E1
+E1,England,2025,Sheffield United,46,established,E1
+E1,England,2025,Sheffield Weds,46,established,E1
+E1,England,2025,Southampton,46,moved_within,E0
+E1,England,2025,Stoke,46,established,E1
+E1,England,2025,Swansea,46,established,E1
+E1,England,2025,Watford,46,established,E1
+E1,England,2025,West Brom,46,established,E1
+E1,England,2025,Wrexham,46,moved_within,E2
+E1,England,2026,Birmingham,15,established,E1
+E1,England,2026,Blackburn,15,established,E1
+E1,England,2026,Bolton,15,moved_within,E2
+E1,England,2026,Bristol City,15,established,E1
+E1,England,2026,Burnley,15,moved_within,E0
+E1,England,2026,Cardiff,15,moved_within,E2
+E1,England,2026,Charlton,15,established,E1
+E1,England,2026,Derby,15,established,E1
+E1,England,2026,Lincoln,15,moved_within,E2
+E1,England,2026,Middlesbrough,15,established,E1
+E1,England,2026,Millwall,15,established,E1
+E1,England,2026,Norwich,15,established,E1
+E1,England,2026,Portsmouth,15,established,E1
+E1,England,2026,Preston,15,established,E1
+E1,England,2026,QPR,15,established,E1
+E1,England,2026,Sheffield United,15,established,E1
+E1,England,2026,Southampton,15,established,E1
+E1,England,2026,Stoke,15,established,E1
+E1,England,2026,Swansea,15,established,E1
+E1,England,2026,Watford,15,established,E1
+E1,England,2026,West Brom,15,established,E1
+E1,England,2026,West Ham,15,moved_within,E0
+E1,England,2026,Wolves,15,moved_within,E0
+E1,England,2026,Wrexham,15,established,E1
+E2,England,2021,AFC Wimbledon,46,first_season,
+E2,England,2021,Accrington,46,first_season,
+E2,England,2021,Bolton,46,first_season,
+E2,England,2021,Burton,46,first_season,
+E2,England,2021,Cambridge,46,first_season,
+E2,England,2021,Charlton,46,first_season,
+E2,England,2021,Cheltenham,46,first_season,
+E2,England,2021,Crewe,46,first_season,
+E2,England,2021,Doncaster,46,first_season,
+E2,England,2021,Fleetwood Town,46,first_season,
+E2,England,2021,Gillingham,46,first_season,
+E2,England,2021,Ipswich,46,first_season,
+E2,England,2021,Lincoln,46,first_season,
+E2,England,2021,Milton Keynes Dons,46,first_season,
+E2,England,2021,Morecambe,46,first_season,
+E2,England,2021,Oxford,46,first_season,
+E2,England,2021,Plymouth,46,first_season,
+E2,England,2021,Portsmouth,46,first_season,
+E2,England,2021,Rotherham,46,first_season,
+E2,England,2021,Sheffield Weds,46,first_season,
+E2,England,2021,Shrewsbury,46,first_season,
+E2,England,2021,Sunderland,46,first_season,
+E2,England,2021,Wigan,46,first_season,
+E2,England,2021,Wycombe,46,first_season,
+E2,England,2022,Accrington,46,established,E2
+E2,England,2022,Barnsley,46,moved_within,E1
+E2,England,2022,Bolton,46,established,E2
+E2,England,2022,Bristol Rvs,46,moved_within,E3
+E2,England,2022,Burton,46,established,E2
+E2,England,2022,Cambridge,46,established,E2
+E2,England,2022,Charlton,46,established,E2
+E2,England,2022,Cheltenham,46,established,E2
+E2,England,2022,Derby,46,moved_within,E1
+E2,England,2022,Exeter,46,moved_within,E3
+E2,England,2022,Fleetwood Town,46,established,E2
+E2,England,2022,Forest Green,46,moved_within,E3
+E2,England,2022,Ipswich,46,established,E2
+E2,England,2022,Lincoln,46,established,E2
+E2,England,2022,Milton Keynes Dons,46,established,E2
+E2,England,2022,Morecambe,46,established,E2
+E2,England,2022,Oxford,46,established,E2
+E2,England,2022,Peterboro,46,moved_within,E1
+E2,England,2022,Plymouth,46,established,E2
+E2,England,2022,Port Vale,46,moved_within,E3
+E2,England,2022,Portsmouth,46,established,E2
+E2,England,2022,Sheffield Weds,46,established,E2
+E2,England,2022,Shrewsbury,46,established,E2
+E2,England,2022,Wycombe,46,established,E2
+E2,England,2023,Barnsley,46,established,E2
+E2,England,2023,Blackpool,46,moved_within,E1
+E2,England,2023,Bolton,46,established,E2
+E2,England,2023,Bristol Rvs,46,established,E2
+E2,England,2023,Burton,46,established,E2
+E2,England,2023,Cambridge,46,established,E2
+E2,England,2023,Carlisle,46,moved_within,E3
+E2,England,2023,Charlton,46,established,E2
+E2,England,2023,Cheltenham,46,established,E2
+E2,England,2023,Derby,46,established,E2
+E2,England,2023,Exeter,46,established,E2
+E2,England,2023,Fleetwood Town,46,established,E2
+E2,England,2023,Leyton Orient,46,moved_within,E3
+E2,England,2023,Lincoln,46,established,E2
+E2,England,2023,Northampton,46,moved_within,E3
+E2,England,2023,Oxford,46,established,E2
+E2,England,2023,Peterboro,46,established,E2
+E2,England,2023,Port Vale,46,established,E2
+E2,England,2023,Portsmouth,46,established,E2
+E2,England,2023,Reading,46,moved_within,E1
+E2,England,2023,Shrewsbury,46,established,E2
+E2,England,2023,Stevenage,46,moved_within,E3
+E2,England,2023,Wigan,46,moved_within,E1
+E2,England,2023,Wycombe,46,established,E2
+E2,England,2024,Barnsley,46,established,E2
+E2,England,2024,Birmingham,46,moved_within,E1
+E2,England,2024,Blackpool,46,established,E2
+E2,England,2024,Bolton,46,established,E2
+E2,England,2024,Bristol Rvs,46,established,E2
+E2,England,2024,Burton,46,established,E2
+E2,England,2024,Cambridge,46,established,E2
+E2,England,2024,Charlton,46,established,E2
+E2,England,2024,Crawley Town,46,moved_within,E3
+E2,England,2024,Exeter,46,established,E2
+E2,England,2024,Huddersfield,46,moved_within,E1
+E2,England,2024,Leyton Orient,46,established,E2
+E2,England,2024,Lincoln,46,established,E2
+E2,England,2024,Mansfield,46,moved_within,E3
+E2,England,2024,Northampton,46,established,E2
+E2,England,2024,Peterboro,46,established,E2
+E2,England,2024,Reading,46,established,E2
+E2,England,2024,Rotherham,46,moved_within,E1
+E2,England,2024,Shrewsbury,46,established,E2
+E2,England,2024,Stevenage,46,established,E2
+E2,England,2024,Stockport,46,moved_within,E3
+E2,England,2024,Wigan,46,established,E2
+E2,England,2024,Wrexham,46,moved_within,E3
+E2,England,2024,Wycombe,46,established,E2
+E2,England,2025,AFC Wimbledon,46,moved_within,E3
+E2,England,2025,Barnsley,46,established,E2
+E2,England,2025,Blackpool,46,established,E2
+E2,England,2025,Bolton,46,established,E2
+E2,England,2025,Bradford,46,moved_within,E3
+E2,England,2025,Burton,46,established,E2
+E2,England,2025,Cardiff,46,moved_within,E1
+E2,England,2025,Doncaster,46,moved_within,E3
+E2,England,2025,Exeter,46,established,E2
+E2,England,2025,Huddersfield,46,established,E2
+E2,England,2025,Leyton Orient,46,established,E2
+E2,England,2025,Lincoln,46,established,E2
+E2,England,2025,Luton,46,moved_within,E1
+E2,England,2025,Mansfield,46,established,E2
+E2,England,2025,Northampton,46,established,E2
+E2,England,2025,Peterboro,46,established,E2
+E2,England,2025,Plymouth,46,moved_within,E1
+E2,England,2025,Port Vale,46,moved_within,E3
+E2,England,2025,Reading,46,established,E2
+E2,England,2025,Rotherham,46,established,E2
+E2,England,2025,Stevenage,46,established,E2
+E2,England,2025,Stockport,46,established,E2
+E2,England,2025,Wigan,46,established,E2
+E2,England,2025,Wycombe,46,established,E2
+E2,England,2026,AFC Wimbledon,13,established,E2
+E2,England,2026,Barnsley,12,established,E2
+E2,England,2026,Blackpool,12,established,E2
+E2,England,2026,Bradford,13,established,E2
+E2,England,2026,Bromley,13,moved_within,E3
+E2,England,2026,Burton,14,established,E2
+E2,England,2026,Cambridge,14,moved_within,E3
+E2,England,2026,Doncaster,13,established,E2
+E2,England,2026,Huddersfield,14,established,E2
+E2,England,2026,Leicester,13,moved_within,E1
+E2,England,2026,Leyton Orient,13,established,E2
+E2,England,2026,Luton,14,established,E2
+E2,England,2026,Mansfield,13,established,E2
+E2,England,2026,Milton Keynes Dons,13,moved_within,E3
+E2,England,2026,Notts County,12,moved_within,E3
+E2,England,2026,Oxford,13,moved_within,E1
+E2,England,2026,Peterboro,13,established,E2
+E2,England,2026,Plymouth,14,established,E2
+E2,England,2026,Reading,14,established,E2
+E2,England,2026,Sheffield Weds,13,moved_within,E1
+E2,England,2026,Stevenage,12,established,E2
+E2,England,2026,Stockport,14,established,E2
+E2,England,2026,Wigan,14,established,E2
+E2,England,2026,Wycombe,13,established,E2
+E3,England,2021,Barrow,46,first_season,
+E3,England,2021,Bradford,46,first_season,
+E3,England,2021,Bristol Rvs,46,first_season,
+E3,England,2021,Carlisle,46,first_season,
+E3,England,2021,Colchester,46,first_season,
+E3,England,2021,Crawley Town,46,first_season,
+E3,England,2021,Exeter,46,first_season,
+E3,England,2021,Forest Green,46,first_season,
+E3,England,2021,Harrogate,46,first_season,
+E3,England,2021,Hartlepool,46,first_season,
+E3,England,2021,Leyton Orient,46,first_season,
+E3,England,2021,Mansfield,46,first_season,
+E3,England,2021,Newport County,46,first_season,
+E3,England,2021,Northampton,46,first_season,
+E3,England,2021,Oldham,46,first_season,
+E3,England,2021,Port Vale,46,first_season,
+E3,England,2021,Rochdale,46,first_season,
+E3,England,2021,Salford,46,first_season,
+E3,England,2021,Scunthorpe,46,first_season,
+E3,England,2021,Stevenage,46,first_season,
+E3,England,2021,Sutton,46,first_season,
+E3,England,2021,Swindon,46,first_season,
+E3,England,2021,Tranmere,46,first_season,
+E3,England,2021,Walsall,46,first_season,
+E3,England,2022,AFC Wimbledon,46,moved_within,E2
+E3,England,2022,Barrow,46,established,E3
+E3,England,2022,Bradford,46,established,E3
+E3,England,2022,Carlisle,46,established,E3
+E3,England,2022,Colchester,46,established,E3
+E3,England,2022,Crawley Town,46,established,E3
+E3,England,2022,Crewe,46,moved_within,E2
+E3,England,2022,Doncaster,46,moved_within,E2
+E3,England,2022,Gillingham,46,moved_within,E2
+E3,England,2022,Grimsby,46,outside,
+E3,England,2022,Harrogate,46,established,E3
+E3,England,2022,Hartlepool,46,established,E3
+E3,England,2022,Leyton Orient,46,established,E3
+E3,England,2022,Mansfield,46,established,E3
+E3,England,2022,Newport County,46,established,E3
+E3,England,2022,Northampton,46,established,E3
+E3,England,2022,Rochdale,46,established,E3
+E3,England,2022,Salford,46,established,E3
+E3,England,2022,Stevenage,46,established,E3
+E3,England,2022,Stockport,46,outside,
+E3,England,2022,Sutton,46,established,E3
+E3,England,2022,Swindon,46,established,E3
+E3,England,2022,Tranmere,46,established,E3
+E3,England,2022,Walsall,46,established,E3
+E3,England,2023,AFC Wimbledon,46,established,E3
+E3,England,2023,Accrington,46,moved_within,E2
+E3,England,2023,Barrow,46,established,E3
+E3,England,2023,Bradford,46,established,E3
+E3,England,2023,Colchester,46,established,E3
+E3,England,2023,Crawley Town,46,established,E3
+E3,England,2023,Crewe,46,established,E3
+E3,England,2023,Doncaster,46,established,E3
+E3,England,2023,Forest Green,46,moved_within,E2
+E3,England,2023,Gillingham,46,established,E3
+E3,England,2023,Grimsby,46,established,E3
+E3,England,2023,Harrogate,46,established,E3
+E3,England,2023,Mansfield,46,established,E3
+E3,England,2023,Milton Keynes Dons,46,moved_within,E2
+E3,England,2023,Morecambe,46,moved_within,E2
+E3,England,2023,Newport County,46,established,E3
+E3,England,2023,Notts County,46,outside,
+E3,England,2023,Salford,46,established,E3
+E3,England,2023,Stockport,46,established,E3
+E3,England,2023,Sutton,46,established,E3
+E3,England,2023,Swindon,46,established,E3
+E3,England,2023,Tranmere,46,established,E3
+E3,England,2023,Walsall,46,established,E3
+E3,England,2023,Wrexham,46,outside,
+E3,England,2024,AFC Wimbledon,46,established,E3
+E3,England,2024,Accrington,46,established,E3
+E3,England,2024,Barrow,46,established,E3
+E3,England,2024,Bradford,46,established,E3
+E3,England,2024,Bromley,46,outside,
+E3,England,2024,Carlisle,46,moved_within,E2
+E3,England,2024,Cheltenham,46,moved_within,E2
+E3,England,2024,Chesterfield,46,outside,
+E3,England,2024,Colchester,46,established,E3
+E3,England,2024,Crewe,46,established,E3
+E3,England,2024,Doncaster,46,established,E3
+E3,England,2024,Fleetwood Town,46,moved_within,E2
+E3,England,2024,Gillingham,46,established,E3
+E3,England,2024,Grimsby,46,established,E3
+E3,England,2024,Harrogate,46,established,E3
+E3,England,2024,Milton Keynes Dons,46,established,E3
+E3,England,2024,Morecambe,46,established,E3
+E3,England,2024,Newport County,46,established,E3
+E3,England,2024,Notts County,46,established,E3
+E3,England,2024,Port Vale,46,moved_within,E2
+E3,England,2024,Salford,46,established,E3
+E3,England,2024,Swindon,46,established,E3
+E3,England,2024,Tranmere,46,established,E3
+E3,England,2024,Walsall,46,established,E3
+E3,England,2025,Accrington,46,established,E3
+E3,England,2025,Barnet,46,outside,
+E3,England,2025,Barrow,46,established,E3
+E3,England,2025,Bristol Rvs,46,moved_within,E2
+E3,England,2025,Bromley,46,established,E3
+E3,England,2025,Cambridge,46,moved_within,E2
+E3,England,2025,Cheltenham,46,established,E3
+E3,England,2025,Chesterfield,46,established,E3
+E3,England,2025,Colchester,46,established,E3
+E3,England,2025,Crawley Town,46,moved_within,E2
+E3,England,2025,Crewe,46,established,E3
+E3,England,2025,Fleetwood Town,46,established,E3
+E3,England,2025,Gillingham,46,established,E3
+E3,England,2025,Grimsby,46,established,E3
+E3,England,2025,Harrogate,46,established,E3
+E3,England,2025,Milton Keynes Dons,46,established,E3
+E3,England,2025,Newport County,46,established,E3
+E3,England,2025,Notts County,46,established,E3
+E3,England,2025,Oldham,46,returner,last seen 2021/22
+E3,England,2025,Salford,46,established,E3
+E3,England,2025,Shrewsbury,46,moved_within,E2
+E3,England,2025,Swindon,46,established,E3
+E3,England,2025,Tranmere,46,established,E3
+E3,England,2025,Walsall,46,established,E3
+E3,England,2026,Accrington,14,established,E3
+E3,England,2026,Barnet,13,established,E3
+E3,England,2026,Bristol Rvs,14,established,E3
+E3,England,2026,Cheltenham,14,established,E3
+E3,England,2026,Chesterfield,14,established,E3
+E3,England,2026,Colchester,13,established,E3
+E3,England,2026,Crawley Town,12,established,E3
+E3,England,2026,Crewe,14,established,E3
+E3,England,2026,Exeter,14,moved_within,E2
+E3,England,2026,Fleetwood Town,14,established,E3
+E3,England,2026,Gillingham,14,established,E3
+E3,England,2026,Grimsby,14,established,E3
+E3,England,2026,Newport County,14,established,E3
+E3,England,2026,Northampton,13,moved_within,E2
+E3,England,2026,Oldham,14,established,E3
+E3,England,2026,Port Vale,12,moved_within,E2
+E3,England,2026,Rochdale,14,returner,last seen 2022/23
+E3,England,2026,Rotherham,14,moved_within,E2
+E3,England,2026,Salford,14,established,E3
+E3,England,2026,Shrewsbury,14,established,E3
+E3,England,2026,Swindon,14,established,E3
+E3,England,2026,Tranmere,14,established,E3
+E3,England,2026,Walsall,13,established,E3
+E3,England,2026,York,14,outside,
+F1,France,2021,Angers,38,first_season,
+F1,France,2021,Bordeaux,38,first_season,
+F1,France,2021,Brest,38,first_season,
+F1,France,2021,Clermont,38,first_season,
+F1,France,2021,Lens,38,first_season,
+F1,France,2021,Lille,38,first_season,
+F1,France,2021,Lorient,38,first_season,
+F1,France,2021,Lyon,38,first_season,
+F1,France,2021,Marseille,38,first_season,
+F1,France,2021,Metz,38,first_season,
+F1,France,2021,Monaco,38,first_season,
+F1,France,2021,Montpellier,38,first_season,
+F1,France,2021,Nantes,38,first_season,
+F1,France,2021,Nice,38,first_season,
+F1,France,2021,Paris SG,38,first_season,
+F1,France,2021,Reims,38,first_season,
+F1,France,2021,Rennes,38,first_season,
+F1,France,2021,St Etienne,38,first_season,
+F1,France,2021,Strasbourg,38,first_season,
+F1,France,2021,Troyes,38,first_season,
+F1,France,2022,Ajaccio,38,moved_within,F2
+F1,France,2022,Angers,38,established,F1
+F1,France,2022,Auxerre,38,moved_within,F2
+F1,France,2022,Brest,38,established,F1
+F1,France,2022,Clermont,38,established,F1
+F1,France,2022,Lens,38,established,F1
+F1,France,2022,Lille,38,established,F1
+F1,France,2022,Lorient,38,established,F1
+F1,France,2022,Lyon,38,established,F1
+F1,France,2022,Marseille,38,established,F1
+F1,France,2022,Monaco,38,established,F1
+F1,France,2022,Montpellier,38,established,F1
+F1,France,2022,Nantes,38,established,F1
+F1,France,2022,Nice,38,established,F1
+F1,France,2022,Paris SG,38,established,F1
+F1,France,2022,Reims,38,established,F1
+F1,France,2022,Rennes,38,established,F1
+F1,France,2022,Strasbourg,38,established,F1
+F1,France,2022,Toulouse,38,moved_within,F2
+F1,France,2022,Troyes,38,established,F1
+F1,France,2023,Brest,34,established,F1
+F1,France,2023,Clermont,34,established,F1
+F1,France,2023,Le Havre,34,moved_within,F2
+F1,France,2023,Lens,34,established,F1
+F1,France,2023,Lille,34,established,F1
+F1,France,2023,Lorient,34,established,F1
+F1,France,2023,Lyon,34,established,F1
+F1,France,2023,Marseille,34,established,F1
+F1,France,2023,Metz,34,moved_within,F2
+F1,France,2023,Monaco,34,established,F1
+F1,France,2023,Montpellier,34,established,F1
+F1,France,2023,Nantes,34,established,F1
+F1,France,2023,Nice,34,established,F1
+F1,France,2023,Paris SG,34,established,F1
+F1,France,2023,Reims,34,established,F1
+F1,France,2023,Rennes,34,established,F1
+F1,France,2023,Strasbourg,34,established,F1
+F1,France,2023,Toulouse,34,established,F1
+F1,France,2024,Angers,34,moved_within,F2
+F1,France,2024,Auxerre,34,moved_within,F2
+F1,France,2024,Brest,34,established,F1
+F1,France,2024,Le Havre,34,established,F1
+F1,France,2024,Lens,34,established,F1
+F1,France,2024,Lille,34,established,F1
+F1,France,2024,Lyon,34,established,F1
+F1,France,2024,Marseille,34,established,F1
+F1,France,2024,Monaco,34,established,F1
+F1,France,2024,Montpellier,34,established,F1
+F1,France,2024,Nantes,34,established,F1
+F1,France,2024,Nice,34,established,F1
+F1,France,2024,Paris SG,34,established,F1
+F1,France,2024,Reims,34,established,F1
+F1,France,2024,Rennes,34,established,F1
+F1,France,2024,St Etienne,34,moved_within,F2
+F1,France,2024,Strasbourg,34,established,F1
+F1,France,2024,Toulouse,34,established,F1
+F1,France,2025,Angers,34,established,F1
+F1,France,2025,Auxerre,34,established,F1
+F1,France,2025,Brest,34,established,F1
+F1,France,2025,Le Havre,34,established,F1
+F1,France,2025,Lens,34,established,F1
+F1,France,2025,Lille,34,established,F1
+F1,France,2025,Lorient,34,moved_within,F2
+F1,France,2025,Lyon,34,established,F1
+F1,France,2025,Marseille,34,established,F1
+F1,France,2025,Metz,34,moved_within,F2
+F1,France,2025,Monaco,34,established,F1
+F1,France,2025,Nantes,34,established,F1
+F1,France,2025,Nice,34,established,F1
+F1,France,2025,Paris FC,34,moved_within,F2
+F1,France,2025,Paris SG,34,established,F1
+F1,France,2025,Rennes,34,established,F1
+F1,France,2025,Strasbourg,34,established,F1
+F1,France,2025,Toulouse,34,established,F1
+F1,France,2026,Angers,10,established,F1
+F1,France,2026,Auxerre,10,established,F1
+F1,France,2026,Brest,10,established,F1
+F1,France,2026,Le Havre,10,established,F1
+F1,France,2026,Le Mans,10,moved_within,F2
+F1,France,2026,Lens,10,established,F1
+F1,France,2026,Lille,10,established,F1
+F1,France,2026,Lorient,10,established,F1
+F1,France,2026,Lyon,10,established,F1
+F1,France,2026,Marseille,10,established,F1
+F1,France,2026,Monaco,10,established,F1
+F1,France,2026,Nice,10,established,F1
+F1,France,2026,Paris FC,10,established,F1
+F1,France,2026,Paris SG,10,established,F1
+F1,France,2026,Rennes,10,established,F1
+F1,France,2026,Strasbourg,10,established,F1
+F1,France,2026,Toulouse,10,established,F1
+F1,France,2026,Troyes,10,moved_within,F2
+F2,France,2021,Ajaccio,38,first_season,
+F2,France,2021,Amiens,38,first_season,
+F2,France,2021,Auxerre,38,first_season,
+F2,France,2021,Bastia,38,first_season,
+F2,France,2021,Caen,38,first_season,
+F2,France,2021,Dijon,38,first_season,
+F2,France,2021,Dunkerque,38,first_season,
+F2,France,2021,Grenoble,38,first_season,
+F2,France,2021,Guingamp,38,first_season,
+F2,France,2021,Le Havre,38,first_season,
+F2,France,2021,Nancy,38,first_season,
+F2,France,2021,Nimes,38,first_season,
+F2,France,2021,Niort,38,first_season,
+F2,France,2021,Paris FC,38,first_season,
+F2,France,2021,Pau FC,38,first_season,
+F2,France,2021,Quevilly Rouen,38,first_season,
+F2,France,2021,Rodez,38,first_season,
+F2,France,2021,Sochaux,38,first_season,
+F2,France,2021,Toulouse,38,first_season,
+F2,France,2021,Valenciennes,38,first_season,
+F2,France,2022,Amiens,38,established,F2
+F2,France,2022,Annecy,38,outside,
+F2,France,2022,Bastia,38,established,F2
+F2,France,2022,Bordeaux,38,moved_within,F1
+F2,France,2022,Caen,38,established,F2
+F2,France,2022,Dijon,38,established,F2
+F2,France,2022,Grenoble,38,established,F2
+F2,France,2022,Guingamp,38,established,F2
+F2,France,2022,Laval,38,outside,
+F2,France,2022,Le Havre,38,established,F2
+F2,France,2022,Metz,38,moved_within,F1
+F2,France,2022,Nimes,38,established,F2
+F2,France,2022,Niort,38,established,F2
+F2,France,2022,Paris FC,38,established,F2
+F2,France,2022,Pau FC,38,established,F2
+F2,France,2022,Quevilly Rouen,38,established,F2
+F2,France,2022,Rodez,38,established,F2
+F2,France,2022,Sochaux,38,established,F2
+F2,France,2022,St Etienne,38,moved_within,F1
+F2,France,2022,Valenciennes,38,established,F2
+F2,France,2023,Ajaccio,38,moved_within,F1
+F2,France,2023,Amiens,38,established,F2
+F2,France,2023,Angers,38,moved_within,F1
+F2,France,2023,Annecy,38,established,F2
+F2,France,2023,Auxerre,38,moved_within,F1
+F2,France,2023,Bastia,38,established,F2
+F2,France,2023,Bordeaux,38,established,F2
+F2,France,2023,Caen,38,established,F2
+F2,France,2023,Concarneau,38,outside,
+F2,France,2023,Dunkerque,38,returner,last seen 2021/22
+F2,France,2023,Grenoble,38,established,F2
+F2,France,2023,Guingamp,38,established,F2
+F2,France,2023,Laval,38,established,F2
+F2,France,2023,Paris FC,38,established,F2
+F2,France,2023,Pau FC,38,established,F2
+F2,France,2023,Quevilly Rouen,38,established,F2
+F2,France,2023,Rodez,38,established,F2
+F2,France,2023,St Etienne,38,established,F2
+F2,France,2023,Troyes,37,moved_within,F1
+F2,France,2023,Valenciennes,37,established,F2
+F2,France,2024,Ajaccio,34,established,F2
+F2,France,2024,Amiens,34,established,F2
+F2,France,2024,Annecy,34,established,F2
+F2,France,2024,Bastia,34,established,F2
+F2,France,2024,Caen,34,established,F2
+F2,France,2024,Clermont,34,moved_within,F1
+F2,France,2024,Dunkerque,34,established,F2
+F2,France,2024,Grenoble,34,established,F2
+F2,France,2024,Guingamp,34,established,F2
+F2,France,2024,Laval,34,established,F2
+F2,France,2024,Lorient,34,moved_within,F1
+F2,France,2024,Martigues,34,outside,
+F2,France,2024,Metz,34,moved_within,F1
+F2,France,2024,Paris FC,34,established,F2
+F2,France,2024,Pau FC,34,established,F2
+F2,France,2024,Red Star,34,outside,
+F2,France,2024,Rodez,34,established,F2
+F2,France,2024,Troyes,34,established,F2
+F2,France,2025,Amiens,34,established,F2
+F2,France,2025,Annecy,34,established,F2
+F2,France,2025,Bastia,33,established,F2
+F2,France,2025,Boulogne,34,outside,
+F2,France,2025,Clermont,34,established,F2
+F2,France,2025,Dunkerque,34,established,F2
+F2,France,2025,Grenoble,34,established,F2
+F2,France,2025,Guingamp,34,established,F2
+F2,France,2025,Laval,34,established,F2
+F2,France,2025,Le Mans,34,outside,
+F2,France,2025,Montpellier,34,moved_within,F1
+F2,France,2025,Nancy,34,returner,last seen 2021/22
+F2,France,2025,Pau FC,34,established,F2
+F2,France,2025,Red Star,33,established,F2
+F2,France,2025,Reims,34,moved_within,F1
+F2,France,2025,Rodez,34,established,F2
+F2,France,2025,St Etienne,34,moved_within,F1
+F2,France,2025,Troyes,34,established,F2
+F2,France,2026,Annecy,12,established,F2
+F2,France,2026,Boulogne,12,established,F2
+F2,France,2026,Clermont,12,established,F2
+F2,France,2026,Dijon,12,returner,last seen 2022/23
+F2,France,2026,Dunkerque,12,established,F2
+F2,France,2026,Grenoble,12,established,F2
+F2,France,2026,Guingamp,12,established,F2
+F2,France,2026,Laval,12,established,F2
+F2,France,2026,Metz,12,moved_within,F1
+F2,France,2026,Montpellier,12,established,F2
+F2,France,2026,Nancy,12,established,F2
+F2,France,2026,Nantes,12,moved_within,F1
+F2,France,2026,Pau FC,12,established,F2
+F2,France,2026,Red Star,12,established,F2
+F2,France,2026,Reims,12,established,F2
+F2,France,2026,Rodez,12,established,F2
+F2,France,2026,Sochaux,12,returner,last seen 2022/23
+F2,France,2026,St Etienne,12,established,F2
+G1,Greece,2021,AEK,36,first_season,
+G1,Greece,2021,Apollon,33,first_season,
+G1,Greece,2021,Aris,36,first_season,
+G1,Greece,2021,Asteras Tripolis,33,first_season,
+G1,Greece,2021,Atromitos,33,first_season,
+G1,Greece,2021,Giannina,36,first_season,
+G1,Greece,2021,Ionikos,33,first_season,
+G1,Greece,2021,Lamia,33,first_season,
+G1,Greece,2021,OFI Crete,33,first_season,
+G1,Greece,2021,Olympiakos,36,first_season,
+G1,Greece,2021,PAOK,36,first_season,
+G1,Greece,2021,Panathinaikos,36,first_season,
+G1,Greece,2021,Panetolikos,33,first_season,
+G1,Greece,2021,Volos NFC,33,first_season,
+G1,Greece,2022,AEK,36,established,G1
+G1,Greece,2022,Aris,36,established,G1
+G1,Greece,2022,Asteras Tripolis,33,established,G1
+G1,Greece,2022,Atromitos,33,established,G1
+G1,Greece,2022,Giannina,33,established,G1
+G1,Greece,2022,Ionikos,33,established,G1
+G1,Greece,2022,Lamia,33,established,G1
+G1,Greece,2022,Levadeiakos,33,outside,
+G1,Greece,2022,OFI Crete,33,established,G1
+G1,Greece,2022,Olympiakos,36,established,G1
+G1,Greece,2022,PAOK,36,established,G1
+G1,Greece,2022,Panathinaikos,36,established,G1
+G1,Greece,2022,Panetolikos,33,established,G1
+G1,Greece,2022,Volos NFC,36,established,G1
+G1,Greece,2023,AEK,36,established,G1
+G1,Greece,2023,Aris,36,established,G1
+G1,Greece,2023,Asteras Tripolis,33,established,G1
+G1,Greece,2023,Atromitos,33,established,G1
+G1,Greece,2023,Giannina,33,established,G1
+G1,Greece,2023,Kifisia,33,outside,
+G1,Greece,2023,Lamia,36,established,G1
+G1,Greece,2023,OFI Crete,33,established,G1
+G1,Greece,2023,Olympiakos,36,established,G1
+G1,Greece,2023,PAOK,36,established,G1
+G1,Greece,2023,Panathinaikos,36,established,G1
+G1,Greece,2023,Panetolikos,33,established,G1
+G1,Greece,2023,Panserraikos,33,outside,
+G1,Greece,2023,Volos NFC,33,established,G1
+G1,Greece,2024,AEK,32,established,G1
+G1,Greece,2024,Aris,32,established,G1
+G1,Greece,2024,Asteras Tripolis,32,established,G1
+G1,Greece,2024,Athens Kallithea,35,outside,
+G1,Greece,2024,Atromitos,32,established,G1
+G1,Greece,2024,Lamia,35,established,G1
+G1,Greece,2024,Levadeiakos,35,returner,last seen 2022/23
+G1,Greece,2024,OFI Crete,32,established,G1
+G1,Greece,2024,Olympiakos,32,established,G1
+G1,Greece,2024,PAOK,32,established,G1
+G1,Greece,2024,Panathinaikos,32,established,G1
+G1,Greece,2024,Panetolikos,35,established,G1
+G1,Greece,2024,Panserraikos,35,established,G1
+G1,Greece,2024,Volos NFC,35,established,G1
+G1,Greece,2025,AEK,32,established,G1
+G1,Greece,2025,Aris,32,established,G1
+G1,Greece,2025,Asteras Tripolis,36,established,G1
+G1,Greece,2025,Atromitos,36,established,G1
+G1,Greece,2025,Kifisia,36,returner,last seen 2023/24
+G1,Greece,2025,Larisa,36,outside,
+G1,Greece,2025,Levadeiakos,32,established,G1
+G1,Greece,2025,OFI Crete,32,established,G1
+G1,Greece,2025,Olympiakos,32,established,G1
+G1,Greece,2025,PAOK,32,established,G1
+G1,Greece,2025,Panathinaikos,32,established,G1
+G1,Greece,2025,Panetolikos,36,established,G1
+G1,Greece,2025,Panserraikos,36,established,G1
+G1,Greece,2025,Volos NFC,32,established,G1
+G1,Greece,2026,AEK,9,established,G1
+G1,Greece,2026,Aris,10,established,G1
+G1,Greece,2026,Asteras Tripolis,10,established,G1
+G1,Greece,2026,Atromitos,8,established,G1
+G1,Greece,2026,Iraklis,10,outside,
+G1,Greece,2026,Kalamata,10,outside,
+G1,Greece,2026,Kifisia,10,established,G1
+G1,Greece,2026,Levadeiakos,10,established,G1
+G1,Greece,2026,OFI Crete,9,established,G1
+G1,Greece,2026,Olympiakos,10,established,G1
+G1,Greece,2026,PAOK,10,established,G1
+G1,Greece,2026,Panathinaikos,10,established,G1
+G1,Greece,2026,Panetolikos,10,established,G1
+G1,Greece,2026,Volos NFC,10,established,G1
+I1,Italy,2021,Atalanta,38,first_season,
+I1,Italy,2021,Bologna,38,first_season,
+I1,Italy,2021,Cagliari,38,first_season,
+I1,Italy,2021,Empoli,38,first_season,
+I1,Italy,2021,Fiorentina,38,first_season,
+I1,Italy,2021,Genoa,38,first_season,
+I1,Italy,2021,Inter,38,first_season,
+I1,Italy,2021,Juventus,38,first_season,
+I1,Italy,2021,Lazio,38,first_season,
+I1,Italy,2021,Milan,38,first_season,
+I1,Italy,2021,Napoli,38,first_season,
+I1,Italy,2021,Roma,38,first_season,
+I1,Italy,2021,Salernitana,38,first_season,
+I1,Italy,2021,Sampdoria,38,first_season,
+I1,Italy,2021,Sassuolo,38,first_season,
+I1,Italy,2021,Spezia,38,first_season,
+I1,Italy,2021,Torino,38,first_season,
+I1,Italy,2021,Udinese,38,first_season,
+I1,Italy,2021,Venezia,38,first_season,
+I1,Italy,2021,Verona,38,first_season,
+I1,Italy,2022,Atalanta,38,established,I1
+I1,Italy,2022,Bologna,38,established,I1
+I1,Italy,2022,Cremonese,38,moved_within,I2
+I1,Italy,2022,Empoli,38,established,I1
+I1,Italy,2022,Fiorentina,38,established,I1
+I1,Italy,2022,Inter,38,established,I1
+I1,Italy,2022,Juventus,38,established,I1
+I1,Italy,2022,Lazio,38,established,I1
+I1,Italy,2022,Lecce,38,moved_within,I2
+I1,Italy,2022,Milan,38,established,I1
+I1,Italy,2022,Monza,38,moved_within,I2
+I1,Italy,2022,Napoli,38,established,I1
+I1,Italy,2022,Roma,38,established,I1
+I1,Italy,2022,Salernitana,38,established,I1
+I1,Italy,2022,Sampdoria,38,established,I1
+I1,Italy,2022,Sassuolo,38,established,I1
+I1,Italy,2022,Spezia,38,established,I1
+I1,Italy,2022,Torino,38,established,I1
+I1,Italy,2022,Udinese,38,established,I1
+I1,Italy,2022,Verona,38,established,I1
+I1,Italy,2023,Atalanta,38,established,I1
+I1,Italy,2023,Bologna,38,established,I1
+I1,Italy,2023,Cagliari,38,moved_within,I2
+I1,Italy,2023,Empoli,38,established,I1
+I1,Italy,2023,Fiorentina,38,established,I1
+I1,Italy,2023,Frosinone,38,moved_within,I2
+I1,Italy,2023,Genoa,38,moved_within,I2
+I1,Italy,2023,Inter,38,established,I1
+I1,Italy,2023,Juventus,38,established,I1
+I1,Italy,2023,Lazio,38,established,I1
+I1,Italy,2023,Lecce,38,established,I1
+I1,Italy,2023,Milan,38,established,I1
+I1,Italy,2023,Monza,38,established,I1
+I1,Italy,2023,Napoli,38,established,I1
+I1,Italy,2023,Roma,38,established,I1
+I1,Italy,2023,Salernitana,38,established,I1
+I1,Italy,2023,Sassuolo,38,established,I1
+I1,Italy,2023,Torino,38,established,I1
+I1,Italy,2023,Udinese,38,established,I1
+I1,Italy,2023,Verona,38,established,I1
+I1,Italy,2024,Atalanta,38,established,I1
+I1,Italy,2024,Bologna,38,established,I1
+I1,Italy,2024,Cagliari,38,established,I1
+I1,Italy,2024,Como,38,moved_within,I2
+I1,Italy,2024,Empoli,38,established,I1
+I1,Italy,2024,Fiorentina,38,established,I1
+I1,Italy,2024,Genoa,38,established,I1
+I1,Italy,2024,Inter,38,established,I1
+I1,Italy,2024,Juventus,38,established,I1
+I1,Italy,2024,Lazio,38,established,I1
+I1,Italy,2024,Lecce,38,established,I1
+I1,Italy,2024,Milan,38,established,I1
+I1,Italy,2024,Monza,38,established,I1
+I1,Italy,2024,Napoli,38,established,I1
+I1,Italy,2024,Parma,38,moved_within,I2
+I1,Italy,2024,Roma,38,established,I1
+I1,Italy,2024,Torino,38,established,I1
+I1,Italy,2024,Udinese,38,established,I1
+I1,Italy,2024,Venezia,38,moved_within,I2
+I1,Italy,2024,Verona,38,established,I1
+I1,Italy,2025,Atalanta,38,established,I1
+I1,Italy,2025,Bologna,38,established,I1
+I1,Italy,2025,Cagliari,38,established,I1
+I1,Italy,2025,Como,38,established,I1
+I1,Italy,2025,Cremonese,38,moved_within,I2
+I1,Italy,2025,Fiorentina,38,established,I1
+I1,Italy,2025,Genoa,38,established,I1
+I1,Italy,2025,Inter,38,established,I1
+I1,Italy,2025,Juventus,38,established,I1
+I1,Italy,2025,Lazio,38,established,I1
+I1,Italy,2025,Lecce,38,established,I1
+I1,Italy,2025,Milan,38,established,I1
+I1,Italy,2025,Napoli,38,established,I1
+I1,Italy,2025,Parma,38,established,I1
+I1,Italy,2025,Pisa,38,moved_within,I2
+I1,Italy,2025,Roma,38,established,I1
+I1,Italy,2025,Sassuolo,38,moved_within,I2
+I1,Italy,2025,Torino,38,established,I1
+I1,Italy,2025,Udinese,38,established,I1
+I1,Italy,2025,Verona,38,established,I1
+I1,Italy,2026,Atalanta,11,established,I1
+I1,Italy,2026,Bologna,11,established,I1
+I1,Italy,2026,Cagliari,11,established,I1
+I1,Italy,2026,Como,11,established,I1
+I1,Italy,2026,Fiorentina,11,established,I1
+I1,Italy,2026,Frosinone,11,moved_within,I2
+I1,Italy,2026,Genoa,11,established,I1
+I1,Italy,2026,Inter,11,established,I1
+I1,Italy,2026,Juventus,11,established,I1
+I1,Italy,2026,Lazio,11,established,I1
+I1,Italy,2026,Lecce,11,established,I1
+I1,Italy,2026,Milan,11,established,I1
+I1,Italy,2026,Monza,11,moved_within,I2
+I1,Italy,2026,Napoli,11,established,I1
+I1,Italy,2026,Parma,11,established,I1
+I1,Italy,2026,Roma,11,established,I1
+I1,Italy,2026,Sassuolo,11,established,I1
+I1,Italy,2026,Torino,11,established,I1
+I1,Italy,2026,Udinese,11,established,I1
+I1,Italy,2026,Venezia,11,moved_within,I2
+I2,Italy,2021,Alessandria,38,first_season,
+I2,Italy,2021,Ascoli,38,first_season,
+I2,Italy,2021,Benevento,38,first_season,
+I2,Italy,2021,Brescia,38,first_season,
+I2,Italy,2021,Cittadella,38,first_season,
+I2,Italy,2021,Como,38,first_season,
+I2,Italy,2021,Cosenza,38,first_season,
+I2,Italy,2021,Cremonese,38,first_season,
+I2,Italy,2021,Crotone,38,first_season,
+I2,Italy,2021,Frosinone,38,first_season,
+I2,Italy,2021,Lecce,38,first_season,
+I2,Italy,2021,Monza,38,first_season,
+I2,Italy,2021,Parma,38,first_season,
+I2,Italy,2021,Perugia,38,first_season,
+I2,Italy,2021,Pisa,38,first_season,
+I2,Italy,2021,Pordenone,38,first_season,
+I2,Italy,2021,Reggina,38,first_season,
+I2,Italy,2021,Spal,38,first_season,
+I2,Italy,2021,Ternana,38,first_season,
+I2,Italy,2021,Vicenza,38,first_season,
+I2,Italy,2022,Ascoli,38,established,I2
+I2,Italy,2022,Bari,38,outside,
+I2,Italy,2022,Benevento,38,established,I2
+I2,Italy,2022,Brescia,38,established,I2
+I2,Italy,2022,Cagliari,38,moved_within,I1
+I2,Italy,2022,Cittadella,38,established,I2
+I2,Italy,2022,Como,38,established,I2
+I2,Italy,2022,Cosenza,38,established,I2
+I2,Italy,2022,Frosinone,38,established,I2
+I2,Italy,2022,Genoa,38,moved_within,I1
+I2,Italy,2022,Modena,38,outside,
+I2,Italy,2022,Palermo,38,outside,
+I2,Italy,2022,Parma,38,established,I2
+I2,Italy,2022,Perugia,38,established,I2
+I2,Italy,2022,Pisa,38,established,I2
+I2,Italy,2022,Reggina,38,established,I2
+I2,Italy,2022,Spal,38,established,I2
+I2,Italy,2022,Sudtirol,38,outside,
+I2,Italy,2022,Ternana,38,established,I2
+I2,Italy,2022,Venezia,38,moved_within,I1
+I2,Italy,2023,Ascoli,38,established,I2
+I2,Italy,2023,Bari,38,established,I2
+I2,Italy,2023,Brescia,38,established,I2
+I2,Italy,2023,Catanzaro,38,outside,
+I2,Italy,2023,Cittadella,38,established,I2
+I2,Italy,2023,Como,38,established,I2
+I2,Italy,2023,Cosenza,38,established,I2
+I2,Italy,2023,Cremonese,38,moved_within,I1
+I2,Italy,2023,FeralpiSalo,38,outside,
+I2,Italy,2023,Lecco,38,outside,
+I2,Italy,2023,Modena,38,established,I2
+I2,Italy,2023,Palermo,38,established,I2
+I2,Italy,2023,Parma,38,established,I2
+I2,Italy,2023,Pisa,38,established,I2
+I2,Italy,2023,Reggiana,38,outside,
+I2,Italy,2023,Sampdoria,38,moved_within,I1
+I2,Italy,2023,Spezia,38,moved_within,I1
+I2,Italy,2023,Sudtirol,38,established,I2
+I2,Italy,2023,Ternana,38,established,I2
+I2,Italy,2023,Venezia,38,established,I2
+I2,Italy,2024,Bari,38,established,I2
+I2,Italy,2024,Brescia,38,established,I2
+I2,Italy,2024,Carrarese,38,outside,
+I2,Italy,2024,Catanzaro,38,established,I2
+I2,Italy,2024,Cesena,38,outside,
+I2,Italy,2024,Cittadella,38,established,I2
+I2,Italy,2024,Cosenza,38,established,I2
+I2,Italy,2024,Cremonese,38,established,I2
+I2,Italy,2024,Frosinone,38,moved_within,I1
+I2,Italy,2024,Juve Stabia,38,outside,
+I2,Italy,2024,Mantova,38,outside,
+I2,Italy,2024,Modena,38,established,I2
+I2,Italy,2024,Palermo,38,established,I2
+I2,Italy,2024,Pisa,38,established,I2
+I2,Italy,2024,Reggiana,38,established,I2
+I2,Italy,2024,Salernitana,38,moved_within,I1
+I2,Italy,2024,Sampdoria,38,established,I2
+I2,Italy,2024,Sassuolo,38,moved_within,I1
+I2,Italy,2024,Spezia,38,established,I2
+I2,Italy,2024,Sudtirol,38,established,I2
+I2,Italy,2025,Avellino,38,outside,
+I2,Italy,2025,Bari,38,established,I2
+I2,Italy,2025,Carrarese,38,established,I2
+I2,Italy,2025,Catanzaro,38,established,I2
+I2,Italy,2025,Cesena,38,established,I2
+I2,Italy,2025,Empoli,38,moved_within,I1
+I2,Italy,2025,Frosinone,38,established,I2
+I2,Italy,2025,Juve Stabia,38,established,I2
+I2,Italy,2025,Mantova,38,established,I2
+I2,Italy,2025,Modena,38,established,I2
+I2,Italy,2025,Monza,38,moved_within,I1
+I2,Italy,2025,Padova,38,outside,
+I2,Italy,2025,Palermo,38,established,I2
+I2,Italy,2025,Pescara,38,outside,
+I2,Italy,2025,Reggiana,38,established,I2
+I2,Italy,2025,Sampdoria,38,established,I2
+I2,Italy,2025,Spezia,38,established,I2
+I2,Italy,2025,Sudtirol,38,established,I2
+I2,Italy,2025,Venezia,38,moved_within,I1
+I2,Italy,2025,Virtus Entella,38,outside,
+I2,Italy,2026,Arezzo,11,outside,
+I2,Italy,2026,Ascoli,11,returner,last seen 2023/24
+I2,Italy,2026,Avellino,11,established,I2
+I2,Italy,2026,Benevento,11,returner,last seen 2022/23
+I2,Italy,2026,Carrarese,11,established,I2
+I2,Italy,2026,Catanzaro,11,established,I2
+I2,Italy,2026,Cesena,11,established,I2
+I2,Italy,2026,Cremonese,10,moved_within,I1
+I2,Italy,2026,Empoli,11,established,I2
+I2,Italy,2026,Juve Stabia,11,established,I2
+I2,Italy,2026,Mantova,11,established,I2
+I2,Italy,2026,Modena,11,established,I2
+I2,Italy,2026,Padova,11,established,I2
+I2,Italy,2026,Palermo,11,established,I2
+I2,Italy,2026,Pisa,11,moved_within,I1
+I2,Italy,2026,Sampdoria,11,established,I2
+I2,Italy,2026,Sudtirol,11,established,I2
+I2,Italy,2026,Verona,11,moved_within,I1
+I2,Italy,2026,Vicenza,10,returner,last seen 2021/22
+I2,Italy,2026,Virtus Entella,11,established,I2
+N1,Netherlands,2021,AZ Alkmaar,34,first_season,
+N1,Netherlands,2021,Ajax,34,first_season,
+N1,Netherlands,2021,Cambuur,34,first_season,
+N1,Netherlands,2021,Feyenoord,34,first_season,
+N1,Netherlands,2021,For Sittard,34,first_season,
+N1,Netherlands,2021,Go Ahead Eagles,34,first_season,
+N1,Netherlands,2021,Groningen,34,first_season,
+N1,Netherlands,2021,Heerenveen,34,first_season,
+N1,Netherlands,2021,Heracles,34,first_season,
+N1,Netherlands,2021,Nijmegen,34,first_season,
+N1,Netherlands,2021,PSV Eindhoven,34,first_season,
+N1,Netherlands,2021,Sparta Rotterdam,34,first_season,
+N1,Netherlands,2021,Twente,34,first_season,
+N1,Netherlands,2021,Utrecht,34,first_season,
+N1,Netherlands,2021,Vitesse,34,first_season,
+N1,Netherlands,2021,Waalwijk,34,first_season,
+N1,Netherlands,2021,Willem II,34,first_season,
+N1,Netherlands,2021,Zwolle,34,first_season,
+N1,Netherlands,2022,AZ Alkmaar,34,established,N1
+N1,Netherlands,2022,Ajax,34,established,N1
+N1,Netherlands,2022,Cambuur,34,established,N1
+N1,Netherlands,2022,Excelsior,34,outside,
+N1,Netherlands,2022,FC Emmen,34,outside,
+N1,Netherlands,2022,Feyenoord,34,established,N1
+N1,Netherlands,2022,For Sittard,34,established,N1
+N1,Netherlands,2022,Go Ahead Eagles,34,established,N1
+N1,Netherlands,2022,Groningen,34,established,N1
+N1,Netherlands,2022,Heerenveen,34,established,N1
+N1,Netherlands,2022,Nijmegen,34,established,N1
+N1,Netherlands,2022,PSV Eindhoven,34,established,N1
+N1,Netherlands,2022,Sparta Rotterdam,34,established,N1
+N1,Netherlands,2022,Twente,34,established,N1
+N1,Netherlands,2022,Utrecht,34,established,N1
+N1,Netherlands,2022,Vitesse,34,established,N1
+N1,Netherlands,2022,Volendam,34,outside,
+N1,Netherlands,2022,Waalwijk,34,established,N1
+N1,Netherlands,2023,AZ Alkmaar,34,established,N1
+N1,Netherlands,2023,Ajax,34,established,N1
+N1,Netherlands,2023,Almere City,34,outside,
+N1,Netherlands,2023,Excelsior,34,established,N1
+N1,Netherlands,2023,Feyenoord,34,established,N1
+N1,Netherlands,2023,For Sittard,34,established,N1
+N1,Netherlands,2023,Go Ahead Eagles,34,established,N1
+N1,Netherlands,2023,Heerenveen,34,established,N1
+N1,Netherlands,2023,Heracles,34,returner,last seen 2021/22
+N1,Netherlands,2023,Nijmegen,34,established,N1
+N1,Netherlands,2023,PSV Eindhoven,34,established,N1
+N1,Netherlands,2023,Sparta Rotterdam,34,established,N1
+N1,Netherlands,2023,Twente,34,established,N1
+N1,Netherlands,2023,Utrecht,34,established,N1
+N1,Netherlands,2023,Vitesse,34,established,N1
+N1,Netherlands,2023,Volendam,34,established,N1
+N1,Netherlands,2023,Waalwijk,34,established,N1
+N1,Netherlands,2023,Zwolle,34,returner,last seen 2021/22
+N1,Netherlands,2024,AZ Alkmaar,34,established,N1
+N1,Netherlands,2024,Ajax,34,established,N1
+N1,Netherlands,2024,Almere City,34,established,N1
+N1,Netherlands,2024,Feyenoord,34,established,N1
+N1,Netherlands,2024,For Sittard,34,established,N1
+N1,Netherlands,2024,Go Ahead Eagles,34,established,N1
+N1,Netherlands,2024,Groningen,34,returner,last seen 2022/23
+N1,Netherlands,2024,Heerenveen,34,established,N1
+N1,Netherlands,2024,Heracles,34,established,N1
+N1,Netherlands,2024,NAC Breda,34,outside,
+N1,Netherlands,2024,Nijmegen,34,established,N1
+N1,Netherlands,2024,PSV Eindhoven,34,established,N1
+N1,Netherlands,2024,Sparta Rotterdam,34,established,N1
+N1,Netherlands,2024,Twente,34,established,N1
+N1,Netherlands,2024,Utrecht,34,established,N1
+N1,Netherlands,2024,Waalwijk,34,established,N1
+N1,Netherlands,2024,Willem II,34,returner,last seen 2021/22
+N1,Netherlands,2024,Zwolle,34,established,N1
+N1,Netherlands,2025,AZ Alkmaar,34,established,N1
+N1,Netherlands,2025,Ajax,34,established,N1
+N1,Netherlands,2025,Excelsior,34,returner,last seen 2023/24
+N1,Netherlands,2025,Feyenoord,34,established,N1
+N1,Netherlands,2025,For Sittard,34,established,N1
+N1,Netherlands,2025,Go Ahead Eagles,34,established,N1
+N1,Netherlands,2025,Groningen,34,established,N1
+N1,Netherlands,2025,Heerenveen,34,established,N1
+N1,Netherlands,2025,Heracles,34,established,N1
+N1,Netherlands,2025,NAC Breda,34,established,N1
+N1,Netherlands,2025,Nijmegen,34,established,N1
+N1,Netherlands,2025,PSV Eindhoven,34,established,N1
+N1,Netherlands,2025,Sparta Rotterdam,34,established,N1
+N1,Netherlands,2025,Telstar,34,outside,
+N1,Netherlands,2025,Twente,34,established,N1
+N1,Netherlands,2025,Utrecht,34,established,N1
+N1,Netherlands,2025,Volendam,34,returner,last seen 2023/24
+N1,Netherlands,2025,Zwolle,34,established,N1
+N1,Netherlands,2026,AZ Alkmaar,12,established,N1
+N1,Netherlands,2026,Ajax,12,established,N1
+N1,Netherlands,2026,Cambuur,12,returner,last seen 2022/23
+N1,Netherlands,2026,Den Haag,12,outside,
+N1,Netherlands,2026,Excelsior,12,established,N1
+N1,Netherlands,2026,Feyenoord,12,established,N1
+N1,Netherlands,2026,For Sittard,12,established,N1
+N1,Netherlands,2026,Go Ahead Eagles,12,established,N1
+N1,Netherlands,2026,Groningen,12,established,N1
+N1,Netherlands,2026,Heerenveen,12,established,N1
+N1,Netherlands,2026,Nijmegen,12,established,N1
+N1,Netherlands,2026,PSV Eindhoven,12,established,N1
+N1,Netherlands,2026,Sparta Rotterdam,12,established,N1
+N1,Netherlands,2026,Telstar,12,established,N1
+N1,Netherlands,2026,Twente,12,established,N1
+N1,Netherlands,2026,Utrecht,12,established,N1
+N1,Netherlands,2026,Willem II,12,returner,last seen 2024/25
+N1,Netherlands,2026,Zwolle,12,established,N1
+P1,Portugal,2021,Arouca,34,first_season,
+P1,Portugal,2021,Belenenses,34,first_season,
+P1,Portugal,2021,Benfica,34,first_season,
+P1,Portugal,2021,Boavista,34,first_season,
+P1,Portugal,2021,Estoril,34,first_season,
+P1,Portugal,2021,Famalicao,34,first_season,
+P1,Portugal,2021,Gil Vicente,34,first_season,
+P1,Portugal,2021,Guimaraes,34,first_season,
+P1,Portugal,2021,Maritimo,34,first_season,
+P1,Portugal,2021,Moreirense,34,first_season,
+P1,Portugal,2021,Pacos Ferreira,34,first_season,
+P1,Portugal,2021,Portimonense,34,first_season,
+P1,Portugal,2021,Porto,34,first_season,
+P1,Portugal,2021,Santa Clara,34,first_season,
+P1,Portugal,2021,Sp Braga,34,first_season,
+P1,Portugal,2021,Sp Lisbon,34,first_season,
+P1,Portugal,2021,Tondela,34,first_season,
+P1,Portugal,2021,Vizela,34,first_season,
+P1,Portugal,2022,Arouca,34,established,P1
+P1,Portugal,2022,Benfica,34,established,P1
+P1,Portugal,2022,Boavista,34,established,P1
+P1,Portugal,2022,Casa Pia,34,outside,
+P1,Portugal,2022,Chaves,34,outside,
+P1,Portugal,2022,Estoril,34,established,P1
+P1,Portugal,2022,Famalicao,34,established,P1
+P1,Portugal,2022,Gil Vicente,34,established,P1
+P1,Portugal,2022,Guimaraes,34,established,P1
+P1,Portugal,2022,Maritimo,34,established,P1
+P1,Portugal,2022,Pacos Ferreira,34,established,P1
+P1,Portugal,2022,Portimonense,34,established,P1
+P1,Portugal,2022,Porto,34,established,P1
+P1,Portugal,2022,Rio Ave,34,outside,
+P1,Portugal,2022,Santa Clara,34,established,P1
+P1,Portugal,2022,Sp Braga,34,established,P1
+P1,Portugal,2022,Sp Lisbon,34,established,P1
+P1,Portugal,2022,Vizela,34,established,P1
+P1,Portugal,2023,Arouca,34,established,P1
+P1,Portugal,2023,Benfica,34,established,P1
+P1,Portugal,2023,Boavista,34,established,P1
+P1,Portugal,2023,Casa Pia,34,established,P1
+P1,Portugal,2023,Chaves,34,established,P1
+P1,Portugal,2023,Estoril,34,established,P1
+P1,Portugal,2023,Estrela,34,outside,
+P1,Portugal,2023,Famalicao,34,established,P1
+P1,Portugal,2023,Farense,34,outside,
+P1,Portugal,2023,Gil Vicente,34,established,P1
+P1,Portugal,2023,Guimaraes,34,established,P1
+P1,Portugal,2023,Moreirense,34,returner,last seen 2021/22
+P1,Portugal,2023,Portimonense,34,established,P1
+P1,Portugal,2023,Porto,34,established,P1
+P1,Portugal,2023,Rio Ave,34,established,P1
+P1,Portugal,2023,Sp Braga,34,established,P1
+P1,Portugal,2023,Sp Lisbon,34,established,P1
+P1,Portugal,2023,Vizela,34,established,P1
+P1,Portugal,2024,AVS,34,outside,
+P1,Portugal,2024,Arouca,34,established,P1
+P1,Portugal,2024,Benfica,34,established,P1
+P1,Portugal,2024,Boavista,34,established,P1
+P1,Portugal,2024,Casa Pia,34,established,P1
+P1,Portugal,2024,Estoril,34,established,P1
+P1,Portugal,2024,Estrela,34,established,P1
+P1,Portugal,2024,Famalicao,34,established,P1
+P1,Portugal,2024,Farense,34,established,P1
+P1,Portugal,2024,Gil Vicente,34,established,P1
+P1,Portugal,2024,Guimaraes,34,established,P1
+P1,Portugal,2024,Moreirense,34,established,P1
+P1,Portugal,2024,Nacional,34,outside,
+P1,Portugal,2024,Porto,34,established,P1
+P1,Portugal,2024,Rio Ave,34,established,P1
+P1,Portugal,2024,Santa Clara,34,returner,last seen 2022/23
+P1,Portugal,2024,Sp Braga,34,established,P1
+P1,Portugal,2024,Sp Lisbon,34,established,P1
+P1,Portugal,2025,AVS,34,established,P1
+P1,Portugal,2025,Alverca,34,outside,
+P1,Portugal,2025,Arouca,34,established,P1
+P1,Portugal,2025,Benfica,34,established,P1
+P1,Portugal,2025,Casa Pia,34,established,P1
+P1,Portugal,2025,Estoril,34,established,P1
+P1,Portugal,2025,Estrela,34,established,P1
+P1,Portugal,2025,Famalicao,34,established,P1
+P1,Portugal,2025,Gil Vicente,34,established,P1
+P1,Portugal,2025,Guimaraes,34,established,P1
+P1,Portugal,2025,Moreirense,34,established,P1
+P1,Portugal,2025,Nacional,34,established,P1
+P1,Portugal,2025,Porto,34,established,P1
+P1,Portugal,2025,Rio Ave,34,established,P1
+P1,Portugal,2025,Santa Clara,34,established,P1
+P1,Portugal,2025,Sp Braga,34,established,P1
+P1,Portugal,2025,Sp Lisbon,34,established,P1
+P1,Portugal,2025,Tondela,34,returner,last seen 2021/22
+P1,Portugal,2026,Academico Viseu,11,outside,
+P1,Portugal,2026,Alverca,11,established,P1
+P1,Portugal,2026,Arouca,11,established,P1
+P1,Portugal,2026,Benfica,11,established,P1
+P1,Portugal,2026,Casa Pia,11,established,P1
+P1,Portugal,2026,Estoril,10,established,P1
+P1,Portugal,2026,Estrela,11,established,P1
+P1,Portugal,2026,Famalicao,11,established,P1
+P1,Portugal,2026,Gil Vicente,11,established,P1
+P1,Portugal,2026,Guimaraes,11,established,P1
+P1,Portugal,2026,Maritimo,10,returner,last seen 2022/23
+P1,Portugal,2026,Moreirense,11,established,P1
+P1,Portugal,2026,Nacional,11,established,P1
+P1,Portugal,2026,Porto,11,established,P1
+P1,Portugal,2026,Rio Ave,11,established,P1
+P1,Portugal,2026,Santa Clara,11,established,P1
+P1,Portugal,2026,Sp Braga,11,established,P1
+P1,Portugal,2026,Sp Lisbon,11,established,P1
+SC0,Scotland,2021,Aberdeen,38,first_season,
+SC0,Scotland,2021,Celtic,38,first_season,
+SC0,Scotland,2021,Dundee,38,first_season,
+SC0,Scotland,2021,Dundee United,38,first_season,
+SC0,Scotland,2021,Hearts,38,first_season,
+SC0,Scotland,2021,Hibernian,38,first_season,
+SC0,Scotland,2021,Livingston,38,first_season,
+SC0,Scotland,2021,Motherwell,38,first_season,
+SC0,Scotland,2021,Rangers,38,first_season,
+SC0,Scotland,2021,Ross County,38,first_season,
+SC0,Scotland,2021,St Johnstone,38,first_season,
+SC0,Scotland,2021,St Mirren,38,first_season,
+SC0,Scotland,2022,Aberdeen,38,established,SC0
+SC0,Scotland,2022,Celtic,38,established,SC0
+SC0,Scotland,2022,Dundee United,38,established,SC0
+SC0,Scotland,2022,Hearts,38,established,SC0
+SC0,Scotland,2022,Hibernian,38,established,SC0
+SC0,Scotland,2022,Kilmarnock,38,moved_within,SC1
+SC0,Scotland,2022,Livingston,38,established,SC0
+SC0,Scotland,2022,Motherwell,38,established,SC0
+SC0,Scotland,2022,Rangers,38,established,SC0
+SC0,Scotland,2022,Ross County,38,established,SC0
+SC0,Scotland,2022,St Johnstone,38,established,SC0
+SC0,Scotland,2022,St Mirren,38,established,SC0
+SC0,Scotland,2023,Aberdeen,38,established,SC0
+SC0,Scotland,2023,Celtic,38,established,SC0
+SC0,Scotland,2023,Dundee,38,moved_within,SC1
+SC0,Scotland,2023,Hearts,38,established,SC0
+SC0,Scotland,2023,Hibernian,38,established,SC0
+SC0,Scotland,2023,Kilmarnock,38,established,SC0
+SC0,Scotland,2023,Livingston,38,established,SC0
+SC0,Scotland,2023,Motherwell,38,established,SC0
+SC0,Scotland,2023,Rangers,38,established,SC0
+SC0,Scotland,2023,Ross County,38,established,SC0
+SC0,Scotland,2023,St Johnstone,38,established,SC0
+SC0,Scotland,2023,St Mirren,38,established,SC0
+SC0,Scotland,2024,Aberdeen,38,established,SC0
+SC0,Scotland,2024,Celtic,38,established,SC0
+SC0,Scotland,2024,Dundee,38,established,SC0
+SC0,Scotland,2024,Dundee United,38,moved_within,SC1
+SC0,Scotland,2024,Hearts,38,established,SC0
+SC0,Scotland,2024,Hibernian,38,established,SC0
+SC0,Scotland,2024,Kilmarnock,38,established,SC0
+SC0,Scotland,2024,Motherwell,38,established,SC0
+SC0,Scotland,2024,Rangers,38,established,SC0
+SC0,Scotland,2024,Ross County,38,established,SC0
+SC0,Scotland,2024,St Johnstone,38,established,SC0
+SC0,Scotland,2024,St Mirren,38,established,SC0
+SC0,Scotland,2025,Aberdeen,38,established,SC0
+SC0,Scotland,2025,Celtic,38,established,SC0
+SC0,Scotland,2025,Dundee,38,established,SC0
+SC0,Scotland,2025,Dundee United,38,established,SC0
+SC0,Scotland,2025,Falkirk,38,moved_within,SC1
+SC0,Scotland,2025,Hearts,38,established,SC0
+SC0,Scotland,2025,Hibernian,38,established,SC0
+SC0,Scotland,2025,Kilmarnock,38,established,SC0
+SC0,Scotland,2025,Livingston,38,moved_within,SC1
+SC0,Scotland,2025,Motherwell,38,established,SC0
+SC0,Scotland,2025,Rangers,38,established,SC0
+SC0,Scotland,2025,St Mirren,38,established,SC0
+SC0,Scotland,2026,Aberdeen,12,established,SC0
+SC0,Scotland,2026,Celtic,13,established,SC0
+SC0,Scotland,2026,Dundee,12,established,SC0
+SC0,Scotland,2026,Dundee United,12,established,SC0
+SC0,Scotland,2026,Falkirk,13,established,SC0
+SC0,Scotland,2026,Hearts,12,established,SC0
+SC0,Scotland,2026,Hibernian,12,established,SC0
+SC0,Scotland,2026,Kilmarnock,13,established,SC0
+SC0,Scotland,2026,Motherwell,13,established,SC0
+SC0,Scotland,2026,Rangers,12,established,SC0
+SC0,Scotland,2026,St Johnstone,13,moved_within,SC1
+SC0,Scotland,2026,St Mirren,13,established,SC0
+SC1,Scotland,2021,Arbroath,36,first_season,
+SC1,Scotland,2021,Ayr,36,first_season,
+SC1,Scotland,2021,Dunfermline,36,first_season,
+SC1,Scotland,2021,Hamilton,36,first_season,
+SC1,Scotland,2021,Inverness C,36,first_season,
+SC1,Scotland,2021,Kilmarnock,36,first_season,
+SC1,Scotland,2021,Morton,36,first_season,
+SC1,Scotland,2021,Partick,36,first_season,
+SC1,Scotland,2021,Queen of Sth,36,first_season,
+SC1,Scotland,2021,Raith Rvs,36,first_season,
+SC1,Scotland,2022,Arbroath,36,established,SC1
+SC1,Scotland,2022,Ayr,36,established,SC1
+SC1,Scotland,2022,Cove Rangers,36,moved_within,SC2
+SC1,Scotland,2022,Dundee,36,moved_within,SC0
+SC1,Scotland,2022,Hamilton,36,established,SC1
+SC1,Scotland,2022,Inverness C,36,established,SC1
+SC1,Scotland,2022,Morton,36,established,SC1
+SC1,Scotland,2022,Partick,36,established,SC1
+SC1,Scotland,2022,Queens Park,36,moved_within,SC2
+SC1,Scotland,2022,Raith Rvs,36,established,SC1
+SC1,Scotland,2023,Airdrie Utd,36,moved_within,SC2
+SC1,Scotland,2023,Arbroath,36,established,SC1
+SC1,Scotland,2023,Ayr,36,established,SC1
+SC1,Scotland,2023,Dundee United,36,moved_within,SC0
+SC1,Scotland,2023,Dunfermline,36,moved_within,SC2
+SC1,Scotland,2023,Inverness C,36,established,SC1
+SC1,Scotland,2023,Morton,36,established,SC1
+SC1,Scotland,2023,Partick,36,established,SC1
+SC1,Scotland,2023,Queens Park,36,established,SC1
+SC1,Scotland,2023,Raith Rvs,36,established,SC1
+SC1,Scotland,2024,Airdrie Utd,36,established,SC1
+SC1,Scotland,2024,Ayr,36,established,SC1
+SC1,Scotland,2024,Dunfermline,36,established,SC1
+SC1,Scotland,2024,Falkirk,36,moved_within,SC2
+SC1,Scotland,2024,Hamilton,36,moved_within,SC2
+SC1,Scotland,2024,Livingston,36,moved_within,SC0
+SC1,Scotland,2024,Morton,36,established,SC1
+SC1,Scotland,2024,Partick,36,established,SC1
+SC1,Scotland,2024,Queens Park,36,established,SC1
+SC1,Scotland,2024,Raith Rvs,36,established,SC1
+SC1,Scotland,2025,Airdrie Utd,36,established,SC1
+SC1,Scotland,2025,Arbroath,36,moved_within,SC2
+SC1,Scotland,2025,Ayr,36,established,SC1
+SC1,Scotland,2025,Dunfermline,36,established,SC1
+SC1,Scotland,2025,Morton,36,established,SC1
+SC1,Scotland,2025,Partick,36,established,SC1
+SC1,Scotland,2025,Queens Park,36,established,SC1
+SC1,Scotland,2025,Raith Rvs,36,established,SC1
+SC1,Scotland,2025,Ross County,36,moved_within,SC0
+SC1,Scotland,2025,St Johnstone,36,moved_within,SC0
+SC1,Scotland,2026,Arbroath,13,established,SC1
+SC1,Scotland,2026,Ayr,12,established,SC1
+SC1,Scotland,2026,Dunfermline,14,established,SC1
+SC1,Scotland,2026,Inverness C,14,moved_within,SC2
+SC1,Scotland,2026,Livingston,14,moved_within,SC0
+SC1,Scotland,2026,Morton,13,established,SC1
+SC1,Scotland,2026,Partick,14,established,SC1
+SC1,Scotland,2026,Queens Park,14,established,SC1
+SC1,Scotland,2026,Raith Rvs,14,established,SC1
+SC1,Scotland,2026,Stenhousemuir,14,moved_within,SC2
+SC2,Scotland,2021,Airdrie Utd,36,first_season,
+SC2,Scotland,2021,Alloa,36,first_season,
+SC2,Scotland,2021,Clyde,36,first_season,
+SC2,Scotland,2021,Cove Rangers,36,first_season,
+SC2,Scotland,2021,Dumbarton,36,first_season,
+SC2,Scotland,2021,East Fife,36,first_season,
+SC2,Scotland,2021,Falkirk,36,first_season,
+SC2,Scotland,2021,Montrose,36,first_season,
+SC2,Scotland,2021,Peterhead,36,first_season,
+SC2,Scotland,2021,Queens Park,36,first_season,
+SC2,Scotland,2022,Airdrie Utd,36,established,SC2
+SC2,Scotland,2022,Alloa,36,established,SC2
+SC2,Scotland,2022,Clyde,36,established,SC2
+SC2,Scotland,2022,Dunfermline,36,moved_within,SC1
+SC2,Scotland,2022,FC Edinburgh,36,outside,
+SC2,Scotland,2022,Falkirk,36,established,SC2
+SC2,Scotland,2022,Kelty Hearts,36,moved_within,SC3
+SC2,Scotland,2022,Montrose,36,established,SC2
+SC2,Scotland,2022,Peterhead,36,established,SC2
+SC2,Scotland,2022,Queen of Sth,36,moved_within,SC1
+SC2,Scotland,2023,Alloa,36,established,SC2
+SC2,Scotland,2023,Annan Athletic,36,moved_within,SC3
+SC2,Scotland,2023,Cove Rangers,36,moved_within,SC1
+SC2,Scotland,2023,Edinburgh City,36,returner,last seen 2021/22
+SC2,Scotland,2023,Falkirk,36,established,SC2
+SC2,Scotland,2023,Hamilton,36,moved_within,SC1
+SC2,Scotland,2023,Kelty Hearts,36,established,SC2
+SC2,Scotland,2023,Montrose,36,established,SC2
+SC2,Scotland,2023,Queen of Sth,36,established,SC2
+SC2,Scotland,2023,Stirling,36,moved_within,SC3
+SC2,Scotland,2024,Alloa,36,established,SC2
+SC2,Scotland,2024,Annan Athletic,36,established,SC2
+SC2,Scotland,2024,Arbroath,36,moved_within,SC1
+SC2,Scotland,2024,Cove Rangers,36,established,SC2
+SC2,Scotland,2024,Dumbarton,36,moved_within,SC3
+SC2,Scotland,2024,Inverness C,36,moved_within,SC1
+SC2,Scotland,2024,Kelty Hearts,36,established,SC2
+SC2,Scotland,2024,Montrose,36,established,SC2
+SC2,Scotland,2024,Queen of Sth,36,established,SC2
+SC2,Scotland,2024,Stenhousemuir,36,moved_within,SC3
+SC2,Scotland,2025,Alloa,36,established,SC2
+SC2,Scotland,2025,Cove Rangers,36,established,SC2
+SC2,Scotland,2025,East Fife,36,moved_within,SC3
+SC2,Scotland,2025,Hamilton,36,moved_within,SC1
+SC2,Scotland,2025,Inverness C,36,established,SC2
+SC2,Scotland,2025,Kelty Hearts,36,established,SC2
+SC2,Scotland,2025,Montrose,36,established,SC2
+SC2,Scotland,2025,Peterhead,36,moved_within,SC3
+SC2,Scotland,2025,Queen of Sth,36,established,SC2
+SC2,Scotland,2025,Stenhousemuir,36,established,SC2
+SC2,Scotland,2026,Airdrie Utd,13,moved_within,SC1
+SC2,Scotland,2026,Alloa,13,established,SC2
+SC2,Scotland,2026,Cove Rangers,13,established,SC2
+SC2,Scotland,2026,East Fife,14,established,SC2
+SC2,Scotland,2026,East Kilbride,13,moved_within,SC3
+SC2,Scotland,2026,Hamilton,14,established,SC2
+SC2,Scotland,2026,Montrose,14,established,SC2
+SC2,Scotland,2026,Peterhead,14,established,SC2
+SC2,Scotland,2026,Queen of Sth,14,established,SC2
+SC2,Scotland,2026,Ross County,14,moved_within,SC1
+SC3,Scotland,2021,Albion Rvs,36,first_season,
+SC3,Scotland,2021,Annan Athletic,36,first_season,
+SC3,Scotland,2021,Cowdenbeath,36,first_season,
+SC3,Scotland,2021,Edinburgh City,36,first_season,
+SC3,Scotland,2021,Elgin,36,first_season,
+SC3,Scotland,2021,Forfar,36,first_season,
+SC3,Scotland,2021,Kelty Hearts,36,first_season,
+SC3,Scotland,2021,Stenhousemuir,36,first_season,
+SC3,Scotland,2021,Stirling,36,first_season,
+SC3,Scotland,2021,Stranraer,36,first_season,
+SC3,Scotland,2022,Albion Rvs,36,established,SC3
+SC3,Scotland,2022,Annan Athletic,36,established,SC3
+SC3,Scotland,2022,Bonnyrigg Rose,36,outside,
+SC3,Scotland,2022,Dumbarton,36,moved_within,SC2
+SC3,Scotland,2022,East Fife,36,moved_within,SC2
+SC3,Scotland,2022,Elgin,36,established,SC3
+SC3,Scotland,2022,Forfar,36,established,SC3
+SC3,Scotland,2022,Stenhousemuir,36,established,SC3
+SC3,Scotland,2022,Stirling,36,established,SC3
+SC3,Scotland,2022,Stranraer,36,established,SC3
+SC3,Scotland,2023,Bonnyrigg Rose,36,established,SC3
+SC3,Scotland,2023,Clyde,36,moved_within,SC2
+SC3,Scotland,2023,Dumbarton,36,established,SC3
+SC3,Scotland,2023,East Fife,36,established,SC3
+SC3,Scotland,2023,Elgin,36,established,SC3
+SC3,Scotland,2023,Forfar,36,established,SC3
+SC3,Scotland,2023,Peterhead,36,moved_within,SC2
+SC3,Scotland,2023,Spartans,36,outside,
+SC3,Scotland,2023,Stenhousemuir,36,established,SC3
+SC3,Scotland,2023,Stranraer,36,established,SC3
+SC3,Scotland,2024,Bonnyrigg Rose,36,established,SC3
+SC3,Scotland,2024,Clyde,36,established,SC3
+SC3,Scotland,2024,East Fife,36,established,SC3
+SC3,Scotland,2024,Edinburgh City,36,moved_within,SC2
+SC3,Scotland,2024,Elgin,36,established,SC3
+SC3,Scotland,2024,Forfar,36,established,SC3
+SC3,Scotland,2024,Peterhead,36,established,SC3
+SC3,Scotland,2024,Spartans,36,established,SC3
+SC3,Scotland,2024,Stirling,36,moved_within,SC2
+SC3,Scotland,2024,Stranraer,36,established,SC3
+SC3,Scotland,2025,Annan Athletic,36,moved_within,SC2
+SC3,Scotland,2025,Clyde,36,established,SC3
+SC3,Scotland,2025,Dumbarton,36,moved_within,SC2
+SC3,Scotland,2025,East Kilbride,36,outside,
+SC3,Scotland,2025,Edinburgh City,36,established,SC3
+SC3,Scotland,2025,Elgin,36,established,SC3
+SC3,Scotland,2025,Forfar,36,established,SC3
+SC3,Scotland,2025,Spartans,36,established,SC3
+SC3,Scotland,2025,Stirling,36,established,SC3
+SC3,Scotland,2025,Stranraer,36,established,SC3
+SC3,Scotland,2026,Annan Athletic,13,established,SC3
+SC3,Scotland,2026,Clyde,13,established,SC3
+SC3,Scotland,2026,Dumbarton,13,established,SC3
+SC3,Scotland,2026,Edinburgh City,13,established,SC3
+SC3,Scotland,2026,Elgin,13,established,SC3
+SC3,Scotland,2026,Forfar,13,established,SC3
+SC3,Scotland,2026,Kelty Hearts,13,moved_within,SC2
+SC3,Scotland,2026,Spartans,13,established,SC3
+SC3,Scotland,2026,Stirling,13,established,SC3
+SC3,Scotland,2026,Stranraer,13,established,SC3
+SP1,Spain,2021,Alaves,38,first_season,
+SP1,Spain,2021,Ath Bilbao,38,first_season,
+SP1,Spain,2021,Ath Madrid,38,first_season,
+SP1,Spain,2021,Barcelona,38,first_season,
+SP1,Spain,2021,Betis,38,first_season,
+SP1,Spain,2021,Cadiz,38,first_season,
+SP1,Spain,2021,Celta,38,first_season,
+SP1,Spain,2021,Elche,38,first_season,
+SP1,Spain,2021,Espanol,38,first_season,
+SP1,Spain,2021,Getafe,38,first_season,
+SP1,Spain,2021,Granada,38,first_season,
+SP1,Spain,2021,Levante,38,first_season,
+SP1,Spain,2021,Mallorca,38,first_season,
+SP1,Spain,2021,Osasuna,38,first_season,
+SP1,Spain,2021,Real Madrid,38,first_season,
+SP1,Spain,2021,Sevilla,38,first_season,
+SP1,Spain,2021,Sociedad,38,first_season,
+SP1,Spain,2021,Valencia,38,first_season,
+SP1,Spain,2021,Vallecano,38,first_season,
+SP1,Spain,2021,Villarreal,38,first_season,
+SP1,Spain,2022,Almeria,38,moved_within,SP2
+SP1,Spain,2022,Ath Bilbao,38,established,SP1
+SP1,Spain,2022,Ath Madrid,38,established,SP1
+SP1,Spain,2022,Barcelona,38,established,SP1
+SP1,Spain,2022,Betis,38,established,SP1
+SP1,Spain,2022,Cadiz,38,established,SP1
+SP1,Spain,2022,Celta,38,established,SP1
+SP1,Spain,2022,Elche,38,established,SP1
+SP1,Spain,2022,Espanol,38,established,SP1
+SP1,Spain,2022,Getafe,38,established,SP1
+SP1,Spain,2022,Girona,38,moved_within,SP2
+SP1,Spain,2022,Mallorca,38,established,SP1
+SP1,Spain,2022,Osasuna,38,established,SP1
+SP1,Spain,2022,Real Madrid,38,established,SP1
+SP1,Spain,2022,Sevilla,38,established,SP1
+SP1,Spain,2022,Sociedad,38,established,SP1
+SP1,Spain,2022,Valencia,38,established,SP1
+SP1,Spain,2022,Valladolid,38,moved_within,SP2
+SP1,Spain,2022,Vallecano,38,established,SP1
+SP1,Spain,2022,Villarreal,38,established,SP1
+SP1,Spain,2023,Alaves,38,moved_within,SP2
+SP1,Spain,2023,Almeria,38,established,SP1
+SP1,Spain,2023,Ath Bilbao,38,established,SP1
+SP1,Spain,2023,Ath Madrid,38,established,SP1
+SP1,Spain,2023,Barcelona,38,established,SP1
+SP1,Spain,2023,Betis,38,established,SP1
+SP1,Spain,2023,Cadiz,38,established,SP1
+SP1,Spain,2023,Celta,38,established,SP1
+SP1,Spain,2023,Getafe,38,established,SP1
+SP1,Spain,2023,Girona,38,established,SP1
+SP1,Spain,2023,Granada,38,moved_within,SP2
+SP1,Spain,2023,Las Palmas,38,moved_within,SP2
+SP1,Spain,2023,Mallorca,38,established,SP1
+SP1,Spain,2023,Osasuna,38,established,SP1
+SP1,Spain,2023,Real Madrid,38,established,SP1
+SP1,Spain,2023,Sevilla,38,established,SP1
+SP1,Spain,2023,Sociedad,38,established,SP1
+SP1,Spain,2023,Valencia,38,established,SP1
+SP1,Spain,2023,Vallecano,38,established,SP1
+SP1,Spain,2023,Villarreal,38,established,SP1
+SP1,Spain,2024,Alaves,38,established,SP1
+SP1,Spain,2024,Ath Bilbao,38,established,SP1
+SP1,Spain,2024,Ath Madrid,38,established,SP1
+SP1,Spain,2024,Barcelona,38,established,SP1
+SP1,Spain,2024,Betis,38,established,SP1
+SP1,Spain,2024,Celta,38,established,SP1
+SP1,Spain,2024,Espanol,38,moved_within,SP2
+SP1,Spain,2024,Getafe,38,established,SP1
+SP1,Spain,2024,Girona,38,established,SP1
+SP1,Spain,2024,Las Palmas,38,established,SP1
+SP1,Spain,2024,Leganes,38,moved_within,SP2
+SP1,Spain,2024,Mallorca,38,established,SP1
+SP1,Spain,2024,Osasuna,38,established,SP1
+SP1,Spain,2024,Real Madrid,38,established,SP1
+SP1,Spain,2024,Sevilla,38,established,SP1
+SP1,Spain,2024,Sociedad,38,established,SP1
+SP1,Spain,2024,Valencia,38,established,SP1
+SP1,Spain,2024,Valladolid,38,moved_within,SP2
+SP1,Spain,2024,Vallecano,38,established,SP1
+SP1,Spain,2024,Villarreal,38,established,SP1
+SP1,Spain,2025,Alaves,38,established,SP1
+SP1,Spain,2025,Ath Bilbao,38,established,SP1
+SP1,Spain,2025,Ath Madrid,38,established,SP1
+SP1,Spain,2025,Barcelona,38,established,SP1
+SP1,Spain,2025,Betis,38,established,SP1
+SP1,Spain,2025,Celta,38,established,SP1
+SP1,Spain,2025,Elche,38,moved_within,SP2
+SP1,Spain,2025,Espanol,38,established,SP1
+SP1,Spain,2025,Getafe,38,established,SP1
+SP1,Spain,2025,Girona,38,established,SP1
+SP1,Spain,2025,Levante,38,moved_within,SP2
+SP1,Spain,2025,Mallorca,38,established,SP1
+SP1,Spain,2025,Osasuna,38,established,SP1
+SP1,Spain,2025,Oviedo,38,moved_within,SP2
+SP1,Spain,2025,Real Madrid,38,established,SP1
+SP1,Spain,2025,Sevilla,38,established,SP1
+SP1,Spain,2025,Sociedad,38,established,SP1
+SP1,Spain,2025,Valencia,38,established,SP1
+SP1,Spain,2025,Vallecano,38,established,SP1
+SP1,Spain,2025,Villarreal,38,established,SP1
+SP1,Spain,2026,Alaves,12,established,SP1
+SP1,Spain,2026,Ath Bilbao,11,established,SP1
+SP1,Spain,2026,Ath Madrid,12,established,SP1
+SP1,Spain,2026,Barcelona,12,established,SP1
+SP1,Spain,2026,Betis,12,established,SP1
+SP1,Spain,2026,Celta,12,established,SP1
+SP1,Spain,2026,Elche,12,established,SP1
+SP1,Spain,2026,Espanol,12,established,SP1
+SP1,Spain,2026,Getafe,12,established,SP1
+SP1,Spain,2026,La Coruna,12,moved_within,SP2
+SP1,Spain,2026,Levante,12,established,SP1
+SP1,Spain,2026,Malaga,12,moved_within,SP2
+SP1,Spain,2026,Osasuna,12,established,SP1
+SP1,Spain,2026,Real Madrid,12,established,SP1
+SP1,Spain,2026,Santander,12,moved_within,SP2
+SP1,Spain,2026,Sevilla,12,established,SP1
+SP1,Spain,2026,Sociedad,12,established,SP1
+SP1,Spain,2026,Valencia,12,established,SP1
+SP1,Spain,2026,Vallecano,11,established,SP1
+SP1,Spain,2026,Villarreal,12,established,SP1
+SP2,Spain,2021,Alcorcon,42,first_season,
+SP2,Spain,2021,Almeria,42,first_season,
+SP2,Spain,2021,Amorebieta,42,first_season,
+SP2,Spain,2021,Burgos,42,first_season,
+SP2,Spain,2021,Cartagena,42,first_season,
+SP2,Spain,2021,Eibar,42,first_season,
+SP2,Spain,2021,Fuenlabrada,42,first_season,
+SP2,Spain,2021,Girona,42,first_season,
+SP2,Spain,2021,Huesca,42,first_season,
+SP2,Spain,2021,Ibiza,42,first_season,
+SP2,Spain,2021,Las Palmas,42,first_season,
+SP2,Spain,2021,Leganes,42,first_season,
+SP2,Spain,2021,Lugo,42,first_season,
+SP2,Spain,2021,Malaga,42,first_season,
+SP2,Spain,2021,Mirandes,42,first_season,
+SP2,Spain,2021,Oviedo,42,first_season,
+SP2,Spain,2021,Ponferradina,42,first_season,
+SP2,Spain,2021,Sociedad B,42,first_season,
+SP2,Spain,2021,Sp Gijon,42,first_season,
+SP2,Spain,2021,Tenerife,42,first_season,
+SP2,Spain,2021,Valladolid,42,first_season,
+SP2,Spain,2021,Zaragoza,42,first_season,
+SP2,Spain,2022,Alaves,42,moved_within,SP1
+SP2,Spain,2022,Albacete,42,outside,
+SP2,Spain,2022,Andorra,42,outside,
+SP2,Spain,2022,Burgos,42,established,SP2
+SP2,Spain,2022,Cartagena,42,established,SP2
+SP2,Spain,2022,Eibar,42,established,SP2
+SP2,Spain,2022,Granada,42,moved_within,SP1
+SP2,Spain,2022,Huesca,42,established,SP2
+SP2,Spain,2022,Ibiza,42,established,SP2
+SP2,Spain,2022,Las Palmas,42,established,SP2
+SP2,Spain,2022,Leganes,42,established,SP2
+SP2,Spain,2022,Levante,42,moved_within,SP1
+SP2,Spain,2022,Lugo,42,established,SP2
+SP2,Spain,2022,Malaga,42,established,SP2
+SP2,Spain,2022,Mirandes,42,established,SP2
+SP2,Spain,2022,Oviedo,42,established,SP2
+SP2,Spain,2022,Ponferradina,42,established,SP2
+SP2,Spain,2022,Santander,42,outside,
+SP2,Spain,2022,Sp Gijon,42,established,SP2
+SP2,Spain,2022,Tenerife,42,established,SP2
+SP2,Spain,2022,Villarreal B,42,outside,
+SP2,Spain,2022,Zaragoza,42,established,SP2
+SP2,Spain,2023,Albacete,42,established,SP2
+SP2,Spain,2023,Alcorcon,42,returner,last seen 2021/22
+SP2,Spain,2023,Amorebieta,42,returner,last seen 2021/22
+SP2,Spain,2023,Andorra,42,established,SP2
+SP2,Spain,2023,Burgos,42,established,SP2
+SP2,Spain,2023,Cartagena,42,established,SP2
+SP2,Spain,2023,Eibar,42,established,SP2
+SP2,Spain,2023,Elche,42,moved_within,SP1
+SP2,Spain,2023,Eldense,42,outside,
+SP2,Spain,2023,Espanol,42,moved_within,SP1
+SP2,Spain,2023,Ferrol,42,outside,
+SP2,Spain,2023,Huesca,42,established,SP2
+SP2,Spain,2023,Leganes,42,established,SP2
+SP2,Spain,2023,Levante,42,established,SP2
+SP2,Spain,2023,Mirandes,42,established,SP2
+SP2,Spain,2023,Oviedo,42,established,SP2
+SP2,Spain,2023,Santander,42,established,SP2
+SP2,Spain,2023,Sp Gijon,42,established,SP2
+SP2,Spain,2023,Tenerife,42,established,SP2
+SP2,Spain,2023,Valladolid,42,moved_within,SP1
+SP2,Spain,2023,Villarreal B,42,established,SP2
+SP2,Spain,2023,Zaragoza,42,established,SP2
+SP2,Spain,2024,Albacete,42,established,SP2
+SP2,Spain,2024,Almeria,42,moved_within,SP1
+SP2,Spain,2024,Burgos,42,established,SP2
+SP2,Spain,2024,Cadiz,42,moved_within,SP1
+SP2,Spain,2024,Cartagena,42,established,SP2
+SP2,Spain,2024,Castellon,42,outside,
+SP2,Spain,2024,Cordoba,42,outside,
+SP2,Spain,2024,Eibar,42,established,SP2
+SP2,Spain,2024,Elche,42,established,SP2
+SP2,Spain,2024,Eldense,42,established,SP2
+SP2,Spain,2024,Ferrol,42,established,SP2
+SP2,Spain,2024,Granada,42,moved_within,SP1
+SP2,Spain,2024,Huesca,42,established,SP2
+SP2,Spain,2024,La Coruna,42,outside,
+SP2,Spain,2024,Levante,42,established,SP2
+SP2,Spain,2024,Malaga,42,returner,last seen 2022/23
+SP2,Spain,2024,Mirandes,42,established,SP2
+SP2,Spain,2024,Oviedo,42,established,SP2
+SP2,Spain,2024,Santander,42,established,SP2
+SP2,Spain,2024,Sp Gijon,42,established,SP2
+SP2,Spain,2024,Tenerife,42,established,SP2
+SP2,Spain,2024,Zaragoza,42,established,SP2
+SP2,Spain,2025,Albacete,42,established,SP2
+SP2,Spain,2025,Almeria,42,established,SP2
+SP2,Spain,2025,Andorra,42,returner,last seen 2023/24
+SP2,Spain,2025,Burgos,42,established,SP2
+SP2,Spain,2025,Cadiz,42,established,SP2
+SP2,Spain,2025,Castellon,42,established,SP2
+SP2,Spain,2025,Ceuta,42,outside,
+SP2,Spain,2025,Cordoba,42,established,SP2
+SP2,Spain,2025,Cultural Leonesa,42,outside,
+SP2,Spain,2025,Eibar,42,established,SP2
+SP2,Spain,2025,Granada,42,established,SP2
+SP2,Spain,2025,Huesca,42,established,SP2
+SP2,Spain,2025,La Coruna,42,established,SP2
+SP2,Spain,2025,Las Palmas,42,moved_within,SP1
+SP2,Spain,2025,Leganes,42,moved_within,SP1
+SP2,Spain,2025,Malaga,42,established,SP2
+SP2,Spain,2025,Mirandes,42,established,SP2
+SP2,Spain,2025,Santander,42,established,SP2
+SP2,Spain,2025,Sociedad B,42,returner,last seen 2021/22
+SP2,Spain,2025,Sp Gijon,42,established,SP2
+SP2,Spain,2025,Valladolid,42,moved_within,SP1
+SP2,Spain,2025,Zaragoza,42,established,SP2
+SP2,Spain,2026,Albacete,13,established,SP2
+SP2,Spain,2026,Almeria,13,established,SP2
+SP2,Spain,2026,Andorra,11,established,SP2
+SP2,Spain,2026,Burgos,12,established,SP2
+SP2,Spain,2026,Cadiz,13,established,SP2
+SP2,Spain,2026,Castellon,12,established,SP2
+SP2,Spain,2026,Celta B,12,outside,
+SP2,Spain,2026,Ceuta,13,established,SP2
+SP2,Spain,2026,Cordoba,13,established,SP2
+SP2,Spain,2026,Eibar,12,established,SP2
+SP2,Spain,2026,Eldense,12,returner,last seen 2024/25
+SP2,Spain,2026,Girona,13,moved_within,SP1
+SP2,Spain,2026,Granada,12,established,SP2
+SP2,Spain,2026,Las Palmas,12,established,SP2
+SP2,Spain,2026,Leganes,13,established,SP2
+SP2,Spain,2026,Mallorca,12,moved_within,SP1
+SP2,Spain,2026,Oviedo,13,moved_within,SP1
+SP2,Spain,2026,Sabadell,12,outside,
+SP2,Spain,2026,Sociedad B,12,established,SP2
+SP2,Spain,2026,Sp Gijon,13,established,SP2
+SP2,Spain,2026,Tenerife,11,returner,last seen 2024/25
+SP2,Spain,2026,Valladolid,13,established,SP2
+T1,Turkey,2021,Ad. Demirspor,38,first_season,
+T1,Turkey,2021,Alanyaspor,38,first_season,
+T1,Turkey,2021,Altay,38,first_season,
+T1,Turkey,2021,Antalyaspor,38,first_season,
+T1,Turkey,2021,Besiktas,38,first_season,
+T1,Turkey,2021,Buyuksehyr,38,first_season,
+T1,Turkey,2021,Fenerbahce,38,first_season,
+T1,Turkey,2021,Galatasaray,38,first_season,
+T1,Turkey,2021,Gaziantep,38,first_season,
+T1,Turkey,2021,Giresunspor,38,first_season,
+T1,Turkey,2021,Goztep,38,first_season,
+T1,Turkey,2021,Hatayspor,38,first_season,
+T1,Turkey,2021,Karagumruk,38,first_season,
+T1,Turkey,2021,Kasimpasa,38,first_season,
+T1,Turkey,2021,Kayserispor,38,first_season,
+T1,Turkey,2021,Konyaspor,38,first_season,
+T1,Turkey,2021,Rizespor,38,first_season,
+T1,Turkey,2021,Sivasspor,38,first_season,
+T1,Turkey,2021,Trabzonspor,38,first_season,
+T1,Turkey,2021,Yeni Malatyaspor,38,first_season,
+T1,Turkey,2022,Ad. Demirspor,36,established,T1
+T1,Turkey,2022,Alanyaspor,36,established,T1
+T1,Turkey,2022,Ankaragucu,36,outside,
+T1,Turkey,2022,Antalyaspor,36,established,T1
+T1,Turkey,2022,Besiktas,36,established,T1
+T1,Turkey,2022,Buyuksehyr,36,established,T1
+T1,Turkey,2022,Fenerbahce,36,established,T1
+T1,Turkey,2022,Galatasaray,36,established,T1
+T1,Turkey,2022,Gaziantep,36,established,T1
+T1,Turkey,2022,Giresunspor,36,established,T1
+T1,Turkey,2022,Hatayspor,36,established,T1
+T1,Turkey,2022,Istanbulspor,36,outside,
+T1,Turkey,2022,Karagumruk,36,established,T1
+T1,Turkey,2022,Kasimpasa,36,established,T1
+T1,Turkey,2022,Kayserispor,36,established,T1
+T1,Turkey,2022,Konyaspor,36,established,T1
+T1,Turkey,2022,Sivasspor,36,established,T1
+T1,Turkey,2022,Trabzonspor,36,established,T1
+T1,Turkey,2022,Umraniyespor,36,outside,
+T1,Turkey,2023,Ad. Demirspor,38,established,T1
+T1,Turkey,2023,Alanyaspor,38,established,T1
+T1,Turkey,2023,Ankaragucu,38,established,T1
+T1,Turkey,2023,Antalyaspor,38,established,T1
+T1,Turkey,2023,Besiktas,38,established,T1
+T1,Turkey,2023,Buyuksehyr,38,established,T1
+T1,Turkey,2023,Fenerbahce,38,established,T1
+T1,Turkey,2023,Galatasaray,38,established,T1
+T1,Turkey,2023,Gaziantep,38,established,T1
+T1,Turkey,2023,Hatayspor,38,established,T1
+T1,Turkey,2023,Istanbulspor,38,established,T1
+T1,Turkey,2023,Karagumruk,38,established,T1
+T1,Turkey,2023,Kasimpasa,38,established,T1
+T1,Turkey,2023,Kayserispor,38,established,T1
+T1,Turkey,2023,Konyaspor,38,established,T1
+T1,Turkey,2023,Pendikspor,38,outside,
+T1,Turkey,2023,Rizespor,38,returner,last seen 2021/22
+T1,Turkey,2023,Samsunspor,38,outside,
+T1,Turkey,2023,Sivasspor,38,established,T1
+T1,Turkey,2023,Trabzonspor,38,established,T1
+T1,Turkey,2024,Ad. Demirspor,36,established,T1
+T1,Turkey,2024,Alanyaspor,36,established,T1
+T1,Turkey,2024,Antalyaspor,36,established,T1
+T1,Turkey,2024,Besiktas,36,established,T1
+T1,Turkey,2024,Bodrumspor,36,outside,
+T1,Turkey,2024,Buyuksehyr,36,established,T1
+T1,Turkey,2024,Eyupspor,36,outside,
+T1,Turkey,2024,Fenerbahce,36,established,T1
+T1,Turkey,2024,Galatasaray,36,established,T1
+T1,Turkey,2024,Gaziantep,36,established,T1
+T1,Turkey,2024,Goztep,36,returner,last seen 2021/22
+T1,Turkey,2024,Hatayspor,36,established,T1
+T1,Turkey,2024,Kasimpasa,36,established,T1
+T1,Turkey,2024,Kayserispor,36,established,T1
+T1,Turkey,2024,Konyaspor,36,established,T1
+T1,Turkey,2024,Rizespor,36,established,T1
+T1,Turkey,2024,Samsunspor,36,established,T1
+T1,Turkey,2024,Sivasspor,36,established,T1
+T1,Turkey,2024,Trabzonspor,36,established,T1
+T1,Turkey,2025,Alanyaspor,34,established,T1
+T1,Turkey,2025,Antalyaspor,34,established,T1
+T1,Turkey,2025,Besiktas,34,established,T1
+T1,Turkey,2025,Buyuksehyr,34,established,T1
+T1,Turkey,2025,Eyupspor,34,established,T1
+T1,Turkey,2025,Fenerbahce,34,established,T1
+T1,Turkey,2025,Galatasaray,34,established,T1
+T1,Turkey,2025,Gaziantep,34,established,T1
+T1,Turkey,2025,Genclerbirligi,34,outside,
+T1,Turkey,2025,Goztep,34,established,T1
+T1,Turkey,2025,Karagumruk,34,returner,last seen 2023/24
+T1,Turkey,2025,Kasimpasa,34,established,T1
+T1,Turkey,2025,Kayserispor,34,established,T1
+T1,Turkey,2025,Kocaelispor,34,outside,
+T1,Turkey,2025,Konyaspor,34,established,T1
+T1,Turkey,2025,Rizespor,34,established,T1
+T1,Turkey,2025,Samsunspor,34,established,T1
+T1,Turkey,2025,Trabzonspor,34,established,T1
+T1,Turkey,2026,Alanyaspor,11,established,T1
+T1,Turkey,2026,Amedspor,11,outside,
+T1,Turkey,2026,Besiktas,11,established,T1
+T1,Turkey,2026,Buyuksehyr,11,established,T1
+T1,Turkey,2026,Corum,11,outside,
+T1,Turkey,2026,Erzurumspor,11,outside,
+T1,Turkey,2026,Eyupspor,11,established,T1
+T1,Turkey,2026,Fenerbahce,11,established,T1
+T1,Turkey,2026,Galatasaray,11,established,T1
+T1,Turkey,2026,Gaziantep,11,established,T1
+T1,Turkey,2026,Genclerbirligi,11,established,T1
+T1,Turkey,2026,Goztep,11,established,T1
+T1,Turkey,2026,Kasimpasa,11,established,T1
+T1,Turkey,2026,Kocaelispor,11,established,T1
+T1,Turkey,2026,Konyaspor,11,established,T1
+T1,Turkey,2026,Rizespor,11,established,T1
+T1,Turkey,2026,Samsunspor,11,established,T1
+T1,Turkey,2026,Trabzonspor,11,established,T1

@@ -1,0 +1,281 @@
+{
+ "picks": 78753,
+ "main_by_source_status": {
+  "backfill": {
+   "LOST": 430,
+   "PUSH": 0,
+   "UPCOMING": 0,
+   "VOID": 0,
+   "WON": 843
+  },
+  "backtest": {
+   "LOST": 2556,
+   "PUSH": 5,
+   "UPCOMING": 0,
+   "VOID": 0,
+   "WON": 4533
+  },
+  "live": {
+   "LOST": 317,
+   "PUSH": 0,
+   "UPCOMING": 16,
+   "VOID": 1,
+   "WON": 624
+  }
+ },
+ "unified_mains": 2217,
+ "unified_by_source": {
+  "backfill": 1272,
+  "live": 945
+ },
+ "phantoms": [
+  {
+   "pair": "B1-20261104-kortrijk-mechelen",
+   "kind": "phantom",
+   "match_id": "B1-20261104-kortrijk-kv-mechelen",
+   "phantom_side": "a",
+   "generated_at": "2026-11-04 17:29:17",
+   "p_home": 0.33679136633872986,
+   "p_draw": 0.2828088700771332,
+   "p_away": 0.3803997039794922,
+   "xg_home": 1.3354572057724,
+   "xg_away": 1.1454401016235352,
+   "exp_corners": 9.923979705286223,
+   "main": "TOTAL_2.5 UNDER",
+   "main_prob": 0.5540914400751059,
+   "main_odds": 2.0,
+   "status": "LOST",
+   "profit": -1.0
+  },
+  {
+   "pair": "B1-20261104-kortrijk-mechelen",
+   "kind": "real",
+   "match_id": "B1-20261104-kortrijk-mechelen",
+   "phantom_side": "a",
+   "generated_at": "2026-11-02 19:35:05",
+   "p_home": 0.38761356472969055,
+   "p_draw": 0.2989955246448517,
+   "p_away": 0.3133908808231354,
+   "xg_home": 1.2876018285751343,
+   "xg_away": 1.2025775909423828,
+   "exp_corners": 9.70345455753431,
+   "main": "TOTAL_3.5 UNDER",
+   "main_prob": 0.760341474376114,
+   "main_odds": 1.33,
+   "status": "LOST",
+   "profit": -1.0
+  },
+  {
+   "pair": "E1-20261103-preston-sheffield-united",
+   "kind": "phantom",
+   "match_id": "E1-20261103-preston-sheffield-utd",
+   "phantom_side": "a",
+   "generated_at": "2026-11-03 17:13:47",
+   "p_home": 0.3105892241001129,
+   "p_draw": 0.27561262249946594,
+   "p_away": 0.41379815340042114,
+   "xg_home": 1.3155560493469238,
+   "xg_away": 1.1978305578231812,
+   "exp_corners": 10.209474216146306,
+   "main": "TOTAL_1.5 OVER",
+   "main_prob": 0.7139597317567495,
+   "main_odds": null,
+   "status": "WON",
+   "profit": null
+  },
+  {
+   "pair": "E1-20261103-preston-sheffield-united",
+   "kind": "real",
+   "match_id": "E1-20261103-preston-sheffield-united",
+   "phantom_side": "a",
+   "generated_at": "2026-11-02 19:35:05",
+   "p_home": 0.2852816879749298,
+   "p_draw": 0.26422083377838135,
+   "p_away": 0.45049741864204407,
+   "xg_home": 1.1414978504180908,
+   "xg_away": 1.5309536457061768,
+   "exp_corners": 10.504416504992308,
+   "main": "TOTAL_3.5 UNDER",
+   "main_prob": 0.720802843307069,
+   "main_odds": 1.41,
+   "status": "LOST",
+   "profit": -1.0
+  },
+  {
+   "pair": "E2-20261104-oxford-reading",
+   "kind": "phantom",
+   "match_id": "E2-20261104-oxford-utd-reading",
+   "phantom_side": "h",
+   "generated_at": "2026-11-04 17:29:17",
+   "p_home": 0.2769749164581299,
+   "p_draw": 0.2604305148124695,
+   "p_away": 0.46259453892707825,
+   "xg_home": 1.2053918838500977,
+   "xg_away": 1.7485837936401367,
+   "exp_corners": 9.46097472575271,
+   "main": "TOTAL_2.5 OVER",
+   "main_prob": 0.5571698549928852,
+   "main_odds": 1.7,
+   "status": "LOST",
+   "profit": -1.0
+  },
+  {
+   "pair": "E2-20261104-oxford-reading",
+   "kind": "real",
+   "match_id": "E2-20261104-oxford-reading",
+   "phantom_side": "h",
+   "generated_at": "2026-11-02 19:35:05",
+   "p_home": 0.36940330266952515,
+   "p_draw": 0.276555597782135,
+   "p_away": 0.35404112935066223,
+   "xg_home": 1.5143805742263794,
+   "xg_away": 1.3727614879608154,
+   "exp_corners": 10.26818651299253,
+   "main": "TOTAL_3.5 UNDER",
+   "main_prob": 0.6736688982876096,
+   "main_odds": 1.41,
+   "status": "WON",
+   "profit": 0.4099999999999999
+  }
+ ],
+ "moved": {
+  "clusters": 11,
+  "dropped": 11,
+  "kept_not_settleable": [
+   "F1-20261031-nice-rennes"
+  ]
+ },
+ "same_day_duplicates": [
+  {
+   "match_id": "B1-20261104-kortrijk-kv-mechelen",
+   "kept_match_id": "B1-20261104-kortrijk-mechelen"
+  },
+  {
+   "match_id": "E1-20261103-preston-sheffield-utd",
+   "kept_match_id": "E1-20261103-preston-sheffield-united"
+  },
+  {
+   "match_id": "E2-20261104-oxford-utd-reading",
+   "kept_match_id": "E2-20261104-oxford-reading"
+  }
+ ],
+ "orphan_mains": 13,
+ "orphan_ids": [
+  "SP2-20261003-sabadell-andorra",
+  "B1-20261023-kortrijk-mechelen",
+  "F2-20261024-montpellier-red-star",
+  "F1-20261024-toulouse-troyes",
+  "F1-20261025-paris-sg-lyon",
+  "F2-20261031-reims-sochaux",
+  "F1-20261031-nice-rennes",
+  "F1-20261031-lorient-brest",
+  "F1-20261031-lyon-angers",
+  "E1-20261103-preston-sheffield-utd",
+  "B1-20261104-kortrijk-kv-mechelen",
+  "E2-20261104-oxford-utd-reading",
+  "P1-20261107-nacional-academico-viseu"
+ ],
+ "withdrawn_results": [
+  {
+   "match_id": "SP2-20261101-tenerife-andorra",
+   "source": "live",
+   "status": "WON",
+   "market": "HANDICAP_+0.5",
+   "selection": "H",
+   "odds": 1.378,
+   "profit": 0.3779999999999999,
+   "settled_score": "2-2"
+  }
+ ],
+ "invariants": {
+  "profit without a price": [
+   8,
+   [
+    "G1-20261017-atromitos-aek|market|1X2|A",
+    "G1-20261017-atromitos-aek|market|TOTAL_2.5|OVER",
+    "G1-20261017-atromitos-aek|market|BTTS|YES",
+    "G1-20261017-atromitos-aek|market|DOUBLE_CHANCE|X2",
+    "G1-20261017-atromitos-aek|market|CORNERS_9.5|UNDER",
+    "G1-20261017-atromitos-aek|market|EXACT_SCORE|0-1",
+    "G1-20261017-atromitos-aek|main|TOTAL_1.5|OVER",
+    "G1-20261017-atromitos-aek|risk|TOTAL_3.5|OVER"
+   ]
+  ]
+ },
+ "void_with_profit_without_price": [
+  "G1-20261017-atromitos-aek|market|1X2|A",
+  "G1-20261017-atromitos-aek|market|TOTAL_2.5|OVER",
+  "G1-20261017-atromitos-aek|market|BTTS|YES",
+  "G1-20261017-atromitos-aek|market|DOUBLE_CHANCE|X2",
+  "G1-20261017-atromitos-aek|market|CORNERS_9.5|UNDER",
+  "G1-20261017-atromitos-aek|market|EXACT_SCORE|0-1",
+  "G1-20261017-atromitos-aek|main|TOTAL_1.5|OVER",
+  "G1-20261017-atromitos-aek|risk|TOTAL_3.5|OVER"
+ ],
+ "roi_unified_now": {
+  "mains": 2217,
+  "settled": 2201,
+  "bets": 2198,
+  "hit_rate": 0.6633348477964561,
+  "profit": -90.437,
+  "roi": -0.041145131938125565
+ },
+ "roi_unified_moved_rule_fixed": {
+  "mains": 2217,
+  "settled": 2202,
+  "bets": 2199,
+  "hit_rate": 0.6630336058128974,
+  "profit": -91.43700000000001,
+  "roi": -0.04158117326057299
+ },
+ "roi_unified_reported": {
+  "mains": 2217,
+  "settled": 2201,
+  "bets": 2198,
+  "hit_rate": 0.6633348477964561,
+  "profit": -90.437,
+  "roi": -0.041145131938125565
+ },
+ "roi_if_phantoms_kept": {
+  "mains": 2220,
+  "settled": 2204,
+  "bets": 2200,
+  "hit_rate": 0.6628856624319419,
+  "profit": -92.437,
+  "roi": -0.04201681818181818
+ },
+ "freshness": {
+  "live_mains_checked": 826,
+  "with_missing_previous_result": 1,
+  "share": 0.0012106537530266344,
+  "by_league": {
+   "D2": 1
+  },
+  "max_lag_days": 1,
+  "median_lag_days": 1.0,
+  "fresh": {
+   "mains": 825,
+   "settled": 809,
+   "hit_rate": 0.6674907292954264,
+   "bets": 808,
+   "roi": -0.02679579207920792,
+   "roi_ci95": [
+    -0.07782100866336635,
+    0.021727444306930684
+   ],
+   "profit": -21.651
+  },
+  "stale": {
+   "mains": 1,
+   "settled": 1,
+   "hit_rate": 0.0,
+   "bets": 1,
+   "roi": -1.0,
+   "roi_ci95": [
+    null,
+    null
+   ],
+   "profit": -1.0
+  }
+ }
+}

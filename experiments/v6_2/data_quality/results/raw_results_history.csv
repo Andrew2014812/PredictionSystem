@@ -1,0 +1,7 @@
+file,commit,committed_utc,change,match_id,detail
+B1.csv,9bd3c19,2026-11-05 08:11:55,new club name in a running season,,KV Mechelen (1 played)
+B1.csv,13f6799,2026-11-06 08:15:01,played match disappeared,B1-20261104-kortrijk-kv-mechelen,
+E1.csv,9bd3c19,2026-11-05 08:11:55,new club name in a running season,,Sheffield Utd (1 played)
+E1.csv,13f6799,2026-11-06 08:15:01,played match disappeared,E1-20261103-preston-sheffield-utd,
+E2.csv,9bd3c19,2026-11-05 08:11:55,new club name in a running season,,Oxford Utd (1 played)
+E2.csv,13f6799,2026-11-06 08:15:01,played match disappeared,E2-20261104-oxford-utd-reading,

@@ -1,0 +1,23 @@
+cluster,match_id,kept,date,source,status,odds,profit,generated_at,own_id_played,fix_keeps
+B1-20261104-kortrijk-mechelen,B1-20261104-kortrijk-mechelen,True,2026-11-04,live,LOST,1.33,-1.0,2026-11-02 19:35:05,True,True
+B1-20261104-kortrijk-mechelen,B1-20261023-kortrijk-mechelen,False,2026-10-23,live,LOST,1.33,-1.0,2026-10-23 17:27:04,False,False
+F1-20261025-toulouse-troyes,F1-20261025-toulouse-troyes,True,2026-10-25,live,WON,1.641,0.641,2026-10-25 13:39:26,True,True
+F1-20261025-toulouse-troyes,F1-20261024-toulouse-troyes,False,2026-10-24,live,WON,,,2026-10-24 12:35:19,False,False
+F1-20261026-paris-sg-lyon,F1-20261026-paris-sg-lyon,True,2026-10-26,live,WON,1.408,0.4079999999999999,2026-10-26 15:48:56,True,True
+F1-20261026-paris-sg-lyon,F1-20261025-paris-sg-lyon,False,2026-10-25,live,WON,1.305,0.30499999999999994,2026-10-25 13:39:26,False,False
+F1-20261031-nice-rennes,F1-20261031-nice-rennes,True,2026-10-31,live,UPCOMING,,,2026-10-30 16:13:22,False,False
+F1-20261031-nice-rennes,F1-20261030-nice-rennes,False,2026-10-30,live,LOST,1.46,-1.0,2026-10-30 16:13:22,True,True
+F1-20261101-lyon-angers,F1-20261101-lyon-angers,True,2026-11-01,live,WON,1.39,0.3899999999999999,2026-11-01 16:09:14,True,True
+F1-20261101-lyon-angers,F1-20261031-lyon-angers,False,2026-10-31,live,WON,,,2026-10-31 15:30:39,False,False
+F1-20261102-lorient-brest,F1-20261102-lorient-brest,True,2026-11-02,live,WON,1.33,0.33000000000000007,2026-11-02 19:35:05,True,True
+F1-20261102-lorient-brest,F1-20261031-lorient-brest,False,2026-10-31,live,WON,,,2026-10-31 15:30:39,False,False
+F2-20261026-montpellier-red-star,F2-20261026-montpellier-red-star,True,2026-10-26,live,WON,1.33,0.33000000000000007,2026-10-26 15:48:56,True,True
+F2-20261026-montpellier-red-star,F2-20261024-montpellier-red-star,False,2026-10-24,live,WON,,,2026-10-23 17:27:04,False,False
+F2-20261102-reims-sochaux,F2-20261102-reims-sochaux,True,2026-11-02,live,WON,1.37,0.3700000000000001,2026-11-02 19:35:05,True,True
+F2-20261102-reims-sochaux,F2-20261031-reims-sochaux,False,2026-10-31,live,WON,1.37,0.3700000000000001,2026-10-30 16:13:22,False,False
+P1-20261108-nacional-academico-viseu,P1-20261108-nacional-academico-viseu,True,2026-11-08,live,LOST,1.3,-1.0,2026-11-08 07:34:33,True,True
+P1-20261108-nacional-academico-viseu,P1-20261107-nacional-academico-viseu,False,2026-11-07,live,LOST,1.3,-1.0,2026-11-07 07:30:06,False,False
+SP2-20261003-sabadell-andorra,SP2-20261003-sabadell-andorra,True,2026-10-03,live,LOST,,,2026-10-02 13:49:44,False,True
+SP2-20261003-sabadell-andorra,SP2-20261004-sabadell-andorra,False,2026-10-04,backfill,LOST,1.3,-1.0,2026-11-05 10:16:51,True,False
+SP2-20261109-las-palmas-eldense,SP2-20261109-las-palmas-eldense,True,2026-11-09,live,UPCOMING,1.37,,2026-11-09 08:04:48,False,True
+SP2-20261109-las-palmas-eldense,SP2-20261108-las-palmas-eldense,False,2026-11-08,live,UPCOMING,1.37,,2026-11-08 07:34:33,False,False
