@@ -8,7 +8,7 @@
    "min_ratio": 5.5
   },
   "match_dark": {
-   "texts": 51,
+   "texts": 288,
    "below": [],
    "min_ratio": 5.79
   },
@@ -28,12 +28,12 @@
    "min_ratio": 5.79
   },
   "analytics_dark": {
-   "texts": 197,
+   "texts": 295,
    "below": [],
    "min_ratio": 5.79
   },
   "models_dark": {
-   "texts": 231,
+   "texts": 256,
    "below": [],
    "min_ratio": 5.79
   },
@@ -43,9 +43,9 @@
    "min_ratio": 4.88
   },
   "match_light": {
-   "texts": 292,
+   "texts": 290,
    "below": [],
-   "min_ratio": 1
+   "min_ratio": 4.83
   },
   "history_light": {
    "texts": 326,
