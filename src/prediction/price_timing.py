@@ -10,6 +10,7 @@ one. Every Main / Risk price is labelled (``odds_timing``):
 * ``existed_at_generation`` — added later, but the quote had been published before the prediction;
 * ``after_generation`` — added later and published after the prediction (a closing-type price);
 * ``closing_backfill`` — a retrospective prediction's closing price;
+* ``retrospective`` — the price of a test-season (backtest) prediction, made long after the match;
 * ``time_unknown`` — added later and the quote time cannot be found.
 
 Times: ``generated_at`` is stored in UTC, quote times (``odds_priced_at``, ``collected_at``) and kick-offs in
@@ -28,6 +29,7 @@ AT_GENERATION = "at_generation"
 EXISTED = "existed_at_generation"
 AFTER = "after_generation"
 CLOSING = "closing_backfill"
+RETROSPECTIVE = "retrospective"
 UNKNOWN = "time_unknown"
 DECISION_TIME = (AT_GENERATION, EXISTED)
 UNTIMED_PROVIDERS = {"football_data"}           # prices from a file without a quote time
@@ -37,6 +39,7 @@ LABELS = {
     EXISTED: "on offer at prediction time, added later from the price archive",
     AFTER: "closing price published after the prediction (added later)",
     CLOSING: "closing price (prediction made after the match)",
+    RETROSPECTIVE: "pre-match price of a test-season prediction (made after the season)",
     UNKNOWN: "added later from the price archive",
 }
 
@@ -82,7 +85,8 @@ def classify(picks: pd.DataFrame, quote_times: pd.Series | None = None) -> pd.Se
     generated = pd.to_datetime(picks["generated_at"], errors="coerce")
     later = priced & origin.isin(ADDED_LATER)
     out[priced & (source == "backfill")] = CLOSING
-    live = priced & (source != "backfill")
+    out[priced & ~source.isin(["live", "backfill"])] = RETROSPECTIVE       # the test-season backtest
+    live = priced & (source == "live")
     out[live & ~later] = AT_GENERATION
     known = later & quote.notna() & generated.notna()
     out[live & known & (quote <= generated)] = EXISTED

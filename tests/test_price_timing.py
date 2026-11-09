@@ -52,3 +52,9 @@ def test_decision_time_prices_keep_only_prices_one_could_take():
 def test_football_data_prices_show_no_quote_time():
     assert np.isnan(shown_quote_time("football_data", pd.Timestamp("2026-10-17")))
     assert shown_quote_time("oddspapi", pd.Timestamp("2026-10-17 10:30")) == pd.Timestamp("2026-10-17 10:30")
+
+
+def test_test_season_predictions_are_retrospective():
+    from src.prediction.price_timing import RETROSPECTIVE
+    picks = _picks().assign(source="backtest")
+    assert set(classify(picks).dropna()) == {RETROSPECTIVE}

@@ -82,6 +82,7 @@ UK: dict[str, str] = {
     "on offer at prediction time, added later from the price archive": "була доступна на момент прогнозу, додана пізніше з архіву цін",
     "closing price published after the prediction (added later)": "ціна закриття, опублікована після прогнозу (додана пізніше)",
     "closing price (prediction made after the match)": "ціна закриття (прогноз зроблено після матчу)",
+    "pre-match price of a test-season prediction (made after the season)": "передматчева ціна прогнозу тестового сезону (зроблено після сезону)",
     "Counting only prices that were on offer when the prediction was made: ROI {roi} on {n} bets. The other {m} bets use closing prices published afterwards or belong to predictions made after the match.": "Лише ціни, доступні на момент прогнозу: ROI {roi} на {n} ставках. Інші {m} ставок мають ціни закриття, опубліковані пізніше, або належать прогнозам, зробленим після матчу.",
     "PUSH means a refunded prediction (e.g. a handicap that ended level). It stays in the history, but is not counted in the hit rate or ROI.": "PUSH — прогноз із поверненням ставки (наприклад, фора, що зіграла внічию). Він лишається в історії, але не враховується у відсотку влучань і ROI.",
     "Explained with the team data available now: the model inputs of this prediction were not stored (predictions made before 10.11.2026).": "Пояснено за поточними даними команд: вхідні дані моделі для цього прогнозу не збережено (прогнози до 10.11.2026).", "Home / Away": "Удома / на виїзді", "Head-to-head": "Особисті зустрічі",
