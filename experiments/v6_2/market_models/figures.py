@@ -94,7 +94,7 @@ def fig_main_risk(plt) -> None:
         ax.axvline(0, color=MUTED, lw=0.8)
         ax.set_title(f"{title}: ΔROI, п.п. (2023/24+2024/25)", fontsize=9)
     axes[0].set_yticks(np.arange(len(subs)))
-    axes[0].set_yticklabels([k.replace("SUB_", "") for k in subs], fontsize=7.5)
+    axes[0].set_yticklabels([GROUP_RU.get(k.replace("SUB_", ""), "все улучшенные") for k in subs], fontsize=7.5)
     axes[0].invert_yaxis()
     save_chart(fig, C.FIGURES / "main_risk.png")
 

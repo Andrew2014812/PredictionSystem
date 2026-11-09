@@ -17,6 +17,21 @@ CMDS = [f"PY={PY}", "$PY -m experiments.v6_2.market_models.data      # walk-forw
 SEAS = ("2023", "2024", "2025", "2026")
 
 
+RULE_RU = ("Главная метрика группы — средний по линиям log loss на матч. A: p Холма < 0.05 по всем 18 сравнениям "
+           "(группа × вариант) на объединённых 2023/24+2024/25, лучше в обоих сезонах отбора, не хуже по точечной "
+           "оценке в 2025/26 и 2026/27, ROI Main при подмене группы не хуже значимо (95 % ДИ отбора не целиком ниже "
+           "0). B: лучше в обоих сезонах отбора и 95 % ДИ объединённой разности ниже 0 без поправки, либо "
+           "доказательства уровня A, не подтверждённые в 2025/26 / 2026/27. C — всё остальное. Вариант, который "
+           "только добавляет модели без значимого выигрыша, — C (не усложнять без доказательств).")
+
+
+def tab(rows, widths=None, first=4.6):
+    from reportlab.lib.units import cm
+    k = max(len(r) for r in rows) - 1
+    w = [x * cm for x in widths] if widths else [first * cm] + [(17 - first) * cm / k] * k
+    return table(rows, widths=w)
+
+
 def dci(c, k=1e3, d=2):
     if not c or c.get("diff") is None or c["diff"] != c["diff"]:
         return "—"
@@ -101,7 +116,7 @@ def main() -> None:
               "матчам (2000 повторов для группы), p — нормальное приближение парной разности; Холм по всем "
               f"{comp['n_comparisons']} сравнениям. Main/Risk — продакшн-правило (векторная копия, совпадение с "
               "функциями продакшна 100 % на контрольной выборке), подмена только вероятностей одной группы рынков."),
-            H2("4.4 Правило решения (зафиксировано до запуска)"), P(dec["rule"]))
+            H2("4.4 Правило решения (зафиксировано до запуска)"), P(RULE_RU))
 
     # --------------------------------------------------------------- results
     rep.add(H1("5. Качество вероятностей"))
@@ -115,7 +130,7 @@ def main() -> None:
             rows.append([f"{GROUP_RU[g]}: {names[v]}", f4(met[g][v]["select"]["group"]), dci(c["select"]["group"]),
                          f"{c['holm_p_select']:.3f}"] + [f"{c[s]['group']['diff'] * 1e3:+.2f}" for s in SEAS])
     rep.add(P("Средний log loss группы (отбор = 2023/24+2024/25) и разность с текущим (вариант − текущий):"),
-            table(rows), figure(C.FIGURES / "forest.png", "Рис. 1. Δ log loss к текущему, 2023/24+2024/25."),
+            tab(rows, widths=[4.9, 1.3, 3.5, 1.3, 1.5, 1.5, 1.5, 1.5]), figure(C.FIGURES / "forest.png", "Рис. 1. Δ log loss к текущему, 2023/24+2024/25."),
             figure(C.FIGURES / "seasons.png", "Рис. 2. Лучший вариант каждой группы по сезонам (Δ ×10⁻³)."))
 
     rep.add(H2("5.1 По линиям"))
@@ -125,7 +140,7 @@ def main() -> None:
         c = cc[f"{g}|{v}"]
         for k in mm["group_keys"][g]:
             rows.append([k, names[v], dci(c["select"].get(k)), dci(c["2025"].get(k)), dci(c["2026"].get(k))])
-    rep.add(P("Лучший вариант группы (по правилу) по отдельным линиям:"), table(rows))
+    rep.add(P("Лучший вариант группы (по правилу) по отдельным линиям:"), tab(rows))
 
     rep.add(H2("5.2 Калибровка"))
     rows = [["Исход", "Вариант", "ECE отбор", "ECE 2026/27", "ср. p − частота отбор", "Brier отбор"]]
@@ -134,7 +149,7 @@ def main() -> None:
             s, c26 = x["select"], x["2026"]
             rows.append([k, names[v], f4(s.get("ece")), f4(c26.get("ece")),
                          pp(s["mean_p"] - s["rate"], 2) if s.get("n") else "—", f4(s.get("brier"))])
-    rep.add(table(rows), figure(C.FIGURES / "calibration.png", "Рис. 3. Калибровка, 2023/24+2024/25."))
+    rep.add(tab(rows), figure(C.FIGURES / "calibration.png", "Рис. 3. Калибровка, 2023/24+2024/25."))
 
     rep.add(H2("5.3 Согласованность рынков"))
     cs = coh
@@ -145,12 +160,12 @@ def main() -> None:
                  ("dc_implied_draw_outside_0_1", "P(X) = P(1X)+P(X2)−1 вне [0; 1]"),
                  ("dc_implied_draw_vs_classifier_mae", "|P(X) из 1X/X2 − P(X) 1X2|, ср."),
                  ("btts_cur_above_over15_bin", "P(обе) матрицы > P(>1.5) BIN")):
-        rows.append([t, pp(cs["2023"]["BIN"][k], 2) if "mae" not in k else f4(cs["2023"]["BIN"][k]),
-                     pp(cs["2024"]["BIN"][k], 2) if "mae" not in k else f4(cs["2024"]["BIN"][k]),
-                     pp(cs["2024"]["S_BIN"][k], 2) if "mae" not in k else f4(cs["2024"]["S_BIN"][k]),
-                     pp(cs["2026"]["BIN"][k], 2) if "mae" not in k else f4(cs["2026"]["BIN"][k])])
+        rows.append([t, f"{cs["2023"]["BIN"][k] * 100:.2f}" if "mae" not in k else f4(cs["2023"]["BIN"][k]),
+                     f"{cs["2024"]["BIN"][k] * 100:.2f}" if "mae" not in k else f4(cs["2024"]["BIN"][k]),
+                     f"{cs["2024"]["S_BIN"][k] * 100:.2f}" if "mae" not in k else f4(cs["2024"]["S_BIN"][k]),
+                     f"{cs["2026"]["BIN"][k] * 100:.2f}" if "mae" not in k else f4(cs["2026"]["BIN"][k])])
     rep.add(P("Доли матчей (%) с нарушением логической связи рынков (у текущей матрицы — 0 по построению):"),
-            table(rows))
+            tab(rows))
     rows = [["Проверка", "23/24", "24/25", "25/26", "26/27"]]
     for v, k, t in (("GD", "home_win_vs_classifier_mae", "GD: |P(П1) − P(П1) классификатора|, ср."),
                     ("GD", "ah_m05_vs_1x2_home_mae", "GD: |P(фора −0.5) − P(П1) на сайте|, ср."),
@@ -158,7 +173,7 @@ def main() -> None:
                     ("TOT", "over25_vs_matrix_mae", "TOT: |P(>2.5) − P(>2.5) матрицы|, ср.")):
         rows.append([t] + [f4(cs[s][v][k]) for s in SEAS])
     rep.add(P("Расхождение мультиклассов с остальными рынками сайта, если подменить только одну группу:"),
-            table(rows))
+            tab(rows))
 
     rep.add(H2("5.4 Рядом с рынком"))
     rows = [["Сезон", "Рынок", "n", "Bet365 без маржи", "Текущий", "Лучший вариант"]]
@@ -168,7 +183,7 @@ def main() -> None:
             rows.append([C.period_label(int(s)), mk, r["n"], f4(r["market"]), f4(r["CUR"]),
                          f"{f4(r.get(best[g]))} ({names[best[g]]})"])
     rep.add(P("Log loss на матчах с полной ценой (пропорциональное снятие маржи; Bet365 открытия, 2026/27 — "
-              "записанные цены):"), table(rows))
+              "записанные цены):"), tab(rows))
 
     rep.add(H2("5.5 По лигам"))
     rows = [["Группа (вариант)", "Лиг", "лучше (ДИ < 0)", "хуже (ДИ > 0)"]]
@@ -178,7 +193,7 @@ def main() -> None:
                      ", ".join(k for k, v in L.items() if v["ci95"][1] < 0) or "—",
                      ", ".join(k for k, v in L.items() if v["ci95"][0] > 0) or "—"])
     rep.add(P("Лучший вариант группы по лигам, 2023/24+2024/25 (≈ 600–800 матчей на лигу, без поправки на "
-              "множественность):"), table(rows))
+              "множественность):"), tab(rows))
 
     rep.add(H1("6. Main и Risk"))
     cur = mr["variants"]["CUR"]
@@ -196,7 +211,7 @@ def main() -> None:
                      f"{pp(r['diff'])} [{pp(r['ci95'][0])}; {pp(r['ci95'][1])}]", a.get("changed_picks", "—"),
                      f"{pp(a26['diff'])} [{pp(a26['ci95'][0])}; {pp(a26['ci95'][1])}]"])
     rep.add(P("Отбор = 2023/24+2024/25; в этих сезонах цена есть только у 1X2, тотала 2.5 и одной азиатской линии "
-              "(ROI считается по ставкам с ценой). 2026/27 — цены почти всех рынков."), table(rows),
+              "(ROI считается по ставкам с ценой). 2026/27 — цены почти всех рынков."), tab(rows),
             figure(C.FIGURES / "main_risk.png", "Рис. 4. ΔROI Main и Risk при подмене группы, 2023/24+2024/25."))
 
     rep.add(H1("7. Стоимость"))
@@ -212,21 +227,21 @@ def main() -> None:
                  f"{sum(x['pickle_bytes'] for x in d26.values()) / 1024:.0f}"])
     rows.append(["продакшн: 4 модели", "—", f"{sum(p26.values()):.0f}", "—", "—", "—"])
     rep.add(P("Фолд 2026/27 (обучение на 2021/22–2025/26, n_jobs = 2; общая машина — время ориентировочное):"),
-            table(rows))
+            tab(rows))
 
     rep.add(H1("8. Решения"))
     rows = [["Рынок: вариант", "Решение", "Δ отбор ×10⁻³", "p Холма", "Лучше в обоих", "Не хуже позже"]]
     for k, d in decs.items():
         rows.append([lab(k), d["decision"], f"{d['diff_select'] * 1e3:+.2f}", f"{d['holm_p']:.3f}",
                      "да" if d["better_both_selection"] else "нет", "да" if d["not_worse_later"] else "нет"])
-    rep.add(table(rows))
+    rep.add(tab(rows))
     concl = conclusions(cc, met, best, names, coh, mr, decs, cost)
     rep.add(H1("9. Выводы"), bullets(concl))
     rep.add(H1("10. Отрицательные результаты и ограничения"), bullets(limitations()))
     rep.add(H1("11. Рекомендации"), bullets(recommendations(a_list, b_list, lab)))
     stk = st[str(C.CURRENT)]
     rep.add(H2("Приложение: веса стекинга фолда 2026/27"),
-            table([["Ключ", "b₀", "b₁ (текущий)", "b₂ (прямой)"]]
+            tab([["Ключ", "b₀", "b₁ (текущий)", "b₂ (прямой)"]]
                   + [[k, f"{w[0]:+.3f}", f"{w[1]:+.3f}", f"{w[2]:+.3f}"] for k, w in stk["bin"].items()]
                   + [[f"пул {k}", "—", f"{w[0]:+.3f}", f"{w[1]:+.3f}"] for k, w in stk["pool"].items()]))
     rep.add(H1("12. Воспроизведение"), reproduce(CMDS),
@@ -238,10 +253,43 @@ def main() -> None:
 
 def conclusions(cc, met, best, names, coh, mr, decs, cost) -> list[str]:
     out = []
-    for g, v in best.items():
-        c = cc[f"{g}|{v}"]
-        out.append(f"{GROUP_RU[g]}: лучший вариант — {names[v]}, Δ log loss {dci(c['select']['group'])} ×10⁻³ "
-                   f"(p Холма {c['holm_p_select']:.3f}), решение {decs[f'{g}|{v}']['decision']}.")
+    direct = [k for k in cc if not k.split("|")[1].startswith("S_")]
+    worse = [k for k in direct if cc[k]["select"]["group"]["ci95"][0] > 0]
+    better = [k for k in direct if cc[k]["select"]["group"]["ci95"][1] < 0]
+    out.append(f"Отдельные модели сами по себе не лучше вывода из матрицы: из {len(direct)} прямых вариантов значимо "
+               f"хуже {len(worse)}, значимо лучше {len(better)} (2023/24+2024/25). Хуже всего мультикласс точного "
+               f"счёта {dci(cc['EXACT_SCORE|ES']['select']['group'])}, разница голов для 1X2 "
+               f"{dci(cc['1X2|GD']['select']['group'])} и для фор {dci(cc['HANDICAP|GD']['select']['group'])} ×10⁻³.")
+    stk = [k for k in cc if k.split("|")[1].startswith("S_")]
+    out.append("Стекинг с текущей вероятностью (веса — в приложении) не даёт значимого выигрыша; стекинг с "
+               "бинарными моделями даже хуже (переобучение весов на одном сезоне). Δ к текущему: "
+               + ", ".join(f"{GROUP_RU[k.split('|')[0]]} ({names[k.split('|')[1]]}) "
+                           f"{cc[k]['select']['group']['diff'] * 1e3:+.2f}" for k in stk)
+               + " ×10⁻³.")
+    t = cc["TOTAL|S_TOT"]
+    out.append(f"Единственный устойчивый плюс — стекинг мультикласса тотала с матрицей (S_TOT): "
+               f"{dci(t['select']['group'])} ×10⁻³, лучше во всех четырёх сезонах ("
+               + ", ".join(f"{t[s]['group']['diff'] * 1e3:+.2f}" for s in SEAS)
+               + f"), но p Холма {t['holm_p_select']:.3f} — решение B (форвард-проверка).")
+    b = cc["BTTS|BIN"]
+    out.append(f"Отдельный классификатор BTTS: {dci(b['select']['group'])} ×10⁻³ на отборе, но "
+               f"{b['2026']['group']['diff'] * 1e3:+.2f} в 2026/27 — не устойчив; угловые: бинарные линии хуже NB "
+               f"({dci(cc['CORNERS|BIN']['select']['group'])}).")
+    g = coh["2024"]["GD"]
+    out.append(f"Цена согласованности: модель разницы голов расходится с классификатором 1X2 в среднем на "
+               f"{g['home_win_vs_classifier_mae'] * 100:.1f} п.п. (макс. {g['home_win_vs_classifier_max'] * 100:.1f}) "
+               "по P(П1) — на сайте «фора −0.5» и «П1» показывали бы разные вероятности одного события. Бинарные "
+               "линии тотала в этих данных оказались монотонны, но это не гарантировано построением.")
+    sub = mr["variants"]["SUB_TOTAL"]
+    a, a26 = sub["select"]["main_vs_cur"], sub["2026"]["main_vs_cur"]
+    out.append(f"Main/Risk: ни одна подмена не улучшает ROI Main значимо на отборе; S_TOT: {pp(a['diff'])} п.п. "
+               f"[{pp(a['ci95'][0])}; {pp(a['ci95'][1])}] (отбор), {pp(a26['diff'])} [{pp(a26['ci95'][0])}; "
+               f"{pp(a26['ci95'][1])}] (2026/27).")
+    d26, p26 = cost["direct"]["2026"], cost["production"]["2026"]
+    out.append(f"Стоимость: 12 прямых моделей обучаются {sum(x['fit_seconds'] for x in d26.values()):.0f} с против "
+               f"{sum(p26.values()):.0f} с у 4 моделей продакшна (+ ранняя остановка "
+               f"{sum(x['es_seconds'] for x in d26.values()):.0f} с); S_TOT добавил бы одну 7-классовую модель "
+               f"({d26['tot']['fit_seconds']:.0f} с, {d26['tot']['predict_ms_per_match']:.3f} мс/матч) и два веса.")
     return out
 
 
