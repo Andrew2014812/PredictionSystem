@@ -107,7 +107,12 @@ def odds_preference(odds: float, preferred=None, softness: float | None = None) 
 
 
 def effective_odds(sel: PricedSelection) -> float:
-    return sel.odds if sel.has_odds else 1.0 / max(sel.probability, 1e-9)
+    """The real price, or else the break-even price. A whole handicap line returns the stake on a refund,
+    so its break-even price is (1 − P(refund)) / P(win), not 1 / P(win): with 1 / p an unpriced whole line
+    looked like ≈3.0 when it is worth ≈2.3 and slipped into the Risk odds window (v6.2 finding)."""
+    if sel.has_odds:
+        return sel.odds
+    return max(1.0 - (sel.push_probability or 0.0), 1e-9) / max(sel.probability, 1e-9)
 
 
 def rule_score(sel: PricedSelection, params: RuleParams) -> float:
