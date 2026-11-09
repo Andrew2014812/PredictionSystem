@@ -1,0 +1,112 @@
+{
+ "git_sha": "2390a6102dd2671b4f700c984d12d3f9b868e502",
+ "data_version": {
+  "local_data/processed/features.parquet": {
+   "mtime": "2026-11-09T18:18:42",
+   "bytes": 17759906,
+   "rows": 38284
+  }
+ },
+ "params": {
+  "seeds": [
+   42,
+   7,
+   2026
+  ],
+  "prod_seed": 42,
+  "n_jobs": 2,
+  "n_boot": 2000,
+  "bootstrap_seed": 20261109,
+  "select": [
+   2023,
+   2024
+  ],
+  "info": 2025,
+  "current": 2026,
+  "production_version": "prod_20261012",
+  "feature_counts": {
+   "T0": {
+    "result": 165,
+    "home_goals": 166,
+    "away_goals": 174
+   },
+   "T1": {
+    "result": 178,
+    "home_goals": 179,
+    "away_goals": 187
+   },
+   "T2": {
+    "result": 190,
+    "home_goals": 191,
+    "away_goals": 199
+   },
+   "T3": {
+    "result": 183,
+    "home_goals": 184,
+    "away_goals": 192
+   },
+   "T4": {
+    "result": 176,
+    "home_goals": 177,
+    "away_goals": 185
+   },
+   "T5": {
+    "result": 176,
+    "home_goals": 177,
+    "away_goals": 185
+   },
+   "T6": {
+    "result": 172,
+    "home_goals": 173,
+    "away_goals": 181
+   },
+   "T7": {
+    "result": 176,
+    "home_goals": 177,
+    "away_goals": 185
+   },
+   "T8": {
+    "result": 177,
+    "home_goals": 178,
+    "away_goals": 186
+   },
+   "T9": {
+    "result": 273,
+    "home_goals": 274,
+    "away_goals": 282
+   },
+   "R0": {
+    "result": 63,
+    "home_goals": 48,
+    "away_goals": 48
+   },
+   "R1": {
+    "result": 67,
+    "home_goals": 52,
+    "away_goals": 52
+   },
+   "R2": {
+    "result": 92,
+    "home_goals": 77,
+    "away_goals": 77
+   }
+  }
+ },
+ "library_versions": {
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "scipy": "1.18.1",
+  "sklearn": "1.7.2",
+  "xgboost": "3.0.5",
+  "statsmodels": "0.15.0",
+  "matplotlib": "3.11.2",
+  "reportlab": "5.1.0"
+ },
+ "timings_seconds": {
+  "signal": 4.1,
+  "market_form": 2.2,
+  "evaluate": 323.0,
+  "leakage": 842.1
+ },
+ "finished": "2026-11-09T20:01:30+0100"
+}
