@@ -1,0 +1,125 @@
+{
+ "written_at": "2026-11-09T19:04:32+0100",
+ "code_commit_at_writing": "84a007a7a5ac141ff04abf9f1c8e6edb21311c54",
+ "study": "v6.2 Goal Distribution Models",
+ "status_of_seasons": {
+  "selection": [
+   "2023/24",
+   "2024/25"
+  ],
+  "information": [
+   "2025/26"
+  ],
+  "current_already_looked_at": "2026/27 up to the data snapshot below (NOT a holdout)"
+ },
+ "data_snapshot": {
+  "features.parquet": "e172b8d52a633031b2613ada17bde06b5033c20efa2553ebe4504e8e68566259",
+  "data_version": {
+   "features": {
+    "rows": 38284,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "markets": {
+    "rows": 528177,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "picks": {
+    "rows": 78753,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "snapshots": {
+    "rows": 9325,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "odds": {
+    "rows": 358520,
+    "mtime": "2026-11-09 18:18:42"
+   }
+  }
+ },
+ "decision_rule": "Primary metric: log loss of the exact score (log score of the whole matrix). A: Holm-adjusted p < 0.05 (pooled 2023/24+2024/25, all variants vs P+R), better in both selection seasons, not worse by point in 2025/26 and 2026/27, no market group significantly worse on the selection seasons (95 % CI above 0 for totals, BTTS, handicaps, 1X2) and Main ROI not significantly worse (pooled selection CI not below 0). B: better in both selection seasons and the pooled 95 % CI below 0 without the Holm correction, or A-level evidence failing 2025/26 / 2026/27. C: everything else. Added after the first run (BP+R): a family whose fitted parameter sits in every fold at the value where it equals production (BP l3 = 0, NB r at the bound) is C — the remaining difference is numerical (tail renormalised instead of folded into 10 goals).",
+ "hypotheses": {
+  "H1_HY+R": {
+   "variant": "HY+R",
+   "name": "Смесь XGB + Махер",
+   "frozen_parameters": {
+    "maher": "2",
+    "w": 0.8457986642239216,
+    "inner_nll": 2.8754703649543156
+   },
+   "frozen_parameters_note": "fitted on 2025/26 (fold-2025 predictions) — applied unchanged to every forward match; production goal means / 1X2 probabilities of the active model.",
+   "maher_spec": {
+    "half_life_days": 180.0,
+    "window_days": 730,
+    "alpha": 0.005,
+    "refit": "weekly per league, matches before the Monday of the match week"
+   },
+   "evidence_so_far": {
+    "score_ll_diff_by_season": {
+     "2023": {
+      "n": 7247,
+      "diff": -0.0020062558088727667,
+      "ci95": [
+       -0.0037418367653957677,
+       -0.00035374868741870445
+      ],
+      "p": 0.019,
+      "p_t": 0.01889801622382592
+     },
+     "2024": {
+      "n": 7129,
+      "diff": -0.0017567199114947856,
+      "ci95": [
+       -0.003077977607286667,
+       -0.00029701034874580985
+      ],
+      "p": 0.021,
+      "p_t": 0.01511002277697261
+     },
+     "2025": {
+      "n": 7094,
+      "diff": -0.0008128996227437555,
+      "ci95": [
+       -0.002091623649047333,
+       0.0004512388928191303
+      ],
+      "p": 0.193,
+      "p_t": 0.21786669042106577
+     },
+     "2026": {
+      "n": 2202,
+      "diff": 1.9832647030836447e-05,
+      "ci95": [
+       -0.002231458213846863,
+       0.0022395690904759356
+      ],
+      "p": 0.947,
+      "p_t": 0.9860750907327634
+     }
+    },
+    "score_ll_diff_select": {
+     "n": 14376,
+     "diff": -0.0018825119710592143,
+     "ci95": [
+      -0.002909127852537928,
+      -0.00080804011981953
+     ],
+     "p": 0.001,
+     "p_t": 0.0007828862948693134
+    },
+    "main_roi_diff_select": {
+     "diff": -0.013534662107688753,
+     "ci95": [
+      -0.024941386886506614,
+      -0.0020720465444942324
+     ],
+     "p": 0.0195,
+     "changed_picks": 3720
+    }
+   },
+   "forward_criterion": "On matches played after the commit of this file (settled, all leagues of the system), the paired bootstrap 95 % CI (by match, 2000 resamples, seed 20261109) of mean log loss of the exact score (variant - production P+R) lies below 0, evaluated once at >= 3000 settled matches (or at the end of season 2026/27 if fewer: then 'inconclusive' unless the CI is below 0); AND, as a guard, the paired 95 % CI of Main ROI difference at real pre-match prices does not lie entirely below 0.",
+   "decision_now": "B. A only if the forward criterion holds; a better probability alone does not justify a change that lowers Main ROI."
+  }
+ },
+ "multiplicity": "1 forward hypotheses; Holm correction over them."
+}
