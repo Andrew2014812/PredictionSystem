@@ -1,0 +1,157 @@
+{
+ "study": "experiments/v6_2/bookmaker",
+ "frozen_at_utc": "2026-11-09T17:07:51Z",
+ "status": "hypothesis B (low prior): not adopted; forward check only",
+ "evidence_at_freeze": {
+  "selection_seasons": {
+   "1X2|2023": {
+    "H2_minus_H0_logloss": {
+     "n": 7240,
+     "diff": -9.008246671436406e-05,
+     "ci95": [
+      -0.000696861934926097,
+      0.0004990025316693851
+     ],
+     "p_two_sided": 0.742
+    },
+    "model_weight_b2": -0.04874001158485804
+   },
+   "1X2|2024": {
+    "H2_minus_H0_logloss": {
+     "n": 7126,
+     "diff": -1.108858240211228e-05,
+     "ci95": [
+      -0.0007078244918534924,
+      0.0006969491678653915
+     ],
+     "p_two_sided": 0.96
+    },
+    "model_weight_b2": -0.04874001158485804
+   },
+   "OU25|2023": {
+    "H2_minus_H0_logloss": {
+     "n": 7239,
+     "diff": -0.0001358238818185738,
+     "ci95": [
+      -0.0007038911487037176,
+      0.0003810929836209908
+     ],
+     "p_two_sided": 0.582
+    },
+    "model_weight_b2": 0.08921601361465588
+   },
+   "OU25|2024": {
+    "H2_minus_H0_logloss": {
+     "n": 7126,
+     "diff": 0.00026960662853485977,
+     "ci95": [
+      -0.00029331362804030126,
+      0.000835878338261411
+     ],
+     "p_two_sided": 0.348
+    },
+    "model_weight_b2": 0.08921601361465588
+   }
+  },
+  "info_2025_26": {
+   "1X2|2025": {
+    "n": 7082,
+    "diff": -0.0005729861467222071,
+    "ci95": [
+     -0.0011469571771915129,
+     1.6162911149142445e-05
+    ],
+    "p_two_sided": 0.062
+   },
+   "OU25|2025": {
+    "n": 7082,
+    "diff": 6.68566174367492e-05,
+    "ci95": [
+     -0.0003133228181158045,
+     0.00040478910895097857
+    ],
+    "p_two_sided": 0.702
+   }
+  },
+  "info_2026_27_not_holdout": {
+   "1X2|2026": {
+    "n": 2047,
+    "diff": 0.00031859981144892376,
+    "ci95": [
+     -0.000868955406649388,
+     0.0015806330951184818
+    ],
+    "p_two_sided": 0.622
+   },
+   "OU25|2026": {
+    "n": 2047,
+    "diff": -0.0006255415598917538,
+    "ci95": [
+     -0.0012024103093527052,
+     -1.5387766906108693e-05
+    ],
+    "p_two_sided": 0.044
+   }
+  },
+  "encompassing_2026_27": {
+   "1X2|2026|b365_open": {
+    "n": 2047,
+    "b_market": 0.8322037011091934,
+    "b_model": 0.25087741495577665,
+    "b_model_ci95": [
+     -0.07392042656208753,
+     0.5550917737578056
+    ],
+    "lr": 2.8326337797343513,
+    "p_lr": 0.09236676525336647,
+    "b_market_alone": 1.0138053951650883,
+    "ll_gain_per_match": 0.0006918988226024307
+   },
+   "OU25|2026|b365_open": {
+    "n": 2047,
+    "b_market": 0.6745815467109095,
+    "b_model": 0.5311934703751331,
+    "b_model_ci95": [
+     -0.011836784014846235,
+     0.9983492933907665
+    ],
+    "lr": 4.2967004553102015,
+    "p_lr": 0.03818639121954758,
+    "b_market_alone": 1.0032563124129128,
+    "ll_gain_per_match": 0.0010495115914289695
+   }
+  }
+ },
+ "frozen_variant": {
+  "name": "H2 log-linear pool of the model and the Bet365 opening price",
+  "formula": "P(k) = softmax_k(a_k + b1 * log q_k + b2 * log p_k), a_1 = 0",
+  "q": "Bet365 opening price (Football-Data B365H/D/A, B365>2.5/<2.5) de-margined by the power method",
+  "p": "the production model probability stored for the match (1X2 classifier; total 2.5 from the score distribution), latest version before kick-off",
+  "theta_1x2": [
+   0.07916619327897785,
+   0.013231830195829845,
+   1.069540684974863,
+   -0.016583685914252914
+  ],
+  "theta_ou25": [
+   -0.025767198264821357,
+   0.9416211988116268,
+   0.10193859452367612
+  ],
+  "theta_order": "[a_2..a_k, b1 (market), b2 (model)]",
+  "fitted_on": "walk-forward model predictions 2022/23–2025/26 (experiments/v6_1/main/cache)"
+ },
+ "forward_sample": {
+  "matches": "league matches of the 21 production leagues with kick-off AFTER the commit of this file, with a stored pre-kick-off model prediction and both Football-Data Bet365 opening prices",
+  "minimum": "1500 matches per market before any conclusion; one evaluation, at the first data update after the minimum is reached"
+ },
+ "primary_criterion": {
+  "metric": "mean log loss of H2 minus mean log loss of the de-margined Bet365 opening price (H0), per market (1X2, total 2.5), paired by match",
+  "pass": "upper bound of the 95 % paired bootstrap interval (2000 resamples by match) < 0 for total 2.5; 1X2 reported as secondary with Holm correction over the two markets"
+ },
+ "secondary": [
+  "encompassing weight b2 of the model with its 95 % bootstrap interval (> 0 expected)",
+  "value bets EV = p_H2 x Bet365 opening - 1 > 0: ROI and CLV against the Betfair-exchange close — reported, never a pass criterion"
+ ],
+ "decision_rule": "pass -> B: propose H2 probabilities as the EV input for Main / Risk and run a separate forward test of the betting rule; fail -> C (drop)"
+}
