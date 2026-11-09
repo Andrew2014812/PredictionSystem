@@ -85,6 +85,7 @@ AUDIT_JS = r"""
     if (!fgRaw) continue;
     const fillOpacity = svg ? parseFloat(s.fillOpacity || '1') : 1;
     const a = fgRaw[3] * opacity(el) * fillOpacity;
+    if (a < 0.02) continue;                    // not drawn (e.g. a slider's end labels until hovered)
     const bg = background(svg ? el.ownerSVGElement || el : el);
     const fg = over([fgRaw[0], fgRaw[1], fgRaw[2], a], bg);
     const size = parseFloat(s.fontSize);
