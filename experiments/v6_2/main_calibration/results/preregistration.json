@@ -1,0 +1,93 @@
+{
+ "written_at": "2026-11-09T18:05:46+0100",
+ "code_commit_at_writing": "df71b108fd9bf4f3cb944b58364b8ce2d39ad689",
+ "study": "v6.2 Main Calibration 2.0",
+ "status_of_seasons": {
+  "selection": [
+   "2023/24",
+   "2024/25"
+  ],
+  "information": [
+   "2025/26"
+  ],
+  "current_already_looked_at": "2026/27 up to the data snapshot below (NOT a holdout)"
+ },
+ "data_snapshot": {
+  "markets.parquet": "cc7eb150a26d3da18d941a6cf238fe9b778d126ff883b4b494dc0f0f7f6a95df",
+  "picks.parquet": "1e73c6d82de2eb5f70468dc09225a48c6f0a56a8fa645a350f69970904a34832",
+  "data_version": {
+   "features": {
+    "rows": 38284,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "markets": {
+    "rows": 528177,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "picks": {
+    "rows": 78753,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "snapshots": {
+    "rows": 9325,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "odds": {
+    "rows": 358520,
+    "mtime": "2026-11-09 17:33:59"
+   }
+  }
+ },
+ "selection_by_frozen_rule": {
+  "rule": "Среди всех вариантов (кроме базового) на универсуме site: минимум max(|gap 2023/24|, |gap 2024/25|); при равенстве — меньший log loss 2024/25. Перспективен, если 95 % ДИ gap содержит 0 в обоих сезонах отбора на обоих универсумах, а |gap| < |gap базового| в объединённых сезонах отбора (Holm p < 0.05).",
+  "chosen": "PS-Market",
+  "promising": false
+ },
+ "why_these_hypotheses": "On 2023/24-2025/26 every post-selection map removes the over-estimation of the chosen Main; on 2026/27 the maps fitted on walk-forward history do not transfer to production (gap of the shown Main +0.0490; after PS-Platt +0.0413), while the same map refitted month by month on production's own shown Mains gives -0.0086 and the group-wise history map gives -0.0085. Both observations were made on 2026/27 after looking at it; this file turns them into forward hypotheses.",
+ "hypotheses": {
+  "H1_primary": {
+   "name": "PS-Platt по месяцам (на показанных Main продакшна)",
+   "rule": "For a Main shown for a match in calendar month m: stated probability p' = sigmoid(a_m + b_m * logit(pc)), pc = probability / (1 - push_probability). (a_m, b_m) = logistic regression (sklearn, C = 1e4) of WON (1) / LOST (0) on logit(pc) over ALL settled shown Mains of the unified history of season 2026/27 (src.analytics.performance.unified_history, role main) whose match date is before the first day of month m. The pick itself is unchanged.",
+   "current_fit_for_information": {
+    "fitted_on_settled_shown_mains": 2201,
+    "last_match_date": "2026-11-08",
+    "a": -0.2665211598761875,
+    "b": 1.0345019928347297
+   }
+  },
+  "H2_challenger": {
+   "name": "PS-Group (карты по группам рынков, история 2022/23-2025/26)",
+   "rule": "p' = sigmoid(a_g + b_g * logit(pc)) with the frozen per-group parameters below (group of the Main; 'pool' for any other group). The pick itself is unchanged.",
+   "frozen_parameters": {
+    "pool": {
+     "a": -0.22688245077449615,
+     "b": 1.2123005635387727
+    },
+    "1X2": {
+     "a": -0.3390296772908502,
+     "b": 1.2914940890680886
+    },
+    "HANDICAP": {
+     "a": -0.07946522191639696,
+     "b": 0.25388932627302696
+    },
+    "TOTAL": {
+     "a": -0.1846894119565793,
+     "b": 1.2059382395611495
+    }
+   }
+  }
+ },
+ "forward_test": {
+  "window": "matches played from the day after the commit of this file until the earlier of (a) 600 settled (WON/LOST) shown Mains or (b) the end of season 2026/27",
+  "population": "shown Main of every match of the unified history in the window (src.analytics.performance.unified_history, role main, status WON/LOST); refunds excluded as in production",
+  "metric": "gap = mean(p') - hit rate; raw gap = mean(pc) - hit rate; 2000 bootstrap resamples by match, seed 20261109",
+  "criteria": [
+   "C1: the 95 % CI of gap(p') contains 0",
+   "C2: the paired 95 % CI of |gap(p')| - |gap(pc)| lies entirely below 0",
+   "C3: Holm correction over the two hypotheses (H1, H2) for C2 (p < 0.05 after correction)"
+  ],
+  "decision": "A (adopt the stated-probability calibration of the shown Main, display only, picks unchanged) if C1-C3 hold for H1, else for H2; otherwise C. No change to the Main pick or to betting is implied: the ROI of the Main is not affected by either map."
+ },
+ "not_registered": "No ROI hypothesis: no Main rule improved ROI on both selection seasons with a Holm-corrected pooled test (selection.json, roi.promising = false)."
+}
