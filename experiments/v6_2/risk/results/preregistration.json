@@ -1,0 +1,142 @@
+{
+ "written_at": "2026-11-09T18:05:48+0100",
+ "code_commit_at_writing": "df71b108fd9bf4f3cb944b58364b8ce2d39ad689",
+ "study": "v6.2 Risk Selection 2.0",
+ "status_of_seasons": {
+  "selection": [
+   "2023/24",
+   "2024/25"
+  ],
+  "information": [
+   "2025/26"
+  ],
+  "current_already_looked_at": "2026/27 up to the data snapshot below (NOT a holdout)"
+ },
+ "data_snapshot": {
+  "markets.parquet": "cc7eb150a26d3da18d941a6cf238fe9b778d126ff883b4b494dc0f0f7f6a95df",
+  "picks.parquet": "1e73c6d82de2eb5f70468dc09225a48c6f0a56a8fa645a350f69970904a34832",
+  "data_version": {
+   "features": {
+    "rows": 38284,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "markets": {
+    "rows": 528177,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "picks": {
+    "rows": 78753,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "snapshots": {
+    "rows": 9325,
+    "mtime": "2026-11-09 17:33:59"
+   },
+   "odds": {
+    "rows": 358520,
+    "mtime": "2026-11-09 17:33:59"
+   }
+  }
+ },
+ "selection_by_frozen_rule": {
+  "rule": "Среди правил, отличных от текущего (12 правил каталога), на 2023/24 и 2024/25: доля ставок с ценой ≥ 85 % и средний коэффициент ≥ 2.80 в обоих сезонах; выбирается правило с наибольшим min(ROI 2023/24, ROI 2024/25). Перспективно, если ΔROI к текущему > 0 в обоих сезонах и Holm-p объединённого теста < 0.05.",
+  "chosen": "v6.1: стек с рынком, пол EV ≥ 0",
+  "promising": false
+ },
+ "hypotheses": {
+  "H1_rule": {
+   "name": "v6.1: стек с рынком, пол EV ≥ 0",
+   "evidence_so_far": {
+    "d_roi_vs_current_by_season": {
+     "2023": 0.01421741416042456,
+     "2024": 0.02143620632856095,
+     "2025": 0.015029404048161214,
+     "2026": 0.049755906419023645
+    },
+    "pooled_2023_2024": {
+     "roi": -0.047755147884687384,
+     "d_roi": 0.017778899029455182,
+     "d_roi_ci": [
+      -0.008463777026378707,
+      0.04333143268106508
+     ],
+     "p": 0.1695,
+     "p_holm": 1.0
+    }
+   },
+   "rule": "Production Risk pool and score (src/markets/recommendation.risk_prediction) unchanged, with one extra first tier: among pool candidates with a real price whose EV at the stacked probability p_s >= 0, the best production score computed with p_s; otherwise the production Risk. p_s = sigmoid(b1_k logit(pc) + b2_k logit(qc) + b0_k) (1 - p_refund), pc = p / (1 - p_refund), qc = proportional de-vigged price of a full book (Asian whole line: P(win | no refund)); coefficients per selection key k (pooled key '*' below 300 rows) fitted by logistic regression (C = 1e4) on the decided pool rows of 2022/23-2025/26 walk-forward predictions — the 2026/27 fit of experiments/v6_2/risk (frozen numbers below).",
+   "frozen_parameters": {
+    "*": [
+     -0.01856670753484714,
+     1.0712421900024025,
+     0.020113463349658068
+    ],
+    "1X2:A": [
+     -0.03028219361161993,
+     1.1531613321025616,
+     0.07030017010925345
+    ],
+    "1X2:D": [
+     0.05185086370151396,
+     1.0523732956333953,
+     0.12667204605299506
+    ],
+    "1X2:H": [
+     -0.01786730465296575,
+     1.1523003335558661,
+     0.04415459287543065
+    ],
+    "HANDICAP:A": [
+     0.12085556307218111,
+     0.839015617999452,
+     0.023893623667700488
+    ],
+    "HANDICAP:H": [
+     0.13379522702871557,
+     0.8182592324394791,
+     -0.023122334111616703
+    ],
+    "TOTAL_2.5:OVER": [
+     0.036572208313315376,
+     1.067888349949811,
+     0.017116768229563
+    ],
+    "TOTAL_2.5:UNDER": [
+     0.03657220831331464,
+     1.0678883499498137,
+     -0.017116768229562856
+    ]
+   },
+   "forward_criterion": "On Risk bets of matches played after the commit of this file, the paired bootstrap 95 % CI (by match, 2000 resamples, seed 20261109) of ROI(H1) - ROI(production Risk) lies above 0, evaluated once at >= 2000 settled matches with both picks priced (or at the end of season 2026/27 if fewer: then the result is reported as inconclusive unless the CI is above 0).",
+   "decision": "B now. A only if the forward criterion holds; the rule still loses money in every season (it reduces the loss), so adoption would change WHICH Risk is shown, not make Risk a bet."
+  },
+  "H2_display": {
+   "name": "Вероятность Risk = вероятность рынка без маржи",
+   "evidence_so_far": {
+    "gap_market_probability_by_season": {
+     "2023": 0.004911875522439463,
+     "2024": -0.001222248798168102,
+     "2025": -0.0036786049802184756,
+     "2026": 0.008104177123606886
+    },
+    "gap_model_probability_by_season": {
+     "2023": 0.020500821322934196,
+     "2024": 0.01898027346910062,
+     "2025": 0.017277127034822343,
+     "2026": 0.05944391788015769
+    }
+   },
+   "rule": "For the shown Risk with a full real book, the stated probability is the proportional de-vigged market probability of a win (Asian whole line: P(win | no refund) on the decided scale); the pick is unchanged.",
+   "forward_criterion": "On the shown Risk of matches played after the commit (decided, full book), the 95 % bootstrap CI of mean(stated) - hit rate contains 0 AND the paired CI of |gap(market)| - |gap(model)| lies below 0; evaluated at >= 1000 settled Risk picks.",
+   "decision": "B now; A (display only) if the forward criterion holds."
+  }
+ },
+ "multiplicity": "Two forward hypotheses; Holm correction over H1 and H2.",
+ "risk_band_and_parameters": {
+  "band": [
+   2.5,
+   8.0
+  ],
+  "z_lcb": 1.0
+ }
+}
