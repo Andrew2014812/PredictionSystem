@@ -229,17 +229,40 @@ def main() -> None:
               "изменений). ROI — по реальным ценам; в прошлых сезонах цена есть только у 1X2, тотала 2.5 и одной "
               "азиатской линии."), tab(rows))
 
-    rep.add(H1("9. Решения"))
+    chk = C.load_json("production_checks.json")
+    if chk:
+        rep.add(H1("9. Проверка кода продакшна"))
+        rows = [["Сезон", "ρ пайплайна (сырая)", "ρ ML после согл.", "Δ счёт ρ пайплайна ×10⁻³", "Δ счёт ρ согл. ×10⁻³"]]
+        for s, x in chk["dc_pipeline_rho"].items():
+            rows.append([C.period_label(int(s)), f"{x['rho_pipeline_raw_fit']:+.4f}", f"{x['rho_ml_reconciled']:+.4f}",
+                         dci(x["score_ll_diff_pipeline_vs_production"]),
+                         dci(x["score_ll_diff_reconciled_rho_vs_production"])])
+        rep.add(P("Скрытая ошибка (сейчас выключена флагом `DIXON_COLES = False`): `src/modelling/pipeline.py` "
+                  "подбирает ρ функцией `fit_dixon_coles_rho` по СЫРЫМ средним голов, а `src/prediction/engine.py` "
+                  "применяет ρ к матрице, которую затем согласует с 1X2. После согласования оптимальное ρ другое (≈ 0), "
+                  "и ρ пайплайна ухудшает лог-скор счёта. Исправление при включении: подбирать ρ по правдоподобию "
+                  "согласованной матрицы (`reconcile_with_1x2(score_matrix(λ_h, λ_a, ρ), p1x2)`) на валидационном "
+                  "сезоне — или не включать Диксона–Коулса (по результатам этого исследования выигрыша нет)."),
+                tab(rows, first=2.6))
+        t = chk["tail"]
+        rep.add(P("Хвост матрицы: продакшн складывает P(голов > 10) в ячейку 10. Масса хвоста не больше "
+                  f"{max(x['max_tail_mass'] for x in t.values()):.4f}, максимум изменения ячейки "
+                  f"{max(x['max_abs_cell_diff'] for x in t.values()):.4f}; перенормировка вместо складывания меняет "
+                  "лог-скор счёта на " + ", ".join(f"{x['score_ll_diff_renorm_vs_fold']['diff'] * 1e3:+.3f}"
+                                                   for x in t.values())
+                  + " ×10⁻³ по сезонам — практически ноль (этим объясняется «значимая» разность бивариантного "
+                  "Пуассона с λ₃ = 0). Не ошибка."))
+    rep.add(H1("10. Решения"))
     rows = [["Вариант", "Решение", "Δ счёт отбор ×10⁻³", "p Холма", "Лучше в обоих", "Не хуже позже"]]
     for v in ranked:
         d = decs[v]
         rows.append([label(v, names), d["decision"], f"{d['score_diff_select'] * 1e3:+.2f}", f"{d['holm_p']:.3f}",
                      "да" if d["better_both_selection"] else "нет", "да" if d["not_worse_later"] else "нет"])
     rep.add(tab(rows))
-    rep.add(H1("10. Выводы"), bullets(conclusions(tests, cc, ranked, names, decs, best, met, mr)))
-    rep.add(H1("11. Отрицательные результаты и ограничения"), bullets(limitations(tests)))
-    rep.add(H1("12. Рекомендации"), bullets(recommendations(a_list, b_list, names)))
-    rep.add(H1("13. Воспроизведение"), reproduce(CMDS),
+    rep.add(H1("11. Выводы"), bullets(conclusions(tests, cc, ranked, names, decs, best, met, mr)))
+    rep.add(H1("12. Отрицательные результаты и ограничения"), bullets(limitations(tests)))
+    rep.add(H1("13. Рекомендации"), bullets(recommendations(a_list, b_list, names)))
+    rep.add(H1("14. Воспроизведение"), reproduce(CMDS),
             note(f"Git SHA запуска: {info['git_sha']}; время расчёта {info['seconds']:.0f} с."))
     rep.build()
     pages = rep.check()
@@ -316,6 +339,18 @@ def write_findings(tests, cc, ranked, names, decs, best, met, mr, a_list, b_list
         lines.append(f"| {label(v, names)} | {dci(c['SCORE'])} | {cc[v]['holm_p_score_select']:.3f} | "
                      f"{dci(c['TOTALS'])} | {dci(c['BTTS'])} | {dci(c['AH'])} | {decs[v]['decision']} |")
     lines += ["", "## Главное", ""] + [f"- {x}" for x in conclusions(tests, cc, ranked, names, decs, best, met, mr)]
+    chk = C.load_json("production_checks.json")
+    if chk:
+        x = chk["dc_pipeline_rho"]
+        lines += ["", "## Код продакшна", "",
+                  "- Скрытая ошибка (флаг `DIXON_COLES = False`, сейчас не действует): `pipeline.py` подбирает ρ по "
+                  "сырым средним, `engine.py` применяет ρ до согласования с 1X2. ρ пайплайна по сезонам "
+                  + ", ".join(f"{v['rho_pipeline_raw_fit']:+.3f}" for v in x.values()) + "; оптимальное после "
+                  "согласования " + ", ".join(f"{v['rho_ml_reconciled']:+.3f}" for v in x.values())
+                  + "; Δ log loss счёта с ρ пайплайна " + ", ".join(dci(v["score_ll_diff_pipeline_vs_production"])
+                                                                   for v in x.values())
+                  + " ×10⁻³. Исправление при включении: подбирать ρ по согласованной матрице.",
+                  "- Складывание хвоста > 10 голов в ячейку 10 — не ошибка (эффект ~1e-5)."]
     lines += ["", "## Решение", ""] + [f"- {x}" for x in recommendations(a_list, b_list, names)]
     lines += ["", "## Воспроизведение", "", "```"] + CMDS + ["```", ""]
     (C.HERE / "findings.md").write_text("\n".join(lines), encoding="utf-8")
