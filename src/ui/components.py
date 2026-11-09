@@ -204,10 +204,15 @@ PROVIDER_NAMES = {"oddspapi": "OddsPapi", "the_odds_api": "The Odds API", "api_f
 def price_origin(row) -> str:
     """"Bet365 · OddsPapi · 17 Oct, 15:42" (the visitor's time) for the small tooltip next to a price."""
     from .timefmt import local_stamp
+    from ..prediction.price_timing import AT_GENERATION, LABELS, shown_quote_time
     parts = [str(row.get("bookmaker") or "").strip(), PROVIDER_NAMES.get(row.get("provider"), row.get("provider"))]
     when = row.get("priced_at") if not missing(row.get("priced_at")) else row.get("odds_priced_at")
+    when = shown_quote_time(row.get("provider"), when)          # Football-Data files carry no quote time
     parts.append(local_stamp(when) if not missing(when) else "")
-    if row.get("odds_origin") == "archive":
+    timing = row.get("odds_timing")
+    if not missing(timing) and timing in LABELS and timing != AT_GENERATION:
+        parts.append(t(LABELS[timing]))
+    elif row.get("odds_origin") in ("archive", "average_replaced"):
         parts.append(t("added later from the price archive"))
     return " · ".join(p for p in parts if p) or t("Real bookmaker price")
 

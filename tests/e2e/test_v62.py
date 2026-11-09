@@ -165,3 +165,11 @@ def test_an_older_prediction_says_it_is_explained_with_current_data(app, old_fin
     note = app.page.locator(".why .why-note").first
     expect(note).to_be_visible()
     expect(note).to_contain_text("were not stored")
+
+
+# -- price timing ------------------------------------------------------------------------------------------
+def test_history_shows_the_roi_of_prices_on_offer_at_prediction_time(app):
+    app.open("history")
+    note = app.page.locator('[data-testid="stCaptionContainer"]').filter(has_text="on offer when the prediction was made")
+    expect(note).to_be_visible()
+    expect(note).to_contain_text("ROI")

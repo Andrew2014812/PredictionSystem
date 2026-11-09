@@ -55,7 +55,11 @@ def markets() -> pd.DataFrame:
 
 
 def picks() -> pd.DataFrame:
-    return _prediction_table(store.PICKS, _mtime(predictions_storage.path(store.PICKS)))
+    df = _prediction_table(store.PICKS, _mtime(predictions_storage.path(store.PICKS)))
+    if not df.empty and "odds_timing" not in df:      # stored by the daily run since v6.2; until then, here
+        from ..prediction.price_timing import classify
+        df = df.assign(odds_timing=classify(df))
+    return df
 
 
 def prediction_inputs() -> pd.DataFrame:
