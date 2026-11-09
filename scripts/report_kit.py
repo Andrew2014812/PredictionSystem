@@ -1,6 +1,6 @@
 """Shared building blocks for the FootPredict research PDFs (Russian, A4, DejaVu fonts).
 
-Every v6.1 report (reports/v6_1/*.pdf) is built with this kit so the six documents look like one
+Every v6.1 and v6.2 report (reports/v6_1/*.pdf, reports/v6_2/*.pdf) is built with this kit so the six documents look like one
 series: a title page with the date and Git SHA, a table of contents, numbered pages, readable tables,
 figures with captions, formulas and a "how to reproduce" block.
 
@@ -316,15 +316,22 @@ class _Doc(BaseDocTemplate):
                                      self.page, key))
 
 
+def series_name(path: Path) -> str:
+    """"FootPredict v6.2" for a report under reports/v6_2/ (the folder names the iteration), v6.1 otherwise."""
+    m = re.search(r"v(\d+)_(\d+)", str(path))
+    return f"FootPredict v{m.group(1)}.{m.group(2)}" if m else "FootPredict v6.1"
+
+
 class Report:
     """One research PDF: title page, contents, body; ``add`` flowables, then ``build`` and ``check``."""
 
-    def __init__(self, path, title: str, subtitle: str = "FootPredict v6.1",
+    def __init__(self, path, title: str, subtitle: str | None = None,
                  facts: dict[str, str] | None = None):
         self.path = Path(path)
         if not self.path.is_absolute():
             self.path = ROOT / self.path
-        self.title, self.subtitle = title, subtitle
+        self.series = series_name(self.path)
+        self.title, self.subtitle = title, subtitle or self.series
         self.facts = facts or {}
         self.story: list = []
 
@@ -352,7 +359,7 @@ class Report:
 
     def build(self) -> Path:
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        doc = _Doc(self.path, f"FootPredict — {self.title}", f"FootPredict v6.1 — {self.title}")
+        doc = _Doc(self.path, f"FootPredict — {self.title}", f"{self.series} — {self.title}")
         doc.multiBuild(self._front() + self.story)
         return self.path
 
