@@ -1,0 +1,23 @@
+sha,at_utc,subject,month,month_credits,remaining,used,entries
+1a0a90c,2026-10-22 11:18:37,Update data and predictions (full),2026-10,3,,,156
+4c184c4,2026-10-23 13:14:11,Update data and predictions (daily),2026-10,5,,,163
+e5a9a1e,2026-10-23 17:27:12,Add the OddsPapi price archive and fill recorded prices,2026-10,5,,,1554
+95e8c3a,2026-10-24 12:35:22,Update data and predictions (daily),2026-10,7,,,1572
+f16746f,2026-10-25 13:39:29,Update data and predictions (daily),2026-10,9,,,1587
+25acd11,2026-10-26 15:48:58,Update data and predictions (daily),2026-10,11,,,1590
+add461e,2026-10-27 15:34:00,Update data and predictions (daily),2026-10,13,,,1670
+d3f4e65,2026-10-28 16:18:26,Update data and predictions (daily),2026-10,15,,,1716
+7cfa74f,2026-10-29 16:25:29,Update data and predictions (daily),2026-10,17,,,1738
+ba0b14c,2026-10-30 16:13:26,Update data and predictions (daily),2026-10,19,,,1750
+6a072a6,2026-10-31 15:30:42,Update data and predictions (daily),2026-10,21,,,1763
+a6b94b6,2026-11-01 16:09:18,Update data and predictions (daily),2026-11,2,,,1769
+6281210,2026-11-02 14:43:31,Add the OddsPapi price archive and fill recorded prices,2026-11,2,,,1867
+96bb282,2026-11-02 19:35:07,Update data and predictions (daily),2026-11,4,,,1882
+bf7ccd0,2026-11-03 17:13:51,Update data and predictions (daily),2026-11,6,,,1934
+a4fb9f9,2026-11-04 17:29:32,Add the OddsPapi price archive and fill recorded prices,2026-11,6,,,2157
+9bd3c19,2026-11-05 08:11:55,Update data and predictions (daily),2026-11,7,,,2235
+06062f0,2026-11-05 10:17:10,Add the OddsPapi price archive and fill recorded prices,2026-11,7,,,2289
+13f6799,2026-11-06 08:15:01,Update data and predictions (daily),2026-11,8,,,2310
+9d00e3d,2026-11-07 07:30:11,Update data and predictions (daily),2026-11,9,,,2311
+70818bd,2026-11-08 07:34:37,Update data and predictions (daily),2026-11,10,,,2312
+f71bbb5,2026-11-09 08:04:53,Update data and predictions (daily),2026-11,11,,,2313

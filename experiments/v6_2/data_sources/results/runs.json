@@ -1,0 +1,839 @@
+{
+ "diagnostics": {
+  "fields": [
+   {
+    "field": "requests",
+    "sources": "все",
+    "meaning": "HTTP-запросы источника в этом запуске (без ответов из кэша)"
+   },
+   {
+    "field": "cached",
+    "sources": "OddsPapi",
+    "meaning": "ответы, взятые из локального кэша (запроса не было)"
+   },
+   {
+    "field": "billable / free",
+    "sources": "OddsPapi",
+    "meaning": "платные (расходуют месячную квоту 250) и бесплатные (/account, /historical-odds) запросы"
+   },
+   {
+    "field": "http",
+    "sources": "все",
+    "meaning": "HTTP-статусы ответов (200, 404 = «нет коэффициентов», 429, 5xx, network)"
+   },
+   {
+    "field": "errors",
+    "sources": "все",
+    "meaning": "сообщения об ошибках API (например, тело ответа с ошибкой при HTTP 200)"
+   },
+   {
+    "field": "files / files_unchanged",
+    "sources": "Football-Data",
+    "meaning": "файлы сезона, изменившиеся / не изменившиеся с прошлого запуска"
+   },
+   {
+    "field": "season_played",
+    "sources": "Football-Data",
+    "meaning": "сыгранных матчей во всех файлах текущего сезона"
+   },
+   {
+    "field": "new_results",
+    "sources": "Football-Data, API-Football",
+    "meaning": "результаты, которых раньше не было в данных (FD — новые строки файлов; AF — матч не был отмечен сыгранным)"
+   },
+   {
+    "field": "returned",
+    "sources": "API-Football, OddsPapi",
+    "meaning": "матчей в ответе провайдера (все лиги мира)"
+   },
+   {
+    "field": "in_leagues",
+    "sources": "API-Football, OddsPapi",
+    "meaning": "из них в 21 лиге FootPredict"
+   },
+   {
+    "field": "matched",
+    "sources": "API-Football, OddsPapi",
+    "meaning": "из них сопоставлены с нашими командами (лига, дата, обе команды)"
+   },
+   {
+    "field": "skipped",
+    "sources": "API-Football, OddsPapi",
+    "meaning": "пропущенные с причиной: не наша лига, неизвестное имя, статус PST/CANC, уже начался, конфликт id"
+   },
+   {
+    "field": "new_fixtures",
+    "sources": "API-Football",
+    "meaning": "матчи, которых ещё не было в данных"
+   },
+   {
+    "field": "finished",
+    "sources": "API-Football",
+    "meaning": "завершённые матчи (FT/AET/PEN) среди сопоставленных"
+   },
+   {
+    "field": "matches_asked / matches_priced",
+    "sources": "OddsPapi",
+    "meaning": "матчей, у которых запрошены цены / получена хоть одна реальная цена"
+   },
+   {
+    "field": "quotes_new / quotes_updated",
+    "sources": "OddsPapi, The Odds API",
+    "meaning": "новые котировки (выбор ещё не был оценён этим букмекером) / изменившиеся цены"
+   },
+   {
+    "field": "credits",
+    "sources": "The Odds API",
+    "meaning": "потраченные кредиты (0, если источник выключен)"
+   },
+   {
+    "field": "left",
+    "sources": "все API",
+    "meaning": "остаток квоты: API-Football — из заголовка ответа; OddsPapi — из /account («?» = неизвестно); The Odds API — из журнала"
+   },
+   {
+    "field": "leagues_updated",
+    "sources": "все",
+    "meaning": "лиги, данные которых этот источник реально изменил"
+   },
+   {
+    "field": "seconds",
+    "sources": "все",
+    "meaning": "время источника (запросы и разбор)"
+   },
+   {
+    "field": "settled_now / voided_now",
+    "sources": "Predictions",
+    "meaning": "прогнозы, рассчитанные / аннулированные в этом запуске"
+   },
+   {
+    "field": "history_checks",
+    "sources": "Predictions",
+    "meaning": "инварианты истории (src/analytics/invariants.py): один Main и один Risk на матч, цены до начала и т. д."
+   },
+   {
+    "field": "waiting_for_a_result",
+    "sources": "Predictions",
+    "meaning": "прошедшие матчи, ещё ждущие результата"
+   }
+  ],
+  "last_run": {
+   "started_at": "2026-11-09T08:03:19",
+   "finished_at": "2026-11-09T08:04:50",
+   "lines": [
+    "Football-Data: 22 requests · 21 files unchanged · 2,050 played matches in the season files · 19 s",
+    "API-Football: 3 requests · 1,446 fixtures returned · 61 in our leagues · 56 matched · 55 finished · 55 new results · skipped: 1385 not one of our leagues, 3 unknown team name, 2 status PST · 97 left · 12 s",
+    "OddsPapi: 4 requests · 573 fixtures returned · 2 in our leagues · 2 matched · 2 matches asked · 2 with real prices · 102 new quotes · 23 updated quotes · skipped: 571 not one of our leagues · ? left",
+    "The Odds API: off (stored prices still used) · 79 left",
+    "Predictions: 444 predictions settled · history checks failed: profit without a price (8) · 107 past matches still waiting for a result"
+   ],
+   "timing": null
+  },
+  "history_runs": 5,
+  "history": [
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "football_data",
+    "n_requests": 22.0,
+    "n_files_unchanged": 17.0,
+    "n_season_played": 2050.0,
+    "n_new_results": 17.0,
+    "n_files": 4.0,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "api_football",
+    "n_requests": 3.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": 5.0,
+    "n_files": null,
+    "n_returned": 769.0,
+    "n_in_leagues": 26.0,
+    "n_matched": 26.0,
+    "n_finished": 5.0,
+    "n_new_fixtures": 1.0,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "oddspapi",
+    "n_requests": 143.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": 3926.0,
+    "n_in_leagues": 141.0,
+    "n_matched": 141.0,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": 142.0,
+    "n_billable": 1.0,
+    "n_quotes_new": 8365.0,
+    "n_quotes_updated": 1295.0,
+    "n_matches_asked": 141.0,
+    "n_matches_priced": 141.0
+   },
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "the_odds_api",
+    "n_requests": null,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "football_data",
+    "n_requests": 22.0,
+    "n_files_unchanged": 18.0,
+    "n_season_played": 2050.0,
+    "n_new_results": 3.0,
+    "n_files": 3.0,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "api_football",
+    "n_requests": 3.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": 1969.0,
+    "n_in_leagues": 103.0,
+    "n_matched": 98.0,
+    "n_finished": null,
+    "n_new_fixtures": 13.0,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "oddspapi",
+    "n_requests": 161.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": 3864.0,
+    "n_in_leagues": 160.0,
+    "n_matched": 159.0,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": 160.0,
+    "n_billable": 1.0,
+    "n_quotes_new": 1773.0,
+    "n_quotes_updated": 3084.0,
+    "n_matches_asked": 159.0,
+    "n_matches_priced": 159.0
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "the_odds_api",
+    "n_requests": null,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "football_data",
+    "n_requests": 22.0,
+    "n_files_unchanged": 21.0,
+    "n_season_played": 2050.0,
+    "n_new_results": 0.0,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "api_football",
+    "n_requests": 3.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": 20.0,
+    "n_files": null,
+    "n_returned": 3034.0,
+    "n_in_leagues": 162.0,
+    "n_matched": 154.0,
+    "n_finished": 20.0,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "oddspapi",
+    "n_requests": 142.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": 3424.0,
+    "n_in_leagues": 140.0,
+    "n_matched": 140.0,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": 141.0,
+    "n_billable": 1.0,
+    "n_quotes_new": 279.0,
+    "n_quotes_updated": 3563.0,
+    "n_matches_asked": 140.0,
+    "n_matches_priced": 140.0
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "the_odds_api",
+    "n_requests": null,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "football_data",
+    "n_requests": 22.0,
+    "n_files_unchanged": 21.0,
+    "n_season_played": 2050.0,
+    "n_new_results": 0.0,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "api_football",
+    "n_requests": 3.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": 77.0,
+    "n_files": null,
+    "n_returned": 2785.0,
+    "n_in_leagues": 142.0,
+    "n_matched": 132.0,
+    "n_finished": 77.0,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "oddspapi",
+    "n_requests": 61.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": 1910.0,
+    "n_in_leagues": 59.0,
+    "n_matched": 59.0,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": 60.0,
+    "n_billable": 1.0,
+    "n_quotes_new": 123.0,
+    "n_quotes_updated": 1778.0,
+    "n_matches_asked": 59.0,
+    "n_matches_priced": 59.0
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "the_odds_api",
+    "n_requests": null,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "football_data",
+    "n_requests": 22.0,
+    "n_files_unchanged": 21.0,
+    "n_season_played": 2050.0,
+    "n_new_results": 0.0,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "api_football",
+    "n_requests": 3.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": 55.0,
+    "n_files": null,
+    "n_returned": 1446.0,
+    "n_in_leagues": 61.0,
+    "n_matched": 56.0,
+    "n_finished": 55.0,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "oddspapi",
+    "n_requests": 4.0,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": 573.0,
+    "n_in_leagues": 2.0,
+    "n_matched": 2.0,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": 3.0,
+    "n_billable": 1.0,
+    "n_quotes_new": 102.0,
+    "n_quotes_updated": 23.0,
+    "n_matches_asked": 2.0,
+    "n_matches_priced": 2.0
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "the_odds_api",
+    "n_requests": null,
+    "n_files_unchanged": null,
+    "n_season_played": null,
+    "n_new_results": null,
+    "n_files": null,
+    "n_returned": null,
+    "n_in_leagues": null,
+    "n_matched": null,
+    "n_finished": null,
+    "n_new_fixtures": null,
+    "n_free": null,
+    "n_billable": null,
+    "n_quotes_new": null,
+    "n_quotes_updated": null,
+    "n_matches_asked": null,
+    "n_matches_priced": null
+   }
+  ],
+  "history_lines": [
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "football_data",
+    "line": "Football-Data: 22 requests · 4 files downloaded · 17 files unchanged · 2,050 played matches in the season files · 17 new results · 19 s"
+   },
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "api_football",
+    "line": "API-Football: 3 requests · 769 fixtures returned · 26 in our leagues · 26 matched · 1 new fixtures · 5 finished · 5 new results · skipped: 743 not one of our leagues · 97 left · 13.0 min"
+   },
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "oddspapi",
+    "line": "OddsPapi: 143 requests · 3,926 fixtures returned · 141 in our leagues · 141 matched · 141 matches asked · 141 with real prices · 8,365 new quotes · 1,295 updated quotes · skipped: 3783 not one of our leagues, 2 already started · ? left"
+   },
+   {
+    "run_at": "2026-11-05T07:57:28",
+    "source": "the_odds_api",
+    "line": "The Odds API: off (stored prices still used) · 79 left"
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "football_data",
+    "line": "Football-Data: 22 requests · 3 files downloaded · 18 files unchanged · 2,050 played matches in the season files · 3 new results · 20 s"
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "api_football",
+    "line": "API-Football: 3 requests · 1,969 fixtures returned · 103 in our leagues · 98 matched · 13 new fixtures · skipped: 1866 not one of our leagues, 3 unknown team name, 2 status PST · 97 left · 14.6 min"
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "oddspapi",
+    "line": "OddsPapi: 161 requests · 3,864 fixtures returned · 160 in our leagues · 159 matched · 159 matches asked · 159 with real prices · 1,773 new quotes · 3,084 updated quotes · skipped: 3701 not one of our leagues, 3 already started, 1 team id conflict · ? left"
+   },
+   {
+    "run_at": "2026-11-06T07:59:03",
+    "source": "the_odds_api",
+    "line": "The Odds API: off (stored prices still used) · 79 left"
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "football_data",
+    "line": "Football-Data: 22 requests · 21 files unchanged · 2,050 played matches in the season files · 19 s"
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "api_football",
+    "line": "API-Football: 3 requests · 3,034 fixtures returned · 162 in our leagues · 154 matched · 20 finished · 20 new results · skipped: 2872 not one of our leagues, 5 unknown team name, 3 status PST · 97 left · 12.9 min"
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "oddspapi",
+    "line": "OddsPapi: 142 requests · 3,424 fixtures returned · 140 in our leagues · 140 matched · 140 matches asked · 140 with real prices · 279 new quotes · 3,563 updated quotes · skipped: 3282 not one of our leagues, 2 already started · ? left"
+   },
+   {
+    "run_at": "2026-11-07T07:15:59",
+    "source": "the_odds_api",
+    "line": "The Odds API: off (stored prices still used) · 79 left"
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "football_data",
+    "line": "Football-Data: 22 requests · 21 files unchanged · 2,050 played matches in the season files · 19 s"
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "api_football",
+    "line": "API-Football: 3 requests · 2,785 fixtures returned · 142 in our leagues · 132 matched · 77 finished · 77 new results · skipped: 2643 not one of our leagues, 6 unknown team name, 4 status PST · 97 left · 5.4 min"
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "oddspapi",
+    "line": "OddsPapi: 61 requests · 1,910 fixtures returned · 59 in our leagues · 59 matched · 59 matches asked · 59 with real prices · 123 new quotes · 1,778 updated quotes · skipped: 1849 not one of our leagues, 2 already started · ? left"
+   },
+   {
+    "run_at": "2026-11-08T07:27:50",
+    "source": "the_odds_api",
+    "line": "The Odds API: off (stored prices still used) · 79 left"
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "football_data",
+    "line": "Football-Data: 22 requests · 21 files unchanged · 2,050 played matches in the season files · 19 s"
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "api_football",
+    "line": "API-Football: 3 requests · 1,446 fixtures returned · 61 in our leagues · 56 matched · 55 finished · 55 new results · skipped: 1385 not one of our leagues, 3 unknown team name, 2 status PST · 97 left · 12 s"
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "oddspapi",
+    "line": "OddsPapi: 4 requests · 573 fixtures returned · 2 in our leagues · 2 matched · 2 matches asked · 2 with real prices · 102 new quotes · 23 updated quotes · skipped: 571 not one of our leagues · ? left"
+   },
+   {
+    "run_at": "2026-11-09T08:03:19",
+    "source": "the_odds_api",
+    "line": "The Odds API: off (stored prices still used) · 79 left"
+   }
+  ]
+ },
+ "schedule": {
+  "workflow_versions": [
+   {
+    "sha": "f465227",
+    "at_utc": "2026-10-07 15:14:09",
+    "subject": "Sync deployment through a scheduled data workflow",
+    "cron": "0 6 * * *; 0 16 * * *",
+    "timezone": "UTC",
+    "dispatch": false
+   },
+   {
+    "sha": "6768889",
+    "at_utc": "2026-10-12 15:14:43",
+    "subject": "Run data updates manually with results, odds and full modes",
+    "cron": "0 18 * * 1; 0 18 * * 4",
+    "timezone": "UTC",
+    "dispatch": false
+   },
+   {
+    "sha": "cbf799e",
+    "at_utc": "2026-10-22 10:22:22",
+    "subject": "Run the data update daily at 11:00 Kyiv time",
+    "cron": "0 8 * * *; 0 9 * * *",
+    "timezone": "UTC",
+    "dispatch": false
+   },
+   {
+    "sha": "33351b3",
+    "at_utc": "2026-10-23 13:07:07",
+    "subject": "Move the daily schedule off the full hour",
+    "cron": "17 8 * * *; 17 9 * * *",
+    "timezone": "UTC",
+    "dispatch": false
+   },
+   {
+    "sha": "9e4c5d7",
+    "at_utc": "2026-11-04 10:54:04",
+    "subject": "Run the daily update at 03:17 Kyiv time once per Kyiv date",
+    "cron": "17 3 * * *",
+    "timezone": "Europe/Kyiv",
+    "dispatch": false
+   }
+  ],
+  "daily_commits": 17,
+  "by_schedule": [
+   {
+    "cron_kyiv": "03:17",
+    "size": 5,
+    "min": 6.219722222222222,
+    "median": 6.798055555555556,
+    "max": 6.966944444444445
+   },
+   {
+    "cron_kyiv": "11:17",
+    "size": 12,
+    "min": 4.306111111111111,
+    "median": 6.702222222222222,
+    "max": 10.301944444444445
+   }
+  ],
+  "diagnostic_starts_kyiv": [
+   "2026-11-05 09:57:28",
+   "2026-11-06 09:59:03",
+   "2026-11-07 09:15:59",
+   "2026-11-08 09:27:50",
+   "2026-11-09 10:03:19"
+  ],
+  "start_delay_after_0317_h": [
+   6.67,
+   6.7,
+   5.98,
+   6.18,
+   6.77
+  ],
+  "daily_run_json": {
+   "kyiv_date": "2026-11-09",
+   "finished_at_utc": "2026-11-09T08:04:52Z",
+   "run_id": "42583119921"
+  },
+  "runs": [
+   {
+    "sha": "4c184c45e01268c56c8d24cb85348975ea33fd2b",
+    "at_utc": "2026-10-23 13:14:11",
+    "kyiv": "2026-10-23 16:14:11",
+    "cron_kyiv": "11:17",
+    "delay_h": 4.953055555555555
+   },
+   {
+    "sha": "95e8c3acde53cadb5bdc82c282554e5ea0febb0d",
+    "at_utc": "2026-10-24 12:35:22",
+    "kyiv": "2026-10-24 15:35:22",
+    "cron_kyiv": "11:17",
+    "delay_h": 4.306111111111111
+   },
+   {
+    "sha": "f16746fabc107b8379bb24a2b7d0cc601705b26a",
+    "at_utc": "2026-10-25 13:39:29",
+    "kyiv": "2026-10-25 15:39:29",
+    "cron_kyiv": "11:17",
+    "delay_h": 4.374722222222222
+   },
+   {
+    "sha": "25acd114a5e52290170632fd6a3b07b3fe8125dd",
+    "at_utc": "2026-10-26 15:48:58",
+    "kyiv": "2026-10-26 17:48:58",
+    "cron_kyiv": "11:17",
+    "delay_h": 6.532777777777778
+   },
+   {
+    "sha": "add461e53210d945dcb41651ce4f4d51424d77c0",
+    "at_utc": "2026-10-27 15:34:00",
+    "kyiv": "2026-10-27 17:34:00",
+    "cron_kyiv": "11:17",
+    "delay_h": 6.283333333333333
+   },
+   {
+    "sha": "d3f4e659619d0a4617f4beaad035a2a6718dc460",
+    "at_utc": "2026-10-28 16:18:26",
+    "kyiv": "2026-10-28 18:18:26",
+    "cron_kyiv": "11:17",
+    "delay_h": 7.023888888888889
+   },
+   {
+    "sha": "7cfa74f0cf553c6ba7202d722d56bf54e30d618c",
+    "at_utc": "2026-10-29 16:25:29",
+    "kyiv": "2026-10-29 18:25:29",
+    "cron_kyiv": "11:17",
+    "delay_h": 7.141388888888889
+   },
+   {
+    "sha": "ba0b14c68c92b0b4b6ef5c600ec2c2dd11617288",
+    "at_utc": "2026-10-30 16:13:26",
+    "kyiv": "2026-10-30 18:13:26",
+    "cron_kyiv": "11:17",
+    "delay_h": 6.940555555555555
+   },
+   {
+    "sha": "6a072a6424cc59591365431a580781b24cc39a08",
+    "at_utc": "2026-10-31 15:30:42",
+    "kyiv": "2026-10-31 17:30:42",
+    "cron_kyiv": "11:17",
+    "delay_h": 6.2283333333333335
+   },
+   {
+    "sha": "a6b94b670d578014eca856a3946f9b98d4bb0fbb",
+    "at_utc": "2026-11-01 16:09:18",
+    "kyiv": "2026-11-01 18:09:18",
+    "cron_kyiv": "11:17",
+    "delay_h": 6.871666666666667
+   },
+   {
+    "sha": "96bb2829bc00f74715533d3151d34ad92f7c8c1e",
+    "at_utc": "2026-11-02 19:35:07",
+    "kyiv": "2026-11-02 21:35:07",
+    "cron_kyiv": "11:17",
+    "delay_h": 10.301944444444445
+   },
+   {
+    "sha": "bf7ccd00976713cc9e6b75d7a590e9ce1ec5423b",
+    "at_utc": "2026-11-03 17:13:51",
+    "kyiv": "2026-11-03 19:13:51",
+    "cron_kyiv": "11:17",
+    "delay_h": 7.9475
+   },
+   {
+    "sha": "9bd3c195a0a68688bc73ac3087c52fe90effc25d",
+    "at_utc": "2026-11-05 08:11:55",
+    "kyiv": "2026-11-05 10:11:55",
+    "cron_kyiv": "03:17",
+    "delay_h": 6.915277777777778
+   },
+   {
+    "sha": "13f67991594bafaa815fdde09670b593efe72226",
+    "at_utc": "2026-11-06 08:15:01",
+    "kyiv": "2026-11-06 10:15:01",
+    "cron_kyiv": "03:17",
+    "delay_h": 6.966944444444445
+   },
+   {
+    "sha": "9d00e3d62fa791eafa9fb146a42b42799d9b1f5f",
+    "at_utc": "2026-11-07 07:30:11",
+    "kyiv": "2026-11-07 09:30:11",
+    "cron_kyiv": "03:17",
+    "delay_h": 6.219722222222222
+   },
+   {
+    "sha": "70818bde2ac7ac50fdc87076352aeeae0ecc06d4",
+    "at_utc": "2026-11-08 07:34:37",
+    "kyiv": "2026-11-08 09:34:37",
+    "cron_kyiv": "03:17",
+    "delay_h": 6.293611111111111
+   },
+   {
+    "sha": "f71bbb5e1a5515e028965ba2d842b0a471621e99",
+    "at_utc": "2026-11-09 08:04:53",
+    "kyiv": "2026-11-09 10:04:53",
+    "cron_kyiv": "03:17",
+    "delay_h": 6.798055555555556
+   }
+  ]
+ }
+}

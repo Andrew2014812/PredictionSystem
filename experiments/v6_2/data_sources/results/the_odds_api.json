@@ -1,0 +1,218 @@
+{
+ "stored": {
+  "rows": 1738,
+  "matches": 322,
+  "first_collected": "2026-10-08 22:03:25.940488",
+  "last_collected": "2026-10-23 13:58:28.331562",
+  "by_group": {
+   "1X2": 322,
+   "BTTS": 8,
+   "CORNERS": 1,
+   "DOUBLE_CHANCE": 8,
+   "TOTAL": 307
+  },
+  "by_bookmaker": {
+   "William Hill": 1537,
+   "LeoVegas": 56,
+   "Paddy Power": 56,
+   "Coral": 44,
+   "Sky Bet": 30,
+   "Virgin Bet": 15
+  },
+  "by_league": {
+   "?": 17,
+   "B1": 81,
+   "D1": 64,
+   "D2": 128,
+   "E0": 86,
+   "E1": 105,
+   "E2": 123,
+   "E3": 122,
+   "F1": 124,
+   "F2": 90,
+   "G1": 92,
+   "I1": 85,
+   "I2": 70,
+   "N1": 80,
+   "P1": 50,
+   "SC0": 42,
+   "SP1": 157,
+   "SP2": 95,
+   "T1": 127
+  },
+  "matches_by_league": {
+   "?": 3,
+   "B1": 17,
+   "D1": 12,
+   "D2": 22,
+   "E0": 16,
+   "E1": 21,
+   "E2": 23,
+   "E3": 24,
+   "F1": 24,
+   "F2": 18,
+   "G1": 14,
+   "I1": 17,
+   "I2": 14,
+   "N1": 16,
+   "P1": 10,
+   "SC0": 8,
+   "SP1": 26,
+   "SP2": 19,
+   "T1": 18
+  }
+ },
+ "credits": {
+  "ledger_month": "2026-10",
+  "ledger_month_credits": 123,
+  "ledger_remaining": 79,
+  "ledger_checked_at": "2026-10-23T13:58:28",
+  "log_requests": 408,
+  "log_credits": 296.0,
+  "log_first": "2026-10-07T17:02:37",
+  "log_last": "2026-10-23T13:12:55",
+  "by_kind": [
+   {
+    "kind": "event odds",
+    "requests": 8,
+    "credits": 25
+   },
+   {
+    "kind": "events",
+    "requests": 288,
+    "credits": 0
+   },
+   {
+    "kind": "odds",
+    "requests": 112,
+    "credits": 271
+   }
+  ],
+  "days": [
+   {
+    "day": "2026-10-07",
+    "requests": 67,
+    "credits": 27,
+    "remaining_after": 473
+   },
+   {
+    "day": "2026-10-08",
+    "requests": 62,
+    "credits": 52,
+    "remaining_after": 421
+   },
+   {
+    "day": "2026-10-09",
+    "requests": 61,
+    "credits": 50,
+    "remaining_after": 371
+   },
+   {
+    "day": "2026-10-10",
+    "requests": 52,
+    "credits": 32,
+    "remaining_after": 339
+   },
+   {
+    "day": "2026-10-11",
+    "requests": 45,
+    "credits": 18,
+    "remaining_after": 321
+   },
+   {
+    "day": "2026-10-12",
+    "requests": 18,
+    "credits": 0,
+    "remaining_after": 321
+   },
+   {
+    "day": "2026-10-16",
+    "requests": 18,
+    "credits": 0,
+    "remaining_after": 315
+   },
+   {
+    "day": "2026-10-17",
+    "requests": 33,
+    "credits": 60,
+    "remaining_after": 195
+   },
+   {
+    "day": "2026-10-22",
+    "requests": 25,
+    "credits": 28,
+    "remaining_after": 108
+   },
+   {
+    "day": "2026-10-23",
+    "requests": 27,
+    "credits": 29,
+    "remaining_after": 79
+   }
+  ]
+ },
+ "dependence": {
+  "by_role": {
+   "main": {
+    "predictions": 99,
+    "settled": 99,
+    "bets": 99,
+    "profit": -15.700000000000001,
+    "roi": -15.858585858585862,
+    "odp_same_selection": 99,
+    "odp_before_generation": 12
+   },
+   "market": {
+    "predictions": 452,
+    "settled": 452,
+    "bets": 452,
+    "profit": 6.719999999999994,
+    "roi": 1.486725663716813,
+    "odp_same_selection": 452,
+    "odp_before_generation": 45
+   },
+   "risk": {
+    "predictions": 210,
+    "settled": 210,
+    "bets": 210,
+    "profit": -65.78000020980835,
+    "roi": -31.32380962371826,
+    "odp_same_selection": 210,
+    "odp_before_generation": 34
+   }
+  },
+  "matches": 223,
+  "dates": [
+   "2026-10-09 00:00:00",
+   "2026-10-26 00:00:00"
+  ],
+  "by_league_main_risk": {
+   "B1": 7,
+   "D1": 14,
+   "D2": 11,
+   "E0": 21,
+   "E1": 20,
+   "E2": 34,
+   "E3": 31,
+   "F1": 15,
+   "F2": 15,
+   "G1": 10,
+   "I1": 19,
+   "I2": 15,
+   "N1": 19,
+   "P1": 6,
+   "SC0": 7,
+   "SP1": 21,
+   "SP2": 26,
+   "T1": 18
+  },
+  "by_group_main_risk": {
+   "1X2": 220,
+   "DOUBLE_CHANCE": 2,
+   "TOTAL": 87
+  },
+  "share_of_main_risk_bets": 0.06984629294755877,
+  "main_risk_priced_total": 4424
+ },
+ "plan_credits_per_month": 500
+}
