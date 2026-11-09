@@ -115,6 +115,8 @@ def kpi(label: str, value: str, sub: str = "", tone_cls: str = "", help_text: st
 
 
 PROFIT_HELP = "Profit is calculated using a fixed stake of 1 unit per prediction."
+PUSH_HELP = ("PUSH means a refunded prediction (e.g. a handicap that ended level). It stays in the history, "
+             "but is not counted in the hit rate or ROI.")
 
 
 def share_axis(top: float) -> tuple[list[float], list[float]]:
@@ -277,8 +279,39 @@ def bar_html(p: float, color: str) -> str:
 
 
 def plotly(fig, height: int = 320) -> None:
-    fig.update_layout(**plotly_layout(), height=height)
+    """Draw a chart with the site's layout underneath the chart's own settings: margins, axes and fonts a
+    chart sets itself win (until v6.2 the shared layout was applied last and reset every chart's margins
+    to 10 px, which cut long league names and the values written next to bars)."""
+    own = fig.layout.to_plotly_json()
+    own.pop("template", None)
+    fig.update_layout(**plotly_layout())
+    fig.update_layout(own, height=height)
+    left = label_margin(fig)
+    if left > (fig.layout.margin.l or 0):
+        fig.update_layout(margin_l=left)
     st.plotly_chart(fig, width="stretch", theme=None, config={"displayModeBar": False})
+
+
+def label_margin(fig, px_per_char: float = 7.2, pad: int = 18) -> int:
+    """Left margin (px) that fits the longest category label of horizontal bars and heatmaps. Plotly's
+    automargin did not widen the margin inside Streamlit, so "England · Premier League" lost its first letters."""
+    labels = []
+    for trace in fig.data:
+        if (trace.type == "bar" and trace.orientation == "h") or trace.type == "heatmap":
+            labels += [str(v) for v in (trace.y if trace.y is not None else [])]
+    if not labels:
+        return 0
+    longest = max(len(part) for label in labels for part in label.split("<br>"))
+    return int(longest * px_per_char + pad)
+
+
+def wrap_label(text: str, width: int = 30) -> str:
+    """A long axis label on two lines (at a word break) instead of shortened."""
+    if len(text) <= width:
+        return text
+    cut = text.rfind(" ", 0, width + 1)
+    cut = cut if cut > width // 2 else width
+    return text[:cut].rstrip() + "<br>" + text[cut:].lstrip()
 
 
 MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October",

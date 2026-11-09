@@ -9,10 +9,10 @@ from src import config
 from src.features.catalog import catalogue
 from src.features.names import feature_label
 from src.ui import data
-from src.ui.components import (empty_state, esc, guard, html_table, kpi_row, num, page_header, pct, plotly, signed,
+from src.ui.components import (empty_state, wrap_label, esc, guard, html_table, kpi_row, num, page_header, pct, plotly, signed,
                                section)
 from src.ui.i18n import current_language, t
-from src.ui.theme import colors
+from src.ui.theme import colors, mix, readable_on
 
 METRIC_HELP = {
     "Accuracy": "Share of matches where the predicted outcome was the actual one. Higher is better.",
@@ -175,10 +175,15 @@ def _classifier(task: dict) -> None:
         cm = m["confusion_matrix"]
         labels = [t("Home"), t("Draw"), t("Away")]
         z = [[cm[a][p] for a in range(3)] for p in range(3)]
-        fig = go.Figure(go.Heatmap(z=z, x=[f"{t('Actual')} {x}" for x in labels],
-                                   y=[f"{t('Predicted')} {x}" for x in labels],
-                                   colorscale=[[0, c["surface"]], [1, c["accent"]]], showscale=False,
-                                   text=z, texttemplate="%{text}", textfont=dict(size=15)))
+        xs, ys = [f"{t('Actual')} {x}" for x in labels], [f"{t('Predicted')} {x}" for x in labels]
+        fig = go.Figure(go.Heatmap(z=z, x=xs, y=ys, colorscale=[[0, c["surface"]], [1, c["accent-fill"] if
+                                   "accent-fill" in c else c["accent"]]], showscale=False, hoverinfo="skip"))
+        top = max(max(row) for row in z) or 1
+        for i, row in enumerate(z):                       # each count in the colour that reads best on its cell
+            for j, v in enumerate(row):
+                cell = mix(c["surface"], c.get("accent-fill", c["accent"]), v / top)
+                fig.add_annotation(x=xs[j], y=ys[i], text=f"{v:,}", showarrow=False,
+                                   font=dict(size=15, color=readable_on(cell)))
         fig.update_yaxes(autorange="reversed")
         plotly(fig, height=320)
     with c2:
@@ -224,11 +229,11 @@ def _features(name: str, task: dict) -> None:
     if not shap_all.empty:
         shap_all["share"] = shap_all["mean_abs_shap"] / shap_all["mean_abs_shap"].sum()
         d = shap_all.head(n).iloc[::-1]
-        fig = go.Figure(go.Bar(x=d["share"], y=[feature_label(f, lang) for f in d["feature"]],
+        fig = go.Figure(go.Bar(x=d["share"], y=[wrap_label(feature_label(f, lang)) for f in d["feature"]],
                                orientation="h", marker_color=c["accent"]))
         fig.update_layout(title=t("Share of influence on the predictions (SHAP, test season)"), xaxis_tickformat=".0%",
                           yaxis=dict(automargin=True))
-        plotly(fig, height=max(320, 24 * len(d) + 60))
+        plotly(fig, height=max(320, 30 * len(d) + 60))
     st.html(f'<div class="note">{t("Each bar is a feature\'s share of the model\'s total influence on its test-season "
             "predictions (all features together = 100%). It shows what matters on average; a match page explains "
             "one particular prediction.")}</div>')
@@ -239,7 +244,7 @@ def _features(name: str, task: dict) -> None:
                          "built; SHAP measures how much it moves actual predictions. They usually agree on the main "
                          "features but can differ for correlated ones."))
             d = gain_rows.iloc[::-1]
-            fig = go.Figure(go.Bar(x=d["gain_share"], y=[feature_label(f, lang) for f in d["feature"]],
+            fig = go.Figure(go.Bar(x=d["gain_share"], y=[wrap_label(feature_label(f, lang)) for f in d["feature"]],
                                    orientation="h", marker_color=c["home"]))
             fig.update_layout(title=t("Feature importance (XGBoost gain)"), xaxis_tickformat=".0%",
                               yaxis=dict(automargin=True))

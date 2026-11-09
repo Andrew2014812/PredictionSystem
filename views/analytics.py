@@ -102,17 +102,24 @@ def _hbar(df: pd.DataFrame, label_fn, value: str, count: str, title: str, kind: 
         colours = [c["bar-hit"]] * len(d)
         text = [f"{v * 100:.0f}%" for v in d[value]]
     unit = t("bets") if kind == "roi" else t("predictions")
+    # ROI values go in a column right of the plot (a value written next to a negative bar would run into the
+    # league names); hit rates (always positive) stay at the end of their bar, inside a range that fits them
     fig = go.Figure(go.Bar(
         x=d[value], y=labels, orientation="h", marker=dict(color=colours, opacity=[0.4 if s_ else 1 for s_ in small],
                                                            line=dict(width=0)),
-        text=text, textposition="outside", cliponaxis=False, textfont=dict(color=c["text"], size=12),
+        text=None if kind == "roi" else text, textposition="outside", cliponaxis=False,
+        textfont=dict(color=c["text"], size=12),
         customdata=d[count], hovertemplate="%{y}: %{x:.1%} · n = %{customdata} " + unit + "<extra></extra>"))
     fig.update_layout(title=title, bargap=0.38, xaxis=dict(tickformat=".0%", zeroline=True, zerolinewidth=1.5,
                                                            zerolinecolor=c["muted"], gridcolor=c["border-soft"]),
-                      yaxis=dict(automargin=True, tickfont=dict(color=c["text"], size=12)), margin=dict(r=70, l=10))
+                      yaxis=dict(automargin=True, tickfont=dict(color=c["text"], size=12)),
+                      margin=dict(r=78 if kind == "roi" else 24, l=10))
     if kind == "roi":
-        span = max(abs(float(d[value].min())), abs(float(d[value].max())), 0.05) * 1.25
+        span = max(abs(float(d[value].min())), abs(float(d[value].max())), 0.05) * 1.1
         fig.update_xaxes(range=[-span, span])
+        for label, v, tx in zip(labels, d[value], text):
+            fig.add_annotation(x=1.0, xref="paper", xanchor="left", xshift=8, y=label, yref="y", text=tx,
+                               showarrow=False, font=dict(size=12, color=c["pos"] if v > 0 else c["neg"]))
     else:
         x_range, ticks = share_axis(d[value].max())
         fig.update_xaxes(range=x_range, tickvals=ticks)
