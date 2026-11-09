@@ -53,13 +53,43 @@ def clear_refunds_without_price(picks: pd.DataFrame) -> tuple[pd.DataFrame, int]
     return picks, int(wrong.sum())
 
 
+def moved_match_ids(picks: pd.DataFrame, matches: pd.DataFrame, priced_ids: set) -> dict[str, str]:
+    """Pick match id → id of the same pairing played up to 60 days later, for a prediction stored under a
+    provisional date whose prices are stored under the day the match was really played (Sabadell – Andorra:
+    predicted for 03.10.2026, played and priced on 04.10)."""
+    if matches.empty or picks.empty:
+        return {}
+    played = matches.loc[matches["played"].astype(bool) & matches["match_id"].isin(priced_ids),
+                         ["match_id", "league", "home_team", "away_team", "date"]]
+    by_pair = {k: g for k, g in played.groupby(["league", "home_team", "away_team"])}
+    out = {}
+    lacking = picks.loc[~picks["match_id"].isin(priced_ids)].drop_duplicates("match_id")
+    for row in lacking.itertuples(index=False):
+        g = by_pair.get((row.league, row.home_team, row.away_team))
+        if g is None:
+            continue
+        day = pd.Timestamp(row.date)
+        later = g.loc[(g["date"] >= day) & (g["date"] <= day + pd.Timedelta(days=60))]
+        if len(later):
+            out[row.match_id] = later.sort_values("date")["match_id"].iloc[0]
+    return out
+
+
 def archive_prices(picks: pd.DataFrame, matches: pd.DataFrame, api: pd.DataFrame | None = None) -> pd.DataFrame:
-    """Last pre-kick-off OddsPapi quote per (match, market, selection) of the given picks."""
+    """Last pre-kick-off OddsPapi quote per (match, market, selection) of the given picks; a prediction of a
+    moved match also gets the quotes stored under the day it was played (before that day's kick-off)."""
     api = load_api_odds() if api is None else api
     if api.empty:
         return api
-    api = api.loc[(api["provider"] == PROVIDER_ODP) & api["match_id"].isin(picks["match_id"])]
-    return best_prices(pre_match_only(api, matches))
+    api = api.loc[api["provider"] == PROVIDER_ODP]
+    moved = moved_match_ids(picks, matches, set(api["match_id"]))
+    own = api.loc[api["match_id"].isin(picks["match_id"])]
+    frames = [pre_match_only(own, matches)]
+    for pick_id, real_id in moved.items():
+        quotes = pre_match_only(api.loc[api["match_id"] == real_id], matches)
+        frames.append(quotes.assign(match_id=pick_id))
+    return best_prices(pd.concat([f for f in frames if not f.empty], ignore_index=True)) \
+        if any(not f.empty for f in frames) else own.iloc[0:0]
 
 
 def fill_archive_prices(picks: pd.DataFrame, prices: pd.DataFrame, push: pd.Series,
@@ -201,7 +231,7 @@ def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, writ
     markets = store.load_markets()
     picks, n_risk = restore_missing_risk(picks, markets, now)
     scoped = picks.loc[picks["source"].isin(REPAIRED_SOURCES)]
-    prices = archive_prices(scoped, features.loc[features["match_id"].isin(scoped["match_id"])])
+    prices = archive_prices(scoped, features)
     push = (markets.loc[markets["match_id"].isin(scoped["match_id"])]
             .drop_duplicates(["match_id", "market", "selection"], keep="last")
             .set_index(["match_id", "market", "selection"])["push_probability"]) if not markets.empty else pd.Series()

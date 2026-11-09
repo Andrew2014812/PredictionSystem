@@ -222,3 +222,45 @@ def test_an_unpriced_whole_line_is_judged_at_its_break_even_price():
                           push_probability=0.22)
     assert effective_odds(sel) == pytest.approx((1 - 0.22) / 0.33)
     assert sel.fair_odds == pytest.approx((1 - 0.22) / 0.33)
+
+
+def test_the_oddspapi_account_answer_is_read_whatever_its_field_names():
+    from src.providers.oddspapi import account_numbers
+    assert account_numbers({"request_limit": 250, "request_count": 69}) == (250, 69)
+    assert account_numbers({"plan": {"requestsLimit": 250, "requestsUsed": 69}}) == (250, 69)
+    assert account_numbers({"remaining": 181, "used": 69}) == (250, 69)
+    assert account_numbers({"plan": "free"}) == (None, None)
+
+
+def test_the_month_counts_every_recorded_request(tmp_path):
+    """November 2026: the ledger showed 11 billable requests while its own records held 69 (archive runs)."""
+    from datetime import datetime
+
+    from src.providers.ledger import CreditLedger, month_spent
+    ledger = CreditLedger(tmp_path / "ledger.json")
+    data = {"requests": {f"historical|{i}": {"at": "2026-11-04T16:51:57", "cost": 1} for i in range(58)}}
+    data["requests"]["fixtures|x"] = {"at": "2026-10-30T07:00:00", "cost": 1}
+    assert month_spent(data, "2026-11") == 58
+    ledger.data = data
+    ledger.record("fixtures|y", 1, 10, datetime(2026, 11, 9, 8, 0))
+    assert ledger.data["month_credits"] == 59
+
+
+def test_a_moved_match_gets_the_prices_stored_under_the_day_it_was_played():
+    """Sabadell – Andorra: predicted for 03.10.2026, played and priced on 04.10."""
+    from src.prediction.history_repair import archive_prices
+    picks = pd.DataFrame({"match_id": ["SP2-20261003-sabadell-andorra"], "league": ["SP2"], "home_team": ["Sabadell"],
+                          "away_team": ["Andorra"], "date": [pd.Timestamp("2026-10-03")], "market": ["1X2"],
+                          "selection": ["H"]})
+    matches = pd.DataFrame({"match_id": ["SP2-20261003-sabadell-andorra", "SP2-20261004-sabadell-andorra"],
+                            "league": ["SP2"] * 2, "home_team": ["Sabadell"] * 2, "away_team": ["Andorra"] * 2,
+                            "date": pd.to_datetime(["2026-10-03", "2026-10-04"]), "played": [False, True],
+                            "kickoff": pd.to_datetime(["2026-10-03 18:00", "2026-10-04 18:00"])})
+    api = pd.DataFrame({"match_id": ["SP2-20261004-sabadell-andorra"] * 2, "provider": ["oddspapi"] * 2,
+                        "bookmaker": ["bet365"] * 2, "market": ["1X2"] * 2, "selection": ["H"] * 2, "line": [None] * 2,
+                        "odds": [2.1, 2.3], "provider_fixture_id": ["f"] * 2,
+                        "collected_at": pd.to_datetime(["2026-10-04 12:00", "2026-10-04 19:00"]),   # 2nd after KO
+                        "priced_at": pd.NaT, "fetched_at": pd.NaT, "kickoff": pd.to_datetime(["2026-10-04 18:00"] * 2)})
+    prices = archive_prices(picks, matches, api)
+    assert prices["match_id"].tolist() == ["SP2-20261003-sabadell-andorra"]
+    assert prices["odds"].tolist() == [2.1]                                   # the pre-kick-off quote only
