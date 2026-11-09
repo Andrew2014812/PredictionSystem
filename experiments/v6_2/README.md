@@ -17,6 +17,7 @@ Every number in a report is read from the result files of its folder when the PD
 | `temporal/` | `Temporal_Features_Research.pdf` |
 | `uncertainty/` | `Prediction_Uncertainty_Research.pdf` |
 | `forward/` | `Forward_Validation_Research.pdf` |
+| `data_sources/` | `Data_Sources_Report.pdf` |
 | `summary/` | `Research_Summary.pdf` |
 
 ## Layout of a study folder
