@@ -1,0 +1,4 @@
+commit,committed_utc,change,match_id,detail
+942195a,2026-10-22 11:28:17,row removed,SC0-20261017-st-johnstone-dundee,played=True (api_football)
+942195a,2026-10-22 11:28:17,row removed,SP1-20261024-santander-barcelona,played=False (oddspapi)
+bf7ccd0,2026-11-03 17:13:51,result turned back into a fixture,SP2-20261102-tenerife-andorra,2-2 (api_football -> api_football)

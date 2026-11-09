@@ -1,0 +1,328 @@
+{
+ "files": 126,
+ "rows": 38115,
+ "played": 38114,
+ "leagues": [
+  "B1",
+  "D1",
+  "D2",
+  "E0",
+  "E1",
+  "E2",
+  "E3",
+  "F1",
+  "F2",
+  "G1",
+  "I1",
+  "I2",
+  "N1",
+  "P1",
+  "SC0",
+  "SC1",
+  "SC2",
+  "SC3",
+  "SP1",
+  "SP2",
+  "T1"
+ ],
+ "seasons": [
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "duplicates": {
+  "duplicate_match_id": 0,
+  "same_pairing_twice_single_rr": 0,
+  "team_twice_same_day": 0,
+  "season_folder_mismatch": 0,
+  "division_mismatch": 0
+ },
+ "sanity": {
+  "sot_gt_shots": 7,
+  "sot_gt_shots_ids": [
+   "E0-20210815-newcastle-west-ham",
+   "SC1-20220225-hamilton-inverness-c",
+   "E2-20230415-accrington-fleetwood-town",
+   "E1-20241110-burnley-swansea",
+   "SC1-20240824-airdrie-utd-queens-park",
+   "SP2-20240907-huesca-burgos",
+   "I1-20261029-fiorentina-atalanta"
+  ],
+  "goals_gt_sot": 180,
+  "goals_gt_sot_share": 0.004722674083014115,
+  "negative_values": 0,
+  "unplayed_rows_in_results": [
+   "F2-20251205-bastia-red-star"
+  ],
+  "same_team_two_games_within_1_day": 1,
+  "same_team_two_games_within_1_day_ids": [
+   "T1-20230226-umraniyespor-ad-demirspor"
+  ],
+  "played_without_stats": 42,
+  "played_without_stats_awarded_like": 33,
+  "played_without_stats_by_league_season": {
+   "B1 2021": 3,
+   "B1 2022": 2,
+   "B1 2024": 1,
+   "D1 2024": 1,
+   "F2 2021": 1,
+   "F2 2022": 1,
+   "G1 2023": 1,
+   "SC2 2024": 1,
+   "T1 2022": 29,
+   "T1 2023": 1,
+   "T1 2024": 1
+  },
+  "low_odds_raw_values": 0
+ },
+ "missing_any_stat_overall": {
+  "goals": 0.0,
+  "shots": 0.0011019572860366269,
+  "sot": 0.0011019572860366269,
+  "corners": 0.0011019572860366269,
+  "fouls": 0.0011544314425145615,
+  "cards": 0.0010494831295586923,
+  "price_1x2": 0.0020727291808784174,
+  "price_ou25": 0.0022039145720732537,
+  "price_ah": 0.005326126882510364
+ },
+ "missing_by_season": {
+  "2021": {
+   "goals": 0.0,
+   "shots": 0.0005467468562055768,
+   "sot": 0.0005467468562055768,
+   "corners": 0.0005467468562055768,
+   "fouls": 0.0008201202843083652,
+   "cards": 0.0004100601421541826,
+   "price_1x2": 0.002186987424822307,
+   "price_ou25": 0.0028704209950792784,
+   "price_ah": 0.008201202843083653
+  },
+  "2022": {
+   "goals": 0.0,
+   "shots": 0.004396812311074471,
+   "sot": 0.004396812311074471,
+   "corners": 0.004396812311074471,
+   "fouls": 0.004396812311074471,
+   "cards": 0.004396812311074471,
+   "price_1x2": 0.005496015388843089,
+   "price_ou25": 0.0053586150041220115,
+   "price_ah": 0.007144820005496016
+  },
+  "2023": {
+   "goals": 0.0,
+   "shots": 0.00027597626604112044,
+   "sot": 0.00027597626604112044,
+   "corners": 0.00027597626604112044,
+   "fouls": 0.00027597626604112044,
+   "cards": 0.00027597626604112044,
+   "price_1x2": 0.0009659169311439217,
+   "price_ou25": 0.0011039050641644817,
+   "price_ah": 0.005105560921760729
+  },
+  "2024": {
+   "goals": 0.0,
+   "shots": 0.0005610885117127227,
+   "sot": 0.0005610885117127227,
+   "corners": 0.0005610885117127227,
+   "fouls": 0.0005610885117127227,
+   "cards": 0.00042081638378454203,
+   "price_1x2": 0.00042081638378454203,
+   "price_ou25": 0.00042081638378454203,
+   "price_ah": 0.003927619581989059
+  },
+  "2025": {
+   "goals": 0.0,
+   "shots": 0.0,
+   "sot": 0.0,
+   "corners": 0.0,
+   "fouls": 0.0,
+   "cards": 0.0,
+   "price_1x2": 0.0016915703411333521,
+   "price_ou25": 0.0016915703411333521,
+   "price_ah": 0.003242176487172258
+  },
+  "2026": {
+   "goals": 0.0,
+   "shots": 0.0,
+   "sot": 0.0,
+   "corners": 0.0,
+   "fouls": 0.0,
+   "cards": 0.0,
+   "price_1x2": 0.0004878048780487805,
+   "price_ou25": 0.0004878048780487805,
+   "price_ah": 0.0014634146341463415
+  }
+ },
+ "ec_disabled": {
+  "rows": 2846,
+  "corners_missing": 0.9536191145467322
+ },
+ "fixture_versions": 10,
+ "fixture_name_drift": 3,
+ "fixture_name_drift_rows": [
+  {
+   "commit": "bf7ccd0",
+   "committed_utc": "2026-11-03 17:13:51",
+   "league": "B1",
+   "date": "2026-11-04",
+   "home": "Kortrijk",
+   "away": "KV Mechelen",
+   "name": "KV Mechelen",
+   "resolves_to": "Mechelen",
+   "match_id": "B1-20261104-kortrijk-kv-mechelen"
+  },
+  {
+   "commit": "bf7ccd0",
+   "committed_utc": "2026-11-03 17:13:51",
+   "league": "E1",
+   "date": "2026-11-03",
+   "home": "Preston",
+   "away": "Sheffield Utd",
+   "name": "Sheffield Utd",
+   "resolves_to": "Sheffield United",
+   "match_id": "E1-20261103-preston-sheffield-utd"
+  },
+  {
+   "commit": "bf7ccd0",
+   "committed_utc": "2026-11-03 17:13:51",
+   "league": "E2",
+   "date": "2026-11-04",
+   "home": "Oxford Utd",
+   "away": "Reading",
+   "name": "Oxford Utd",
+   "resolves_to": "Oxford",
+   "match_id": "E2-20261104-oxford-utd-reading"
+  }
+ ],
+ "results_versions": 143,
+ "results_changes": {
+  "new club name in a running season": 3,
+  "played match disappeared": 3
+ },
+ "live_versions": 33,
+ "live_changes": {
+  "row removed": 2,
+  "result turned back into a fixture": 1
+ },
+ "live_vs_fd": {
+  "live_rows": 970,
+  "by_provider": {
+   "api_football": 621,
+   "the_odds_api": 195,
+   "oddspapi": 154
+  },
+  "played_rows": 609,
+  "in_fd": 791,
+  "swapped_home_away": 0,
+  "swapped_ids": [],
+  "moved_vs_fd": 8,
+  "score_compared": 457,
+  "score_mismatch": 0,
+  "time_compared": 791,
+  "time_mismatch": 0,
+  "api_only_played": 152,
+  "api_only_played_before_fd_last_date": 0,
+  "api_only_played_before_fd_last_date_ids": []
+ },
+ "stale_fixtures": 9,
+ "stale_fixture_ids": [
+  "SP1-20261010-vallecano-ath-bilbao",
+  "G1-20261017-atromitos-aek",
+  "SC1-20261024-morton-ayr",
+  "SC2-20261024-cove-rangers-east-kilbride",
+  "SC0-20261031-dundee-united-hearts",
+  "SP2-20261101-tenerife-andorra",
+  "SP2-20261102-tenerife-andorra",
+  "SP2-20261106-castellon-eibar",
+  "SP2-20261107-burgos-celta-b"
+ ],
+ "unmatched_provider_names": [
+  {
+   "provider": "api_football",
+   "league": "G1",
+   "provider_name": "OFI",
+   "normalised": "ofi",
+   "resolves_to": null,
+   "fd_candidates": "OFI Crete (9)"
+  },
+  {
+   "provider": "api_football",
+   "league": "I2",
+   "provider_name": "Vicenza Virtus",
+   "normalised": "vicenza virtus",
+   "resolves_to": null,
+   "fd_candidates": "Vicenza (10); Virtus Entella (10)"
+  },
+  {
+   "provider": "api_football",
+   "league": "SP2",
+   "provider_name": "Real Sociedad II",
+   "normalised": "real sociedad ii",
+   "resolves_to": null,
+   "fd_candidates": "Sociedad B (12)"
+  }
+ ],
+ "team_id_conflicts": [
+  {
+   "provider": "oddspapi",
+   "provider_team_id": 5044,
+   "registered_as": "Belgium|Mechelen",
+   "name_says": "Belgium|KV Mechelen",
+   "provider_name": "Yellow-Red KV Mechelen"
+  }
+ ],
+ "league_size_changes": [
+  {
+   "league": "B1",
+   "season": 2023,
+   "teams_before": 18,
+   "teams": 16
+  },
+  {
+   "league": "B1",
+   "season": 2026,
+   "teams_before": 16,
+   "teams": 18
+  },
+  {
+   "league": "F1",
+   "season": 2023,
+   "teams_before": 20,
+   "teams": 18
+  },
+  {
+   "league": "F2",
+   "season": 2024,
+   "teams_before": 20,
+   "teams": 18
+  },
+  {
+   "league": "T1",
+   "season": 2022,
+   "teams_before": 20,
+   "teams": 19
+  },
+  {
+   "league": "T1",
+   "season": 2023,
+   "teams_before": 19,
+   "teams": 20
+  },
+  {
+   "league": "T1",
+   "season": 2024,
+   "teams_before": 20,
+   "teams": 19
+  },
+  {
+   "league": "T1",
+   "season": 2025,
+   "teams_before": 19,
+   "teams": 18
+  }
+ ]
+}

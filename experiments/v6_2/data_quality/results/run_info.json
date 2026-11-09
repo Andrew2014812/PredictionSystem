@@ -1,0 +1,101 @@
+{
+ "started": "2026-11-09T18:10:51",
+ "finished": "2026-11-09T18:12:33",
+ "steps_seconds": {
+  "raw_audit": 13.1,
+  "teams": 15.3,
+  "recompute": 22.9,
+  "predictions": 23.1,
+  "store_audit": 30.4,
+  "sensitivity": 82.7,
+  "strata": 89.2,
+  "variants": 100.5,
+  "figures": 102.4
+ },
+ "environment": {
+  "python": "3.12.12",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "libraries": {
+   "numpy": "2.2.6",
+   "pandas": "2.3.3",
+   "sklearn": "1.7.2",
+   "xgboost": "3.0.5",
+   "matplotlib": "3.11.2",
+   "reportlab": "5.1.0",
+   "pypdfium2": null
+  },
+  "git_sha": "36bd2c86ff05c3ea999a50c84a3a903eeb15080a",
+  "n_jobs": 2,
+  "seed": 20261109,
+  "n_boot": 2000
+ },
+ "data_version": {
+  "local_data/processed/features.parquet": {
+   "mtime": "2026-11-09T16:33:59.631106853",
+   "bytes": 17759906,
+   "rows": 38284
+  },
+  "local_data/results_live/fixtures.parquet": {
+   "mtime": "2026-11-09T16:33:59.083106995",
+   "bytes": 61735,
+   "rows": 970
+  },
+  "local_data/fixtures/fixtures.csv": {
+   "mtime": "2026-11-09T16:33:59.003107071",
+   "bytes": 45324
+  },
+  "local_data/predictions/snapshots.parquet": {
+   "mtime": "2026-11-09T16:33:59.443106890",
+   "bytes": 656512,
+   "rows": 9325
+  },
+  "local_data/predictions/picks.parquet": {
+   "mtime": "2026-11-09T16:33:59.439106941",
+   "bytes": 2705461,
+   "rows": 78753
+  },
+  "local_data/predictions/markets.parquet": {
+   "mtime": "2026-11-09T16:33:59.395106792",
+   "bytes": 4280602,
+   "rows": 528177
+  },
+  "local_data/predictions/versions.parquet": {
+   "mtime": "2026-11-09T16:33:59.451106787",
+   "bytes": 575605,
+   "rows": 32047
+  },
+  "local_data/teams/provider_ids.json": {
+   "mtime": "2026-11-09T16:33:59.091106892",
+   "bytes": 11140
+  },
+  "local_data/api/unmatched_teams.csv": {
+   "mtime": "2026-11-09T16:33:58.991106987",
+   "bytes": 106
+  },
+  "local_data/api/team_id_conflicts.csv": {
+   "mtime": "2026-11-09T16:33:58.987107038",
+   "bytes": 138
+  },
+  "local_data/results": {
+   "files": 132,
+   "latest_mtime": "2026-11-09T16:33:59.643106937"
+  }
+ },
+ "parameters": {
+  "eval_seasons": [
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "refit_seasons": [
+   2023,
+   2024
+  ],
+  "backtest_version": "backtest_2526",
+  "production_version": "prod_20261012",
+  "n_boot": 2000,
+  "seed": 20261109,
+  "n_jobs": 2
+ }
+}

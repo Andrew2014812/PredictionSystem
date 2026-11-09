@@ -1,0 +1,121 @@
+{
+ "team_seasons": 2254,
+ "status_by_season": {
+  "2022": {
+   "established": 300,
+   "moved_within": 51,
+   "outside": 28,
+   "returner": 0
+  },
+  "2023": {
+   "established": 295,
+   "moved_within": 52,
+   "outside": 21,
+   "returner": 8
+  },
+  "2024": {
+   "established": 293,
+   "moved_within": 52,
+   "outside": 20,
+   "returner": 8
+  },
+  "2025": {
+   "established": 292,
+   "moved_within": 52,
+   "outside": 16,
+   "returner": 12
+  },
+  "2026": {
+   "established": 297,
+   "moved_within": 50,
+   "outside": 14,
+   "returner": 13
+  }
+ },
+ "outside_or_returner_by_league": {
+  "B1": 9,
+  "D2": 13,
+  "E3": 10,
+  "F2": 11,
+  "G1": 9,
+  "I2": 20,
+  "N1": 15,
+  "P1": 13,
+  "SC2": 2,
+  "SC3": 3,
+  "SP2": 20,
+  "T1": 15
+ },
+ "two_name_candidates": [
+  {
+   "country": "Scotland",
+   "season": 2022,
+   "new_name": "FC Edinburgh",
+   "new_league": "SC2",
+   "old_name": "Edinburgh City",
+   "old_league": "SC3",
+   "shared_words": "edinburgh"
+  },
+  {
+   "country": "Scotland",
+   "season": 2023,
+   "new_name": "Edinburgh City",
+   "new_league": "SC2",
+   "old_name": "FC Edinburgh",
+   "old_league": "SC2",
+   "shared_words": "edinburgh"
+  },
+  {
+   "country": "Scotland",
+   "season": 2022,
+   "new_name": "FC Edinburgh",
+   "new_league": "SC2",
+   "old_name": "Edinburgh City",
+   "old_league": "SC2",
+   "shared_words": "edinburgh"
+  }
+ ],
+ "first_match_of_outside_newcomers": {
+  "n": 99,
+  "form10_n_mean": 0.0,
+  "season_games_mean": 0.0,
+  "rest_days_missing": 1.0,
+  "elo_mean": 1418.1818181818182,
+  "elo_minus_league_mean": -5.718046947498762
+ },
+ "points_per_game_by_status": {
+  "established": 1.396285531713149,
+  "moved_within": 1.320351193156236,
+  "outside": 1.2098468928249775,
+  "returner": 1.1168941979522184
+ },
+ "returner_gap_days": {
+  "n": 41,
+  "median_days": 463.0,
+  "min_days": 433.0,
+  "max_days": 1568.0
+ },
+ "tier_base_elo": {
+  "B1": 1500.0,
+  "D1": 1500.0,
+  "D2": 1400.0,
+  "E0": 1500.0,
+  "E1": 1400.0,
+  "E2": 1300.0,
+  "E3": 1200.0,
+  "F1": 1500.0,
+  "F2": 1400.0,
+  "G1": 1500.0,
+  "I1": 1500.0,
+  "I2": 1400.0,
+  "N1": 1500.0,
+  "P1": 1500.0,
+  "SC0": 1500.0,
+  "SC1": 1400.0,
+  "SC2": 1300.0,
+  "SC3": 1200.0,
+  "SP1": 1500.0,
+  "SP2": 1400.0,
+  "T1": 1500.0
+ }
+}
