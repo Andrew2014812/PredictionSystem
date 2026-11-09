@@ -177,8 +177,8 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     """Settle UPCOMING picks against played matches; returns all picks.
 
     Unit stake per pick with a real price: a win returns ``odds - 1``, a loss
-    ``-1``, a void 0. Picks without a real price are settled (won / lost) but
-    have no profit.
+    ``-1``, a refund (push or void) 0. Picks without a real price are settled
+    (won / lost / push / void) but have no profit.
     A pick without a result VOID_AFTER_DAYS after its date is voided
     (postponed or abandoned match).
     """
@@ -204,8 +204,9 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     profit = pd.Series(np.nan, index=pending.index)
     has_result = scores["home_goals"].notna()
     overdue = pending["date"] + pd.Timedelta(days=config.VOID_AFTER_DAYS) < today
+    has_price = pending["odds"].notna() & (pending["odds"] > 0)
     status[~has_result & overdue] = "VOID"
-    profit[~has_result & overdue] = 0.0
+    profit[~has_result & overdue & has_price] = 0.0       # a refund needs a stake: no price, no profit
     for idx in scores.index[has_result]:
         pick, row = pending.loc[idx], scores.loc[idx]
         outcome = settle_selection(pick["market"], pick["selection"], row["home_goals"], row["away_goals"],
@@ -215,7 +216,7 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
             # e.g. corners not (yet) reported: an API result carries goals only,
             # the statistics arrive with Football-Data. Void only when overdue.
             if overdue[idx]:
-                status[idx], profit[idx] = "VOID", 0.0
+                status[idx], profit[idx] = "VOID", (0.0 if odds else np.nan)
             continue
         status[idx] = outcome
         # profit only with a real bookmaker price; otherwise the pick is settled

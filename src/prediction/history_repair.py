@@ -38,8 +38,18 @@ REPAIRED_SOURCES = ("live", "backfill")
 
 
 def _profit(status: pd.Series, odds: np.ndarray) -> np.ndarray:
+    priced = ~np.isnan(np.asarray(odds, dtype=float))
     return np.where(status == WON, odds - 1, np.where(status == "LOST", -1.0,
-                                                    np.where(status.isin([PUSH, "VOID"]), 0.0, np.nan)))
+                                                    np.where(status.isin([PUSH, "VOID"]) & priced, 0.0, np.nan)))
+
+
+def clear_refunds_without_price(picks: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+    """A push / void without a real price was no bet: its profit is empty, not 0 (older runs stored 0)."""
+    wrong = picks["status"].isin([PUSH, "VOID"]) & picks["odds"].isna() & picks["profit"].notna()
+    if wrong.any():
+        picks = picks.copy()
+        picks.loc[wrong, "profit"] = np.nan
+    return picks, int(wrong.sum())
 
 
 def archive_prices(picks: pd.DataFrame, matches: pd.DataFrame, api: pd.DataFrame | None = None) -> pd.DataFrame:
@@ -203,11 +213,12 @@ def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, writ
         real = best_prices(pre_match_only(api, features.loc[features["match_id"].isin(averaged["match_id"])])) \
             if not api.empty else api
     picks, n_replaced, n_removed = replace_average_prices(picks, real, push)
+    picks, n_cleared = clear_refunds_without_price(picks)
     summary = {"risk_restored": n_risk, "prices_filled": n_odds, "average_prices_replaced": n_replaced,
-               "average_prices_removed": n_removed}
+               "average_prices_removed": n_removed, "refund_profit_cleared": n_cleared}
     if out is not None:
         out["picks"] = picks
-    if write and (n_risk or n_odds or n_replaced or n_removed):
+    if write and (n_risk or n_odds or n_replaced or n_removed or n_cleared):
         predictions_storage.write_parquet(store.PICKS, picks)
         if n_risk:
             store.settle(features)                     # restored Risk of finished matches gets its result
