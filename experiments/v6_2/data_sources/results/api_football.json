@@ -1,0 +1,362 @@
+{
+ "method": "API-Football: what it delivers, and how much earlier than Football-Data a result arrives.\n\nMethod. Every pipeline run commits ``local_data/`` (CI runs to ``main``, merged into this branch), so the git\nhistory is a log of what each source had delivered by each run:\n\n* t_AF  = time of the first commit in which ``results_live/fixtures.parquet`` holds the match as played with\n          ``provider = api_football``;\n* t_FD  = time of the first commit in which a Football-Data season file ``results/2627/<league>.csv`` holds the\n          match with a score.\n\nBoth sources are asked in the same run (providers first, then Football-Data), so a lead of 0 means \"same run\".\nTimes are commit times (UTC); a result can only be seen at a run, so the lead is measured in run intervals.\nUniverse: 2026/27 matches of the 21 leagues that kicked off after the first committed API-Football row.",
+ "start_utc": "2026-10-09 20:35:40",
+ "last_commit_utc": "2026-11-09 08:04:53",
+ "commits_live_file": 33,
+ "commits_fd_files": 12,
+ "matches": 962,
+ "categories": {
+  "API-Football раньше": 401,
+  "только Football-Data": 353,
+  "только API-Football (Football-Data ещё нет)": 154,
+  "в одном запуске": 54
+ },
+ "categories_by_league": [
+  {
+   "league": "B1",
+   "API-Football раньше": 14,
+   "в одном запуске": 3,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 11
+  },
+  {
+   "league": "D1",
+   "API-Football раньше": 21,
+   "в одном запуске": 2,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 13
+  },
+  {
+   "league": "D2",
+   "API-Football раньше": 20,
+   "в одном запуске": 0,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 14
+  },
+  {
+   "league": "E0",
+   "API-Football раньше": 21,
+   "в одном запуске": 2,
+   "только API-Football (Football-Data ещё нет)": 10,
+   "только Football-Data": 17
+  },
+  {
+   "league": "E1",
+   "API-Football раньше": 36,
+   "в одном запуске": 3,
+   "только API-Football (Football-Data ещё нет)": 12,
+   "только Football-Data": 35
+  },
+  {
+   "league": "E2",
+   "API-Football раньше": 42,
+   "в одном запуске": 0,
+   "только API-Football (Football-Data ещё нет)": 0,
+   "только Football-Data": 27
+  },
+  {
+   "league": "E3",
+   "API-Football раньше": 36,
+   "в одном запуске": 0,
+   "только API-Football (Football-Data ещё нет)": 0,
+   "только Football-Data": 26
+  },
+  {
+   "league": "F1",
+   "API-Football раньше": 13,
+   "в одном запуске": 4,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 19
+  },
+  {
+   "league": "F2",
+   "API-Football раньше": 21,
+   "в одном запуске": 2,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 13
+  },
+  {
+   "league": "G1",
+   "API-Football раньше": 7,
+   "в одном запуске": 3,
+   "только API-Football (Football-Data ещё нет)": 6,
+   "только Football-Data": 17
+  },
+  {
+   "league": "I1",
+   "API-Football раньше": 20,
+   "в одном запуске": 10,
+   "только API-Football (Football-Data ещё нет)": 10,
+   "только Football-Data": 20
+  },
+  {
+   "league": "I2",
+   "API-Football раньше": 28,
+   "в одном запуске": 4,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 18
+  },
+  {
+   "league": "N1",
+   "API-Football раньше": 18,
+   "в одном запуске": 1,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 17
+  },
+  {
+   "league": "P1",
+   "API-Football раньше": 11,
+   "в одном запуске": 6,
+   "только API-Football (Football-Data ещё нет)": 8,
+   "только Football-Data": 11
+  },
+  {
+   "league": "SC0",
+   "API-Football раньше": 11,
+   "в одном запуске": 6,
+   "только API-Football (Football-Data ещё нет)": 7,
+   "только Football-Data": 10
+  },
+  {
+   "league": "SC1",
+   "API-Football раньше": 12,
+   "в одном запуске": 0,
+   "только API-Football (Football-Data ещё нет)": 4,
+   "только Football-Data": 10
+  },
+  {
+   "league": "SC2",
+   "API-Football раньше": 9,
+   "в одном запуске": 0,
+   "только API-Football (Football-Data ещё нет)": 4,
+   "только Football-Data": 11
+  },
+  {
+   "league": "SC3",
+   "API-Football раньше": 12,
+   "в одном запуске": 0,
+   "только API-Football (Football-Data ещё нет)": 5,
+   "только Football-Data": 3
+  },
+  {
+   "league": "SP1",
+   "API-Football раньше": 17,
+   "в одном запуске": 4,
+   "только API-Football (Football-Data ещё нет)": 10,
+   "только Football-Data": 19
+  },
+  {
+   "league": "SP2",
+   "API-Football раньше": 14,
+   "в одном запуске": 3,
+   "только API-Football (Football-Data ещё нет)": 6,
+   "только Football-Data": 26
+  },
+  {
+   "league": "T1",
+   "API-Football раньше": 18,
+   "в одном запуске": 1,
+   "только API-Football (Football-Data ещё нет)": 9,
+   "только Football-Data": 16
+  }
+ ],
+ "lead": {
+  "n": 401,
+  "mean_h": 87.20833679689665,
+  "median_h": 114.86194444444445,
+  "p25_h": 22.408333333333335,
+  "p75_h": 124.66638888888889,
+  "p90_h": 140.76666666666668,
+  "max_h": 163.9788888888889,
+  "days_hist": {
+   "1": 125,
+   "2": 34,
+   "4": 6,
+   "5": 142,
+   "6": 85,
+   "7": 9
+  }
+ },
+ "delay_after_kickoff": {
+  "api_football": {
+   "n": 609,
+   "median_h": 14.081388888888888,
+   "p25_h": 5.461111111111111,
+   "p75_h": 20.655,
+   "p90_h": 23.91366666666667
+  },
+  "football_data": {
+   "n": 808,
+   "median_h": 73.56666666666666,
+   "p25_h": 47.31666666666667,
+   "p75_h": 118.31027777777778,
+   "p90_h": 146.57333333333332
+  }
+ },
+ "per_run": {
+  "runs_with_live_file": 29,
+  "runs_with_af_first_results": 16,
+  "mean_per_run_with_results": 34.6875,
+  "median_per_run": 18.5,
+  "max_per_run": 100,
+  "days": 14,
+  "mean_per_day": 39.642857142857146
+ },
+ "per_day": {
+  "2026-10-09": 9,
+  "2026-10-10": 84,
+  "2026-10-11": 51,
+  "2026-10-12": 6,
+  "2026-10-16": 1,
+  "2026-10-17": 92,
+  "2026-10-28": 17,
+  "2026-10-31": 34,
+  "2026-11-01": 100,
+  "2026-11-02": 7,
+  "2026-11-05": 2,
+  "2026-11-07": 20,
+  "2026-11-08": 77,
+  "2026-11-09": 55
+ },
+ "pending_now": 154,
+ "pending_oldest_h": 543.6330555555555,
+ "score_differs": [],
+ "value": {
+  "matches": 555,
+  "main_risk_predictions": 1106,
+  "settleable_with_goals": 1091,
+  "need_corner_statistics": 15,
+  "market_forecasts": 3712,
+  "next_matches_with_af_result_in_features": 42
+ },
+ "fd_only": {
+  "n": 353,
+  "by_league": {
+   "E1": 35,
+   "E2": 27,
+   "E3": 26,
+   "SP2": 26,
+   "I1": 20,
+   "SP1": 19,
+   "F1": 19,
+   "I2": 18,
+   "E0": 17,
+   "N1": 17,
+   "G1": 17,
+   "T1": 16,
+   "D2": 14,
+   "F2": 13,
+   "D1": 13,
+   "B1": 11,
+   "P1": 11,
+   "SC2": 11,
+   "SC0": 10,
+   "SC1": 10,
+   "SC3": 3
+  },
+  "by_reason": {
+   "запуски 17–28.10 без данных API-Football": 178,
+   "не было запуска в окне API-Football (вчера/сегодня)": 134,
+   "другое": 29,
+   "имя клуба API-Football не сопоставлено": 12
+  },
+  "dead_period": [
+   "2026-10-17 16:26:54",
+   "2026-10-28 17:46:27"
+  ],
+  "examples": [
+   {
+    "match_id": "E2-20261103-wigan-mansfield",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E2-20261103-huddersfield-luton",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-watford-lincoln",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-preston-sheffield-utd",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-blackburn-stoke",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-charlton-bolton",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-derby-norwich",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-qpr-burnley",
+    "kickoff": "2026-11-03 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-west-brom-southampton",
+    "kickoff": "2026-11-03 20:00:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E1-20261103-birmingham-millwall",
+    "kickoff": "2026-11-03 20:00:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "B1-20261104-kortrijk-kv-mechelen",
+    "kickoff": "2026-11-04 19:30:00",
+    "t_fd": "2026-11-05 08:11:55"
+   },
+   {
+    "match_id": "E2-20261104-oxford-utd-reading",
+    "kickoff": "2026-11-04 19:45:00",
+    "t_fd": "2026-11-05 08:11:55"
+   }
+  ]
+ },
+ "unmatched_names": [
+  {
+   "provider": "api_football",
+   "league": "G1",
+   "name": "OFI"
+  },
+  {
+   "provider": "api_football",
+   "league": "I2",
+   "name": "Vicenza Virtus"
+  },
+  {
+   "provider": "api_football",
+   "league": "SP2",
+   "name": "Real Sociedad II"
+  }
+ ],
+ "not_played_rows": 0,
+ "logos": {
+  "clubs": 394,
+  "by_source": {
+   "api-football": 394
+  }
+ },
+ "quota_log": {
+  "requests": 102,
+  "runs": 34,
+  "per_run_min": 3,
+  "per_run_max": 3,
+  "first": "2026-10-07T17:02:37",
+  "last": "2026-11-09T08:03:24"
+ }
+}

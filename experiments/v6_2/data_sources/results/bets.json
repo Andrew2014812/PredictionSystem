@@ -1,0 +1,907 @@
+{
+ "definitions": "Recheck of the 2026/27 Main / Risk history after the last OddsPapi import (read only).\n\nUniverse: ``unified_history`` (src/analytics/performance.py) — per match the predictions recorded before kick-off\n(source = live) when they exist, otherwise the retrospective reconstruction (source = backfill); one prediction\nper real match. Roles main / risk. Nothing is re-selected and no data is written: the stored selection, price,\nstatus and profit are counted as they are.\n\nDefinitions\n    bet                     WON / LOST with a real price and a profit (``performance.staked``)\n    ROI                     sum(profit) / bets × 100 (stake 1); PUSH and VOID are not staked\n    mean EV                 mean of the stored ``ev`` over the bets (EV at the stored price)\n    match odds coverage     the match has at least one real bookmaker market: a quote in odds.parquet (OddsPapi,\n                            The Odds API) or a Bet365 price in the Football-Data row (features.parquet odds_*)\n    prediction coverage     the stored Main / Risk has a real price for exactly its selection and line",
+ "history_matches": 2217,
+ "overall": [
+  {
+   "role": "main",
+   "predictions": 2217,
+   "settled": 2202,
+   "won": 1460,
+   "lost": 742,
+   "push": 0,
+   "void": 1,
+   "pending": 14,
+   "priced": 2211,
+   "priced_settled": 2199,
+   "bets": 2199,
+   "profit": -91.43700000000001,
+   "roi": -4.158117326057299,
+   "mean_ev": 0.041408010995575326,
+   "avg_odds": 1.4828758526603,
+   "hit_rate": 0.6630336058128974,
+   "coverage": 0.9986376021798365
+  },
+  {
+   "role": "risk",
+   "predictions": 2217,
+   "settled": 2197,
+   "won": 589,
+   "lost": 1607,
+   "push": 1,
+   "void": 1,
+   "pending": 19,
+   "priced": 2213,
+   "priced_settled": 2196,
+   "bets": 2195,
+   "profit": -256.0180003433227,
+   "roi": -11.663690220652514,
+   "mean_ev": 0.08912268081918823,
+   "avg_odds": 3.3790369012159203,
+   "hit_rate": 0.26821493624772313,
+   "coverage": 0.9995448338643604
+  }
+ ],
+ "by_source": [
+  {
+   "role": "main",
+   "source": "backfill",
+   "predictions": 1272,
+   "settled": 1272,
+   "won": 843,
+   "lost": 429,
+   "push": 0,
+   "void": 0,
+   "pending": 0,
+   "priced": 1271,
+   "priced_settled": 1271,
+   "bets": 1271,
+   "profit": -60.541,
+   "roi": -4.763257277734068,
+   "mean_ev": 0.05613076046704503,
+   "avg_odds": 1.4509748229740362,
+   "hit_rate": 0.6627358490566038,
+   "coverage": 0.9992138364779874
+  },
+  {
+   "role": "main",
+   "source": "live",
+   "predictions": 945,
+   "settled": 930,
+   "won": 617,
+   "lost": 313,
+   "push": 0,
+   "void": 1,
+   "pending": 14,
+   "priced": 940,
+   "priced_settled": 928,
+   "bets": 928,
+   "profit": -30.895999999999997,
+   "roi": -3.329310344827586,
+   "mean_ev": 0.021243555631094736,
+   "avg_odds": 1.5265678879310347,
+   "hit_rate": 0.6634408602150538,
+   "coverage": 0.9978494623655914
+  },
+  {
+   "role": "risk",
+   "source": "backfill",
+   "predictions": 1272,
+   "settled": 1272,
+   "won": 352,
+   "lost": 920,
+   "push": 0,
+   "void": 0,
+   "pending": 0,
+   "priced": 1272,
+   "priced_settled": 1272,
+   "bets": 1272,
+   "profit": -110.19800000000001,
+   "roi": -8.663364779874215,
+   "mean_ev": 0.12110941425824655,
+   "avg_odds": 3.3588018867924534,
+   "hit_rate": 0.27672955974842767,
+   "coverage": 1.0
+  },
+  {
+   "role": "risk",
+   "source": "live",
+   "predictions": 945,
+   "settled": 925,
+   "won": 237,
+   "lost": 687,
+   "push": 1,
+   "void": 1,
+   "pending": 19,
+   "priced": 941,
+   "priced_settled": 924,
+   "bets": 923,
+   "profit": -145.82000034332276,
+   "roi": -15.79848324413031,
+   "mean_ev": 0.04504128869082184,
+   "avg_odds": 3.406923074939269,
+   "hit_rate": 0.2564935064935065,
+   "coverage": 0.9989189189189189
+  }
+ ],
+ "match_coverage": {
+  "matches_settled": 2202,
+  "with_any_real_market": 2201,
+  "share": 0.9995458673932789,
+  "by_league": [
+   {
+    "league": "B1",
+    "matches": 99,
+    "any_real_market": 99,
+    "oddspapi": 99,
+    "the_odds_api": 17,
+    "football_data_bet365": 90,
+    "share": 1.0
+   },
+   {
+    "league": "D1",
+    "matches": 81,
+    "any_real_market": 81,
+    "oddspapi": 81,
+    "the_odds_api": 12,
+    "football_data_bet365": 72,
+    "share": 1.0
+   },
+   {
+    "league": "D2",
+    "matches": 99,
+    "any_real_market": 99,
+    "oddspapi": 99,
+    "the_odds_api": 22,
+    "football_data_bet365": 90,
+    "share": 1.0
+   },
+   {
+    "league": "E0",
+    "matches": 100,
+    "any_real_market": 100,
+    "oddspapi": 100,
+    "the_odds_api": 16,
+    "football_data_bet365": 90,
+    "share": 1.0
+   },
+   {
+    "league": "E1",
+    "matches": 180,
+    "any_real_market": 180,
+    "oddspapi": 180,
+    "the_odds_api": 21,
+    "football_data_bet365": 168,
+    "share": 1.0
+   },
+   {
+    "league": "E2",
+    "matches": 158,
+    "any_real_market": 158,
+    "oddspapi": 158,
+    "the_odds_api": 23,
+    "football_data_bet365": 158,
+    "share": 1.0
+   },
+   {
+    "league": "E3",
+    "matches": 164,
+    "any_real_market": 164,
+    "oddspapi": 164,
+    "the_odds_api": 24,
+    "football_data_bet365": 164,
+    "share": 1.0
+   },
+   {
+    "league": "F1",
+    "matches": 90,
+    "any_real_market": 90,
+    "oddspapi": 90,
+    "the_odds_api": 24,
+    "football_data_bet365": 81,
+    "share": 1.0
+   },
+   {
+    "league": "F2",
+    "matches": 108,
+    "any_real_market": 108,
+    "oddspapi": 108,
+    "the_odds_api": 18,
+    "football_data_bet365": 98,
+    "share": 1.0
+   },
+   {
+    "league": "G1",
+    "matches": 68,
+    "any_real_market": 68,
+    "oddspapi": 68,
+    "the_odds_api": 14,
+    "football_data_bet365": 62,
+    "share": 1.0
+   },
+   {
+    "league": "I1",
+    "matches": 110,
+    "any_real_market": 110,
+    "oddspapi": 110,
+    "the_odds_api": 17,
+    "football_data_bet365": 100,
+    "share": 1.0
+   },
+   {
+    "league": "I2",
+    "matches": 109,
+    "any_real_market": 109,
+    "oddspapi": 109,
+    "the_odds_api": 14,
+    "football_data_bet365": 100,
+    "share": 1.0
+   },
+   {
+    "league": "N1",
+    "matches": 108,
+    "any_real_market": 108,
+    "oddspapi": 108,
+    "the_odds_api": 16,
+    "football_data_bet365": 99,
+    "share": 1.0
+   },
+   {
+    "league": "P1",
+    "matches": 98,
+    "any_real_market": 98,
+    "oddspapi": 98,
+    "the_odds_api": 10,
+    "football_data_bet365": 90,
+    "share": 1.0
+   },
+   {
+    "league": "SC0",
+    "matches": 74,
+    "any_real_market": 74,
+    "oddspapi": 73,
+    "the_odds_api": 8,
+    "football_data_bet365": 69,
+    "share": 1.0
+   },
+   {
+    "league": "SC1",
+    "matches": 68,
+    "any_real_market": 68,
+    "oddspapi": 68,
+    "the_odds_api": 0,
+    "football_data_bet365": 64,
+    "share": 1.0
+   },
+   {
+    "league": "SC2",
+    "matches": 68,
+    "any_real_market": 68,
+    "oddspapi": 68,
+    "the_odds_api": 0,
+    "football_data_bet365": 64,
+    "share": 1.0
+   },
+   {
+    "league": "SC3",
+    "matches": 65,
+    "any_real_market": 65,
+    "oddspapi": 65,
+    "the_odds_api": 0,
+    "football_data_bet365": 60,
+    "share": 1.0
+   },
+   {
+    "league": "SP1",
+    "matches": 119,
+    "any_real_market": 119,
+    "oddspapi": 119,
+    "the_odds_api": 25,
+    "football_data_bet365": 109,
+    "share": 1.0
+   },
+   {
+    "league": "SP2",
+    "matches": 137,
+    "any_real_market": 136,
+    "oddspapi": 136,
+    "the_odds_api": 19,
+    "football_data_bet365": 130,
+    "share": 0.9927007299270073
+   },
+   {
+    "league": "T1",
+    "matches": 99,
+    "any_real_market": 99,
+    "oddspapi": 99,
+    "the_odds_api": 18,
+    "football_data_bet365": 90,
+    "share": 1.0
+   },
+   {
+    "league": "Всего",
+    "matches": 2202,
+    "any_real_market": 2201,
+    "oddspapi": 2200,
+    "the_odds_api": 318,
+    "football_data_bet365": 2048,
+    "share": 0.9995458673932789
+   }
+  ],
+  "without": [
+   "SP2-20261003-sabadell-andorra"
+  ]
+ },
+ "prediction_coverage": {
+  "main": {
+   "settled": 2202,
+   "priced_settled": 2199,
+   "share": 0.9986376021798365
+  },
+  "risk": {
+   "settled": 2197,
+   "priced_settled": 2196,
+   "share": 0.9995448338643604
+  }
+ },
+ "unpriced": {
+  "total": 10,
+  "settled_or_void": 6,
+  "by_reason": [
+   {
+    "role": "main",
+    "reason": "VOID: результата нет (матч не состоялся)",
+    "n": 1
+   },
+   {
+    "role": "main",
+    "reason": "match not in the OddsPapi fixture list",
+    "n": 1
+   },
+   {
+    "role": "main",
+    "reason": "this line of the market not offered",
+    "n": 1
+   },
+   {
+    "role": "main",
+    "reason": "дата прошла, результата нет ни из одного источника",
+    "n": 1
+   },
+   {
+    "role": "main",
+    "reason": "матч ещё не сыгран (цена ещё может прийти)",
+    "n": 1
+   },
+   {
+    "role": "main",
+    "reason": "перенесённый матч: цена хранится под другой датой: SP2-20261004-sabadell-andorra",
+    "n": 1
+   },
+   {
+    "role": "risk",
+    "reason": "VOID: результата нет (матч не состоялся)",
+    "n": 1
+   },
+   {
+    "role": "risk",
+    "reason": "дата прошла, результата нет ни из одного источника",
+    "n": 1
+   },
+   {
+    "role": "risk",
+    "reason": "матч ещё не сыгран (цена ещё может прийти)",
+    "n": 1
+   },
+   {
+    "role": "risk",
+    "reason": "перенесённый матч: цена хранится под другой датой: SP2-20261004-sabadell-andorra",
+    "n": 1
+   }
+  ],
+  "rows": [
+   {
+    "league": "SC0",
+    "date": "2026-07-31",
+    "match_id": "SC0-20260731-dundee-united-rangers",
+    "home_team": "Dundee United",
+    "away_team": "Rangers",
+    "role": "main",
+    "source": "backfill",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": "0.6602281702121179",
+    "status": "WON",
+    "reason": "match not in the OddsPapi fixture list",
+    "recoverable": "no (OddsPapi has no such fixture)"
+   },
+   {
+    "league": "SP2",
+    "date": "2026-10-03",
+    "match_id": "SP2-20261003-sabadell-andorra",
+    "home_team": "Sabadell",
+    "away_team": "Andorra",
+    "role": "main",
+    "source": "live",
+    "market": "1X2",
+    "selection": "H",
+    "probability": "0.5072129889247866",
+    "status": "LOST",
+    "reason": "перенесённый матч: цена хранится под другой датой: SP2-20261004-sabadell-andorra",
+    "recoverable": "да — цена той же ставки есть под id дня игры"
+   },
+   {
+    "league": "SP2",
+    "date": "2026-10-03",
+    "match_id": "SP2-20261003-sabadell-andorra",
+    "home_team": "Sabadell",
+    "away_team": "Andorra",
+    "role": "risk",
+    "source": "live",
+    "market": "EHANDICAP_-1",
+    "selection": "H",
+    "probability": "0.2650954477073805",
+    "status": "LOST",
+    "reason": "перенесённый матч: цена хранится под другой датой: SP2-20261004-sabadell-andorra",
+    "recoverable": "да — цена той же ставки есть под id дня игры"
+   },
+   {
+    "league": "N1",
+    "date": "2026-10-11",
+    "match_id": "N1-20261011-excelsior-groningen",
+    "home_team": "Excelsior",
+    "away_team": "Groningen",
+    "role": "main",
+    "source": "live",
+    "market": "HANDICAP_+1.5",
+    "selection": "H",
+    "probability": "0.7946951419371703",
+    "status": "LOST",
+    "reason": "this line of the market not offered",
+    "recoverable": "no"
+   },
+   {
+    "league": "G1",
+    "date": "2026-10-17",
+    "match_id": "G1-20261017-atromitos-aek",
+    "home_team": "Atromitos",
+    "away_team": "AEK",
+    "role": "main",
+    "source": "live",
+    "market": "TOTAL_1.5",
+    "selection": "OVER",
+    "probability": "0.785624710453365",
+    "status": "VOID",
+    "reason": "VOID: результата нет (матч не состоялся)",
+    "recoverable": "—"
+   },
+   {
+    "league": "G1",
+    "date": "2026-10-17",
+    "match_id": "G1-20261017-atromitos-aek",
+    "home_team": "Atromitos",
+    "away_team": "AEK",
+    "role": "risk",
+    "source": "live",
+    "market": "TOTAL_3.5",
+    "selection": "OVER",
+    "probability": "0.3289671242237091",
+    "status": "VOID",
+    "reason": "VOID: результата нет (матч не состоялся)",
+    "recoverable": "—"
+   },
+   {
+    "league": "SC0",
+    "date": "2026-10-31",
+    "match_id": "SC0-20261031-dundee-united-hearts",
+    "home_team": "Dundee United",
+    "away_team": "Hearts",
+    "role": "main",
+    "source": "live",
+    "market": "HANDICAP_+1.5",
+    "selection": "H",
+    "probability": "0.7209818717022088",
+    "status": "UPCOMING",
+    "reason": "дата прошла, результата нет ни из одного источника",
+    "recoverable": "—"
+   },
+   {
+    "league": "SC0",
+    "date": "2026-10-31",
+    "match_id": "SC0-20261031-dundee-united-hearts",
+    "home_team": "Dundee United",
+    "away_team": "Hearts",
+    "role": "risk",
+    "source": "live",
+    "market": "1X2",
+    "selection": "H",
+    "probability": "0.2532856686924199",
+    "status": "UPCOMING",
+    "reason": "дата прошла, результата нет ни из одного источника",
+    "recoverable": "—"
+   },
+   {
+    "league": "E0",
+    "date": "2026-11-22",
+    "match_id": "E0-20261122-liverpool-man-united",
+    "home_team": "Liverpool",
+    "away_team": "Man United",
+    "role": "main",
+    "source": "live",
+    "market": "TOTAL_3.5",
+    "selection": "UNDER",
+    "probability": "0.6643359842396785",
+    "status": "UPCOMING",
+    "reason": "матч ещё не сыгран (цена ещё может прийти)",
+    "recoverable": "—"
+   },
+   {
+    "league": "E0",
+    "date": "2026-11-22",
+    "match_id": "E0-20261122-liverpool-man-united",
+    "home_team": "Liverpool",
+    "away_team": "Man United",
+    "role": "risk",
+    "source": "live",
+    "market": "1X2",
+    "selection": "D",
+    "probability": "0.26687538623809826",
+    "status": "UPCOMING",
+    "reason": "матч ещё не сыгран (цена ещё может прийти)",
+    "recoverable": "—"
+   }
+  ]
+ },
+ "laliga": {
+  "overall": {
+   "main": {
+    "predictions": 119,
+    "settled": 119,
+    "won": 76,
+    "lost": 43,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 119,
+    "priced_settled": 119,
+    "bets": 119,
+    "profit": -8.177,
+    "roi": -6.871428571428571,
+    "mean_ev": 0.05874180759714196,
+    "avg_odds": 1.48009243697479,
+    "hit_rate": 0.6386554621848739,
+    "coverage": 1.0
+   },
+   "risk": {
+    "predictions": 119,
+    "settled": 118,
+    "won": 26,
+    "lost": 92,
+    "push": 0,
+    "void": 0,
+    "pending": 1,
+    "priced": 119,
+    "priced_settled": 118,
+    "bets": 118,
+    "profit": -31.390000047683714,
+    "roi": -26.60169495566416,
+    "mean_ev": 0.1585749014719028,
+    "avg_odds": 3.501084741721719,
+    "hit_rate": 0.22033898305084745,
+    "coverage": 1.0
+   }
+  },
+  "by_source": [
+   {
+    "role": "main",
+    "source": "backfill",
+    "predictions": 72,
+    "settled": 72,
+    "won": 44,
+    "lost": 28,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 72,
+    "priced_settled": 72,
+    "bets": 72,
+    "profit": -7.130999999999999,
+    "roi": -9.904166666666665,
+    "mean_ev": 0.09158048728640264,
+    "avg_odds": 1.5009166666666667,
+    "hit_rate": 0.6111111111111112,
+    "coverage": 1.0
+   },
+   {
+    "role": "main",
+    "source": "live",
+    "predictions": 47,
+    "settled": 47,
+    "won": 32,
+    "lost": 15,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 47,
+    "priced_settled": 47,
+    "bets": 47,
+    "profit": -1.0459999999999998,
+    "roi": -2.225531914893617,
+    "mean_ev": 0.008435745094444735,
+    "avg_odds": 1.448191489361702,
+    "hit_rate": 0.6808510638297872,
+    "coverage": 1.0
+   },
+   {
+    "role": "risk",
+    "source": "backfill",
+    "predictions": 72,
+    "settled": 72,
+    "won": 18,
+    "lost": 54,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 72,
+    "priced_settled": 72,
+    "bets": 72,
+    "profit": -12.32,
+    "roi": -17.11111111111111,
+    "mean_ev": 0.21976917915281052,
+    "avg_odds": 3.4116388888888887,
+    "hit_rate": 0.25,
+    "coverage": 1.0
+   },
+   {
+    "role": "risk",
+    "source": "live",
+    "predictions": 47,
+    "settled": 46,
+    "won": 8,
+    "lost": 38,
+    "push": 0,
+    "void": 0,
+    "pending": 1,
+    "priced": 47,
+    "priced_settled": 46,
+    "bets": 46,
+    "profit": -19.070000047683717,
+    "roi": -41.456521842790686,
+    "mean_ev": 0.06279255379743857,
+    "avg_odds": 3.6410869461557143,
+    "hit_rate": 0.17391304347826086,
+    "coverage": 1.0
+   }
+  ],
+  "by_group_main": [
+   {
+    "group": "1X2",
+    "predictions": 2,
+    "settled": 2,
+    "won": 0,
+    "lost": 2,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 2,
+    "priced_settled": 2,
+    "bets": 2,
+    "profit": -2.0,
+    "roi": -100.0,
+    "mean_ev": -0.019985775615151802,
+    "avg_odds": 1.49,
+    "hit_rate": 0.0,
+    "coverage": 1.0
+   },
+   {
+    "group": "BTTS",
+    "predictions": 1,
+    "settled": 1,
+    "won": 1,
+    "lost": 0,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 1,
+    "priced_settled": 1,
+    "bets": 1,
+    "profit": 0.71,
+    "roi": 71.0,
+    "mean_ev": -0.04868850422677484,
+    "avg_odds": 1.71,
+    "hit_rate": 1.0,
+    "coverage": 1.0
+   },
+   {
+    "group": "CORNERS",
+    "predictions": 1,
+    "settled": 1,
+    "won": 0,
+    "lost": 1,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 1,
+    "priced_settled": 1,
+    "bets": 1,
+    "profit": -1.0,
+    "roi": -100.0,
+    "mean_ev": -0.12435485014606296,
+    "avg_odds": 1.27,
+    "hit_rate": 0.0,
+    "coverage": 1.0
+   },
+   {
+    "group": "HANDICAP",
+    "predictions": 36,
+    "settled": 36,
+    "won": 24,
+    "lost": 12,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 36,
+    "priced_settled": 36,
+    "bets": 36,
+    "profit": -1.5259999999999998,
+    "roi": -4.238888888888889,
+    "mean_ev": 0.14399470635676812,
+    "avg_odds": 1.5161944444444444,
+    "hit_rate": 0.6666666666666666,
+    "coverage": 1.0
+   },
+   {
+    "group": "TOTAL",
+    "predictions": 79,
+    "settled": 79,
+    "won": 51,
+    "lost": 28,
+    "push": 0,
+    "void": 0,
+    "pending": 0,
+    "priced": 79,
+    "priced_settled": 79,
+    "bets": 79,
+    "profit": -4.361000000000001,
+    "roi": -5.520253164556963,
+    "mean_ev": 0.025563045326827617,
+    "avg_odds": 1.4631392405063288,
+    "hit_rate": 0.6455696202531646,
+    "coverage": 1.0
+   }
+  ],
+  "not_bets": [
+   {
+    "date": "2026-11-08",
+    "home_team": "Ath Madrid",
+    "away_team": "Barcelona",
+    "role": "risk",
+    "source": "live",
+    "market": "CORNERS_8.5",
+    "selection": "UNDER",
+    "status": "UPCOMING",
+    "odds": "3.0",
+    "why": "ещё не сыгран"
+   }
+  ],
+  "not_bets_by_reason": [
+   {
+    "role": "risk",
+    "why": "ещё не сыгран",
+    "n": 1
+   }
+  ]
+ },
+ "previous_v61_audit": {
+  "built_at": "2026-11-04T13:05:04",
+  "roles": {
+   "main": {
+    "predictions": 2126,
+    "settled": 2033,
+    "won": 1335,
+    "lost": 698,
+    "bets": 1916,
+    "pending": 93,
+    "void": 0,
+    "push": 0,
+    "hit_rate": 0.6566650270536154,
+    "profit": -71.307,
+    "roi": -3.7216597077244256,
+    "avg_odds": 1.5039300626304801,
+    "avg_probability": 0.7061618893695876,
+    "longest_win_streak": 22,
+    "longest_loss_streak": 12
+   },
+   "risk": {
+    "predictions": 2126,
+    "settled": 2032,
+    "won": 546,
+    "lost": 1486,
+    "bets": 2006,
+    "pending": 93,
+    "void": 0,
+    "push": 1,
+    "hit_rate": 0.2687007874015748,
+    "profit": -216.49300034332276,
+    "roi": -10.792273197573419,
+    "avg_odds": 3.395057327103163,
+    "avg_probability": 0.32532751374193175,
+    "longest_win_streak": 6,
+    "longest_loss_streak": 19
+   }
+  },
+  "unpriced_reasons": [
+   {
+    "role": "main",
+    "reason": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "n": 10,
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "role": "main",
+    "reason": "league not found at OddsPapi (no tournament id)",
+    "n": 97,
+    "recoverable": "only if OddsPapi lists the league (checked monthly, see candidates)"
+   },
+   {
+    "role": "main",
+    "reason": "market not offered for the match",
+    "n": 5,
+    "recoverable": "no"
+   },
+   {
+    "role": "main",
+    "reason": "match not in the OddsPapi fixture list",
+    "n": 3,
+    "recoverable": "no (OddsPapi has no such fixture)"
+   },
+   {
+    "role": "main",
+    "reason": "this line of the market not offered",
+    "n": 2,
+    "recoverable": "no"
+   },
+   {
+    "role": "risk",
+    "reason": "club refused by the id-conflict guard (Barcelona / Espanyol, fixed in v6.1)",
+    "n": 2,
+    "recoverable": "yes — the corrected ids map these fixtures at the next history run"
+   },
+   {
+    "role": "risk",
+    "reason": "league not found at OddsPapi (no tournament id)",
+    "n": 21,
+    "recoverable": "only if OddsPapi lists the league (checked monthly, see candidates)"
+   },
+   {
+    "role": "risk",
+    "reason": "market not offered for the match",
+    "n": 2,
+    "recoverable": "no"
+   },
+   {
+    "role": "risk",
+    "reason": "match not in the OddsPapi fixture list",
+    "n": 1,
+    "recoverable": "no (OddsPapi has no such fixture)"
+   }
+  ],
+  "laliga": {
+   "league": "SP1",
+   "name": "Spain La Liga",
+   "played": 109,
+   "tournament": 8,
+   "archive_fixtures": 111,
+   "archive_mapped": 86,
+   "with_any_price": 92,
+   "main_settled": 109,
+   "main_bets": 98,
+   "main_push": 0,
+   "main_roi": -6.275510204081634,
+   "risk_settled": 109,
+   "risk_bets": 107,
+   "risk_push": 0,
+   "risk_roi": -22.887850511853937
+  }
+ },
+ "price_class_available": true
+}

@@ -1,0 +1,38 @@
+{
+ "git_sha": "e32c133f9707c1d10056300b0bccf59151927de6",
+ "data_commit": "f71bbb5e1a5515e028965ba2d842b0a471621e99 2026-11-09T08:04:53Z",
+ "files": {
+  "local_data/results_live/fixtures.parquet": {
+   "bytes": 61735,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "local_data/odds/odds.parquet": {
+   "bytes": 2539380,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "local_data/predictions/picks.parquet": {
+   "bytes": 2705461,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "local_data/api/diagnostics/history.csv": {
+   "bytes": 4784,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "local_data/api/oddspapi/ledger.json": {
+   "bytes": 287260,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "local_data/api/the_odds_api/ledger.json": {
+   "bytes": 3251,
+   "mtime": "2026-11-09 18:18:42"
+  }
+ },
+ "python": "3.12.12",
+ "pandas": "2.3.3",
+ "params": {
+  "season": 2026,
+  "timing_audit": "experiments/v6_2/odds_timing/results/audit_picks.csv"
+ },
+ "seconds": 64.4,
+ "run_at": "2026-11-09 18:47:00"
+}
