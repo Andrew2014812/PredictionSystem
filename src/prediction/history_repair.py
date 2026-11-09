@@ -28,6 +28,7 @@ from ..providers import load_api_odds, pre_match_only
 from ..providers.schema import best_prices
 from ..storage import predictions_storage
 from . import store
+from .price_timing import label_prices
 
 log = logging.getLogger(__name__)
 
@@ -214,11 +215,14 @@ def repair_history(features: pd.DataFrame, now: pd.Timestamp | None = None, writ
             if not api.empty else api
     picks, n_replaced, n_removed = replace_average_prices(picks, real, push)
     picks, n_cleared = clear_refunds_without_price(picks)
+    before = picks["odds_timing"].copy() if "odds_timing" in picks else None
+    picks, timing = label_prices(picks)
+    relabelled = before is None or not before.fillna("").equals(picks["odds_timing"].fillna(""))
     summary = {"risk_restored": n_risk, "prices_filled": n_odds, "average_prices_replaced": n_replaced,
-               "average_prices_removed": n_removed, "refund_profit_cleared": n_cleared}
+               "average_prices_removed": n_removed, "refund_profit_cleared": n_cleared, "price_timing": timing}
     if out is not None:
         out["picks"] = picks
-    if write and (n_risk or n_odds or n_replaced or n_removed or n_cleared):
+    if write and (n_risk or n_odds or n_replaced or n_removed or n_cleared or relabelled):
         predictions_storage.write_parquet(store.PICKS, picks)
         if n_risk:
             store.settle(features)                     # restored Risk of finished matches gets its result
