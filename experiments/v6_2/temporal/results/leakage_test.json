@@ -1,0 +1,129 @@
+{
+ "reproduction": {
+  "h_elo": {
+   "rows": 38266,
+   "compared": 38266,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 0.0
+  },
+  "a_elo": {
+   "rows": 38266,
+   "compared": 38266,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 0.0
+  },
+  "h_form5_gf": {
+   "rows": 38266,
+   "compared": 38034,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 0.0
+  },
+  "a_form5_ppg": {
+   "rows": 38266,
+   "compared": 38019,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 0.0
+  },
+  "h_form10_adj_gf": {
+   "rows": 38266,
+   "compared": 37800,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 8.881784197001252e-16
+  },
+  "a_form10_elo_surprise": {
+   "rows": 38266,
+   "compared": 38019,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 1.1102230246251565e-16
+  },
+  "h_rest_days": {
+   "rows": 38266,
+   "compared": 38034,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 0.0
+  },
+  "a_rest_days": {
+   "rows": 38266,
+   "compared": 38019,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 0.0
+  },
+  "a_venue_form5_gf": {
+   "rows": 38266,
+   "compared": 37787,
+   "nan_pattern_mismatch": 0,
+   "max_abs_diff": 0.0
+  },
+  "passed": true
+ },
+ "future_blind_study": {
+  "matches": 10782,
+  "features": 122,
+  "cutoffs": {
+   "2023-01-02": {
+    "rows_on_or_before": 3086,
+    "differing_cells_on_or_before": 0,
+    "max_abs_diff_on_or_before": 0.0,
+    "rows_after": 7696,
+    "share_rows_changed_after": 0.997531185031185
+   },
+   "2024-08-20": {
+    "rows_on_or_before": 6190,
+    "differing_cells_on_or_before": 0,
+    "max_abs_diff_on_or_before": 0.0,
+    "rows_after": 4592,
+    "share_rows_changed_after": 0.9899825783972126
+   },
+   "2025-03-15": {
+    "rows_on_or_before": 7731,
+    "differing_cells_on_or_before": 0,
+    "max_abs_diff_on_or_before": 0.0,
+    "rows_after": 3051,
+    "share_rows_changed_after": 0.9986889544411668
+   },
+   "2026-09-20": {
+    "rows_on_or_before": 10492,
+    "differing_cells_on_or_before": 0,
+    "max_abs_diff_on_or_before": 0.0,
+    "rows_after": 290,
+    "share_rows_changed_after": 0.903448275862069
+   }
+  },
+  "passed": true
+ },
+ "own_result": {
+  "matches_tested": 20,
+  "own_features_changed": 0,
+  "next_match_features_changed": 20,
+  "passed": true
+ },
+ "future_blind_production": {
+  "matches": 6108,
+  "features": 232,
+  "cutoffs": {
+   "2023-10-01": {
+    "rows_on_or_before": 407,
+    "differing_cells_on_or_before": 0,
+    "max_abs_diff_on_or_before": 0.0,
+    "rows_after": 5701,
+    "share_rows_changed_after": 0.995965620066655
+   },
+   "2024-08-20": {
+    "rows_on_or_before": 2118,
+    "differing_cells_on_or_before": 0,
+    "max_abs_diff_on_or_before": 0.0,
+    "rows_after": 3990,
+    "share_rows_changed_after": 0.9947368421052631
+   },
+   "2025-03-15": {
+    "rows_on_or_before": 3659,
+    "differing_cells_on_or_before": 0,
+    "max_abs_diff_on_or_before": 0.0,
+    "rows_after": 2449,
+    "share_rows_changed_after": 1.0
+   }
+  },
+  "passed": true
+ },
+ "all_passed": true
+}

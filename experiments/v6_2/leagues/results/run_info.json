@@ -1,0 +1,94 @@
+{
+ "git_sha": "2390a6102dd2671b4f700c984d12d3f9b868e502",
+ "data_version": {
+  "local_data/processed/features.parquet": {
+   "mtime": "2026-11-09T18:18:42",
+   "bytes": 17759906,
+   "rows": 38284
+  }
+ },
+ "results_csv_files": 132,
+ "params": {
+  "seeds": [
+   42,
+   7,
+   2026
+  ],
+  "prod_seed": 42,
+  "n_jobs": 2,
+  "n_boot": 2000,
+  "bootstrap_seed": 20261109,
+  "select": [
+   2023,
+   2024
+  ],
+  "info": 2025,
+  "current": 2026,
+  "market": "Bet365 opening 1X2, de-margined (power); closing (add) for information",
+  "production_version": "prod_20261012",
+  "production_params": {
+   "result": [
+    {
+     "colsample_bytree": 0.37113952027234015,
+     "gamma": 1.476528340456677,
+     "half_life_years": 0,
+     "learning_rate": 0.010025850061053068,
+     "max_depth": 4,
+     "min_child_weight": 38.65359122028795,
+     "reg_alpha": 0.07996455424008062,
+     "reg_lambda": 1.5771330019623868,
+     "subsample": 0.6769795201276757
+    },
+    454
+   ],
+   "home_goals": [
+    {
+     "colsample_bytree": 0.7661560391684041,
+     "gamma": 1.0513868273316425,
+     "half_life_years": 2,
+     "learning_rate": 0.09298891765084724,
+     "max_depth": 4,
+     "min_child_weight": 1.9032212632033894,
+     "reg_alpha": 0.1926233633544823,
+     "reg_lambda": 0.6760058415983122,
+     "subsample": 0.658785114914011
+    },
+    56
+   ],
+   "away_goals": [
+    {
+     "colsample_bytree": 0.5136183797677456,
+     "gamma": 1.3678469680987995,
+     "half_life_years": 2,
+     "learning_rate": 0.015944335449190838,
+     "max_depth": 5,
+     "min_child_weight": 37.02600720903606,
+     "reg_alpha": 0.002131377225231094,
+     "reg_lambda": 3.385562306552041,
+     "subsample": 0.6269691695176437
+    },
+    449
+   ]
+  }
+ },
+ "library_versions": {
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "scipy": "1.18.1",
+  "sklearn": "1.7.2",
+  "xgboost": "3.0.5",
+  "statsmodels": "0.15.0",
+  "matplotlib": "3.11.2",
+  "reportlab": "5.1.0"
+ },
+ "timings_seconds": {
+  "base": 0.1,
+  "profiles": 0.7,
+  "perf": 23.1,
+  "models": 0.2,
+  "transfer_fits": 0.0,
+  "transfer": 1.8,
+  "evaluate": 69.9
+ },
+ "finished": "2026-11-09T19:59:46+0100"
+}
