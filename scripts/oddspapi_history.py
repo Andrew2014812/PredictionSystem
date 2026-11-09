@@ -146,7 +146,10 @@ def main() -> None:
     print(f"period {start.date()} – {end.date()}; leagues {len(leagues)}; our played matches {len(played)}")
     print(f"billable /fixtures requests: {paid} (+ market map / tournaments once if not stored); "
           f"free /historical-odds requests: about {max(todo, 0)} (~{max(todo, 0) * 5.6 / 3600:.1f} h)")
-    print(f"OddsPapi account: limit {account.get('request_limit', '?')}, used {account.get('request_count', '?')}")
+    from src.providers.oddspapi import account_numbers
+    limit, used = account_numbers(account) if isinstance(account, dict) else (None, None)
+    print(f"OddsPapi account: limit {limit if limit is not None else '?'}, used {used if used is not None else '?'}"
+          + ("" if limit is not None else f" (answer keys: {sorted(account)[:12] if isinstance(account, dict) else '-'})"))
     if not args.go:
         print("dry run: nothing downloaded (add --go)")
         return
