@@ -1,0 +1,313 @@
+{
+ "git_sha": "df0e1be03ab6f4e529e52834df0b67b72ff1329f",
+ "environment": {
+  "python": "3.12.12",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "libraries": {
+   "numpy": "2.2.6",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "sklearn": "1.7.2",
+   "xgboost": "3.0.5",
+   "statsmodels": "0.15.0",
+   "matplotlib": "3.11.2",
+   "reportlab": "5.1.0"
+  },
+  "git_sha": "df0e1be03ab6f4e529e52834df0b67b72ff1329f",
+  "n_jobs": 2,
+  "seed": 20261109,
+  "n_boot": 2000
+ },
+ "data_version": {
+  "features": {
+   "rows": 38284,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "markets": {
+   "rows": 528177,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "picks": {
+   "rows": 78753,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "snapshots": {
+   "rows": 9325,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "odds": {
+   "rows": 358520,
+   "mtime": "2026-11-09 18:18:42"
+  }
+ },
+ "seconds": 172.8,
+ "seasons": {
+  "select": [
+   2023,
+   2024
+  ],
+  "info": 2025,
+  "current": 2026
+ },
+ "data_check": {
+  "base": {
+   "2022": {
+    "pred_rows": 7278,
+    "feature_rows": 7278,
+    "in_features": 7278,
+    "same_goals": 7278,
+    "missing_from_pred": 0
+   },
+   "2023": {
+    "pred_rows": 7247,
+    "feature_rows": 7247,
+    "in_features": 7247,
+    "same_goals": 7247,
+    "missing_from_pred": 0
+   },
+   "2024": {
+    "pred_rows": 7129,
+    "feature_rows": 7129,
+    "in_features": 7129,
+    "same_goals": 7129,
+    "missing_from_pred": 0
+   },
+   "2025": {
+    "pred_rows": 7094,
+    "feature_rows": 7094,
+    "in_features": 7094,
+    "same_goals": 7094,
+    "missing_from_pred": 0
+   },
+   "2026": {
+    "pred_rows": 2202,
+    "feature_rows": 2202,
+    "in_features": 2202,
+    "same_goals": 2202,
+    "missing_from_pred": 0
+   }
+  },
+  "reproducibility_vs_v61_cache": {
+   "2022": {
+    "same_matches": true,
+    "max_abs_diff": 0.0
+   },
+   "2023": {
+    "same_matches": true,
+    "max_abs_diff": 0.0
+   },
+   "2024": {
+    "same_matches": true,
+    "max_abs_diff": 0.0
+   },
+   "2025": {
+    "same_matches": true,
+    "max_abs_diff": 0.0
+   }
+  },
+  "base_info": {
+   "2022": {
+    "seconds": {
+     "result": 20.210076808929443,
+     "home_goals": 2.1824350357055664,
+     "away_goals": 12.964764833450317,
+     "corners": 14.524265050888062
+    },
+    "corner_leagues": [
+     "B1",
+     "D1",
+     "D2",
+     "E0",
+     "E1",
+     "E2",
+     "E3",
+     "F1",
+     "F2",
+     "G1",
+     "I1",
+     "I2",
+     "N1",
+     "P1",
+     "SC0",
+     "SC1",
+     "SC2",
+     "SC3",
+     "SP1",
+     "SP2",
+     "T1"
+    ],
+    "train_rows": 7316,
+    "nb_size": null,
+    "train_seasons": [
+     2021
+    ],
+    "minutes": 0.857721495628357
+   },
+   "2023": {
+    "seconds": {
+     "result": 30.73078966140747,
+     "home_goals": 2.765444040298462,
+     "away_goals": 16.9589946269989,
+     "corners": 9.259364128112793
+    },
+    "corner_leagues": [
+     "B1",
+     "D1",
+     "D2",
+     "E0",
+     "E1",
+     "E2",
+     "E3",
+     "F1",
+     "F2",
+     "G1",
+     "I1",
+     "I2",
+     "N1",
+     "P1",
+     "SC0",
+     "SC1",
+     "SC2",
+     "SC3",
+     "SP1",
+     "SP2",
+     "T1"
+    ],
+    "train_rows": 14594,
+    "nb_size": 200.46129985360878,
+    "train_seasons": [
+     2021,
+     2022
+    ],
+    "minutes": 1.0122008800506592
+   },
+   "2024": {
+    "seconds": {
+     "result": 26.978438138961792,
+     "home_goals": 3.728506565093994,
+     "away_goals": 12.84899353981018,
+     "corners": 10.697393894195557
+    },
+    "corner_leagues": [
+     "B1",
+     "D1",
+     "D2",
+     "E0",
+     "E1",
+     "E2",
+     "E3",
+     "F1",
+     "F2",
+     "G1",
+     "I1",
+     "I2",
+     "N1",
+     "P1",
+     "SC0",
+     "SC1",
+     "SC2",
+     "SC3",
+     "SP1",
+     "SP2",
+     "T1"
+    ],
+    "train_rows": 21841,
+    "nb_size": 134.21749265064452,
+    "train_seasons": [
+     2021,
+     2022,
+     2023
+    ],
+    "minutes": 0.9239464561144511
+   },
+   "2025": {
+    "seconds": {
+     "result": 28.649099588394165,
+     "home_goals": 2.682713508605957,
+     "away_goals": 12.685461521148682,
+     "corners": 11.810876607894897
+    },
+    "corner_leagues": [
+     "B1",
+     "D1",
+     "D2",
+     "E0",
+     "E1",
+     "E2",
+     "E3",
+     "F1",
+     "F2",
+     "G1",
+     "I1",
+     "I2",
+     "N1",
+     "P1",
+     "SC0",
+     "SC1",
+     "SC2",
+     "SC3",
+     "SP1",
+     "SP2",
+     "T1"
+    ],
+    "train_rows": 28970,
+    "nb_size": 106.83360096074847,
+    "train_seasons": [
+     2021,
+     2022,
+     2023,
+     2024
+    ],
+    "minutes": 0.9496639847755433
+   },
+   "2026": {
+    "seconds": {
+     "result": 27.604322910308838,
+     "home_goals": 2.6405069828033447,
+     "away_goals": 13.023555040359497,
+     "corners": 12.30802607536316
+    },
+    "corner_leagues": [
+     "B1",
+     "D1",
+     "D2",
+     "E0",
+     "E1",
+     "E2",
+     "E3",
+     "F1",
+     "F2",
+     "G1",
+     "I1",
+     "I2",
+     "N1",
+     "P1",
+     "SC0",
+     "SC1",
+     "SC2",
+     "SC3",
+     "SP1",
+     "SP2",
+     "T1"
+    ],
+    "train_rows": 36064,
+    "nb_size": 95.27760033049576,
+    "train_seasons": [
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "minutes": 0.9402227600415548
+   }
+  }
+ },
+ "matches": {
+  "2022": 7278,
+  "2023": 7247,
+  "2024": 7129,
+  "2025": 7094,
+  "2026": 2202
+ }
+}

@@ -1,0 +1,260 @@
+{
+ "written_at": "2026-11-09T19:15:00+0100",
+ "code_commit_at_writing": "df0e1be03ab6f4e529e52834df0b67b72ff1329f",
+ "study": "v6.2 Market-Specific Models",
+ "status_of_seasons": {
+  "selection": [
+   "2023/24",
+   "2024/25"
+  ],
+  "information": [
+   "2025/26"
+  ],
+  "current_already_looked_at": "2026/27 up to the data snapshot below (NOT a holdout)"
+ },
+ "data_snapshot": {
+  "features.parquet": "e172b8d52a633031b2613ada17bde06b5033c20efa2553ebe4504e8e68566259",
+  "data_version": {
+   "features": {
+    "rows": 38284,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "markets": {
+    "rows": 528177,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "picks": {
+    "rows": 78753,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "snapshots": {
+    "rows": 9325,
+    "mtime": "2026-11-09 18:18:42"
+   },
+   "odds": {
+    "rows": 358520,
+    "mtime": "2026-11-09 18:18:42"
+   }
+  }
+ },
+ "decision_rule": "Primary metric per market group: mean log loss over the group's lines (per match). A: Holm-adjusted p < 0.05 over all 18 (group, variant) comparisons on the pooled 2023/24+2024/25, better in both selection seasons, not worse by point in 2025/26 and 2026/27, Main ROI of the substitution not significantly worse (pooled selection 95 % CI not entirely below 0). B: better in both selection seasons and pooled 95 % CI below 0 without the Holm correction, or A-level evidence failing 2025/26 / 2026/27. C: everything else. A variant that only adds models without a significant gain is C (no complexity without evidence).",
+ "hypotheses": {
+  "H1_TOTAL_S_TOT": {
+   "group": "TOTAL",
+   "variant": "S_TOT",
+   "frozen_models": {
+    "fold": "2026/27 (fitted on 2021/22-2025/26)",
+    "specs": {
+     "btts": [
+      "goals",
+      "bin",
+      2
+     ],
+     "o15": [
+      "goals",
+      "bin",
+      2
+     ],
+     "o25": [
+      "goals",
+      "bin",
+      2
+     ],
+     "o35": [
+      "goals",
+      "bin",
+      2
+     ],
+     "dc_1x": [
+      "goals",
+      "bin",
+      2
+     ],
+     "dc_x2": [
+      "goals",
+      "bin",
+      2
+     ],
+     "tot": [
+      "goals",
+      "multi",
+      7
+     ],
+     "gd": [
+      "goals",
+      "multi",
+      7
+     ],
+     "es": [
+      "goals",
+      "multi",
+      17
+     ],
+     "c85": [
+      "corners",
+      "bin",
+      2
+     ],
+     "c95": [
+      "corners",
+      "bin",
+      2
+     ],
+     "c105": [
+      "corners",
+      "bin",
+      2
+     ]
+    },
+    "trees": {
+     "btts": 406,
+     "o15": 336,
+     "o25": 321,
+     "o35": 202,
+     "dc_1x": 482,
+     "dc_x2": 636,
+     "tot": 185,
+     "gd": 226,
+     "es": 183,
+     "c85": 188,
+     "c95": 213,
+     "c105": 170
+    }
+   },
+   "frozen_stacking_weights": {
+    "bin": {
+     "BTTS": [
+      0.05517988744263537,
+      0.33601820180085484,
+      0.8639288271669093
+     ],
+     "TOTAL_1.5": [
+      -0.0026350914819219112,
+      0.8651815116139993,
+      0.19255875260580227
+     ],
+     "TOTAL_2.5": [
+      0.06975111435356376,
+      0.46693482094361205,
+      0.4408362197083748
+     ],
+     "TOTAL_3.5": [
+      -0.1416828806496136,
+      0.12625886259907795,
+      0.7023857585246467
+     ],
+     "DC_1X": [
+      0.02698258473089635,
+      -0.032154529413581386,
+      1.0134147474899031
+     ],
+     "DC_X2": [
+      0.006805468312349227,
+      0.5078178755743826,
+      0.5167684743070984
+     ],
+     "CORNERS_8.5": [
+      -0.016028536222302624,
+      0.7512858057126282,
+      0.2695627988931731
+     ],
+     "CORNERS_9.5": [
+      0.02345578243288878,
+      1.0781892174038872,
+      -0.20127481423225202
+     ],
+     "CORNERS_10.5": [
+      -0.021523937301369634,
+      1.3542195301792315,
+      -0.46540954339662866
+     ],
+     "DC_12": [
+      0.1841049220585247,
+      0.37455241239293247,
+      0.41652358342661594
+     ]
+    },
+    "pool": {
+     "TOT": [
+      0.6391304303381069,
+      0.42119570395612416
+     ],
+     "GD": [
+      0.7413162128836472,
+      0.3053780022944973
+     ],
+     "ES": [
+      0.631629707311728,
+      0.3295498244730937
+     ]
+    }
+   },
+   "evidence_so_far": {
+    "by_season": {
+     "2023": {
+      "n": 7247,
+      "diff": -0.0002834417036911279,
+      "ci95": [
+       -0.0005799578576890392,
+       -6.214497836634437e-06
+      ],
+      "p": 0.0445,
+      "p_t": 0.05780500253026715
+     },
+     "2024": {
+      "n": 7129,
+      "diff": -0.00018145724468807248,
+      "ci95": [
+       -0.0004462258427472662,
+       9.048954697124516e-05
+      ],
+      "p": 0.1855,
+      "p_t": 0.18223419398482188
+     },
+     "2025": {
+      "n": 7094,
+      "diff": -0.00029912630183295016,
+      "ci95": [
+       -0.0005035368095117713,
+       -0.00010178642574580549
+      ],
+      "p": 0.0045000000000000005,
+      "p_t": 0.0035956493729238687
+     },
+     "2026": {
+      "n": 2202,
+      "diff": -0.00046473666388259456,
+      "ci95": [
+       -0.0011846997525433048,
+       0.00021545934995878107
+      ],
+      "p": 0.2075,
+      "p_t": 0.20989474671588748
+     }
+    },
+    "select": {
+     "n": 14376,
+     "diff": -0.00023286802476564224,
+     "ci95": [
+      -0.00042241338546659035,
+      -4.4936893305132493e-05
+     ],
+     "p": 0.0195,
+     "p_t": 0.021267063914035482
+    },
+    "main_roi_select": {
+     "diff": -0.003100092883065477,
+     "ci95": [
+      -0.010584234840558506,
+      0.004270759217167974
+     ],
+     "p": 0.4175,
+     "changed_picks": 1586
+    }
+   },
+   "forward_criterion": "On matches played after the commit of this file, with the frozen fold-2026/27 models and weights, the paired bootstrap 95 % CI (by match, 2000 resamples, seed 20261109) of the group's mean log loss (variant - production) lies below 0, evaluated once at >= 3000 settled matches (or at the end of season 2026/27 if fewer: then 'inconclusive' unless the CI is below 0); AND the paired 95 % CI of Main ROI difference at real pre-match prices does not lie entirely below 0.",
+   "decision_now": "B. A only if the forward criterion holds."
+  }
+ },
+ "multiplicity": "1 forward hypotheses; Holm correction over them."
+}
