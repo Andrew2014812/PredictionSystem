@@ -99,6 +99,14 @@ def _save_live(rows: list[dict]) -> int:
         return 0
     new = pd.DataFrame(rows).reindex(columns=CANONICAL_COLUMNS + ["provider", "provider_fixture_id"])
     old = load_live_matches()
+    if not old.empty:
+        # a result is replaced by "not played" only by the provider that reported it (it corrected itself,
+        # e.g. API-Football on Tenerife – Andorra, 03.11.2026); another provider's fixture row (a price feed
+        # listing the match) never turns a played match back into a fixture
+        played_by = old.loc[old["played"].astype(bool)].set_index("match_id")["provider"]
+        stale = (~new["played"].fillna(False).astype(bool) & new["match_id"].isin(played_by.index)
+                 & (new["match_id"].map(played_by) != new["provider"]))
+        new = new.loc[~stale]
     merged = pd.concat([old, new], ignore_index=True) if not old.empty else new
     # newest information about a match wins (a fixture becomes a result)
     merged = merged.drop_duplicates("match_id", keep="last")
@@ -493,6 +501,8 @@ def collect(matches: pd.DataFrame, today: date | None = None, mode: str = "full"
         api_storage.write_csv("team_id_conflicts.csv", pd.DataFrame(
             registry.conflicts, columns=["provider", "provider_team_id", "registered_as", "name_says", "provider_name"]))
         summary["team_id_conflicts"] = len(registry.conflicts)
+    elif api_storage.exists("team_id_conflicts.csv") and mode in ("odds", "full"):
+        api_storage.path("team_id_conflicts.csv").unlink()      # no conflict this run: no stale file
 
     toa = TheOddsApi()
     fallback = config.odds_api_fallback()
