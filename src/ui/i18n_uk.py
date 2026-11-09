@@ -78,6 +78,7 @@ UK: dict[str, str] = {
     "Positive = the home team had more rest.": "Додатне значення — господарі відпочивали довше.",
     "Teams before the match": "Команди перед матчем", "Team comparison": "Порівняння команд",
     "Recent form": "Поточна форма",
+    "PUSH means a refunded prediction (e.g. a handicap that ended level). It stays in the history, but is not counted in the hit rate or ROI.": "PUSH — прогноз із поверненням ставки (наприклад, фора, що зіграла внічию). Він лишається в історії, але не враховується у відсотку влучань і ROI.",
     "Explained with the team data available now: the model inputs of this prediction were not stored (predictions made before 10.11.2026).": "Пояснено за поточними даними команд: вхідні дані моделі для цього прогнозу не збережено (прогнози до 10.11.2026).", "Home / Away": "Удома / на виїзді", "Head-to-head": "Особисті зустрічі",
     "Rest days": "Дні відпочинку",
     "This page could not be displayed right now. Please try again later.":
