@@ -163,3 +163,62 @@ def test_a_club_spelt_without_history_is_reported():
         {"league": "B1", "home_team": "Kortrijk", "away_team": "KV Mechelen", "played": False, "date": soon},
     ])
     assert mod.clubs_without_history(features) == ["B1: KV Mechelen"]
+
+
+# ---------------------------------------------------------------------------------------------- v6.2 study fixes
+def test_another_providers_fixture_row_does_not_undo_a_result(tmp_path, monkeypatch):
+    from src.providers import collect
+    from src.storage import LocalStorage
+    monkeypatch.setattr(collect, "live_storage", LocalStorage(tmp_path))
+    base = {"match_id": "SP2-20261102-tenerife-andorra", "league": "SP2", "country": "Spain", "season": 2026,
+            "date": "2026-11-02", "time": "13:00", "kickoff": "2026-11-02 13:00", "home_team": "Tenerife",
+            "away_team": "Andorra"}
+    collect._save_live([{**base, "played": True, "home_goals": 2, "away_goals": 2, "provider": "api_football"}])
+    collect._save_live([{**base, "played": False, "provider": "oddspapi"}])          # a price feed's listing
+    row = collect.load_live_matches().iloc[0]
+    assert bool(row["played"]) and row["home_goals"] == 2
+    collect._save_live([{**base, "played": False, "provider": "api_football"}])      # the source corrects itself
+    assert not bool(collect.load_live_matches().iloc[0]["played"])
+
+
+def test_current_season_result_names_are_harmonised():
+    """05.11.2026: the current results files briefly wrote "KV Mechelen", "Sheffield Utd" and "Oxford Utd"."""
+    from src.data.dataset import harmonise_names
+    hist = pd.DataFrame([{"league": "B1", "season": 2025, "home_team": "Mechelen", "away_team": "Genk"},
+                         {"league": "B1", "season": 2025, "home_team": "Kortrijk", "away_team": "Gent"},
+                         {"league": "E1", "season": 2025, "home_team": "Sheffield United", "away_team": "Preston"},
+                         {"league": "B1", "season": 2026, "home_team": "RAAL La Louviere", "away_team": "Genk"}])
+    rows = pd.DataFrame([{"league": "B1", "season": 2026, "date": pd.Timestamp("2026-11-04"),
+                          "home_team": "Kortrijk", "away_team": "KV Mechelen", "match_id": "x"},
+                         {"league": "E1", "season": 2026, "date": pd.Timestamp("2026-11-03"),
+                          "home_team": "Preston", "away_team": "Sheffield Utd", "match_id": "y"},
+                         {"league": "B1", "season": 2026, "date": pd.Timestamp("2026-11-07"),
+                          "home_team": "RAAL La Louviere", "away_team": "Gent", "match_id": "z"}])
+    out = harmonise_names(rows, pd.concat([hist, rows]), min_matches=3)
+    assert out["away_team"].tolist()[:2] == ["Mechelen", "Sheffield United"]
+    assert out["match_id"].tolist()[:2] == ["B1-20261104-kortrijk-mechelen", "E1-20261103-preston-sheffield-united"]
+    assert out["home_team"].iloc[2] == "RAAL La Louviere"                  # a newcomer keeps its name
+
+
+def test_fc_edinburgh_is_edinburgh_city():
+    from src.data.cleaning import normalise
+    raw = pd.DataFrame({"Div": ["SC2"], "Date": ["05/11/2022"], "HomeTeam": ["FC Edinburgh"], "AwayTeam": ["Peterhead"],
+                        "FTHG": [1], "FTAG": [0], "FTR": ["H"]})
+    assert normalise(raw)["home_team"].iloc[0] == "Edinburgh City"
+
+
+def test_api_football_spellings_resolve():
+    from src.providers.aliases import resolve
+    assert resolve("OFI", {"OFI Crete", "AEK"}) == "OFI Crete"
+    assert resolve("Vicenza Virtus", {"Vicenza", "Padova"}) == "Vicenza"
+    assert resolve("Real Sociedad II", {"Sociedad B", "Eibar"}) == "Sociedad B"
+
+
+def test_an_unpriced_whole_line_is_judged_at_its_break_even_price():
+    """A whole handicap line refunds on a level result: break-even (1 − P(refund)) / P(win), not 1 / P(win)."""
+    from src.markets.odds import PricedSelection
+    from src.markets.recommendation import effective_odds
+    sel = PricedSelection(market="HANDICAP_-1", selection="H", probability=0.33,
+                          push_probability=0.22)
+    assert effective_odds(sel) == pytest.approx((1 - 0.22) / 0.33)
+    assert sel.fair_odds == pytest.approx((1 - 0.22) / 0.33)
