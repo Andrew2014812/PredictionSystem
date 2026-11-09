@@ -11,6 +11,15 @@ pytestmark = pytest.mark.e2e
 SYNTHETIC = re.compile(r"\b(BOOK|DERIVED|SIM)\b|Fair odds|Estimated odds|Simulated odds|Not a value bet")
 
 
+def _hex_rgb(h: str) -> str:
+    h = h.lstrip("#")
+    return "rgb({}, {}, {})".format(*(int(h[i:i + 2], 16) for i in (0, 2, 4)))
+
+
+from src.ui.theme import design as _design  # noqa: E402
+
+LIGHT_BG = _hex_rgb(_design()["palettes"]["light"]["bg"])
+
 def _open_first_match(app, day):
     app.open(f"?date={day}")
     expect(app.match_cards().first).to_be_visible(timeout=60_000)
@@ -33,7 +42,8 @@ def test_brand_and_navigation(app, predicted_day):
     assert first_link["x"] > brand_right["x"] + brand_right["width"] - 5          # no overlap with the menu
     for start in ("history", f"?date={day}"):                                      # from any page
         app.open(start)
-        app.page.locator(".fp-brand a").click()                     # the whole logo leads to Matches
+        box = app.page.locator(".fp-brand").bounding_box()          # the whole logo leads to Matches
+        app.page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
         app.wait()
         expect(app.title).to_have_text("Matches")
         assert "not found" not in app.page.locator("body").inner_text().lower()   # no "Page not found"
@@ -367,7 +377,7 @@ def test_cloud_toolbar_buttons_do_not_cover_the_theme_switch(app):
     expect(app.page.locator('[data-testid="stToolbarActions"]')).to_be_hidden()
     app.pref("light_mode").click()                                   # the switch can still be clicked
     app.wait()
-    assert app.background() == "rgb(245, 246, 243)"
+    assert app.background() == LIGHT_BG
 
 
 def test_theme_switch(app):
@@ -376,7 +386,7 @@ def test_theme_switch(app):
     app.pref("light_mode").click()
     app.wait()
     light = app.background()
-    assert dark != light and light == "rgb(245, 246, 243)", light            # warm off-white (v6.1), not white
+    assert dark != light and light == LIGHT_BG, light                        # the design's off-white, not white
     app.nav("Analytics")
     assert app.background() == light                                 # stays light across pages
     app.pref("dark_mode").click()

@@ -1,0 +1,318 @@
+{
+ "root": "/home/mlitvinenko/repositories/PredictionSystem",
+ "size": "1920x1080",
+ "pages": {
+  "matches_dark": {
+   "texts": 428,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "match_dark": {
+   "texts": 52,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "history_dark": {
+   "texts": 19,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "leagues_dark": {
+   "texts": 202,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "teams_dark": {
+   "texts": 23,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "analytics_dark": {
+   "texts": 198,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "models_dark": {
+   "texts": 233,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 0
+    },
+    {
+     "text": "1869",
+     "tag": "text",
+     "cls": "",
+     "size": 15,
+     "ratio": 1.87,
+     "need": 4.5,
+     "disabled": false,
+     "svg": true,
+     "color": "rgb(230, 233, 234)",
+     "alpha": 1
+    }
+   ],
+   "min_ratio": 1
+  },
+  "matches_light": {
+   "texts": 428,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "match_light": {
+   "texts": 294,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    },
+    {
+     "text": "9.5",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 2.96,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 1
+    },
+    {
+     "text": "5.5",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    },
+    {
+     "text": "15.5",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "history_light": {
+   "texts": 326,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "leagues_light": {
+   "texts": 202,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "teams_light": {
+   "texts": 23,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "analytics_light": {
+   "texts": 296,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    }
+   ],
+   "min_ratio": 1
+  },
+  "models_light": {
+   "texts": 256,
+   "below": [
+    {
+     "text": "FootPredict — Matches",
+     "tag": "p",
+     "cls": "",
+     "size": 14.6,
+     "ratio": 1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": false,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 0
+    },
+    {
+     "text": "1869",
+     "tag": "text",
+     "cls": "",
+     "size": 15,
+     "ratio": 1.1,
+     "need": 4.5,
+     "disabled": false,
+     "svg": true,
+     "color": "rgb(27, 33, 35)",
+     "alpha": 1
+    }
+   ],
+   "min_ratio": 1
+  }
+ }
+}
