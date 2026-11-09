@@ -5,7 +5,7 @@
 set -u
 cd "$(dirname "$0")/../../.."
 PY=${PY:-/home/mlitvinenko/repositories/PredictionSystem/.venv/bin/python}
-LOGS=experiments/v6_2/uncertainty/logs
+LOGS=experiments/v6_2/uncertainty/cache/logs
 mkdir -p "$LOGS"
 case "${1:-}" in
   ensemble)

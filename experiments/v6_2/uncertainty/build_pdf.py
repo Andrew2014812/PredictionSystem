@@ -168,6 +168,10 @@ def build() -> None:
             P("Медианы мер (п.п. вероятности Main) и модуль переоценки выбранного Main; «доля корзин внутри» — в какой "
               "доле корзин по p наблюдаемая доля выигрышей попала в средний диапазон [min, max] членов бутстрепа."),
             T(rows, [3.3, 1.6, 1.9, 1.7, 1.5, 1.9, 1.5, 3.0]),
+            P("Наблюдаемая доля выигрышей попадает в средний диапазон членов бутстрепа в " +
+              ", ".join(f"{f(iv[s]['share_bins_inside'], 2)} корзин ({SL[s]})" for s in SEASONS) +
+              ": разброс переобученных моделей не покрывает систематическую переоценку выбранного Main — особенно в "
+              "2026/27."),
             figure(C.FIGURES / "spread_vs_gap.png", "Рис. 1. Медианный разброс оценки вероятности Main и |gap| по сезонам."))
     sp = ms["2024"]["spearman"]
     cols = [c for c in MEASURES if c in sp]
@@ -269,8 +273,10 @@ def build() -> None:
             rows.append([name, str(g["n"]), ci(g["gap"], g["gap_ci95"]), pp(g["hit_rate"], 1, False) + " %",
                          pp(g["roi"]) if g["roi"] is not None else "—"])
         brows = [["Мера стабильности", "n", "β_u [95 % ДИ]", "p"]]
+        names = {"p_drift": "|p последней − p первой версии|", "p_sd_versions": "σ p по версиям",
+                 "n_versions": "число версий", "main_changed": "Main менялся (0/1)"}
         for c, r in stab["beta"].items():
-            brows.append([c, str(r.get("n")), f"{f(r.get('beta_u'))} [{f((r.get('beta_u_ci95') or [None])[0])}; "
+            brows.append([names.get(c, c), str(r.get("n")), f"{f(r.get('beta_u'))} [{f((r.get('beta_u_ci95') or [None])[0])}; "
                           f"{f((r.get('beta_u_ci95') or [None, None])[1])}]", pv(r.get("p"))])
         rep.add(H2("6.6. Стабильность прогноза между версиями (2026/27)"),
                 P(f"Записанных до матча рассчитанных Main: {stab['recorded_decided']}; медиана версий "

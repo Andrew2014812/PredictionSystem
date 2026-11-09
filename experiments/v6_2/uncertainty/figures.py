@@ -63,8 +63,8 @@ def betas(plt, pred: dict) -> None:
                     fmt="o", color=K.PALETTE[0] if (r.get("p_holm") or 1) >= 0.05 else K.NEG, capsize=3)
     ax.axvline(0, color="#888", lw=0.8)
     ax.set_yticks(y, [MEASURES[c] for c in names])
-    ax.set_xlabel("β при z(u) в логит-модели «выиграл» (при фиксированном logit p); < 0 — чаще проигрывает")
-    ax.set_title("Предсказывает ли неопределённость проигрыш сверх p? (2023/24 + 2024/25)", fontsize=9.5)
+    ax.set_xlabel("β_u при z(u) (logit p фиксирован); < 0 — чаще проигрывает")
+    ax.set_title("Проигрыш сверх p: β_u, сезоны отбора 2023/24 + 2024/25", fontsize=9.5)
     K.save_chart(fig, C.FIGURES / "beta_u.png")
 
 

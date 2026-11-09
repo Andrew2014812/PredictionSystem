@@ -31,7 +31,7 @@ HERE = Path(__file__).resolve().parent
 RESULTS = HERE / "results"
 FIGURES = HERE / "figures"
 CACHE = HERE / "cache"
-LOGS = HERE / "logs"
+LOGS = HERE / "cache" / "logs"
 for _d in (RESULTS, FIGURES, CACHE, LOGS):
     _d.mkdir(parents=True, exist_ok=True)
 
