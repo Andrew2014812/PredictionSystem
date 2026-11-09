@@ -66,20 +66,20 @@ plot_style()
 
 S = {
     "body": ParagraphStyle("body", fontName="DejaVu", fontSize=9.6, leading=13.6, spaceAfter=5, textColor=INK),
-    "small": ParagraphStyle("small", fontName="DejaVu", fontSize=8, leading=10.5, textColor=MUTED, spaceAfter=4),
+    "small": ParagraphStyle("small", fontName="DejaVu", fontSize=8.6, leading=11.2, textColor=MUTED, spaceAfter=4),
     "h1": ParagraphStyle("h1", fontName="DejaVu-Bold", fontSize=15, leading=19, spaceBefore=4, spaceAfter=9,
                          textColor=INK),
     "h2": ParagraphStyle("h2", fontName="DejaVu-Bold", fontSize=11.5, leading=15, spaceBefore=9, spaceAfter=5,
                          textColor=INK),
     "h3": ParagraphStyle("h3", fontName="DejaVu-Bold", fontSize=10, leading=13, spaceBefore=6, spaceAfter=3,
                          textColor=INK),
-    "cap": ParagraphStyle("cap", fontName="DejaVu", fontSize=8, leading=10, textColor=MUTED, alignment=TA_CENTER,
+    "cap": ParagraphStyle("cap", fontName="DejaVu", fontSize=8.6, leading=11, textColor=MUTED, alignment=TA_CENTER,
                           spaceAfter=8),
-    "cell": ParagraphStyle("cell", fontName="DejaVu", fontSize=7.6, leading=9.4, textColor=INK),
-    "cellb": ParagraphStyle("cellb", fontName="DejaVu-Bold", fontSize=7.6, leading=9.4, textColor=INK),
+    "cell": ParagraphStyle("cell", fontName="DejaVu", fontSize=8.6, leading=10.6, textColor=INK),
+    "cellb": ParagraphStyle("cellb", fontName="DejaVu-Bold", fontSize=8.6, leading=10.6, textColor=INK),
     "bullet": ParagraphStyle("bullet", fontName="DejaVu", fontSize=9.6, leading=13.4, leftIndent=12,
                              bulletIndent=2, spaceAfter=2, textColor=INK),
-    "mono": ParagraphStyle("mono", fontName="DejaVuMono", fontSize=7.6, leading=9.6, textColor=INK,
+    "mono": ParagraphStyle("mono", fontName="DejaVuMono", fontSize=8.2, leading=10.2, textColor=INK,
                            backColor="#f1f4f2", leftIndent=4, rightIndent=4, borderPadding=4, spaceAfter=6),
     "formula": ParagraphStyle("formula", fontName="DejaVu", fontSize=10, leading=15, alignment=TA_CENTER,
                               spaceBefore=3, spaceAfter=7, textColor=INK),
@@ -179,10 +179,20 @@ def auto_widths(rows: list[list], total: float = 17 * cm) -> list[float]:
     return [total * x / sum(longest) for x in longest]
 
 
+MIN_TABLE_FONT = 8.0
+MAX_TABLE_COLUMNS = 11
+
+
 def table(rows: list[list], widths=None, header=True, zebra=True, font=None) -> Table:
-    """A wrapped, gridded table; wide tables (9+ columns) get a smaller font automatically."""
+    """A wrapped, gridded table. Text is never smaller than MIN_TABLE_FONT (8 pt): a table too wide for
+    that must be split into two tables (or transposed) by the caller — ``table`` sets wider tables at 7.4 pt and warns."""
     rows = [[("—" if _missing(c) else c) for c in r] for r in rows]
-    size = font or (6.5 if max(len(r) for r in rows) >= 9 else 7.6)
+    ncols = max(len(r) for r in rows)
+    if ncols > MAX_TABLE_COLUMNS:          # older reports: still built, but flagged for splitting
+        print(f"report_kit: table with {ncols} columns is set at 7.4 pt; split it to keep 8 pt", file=sys.stderr)
+        size = 7.4
+    else:
+        size = max(font or (8.0 if ncols >= 9 else 8.6), MIN_TABLE_FONT)
     body = ParagraphStyle("cw", parent=S["cell"], fontSize=size, leading=size * 1.24)
     head = ParagraphStyle("cwb", parent=S["cellb"], fontSize=size, leading=size * 1.24)
     data = [[Paragraph(inline(str(c)), head if (header and r == 0) else body) for c in row]
