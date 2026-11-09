@@ -147,3 +147,19 @@ def test_settled_predictions_are_counted_apart_from_matches():
     assert (c["settled_now"], c["settled_matches"], c["settled_main"], c["settled_risk"]) == (5, 3, 2, 2)
     assert (c["settled_market"], c["settled_push"], c["voided_now"]) == (1, 1, 1)
     assert "on 3 matches: Main 2, Risk 2, market forecasts 1, refunds 1" in diag.line("predictions")
+
+
+def test_a_club_spelt_without_history_is_reported():
+    """The fixtures file once wrote "KV Mechelen" for "Mechelen": a club with no history must be named."""
+    import importlib.util
+    from pathlib import Path
+    spec = importlib.util.spec_from_file_location("run_pipeline", Path(__file__).parent.parent / "scripts/run_pipeline.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    soon = pd.Timestamp.now().normalize() + pd.Timedelta(days=2)
+    features = pd.DataFrame([
+        {"league": "B1", "home_team": "Mechelen", "away_team": "Genk", "played": True, "date": pd.Timestamp("2026-10-31")},
+        {"league": "B1", "home_team": "Kortrijk", "away_team": "Gent", "played": True, "date": pd.Timestamp("2026-10-30")},
+        {"league": "B1", "home_team": "Kortrijk", "away_team": "KV Mechelen", "played": False, "date": soon},
+    ])
+    assert mod.clubs_without_history(features) == ["B1: KV Mechelen"]

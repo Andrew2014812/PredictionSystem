@@ -55,6 +55,25 @@ def record_settlement(done: pd.DataFrame) -> None:
     diag.add("predictions", "settled_push", int((done["status"] == "PUSH").sum()))
 
 
+def clubs_without_history(features: pd.DataFrame) -> list[str]:
+    """Clubs of upcoming matches that never played a match in our data. Usually a spelling the results
+    files do not use ("KV Mechelen" for "Mechelen" made three predictions without team history in
+    November 2026), rarely a club new to all our leagues. Listed in the run summary so it is fixed early."""
+    played = features.loc[features["played"].astype(bool)]
+    known = set(played["home_team"]) | set(played["away_team"])
+    upcoming = features.loc[~features["played"].astype(bool)
+                            & (pd.to_datetime(features["date"]) >= pd.Timestamp.now().normalize())]
+    return sorted(f"{lg}: {team}" for lg, home, away in upcoming[["league", "home_team", "away_team"]].itertuples(
+        index=False) for team in (home, away) if team not in known)
+
+
+def record_clubs_without_history(features: pd.DataFrame) -> None:
+    clubs = sorted(set(clubs_without_history(features)))
+    diag.info("predictions", clubs_without_history=clubs)
+    if clubs:
+        diag.error("predictions", "clubs without any played match: " + ", ".join(clubs[:8]))
+
+
 def record_waiting(picks: pd.DataFrame, features: pd.DataFrame) -> None:
     """Every past match with unsettled predictions and why it waits (api/diagnostics/waiting.csv)."""
     from src.analytics.waiting import reason_counts, waiting_matches
@@ -102,6 +121,7 @@ def main() -> None:
         record_waiting(picks, features)
     with diag.stage("history_repair"):
         summary["history_repair"] = repair_history(features)       # archived prices, missing Risk predictions
+    record_clubs_without_history(features)
     with diag.stage("predictions"):
         summary["predicted_matches"] = generate_live_predictions(features)
     from src.analytics.invariants import check_history
