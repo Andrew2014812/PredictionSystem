@@ -38,6 +38,10 @@ PRETEND_FREEZE_UK = pd.Timestamp("2026-10-01 00:00:00")
 END = pd.Timestamp("2026-11-09 07:00:00")
 
 
+def _bytes(folder: Path) -> int:
+    return int(sum(p.stat().st_size for p in folder.glob("*.parquet"))) if folder.exists() else 0
+
+
 def _hashes(folder: Path) -> dict:
     return {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(folder.glob("*.parquet"))}
 
@@ -144,8 +148,8 @@ def main() -> dict:
                          "results_appended": s1.get("settlement", {}).get("results_appended"),
                          "per_shadow_seconds": {k: v["seconds"] for k, v in s1.get("recorded", {}).items()},
                          "errors": {**s1.get("errors", {}), **s2.get("errors", {})}})
-        size_rows.append({"run_uk": str(t_run), "bytes": int((root / SH.PREDICTIONS).stat().st_size)
-                          if (root / SH.PREDICTIONS).exists() else 0,
+        size_rows.append({"run_uk": str(t_run), "bytes": _bytes(root / SH.PREDICTIONS),
+                          "files": len(list((root / SH.PREDICTIONS).glob("*.parquet"))),
                           "rows_total": s1.get("rows_total")})
         C.log.info("run %s: %d matches, +%d rows (re-run +%s) in %.1f s", t_run, len(ids), s1.get("rows_appended", 0),
                    s2.get("rows_appended"), s1.get("seconds", 0))
@@ -173,16 +177,17 @@ def main() -> dict:
     tam = C.CACHE / "replay_tampered"
     shutil.rmtree(tam, ignore_errors=True)
     shutil.copytree(root, tam)
-    df = pd.read_parquet(tam / SH.PREDICTIONS)
+    victim = sorted((tam / SH.PREDICTIONS).glob("*.parquet"))[len(runs) // 2]
+    df = pd.read_parquet(victim)
     i = int(len(df) // 2)
     df.loc[i, "p"] = (df.loc[i, "p"] if df.loc[i, "p"] == df.loc[i, "p"] else 0.5) + 0.01
-    df.to_parquet(tam / SH.PREDICTIONS, index=False)
+    df.to_parquet(victim, index=False)
     tampered = SH.verify_log(tam)
     shutil.rmtree(tam, ignore_errors=True)
 
     after_hashes = _hashes(prod_dir)
-    log_df = pd.read_parquet(root / SH.PREDICTIONS)
-    res_df = pd.read_parquet(root / SH.RESULTS)
+    log_df = SH.load_predictions(root)
+    res_df = SH.load_results(root)
     late_rows = int((pd.to_datetime(log_df["recorded_at"]) >= pd.to_datetime(log_df["kickoff"])).sum())
     by_shadow = log_df.groupby("shadow_key").agg(rows=("seq", "size"), matches=("match_id", "nunique")).reset_index()
     sizes = pd.DataFrame(size_rows)
@@ -197,8 +202,9 @@ def main() -> dict:
         "production_unchanged": before == after_hashes, "production_files": list(before),
         "frozen_decision_stable": frozen_same,
         "evaluations": evals, "final_report": final,
-        "storage": {"rows_total": int(len(log_df)), "bytes_predictions": int((root / SH.PREDICTIONS).stat().st_size),
-                    "bytes_results": int((root / SH.RESULTS).stat().st_size),
+        "storage": {"rows_total": int(len(log_df)), "bytes_predictions": _bytes(root / SH.PREDICTIONS),
+                    "files_predictions": len(list((root / SH.PREDICTIONS).glob("*.parquet"))),
+                    "bytes_results": _bytes(root / SH.RESULTS),
                     "bytes_manifest": int((root / SH.MANIFEST).stat().st_size),
                     "bytes_x5_cache": int((root / "cache" / "x5_expected_xg.parquet").stat().st_size)
                     if (root / "cache" / "x5_expected_xg.parquet").exists() else 0,

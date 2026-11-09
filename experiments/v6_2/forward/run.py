@@ -132,6 +132,33 @@ def fidelity() -> dict:
     return out
 
 
+def volume(sim: dict) -> dict:
+    """Expected daily volume in real operation: production refreshes every upcoming match each day, and a shadow
+    row is added whenever its content changes. Upper bound = every refreshed (match, version) of the last 28 days
+    gives a new row for every item; bytes per row from the replay."""
+    v = pd.read_parquet(C.ROOT / "local_data/predictions/versions.parquet",
+                        columns=["match_id", "version", "generated_at", "source", "role"])
+    v = v.loc[(v["source"] == "live") & (v["role"] == "main")].drop_duplicates(["match_id", "version"])
+    v["day"] = pd.to_datetime(v["generated_at"]).dt.normalize()
+    last = v["day"].max()
+    recent = v.loc[v["day"] > last - pd.Timedelta(days=28)]
+    per_day = recent.groupby("day").size()
+    st = sim.get("storage", {})
+    rows_per_match = st.get("rows_total", 0) / max(sim.get("live_matches", 1), 1)
+    bytes_per_row = st.get("bytes_predictions", 0) / max(st.get("rows_total", 1), 1)
+    days_with_runs = int(per_day.size)
+    mean_versions = float(per_day.sum() / 28)
+    return {"window": [str((last - pd.Timedelta(days=28)).date()), str(last.date())],
+            "versions_per_day_mean": mean_versions, "days_with_runs": days_with_runs,
+            "versions_per_run_max": int(per_day.max()) if len(per_day) else 0,
+            "rows_per_match_version": rows_per_match, "bytes_per_row": bytes_per_row,
+            "rows_per_day_upper": mean_versions * rows_per_match,
+            "kb_per_day_upper": mean_versions * rows_per_match * bytes_per_row / 1024,
+            "mb_per_season_upper": mean_versions * rows_per_match * bytes_per_row * 300 / 1024 ** 2,
+            "production_tables_kb": {p.name: round(p.stat().st_size / 1024) for p in
+                                     sorted((C.ROOT / "local_data/predictions").glob("*.parquet"))}}
+
+
 def main() -> None:
     C.setup_logging("forward-run")
     t0 = time.time()
@@ -141,6 +168,7 @@ def main() -> None:
     C.save_json("current_run.json", cur)
     sim = C.load_json("simulation.json", {})
     C.save_json("eta.json", eta(sim))
+    C.save_json("volume.json", volume(sim))
     C.save_json("run_info.json", {"environment": C.environment(), "minutes": round((time.time() - t0) / 60, 2)})
 
 

@@ -13,8 +13,11 @@ from . import common as C
 from .figures import SHORT
 
 OUT = C.ROOT / "reports" / "v6_2" / "Forward_Validation_Research.pdf"
-CALL = ("from src.research.shadow import record_shadow_predictions\n"
-        "summary[\"shadow\"] = record_shadow_predictions(features)   # после generate_live_predictions(features)")
+CALL = ("    with diag.stage(\"predictions\"):\n"
+        "        summary[\"predicted_matches\"] = generate_live_predictions(features)\n"
+        "    from src.research.shadow import record_shadow_predictions          # новое\n"
+        "    with diag.stage(\"shadow\"):                                        # новое\n"
+        "        summary[\"shadow\"] = record_shadow_predictions(features)       # новое")
 
 
 def _last_exact(w) -> str:
@@ -40,6 +43,7 @@ def build() -> None:
     cur = C.load_json("current_run.json")
     eta = C.load_json("eta.json")
     fid = C.load_json("fidelity.json")
+    vol = C.load_json("volume.json")
     info = C.load_json("run_info.json")
     st = sim["storage"]
     rt = sim["runtime"]
@@ -105,17 +109,18 @@ def build() -> None:
               "версию. Строки никогда не меняются и не удаляются. Каждая строка получает номер `seq`, хэш содержимого и "
               "звено цепочки:"),
             formula("row_hash_i = SHA1(content_hash_i | run_id_i | seq_i),   chain_i = SHA256(chain_{i−1} + row_hash_i)"),
-            P("Манифест хранит голову цепочки после каждого прогона; `verify_log` пересчитывает цепочку и хэши "
-              "содержимого — любая правка старой строки обнаруживается. Файлы пишутся атомарно (временный файл + "
-              "`os.replace`)."),
+            P("Строки каждого прогона пишутся НОВЫМ неизменяемым файлом `<run_id>.parquet` (временный файл + "
+              "`os.replace`); старые файлы не перезаписываются, поэтому в репозитории каждый день добавляются только "
+              "новые строки. Манифест хранит голову цепочки и SHA-256 каждого файла; `verify_log` пересчитывает цепочку, "
+              "хэши содержимого и файлов — правка, удаление или подброшенный файл обнаруживаются."),
             H2("4.2. Формат хранения"),
             T([["Файл", "Содержимое"],
-                   ["`shadow_predictions.parquet`", "seq, run_id, recorded_at (UK), recorded_at_utc, shadow_id/version/key, "
+                   ["`shadow_predictions/<run_id>.parquet`", "seq, run_id, recorded_at (UK), recorded_at_utc, shadow_id/version/key, "
                     "prereg_sha256, freeze_sha, code_sha, match_id, league, season, date, kickoff, home/away_team, "
                     "prod_generated_at, prod_model_version, prod_version, item, market, selection, p (заявленная "
                     "вероятность тени), base_market/base_selection/base_p (продакшн), odds, bookmaker, provider, "
                     "priced_at, base_odds, base_priced_at, payload (JSON параметров), content_hash, row_hash, chain"],
-                   ["`shadow_results.parquet`", "match_id, голы, угловые, Bet365 открытия 1X2 и тотал 2.5, observed_at, "
+                   ["`shadow_results/<run_id>.parquet`", "match_id, голы, угловые, Bet365 открытия 1X2 и тотал 2.5, observed_at, "
                     "result_hash (исправленный результат — новая строка, учитывается последняя)"],
                    ["`manifest.json`", "реестр при первой регистрации, прогоны (строк добавлено, голова цепочки, время, "
                     "ошибки), замороженные решения тестов"],
@@ -176,16 +181,25 @@ def build() -> None:
                    ["Время записи теней, медиана / среднее / максимум, с", f"{rt['median_s']:.1f} / {rt['mean_s']:.1f} / {rt['max_s']:.1f}"],
                    ["Повтор того же прогона, среднее, с", f"{rt['rerun_mean_s']:.1f}"],
                    ["Строк журнала всего / на матч", f"{st['rows_total']} / {st['rows_total'] / max(sim['live_matches'], 1):.1f}"],
-                   ["shadow_predictions.parquet, КБ (всего / в день)", f"{st['bytes_predictions'] / 1024:.0f} / {st['bytes_predictions'] / 1024 / days:.1f}"],
-                   ["shadow_results.parquet + manifest.json, КБ", f"{(st['bytes_results'] + st['bytes_manifest']) / 1024:.0f}"],
+                   ["shadow_predictions/, КБ (всего / в день) / файлов", f"{st['bytes_predictions'] / 1024:.0f} / "
+                    f"{st['bytes_predictions'] / 1024 / days:.1f} / {st.get('files_predictions', '—')}"],
+                   ["shadow_results/ + manifest.json, КБ", f"{(st['bytes_results'] + st['bytes_manifest']) / 1024:.0f}"],
                    ["Кэш X5 (E[xG]), КБ", f"{st['bytes_x5_cache'] / 1024:.0f}"],
                    ["Текущее состояние: матчей к записи", str(first.get("upcoming_matches"))],
                    ["Текущее состояние: первый вызов / повтор, с", f"{first.get('seconds')} / {second.get('seconds')}"],
                    ["Текущее состояние: продакшн не изменился", "да" if cur["production_unchanged"] else "НЕТ"]],
                   widths=[11.0, 6.0]),
-            P("Первый вызов в новом каталоге строит кэш E[xG] всех сыгранных матчей сезона (секунды–минута на общей "
-              "машине); дальше дописываются только новые дни. Время прогона определяется числом матчей к записи и "
-              "почти целиком приходится на X5 и подгонку PS-Platt.", "small"),
+            P("Первый вызов в новом каталоге строит кэш E[xG] всех сыгранных матчей сезона (около полутора минут на "
+              "общей машине); дальше дописываются только новые дни. Время прогона определяется числом матчей к записи "
+              "и почти целиком приходится на X5 и подгонку PS-Platt.", "small"),
+            P(f"Реплей записывает одну итоговую версию на матч. В реальной работе продакшн обновляет каждый будущий матч "
+              f"ежедневно, и тень добавляет строку при каждом изменении содержимого. Верхняя оценка по архиву версий "
+              f"({vol['window'][0]} – {vol['window'][1]}): {vol['versions_per_day_mean']:.0f} версий матчей в день × "
+              f"{vol['rows_per_match_version']:.1f} строки × {vol['bytes_per_row']:.0f} байт ≈ {vol['kb_per_day_upper']:.0f} КБ "
+              f"в день, ≈ {vol['mb_per_season_upper']:.0f} МБ за сезон (300 дней) — новыми файлами, без перезаписи старых. "
+              f"Для сравнения: ежедневный коммит данных уже переписывает таблицы продакшна целиком "
+              f"({sum(vol['production_tables_kb'].values()) / 1024:.1f} МБ: " +
+              ", ".join(f"{k} {v} КБ" for k, v in vol["production_tables_kb"].items()) + ")."),
             figure(C.FIGURES / "replay_costs.png", "Рис. 1. Реплей: время записи на прогон и рост журнала."))
     by = [["Тень", "Строк", "Матчей"]] + [[r["shadow_key"], str(r["rows"]), str(r["matches"])] for r in st["by_shadow"]]
     rep.add(T(by, [8, 3, 3]))
@@ -286,9 +300,9 @@ def build() -> None:
                 "**Не реализовано:** T1 (нужно переобучение); гипотезы параллельных исследований будут добавлены, когда "
                 "появятся их файлы предрегистрации.",
                 "Никакое изменение продакшна из этого исследования не следует."]),
-            H2("Подключение (одна строка)"),
-            P("В `scripts/run_pipeline.py` сразу после `summary[\"predicted_matches\"] = generate_live_predictions(features)` "
-              "(внутри или сразу после блока `with diag.stage(\"predictions\")`):"),
+            H2("Подключение (три строки)"),
+            P("В `scripts/run_pipeline.py` сразу после блока `with diag.stage(\"predictions\")` (до проверок истории) "
+              "добавить три строки:"),
             code(CALL),
             P("Функция никогда не бросает исключение (ошибки — в `summary[\"shadow\"][\"errors\"]`), пишет только в "
               "`local_data/research/` и требует, чтобы этот каталог коммитился ежедневным workflow вместе с остальными "
@@ -302,10 +316,10 @@ def build() -> None:
     rep.build()
     pages = rep.check()
     print(f"{OUT} — {pages} pages")
-    findings(sim, cur, eta, fid)
+    findings(sim, cur, eta, fid, vol)
 
 
-def findings(sim, cur, eta, fid) -> None:
+def findings(sim, cur, eta, fid, vol) -> None:
     st, rt = sim["storage"], sim["runtime"]
     days = max(st["days"], 1)
     lines = ["# FootPredict v6.2 — форвард-валидация и мониторинг: выводы", "",
@@ -324,7 +338,10 @@ def findings(sim, cur, eta, fid) -> None:
              f"- Время прогона: медиана {rt['median_s']:.1f} с, максимум {rt['max_s']:.1f} с; журнал {st['bytes_predictions'] / 1024:.0f} КБ "
              f"за {days} дней (≈ {st['bytes_predictions'] / 1024 / days:.0f} КБ в день).",
              f"- Текущее состояние: {cur['first'].get('upcoming_matches')} матчей к записи, первый вызов {cur['first'].get('seconds')} с, "
-             f"повтор {cur['second'].get('seconds')} с, продакшн не изменился: {cur['production_unchanged']}.", "",
+             f"повтор {cur['second'].get('seconds')} с, продакшн не изменился: {cur['production_unchanged']}.",
+             f"- Реальная работа (верхняя оценка по архиву версий): {vol['versions_per_day_mean']:.0f} версий матчей в день → "
+             f"≈ {vol['rows_per_day_upper']:.0f} строк, ≈ {vol['kb_per_day_upper']:.0f} КБ в день, ≈ {vol['mb_per_season_upper']:.0f} МБ "
+             "за сезон, новыми файлами (старые не перезаписываются).", "",
              "## Когда будут выводы (оценка по темпу сезона)", "",
              "| Тень | N | Случаев в неделю | Недель до N | Не раньше |", "|---|---|---|---|---|"]
     for key, e in eta["shadows"].items():
