@@ -1,0 +1,236 @@
+{
+ "steps": {
+  "audit": {
+   "minutes": 0.08,
+   "finished": "2026-11-09 17:54:45"
+  },
+  "features": {
+   "minutes": 1.43,
+   "finished": "2026-11-09 17:56:11"
+  },
+  "signal": {
+   "minutes": 0.0,
+   "finished": "2026-11-09 17:56:11"
+  },
+  "evaluate": {
+   "minutes": 7.23,
+   "finished": "2026-11-09 18:03:24"
+  },
+  "sensitivity": {
+   "minutes": 0.2,
+   "finished": "2026-11-09 18:03:37"
+  },
+  "decide": {
+   "minutes": 0.0,
+   "finished": "2026-11-09 18:03:37"
+  },
+  "figures": {
+   "minutes": 0.05,
+   "finished": "2026-11-09 18:03:40"
+  }
+ },
+ "environment": {
+  "python": "3.12.12",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "libraries": {
+   "numpy": "2.2.6",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "sklearn": "1.7.2",
+   "xgboost": "3.0.5",
+   "statsmodels": "0.15.0",
+   "matplotlib": "3.11.2",
+   "reportlab": "5.1.0",
+   "pypdfium2": null
+  },
+  "git_sha": "80df12a22ef37ea715fed9b40730e6e06fca8391",
+  "n_jobs": 2,
+  "seed": 20261109,
+  "n_boot": 2000,
+  "production_version": "prod_20261012",
+  "eval_start": "2026-09-01",
+  "refit_days": 7
+ },
+ "data_version": {
+  "local_data/processed/features.parquet": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 17759906,
+   "rows": 38284
+  },
+  "local_data/predictions/markets.parquet": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 4280602,
+   "rows": 528177
+  },
+  "local_data/predictions/snapshots.parquet": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 656512,
+   "rows": 9325
+  },
+  "local_data/predictions/picks.parquet": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 2705461,
+   "rows": 78753
+  },
+  "local_data/odds/odds.parquet": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 2539380,
+   "rows": 358520
+  },
+  "local_data/results/2627/B1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 43328,
+   "rows": 90
+  },
+  "local_data/results/2627/D1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 34772,
+   "rows": 72
+  },
+  "local_data/results/2627/D2.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 43741,
+   "rows": 90
+  },
+  "local_data/results/2627/E0.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 44210,
+   "rows": 90
+  },
+  "local_data/results/2627/E1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 82074,
+   "rows": 168
+  },
+  "local_data/results/2627/E2.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 77708,
+   "rows": 158
+  },
+  "local_data/results/2627/E3.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 80695,
+   "rows": 164
+  },
+  "local_data/results/2627/EC.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 63933,
+   "rows": 132
+  },
+  "local_data/results/2627/F1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 38817,
+   "rows": 81
+  },
+  "local_data/results/2627/F2.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 47317,
+   "rows": 99
+  },
+  "local_data/results/2627/G1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 29747,
+   "rows": 62
+  },
+  "local_data/results/2627/I1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 47578,
+   "rows": 100
+  },
+  "local_data/results/2627/I2.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 47892,
+   "rows": 100
+  },
+  "local_data/results/2627/N1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 47055,
+   "rows": 99
+  },
+  "local_data/results/2627/P1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 42881,
+   "rows": 90
+  },
+  "local_data/results/2627/SC0.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 34126,
+   "rows": 69
+  },
+  "local_data/results/2627/SC1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 31245,
+   "rows": 64
+  },
+  "local_data/results/2627/SC2.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 31365,
+   "rows": 64
+  },
+  "local_data/results/2627/SC3.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 29489,
+   "rows": 60
+  },
+  "local_data/results/2627/SP1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 52117,
+   "rows": 109
+  },
+  "local_data/results/2627/SP2.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 62183,
+   "rows": 131
+  },
+  "local_data/results/2627/T1.csv": {
+   "mtime": "2026-11-09 17:33:59",
+   "bytes": 42984,
+   "rows": 90
+  }
+ },
+ "parameters": {
+  "glm_ridge": 10.0,
+  "mnl_ridge": 10.0,
+  "xgb_residual": {
+   "max_depth": 2,
+   "learning_rate": 0.05,
+   "n_estimators": 150,
+   "min_child_weight": 30,
+   "subsample": 0.8,
+   "colsample_bytree": 1.0,
+   "reg_lambda": 5.0,
+   "objective": "count:poisson",
+   "tree_method": "hist"
+  },
+  "rating_ridge": 5.0,
+  "k_shrink": 3.0,
+  "k_finish": 5.0,
+  "ewm_half_life_matches": 4.0,
+  "min_league_matches": 6,
+  "eval_start": "2026-09-01",
+  "refit_days": 7,
+  "n_boot": 2000,
+  "seed": 20261109,
+  "variants": [
+   "B0",
+   "R0",
+   "R0a",
+   "X1",
+   "G1",
+   "X2",
+   "X2a",
+   "X3",
+   "X3a",
+   "X4",
+   "X5",
+   "M1",
+   "M1a",
+   "X2M",
+   "X2Ma",
+   "S0",
+   "S1",
+   "T0",
+   "T1"
+  ]
+ }
+}

@@ -1,0 +1,105 @@
+{
+ "study": "experiments/v6_2/xg",
+ "frozen_at": "2026-11-09T18:03:59+0100",
+ "data_until": "2026-11-08",
+ "git_sha_of_code": "80df12a22ef37ea715fed9b40730e6e06fca8391",
+ "b_variants": [
+  "X5",
+  "T1"
+ ],
+ "primary": {
+  "name": "X5",
+  "description": "one-parameter geometric blend of the v6.1 goal rates with the opponent-adjusted xG rating",
+  "goals": "log mu_side = (1 - w) * log lambda_B0_side + w * log E[xG_side]",
+  "w": "refitted every 7 days (7-day weeks starting on Tuesday 2026-09-01) by Poisson maximum likelihood on all 2026/27 matches of the 18 xG leagues played before the week, w in [0, 1], one w for home and away",
+  "w_history": [
+   0.08573482544357595,
+   0.18235196652710758,
+   0.1652013228044922,
+   0.1742763046000158,
+   0.17397549973358423,
+   0.1673001257558171,
+   0.14311217504788615,
+   0.14769479552347692,
+   0.16774985472194454,
+   0.17392066994743882
+  ],
+  "rating_model": {
+   "form": "E[xG_home] = exp(mu + hfa + att_home - dfn_away), E[xG_away] = exp(mu + att_away - dfn_home)",
+   "fit": "per league, refitted for every match day on the matches of that league with xG played on an earlier day (lag 0), Poisson quasi-likelihood",
+   "ridge": 5.0,
+   "min_league_matches": 6
+  },
+  "one_x_two": "p_k = p_B0,k * P_k(mu) / P_k(lambda_B0), renormalised (P_k = independent-Poisson outcome probability)",
+  "markets": "production score matrix: reconcile_with_1x2(score_matrix(mu_home, mu_away), p); corners unchanged",
+  "baseline": "B0 = production v6.1 model set prod_20261012 (unchanged)",
+  "fallback": "B0 where the league has no xG or fewer than min_league_matches earlier matches with xG",
+  "in_sample_2026_27": {
+   "matches": 1523,
+   "goals_dev_diff": -0.003239382597075942,
+   "goals_dev_ci95": [
+    -0.00809595913513617,
+    0.0016540603743382995
+   ],
+   "logloss_1x2_diff": 0.0005243232172803073,
+   "logloss_1x2_ci95": [
+    -0.0010314059743563898,
+    0.0020681345676550208
+   ],
+   "roi_main_diff": 0.009984231992714043,
+   "roi_main_ci95": [
+    -0.005509573493240339,
+    0.025736918195062602
+   ],
+   "main_gap_diff": -0.006917202651681775,
+   "sd_per_match_goals_dev_diff": 0.0956469977296538,
+   "n_required_80pct_power": 6842.674321315394
+  }
+ },
+ "secondary": [
+  {
+   "name": "T1",
+   "description": "v6.1 XGBoost settings refitted on 2021/22-2025/26 with shot-based xG-proxy features (proxy = a + b * shots + c * shots on target, fitted on August 2026 xG matches)",
+   "proxy_mapping": {
+    "a": -0.0032053900185746815,
+    "b_shots": 0.06536237384872619,
+    "c_sot": 0.12199125762531503,
+    "r2": 0.5631680817173946,
+    "n": 956
+   },
+   "features": [
+    "h_pxg_f5",
+    "h_pxg_f10",
+    "h_pxg_a5",
+    "h_pxg_a10",
+    "a_pxg_f5",
+    "a_pxg_f10",
+    "a_pxg_a5",
+    "a_pxg_a10",
+    "diff_pxg10"
+   ],
+   "in_sample_2026_27": {
+    "logloss_1x2_diff": -0.000475600255276026,
+    "logloss_1x2_ci95": [
+     -0.0018112453379501541,
+     0.0008718145041324522
+    ],
+    "goals_dev_diff": 0.0024866333347720966
+   }
+  }
+ ],
+ "forward_test": {
+  "matches": "played 2026/27 (and later) matches of the 18 xG leagues with kick-off after frozen_at, every prediction made with data available before kick-off; same matches for X5 and B0",
+  "minimum_matches": 3000,
+  "planned_power_note": "with the in-sample effect and spread, 3000 matches give roughly 60 % one-sided power; the in-sample estimate of the matches needed for 80 % two-sided power is n_required_80pct_power",
+  "primary_metric": "mean per-match Poisson deviance of home + away goals, X5 - B0",
+  "adopt_if": [
+   "primary difference < 0 with one-sided bootstrap p < 0.05 (2000 resamples by match)",
+   "1X2 log loss difference: upper 95 % bound < +0.002",
+   "Main ROI at real pre-match prices, X5 - B0: lower 95 % bound > -0.02",
+   "the over-confidence of the selected Main (stated probability - hit rate) not larger than B0's"
+  ],
+  "otherwise": "stays B if the point estimate is < 0, else C",
+  "secondary_rule": "T1 is reported with the same metrics (1X2 log loss as its primary) for information; Holm correction over the two forward tests"
+ }
+}

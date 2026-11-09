@@ -1,0 +1,14 @@
+{
+ "rows": 65938,
+ "matches": 1523,
+ "market_average_dropped": 105,
+ "origin": {
+  "recorded": 52736,
+  "archive": 13202
+ },
+ "provider": {
+  "oddspapi": 63949,
+  "the_odds_api": 1209,
+  "football_data": 780
+ }
+}

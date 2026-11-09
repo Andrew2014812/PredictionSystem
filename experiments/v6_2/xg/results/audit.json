@@ -1,0 +1,272 @@
+{
+ "seasons": [
+  {
+   "season_code": "2122",
+   "files": 22,
+   "with_xg": 0
+  },
+  {
+   "season_code": "2223",
+   "files": 22,
+   "with_xg": 0
+  },
+  {
+   "season_code": "2324",
+   "files": 22,
+   "with_xg": 0
+  },
+  {
+   "season_code": "2425",
+   "files": 22,
+   "with_xg": 0
+  },
+  {
+   "season_code": "2526",
+   "files": 22,
+   "with_xg": 0
+  },
+  {
+   "season_code": "2627",
+   "files": 22,
+   "with_xg": 18
+  }
+ ],
+ "xg_leagues": [
+  "B1",
+  "D1",
+  "D2",
+  "E0",
+  "E1",
+  "E2",
+  "E3",
+  "F1",
+  "F2",
+  "G1",
+  "I1",
+  "I2",
+  "N1",
+  "P1",
+  "SC0",
+  "SP1",
+  "SP2",
+  "T1"
+ ],
+ "no_xg_leagues": [
+  "SC1",
+  "SC2",
+  "SC3"
+ ],
+ "anomalies": {
+  "rows_in_files": 2050,
+  "rows_in_leagues_with_xg_column": 1862,
+  "both_xg_present": 1862,
+  "only_one_side_present": 0,
+  "non_numeric_values": 0,
+  "negative": 0,
+  "above_5": 6,
+  "above_8_impossible": 0,
+  "exact_zero": 1,
+  "total_above_7": 4,
+  "xg_but_no_goals": 0,
+  "goals_but_no_xg_in_xg_leagues": 0,
+  "duplicate_match_ids": 0,
+  "goal_minus_xg_above_4": 2,
+  "xg_without_shots": 0,
+  "xg_positive_with_zero_shots": 0,
+  "zero_xg_with_goals": 0,
+  "sot_exceeds_shots": 1,
+  "goals_exceed_sot": 10
+ },
+ "extreme_examples": [
+  {
+   "match_id": "SP1-20260916-barcelona-santander",
+   "xg_home": 6.74,
+   "xg_away": 1.98,
+   "home_goals": 7.0,
+   "away_goals": 2.0,
+   "home_shots": 30.0,
+   "away_shots": 5.0,
+   "home_sot": 9.0,
+   "away_sot": 3.0
+  },
+  {
+   "match_id": "G1-20261018-panathinaikos-asteras-tripolis",
+   "xg_home": 5.72,
+   "xg_away": 0.85,
+   "home_goals": 5.0,
+   "away_goals": 1.0,
+   "home_shots": 27.0,
+   "away_shots": 5.0,
+   "home_sot": 8.0,
+   "away_sot": 1.0
+  },
+  {
+   "match_id": "T1-20260920-fenerbahce-eyupspor",
+   "xg_home": 5.14,
+   "xg_away": 0.72,
+   "home_goals": 8.0,
+   "away_goals": 0.0,
+   "home_shots": 24.0,
+   "away_shots": 17.0,
+   "home_sot": 13.0,
+   "away_sot": 6.0
+  },
+  {
+   "match_id": "T1-20261101-amedspor-eyupspor",
+   "xg_home": 4.95,
+   "xg_away": 0.98,
+   "home_goals": 5.0,
+   "away_goals": 1.0,
+   "home_shots": 20.0,
+   "away_shots": 8.0,
+   "home_sot": 7.0,
+   "away_sot": 2.0
+  },
+  {
+   "match_id": "SC0-20261024-rangers-st-johnstone",
+   "xg_home": 4.57,
+   "xg_away": 0.58,
+   "home_goals": 4.0,
+   "away_goals": 0.0,
+   "home_shots": 21.0,
+   "away_shots": 9.0,
+   "home_sot": 9.0,
+   "away_sot": 2.0
+  },
+  {
+   "match_id": "E0-20260830-man-united-ipswich",
+   "xg_home": 4.56,
+   "xg_away": 2.01,
+   "home_goals": 5.0,
+   "away_goals": 2.0,
+   "home_shots": 33.0,
+   "away_shots": 9.0,
+   "home_sot": 11.0,
+   "away_sot": 5.0
+  },
+  {
+   "match_id": "E2-20260829-sheffield-weds-bromley",
+   "xg_home": 4.52,
+   "xg_away": 1.5,
+   "home_goals": 7.0,
+   "away_goals": 2.0,
+   "home_shots": 29.0,
+   "away_shots": 7.0,
+   "home_sot": 15.0,
+   "away_sot": 2.0
+  },
+  {
+   "match_id": "D1-20261010-augsburg-bayern-munich",
+   "xg_home": 2.37,
+   "xg_away": 4.96,
+   "home_goals": 2.0,
+   "away_goals": 2.0,
+   "home_shots": 12.0,
+   "away_shots": 30.0,
+   "home_sot": 5.0,
+   "away_sot": 10.0
+  },
+  {
+   "match_id": "I2-20261010-empoli-palermo",
+   "xg_home": 2.0,
+   "xg_away": 4.79,
+   "home_goals": 2.0,
+   "away_goals": 4.0,
+   "home_shots": 6.0,
+   "away_shots": 35.0,
+   "home_sot": 2.0,
+   "away_sot": 12.0
+  },
+  {
+   "match_id": "F1-20260920-marseille-paris-sg",
+   "xg_home": 1.98,
+   "xg_away": 5.09,
+   "home_goals": 1.0,
+   "away_goals": 2.0,
+   "home_shots": 12.0,
+   "away_shots": 31.0,
+   "home_sot": 4.0,
+   "away_sot": 10.0
+  },
+  {
+   "match_id": "B1-20261010-raal-la-louviere-club-brugge",
+   "xg_home": 1.1,
+   "xg_away": 4.88,
+   "home_goals": 1.0,
+   "away_goals": 4.0,
+   "home_shots": 17.0,
+   "away_shots": 21.0,
+   "home_sot": 3.0,
+   "away_sot": 7.0
+  },
+  {
+   "match_id": "SC0-20260809-kilmarnock-celtic",
+   "xg_home": 0.85,
+   "xg_away": 5.64,
+   "home_goals": 1.0,
+   "away_goals": 5.0,
+   "home_shots": 10.0,
+   "away_shots": 33.0,
+   "home_sot": 6.0,
+   "away_sot": 16.0
+  }
+ ],
+ "overall": {
+  "matches_with_xg": 1862,
+  "teams_matches": 3724,
+  "mean_xg": 1.4401181525241675,
+  "mean_goals": 1.4677765843179378,
+  "ratio": 1.0192056684691404,
+  "corr": 0.5834853623598584,
+  "xg_home_mean": 1.5711815252416756,
+  "xg_away_mean": 1.3090547798066596,
+  "goals_home_mean": 1.621374865735768,
+  "goals_away_mean": 1.3141783029001075,
+  "first_date": "2026-07-31",
+  "last_date": "2026-11-04",
+  "xg_quantiles": {
+   "0.01": 0.16,
+   "0.05": 0.37150000000000005,
+   "0.25": 0.8,
+   "0.5": 1.29,
+   "0.75": 1.91,
+   "0.95": 3.0,
+   "0.99": 3.9553999999999996
+  },
+  "ratio_spread_leagues": [
+   0.9076522062930553,
+   1.1443795222669615
+  ],
+  "ratio_heterogeneity": {
+   "chi2": 12.65674069473768,
+   "df": 17,
+   "p": 0.7588445969863873
+  }
+ },
+ "shots_vs_xg": {
+  "n_team_matches": 3724,
+  "coef": [
+   -0.02097325914331406,
+   0.0642096996599352,
+   0.12835310669466082
+  ],
+  "r2_xg_on_shots_sot": 0.5491992976272089,
+  "corr_goals_xg": 0.5834853623598584,
+  "corr_goals_sot": 0.6010139515427901,
+  "corr_goals_shots": 0.32063366037808577
+ },
+ "b0_vs_xg": {
+  "n_team_matches": 3724,
+  "corr_lambda_xg": 0.4311664751991175,
+  "corr_lambda_goals": 0.34844089574250064,
+  "mean_lambda": 1.3994427919387817,
+  "mean_xg": 1.4401181525241675,
+  "mean_goals": 1.4677765843179378,
+  "dev_goals_given_lambda": 1.1438650933026093,
+  "dev_goals_given_xg": 0.9129016953135057
+ },
+ "played_in_system_2026": 2202,
+ "played_in_xg_leagues": 2001,
+ "played_with_xg": 1862,
+ "minutes": 0.03
+}
