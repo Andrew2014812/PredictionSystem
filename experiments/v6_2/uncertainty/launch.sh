@@ -14,7 +14,7 @@ case "${1:-}" in
     done
     ;;
   run)
-    nohup timeout 90m "$PY" -m experiments.v6_2.uncertainty.run > "$LOGS/run.log" 2>&1 &
+    ( timeout 30m "$PY" -m experiments.v6_2.uncertainty.prepare 2026 && timeout 90m "$PY" -m experiments.v6_2.uncertainty.run ) > "$LOGS/run.log" 2>&1 &
     ;;
   *)
     echo "usage: launch.sh ensemble|run"; exit 2 ;;
