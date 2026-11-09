@@ -89,6 +89,11 @@ def _parse_dates(values: pd.Series) -> pd.Series:
     return parsed.fillna(short)
 
 
+# One club under two Football-Data names in different seasons: its history must be one history.
+# FC Edinburgh is the 2022/23 name of Edinburgh City (Scotland), so the club's Elo and form restarted in 2023.
+CLUB_RENAMES = {"FC Edinburgh": "Edinburgh City"}
+
+
 def normalise(raw: pd.DataFrame) -> pd.DataFrame:
     """Convert a raw Football-Data frame (results or fixtures) to canonical form."""
     if raw.empty or "Div" not in raw.columns:
@@ -100,8 +105,8 @@ def normalise(raw: pd.DataFrame) -> pd.DataFrame:
     df["date"] = _parse_dates(raw["Date"].astype(str).str.strip())
     df["time"] = raw["Time"].astype(str).str.strip() if "Time" in raw.columns else ""
     df.loc[~df["time"].str.match(r"^\d{1,2}:\d{2}$"), "time"] = ""
-    df["home_team"] = raw["HomeTeam"].astype(str).str.strip()
-    df["away_team"] = raw["AwayTeam"].astype(str).str.strip()
+    df["home_team"] = raw["HomeTeam"].astype(str).str.strip().replace(CLUB_RENAMES)
+    df["away_team"] = raw["AwayTeam"].astype(str).str.strip().replace(CLUB_RENAMES)
 
     for src, dst in STAT_COLUMNS.items():
         if src in raw.columns:
