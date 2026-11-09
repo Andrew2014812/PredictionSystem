@@ -1,0 +1,2654 @@
+{
+ "xg": {
+  "leagues": {
+   "v": 18.0,
+   "src": "experiments/v6_2/xg/results/audit.json"
+  },
+  "no_xg_leagues": {
+   "v": [
+    "SC1",
+    "SC2",
+    "SC3"
+   ],
+   "src": "experiments/v6_2/xg/results/audit.json"
+  },
+  "matches_with_xg": {
+   "v": 1862.0,
+   "src": "experiments/v6_2/xg/results/audit.json"
+  },
+  "first_date": {
+   "v": "2026-07-31",
+   "src": "experiments/v6_2/xg/results/audit.json"
+  },
+  "goals_over_xg": {
+   "v": 1.0192056684691404,
+   "src": "experiments/v6_2/xg/results/audit.json"
+  },
+  "n_eval": {
+   "v": 1523.0,
+   "src": "experiments/v6_2/xg/results/metrics.json"
+  },
+  "eval_period": {
+   "v": [
+    "2026-09-01",
+    "2026-11-08"
+   ],
+   "src": "experiments/v6_2/xg/results/metrics.json"
+  },
+  "n_variants": {
+   "v": 18.0,
+   "src": "experiments/v6_2/xg/results/metrics.json"
+  },
+  "n_significant_better": {
+   "v": 0.0,
+   "src": "experiments/v6_2/xg/results/metrics.json"
+  },
+  "X5_goals": {
+   "v": -0.003239382597075942,
+   "src": "experiments/v6_2/xg/results/metrics.json",
+   "ci": [
+    -0.00809595913513617,
+    0.0016540603743382995
+   ],
+   "p": 0.197,
+   "p_holm": 1.0
+  },
+  "X5_ll": {
+   "v": 0.0005243232172803073,
+   "src": "experiments/v6_2/xg/results/metrics.json",
+   "ci": [
+    -0.0010314059743563898,
+    0.0020681345676550208
+   ]
+  },
+  "X5_n_required": {
+   "v": 6842.674321315394,
+   "src": "experiments/v6_2/xg/results/metrics.json"
+  },
+  "T1_ll": {
+   "v": -0.000475600255276026,
+   "src": "experiments/v6_2/xg/results/metrics.json",
+   "ci": [
+    -0.0018112453379501541,
+    0.0008718145041324522
+   ]
+  },
+  "X1_goals": {
+   "v": 0.06385851899014083,
+   "src": "experiments/v6_2/xg/results/metrics.json",
+   "ci": [
+    0.033204293959625125,
+    0.09608034244330081
+   ]
+  },
+  "X1_ll": {
+   "v": 0.028894552360551686,
+   "src": "experiments/v6_2/xg/results/metrics.json",
+   "ci": [
+    0.017910673189385544,
+    0.0405593518366133
+   ]
+  },
+  "B0_gap": {
+   "v": 0.0482318869438938,
+   "src": "experiments/v6_2/xg/results/main.json",
+   "ci": [
+    0.02579444570416579,
+    0.07142258445385684
+   ]
+  },
+  "B0_roi": {
+   "v": -0.037419187757564754,
+   "src": "experiments/v6_2/xg/results/main.json",
+   "ci": [
+    -0.07136702323698155,
+    -0.004480014681665913
+   ],
+   "n": 1522
+  },
+  "X5_dgap": {
+   "v": -0.006917202651681775,
+   "src": "experiments/v6_2/xg/results/main.json",
+   "ci": [
+    -0.017751174321750458,
+    0.0035988884201343593
+   ]
+  },
+  "X5_droi": {
+   "v": 0.009984231992714043,
+   "src": "experiments/v6_2/xg/results/main.json",
+   "ci": [
+    -0.005509573493240339,
+    0.025736918195062602
+   ]
+  },
+  "corners": {
+   "v": 0.020441705679891287,
+   "src": "experiments/v6_2/xg/results/corners.json",
+   "ci": [
+    0.005586195624495567,
+    0.03506985058661886
+   ]
+  },
+  "decisions": {
+   "v": {
+    "R0": "—",
+    "R0a": "—",
+    "X1": "C",
+    "G1": "—",
+    "X2": "C",
+    "X2a": "C",
+    "X3": "C",
+    "X3a": "C",
+    "X4": "C",
+    "X5": "B",
+    "M1": "C",
+    "M1a": "C",
+    "X2M": "C",
+    "X2Ma": "C",
+    "S0": "—",
+    "S1": "C",
+    "T0": "—",
+    "T1": "B"
+   },
+   "src": "experiments/v6_2/xg/results/decisions.json"
+  },
+  "forward_min": {
+   "v": 3000.0,
+   "src": "experiments/v6_2/xg/results/preregistration.json"
+  }
+ },
+ "data_quality": {
+  "cells": {
+   "v": 1415842.0,
+   "src": "experiments/v6_2/data_quality/results/recompute.json"
+  },
+  "cells_mismatch": {
+   "v": 0.0,
+   "src": "experiments/v6_2/data_quality/results/recompute.json"
+  },
+  "matches": {
+   "v": 38266.0,
+   "src": "experiments/v6_2/data_quality/results/recompute.json"
+  },
+  "features": {
+   "v": 37.0,
+   "src": "experiments/v6_2/data_quality/results/recompute.json"
+  },
+  "rebuild_cells_differing": {
+   "v": 0.0,
+   "src": "experiments/v6_2/data_quality/results/variants.json"
+  },
+  "zero_home_ll": {
+   "v": 0.05737902516133708,
+   "src": "experiments/v6_2/data_quality/results/sensitivity.json",
+   "ci": [
+    0.05346531089331375,
+    0.061231145797707665
+   ],
+   "n": 23672
+  },
+  "zero_home_main_changed": {
+   "v": 0.738340655626901,
+   "src": "experiments/v6_2/data_quality/results/sensitivity.json"
+  },
+  "zero_away_ll": {
+   "v": 0.03551442056597699,
+   "src": "experiments/v6_2/data_quality/results/sensitivity.json",
+   "ci": [
+    0.03207179913130648,
+    0.038798796257342345
+   ]
+  },
+  "zero_away_main_changed": {
+   "v": 0.6587529570800946,
+   "src": "experiments/v6_2/data_quality/results/sensitivity.json"
+  },
+  "zero_home_droi": {
+   "v": -0.0073830136452709,
+   "src": "experiments/v6_2/data_quality/results/sensitivity.json",
+   "ci": [
+    -0.0299222282497876,
+    0.015185806627958282
+   ]
+  },
+  "n_sens_variants": {
+   "v": 13.0,
+   "src": "experiments/v6_2/data_quality/results/sensitivity.json"
+  },
+  "n_dq_variants": {
+   "v": 3.0,
+   "src": "experiments/v6_2/data_quality/results/variants.json"
+  },
+  "newcomer_ll": {
+   "v": 0.06377558347871004,
+   "src": "experiments/v6_2/data_quality/results/strata.json",
+   "ci": [
+    0.03457199110276256,
+    0.09275744428275569
+   ]
+  },
+  "newcomer_excess_ll": {
+   "v": 0.010417952226192483,
+   "src": "experiments/v6_2/data_quality/results/strata.json",
+   "ci": [
+    -0.004679954878433603,
+    0.025153736124937227
+   ]
+  },
+  "dq_spearman": {
+   "v": 0.02226326314292387,
+   "src": "experiments/v6_2/data_quality/results/strata.json"
+  },
+  "elo50_ll": {
+   "v": -0.00030378368037748175,
+   "src": "experiments/v6_2/data_quality/results/variants.json",
+   "ci": [
+    -0.0005536967786647402,
+    -4.681546024057342e-05
+   ],
+   "n": 21470
+  },
+  "elo50_droi": {
+   "v": 0.004982022548929994,
+   "src": "experiments/v6_2/data_quality/results/variants.json",
+   "ci": [
+    -0.003216568654557451,
+    0.013043246921622464
+   ]
+  },
+  "elo50_meets_rule": {
+   "v": false,
+   "src": "experiments/v6_2/data_quality/results/variants.json"
+  },
+  "defects": {
+   "v": [
+    "D1. Временное написание клуба в файлах результатов текущего сезона: «KV Mechelen», «Sheffield Utd», «Oxford Utd» 05.11.2026. Около суток в признаках было 3 фантомных клуба, а прогнозы с фантомными id были рассчитаны. Исправление: harmonise_names в src/data/dataset.py.",
+    "D2. Устаревший team_id_conflicts.csv (OddsPapi 5044) теперь удаляется.",
+    "D3. Результат Tenerife – Andorra, отозванный источником, оставался рассчитанным. Исправление: строка поставщика цен больше не затирает результат, прогноз возвращается в ожидание (reopen_withdrawn).",
+    "D4. Nice – Rennes: перенос на более ранний день оставлял прогноз, который никогда не будет рассчитан. Исправление: правило rescheduled_duplicates.",
+    "D5. VOID без цены получал прибыль 0.",
+    "D6. Алиасы OFI, Vicenza Virtus, Real Sociedad II."
+   ],
+   "src": "experiments/v6_2/data_quality/findings.md"
+  }
+ },
+ "odds_timing": {
+  "counts": {
+   "v": {
+    "A1": {
+     "main": 740,
+     "risk": 878
+    },
+    "A2": {
+     "main": 38,
+     "risk": 3
+    },
+    "B": {
+     "main": 161,
+     "risk": 59
+    },
+    "C": {
+     "main": 1271,
+     "risk": 1272
+    }
+   },
+   "src": "experiments/v6_2/odds_timing/results/audit.json"
+  },
+  "roi": {
+   "main|current_all_sources": {
+    "v": -0.041145131938125565,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.0707182211101001,
+     -0.012367504549590565
+    ],
+    "n": 2198
+   },
+   "main|current_live": {
+    "v": -0.032250269687162894,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.07639983818770225,
+     0.015799460625674222
+    ],
+    "n": 927
+   },
+   "main|live_A1_A2": {
+    "v": -0.01193864229765013,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.06310345953002612,
+     0.04062255221932112
+    ],
+    "n": 766
+   },
+   "main|live_B": {
+    "v": -0.128888198757764,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.22081226708074533,
+     -0.03541133540372675
+    ],
+    "n": 161
+   },
+   "main|backfill_C": {
+    "v": -0.047632572777340676,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.08391254917387884,
+     -0.0095161880409127
+    ],
+    "n": 1271
+   },
+   "risk|current_all_sources": {
+    "v": -0.1161813213409215,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.17729744859476027,
+     -0.054150080009495276
+    ],
+    "n": 2195
+   },
+   "risk|current_live": {
+    "v": -0.1569014088226682,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.25241766018366374,
+     -0.06702816850521737
+    ],
+    "n": 923
+   },
+   "risk|live_A1_A2": {
+    "v": -0.16520833373069763,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.2582910880515421,
+     -0.06532262815866205
+    ],
+    "n": 864
+   },
+   "risk|live_B": {
+    "v": -0.03525423728813558,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.3984872881355932,
+     0.346987288135593
+    ],
+    "n": 59
+   },
+   "risk|backfill_C": {
+    "v": -0.08663364779874215,
+    "src": "experiments/v6_2/odds_timing/results/audit.json",
+    "ci": [
+     -0.16713610455974842,
+     -0.004221501572327119
+    ],
+    "n": 1272
+   }
+  },
+  "B_after_h": {
+   "v": 21.16699111111111,
+   "src": "experiments/v6_2/odds_timing/results/audit.json"
+  },
+  "clv_main_odds": {
+   "v": 0.01132825350041782,
+   "src": "experiments/v6_2/odds_timing/results/clv.json",
+   "ci": [
+    0.0056334992872778215,
+    0.017104539189218594
+   ]
+  },
+  "clv_main_fair": {
+   "v": -0.048191141709357545,
+   "src": "experiments/v6_2/odds_timing/results/clv.json",
+   "ci": [
+    -0.05520609573024138,
+    -0.04214346592281381
+   ]
+  },
+  "clv_risk_fair": {
+   "v": -0.08923399570075777,
+   "src": "experiments/v6_2/odds_timing/results/clv.json",
+   "ci": [
+    -0.09550874849927034,
+    -0.08351338063903112
+   ]
+  },
+  "pinnacle_beta_min": {
+   "v": 0.04133533526262084,
+   "src": "experiments/v6_2/odds_timing/results/drift.json"
+  },
+  "pinnacle_beta_max": {
+   "v": 0.060559559282800476,
+   "src": "experiments/v6_2/odds_timing/results/drift.json"
+  },
+  "close_minus_open_ll": {
+   "v": -0.003318020942355405,
+   "src": "experiments/v6_2/odds_timing/results/drift.json"
+  }
+ },
+ "bookmaker": {
+  "vs_market": {
+   "1X2|2023": {
+    "v": 0.014851520362775412,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.011048587259674095,
+     0.018543601800937864
+    ],
+    "n": 7240
+   },
+   "1X2|2024": {
+    "v": 0.013291476098483229,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.009539249640304568,
+     0.01666136761773281
+    ],
+    "n": 7126
+   },
+   "1X2|2025": {
+    "v": 0.012255723663242893,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.008825415348723643,
+     0.015817919852692982
+    ],
+    "n": 7082
+   },
+   "1X2|2026": {
+    "v": 0.012140694144937155,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.0042561784404156235,
+     0.020230881274681624
+    ],
+    "n": 2047
+   },
+   "OU25|2023": {
+    "v": 0.006618001473924409,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.003833436540359263,
+     0.008986120434124133
+    ],
+    "n": 7239
+   },
+   "OU25|2024": {
+    "v": 0.005389840296602818,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.002624669272800883,
+     0.007963414702551594
+    ],
+    "n": 7126
+   },
+   "OU25|2025": {
+    "v": 0.004938628199796944,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.002397269923342314,
+     0.0075762269715046885
+    ],
+    "n": 7082
+   },
+   "OU25|2026": {
+    "v": 0.005161135011682959,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.00025703891933304905,
+     0.00980116536561408
+    ],
+    "n": 2047
+   },
+   "AH|2023": {
+    "v": 0.014021466136226738,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     0.005320789332507446,
+     0.02227359533553711
+    ],
+    "n": 1058
+   },
+   "AH|2024": {
+    "v": 0.0059540949405698495,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     -0.0020276571542889115,
+     0.013155171906934026
+    ],
+    "n": 1041
+   },
+   "AH|2025": {
+    "v": 0.0034553959472606783,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     -0.004239414350374348,
+     0.010448495888565175
+    ],
+    "n": 1161
+   },
+   "AH|2026": {
+    "v": 0.002497523903173515,
+    "src": "experiments/v6_2/bookmaker/results/benchmark.json",
+    "ci": [
+     -0.013567469477845661,
+     0.0179921695204752
+    ],
+    "n": 379
+   }
+  },
+  "encompassing": {
+   "1X2|select": {
+    "v": -0.04874001158485804,
+    "src": "experiments/v6_2/bookmaker/results/encompassing.json",
+    "ci": [
+     -0.11881445107596449,
+     0.05098003891819323
+    ],
+    "p": 0.39730157945609135
+   },
+   "1X2|2026": {
+    "v": 0.25087741495577665,
+    "src": "experiments/v6_2/bookmaker/results/encompassing.json",
+    "ci": [
+     -0.07392042656208753,
+     0.5550917737578056
+    ],
+    "p": 0.09236676525336647
+   },
+   "OU25|select": {
+    "v": 0.08921601361465588,
+    "src": "experiments/v6_2/bookmaker/results/encompassing.json",
+    "ci": [
+     -0.11472620401124947,
+     0.2722268885374437
+    ],
+    "p": 0.31372784513468377
+   },
+   "OU25|2026": {
+    "v": 0.5311934703751331,
+    "src": "experiments/v6_2/bookmaker/results/encompassing.json",
+    "ci": [
+     -0.011836784014846235,
+     0.9983492933907665
+    ],
+    "p": 0.03818639121954758
+   },
+   "AH|select": {
+    "v": -0.13306196603242895,
+    "src": "experiments/v6_2/bookmaker/results/encompassing.json",
+    "ci": [
+     -0.49389492959197656,
+     0.17857725143971467
+    ],
+    "p": 0.42649291939884304
+   },
+   "AH|2026": {
+    "v": 0.3633040220099783,
+    "src": "experiments/v6_2/bookmaker/results/encompassing.json",
+    "ci": [
+     -0.24438357864624044,
+     1.0417610984315935
+    ],
+    "p": 0.2571508204292154
+   }
+  },
+  "value_bets": {
+   "1X2|2023": {
+    "v": -0.12448545671032489,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.16367987753019222,
+     -0.08616486647389011
+    ],
+    "n": 5879,
+    "ev": 0.1455957761658759,
+    "clv": -0.05668944474017491
+   },
+   "1X2|2024": {
+    "v": -0.09107542942494398,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.1328379854368932,
+     -0.04789567774458553
+    ],
+    "n": 5356,
+    "ev": 0.13220056797393615,
+    "clv": -0.06806882691670427
+   },
+   "1X2|2025": {
+    "v": -0.1229805924412666,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.1682958631256384,
+     -0.08118064351378958
+    ],
+    "n": 4895,
+    "ev": 0.12518528037216245,
+    "clv": -0.07235443478831564
+   },
+   "1X2|2026": {
+    "v": -0.05560657984921179,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.1428492117888965,
+     0.03099588759424263
+    ],
+    "n": 1459,
+    "ev": 0.17878980075985926,
+    "clv": -0.0811713477838434
+   },
+   "OU25|2023": {
+    "v": -0.07397765363128492,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.10229921787709498,
+     -0.042065307262569844
+    ],
+    "n": 4475,
+    "ev": 0.07677024768710561,
+    "clv": -0.05388425881820866
+   },
+   "OU25|2024": {
+    "v": -0.05095459579180509,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.08367059800664452,
+     -0.018817607973421933
+    ],
+    "n": 4515,
+    "ev": 0.08029499532253545,
+    "clv": -0.05292385824797883
+   },
+   "OU25|2025": {
+    "v": -0.04494683421942968,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.07903582648622523,
+     -0.01143046157564041
+    ],
+    "n": 4138,
+    "ev": 0.07407957211991446,
+    "clv": -0.05272892402823537
+   },
+   "OU25|2026": {
+    "v": -0.03477203647416415,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.0953062310030395,
+     0.020490501519756836
+    ],
+    "n": 1316,
+    "ev": 0.0879942478563376,
+    "clv": -0.056647824303603274
+   },
+   "AH|2023": {
+    "v": -0.07565113500597374,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.14117712066905616,
+     -0.008770609318996448
+    ],
+    "n": 837,
+    "ev": 0.09206981950158397,
+    "clv": -0.02877195160544112
+   },
+   "AH|2024": {
+    "v": -0.006666666666666685,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.07075471698113209,
+     0.06282547169811319
+    ],
+    "n": 795,
+    "ev": 0.08239072256577962,
+    "clv": -0.0313841297151108
+   },
+   "AH|2025": {
+    "v": -0.008876811594202916,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.07402928743961355,
+     0.05416425120772945
+    ],
+    "n": 828,
+    "ev": 0.08532600287399418,
+    "clv": -0.042201255300200344
+   },
+   "AH|2026": {
+    "v": 0.04151943462897524,
+    "src": "experiments/v6_2/bookmaker/results/betting.json",
+    "ci": [
+     -0.07209010600706715,
+     0.14530742049469964
+    ],
+    "n": 283,
+    "ev": 0.10754592532719821,
+    "clv": -0.03472005182885127
+   }
+  },
+  "best_hybrid": {
+   "1X2|2023": {
+    "v": -0.00021936383979668912,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0007606241455433782,
+     0.0003263131486983854
+    ],
+    "name": "H3",
+    "p": 0.418,
+    "p_holm": 1.0
+   },
+   "1X2|2024": {
+    "v": -2.1087635251482998e-05,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0007153245325908782,
+     0.0006772947026021199
+    ],
+    "name": "H3",
+    "p": 0.924,
+    "p_holm": 1.0
+   },
+   "1X2|2025": {
+    "v": -0.0005729861467222071,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0011469571771915129,
+     1.6162911149142445e-05
+    ],
+    "name": "H2",
+    "p": 0.062,
+    "p_holm": null
+   },
+   "1X2|2026": {
+    "v": 0.0,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "name": "H1",
+    "p": 1.0,
+    "p_holm": null
+   },
+   "OU25|2023": {
+    "v": -0.0001358238818185738,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0007038911487037176,
+     0.0003810929836209908
+    ],
+    "name": "H2",
+    "p": 0.582,
+    "p_holm": 1.0
+   },
+   "OU25|2024": {
+    "v": -2.1588352973116126e-05,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -7.864981515600529e-05,
+     3.100999370408328e-05
+    ],
+    "name": "H1",
+    "p": 0.436,
+    "p_holm": 1.0
+   },
+   "OU25|2025": {
+    "v": -9.16261008247725e-05,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.00019426580605373247,
+     4.458460446233613e-06
+    ],
+    "name": "H5",
+    "p": 0.074,
+    "p_holm": null
+   },
+   "OU25|2026": {
+    "v": -0.0006255415598917538,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0012024103093527052,
+     -1.5387766906108693e-05
+    ],
+    "name": "H2",
+    "p": 0.044,
+    "p_holm": null
+   },
+   "AH|2023": {
+    "v": -0.00029330035451188434,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0021166553698616407,
+     0.0015639418762678594
+    ],
+    "name": "H2",
+    "p": 0.698,
+    "p_holm": 1.0
+   },
+   "AH|2024": {
+    "v": -0.0005552458004206672,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0013291386866978044,
+     0.0002711358260752099
+    ],
+    "name": "H3",
+    "p": 0.172,
+    "p_holm": 1.0
+   },
+   "AH|2025": {
+    "v": -0.0005143339685822353,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.00213499838277393,
+     0.0009320024888178658
+    ],
+    "name": "H3",
+    "p": 0.524,
+    "p_holm": null
+   },
+   "AH|2026": {
+    "v": -0.0006625297400319098,
+    "src": "experiments/v6_2/bookmaker/results/hybrids.json",
+    "ci": [
+     -0.0037529543104102172,
+     0.002558975961874041
+    ],
+    "name": "H3",
+    "p": 0.698,
+    "p_holm": null
+   }
+  },
+  "margins": {
+   "1X2|2026|b365_open": {
+    "v": 0.07927148587696539,
+    "src": "experiments/v6_2/bookmaker/results/demargin.json"
+   },
+   "OU25|2026|b365_open": {
+    "v": 0.05553478469218748,
+    "src": "experiments/v6_2/bookmaker/results/demargin.json"
+   },
+   "AH|2026|b365_open": {
+    "v": 0.04743481753212511,
+    "src": "experiments/v6_2/bookmaker/results/demargin.json"
+   },
+   "1X2|2024|ps_close": {
+    "v": 0.03836808424671317,
+    "src": "experiments/v6_2/bookmaker/results/demargin.json"
+   },
+   "1X2|2024|bfe_close": {
+    "v": 0.008141748862857312,
+    "src": "experiments/v6_2/bookmaker/results/demargin.json"
+   }
+  },
+  "prereg_status": {
+   "v": "hypothesis B (low prior): not adopted; forward check only",
+   "src": "experiments/v6_2/bookmaker/results/preregistration.json"
+  }
+ },
+ "main_calibration": {
+  "base|site|2023": {
+   "v": 0.014380116675774043,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.00370315388683298,
+    0.025428828817367622
+   ],
+   "roi": -0.021078256436400714,
+   "roi_ci": [
+    -0.04710317785973585,
+    0.003795957221927013
+   ],
+   "n": 3923
+  },
+  "base|site|2024": {
+   "v": 0.016597975311775044,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.004870345099721889,
+    0.02730596722573722
+   ],
+   "roi": -0.03610042735042735,
+   "roi_ci": [
+    -0.06473071162041336,
+    -0.008887187716108389
+   ],
+   "n": 3744
+  },
+  "base|site|2025": {
+   "v": 0.02437248504145572,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.01344489154256713,
+    0.03530430379106415
+   ],
+   "roi": -0.06727483347813495,
+   "roi_ci": [
+    -0.09427434459866313,
+    -0.03862973955553161
+   ],
+   "n": 3453
+  },
+  "base|site|2026": {
+   "v": 0.0579641083592547,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.0386173810923089,
+    0.07866145154928011
+   ],
+   "roi": -0.043499549885247374,
+   "roi_ci": [
+    -0.07348740736907027,
+    -0.016368677847191274
+   ],
+   "n": 2198
+  },
+  "base|bet|2023": {
+   "v": 0.02347648027082202,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.012069709167083224,
+    0.03515883974450163
+   ],
+   "roi": -0.04068879668049793,
+   "roi_ci": [
+    -0.061196273889793526,
+    -0.020585292967630203
+   ],
+   "n": 7230
+  },
+  "base|bet|2024": {
+   "v": 0.031134432529768274,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.019805555685952176,
+    0.04349029930756893
+   ],
+   "roi": -0.056316750983698705,
+   "roi_ci": [
+    -0.07825231871838112,
+    -0.03620130691399666
+   ],
+   "n": 7116
+  },
+  "base|bet|2025": {
+   "v": 0.03350397948070592,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.021694781278980783,
+    0.04518472857566442
+   ],
+   "roi": -0.062144169611307414,
+   "roi_ci": [
+    -0.0827281368790904,
+    -0.040990013988499684
+   ],
+   "n": 7075
+  },
+  "base|bet|2026": {
+   "v": 0.058374148578879535,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.039030896440656784,
+    0.07894722699404735
+   ],
+   "roi": -0.04393452053104763,
+   "roi_ci": [
+    -0.07377715262859519,
+    -0.016478951889382934
+   ],
+   "n": 2199
+  },
+  "shown": {
+   "v": 0.04904249736733568,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.029175554170168837,
+    0.06891919480536886
+   ],
+   "roi": -0.04141329609702054,
+   "roi_ci": [
+    -0.07290461172706113,
+    -0.011460047270513396
+   ],
+   "n": 2197
+  },
+  "platt_hist": {
+   "v": 0.04125694237630875,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    0.021461119216425333,
+    0.06148420605668246
+   ],
+   "roi": -0.04141329609702054,
+   "roi_ci": [
+    -0.07290461172706113,
+    -0.011460047270513396
+   ],
+   "n": 2197
+  },
+  "ps_group": {
+   "v": -0.00845104480131126,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    -0.028155138795863507,
+    0.012153794020607277
+   ],
+   "roi": -0.04141329609702054,
+   "roi_ci": [
+    -0.07290461172706113,
+    -0.011460047270513396
+   ],
+   "n": 2197
+  },
+  "platt_monthly": {
+   "v": -0.008592471699863541,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    -0.028383789233925497,
+    0.011563342225738245
+   ],
+   "roi": -0.04141329609702054,
+   "roi_ci": [
+    -0.07290461172706113,
+    -0.011460047270513396
+   ],
+   "n": 2197
+  },
+  "pooled_platt_dabsgap": {
+   "v": -0.024187879469697564,
+   "src": "experiments/v6_2/main_calibration/results/variants.json",
+   "ci": [
+    -0.024261163332178332,
+    -0.014006298130883311
+   ],
+   "p_holm": 0.01
+  },
+  "q2_gap_2024": {
+   "v": 0.03470346753954555,
+   "src": "experiments/v6_2/main_calibration/results/variants.json"
+  },
+  "r5_gap_2024": {
+   "v": 0.05349313761627854,
+   "src": "experiments/v6_2/main_calibration/results/variants.json"
+  },
+  "ncand_2024": {
+   "v": 3.0,
+   "src": "experiments/v6_2/main_calibration/results/ncand_summary.json"
+  },
+  "ncand_2026": {
+   "v": 18.0,
+   "src": "experiments/v6_2/main_calibration/results/ncand_summary.json"
+  },
+  "best_roi": {
+   "v": 0.012040401874434468,
+   "src": "experiments/v6_2/main_calibration/results/selection.json",
+   "ci": [
+    -0.004860848921909518,
+    0.027677700584755657
+   ],
+   "name": "Q4 Q2 + смесь с рынком",
+   "p_holm": 1.0
+  },
+  "n_variants": {
+   "v": 16.0,
+   "src": "experiments/v6_2/main_calibration/results/variants.json"
+  }
+ },
+ "risk": {
+  "base|2023": {
+   "v": -0.07170476911430734,
+   "src": "experiments/v6_2/risk/results/risk.json",
+   "ci": [
+    -0.10988876312940013,
+    -0.03479222475117731
+   ],
+   "n": 6605,
+   "odds": 3.5371476154428465,
+   "gap": 0.020500821322934196,
+   "ev_model": 0.023943861047183348,
+   "ev_market": -0.056142417914865385,
+   "model_minus_market": 0.08008627896204874,
+   "market_minus_realised_ci": [
+    -0.02076204915303021,
+    0.050708778198836936
+   ],
+   "gap_chosen": 0.027188208807088974
+  },
+  "base|2024": {
+   "v": -0.059328562728380024,
+   "src": "experiments/v6_2/risk/results/risk.json",
+   "ci": [
+    -0.09551759610634598,
+    -0.020729511423530588
+   ],
+   "n": 6568,
+   "odds": 3.5007704019488433,
+   "gap": 0.018980273469100622,
+   "ev_model": 0.01609560532995425,
+   "ev_market": -0.06249167158741398,
+   "model_minus_market": 0.07858727691736822,
+   "market_minus_realised_ci": [
+    -0.03859886287320212,
+    0.03436172696020922
+   ],
+   "gap_chosen": 0.020923040793032994
+  },
+  "base|2025": {
+   "v": -0.05835423908115461,
+   "src": "experiments/v6_2/risk/results/risk.json",
+   "ci": [
+    -0.09570449213085705,
+    -0.01945449449292513
+   ],
+   "n": 6617,
+   "odds": 3.4792458818195553,
+   "gap": 0.01727712703482234,
+   "ev_model": 0.00018222537000613646,
+   "ev_market": -0.06950273762815119,
+   "model_minus_market": 0.06968496299815734,
+   "market_minus_realised_ci": [
+    -0.04720104037025043,
+    0.02666679927578687
+   ],
+   "gap_chosen": 0.016155977030236975
+  },
+  "base|2026": {
+   "v": -0.10697445262957662,
+   "src": "experiments/v6_2/risk/results/risk.json",
+   "ci": [
+    -0.17036791159871076,
+    -0.04286835147087202
+   ],
+   "n": 2192,
+   "odds": 3.3485533765545727,
+   "gap": 0.05944391788015769,
+   "ev_model": 0.09153047225410389,
+   "ev_market": -0.06695400198555367,
+   "model_minus_market": 0.15848447423965756,
+   "market_minus_realised_ci": [
+    -0.03196761506983326,
+    0.09062712515927332
+   ],
+   "gap_chosen": 0.05944391788015769
+  },
+  "shown": {
+   "v": -0.11725855018469605,
+   "src": "experiments/v6_2/risk/results/risk.json",
+   "ci": [
+    -0.18173988296307186,
+    -0.05491872330098371
+   ],
+   "n": 2193,
+   "gap": 0.05962895250829231
+  },
+  "best_roi": {
+   "v": 0.017778899029455182,
+   "src": "experiments/v6_2/risk/results/selection.json",
+   "ci": [
+    -0.008463777026378707,
+    0.04333143268106508
+   ],
+   "name": "v6.1: стек с рынком, пол EV ≥ 0",
+   "p_holm": 1.0
+  },
+  "n_rules": {
+   "v": 10.0,
+   "src": "experiments/v6_2/risk/results/selection.json"
+  },
+  "refund_changed": {
+   "v": {
+    "2023": 82,
+    "2024": 60,
+    "2025": 42,
+    "2026": 0
+   },
+   "src": "experiments/v6_2/risk/results/ev_refunds.json"
+  }
+ },
+ "market_models": {
+  "prereg": {
+   "written_at": "2026-11-09T19:15:00+0100",
+   "min_n": 3000,
+   "criterion": "On matches played after the commit of this file, with the frozen fold-2026/27 models and weights, the paired bootstrap 95 % CI (by match, 2000 resamples, seed 20261109) of the group's mean log loss (variant - production) lies below 0, evaluated once at >= 3000 settled matches (or at the end of season 2026/27 if fewer: then 'inconclusive' unless the CI is below 0); AND the paired 95 % CI of Main ROI difference at real pre-match prices does not lie entirely below 0.",
+   "name": "S_TOT",
+   "src": "experiments/v6_2/market_models/results/preregistration.json"
+  },
+  "n_direct": {
+   "v": 9.0,
+   "src": "experiments/v6_2/market_models/results/comparisons.json"
+  },
+  "n_direct_worse": {
+   "v": 6.0,
+   "src": "experiments/v6_2/market_models/results/comparisons.json"
+  },
+  "n_direct_better": {
+   "v": 0.0,
+   "src": "experiments/v6_2/market_models/results/comparisons.json"
+  },
+  "es": {
+   "v": 0.009728225236620968,
+   "src": "experiments/v6_2/market_models/results/comparisons.json",
+   "ci": [
+    0.006750630125406062,
+    0.01278494448758612
+   ]
+  },
+  "s_tot": {
+   "v": -0.00023286802476564224,
+   "src": "experiments/v6_2/market_models/results/comparisons.json",
+   "ci": [
+    -0.00042241338546659035,
+    -4.4936893305132493e-05
+   ],
+   "p_holm": 0.21267063914035483,
+   "seasons": {
+    "2023": -0.0002834417036911279,
+    "2024": -0.00018145724468807248,
+    "2025": -0.00029912630183295016,
+    "2026": -0.00046473666388259456
+   }
+  },
+  "s_tot_droi_select": {
+   "v": -0.003100092883065477,
+   "src": "experiments/v6_2/market_models/results/main_risk.json",
+   "ci": [
+    -0.010584234840558506,
+    0.004270759217167974
+   ]
+  },
+  "s_tot_droi_2026": {
+   "v": 0.015551865056604549,
+   "src": "experiments/v6_2/market_models/results/main_risk.json",
+   "ci": [
+    0.00547140885700962,
+    0.0253811954865731
+   ]
+  },
+  "coherence_mae": {
+   "v": 0.014219886970793487,
+   "src": "experiments/v6_2/market_models/results/coherence.json"
+  },
+  "coherence_max": {
+   "v": 0.08125675027626544,
+   "src": "experiments/v6_2/market_models/results/coherence.json"
+  },
+  "model_minus_market": {
+   "1X2|2023": {
+    "v": 0.014101990763701333,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 7240
+   },
+   "TOTAL_2.5|2023": {
+    "v": 0.006228944255704305,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 7239
+   },
+   "1X2|2024": {
+    "v": 0.012834592946227685,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 7126
+   },
+   "TOTAL_2.5|2024": {
+    "v": 0.005399744060968215,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 7126
+   },
+   "1X2|2025": {
+    "v": 0.011718376386661511,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 7082
+   },
+   "TOTAL_2.5|2025": {
+    "v": 0.005063671701745598,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 7082
+   },
+   "1X2|2026": {
+    "v": 0.011528266350013472,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 2200
+   },
+   "TOTAL_2.5|2026": {
+    "v": 0.007047253812886289,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 2200
+   },
+   "BTTS|2026": {
+    "v": 0.0007010925987304129,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 2198
+   },
+   "CORNERS_9.5|2026": {
+    "v": 0.000661358180285343,
+    "src": "experiments/v6_2/market_models/results/market_reference.json",
+    "n": 2040
+   }
+  },
+  "n_comparisons": {
+   "v": 18.0,
+   "src": "experiments/v6_2/market_models/results/comparisons.json"
+  },
+  "decisions": {
+   "v": {
+    "1X2|GD": "C",
+    "1X2|S_GD": "C",
+    "DOUBLE_CHANCE|BIN": "C",
+    "DOUBLE_CHANCE|GD": "C",
+    "DOUBLE_CHANCE|S_BIN": "C",
+    "DOUBLE_CHANCE|S_GD": "C",
+    "TOTAL|BIN": "C",
+    "TOTAL|TOT": "C",
+    "TOTAL|S_BIN": "C",
+    "TOTAL|S_TOT": "B",
+    "BTTS|BIN": "C",
+    "BTTS|S_BIN": "C",
+    "HANDICAP|GD": "C",
+    "HANDICAP|S_GD": "C",
+    "EXACT_SCORE|ES": "C",
+    "EXACT_SCORE|S_ES": "C",
+    "CORNERS|BIN": "C",
+    "CORNERS|S_BIN": "C"
+   },
+   "src": "experiments/v6_2/market_models/results/decisions.json"
+  }
+ },
+ "goal_distributions": {
+  "prereg": {
+   "written_at": "2026-11-09T19:04:32+0100",
+   "min_n": 3000,
+   "criterion": "On matches played after the commit of this file (settled, all leagues of the system), the paired bootstrap 95 % CI (by match, 2000 resamples, seed 20261109) of mean log loss of the exact score (variant - production P+R) lies below 0, evaluated once at >= 3000 settled matches (or at the end of season 2026/27 if fewer: then 'inconclusive' unless the CI is below 0); AND, as a guard, the paired 95 % CI of Main ROI difference at real pre-match prices does not lie entirely below 0.",
+   "name": "Смесь XGB + Махер",
+   "src": "experiments/v6_2/goal_distributions/results/preregistration.json"
+  },
+  "hy": {
+   "v": -0.0018825119710592143,
+   "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+   "ci": [
+    -0.002909127852537928,
+    -0.00080804011981953
+   ],
+   "p_holm": 0.012526180717909015,
+   "seasons": {
+    "2023": -0.0020062558088727667,
+    "2024": -0.0017567199114947856,
+    "2025": -0.0008128996227437555,
+    "2026": 1.9832647030836447e-05
+   }
+  },
+  "hy_droi": {
+   "v": -0.013534662107688753,
+   "src": "experiments/v6_2/goal_distributions/results/main_risk.json",
+   "ci": [
+    -0.024941386886506614,
+    -0.0020720465444942324
+   ]
+  },
+  "families": {
+   "DC+R": {
+    "v": 8.52656218497436e-05,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     -5.1199266263094623e-05,
+     0.0002077463278355171
+    ]
+   },
+   "BP+R": {
+    "v": -1.0856793665793052e-05,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     -1.184513349797106e-05,
+     -9.998120471180049e-06
+    ]
+   },
+   "NB+R": {
+    "v": 0.00010266897574888048,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     -3.1242848819139336e-05,
+     0.00025686923607263416
+    ]
+   },
+   "CMP+R": {
+    "v": -5.5735210411802024e-05,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     -0.00029221355177059925,
+     0.00019687828760745458
+    ]
+   },
+   "FR+R": {
+    "v": 3.933113816717166e-05,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     -5.9611506192101726e-05,
+     0.00014506798355726647
+    ]
+   },
+   "FRCMP+R": {
+    "v": -2.2703954824554833e-05,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     -0.0002851436529298192,
+     0.00024232669595087891
+    ]
+   },
+   "MH1+R": {
+    "v": 0.015437244042198593,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     0.01154957535631569,
+     0.01947689934275551
+    ]
+   },
+   "P": {
+    "v": 0.0011721004876549136,
+    "src": "experiments/v6_2/goal_distributions/results/comparisons.json",
+    "ci": [
+     -0.00011941039137662484,
+     0.002425134443181982
+    ]
+   }
+  },
+  "n_variants": {
+   "v": 21.0,
+   "src": "experiments/v6_2/goal_distributions/results/comparisons.json"
+  },
+  "decisions": {
+   "v": {
+    "P": "C",
+    "DC": "C",
+    "DC+R": "C",
+    "BP": "C",
+    "BP+R": "C",
+    "NB": "C",
+    "NB+R": "C",
+    "CMP": "C",
+    "CMP+R": "C",
+    "FR": "C",
+    "FR+R": "C",
+    "FRCMP": "C",
+    "FRCMP+R": "C",
+    "MH1": "C",
+    "MH1+R": "C",
+    "MH2": "C",
+    "MH2+R": "C",
+    "HY": "C",
+    "HY+R": "B",
+    "XC": "C",
+    "XC+R": "C"
+   },
+   "src": "experiments/v6_2/goal_distributions/results/decisions.json"
+  }
+ },
+ "leagues": {
+  "seasons": {
+   "2023": {
+    "v": 0.014851520153871553,
+    "src": "experiments/v6_2/leagues/results/perf.json",
+    "ci": [
+     0.01115461881570686,
+     0.01836345699958904
+    ],
+    "n": 7240
+   },
+   "2024": {
+    "v": 0.013291476656284038,
+    "src": "experiments/v6_2/leagues/results/perf.json",
+    "ci": [
+     0.009876777565750292,
+     0.0168368309173969
+    ],
+    "n": 7126
+   },
+   "2025": {
+    "v": 0.012255723192979448,
+    "src": "experiments/v6_2/leagues/results/perf.json",
+    "ci": [
+     0.008945496852539004,
+     0.015738586652520807
+    ],
+    "n": 7082
+   },
+   "2026": {
+    "v": 0.011550594931283397,
+    "src": "experiments/v6_2/leagues/results/perf.json",
+    "ci": [
+     0.0036970121736857103,
+     0.01943635147738626
+    ],
+    "n": 2049
+   }
+  },
+  "select": {
+   "v": 0.014077688192030494,
+   "src": "experiments/v6_2/leagues/results/perf.json",
+   "ci": [
+    0.011514837417365996,
+    0.01660156836044051
+   ],
+   "n": 14366
+  },
+  "n_leagues": {
+   "v": 21.0,
+   "src": "experiments/v6_2/leagues/results/perf.json"
+  },
+  "n_worse": {
+   "v": 20.0,
+   "src": "experiments/v6_2/leagues/results/perf.json"
+  },
+  "n_worse_sig": {
+   "v": 11.0,
+   "src": "experiments/v6_2/leagues/results/perf.json"
+  },
+  "better_leagues": {
+   "v": [
+    "SC3"
+   ],
+   "src": "experiments/v6_2/leagues/results/perf.json"
+  },
+  "I2": {
+   "v": 0.4518335687509919,
+   "src": "experiments/v6_2/leagues/results/perf.json"
+  },
+  "variants": {
+   "C1": {
+    "v": 0.0010065964225381518,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.00033020790620618806,
+     0.0016525000536085981
+    ],
+    "name": "глобальная перекалибровка (контроль)",
+    "p_holm": 0.027,
+    "decision": "C",
+    "droi": -0.0016702553955160876
+   },
+   "C2": {
+    "v": 0.004563756491068148,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.002654418379572895,
+     0.006489803233914023
+    ],
+    "name": "по лиге, без сжатия",
+    "p_holm": 0.0075,
+    "decision": "C",
+    "droi": 0.00025102653519552473
+   },
+   "C3": {
+    "v": 0.0015815009788455513,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.0004189271505590222,
+     0.0027001754646565827
+    ],
+    "name": "по лиге, EB-сжатие к глобальной",
+    "p_holm": 0.032,
+    "decision": "C",
+    "droi": 0.004370827621126779
+   },
+   "C3i": {
+    "v": 0.001597032118377151,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.0006957124978552994,
+     0.00243501721633652
+    ],
+    "name": "случайные эффекты лиги (только сдвиги D/A)",
+    "p_holm": 0.01,
+    "decision": "C",
+    "droi": 0.0016046335948382041
+   },
+   "C4": {
+    "v": 0.0019567522105026825,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.0009636442116530634,
+     0.0028579659940930332
+    ],
+    "name": "по группе лиг",
+    "p_holm": 0.0075,
+    "decision": "C",
+    "droi": -3.0264887711208693e-05
+   },
+   "C5": {
+    "v": 0.0015436705267930454,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.00034508880635559976,
+     0.0026772893431599217
+    ],
+    "name": "лига → группа → глобальная (иерархия)",
+    "p_holm": 0.032,
+    "decision": "C",
+    "droi": 0.005668555564297129
+   },
+   "G1": {
+    "v": 0.0009791011102754268,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.0003207061075112145,
+     0.0016288765147044072
+    ],
+    "name": "голы: глобальный множитель (контроль)",
+    "p_holm": 0.027,
+    "decision": "C",
+    "droi": -0.0011524882022298719
+   },
+   "G2": {
+    "v": 0.008405849706508133,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.004603564330262782,
+     0.012247410266763977
+    ],
+    "name": "голы: множитель лиги без сжатия",
+    "p_holm": 0.0075,
+    "decision": "C",
+    "droi": -0.018305079323104965
+   },
+   "G3": {
+    "v": 0.0034966324707049086,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.0008634208326973841,
+     0.006105246531432018
+    ],
+    "name": "голы: множитель лиги, EB (Пуассон–гамма)",
+    "p_holm": 0.03,
+    "decision": "C",
+    "droi": -0.018492399979508373
+   },
+   "M1": {
+    "v": 0.0003169928875687645,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.00010367934056052303,
+     0.0005333672120892343
+    ],
+    "name": "без one-hot лиги",
+    "p_holm": 0.027,
+    "decision": "C",
+    "droi": 0.010566849238130407
+   },
+   "M2": {
+    "v": 0.014888421164538347,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.011912223767803043,
+     0.018070528546182553
+    ],
+    "name": "отдельная модель на лигу",
+    "p_holm": 0.0075,
+    "decision": "C",
+    "droi": -0.005981691881376039
+   },
+   "M3": {
+    "v": 0.0020891754259416205,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.0006821081640793672,
+     0.0035189895320851005
+    ],
+    "name": "отдельная модель на группу лиг",
+    "p_holm": 0.027,
+    "decision": "C",
+    "droi": -0.003228796450188934
+   },
+   "M4a": {
+    "v": 0.0008124868955231907,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     -8.629238054582995e-05,
+     0.001795294822736554
+    ],
+    "name": "дообучение на лиге (+20 % деревьев)",
+    "p_holm": 0.078,
+    "decision": "C",
+    "droi": -0.014110290533391794
+   },
+   "M4b": {
+    "v": 0.005029567344494203,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     0.0033215879680839303,
+     0.006879359594771969
+    ],
+    "name": "дообучение на лиге (+50 % деревьев)",
+    "p_holm": 0.0075,
+    "decision": "C",
+    "droi": -0.002967532604395952
+   },
+   "M5": {
+    "v": 0.0002708025014744163,
+    "src": "experiments/v6_2/leagues/results/variants.json",
+    "ci": [
+     6.0236434284038205e-05,
+     0.00048667546397181875
+    ],
+    "name": "one-hot группы вместо лиги",
+    "p_holm": 0.032,
+    "decision": "C",
+    "droi": -0.0014676291621942422
+   }
+  },
+  "n_variants": {
+   "v": 15.0,
+   "src": "experiments/v6_2/leagues/results/variants.json"
+  },
+  "n_variants_worse_sig": {
+   "v": 14.0,
+   "src": "experiments/v6_2/leagues/results/variants.json"
+  },
+  "transfer_all": {
+   "v": 0.0013349307798322541,
+   "src": "experiments/v6_2/leagues/results/transfer.json",
+   "ci": [
+    0.0007517377349768109,
+    0.0018988590729750122
+   ]
+  },
+  "transfer_own": {
+   "v": 0.015062946077388586,
+   "src": "experiments/v6_2/leagues/results/transfer.json",
+   "ci": [
+    0.011828718452302718,
+    0.018145275833270358
+   ]
+  },
+  "ref_roi": {
+   "v": -0.02841398200078257,
+   "src": "experiments/v6_2/leagues/results/variants.json",
+   "ci": [
+    -0.047856006260597356,
+    -0.009468533976783627
+   ]
+  }
+ },
+ "temporal": {
+  "variants": {
+   "T1": {
+    "v": 0.00026406144907609365,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -1.3287717885931566e-05,
+     0.0005439014935368082
+    ],
+    "name": "+ форма за 3 матча",
+    "p_holm": 0.55,
+    "decision": "C",
+    "droi": 0.0034728170411064824,
+    "droi_ci": [
+     -0.004211330182205604,
+     0.010930161901675452
+    ],
+    "dev": 4.07663981474012e-05,
+    "dev_ci": [
+     -0.0010560736967806478,
+     0.001222244853922247
+    ]
+   },
+   "T2": {
+    "v": 0.0002818226513333709,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -6.794443113140074e-06,
+     0.0005601268592007235
+    ],
+    "name": "+ экспоненциальные средние",
+    "p_holm": 0.55,
+    "decision": "C",
+    "droi": -0.0004401458724816107,
+    "droi_ci": [
+     -0.009148095411983229,
+     0.007611424983620249
+    ],
+    "dev": 0.00023056412831764587,
+    "dev_ci": [
+     -0.0010629716913397088,
+     0.0015652573314031133
+    ]
+   },
+   "T3": {
+    "v": 0.000285296472752152,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -6.496561877618426e-06,
+     0.0005633995391230756
+    ],
+    "name": "+ поправка на силу соперника",
+    "p_holm": 0.55,
+    "decision": "C",
+    "droi": 0.0013773679598255706,
+    "droi_ci": [
+     -0.007395790708076734,
+     0.009856948739691647
+    ],
+    "dev": -4.070810065375026e-05,
+    "dev_ci": [
+     -0.0012473473977055894,
+     0.0012015322481150864
+    ]
+   },
+   "T4": {
+    "v": 8.358205195405015e-05,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -0.00017060094935490215,
+     0.0003341552559739601
+    ],
+    "name": "+ форма дома / в гостях",
+    "p_holm": 1.0,
+    "decision": "C",
+    "droi": 0.01026509700016993,
+    "droi_ci": [
+     0.00196854271002338,
+     0.0177241811237428
+    ],
+    "dev": 7.377662179415816e-05,
+    "dev_ci": [
+     -0.0011206656058131497,
+     0.00131546619916761
+    ]
+   },
+   "T5": {
+    "v": -4.9489981956816105e-05,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -0.0004535345902002174,
+     0.0003368352573770497
+    ],
+    "name": "+ наклоны и импульс",
+    "p_holm": 1.0,
+    "decision": "C",
+    "droi": 0.009652886294145586,
+    "droi_ci": [
+     0.0013136636905546947,
+     0.01806707772364155
+    ],
+    "dev": 0.0004585793386790573,
+    "dev_ci": [
+     -0.000786494138279502,
+     0.0016987535328643558
+    ]
+   },
+   "T6": {
+    "v": 0.00031240121948470105,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     7.657539991831067e-05,
+     0.0005413065189096862
+    ],
+    "name": "+ тренд Elo",
+    "p_holm": 0.09899999999999999,
+    "decision": "C",
+    "droi": 0.0023116612230763625,
+    "droi_ci": [
+     -0.005909964454829088,
+     0.009997280328949055
+    ],
+    "dev": -0.00037373605916799396,
+    "dev_ci": [
+     -0.0015685514806307854,
+     0.0007858473421542483
+    ]
+   },
+   "T7": {
+    "v": 0.0001970482777596646,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -2.8336714969377337e-05,
+     0.0004175556089323467
+    ],
+    "name": "+ плотность календаря",
+    "p_holm": 0.63,
+    "decision": "C",
+    "droi": 0.007155048293458796,
+    "droi_ci": [
+     -0.0012471431530638776,
+     0.014689166080604223
+    ],
+    "dev": 0.0005456220709694562,
+    "dev_ci": [
+     -0.0006367136432557678,
+     0.0016959561813365233
+    ]
+   },
+   "T8": {
+    "v": 0.00021583293529595115,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -3.473160761105585e-05,
+     0.00046782989801689295
+    ],
+    "name": "+ серии и точка изменения",
+    "p_holm": 0.63,
+    "decision": "C",
+    "droi": 0.005188471744598147,
+    "droi_ci": [
+     -0.002542516631831938,
+     0.01270761845785875
+    ],
+    "dev": -0.0001462252709305317,
+    "dev_ci": [
+     -0.0013494276759114612,
+     0.0011097590076152117
+    ]
+   },
+   "T9": {
+    "v": 0.00019438372074281597,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -0.0003376369541781285,
+     0.0007247774566745619
+    ],
+    "name": "+ все восемь семейств",
+    "p_holm": 1.0,
+    "decision": "C",
+    "droi": 0.005877071441525435,
+    "droi_ci": [
+     -0.003639620365282376,
+     0.015194388128324406
+    ],
+    "dev": 0.0002264164661794436,
+    "dev_ci": [
+     -0.0012859274535115361,
+     0.0017147308599624173
+    ]
+   },
+   "R0": {
+    "v": 0.005623352540744472,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     0.003754321355480239,
+     0.007431300061952404
+    ],
+    "name": "простые сезонные средние (без оконной формы и Elo)",
+    "p_holm": 0.006,
+    "decision": "C",
+    "droi": 0.010004280469200884,
+    "droi_ci": [
+     -0.005942617604652901,
+     0.025694394917748203
+    ],
+    "dev": 0.017956397041713958,
+    "dev_ci": [
+     0.01292424545282736,
+     0.02318316304042542
+    ]
+   },
+   "R1": {
+    "v": 0.00010071113432728995,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -0.0010530568721931542,
+     0.0012521891487364718
+    ],
+    "name": "R0 + Elo",
+    "p_holm": 1.0,
+    "decision": "C",
+    "droi": 0.008342766249440189,
+    "droi_ci": [
+     -0.0061882599212683765,
+     0.022292414015441943
+    ],
+    "dev": 0.0011285731788781104,
+    "dev_ci": [
+     -0.0021089517233912948,
+     0.004426444284224854
+    ]
+   },
+   "R2": {
+    "v": 0.00035030158194448687,
+    "src": "experiments/v6_2/temporal/results/variants.json",
+    "ci": [
+     -0.0005456280521072958,
+     0.0012588429654256576
+    ],
+    "name": "R1 + экспоненциальные средние",
+    "p_holm": 1.0,
+    "decision": "C",
+    "droi": 0.007903500721122336,
+    "droi_ci": [
+     -0.00466598038683255,
+     0.020020777286391903
+    ],
+    "dev": 0.001316071029447955,
+    "dev_ci": [
+     -0.00136499003805664,
+     0.004004102428810782
+    ]
+   }
+  },
+  "n_variants": {
+   "v": 12.0,
+   "src": "experiments/v6_2/temporal/results/variants.json"
+  },
+  "t0_vs_market": {
+   "v": 0.014173934679223593,
+   "src": "experiments/v6_2/temporal/results/variants.json",
+   "ci": [
+    0.011637062948108134,
+    0.01660385256555276
+   ],
+   "n": 14366
+  },
+  "t0_roi": {
+   "v": -0.03667365936803461,
+   "src": "experiments/v6_2/temporal/results/variants.json",
+   "ci": [
+    -0.05496063327651764,
+    -0.01821440277959882
+   ]
+  },
+  "leak_features": {
+   "v": 9.0,
+   "src": "experiments/v6_2/temporal/results/leakage_test.json"
+  },
+  "leak_max_diff": {
+   "v": 8.881784197001252e-16,
+   "src": "experiments/v6_2/temporal/results/leakage_test.json"
+  },
+  "leak_all_passed": {
+   "v": true,
+   "src": "experiments/v6_2/temporal/results/leakage_test.json"
+  }
+ },
+ "uncertainty": {
+  "n_measures": {
+   "v": 7.0,
+   "src": "experiments/v6_2/uncertainty/results/predictive.json"
+  },
+  "n_measures_sig": {
+   "v": 0.0,
+   "src": "experiments/v6_2/uncertainty/results/predictive.json"
+  },
+  "auc_min": {
+   "v": 0.4952105418457628,
+   "src": "experiments/v6_2/uncertainty/results/predictive.json"
+  },
+  "auc_max": {
+   "v": 0.5274047327249348,
+   "src": "experiments/v6_2/uncertainty/results/predictive.json"
+  },
+  "u_seed_2024": {
+   "v": 0.007551368946458023,
+   "src": "experiments/v6_2/uncertainty/results/measures.json"
+  },
+  "u_boot_2024": {
+   "v": 0.01879776169673918,
+   "src": "experiments/v6_2/uncertainty/results/measures.json"
+  },
+  "gap_2026": {
+   "v": 0.04904249736733568,
+   "src": "experiments/v6_2/uncertainty/results/measures.json",
+   "ci": [
+    0.02995864293937147,
+    0.06855164831620458
+   ]
+  },
+  "n_filters": {
+   "v": 18.0,
+   "src": "experiments/v6_2/uncertainty/results/filters.json"
+  },
+  "any_promising": {
+   "v": false,
+   "src": "experiments/v6_2/uncertainty/results/filters.json"
+  },
+  "best_filter": {
+   "v": 0.012336685510864719,
+   "src": "experiments/v6_2/uncertainty/results/filters.json",
+   "ci": [
+    0.0006245123700518191,
+    0.024123390605347236
+   ],
+   "name": "u_sub|30",
+   "p_holm": 0.6970000000000001
+  },
+  "bag_2026_single": {
+   "v": 0.04904249736733568,
+   "src": "experiments/v6_2/uncertainty/results/bagging.json"
+  },
+  "bag_2026_boot": {
+   "v": 0.04732322953813982,
+   "src": "experiments/v6_2/uncertainty/results/bagging.json",
+   "ci": [
+    0.02922145711056482,
+    0.06672660764543205
+   ]
+  },
+  "u1x2_2026": {
+   "v": -0.1428650422050817,
+   "src": "experiments/v6_2/uncertainty/results/predictive.json",
+   "ci": [
+    -0.22567412093033906,
+    -0.06075573709004652
+   ]
+  },
+  "u1x2_select": {
+   "v": -0.018981538500748917,
+   "src": "experiments/v6_2/uncertainty/results/predictive.json",
+   "ci": [
+    -0.05368285103444529,
+    0.018317716947285328
+   ],
+   "p_holm": 0.9359999999999999
+  },
+  "decisions": {
+   "v": {
+    "current_signal": "B (низкая априорная вероятность)",
+    "flag_on_site": "C",
+    "filter_main": "C"
+   },
+   "src": "experiments/v6_2/uncertainty/results/decisions.json"
+  }
+ },
+ "forward": {
+  "shadows": {
+   "v": [
+    {
+     "key": "maincal_ps_platt_monthly@v1",
+     "family": "main_calibration",
+     "hypothesis": "H1_primary",
+     "description": "PS-Platt по месяцам: показанная вероятность Main = sigmoid(a_m + b_m logit pc), (a_m, b_m) — логистическая регрессия на всех рассчитанных показанных Main 2026/27 до 1-го числа месяца матча; выбор Main не меняется",
+     "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2",
+     "metric": "gap = mean(p') - доля выигрышей; парный |gap(p')| - |gap(pc)|",
+     "min_n": 600,
+     "implemented": true,
+     "reason": "",
+     "frozen_at_utc": "2026-11-09T17:05:59Z",
+     "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
+     "earliest": "2026-12-14",
+     "per_week": 123.45549738219896,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    },
+    {
+     "key": "maincal_ps_group@v1",
+     "family": "main_calibration",
+     "hypothesis": "H2_challenger",
+     "description": "PS-Group: показанная вероятность Main = sigmoid(a_g + b_g logit pc) с замороженными картами групп рынков (история 2022/23–2025/26); выбор Main не меняется",
+     "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2",
+     "metric": "gap = mean(p') - доля выигрышей; парный |gap(p')| - |gap(pc)|",
+     "min_n": 600,
+     "implemented": true,
+     "reason": "",
+     "frozen_at_utc": "2026-11-09T17:05:59Z",
+     "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
+     "earliest": "2026-12-14",
+     "per_week": 123.45549738219896,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    },
+    {
+     "key": "risk_stacked@v1",
+     "family": "risk",
+     "hypothesis": "H1_rule",
+     "description": "Risk со стеком модели и рынка: среди кандидатов пула с реальной ценой и полной книгой, у которых EV по p_s ≥ 0, — лучший по формуле продакшна с p_s; иначе Risk продакшна",
+     "criterion": "парный 95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109)",
+     "metric": "ROI(H1) - ROI(Risk продакшна) на матчах, где у обоих выборов есть цена",
+     "min_n": 2000,
+     "implemented": true,
+     "reason": "",
+     "frozen_at_utc": "2026-11-09T17:06:18Z",
+     "prereg": "experiments/v6_2/risk/results/preregistration.json",
+     "earliest": "2027-01-26",
+     "per_week": 180.6565445026178,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    },
+    {
+     "key": "risk_market_probability@v1",
+     "family": "risk",
+     "hypothesis": "H2_display",
+     "description": "Показанная вероятность Risk = вероятность рынка без маржи (пропорционально, полная книга); выбор Risk не меняется",
+     "criterion": "95 % ДИ gap(рынок) содержит 0 и парный ДИ |gap(рынок)| - |gap(модель)| < 0",
+     "metric": "gap(рынок) и парный |gap(рынок)| - |gap(модель)|",
+     "min_n": 1000,
+     "implemented": true,
+     "reason": "",
+     "frozen_at_utc": "2026-11-09T17:06:18Z",
+     "prereg": "experiments/v6_2/risk/results/preregistration.json",
+     "earliest": "2026-12-19",
+     "per_week": 179.21623036649214,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    },
+    {
+     "key": "bookmaker_h2_pool@v1",
+     "family": "bookmaker",
+     "hypothesis": "frozen_variant",
+     "description": "Лог-линейный пул модели и цены Bet365 открытия: P(k) = softmax(a_k + b1 log q_k + b2 log p_k) с замороженными θ; p — вероятность модели, записанная до начала матча",
+     "criterion": "верхняя граница 95 % парного ДИ < 0 для тотала 2.5; 1X2 — вторичный, Холм по двум рынкам",
+     "metric": "log loss H2 - log loss H0 по рынку (1X2, тотал 2.5), парно по матчам",
+     "min_n": 1500,
+     "implemented": true,
+     "reason": "",
+     "frozen_at_utc": "2026-11-09T17:08:44Z",
+     "prereg": "experiments/v6_2/bookmaker/results/preregistration.json",
+     "earliest": "2027-01-14",
+     "per_week": 159.669109947644,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    },
+    {
+     "key": "xg_x5@v1",
+     "family": "xg",
+     "hypothesis": "primary",
+     "description": "X5: log mu = (1 - w) log lambda_B0 + w log E[xG] (рейтинг xG лиги по матчам до дня матча, w — еженедельно по Пуассону); 1X2 и рынки — из скорректированных mu",
+     "criterion": "разность < 0 при одностороннем бутстреп-p < 0.05; ΔLL 1X2 < +0.002; ΔROI Main > -0.02; переоценка Main не больше, чем у B0",
+     "metric": "средняя девиация Пуассона голов (дом + гости), X5 - B0",
+     "min_n": 3000,
+     "implemented": true,
+     "reason": "",
+     "frozen_at_utc": "2026-11-09T17:03:59Z",
+     "prereg": "experiments/v6_2/xg/results/preregistration.json",
+     "earliest": "2027-03-09",
+     "per_week": 175.9240837696335,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    },
+    {
+     "key": "xg_t1@v1",
+     "family": "xg",
+     "hypothesis": "secondary",
+     "description": "T1: модели v6.1, переобученные с признаками прокси-xG по ударам",
+     "criterion": "для информации (Холм по двум форвард-тестам xG)",
+     "metric": "log loss 1X2, T1 - B0",
+     "min_n": 3000,
+     "implemented": false,
+     "reason": "нужна отдельная версия моделей XGBoost (переобучение на 2021/22–2025/26 с 9 признаками прокси-xG) и её загрузка в ежедневном прогоне; это не «дешёвая» тень без переобучения. Заглушка: запись не ведётся.",
+     "frozen_at_utc": "2026-11-09T17:03:59Z",
+     "prereg": "experiments/v6_2/xg/results/preregistration.json",
+     "earliest": null,
+     "per_week": null,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    },
+    {
+     "key": "uncertainty_flag_u_1x2@v1",
+     "family": "uncertainty",
+     "hypothesis": "flag_u_1x2",
+     "description": "Метка «ненадёжный прогноз» у Main, если разброс 1X2 по 8 бутстреп-моделям выше замороженного порога (0.8-квантиль 2026/27); выбор и вероятность Main не меняются",
+     "criterion": "95 % ДИ β_u < 0 и 95 % ДИ gap(с меткой) − gap(без) > 0 (бутстреп по матчам, 2000)",
+     "metric": "β_u в логит-модели выигрыша при logit pc; gap(с меткой) − gap(без)",
+     "min_n": 2000,
+     "implemented": false,
+     "reason": "нужны 8 бутстреп-моделей 1X2, обученных один раз на сезонах до 2026/27 и сохранённых рядом с моделями продакшна; после этого ежедневная цена — 8 прогнозов на матч. Модели в этом исследовании не сохранялись, запись не ведётся.",
+     "frozen_at_utc": "2026-11-09T18:29:30Z",
+     "prereg": "experiments/v6_2/uncertainty/results/preregistration.json",
+     "earliest": null,
+     "per_week": null,
+     "src": "experiments/v6_2/forward/results/registry.json; experiments/v6_2/forward/results/eta.json"
+    }
+   ],
+   "src": "experiments/v6_2/forward/results/registry.json"
+  },
+  "prereg_files": {
+   "v": [
+    "experiments/v6_2/bookmaker/results/preregistration.json",
+    "experiments/v6_2/main_calibration/results/preregistration.json",
+    "experiments/v6_2/risk/results/preregistration.json",
+    "experiments/v6_2/uncertainty/results/preregistration.json",
+    "experiments/v6_2/xg/results/preregistration.json"
+   ],
+   "src": "experiments/v6_2/forward/results/registry.json"
+  },
+  "played_per_week": {
+   "v": 196.5,
+   "src": "experiments/v6_2/forward/results/eta.json"
+  },
+  "sim_runs": {
+   "v": 28.0,
+   "src": "experiments/v6_2/forward/results/simulation.json"
+  },
+  "sim_matches": {
+   "v": 955.0,
+   "src": "experiments/v6_2/forward/results/simulation.json"
+  },
+  "sim_after_kickoff": {
+   "v": 0.0,
+   "src": "experiments/v6_2/forward/results/simulation.json"
+  },
+  "sim_tamper": {
+   "v": true,
+   "src": "experiments/v6_2/forward/results/simulation.json"
+  },
+  "sim_prod_unchanged": {
+   "v": true,
+   "src": "experiments/v6_2/forward/results/simulation.json"
+  },
+  "x5_w_max_diff": {
+   "v": 0.006684269855261854,
+   "src": "experiments/v6_2/forward/results/fidelity.json"
+  },
+  "x5_w_first_diff_week": {
+   "v": "2026-10-06",
+   "src": "experiments/v6_2/forward/results/fidelity.json"
+  },
+  "platt_prereg_n": {
+   "v": 2201.0,
+   "src": "experiments/v6_2/forward/results/fidelity.json"
+  },
+  "platt_shadow_n": {
+   "v": 2202.0,
+   "src": "experiments/v6_2/forward/results/fidelity.json"
+  },
+  "current_prod_unchanged": {
+   "v": true,
+   "src": "experiments/v6_2/forward/results/current_run.json"
+  }
+ },
+ "data_sources": {
+  "op_played": {
+   "v": 2202.0,
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "op_with": {
+   "v": 2201.0,
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "op_share": {
+   "v": 0.9995458673932789,
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "op_catalogue": {
+   "v": 46901.0,
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "op_stored": {
+   "v": 41.0,
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "op_used": {
+   "v": 21.0,
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "op_billable": {
+   "v": {
+    "2026-10": 29,
+    "2026-11": 69
+   },
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "op_free_plan": {
+   "v": 250.0,
+   "src": "experiments/v6_2/data_sources/results/oddspapi.json"
+  },
+  "af_categories": {
+   "v": {
+    "API-Football раньше": 401,
+    "только Football-Data": 353,
+    "только API-Football (Football-Data ещё нет)": 154,
+    "в одном запуске": 54
+   },
+   "src": "experiments/v6_2/data_sources/results/api_football.json"
+  },
+  "af_lead_median_h": {
+   "v": 114.86194444444445,
+   "src": "experiments/v6_2/data_sources/results/api_football.json"
+  },
+  "af_lead_n": {
+   "v": 401.0,
+   "src": "experiments/v6_2/data_sources/results/api_football.json"
+  },
+  "af_delay_h": {
+   "v": 14.081388888888888,
+   "src": "experiments/v6_2/data_sources/results/api_football.json"
+  },
+  "fd_delay_h": {
+   "v": 73.56666666666666,
+   "src": "experiments/v6_2/data_sources/results/api_football.json"
+  },
+  "af_settleable": {
+   "v": 1091.0,
+   "src": "experiments/v6_2/data_sources/results/api_football.json"
+  },
+  "af_main_risk": {
+   "v": 1106.0,
+   "src": "experiments/v6_2/data_sources/results/api_football.json"
+  },
+  "toa_picks": {
+   "v": 309.0,
+   "src": "experiments/v6_2/data_sources/findings.md"
+  },
+  "toa_share": {
+   "v": 7.0,
+   "src": "experiments/v6_2/data_sources/findings.md"
+  },
+  "v61_cov_main": {
+   "v": 94.2,
+   "src": "experiments/v6_2/data_sources/findings.md"
+  },
+  "v61_cov_risk": {
+   "v": 98.7,
+   "src": "experiments/v6_2/data_sources/findings.md"
+  },
+  "main_overall": {
+   "v": -0.04158117326057299,
+   "src": "experiments/v6_2/data_sources/results/bets_overall.csv",
+   "n": 2199,
+   "ev": 0.041408010995575326,
+   "coverage": 0.9986376021798365,
+   "avg_odds": 1.4828758526603
+  },
+  "main_live": {
+   "v": -0.03329310344827586,
+   "src": "experiments/v6_2/data_sources/results/bets_by_source.csv",
+   "n": 928
+  },
+  "main_backfill": {
+   "v": -0.04763257277734068,
+   "src": "experiments/v6_2/data_sources/results/bets_by_source.csv",
+   "n": 1271
+  },
+  "risk_overall": {
+   "v": -0.11663690220652514,
+   "src": "experiments/v6_2/data_sources/results/bets_overall.csv",
+   "n": 2195,
+   "ev": 0.08912268081918823,
+   "coverage": 0.9995448338643604,
+   "avg_odds": 3.3790369012159203
+  },
+  "risk_live": {
+   "v": -0.1579848324413031,
+   "src": "experiments/v6_2/data_sources/results/bets_by_source.csv",
+   "n": 923
+  },
+  "risk_backfill": {
+   "v": -0.08663364779874215,
+   "src": "experiments/v6_2/data_sources/results/bets_by_source.csv",
+   "n": 1272
+  },
+  "groups": {
+   "1X2|main": {
+    "v": 0.0780877192982456,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 114
+   },
+   "1X2|risk": {
+    "v": -0.12727553284369697,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 1361
+   },
+   "BTTS|main": {
+    "v": 0.2585714285714285,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 7
+   },
+   "BTTS|risk": {
+    "v": 0.4375,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 12
+   },
+   "CORNERS|main": {
+    "v": -0.10074999999999999,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 24
+   },
+   "CORNERS|risk": {
+    "v": -0.21794871794871795,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 39
+   },
+   "DOUBLE_CHANCE|main": {
+    "v": 0.016861111111111122,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 36
+   },
+   "DOUBLE_CHANCE|risk": {
+    "v": -0.5171428571428572,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 35
+   },
+   "EHANDICAP|risk": {
+    "v": -1.0,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 1
+   },
+   "HANDICAP|main": {
+    "v": -0.029533661740558298,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 609
+   },
+   "HANDICAP|risk": {
+    "v": -0.01446700507614212,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 197
+   },
+   "TOTAL|main": {
+    "v": -0.05844712562100782,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 1409
+   },
+   "TOTAL|risk": {
+    "v": -0.10472000026009297,
+    "src": "experiments/v6_2/data_sources/results/bets_by_group.csv",
+    "n": 550
+   }
+  }
+ },
+ "cross": {
+  "variants_tried": {
+   "xg": 18.0,
+   "main_calibration": 16.0,
+   "risk": 10.0,
+   "market_models": 18.0,
+   "goal_distributions": 21.0,
+   "leagues": 15.0,
+   "temporal": 12.0,
+   "uncertainty": 25.0,
+   "bookmaker": 60,
+   "data_quality": 16.0
+  },
+  "variants_total": 211.0,
+  "eta_without_shadow": {
+   "date": {
+    "goal_distributions": "2027-02-23",
+    "market_models": "2027-02-23"
+   },
+   "rule": "дата записи предрегистрации + N / played_per_week (experiments/v6_2/forward/results/eta.json)"
+  }
+ },
+ "production": {
+  "before|dark": {
+   "v": 192.0,
+   "src": "reports/v6_2/data/contrast_before.json",
+   "pages": 7
+  },
+  "before|light": {
+   "v": 26.0,
+   "src": "reports/v6_2/data/contrast_before.json",
+   "pages": 7
+  },
+  "after|dark": {
+   "v": 0.0,
+   "src": "reports/v6_2/data/contrast_after.json",
+   "pages": 7
+  },
+  "after|light": {
+   "v": 0.0,
+   "src": "reports/v6_2/data/contrast_after.json",
+   "pages": 7
+  }
+ },
+ "meta": {
+  "built_at_utc": "2026-11-09T19:22:54Z",
+  "git_sha": "4e8257e3b05c932d22d6a69bea3b8aa52b313765",
+  "reports": {
+   "xg": "XG_Research.pdf",
+   "data_quality": "Data_Quality_Research.pdf",
+   "odds_timing": "Odds_Timing_Research.pdf",
+   "bookmaker": "Bookmaker_Benchmark_Research.pdf",
+   "main_calibration": "Main_Calibration_Research.pdf",
+   "risk": "Risk_Selection_Research.pdf",
+   "market_models": "Market_Models_Research.pdf",
+   "goal_distributions": "Goal_Distributions_Research.pdf",
+   "leagues": "League_Specialization_Research.pdf",
+   "temporal": "Temporal_Features_Research.pdf",
+   "uncertainty": "Prediction_Uncertainty_Research.pdf",
+   "forward": "Forward_Validation_Research.pdf",
+   "data_sources": "Data_Sources_Report.pdf"
+  },
+  "files_read": [
+   "experiments/v6_2/bookmaker/results/benchmark.json",
+   "experiments/v6_2/bookmaker/results/betting.json",
+   "experiments/v6_2/bookmaker/results/demargin.json",
+   "experiments/v6_2/bookmaker/results/encompassing.json",
+   "experiments/v6_2/bookmaker/results/hybrids.json",
+   "experiments/v6_2/bookmaker/results/preregistration.json",
+   "experiments/v6_2/data_quality/findings.md",
+   "experiments/v6_2/data_quality/results/recompute.json",
+   "experiments/v6_2/data_quality/results/sensitivity.json",
+   "experiments/v6_2/data_quality/results/strata.json",
+   "experiments/v6_2/data_quality/results/variants.json",
+   "experiments/v6_2/data_sources/findings.md",
+   "experiments/v6_2/data_sources/results/api_football.json",
+   "experiments/v6_2/data_sources/results/bets_by_group.csv",
+   "experiments/v6_2/data_sources/results/bets_by_source.csv",
+   "experiments/v6_2/data_sources/results/bets_overall.csv",
+   "experiments/v6_2/data_sources/results/oddspapi.json",
+   "experiments/v6_2/forward/results/current_run.json",
+   "experiments/v6_2/forward/results/eta.json",
+   "experiments/v6_2/forward/results/fidelity.json",
+   "experiments/v6_2/forward/results/registry.json",
+   "experiments/v6_2/forward/results/simulation.json",
+   "experiments/v6_2/goal_distributions/results/comparisons.json",
+   "experiments/v6_2/goal_distributions/results/decisions.json",
+   "experiments/v6_2/goal_distributions/results/main_risk.json",
+   "experiments/v6_2/goal_distributions/results/preregistration.json",
+   "experiments/v6_2/leagues/results/perf.json",
+   "experiments/v6_2/leagues/results/transfer.json",
+   "experiments/v6_2/leagues/results/variants.json",
+   "experiments/v6_2/main_calibration/results/ncand_summary.json",
+   "experiments/v6_2/main_calibration/results/selection.json",
+   "experiments/v6_2/main_calibration/results/variants.json",
+   "experiments/v6_2/market_models/results/coherence.json",
+   "experiments/v6_2/market_models/results/comparisons.json",
+   "experiments/v6_2/market_models/results/decisions.json",
+   "experiments/v6_2/market_models/results/main_risk.json",
+   "experiments/v6_2/market_models/results/market_reference.json",
+   "experiments/v6_2/market_models/results/preregistration.json",
+   "experiments/v6_2/odds_timing/results/audit.json",
+   "experiments/v6_2/odds_timing/results/clv.json",
+   "experiments/v6_2/odds_timing/results/drift.json",
+   "experiments/v6_2/risk/results/ev_refunds.json",
+   "experiments/v6_2/risk/results/risk.json",
+   "experiments/v6_2/risk/results/selection.json",
+   "experiments/v6_2/temporal/results/leakage_test.json",
+   "experiments/v6_2/temporal/results/variants.json",
+   "experiments/v6_2/uncertainty/results/bagging.json",
+   "experiments/v6_2/uncertainty/results/decisions.json",
+   "experiments/v6_2/uncertainty/results/filters.json",
+   "experiments/v6_2/uncertainty/results/measures.json",
+   "experiments/v6_2/uncertainty/results/predictive.json",
+   "experiments/v6_2/uncertainty/results/preregistration.json",
+   "experiments/v6_2/xg/results/audit.json",
+   "experiments/v6_2/xg/results/corners.json",
+   "experiments/v6_2/xg/results/decisions.json",
+   "experiments/v6_2/xg/results/main.json",
+   "experiments/v6_2/xg/results/metrics.json",
+   "experiments/v6_2/xg/results/preregistration.json",
+   "reports/v6_2/data/contrast_after.json",
+   "reports/v6_2/data/contrast_before.json"
+  ]
+ }
+}
