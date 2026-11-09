@@ -1,0 +1,15 @@
+{
+ "environment": {
+  "python": "3.12.12",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "libraries": {
+   "numpy": "2.2.6",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "sklearn": "1.7.2",
+   "pyarrow": "24.0.0"
+  },
+  "git_sha": "a59a7c6e69071a4d273d13d9d9b4c0d55cd74df3"
+ },
+ "minutes": 1.35
+}
