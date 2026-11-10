@@ -1,0 +1,13 @@
+{
+ "independent_matches": 38266,
+ "production_played": 38266,
+ "compared_matches": 38266,
+ "only_in_production": 0,
+ "only_in_independent": 0,
+ "only_in_production_ids": [],
+ "only_in_independent_ids": [],
+ "features_compared": 37,
+ "cells_compared": 1415842,
+ "cells_mismatch": 0,
+ "features_with_mismatch": []
+}

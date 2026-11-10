@@ -28,6 +28,7 @@ new kick-off.
 """
 from __future__ import annotations
 
+import logging
 from datetime import date
 
 import numpy as np
@@ -43,6 +44,8 @@ MARKETS = "markets.parquet"
 PICKS = "picks.parquet"
 VERSIONS = "versions.parquet"      # archive: every pre-match version of the stored predictions
 
+LOST = "LOST"
+log = logging.getLogger(__name__)
 STATUSES = ("UPCOMING", "WON", "LOST", "PUSH", "VOID")   # PUSH = Asian handicap refund
 
 
@@ -138,14 +141,16 @@ def save_batch(batch: PredictionBatch, replace_source: str | None = None,
         keep = ~batch.snapshots["match_id"].isin(locked)
         batch = PredictionBatch(batch.snapshots.loc[keep],
                                 batch.markets.loc[~batch.markets["match_id"].isin(locked)] if not batch.markets.empty else batch.markets,
-                                batch.picks.loc[~batch.picks["match_id"].isin(locked)] if not batch.picks.empty else batch.picks)
+                                batch.picks.loc[~batch.picks["match_id"].isin(locked)] if not batch.picks.empty else batch.picks,
+                                batch.inputs.loc[~batch.inputs["match_id"].isin(locked)] if not batch.inputs.empty else batch.inputs)
     if not batch.snapshots.empty:
         first = (snapshots.set_index("match_id")["first_generated_at"] if "first_generated_at" in snapshots
                  else snapshots.set_index("match_id")["generated_at"]) if not snapshots.empty else pd.Series(dtype="datetime64[ns]")
         new = batch.snapshots.copy()
         new["first_generated_at"] = pd.to_datetime(new["match_id"].map(first)).fillna(pd.to_datetime(new["generated_at"]))
-        batch = PredictionBatch(new, batch.markets, batch.picks)
-        batch = PredictionBatch(_archive_versions(batch, snapshots), batch.markets, batch.picks)
+        batch = PredictionBatch(new, batch.markets, batch.picks, batch.inputs)
+        batch = PredictionBatch(_archive_versions(batch, snapshots), batch.markets, batch.picks, batch.inputs)
+    old: set[str] = set()
     if replace_source and not snapshots.empty:
         old = set(snapshots.loc[snapshots["source"] == replace_source, "match_id"])
         snapshots = snapshots.loc[~snapshots["match_id"].isin(old)]
@@ -158,6 +163,18 @@ def save_batch(batch: PredictionBatch, replace_source: str | None = None,
     predictions_storage.write_parquet(SNAPSHOTS, _replace(snapshots, batch.snapshots, ids))
     predictions_storage.write_parquet(MARKETS, _replace(markets, batch.markets, ids))
     predictions_storage.write_parquet(PICKS, _replace(picks, batch.picks, ids))
+    _save_inputs(batch.inputs, ids, old)
+
+
+def _save_inputs(new: pd.DataFrame, ids: set[str], dropped: set[str]) -> None:
+    """Model inputs of the stored predictions: one row per match (the stored version)."""
+    from .inputs import INPUTS, load_inputs
+    if new.empty and not dropped:
+        return
+    existing = load_inputs()
+    if not existing.empty and dropped:
+        existing = existing.loc[~existing["match_id"].isin(dropped)]
+    predictions_storage.write_parquet(INPUTS, _replace(existing, new, ids))
 
 
 # ---------------------------------------------------------------------------
@@ -173,12 +190,45 @@ def _rescheduled_result(pick: pd.Series, by_pair: dict) -> pd.Series | None:
     return later.iloc[0] if not later.empty else None
 
 
+def reopen_withdrawn(picks: pd.DataFrame, results: pd.DataFrame, by_pair: dict) -> pd.DataFrame:
+    """Settled predictions whose result a source later withdrew go back to waiting.
+
+    API-Football once reported Tenerife – Andorra (02.11.2026) as finished 2–2 and the next day as not
+    played; Football-Data never listed a result. A prediction settled on such a score is reopened when its
+    match is known and not played and no played match of the pairing exists from 3 days before to
+    60 days after its date. It is then settled again by the normal rules (or voided after
+    VOID_AFTER_DAYS). ``reopened_at`` keeps the trace; the prediction itself is not changed."""
+    done = picks["status"].isin([WON, LOST, PUSH])
+    if not done.any() or results.empty:
+        return picks
+    unplayed = set(results.loc[~results["played"].astype(bool), "match_id"])
+    candidates = picks.loc[done & picks["match_id"].isin(unplayed)]
+    reopen = []
+    for idx, pick in candidates.iterrows():
+        played = by_pair.get((pick["league"], pick["home_team"], pick["away_team"]))
+        day = pd.Timestamp(pick["date"])
+        if played is None or not ((played["date"] >= day - pd.Timedelta(days=3))
+                                  & (played["date"] <= day + pd.Timedelta(days=60))).any():
+            reopen.append(idx)
+    if reopen:
+        picks = picks.copy()
+        if "reopened_at" not in picks:
+            picks["reopened_at"] = pd.NaT
+        picks.loc[reopen, ["status"]] = "UPCOMING"
+        picks.loc[reopen, ["profit", "home_goals", "away_goals", "total_corners"]] = np.nan
+        picks.loc[reopen, "settled_at"] = pd.NaT
+        picks.loc[reopen, "reopened_at"] = pd.Timestamp.now().normalize()
+        log.warning("reopened %d predictions whose result was withdrawn: %s", len(reopen),
+                    sorted(set(picks.loc[reopen, "match_id"])))
+    return picks
+
+
 def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     """Settle UPCOMING picks against played matches; returns all picks.
 
     Unit stake per pick with a real price: a win returns ``odds - 1``, a loss
-    ``-1``, a void 0. Picks without a real price are settled (won / lost) but
-    have no profit.
+    ``-1``, a refund (push or void) 0. Picks without a real price are settled
+    (won / lost / push / void) but have no profit.
     A pick without a result VOID_AFTER_DAYS after its date is voided
     (postponed or abandoned match).
     """
@@ -192,6 +242,7 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     by_id = played.set_index("match_id")
     by_pair = {k: g.sort_values("date") for k, g in played.groupby(["league", "home_team", "away_team"])}
 
+    picks = reopen_withdrawn(picks, results, by_pair)
     pending = picks.loc[picks["status"] == "UPCOMING"]
     score_cols = ["home_goals", "away_goals", "total_corners"]
     scores = by_id.reindex(pending["match_id"])[score_cols].set_axis(pending.index)
@@ -204,8 +255,9 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
     profit = pd.Series(np.nan, index=pending.index)
     has_result = scores["home_goals"].notna()
     overdue = pending["date"] + pd.Timedelta(days=config.VOID_AFTER_DAYS) < today
+    has_price = pending["odds"].notna() & (pending["odds"] > 0)
     status[~has_result & overdue] = "VOID"
-    profit[~has_result & overdue] = 0.0
+    profit[~has_result & overdue & has_price] = 0.0       # a refund needs a stake: no price, no profit
     for idx in scores.index[has_result]:
         pick, row = pending.loc[idx], scores.loc[idx]
         outcome = settle_selection(pick["market"], pick["selection"], row["home_goals"], row["away_goals"],
@@ -215,7 +267,7 @@ def settle(results: pd.DataFrame, today: date | None = None) -> pd.DataFrame:
             # e.g. corners not (yet) reported: an API result carries goals only,
             # the statistics arrive with Football-Data. Void only when overdue.
             if overdue[idx]:
-                status[idx], profit[idx] = "VOID", 0.0
+                status[idx], profit[idx] = "VOID", (0.0 if odds else np.nan)
             continue
         status[idx] = outcome
         # profit only with a real bookmaker price; otherwise the pick is settled

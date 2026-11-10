@@ -103,3 +103,30 @@ def test_date_presets():
     assert preset_range("All time", today, "2025-01-01")[0] == pd.Timestamp("2025-01-01")
     assert preset_range("Custom dates", today, "2025-01-01", ("2026-02-01", "2026-02-10")) == \
         (pd.Timestamp("2026-02-01"), pd.Timestamp("2026-02-10"))
+
+
+def test_void_without_a_price_has_no_profit(tmp_path, monkeypatch):
+    """A voided prediction without a real price was never a bet: profit stays empty (not 0)."""
+    from src.storage import LocalStorage
+    monkeypatch.setattr(store, "predictions_storage", LocalStorage(tmp_path))
+    picks = pd.DataFrame({
+        "pick_id": ["1", "2"], "match_id": ["m2", "m2"], "league": ["G1"] * 2, "home_team": ["C"] * 2,
+        "away_team": ["D"] * 2, "date": pd.to_datetime(["2025-11-01"] * 2), "market": ["1X2", "TOTAL_2.5"],
+        "selection": ["H", "OVER"], "odds": [np.nan, 1.9], "status": ["UPCOMING"] * 2, "profit": [np.nan] * 2,
+        "home_goals": np.nan, "away_goals": np.nan, "total_corners": np.nan, "settled_at": pd.NaT,
+    })
+    store.predictions_storage.write_parquet(store.PICKS, picks)
+    empty = pd.DataFrame({"match_id": [], "league": [], "home_team": [], "away_team": [], "date": [],
+                          "played": [], "home_goals": [], "away_goals": [], "total_corners": []})
+    out = store.settle(empty, today=pd.Timestamp("2026-01-05").date()).set_index("pick_id")
+    assert out.loc["1", "status"] == "VOID" and np.isnan(out.loc["1", "profit"])
+    assert out.loc["2", "status"] == "VOID" and out.loc["2", "profit"] == 0.0     # stake returned
+
+
+def test_stored_refunds_without_a_price_lose_their_profit():
+    from src.prediction.history_repair import clear_refunds_without_price
+    picks = pd.DataFrame({"status": ["VOID", "VOID", "PUSH", "WON"], "odds": [np.nan, 2.0, np.nan, np.nan],
+                          "profit": [0.0, 0.0, 0.0, np.nan]})
+    out, n = clear_refunds_without_price(picks)
+    assert n == 2 and np.isnan(out["profit"].iloc[0]) and out["profit"].iloc[1] == 0.0
+    assert np.isnan(out["profit"].iloc[2])

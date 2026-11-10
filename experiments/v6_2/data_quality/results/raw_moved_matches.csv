@@ -1,0 +1,9 @@
+match_id,provider,provider_date,fd_date,days,provider_played
+F1-20261024-toulouse-troyes,the_odds_api,2026-10-24,2026-10-25,1,False
+F2-20261024-montpellier-red-star,the_odds_api,2026-10-24,2026-10-26,2,False
+F1-20261025-paris-sg-lyon,the_odds_api,2026-10-25,2026-10-26,1,False
+F1-20261031-nice-rennes,the_odds_api,2026-10-31,2026-10-30,-1,False
+F1-20261031-lyon-angers,the_odds_api,2026-10-31,2026-11-01,1,False
+F1-20261031-lorient-brest,the_odds_api,2026-10-31,2026-11-02,2,False
+B1-20261023-kortrijk-mechelen,the_odds_api,2026-10-23,2026-11-04,12,False
+F2-20261031-reims-sochaux,oddspapi,2026-10-31,2026-11-02,2,False

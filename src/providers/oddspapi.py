@@ -60,6 +60,39 @@ _NON_FULL_TIME = re.compile(r"half|1st|2nd|first|second|period|minute|interval|\
 _OTHER_STATS = re.compile(r"card|booking|shot|offside|foul|throw|goal ?kick|player|penalt|half ?time", re.I)
 
 
+def _flat_keys(body: dict, prefix: str = "") -> set[str]:
+    keys = set()
+    for k, v in body.items():
+        keys.add(prefix + str(k))
+        if isinstance(v, dict) and not prefix:
+            keys |= _flat_keys(v, f"{k}.")
+    return keys
+
+
+def account_numbers(body: dict) -> tuple[float | None, float | None]:
+    """(request limit, requests used) from an /account answer, whatever the exact field names."""
+    flat = {}
+    for k, v in body.items():
+        if isinstance(v, dict):
+            flat.update({str(kk).lower(): vv for kk, vv in v.items()})
+        flat[str(k).lower()] = v
+
+    def number(names):
+        for name, value in flat.items():
+            key = name.replace("_", "").replace("-", "")
+            if any(n in key for n in names) and isinstance(value, (int, float)) and not isinstance(value, bool):
+                return float(value)
+        return None
+    limit = number(("requestlimit", "limit", "quota", "maxrequests"))
+    used = number(("requestcount", "requestsused", "used", "count"))
+    remaining = number(("remaining", "left"))
+    if limit is None and remaining is not None and used is not None:
+        limit = remaining + used
+    if used is None and limit is not None and remaining is not None:
+        used = limit - remaining
+    return limit, used
+
+
 class OddsPapi:
     def __init__(self, key: str | None = None, cache: ApiCache | None = None, ledger: CreditLedger | None = None):
         self.key = key or config.api_key("ODDSPAPI_KEY")
@@ -158,11 +191,18 @@ class OddsPapi:
 
     # -- endpoints -------------------------------------------------------------------------------
     def account(self, now: datetime) -> dict | None:
+        """The plan's request limit and use. The documented names (request_limit / request_count) were not
+        in the real answer in November 2026 ("limit ?, used ?"), so the fields are found by their meaning,
+        also one level down, and the answer's keys are kept in the ledger to read the real names."""
+        from .diagnostics import diag
         body, _ = self._get("account", {}, None, now, 0)
-        if isinstance(body, dict) and "request_limit" in body:
-            used = int(body.get("request_count") or 0)
-            self.ledger.data.update(remaining=int(body["request_limit"]) - used, used=used,
-                                    checked_at=now.isoformat(timespec="seconds"))
+        if isinstance(body, dict):
+            limit, used = account_numbers(body)
+            self.ledger.data["account_keys"] = sorted(_flat_keys(body))[:40]
+            if limit is not None and used is not None:
+                self.ledger.data.update(remaining=int(limit) - int(used), used=int(used),
+                                        checked_at=now.isoformat(timespec="seconds"))
+                diag.info(PROVIDER, left=int(limit) - int(used))
         return body
 
     def markets(self, now: datetime, run_budget: int) -> list[dict]:

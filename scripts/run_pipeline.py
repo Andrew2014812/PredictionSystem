@@ -45,6 +45,48 @@ from src.providers.diagnostics import diag  # noqa: E402
 from src.storage import LocalStorage  # noqa: E402
 
 
+def record_settlement(done: pd.DataFrame) -> None:
+    """Predictions settled in this run, counted apart from the matches they belong to."""
+    diag.add("predictions", "settled_now", int((done["status"] != "VOID").sum()))
+    diag.add("predictions", "voided_now", int((done["status"] == "VOID").sum()))
+    diag.add("predictions", "settled_matches", int(done["match_id"].nunique()))
+    for role in ("main", "risk", "market"):
+        diag.add("predictions", f"settled_{role}", int(((done["role"] == role) & (done["status"] != "VOID")).sum()))
+    diag.add("predictions", "settled_push", int((done["status"] == "PUSH").sum()))
+
+
+def clubs_without_history(features: pd.DataFrame) -> list[str]:
+    """Clubs of upcoming matches that never played a match in our data. Usually a spelling the results
+    files do not use ("KV Mechelen" for "Mechelen" made three predictions without team history in
+    November 2026), rarely a club new to all our leagues. Listed in the run summary so it is fixed early."""
+    played = features.loc[features["played"].astype(bool)]
+    known = set(played["home_team"]) | set(played["away_team"])
+    upcoming = features.loc[~features["played"].astype(bool)
+                            & (pd.to_datetime(features["date"]) >= pd.Timestamp.now().normalize())]
+    return sorted(f"{lg}: {team}" for lg, home, away in upcoming[["league", "home_team", "away_team"]].itertuples(
+        index=False) for team in (home, away) if team not in known)
+
+
+def record_clubs_without_history(features: pd.DataFrame) -> None:
+    clubs = sorted(set(clubs_without_history(features)))
+    diag.info("predictions", clubs_without_history=clubs)
+    if clubs:
+        diag.error("predictions", "clubs without any played match: " + ", ".join(clubs[:8]))
+
+
+def record_waiting(picks: pd.DataFrame, features: pd.DataFrame) -> None:
+    """Every past match with unsettled predictions and why it waits (api/diagnostics/waiting.csv)."""
+    from src.analytics.waiting import reason_counts, waiting_matches
+    from src.data.dataset import load_results
+    from src.providers.collect import load_live_matches, load_not_played
+    table = waiting_matches(picks, features, load_results([config.current_season()]), load_live_matches(),
+                            load_not_played())
+    api_storage.write_csv("diagnostics/waiting.csv", table)
+    counts = reason_counts(table)
+    no_result = int(len(table)) - counts.get("waiting for corner statistics", 0)
+    diag.info("predictions", waiting_for_a_result=no_result, waiting_reasons=counts)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--offline", action="store_true")
@@ -62,27 +104,38 @@ def main() -> None:
     if not args.offline:
         targets = {k: v for k, v in (("match_id", args.odds_match), ("league", args.odds_league),
                                      ("date", args.odds_date)) if v}
-        with diag.timer("api_football"):
-            summary["providers"] = collect(build_matches(), mode=args.mode, run_budget=args.credit_budget,
-                                           targets=targets or None, force=args.force)
+        # each provider times its own requests inside collect (API-Football, OddsPapi, The Odds API)
+        summary["providers"] = collect(build_matches(), mode=args.mode, run_budget=args.credit_budget,
+                                       targets=targets or None, force=args.force)
         with diag.timer("football_data"):
             download_results([config.current_season()])
             download_fixtures()
-    features = rebuild_features()
+    with diag.stage("features"):
+        features = rebuild_features()
     before = store.load_picks()
     waiting = set(before.loc[before["status"] == "UPCOMING", "pick_id"]) if not before.empty else set()
-    picks = settle_predictions(features)
+    with diag.stage("settlement"):
+        picks = settle_predictions(features)
     if not picks.empty:
-        now_done = picks.loc[picks["pick_id"].isin(waiting) & (picks["status"] != "UPCOMING")]
-        diag.add("predictions", "settled_now", int((now_done["status"] != "VOID").sum()))
-        diag.add("predictions", "voided_now", int((now_done["status"] == "VOID").sum()))
-        overdue = picks.loc[(picks["status"] == "UPCOMING")
-                            & (pd.to_datetime(picks["date"]) < pd.Timestamp.now().normalize() - pd.Timedelta(days=1))]
-        diag.info("predictions", waiting_for_a_result=int(overdue["match_id"].nunique()))
-    summary["history_repair"] = repair_history(features)       # archived prices, missing Risk predictions
-    summary["predicted_matches"] = generate_live_predictions(features)
+        record_settlement(picks.loc[picks["pick_id"].isin(waiting) & (picks["status"] != "UPCOMING")])
+        record_waiting(picks, features)
+    with diag.stage("history_repair"):
+        summary["history_repair"] = repair_history(features)       # archived prices, missing Risk predictions
+    record_clubs_without_history(features)
+    with diag.stage("predictions"):
+        summary["predicted_matches"] = generate_live_predictions(features)
+    # frozen research hypotheses, recorded next to production for a fair test on later matches
+    # (local_data/research/, append-only; the website never reads it; it never raises)
+    from src.research.shadow import record_shadow_predictions
+    with diag.stage("shadow"):
+        shadow = record_shadow_predictions(features)
+    summary["shadow"] = {"recorded": {k: v.get("rows", 0) for k, v in shadow.get("recorded", {}).items()},
+                         "errors": shadow.get("errors", {})}
+    diag.info("predictions", shadow_rows=sum(summary["shadow"]["recorded"].values()),
+              shadow_errors=len(summary["shadow"]["errors"]))
     from src.analytics.invariants import check_history
-    issues = check_history(store.load_picks(), features)
+    with diag.stage("checks"):
+        issues = check_history(store.load_picks(), features)
     summary["history_checks"] = {k: len(v) for k, v in issues.items()} or "all passed"
     diag.info("predictions", history_checks=summary["history_checks"])
     summary["picks"] = picks["status"].value_counts().to_dict() if not picks.empty else {}

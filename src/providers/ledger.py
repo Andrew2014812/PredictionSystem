@@ -24,6 +24,12 @@ from pathlib import Path
 from .. import config
 
 
+def month_spent(data: dict, month: str) -> int:
+    """Credits / billable requests recorded in ``month`` ("YYYY-MM")."""
+    return int(sum(float(v.get("cost") or 0) for v in data.get("requests", {}).values()
+                   if str(v.get("at", "")).startswith(month)))
+
+
 class CreditLedger:
     def __init__(self, path: Path | None = None, monthly_reserve: int | None = None):
         self.path = path or (config.API_DIR / "the_odds_api" / "ledger.json")
@@ -66,9 +72,10 @@ class CreditLedger:
         self.data["requests"][key] = {"at": now.isoformat(timespec="seconds"), "cost": cost, "items": items,
                                       "status": str(status)}
         month = now.strftime("%Y-%m")
-        if self.data.get("month") != month:
-            self.data["month"], self.data["month_credits"] = month, 0
-        self.data["month_credits"] = self.data.get("month_credits", 0) + cost
+        self.data["month"] = month
+        # counted from the request records, so requests made by another run (an archive download merged
+        # later) are included; a running total missed them (11 shown against 69 made in November 2026)
+        self.data["month_credits"] = month_spent(self.data, month)
         if used is not None:
             self.data["used"] = int(float(used))
         if remaining is not None:

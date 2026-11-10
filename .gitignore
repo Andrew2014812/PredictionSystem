@@ -21,3 +21,6 @@ experiments/model_comparison/report/*_quick*
 experiments/v6_1/*/cache/
 experiments/v6_research/cache/
 reports/v6_1/*_pages/
+experiments/v6_2/*/cache/
+reports/v6_2/*_pages/
+reports/v6_2/screenshots/*/server.log

@@ -1,0 +1,352 @@
+{
+ "example": {
+  "odds": 1.9,
+  "lambda_home": 1.6,
+  "lambda_away": 1.1,
+  "rows": [
+   {
+    "line": -0.5,
+    "kind": "half",
+    "p_win": 0.4895730268013359,
+    "p_refund": 0.0,
+    "ev": -0.06981124907746183,
+    "ev_without_refund": -0.06981124907746183
+   },
+   {
+    "line": -1.0,
+    "kind": "whole",
+    "p_win": 0.25521065827568196,
+    "p_refund": 0.234362368525654,
+    "ev": -0.2807373807505504,
+    "ev_without_refund": -0.5150997492762044
+   },
+   {
+    "line": -0.75,
+    "kind": "quarter",
+    "halves": [
+     -1.0,
+     -0.5
+    ],
+    "p_win_halves": [
+     0.25521065827568196,
+     0.4895730268013359
+    ],
+    "p_refund_halves": [
+     0.234362368525654,
+     0.0
+    ],
+    "ev": -0.1752743149140061,
+    "ev_if_treated_as_lower": -0.2807373807505504,
+    "ev_if_treated_as_upper": -0.06981124907746183
+   },
+   {
+    "line": -0.25,
+    "kind": "quarter",
+    "halves": [
+     -0.5,
+     0.0
+    ],
+    "p_win_halves": [
+     0.4895730268013359,
+     0.4895730268013359
+    ],
+    "p_refund_halves": [
+     0.0,
+     0.24891124226781874
+    ],
+    "ev": 0.054644372056447565,
+    "ev_if_treated_as_lower": -0.06981124907746183,
+    "ev_if_treated_as_upper": 0.17909999319035697
+   }
+  ]
+ },
+ "stored": {
+  "markets_rows_priced": 120813,
+  "markets_whole_line_priced": 6918,
+  "markets_max_abs_diff": 4.76837158203125e-07,
+  "picks_priced_with_push_known": 43151,
+  "picks_whole_line_priced": 843,
+  "picks_max_abs_diff": 4.3687842010697864e-08,
+  "picks_whole_line_matching_no_refund_formula": 0,
+  "archive_handicap_quotes": 26795,
+  "archive_quarter_handicap_quotes": 0,
+  "archive_quarter_total_quotes": 0,
+  "archive_handicap_lines": [
+   -2.5,
+   -2.0,
+   -1.5,
+   -1.0,
+   -0.5,
+   0.5,
+   1.0,
+   1.5,
+   2.0,
+   2.5
+  ]
+ },
+ "scale": {
+  "main": {
+   "settled": 2201,
+   "whole_line_settled": 2,
+   "push": 0,
+   "avg_probability_shown": 0.7123081470774069,
+   "avg_probability_no_refund_scale": 0.7124289981756856,
+   "hit_rate": 0.6633348477964561,
+   "whole": {
+    "p_win": 0.7289965145041282,
+    "p_win_given_no_refund": 0.8619931481599916,
+    "p_refund": 0.15433430671691895,
+    "hit_rate": 1.0,
+    "bets": 2,
+    "mean_ev_per_stake": 0.286258797060563,
+    "mean_ev_per_decided_stake": 0.33808381778623603,
+    "roi_production": 0.5485
+   }
+  },
+  "risk": {
+   "settled": 2195,
+   "whole_line_settled": 7,
+   "push": 1,
+   "avg_probability_shown": 0.3274443534552202,
+   "avg_probability_no_refund_scale": 0.327723677269637,
+   "hit_rate": 0.2683371298405467,
+   "whole": {
+    "p_win": 0.3132632580762395,
+    "p_win_given_no_refund": 0.4008512255969564,
+    "p_refund": 0.21850410103797913,
+    "hit_rate": 0.2857142857142857,
+    "bets": 7,
+    "mean_ev_per_stake": 0.3251464123745616,
+    "mean_ev_per_decided_stake": 0.4161801955566018,
+    "roi_production": 0.03285714285714292
+   }
+  }
+ },
+ "fair_odds": {
+  "main": {
+   "2023": {
+    "matches": 7247,
+    "changed": 0,
+    "changed_whole_line_before": 0,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": null,
+     "mean_p_no_refund": null
+    },
+    "after": {
+     "hit": null,
+     "mean_p_no_refund": null
+    }
+   },
+   "2024": {
+    "matches": 7129,
+    "changed": 0,
+    "changed_whole_line_before": 0,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": null,
+     "mean_p_no_refund": null
+    },
+    "after": {
+     "hit": null,
+     "mean_p_no_refund": null
+    }
+   },
+   "2025": {
+    "matches": 7094,
+    "changed": 2,
+    "changed_whole_line_before": 2,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": 1.0,
+     "mean_p_no_refund": 0.8623571705047233
+    },
+    "after": {
+     "hit": 0.5,
+     "mean_p_no_refund": 0.7259976443777689
+    }
+   },
+   "2026": {
+    "matches": 2201,
+    "changed": 0,
+    "changed_whole_line_before": 0,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": null,
+     "mean_p_no_refund": null
+    },
+    "after": {
+     "hit": null,
+     "mean_p_no_refund": null
+    }
+   }
+  },
+  "risk": {
+   "2023": {
+    "matches": 7247,
+    "changed": 82,
+    "changed_whole_line_before": 82,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": 0.4915254237288136,
+     "mean_p_no_refund": 0.4254991306855394,
+     "eff_odds": 2.3903575462884508,
+     "shown_eff_odds": 3.0570769185721365,
+     "bets": 0,
+     "roi": null
+    },
+    "after": {
+     "hit": 0.35365853658536583,
+     "mean_p_no_refund": 0.3251709466790361,
+     "eff_odds": 3.073672387549515,
+     "shown_eff_odds": 3.073672387549515,
+     "bets": 2,
+     "roi": 0.8
+    }
+   },
+   "2024": {
+    "matches": 7129,
+    "changed": 60,
+    "changed_whole_line_before": 60,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": 0.46808510638297873,
+     "mean_p_no_refund": 0.4290364161968687,
+     "eff_odds": 2.3463630921985117,
+     "shown_eff_odds": 3.013373205096737,
+     "bets": 0,
+     "roi": null
+    },
+    "after": {
+     "hit": 0.35,
+     "mean_p_no_refund": 0.32965202756015094,
+     "eff_odds": 3.0403749518211916,
+     "shown_eff_odds": 3.0403749518211916,
+     "bets": 1,
+     "roi": 3.2
+    }
+   },
+   "2025": {
+    "matches": 7094,
+    "changed": 42,
+    "changed_whole_line_before": 42,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": 0.5,
+     "mean_p_no_refund": 0.43538693483539037,
+     "eff_odds": 2.314576644468599,
+     "shown_eff_odds": 2.9600735723990375,
+     "bets": 0,
+     "roi": null
+    },
+    "after": {
+     "hit": 0.40476190476190477,
+     "mean_p_no_refund": 0.3376299715217881,
+     "eff_odds": 2.979301017235548,
+     "shown_eff_odds": 2.979301017235548,
+     "bets": 0,
+     "roi": null
+    }
+   },
+   "2026": {
+    "matches": 2200,
+    "changed": 0,
+    "changed_whole_line_before": 0,
+    "changed_whole_line_after": 0,
+    "before": {
+     "hit": null,
+     "mean_p_no_refund": null,
+     "eff_odds": null,
+     "shown_eff_odds": null,
+     "bets": 0,
+     "roi": null
+    },
+    "after": {
+     "hit": null,
+     "mean_p_no_refund": null,
+     "eff_odds": null,
+     "shown_eff_odds": null,
+     "bets": 0,
+     "roi": null
+    }
+   }
+  }
+ },
+ "quarter": {
+  "note": "illustrative price o = 0.95 / (mean of the two halves' win-or-half probabilities)",
+  "rows": [
+   {
+    "quarter_line": -2.25,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.14177849888801575,
+    "mean_abs_err_as_lower": 0.03644241392612457,
+    "mean_abs_err_as_upper": 0.03644241392612457,
+    "mean_abs_err_ignoring_refund": 0.06362880766391754
+   },
+   {
+    "quarter_line": -1.75,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.09242559224367142,
+    "mean_abs_err_as_lower": 0.17177554965019226,
+    "mean_abs_err_as_upper": 0.17177554965019226,
+    "mean_abs_err_ignoring_refund": 0.06362880766391754
+   },
+   {
+    "quarter_line": -1.25,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.08385321497917175,
+    "mean_abs_err_as_lower": 0.07252819836139679,
+    "mean_abs_err_as_upper": 0.07252819836139679,
+    "mean_abs_err_ignoring_refund": 0.10377364605665207
+   },
+   {
+    "quarter_line": -0.75,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.060256313532590866,
+    "mean_abs_err_as_lower": 0.1398882269859314,
+    "mean_abs_err_as_upper": 0.1398882269859314,
+    "mean_abs_err_ignoring_refund": 0.10377365350723267
+   },
+   {
+    "quarter_line": 0.75,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.07687608152627945,
+    "mean_abs_err_as_lower": 0.16363240778446198,
+    "mean_abs_err_as_upper": 0.16363240778446198,
+    "mean_abs_err_ignoring_refund": 0.08474740386009216
+   },
+   {
+    "quarter_line": 1.25,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.11856723576784134,
+    "mean_abs_err_as_lower": 0.05179262533783913,
+    "mean_abs_err_as_upper": 0.05179262533783913,
+    "mean_abs_err_ignoring_refund": 0.08474740386009216
+   },
+   {
+    "quarter_line": 1.75,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.11561901122331619,
+    "mean_abs_err_as_lower": 0.19335848093032837,
+    "mean_abs_err_as_upper": 0.19335848093032837,
+    "mean_abs_err_ignoring_refund": 0.043463073670864105
+   },
+   {
+    "quarter_line": 2.25,
+    "n": 17918,
+    "home_rows": 8959,
+    "mean_ev_quarter": -0.18408545851707458,
+    "mean_abs_err_as_lower": 0.023297294974327087,
+    "mean_abs_err_as_upper": 0.023297294974327087,
+    "mean_abs_err_ignoring_refund": 0.04346306994557381
+   }
+  ]
+ }
+}

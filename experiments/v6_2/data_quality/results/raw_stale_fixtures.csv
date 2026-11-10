@@ -1,0 +1,10 @@
+match_id,league,date,kickoff,home_team,away_team,played,days_overdue_vs_league_data,source
+SP1-20261010-vallecano-ath-bilbao,SP1,2026-10-10,2026-10-10 13:00:00,Vallecano,Ath Bilbao,False,29,api_football
+G1-20261017-atromitos-aek,G1,2026-10-17,2026-10-17 17:30:00,Atromitos,AEK,False,22,the_odds_api
+SC1-20261024-morton-ayr,SC1,2026-10-24,2026-10-24 15:00:00,Morton,Ayr,False,14,oddspapi
+SC2-20261024-cove-rangers-east-kilbride,SC2,2026-10-24,2026-10-24 15:00:00,Cove Rangers,East Kilbride,False,14,api_football
+SC0-20261031-dundee-united-hearts,SC0,2026-10-31,2026-10-31 15:00:00,Dundee United,Hearts,False,8,oddspapi
+SP2-20261101-tenerife-andorra,SP2,2026-11-01,2026-11-01 20:00:00,Tenerife,Andorra,False,7,oddspapi
+SP2-20261102-tenerife-andorra,SP2,2026-11-02,2026-11-02 13:00:00,Tenerife,Andorra,False,6,api_football
+SP2-20261106-castellon-eibar,SP2,2026-11-06,2026-11-06 19:30:00,Castellon,Eibar,False,2,oddspapi
+SP2-20261107-burgos-celta-b,SP2,2026-11-07,2026-11-07 13:00:00,Burgos,Celta B,False,1,oddspapi

@@ -1,0 +1,65 @@
+{
+ "played_per_week": 196.5,
+ "window": [
+  "2026-10-11",
+  "2026-11-08"
+ ],
+ "xg_league_share": 0.9300254452926209,
+ "xg_leagues": 18,
+ "shadows": {
+  "maincal_ps_platt_monthly@v1": {
+   "replay_cases": 600,
+   "replay_live_matches": 955,
+   "qualifying_share": 0.6282722513089005,
+   "cases_per_week": 123.45549738219896,
+   "min_n": 600,
+   "weeks_to_n": 4.860050890585241,
+   "earliest_date": "2026-12-14"
+  },
+  "maincal_ps_group@v1": {
+   "replay_cases": 600,
+   "replay_live_matches": 955,
+   "qualifying_share": 0.6282722513089005,
+   "cases_per_week": 123.45549738219896,
+   "min_n": 600,
+   "weeks_to_n": 4.860050890585241,
+   "earliest_date": "2026-12-14"
+  },
+  "risk_stacked@v1": {
+   "replay_cases": 878,
+   "replay_live_matches": 955,
+   "qualifying_share": 0.9193717277486911,
+   "cases_per_week": 180.6565445026178,
+   "min_n": 2000,
+   "weeks_to_n": 11.070730958052943,
+   "earliest_date": "2027-01-26"
+  },
+  "risk_market_probability@v1": {
+   "replay_cases": 871,
+   "replay_live_matches": 955,
+   "qualifying_share": 0.912041884816754,
+   "cases_per_week": 179.21623036649214,
+   "min_n": 1000,
+   "weeks_to_n": 5.579851768754583,
+   "earliest_date": "2026-12-19"
+  },
+  "bookmaker_h2_pool@v1": {
+   "replay_cases": 776,
+   "replay_live_matches": 955,
+   "qualifying_share": 0.812565445026178,
+   "cases_per_week": 159.669109947644,
+   "min_n": 1500,
+   "weeks_to_n": 9.394428267883843,
+   "earliest_date": "2027-01-14"
+  },
+  "xg_x5@v1": {
+   "replay_cases": 855,
+   "replay_live_matches": 955,
+   "qualifying_share": 0.8952879581151832,
+   "cases_per_week": 175.9240837696335,
+   "min_n": 3000,
+   "weeks_to_n": 17.052810142404358,
+   "earliest_date": "2027-03-09"
+  }
+ }
+}

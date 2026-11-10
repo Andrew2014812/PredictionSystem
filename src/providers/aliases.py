@@ -161,6 +161,8 @@ TEAM_ALIASES: dict[str, str] = {
     "real sociedad b": "Sociedad B", "amed": "Amedspor", "erzurum bb": "Erzurumspor",
     "gazisehir gaziantep": "Gaziantep", "goztepe": "Goztep", "torku konyaspor": "Konyaspor",
     "caykur rizespor": "Rizespor", "amed sportif faaliyetler": "Amedspor", "goztepe izmir": "Goztep",
+    # API-Football spellings found unmatched in November 2026
+    "ofi": "OFI Crete", "vicenza virtus": "Vicenza", "real sociedad ii": "Sociedad B",
     "brestois": "Brest", "hoffenheim": "Hoffenheim", "aris thessaloniki": "Aris",
 }
 

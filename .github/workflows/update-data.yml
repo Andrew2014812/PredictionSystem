@@ -24,6 +24,9 @@
 # twice. The "once a day" step keeps one scheduled run per Kyiv date: it reads the date of the last
 # successful daily run (local_data/daily_run.json, committed with the data) and skips a repeat. A run
 # that GitHub starts late still runs, and a failed run does not block a manual rerun the same day.
+# GitHub delays scheduled runs under load (November 2026: created 6-7 hours after 03:17). For the exact
+# time an external scheduler can send a "daily-update" repository_dispatch at 03:17; the schedule stays
+# as the fallback and whichever comes first runs.
 # The run commits local_data/ to main; Streamlit Cloud redeploys automatically and a local
 # checkout catches up with `git pull`. Quotas: `python scripts/odds_credits.py` (also printed
 # in the run summary). If an API is down or a quota is exhausted, the run keeps the existing data.
@@ -33,6 +36,13 @@ on:
   schedule:
     - cron: "17 3 * * *"     # 03:17 in Kyiv all year; not on the hour, when GitHub drops runs
       timezone: "Europe/Kyiv"
+  # The same daily run started from outside GitHub at the exact time (GitHub's own schedule has
+  # started 6-7 hours late in November 2026). Optional: an external scheduler calls the
+  # workflow_dispatch API with inputs {"mode": "full", "daily": true} (token: Actions read/write on this
+  # repository only), or sends a "daily-update" repository_dispatch. See README, "Daily update time".
+  # Every daily trigger shares the once-per-Kyiv-date guard.
+  repository_dispatch:
+    types: [daily-update]
   workflow_dispatch:
     inputs:
       mode:
@@ -58,6 +68,10 @@ on:
         default: ""
       force:
         description: "Re-price even if asked recently"
+        type: boolean
+        default: false
+      daily:
+        description: "Count as the daily run (once per Kyiv date; for an external scheduler)"
         type: boolean
         default: false
       history_since:
@@ -87,7 +101,9 @@ jobs:
       - name: Once a day
         id: time
         run: |
-          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          daily="${{ inputs.daily }}"
+          case "${{ github.event_name }}" in schedule|repository_dispatch) daily=true ;; esac
+          if [ "$daily" != "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
           today=$(TZ=Europe/Kyiv date +%F)
           last=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("kyiv_date",""))' \
                  local_data/daily_run.json 2>/dev/null || true)
@@ -178,7 +194,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ "${{ github.event_name }}" = "schedule" ]; then
+          if [ -n "${{ steps.time.outputs.kyiv_date }}" ]; then             # a daily run (schedule or external)
             printf '{"kyiv_date": "%s", "finished_at_utc": "%s", "run_id": "%s"}\n' \
               "${{ steps.time.outputs.kyiv_date }}" "$(date -u +%FT%TZ)" "${{ github.run_id }}" > local_data/daily_run.json
           fi

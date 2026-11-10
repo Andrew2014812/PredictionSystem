@@ -223,9 +223,10 @@ def rescheduled_duplicates(picks: pd.DataFrame) -> pd.DataFrame:
     under the new date. One real match must count once, so per league pairing within RESCHEDULE_DAYS the
     prediction made for the date the match was really played is kept — the one the site showed on match
     day, made from the newest pre-match data — and a prediction for a provisional or postponed date is
-    superseded (bookmakers void such bets too). A recorded prediction wins over a reconstruction, then
-    the latest date, then the latest ``generated_at``. The rule never looks at results, except that two
-    settled predictions with different scores are different matches and are both kept. Returns the
+    superseded (bookmakers void such bets too). A recorded prediction wins over a reconstruction, then a
+    prediction whose date got a result over one whose date never did (a match moved to an earlier day),
+    then the latest date, then the latest ``generated_at``. Whether a prediction won is never looked at;
+    two settled predictions with different scores are different matches and are both kept. Returns the
     dropped ids with the id kept instead."""
     cols = ["match_id", "league", "home_team", "away_team", "date", "source", "generated_at",
             "status", "home_goals", "away_goals"]
@@ -254,8 +255,11 @@ def rescheduled_duplicates(picks: pd.DataFrame) -> pd.DataFrame:
             settled = frame.loc[frame["status"].isin(["WON", "LOST", "PUSH"])]
             if settled[["home_goals", "away_goals"]].drop_duplicates().shape[0] > 1:
                 continue                                          # different results: different matches
-            keep = frame.sort_values(["order", "date", "generated_at"],
-                                     ascending=[True, False, False]).iloc[0]["match_id"]
+            # a date that got a result beats a date that never did (a match moved to an EARLIER day leaves
+            # the later provisional date without a result); whether the pick won is never looked at
+            frame["no_result"] = (~frame["status"].isin(["WON", "LOST", "PUSH"])).astype(int)
+            keep = frame.sort_values(["order", "no_result", "date", "generated_at"],
+                                     ascending=[True, True, False, False]).iloc[0]["match_id"]
             dropped += [(mid, keep) for mid in frame["match_id"] if mid != keep]
     return pd.DataFrame(dropped, columns=["match_id", "kept_match_id"])
 

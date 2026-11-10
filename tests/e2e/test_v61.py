@@ -60,7 +60,10 @@ def test_the_v61_design_uses_its_fonts_and_colours(app):
     weight = app.page.evaluate("getComputedStyle(document.querySelector('.page-title')).fontWeight")
     assert "IBM Plex Sans" in title_font and "Source Sans 3" in body_font
     assert int(weight) <= 700                                                 # lighter than v6's 800
-    assert app.background() == "rgb(16, 24, 32)"                              # graphite #101820, not navy
+    from src.ui.theme import design
+    bg = design()["palettes"]["dark"]["bg"].lstrip("#")                      # the active design's (v6.2 since 11.2026)
+    assert app.background() == "rgb({}, {}, {})".format(*(int(bg[i:i + 2], 16) for i in (0, 2, 4)))
+    assert app.background() != "rgb(11, 17, 32)"                              # not v6's navy
 
 
 def test_the_calendar_is_english_in_a_russian_browser(browser, base_url):

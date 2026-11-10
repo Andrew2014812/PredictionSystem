@@ -73,6 +73,9 @@ def _merge_json(saved: Path, path: Path, nested: str | None) -> None:
         for k, v in theirs.items():
             if k != nested and k not in ours:
                 ours[k] = v
+        if ours.get("month"):                 # the month's count now includes the download's requests
+            ours["month_credits"] = int(sum(float(v.get("cost") or 0) for v in mine.values()
+                                            if str(v.get("at", "")).startswith(ours["month"])))
     path.write_text(json.dumps(ours, indent=1, ensure_ascii=False), encoding="utf-8")
     print("merged", path.name)
 

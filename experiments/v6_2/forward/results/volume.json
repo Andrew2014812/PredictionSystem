@@ -1,0 +1,20 @@
+{
+ "window": [
+  "2026-10-12",
+  "2026-11-09"
+ ],
+ "versions_per_day_mean": 131.78571428571428,
+ "days_with_runs": 19,
+ "versions_per_run_max": 674,
+ "rows_per_match_version": 7.836649214659686,
+ "bytes_per_row": 306.85395510422234,
+ "rows_per_day_upper": 1032.7584143605086,
+ "kb_per_day_upper": 309.47851964227283,
+ "mb_per_season_upper": 90.66753505144712,
+ "production_tables_kb": {
+  "markets.parquet": 4180,
+  "picks.parquet": 2642,
+  "snapshots.parquet": 641,
+  "versions.parquet": 562
+ }
+}

@@ -1,0 +1,172 @@
+{
+ "rule": {
+  "calibration": "Среди всех вариантов (кроме базового) на универсуме site: минимум max(|gap 2023/24|, |gap 2024/25|); при равенстве — меньший log loss 2024/25. Перспективен, если 95 % ДИ gap содержит 0 в обоих сезонах отбора на обоих универсумах, а |gap| < |gap базового| в объединённых сезонах отбора (Holm p < 0.05).",
+  "roi": "Среди вариантов, меняющих выбор (pre/rank/few), на универсуме bet: максимум min(ROI 2023/24, ROI 2024/25). Перспективен, если ΔROI к базовому > 0 в обоих сезонах отбора и Holm-p объединённого теста < 0.05."
+ },
+ "calibration": {
+  "chosen": "PS-Market",
+  "family": "post",
+  "worst_gap_site": 0.00026608072016796137,
+  "ranking": [
+   {
+    "variant": "PS-Market",
+    "worst_abs_gap_site": 0.00026608072016796137,
+    "worst_abs_gap_bet": 0.012209534053291301
+   },
+   {
+    "variant": "R6 нижняя граница p",
+    "worst_abs_gap_site": 0.0022155178874709762,
+    "worst_abs_gap_bet": 0.012560238698306107
+   },
+   {
+    "variant": "R1 макс. вероятность",
+    "worst_abs_gap_site": 0.0036887882949301768,
+    "worst_abs_gap_bet": 0.014273938445336181
+   },
+   {
+    "variant": "Q3 Q2 + Платт после выбора",
+    "worst_abs_gap_site": 0.004508511038631099,
+    "worst_abs_gap_bet": 0.014973202070631023
+   },
+   {
+    "variant": "PS-Group",
+    "worst_abs_gap_site": 0.00565759258594455,
+    "worst_abs_gap_bet": 0.007865426161012917
+   },
+   {
+    "variant": "PS-Aware",
+    "worst_abs_gap_site": 0.007038934114193545,
+    "worst_abs_gap_bet": 0.007539908922692728
+   },
+   {
+    "variant": "PS-Platt",
+    "worst_abs_gap_site": 0.007605582813590347,
+    "worst_abs_gap_bet": 0.006983434299810043
+   },
+   {
+    "variant": "PS-EB-League",
+    "worst_abs_gap_site": 0.007605582813590347,
+    "worst_abs_gap_bet": 0.006983434299810043
+   },
+   {
+    "variant": "PS-Iso",
+    "worst_abs_gap_site": 0.0088636146336549,
+    "worst_abs_gap_bet": 0.007378121900524606
+   },
+   {
+    "variant": "PS-OS",
+    "worst_abs_gap_site": 0.009246824440421955,
+    "worst_abs_gap_bet": 0.008086250158560284
+   },
+   {
+    "variant": "F3 только 1X2 и ДШ",
+    "worst_abs_gap_site": 0.01153485280054066,
+    "worst_abs_gap_bet": 0.006853385798224387
+   },
+   {
+    "variant": "F2 1X2 + ДШ + тотал",
+    "worst_abs_gap_site": 0.012689099510962289,
+    "worst_abs_gap_bet": 0.028090210420293946
+   },
+   {
+    "variant": "F1 без форы и угловых",
+    "worst_abs_gap_site": 0.012699646849352526,
+    "worst_abs_gap_bet": 0.028090210420293946
+   },
+   {
+    "variant": "Q4 Q2 + смесь с рынком",
+    "worst_abs_gap_site": 0.015502033218332966,
+    "worst_abs_gap_bet": 0.007944142753755953
+   },
+   {
+    "variant": "Q2 Платт по рынкам",
+    "worst_abs_gap_site": 0.026840436450672626,
+    "worst_abs_gap_bet": 0.03470346753954555
+   },
+   {
+    "variant": "Q1 изотоника по типам",
+    "worst_abs_gap_site": 0.02843153098658943,
+    "worst_abs_gap_bet": 0.04221098626983621
+   }
+  ],
+  "ci_contains_zero_all": false,
+  "pooled_d_absgap": -0.015298331859926025,
+  "pooled_d_absgap_p_holm": 0.492,
+  "promising": false
+ },
+ "roi": {
+  "chosen": "Q4 Q2 + смесь с рынком",
+  "family": "pre",
+  "worst_roi": -0.03964776873421274,
+  "base_worst_roi": -0.056316750983698705,
+  "d_roi_each": [
+   0.007485315536693543,
+   0.016668982249485965
+  ],
+  "pooled_d_roi": 0.012040401874434468,
+  "pooled_d_roi_ci": [
+   -0.004860848921909518,
+   0.027677700584755657
+  ],
+  "pooled_p_holm": 1.0,
+  "ranking": [
+   {
+    "variant": "Q4 Q2 + смесь с рынком",
+    "worst_roi": -0.03964776873421274
+   },
+   {
+    "variant": "R6 нижняя граница p",
+    "worst_roi": -0.05492843109738984
+   },
+   {
+    "variant": "R1 макс. вероятность",
+    "worst_roi": -0.058414257648049396
+   },
+   {
+    "variant": "R3 макс. EV",
+    "worst_roi": -0.058966999445368845
+   },
+   {
+    "variant": "F3 только 1X2 и ДШ",
+    "worst_roi": -0.061456002210250035
+   },
+   {
+    "variant": "F1 без форы и угловых",
+    "worst_roi": -0.06199129946674151
+   },
+   {
+    "variant": "F2 1X2 + ДШ + тотал",
+    "worst_roi": -0.06199129946674151
+   },
+   {
+    "variant": "R4 макс. калибр. EV",
+    "worst_roi": -0.06516316371681416
+   },
+   {
+    "variant": "R7 нижняя граница EV",
+    "worst_roi": -0.06516860143725817
+   },
+   {
+    "variant": "R5 Келли",
+    "worst_roi": -0.06702392476835846
+   },
+   {
+    "variant": "Q1 изотоника по типам",
+    "worst_roi": -0.06908223407241089
+   },
+   {
+    "variant": "Q2 Платт по рынкам",
+    "worst_roi": -0.07097810833567218
+   },
+   {
+    "variant": "Q3 Q2 + Платт после выбора",
+    "worst_roi": -0.07097810833567218
+   }
+  ],
+  "promising": false
+ },
+ "n_variants_tried": {
+  "site": 16,
+  "bet": 20
+ }
+}

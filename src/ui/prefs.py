@@ -194,15 +194,25 @@ def _team_search() -> None:
     components.html(_TITLE_JS.replace("HIDE", "true" if HIDE_CLOUD_BADGES else "false"), height=0)
 
 
+def _go_home() -> None:
+    st.session_state["_go_home"] = True
+
+
 def top_bar() -> None:
     """Brand on the left, language and theme switches on the right."""
+    if st.session_state.pop("_go_home", False):
+        # the logo: Matches with its default view (today, all leagues), inside the app — no page reload,
+        # theme and language kept; also from Matches itself after another day or league was chosen
+        st.switch_page("views/matches.py", query_params=pref_params())
     st.html(_LANG_JS, unsafe_allow_javascript=True)           # first: before any date field is drawn
     inject_css()
-    query = urlencode(pref_params())
-    target = app_root() + (f"?{query}" if query else "")
-    st.html(f'<div class="fp-brand"><a href="{target}" target="_self" aria-label="FootPredict — {t("Matches")}">'
+    # The logo is drawn as before; a transparent button over it goes to Matches inside the app (no page
+    # reload, so Streamlit's start-up screen is not shown again; the theme and language stay).
+    st.html(f'<div class="fp-brand" aria-hidden="true"><a tabindex="-1">'
             f'<img class="mark" src="{logo_data_uri(st.session_state.get("theme", "dark"))}" width="34" height="29" '
             f'alt=""><span>Foot<span class="accent">Predict</span></span></a></div>')
+    with st.container(key="fp_home"):
+        st.button(f"FootPredict — {t('Matches')}", key="fp_home_btn", type="tertiary", on_click=_go_home)
     with st.container(key="fp_prefs", horizontal=True):
         _team_search()
         if SHOW_LANGUAGE_SWITCH:                       # English only for now; translations stay in the code

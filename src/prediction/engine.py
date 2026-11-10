@@ -2,7 +2,7 @@
 -> main / risk recommendation, for a batch of matches."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 import numpy as np
@@ -16,6 +16,7 @@ from ..markets.recommendation import main_prediction, risk_prediction
 from ..modelling.decision import decide
 from ..modelling.tasks import RESULT_CLASSES
 from ..modelling.training import ModelBundle
+from .inputs import build_inputs
 
 SNAPSHOT_ID_COLUMNS = ["match_id", "league", "country", "season", "date", "time", "kickoff",
                        "home_team", "away_team"]
@@ -26,6 +27,7 @@ class PredictionBatch:
     snapshots: pd.DataFrame     # one row per match: probabilities & expected values
     markets: pd.DataFrame       # one row per selection (probability + real odds if any)
     picks: pd.DataFrame         # stored predictions (market forecasts, main, risk)
+    inputs: pd.DataFrame = field(default_factory=pd.DataFrame)   # model inputs per match (inputs.py)
 
 
 def _pick_row(match: dict, sel: PricedSelection, role: str, meta: dict, kind: str = "") -> dict:
@@ -132,4 +134,5 @@ def predict_matches(matches: pd.DataFrame, bundles: dict[str, ModelBundle], odds
         markets_df["priced_at"] = pd.to_datetime(markets_df["priced_at"], errors="coerce")
     for col in ("probability", "odds", "ev", "push_probability"):
         markets_df[col] = pd.to_numeric(markets_df[col], errors="coerce").astype("float32")
-    return PredictionBatch(pd.DataFrame(snapshots), markets_df, pd.DataFrame(picks))
+    inputs = build_inputs(matches, bundles, version, source, generated_at)
+    return PredictionBatch(pd.DataFrame(snapshots), markets_df, pd.DataFrame(picks), inputs)

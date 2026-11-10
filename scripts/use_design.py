@@ -2,6 +2,7 @@
 
     python scripts/use_design.py v6      # back to the v6 look (navy, Inter, weight 800)
     python scripts/use_design.py v6.1    # the v6.1 look (graphite-green, IBM Plex Sans + Source Sans 3)
+    python scripts/use_design.py v6.2    # the v6.2 look (neutral, calmer green, opaque secondary text)
 
 It sets ``UI_DESIGN`` in src/config.py and the widget colours of ``.streamlit/config.toml`` (Streamlit reads
 them at start-up, so restart a local server; Streamlit Cloud redeploys after the push). Without editing
@@ -17,6 +18,8 @@ WIDGET_COLOURS = {
            "textColor": "#e2e8f0", "borderColor": "#1f2a40"},
     "v6.1": {"primaryColor": "#269d7d", "backgroundColor": "#101820", "secondaryBackgroundColor": "#1b292d",
              "textColor": "#e1e7e5", "borderColor": "#2b3c40"},
+    "v6.2": {"primaryColor": "#1f7660", "backgroundColor": "#131618", "secondaryBackgroundColor": "#1b1f22",
+             "textColor": "#e6e9ea", "borderColor": "#353c40"},
 }
 
 
@@ -40,4 +43,4 @@ def use(name: str) -> None:
 
 
 if __name__ == "__main__":
-    use(sys.argv[1] if len(sys.argv) > 1 else "v6.1")
+    use(sys.argv[1] if len(sys.argv) > 1 else "v6.2")

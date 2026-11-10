@@ -1,0 +1,76 @@
+{
+ "root": "/home/mlitvinenko/repositories/PredictionSystem",
+ "size": "1920x1080",
+ "pages": {
+  "matches_dark": {
+   "texts": 427,
+   "below": [],
+   "min_ratio": 5.5
+  },
+  "match_dark": {
+   "texts": 288,
+   "below": [],
+   "min_ratio": 5.79
+  },
+  "history_dark": {
+   "texts": 326,
+   "below": [],
+   "min_ratio": 5.79
+  },
+  "leagues_dark": {
+   "texts": 201,
+   "below": [],
+   "min_ratio": 5.79
+  },
+  "teams_dark": {
+   "texts": 22,
+   "below": [],
+   "min_ratio": 5.79
+  },
+  "analytics_dark": {
+   "texts": 295,
+   "below": [],
+   "min_ratio": 5.79
+  },
+  "models_dark": {
+   "texts": 256,
+   "below": [],
+   "min_ratio": 5.79
+  },
+  "matches_light": {
+   "texts": 427,
+   "below": [],
+   "min_ratio": 4.88
+  },
+  "match_light": {
+   "texts": 290,
+   "below": [],
+   "min_ratio": 4.83
+  },
+  "history_light": {
+   "texts": 326,
+   "below": [],
+   "min_ratio": 4.88
+  },
+  "leagues_light": {
+   "texts": 201,
+   "below": [],
+   "min_ratio": 4.88
+  },
+  "teams_light": {
+   "texts": 22,
+   "below": [],
+   "min_ratio": 4.88
+  },
+  "analytics_light": {
+   "texts": 295,
+   "below": [],
+   "min_ratio": 4.88
+  },
+  "models_light": {
+   "texts": 256,
+   "below": [],
+   "min_ratio": 4.88
+  }
+ }
+}

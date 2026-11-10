@@ -8,7 +8,7 @@ import streamlit as st
 from src.analytics.performance import PERIODS, period_label, select_dataset, summarize, timeline
 from src.leagues import league_codes
 from src.ui import data
-from src.ui.components import (PROFIT_HELP, outcome_counts, date_text, empty_state, esc, guard, html_table, kpi_row, match_url, missing, num,
+from src.ui.components import (PROFIT_HELP, PUSH_HELP, outcome_counts, date_text, empty_state, esc, guard, html_table, kpi_row, match_url, missing, num,
                                odds_text, page_header, pct, period_filter, section, signed, status_badge, tone)
 from src.ui.i18n import t
 from src.ui.timefmt import with_local_time
@@ -18,6 +18,21 @@ ROLES = {"main": "Main predictions", "risk": "Risk predictions", "market": "Mark
 PAGE_SIZE = 50
 SUMMARY_ROWS = 12
 
+
+
+def _decision_time_note(df: pd.DataFrame, s: dict) -> None:
+    """ROI counting only prices that existed when the prediction was made (recorded predictions); the rest
+    are closing prices added afterwards or retrospective predictions — shown, but not a price one could
+    have taken at prediction time."""
+    from src.prediction.price_timing import decision_time_prices
+    if "odds_timing" not in df or not s["bets"]:
+        return
+    d = summarize(decision_time_prices(df))
+    if not d["bets"] or d["bets"] == s["bets"]:
+        return
+    st.caption(t("Counting only prices that were on offer when the prediction was made: ROI {roi} on {n} bets. "
+                 "The other {m} bets use closing prices published afterwards or belong to predictions made "
+                 "after the match.", roi=signed(d["roi"], 1, "%"), n=f"{d['bets']:,}", m=f"{s['bets'] - d['bets']:,}"))
 
 def filter_picks(picks: pd.DataFrame, start, end, leagues, groups, role, statuses=("WON", "LOST"),
                  sources=None, odds_only: bool = False) -> pd.DataFrame:
@@ -71,13 +86,14 @@ def render() -> None:
                     | df["away_team"].str.lower().str.contains(q, regex=False)]
     s = summarize(df)
     kpi_row([
-        (t("Predictions"), f"{s['settled']:,}", outcome_counts(s)),
+        (t("Predictions"), f"{s['settled']:,}", outcome_counts(s), "", t(PUSH_HELP)),
         (t("Hit rate"), pct(s["hit_rate"], 1), ""),
         (t("Profit · units"), signed(s["profit"]) if s["bets"] else "—",
          t("{n} bets", n=s["bets"]), tone(s["profit"]), t(PROFIT_HELP)),
         (t("ROI"), signed(s["roi"], 1, "%"), t("profit / amount staked"), tone(s["roi"])),
         (t("Average odds"), num(s["avg_odds"]), ""),
     ])
+    _decision_time_note(df, s)
     note = t("Profit and ROI use a fixed stake of 1 unit and real bookmaker odds only; a prediction without "
              "a real price counts in the hit rate but not in profit or ROI.")
     st.html(f'<div class="note">{note}</div>')

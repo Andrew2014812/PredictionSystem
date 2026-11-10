@@ -34,7 +34,7 @@ HTTP_TIMEOUT = 30
 # Look of the website: "v6.1" (default) or "v6" (the previous design, kept for a rollback). Can also be set
 # with the environment variable / Streamlit secret FP_DESIGN; scripts/use_design.py switches both this and
 # the widget colours in .streamlit/config.toml.
-UI_DESIGN = "v6.1"
+UI_DESIGN = "v6.2"
 
 # ---------------------------------------------------------------------------
 # API providers (keys come from the environment or a local, uncommitted .env)
@@ -224,6 +224,9 @@ HISTORY_MARKETS = ("1X2", "TOTAL_2.5", "BTTS", "DOUBLE_CHANCE", "CORNERS_9.5", "
 # and changed the return at real odds only within noise; Dixon-Coles' rho was
 # unstable between the two halves of the season with no gain, so both are off.
 DRAW_RULE = False
+# Keep off. v6.2 (experiments/v6_2/goal_distributions): rho is fitted on the raw goal rates but applied before
+# the reconciliation with the 1X2 classifier; that rho (−0.01 … −0.06) makes exact-score log loss worse, while the
+# rho that fits after reconciliation is ≈ 0. If ever switched on, fit rho on reconcile_with_1x2(score_matrix(...)).
 DIXON_COLES = False
 # v6 (experiments/v6_research, walk-forward 2023/24 + 2024/25, 2025/26 reported only): the probabilities stay
 # as they are (they were already well calibrated — mean P(draw) 0.25–0.26 vs 26 % draws; class weights,

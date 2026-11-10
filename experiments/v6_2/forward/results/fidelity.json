@@ -1,0 +1,119 @@
+{
+ "x5_weekly_w": [
+  {
+   "week": "2026-09-01",
+   "w_preregistered": 0.08573482544357595,
+   "w_shadow": 0.08573482544341414,
+   "n": 336,
+   "diff": -1.6181500583911657e-13
+  },
+  {
+   "week": "2026-09-08",
+   "w_preregistered": 0.18235196652710758,
+   "w_shadow": 0.18235196652775,
+   "n": 553,
+   "diff": 6.424027976237312e-13
+  },
+  {
+   "week": "2026-09-15",
+   "w_preregistered": 0.1652013228044922,
+   "w_shadow": 0.1652013228043515,
+   "n": 736,
+   "diff": -1.4069301279562296e-13
+  },
+  {
+   "week": "2026-09-22",
+   "w_preregistered": 0.1742763046000158,
+   "w_shadow": 0.17427630459961319,
+   "n": 922,
+   "diff": -4.02622379880313e-13
+  },
+  {
+   "week": "2026-09-29",
+   "w_preregistered": 0.17397549973358423,
+   "w_shadow": 0.17397549973198387,
+   "n": 947,
+   "diff": -1.6003587344215475e-12
+  },
+  {
+   "week": "2026-10-06",
+   "w_preregistered": 0.1673001257558171,
+   "w_shadow": 0.16886956532988404,
+   "n": 969,
+   "diff": 0.0015694395740669387
+  },
+  {
+   "week": "2026-10-13",
+   "w_preregistered": 0.14311217504788615,
+   "w_shadow": 0.1364279051926243,
+   "n": 1140,
+   "diff": -0.006684269855261854
+  },
+  {
+   "week": "2026-10-20",
+   "w_preregistered": 0.14769479552347692,
+   "w_shadow": 0.14238772600748198,
+   "n": 1306,
+   "diff": -0.005307069515994939
+  },
+  {
+   "week": "2026-10-27",
+   "w_preregistered": 0.16774985472194454,
+   "w_shadow": 0.1650611077309113,
+   "n": 1503,
+   "diff": -0.0026887469910332473
+  },
+  {
+   "week": "2026-11-03",
+   "w_preregistered": 0.17392066994743882,
+   "w_shadow": 0.17153501725786946,
+   "n": 1703,
+   "diff": -0.002385652689569362
+  }
+ ],
+ "stored_model_versions_2026": [
+  {
+   "source": "backfill",
+   "model_version": "prod_20261012",
+   "first": "2026-07-31",
+   "last": "2026-10-20",
+   "matches": 1273
+  },
+  {
+   "source": "live",
+   "model_version": "prod_20261002",
+   "first": "2026-10-02",
+   "last": "2026-10-05",
+   "matches": 35
+  },
+  {
+   "source": "live",
+   "model_version": "prod_20261007",
+   "first": "2026-10-09",
+   "last": "2026-10-12",
+   "matches": 114
+  },
+  {
+   "source": "live",
+   "model_version": "prod_20261012",
+   "first": "2026-10-12",
+   "last": "2026-11-22",
+   "matches": 809
+  }
+ ],
+ "ps_platt_current_fit": {
+  "preregistered": {
+   "fitted_on_settled_shown_mains": 2201,
+   "last_match_date": "2026-11-08",
+   "a": -0.2665211598761875,
+   "b": 1.0345019928347297
+  },
+  "shadow": {
+   "n": 2202,
+   "a": -0.269522738941367,
+   "b": 1.036401800470571,
+   "last_date": "2026-11-08"
+  },
+  "note": "population = production unified_history; commit 466aab5 changed it after the study computed the preregistered fit"
+ }
+}

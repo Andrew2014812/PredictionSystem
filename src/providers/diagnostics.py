@@ -24,6 +24,8 @@ import pandas as pd
 SOURCES = ("football_data", "api_football", "oddspapi", "the_odds_api")
 LABELS = {"football_data": "Football-Data", "api_football": "API-Football", "oddspapi": "OddsPapi",
           "the_odds_api": "The Odds API", "predictions": "Predictions"}
+STAGE_LABELS = {"features": "features", "settlement": "settlement", "history_repair": "history repair",
+                "predictions": "predictions", "shadow": "research shadows", "checks": "checks", "total": "total"}
 
 
 class RunDiagnostics:
@@ -33,6 +35,8 @@ class RunDiagnostics:
     def reset(self) -> None:
         self.started = datetime.now()
         self.data: dict[str, dict] = {}
+        self.stages: dict[str, float] = {}        # pipeline steps that are not a data source
+        self._open: dict[str, float] = {}
 
     # -- recording ---------------------------------------------------------------------------------------
     def _src(self, source: str) -> dict:
@@ -57,13 +61,36 @@ class RunDiagnostics:
     def info(self, source: str, **values) -> None:
         self._src(source)["info"].update(values)
 
+    def league(self, source: str, code: str) -> None:
+        """A league whose data this source really changed in this run (new results, fixtures or prices)."""
+        if code:
+            self._src(source).setdefault("leagues_updated", set()).add(str(code))
+
     @contextmanager
     def timer(self, source: str):
+        """Time spent in one source's own requests and parsing (nested sources are timed separately)."""
+        self.begin(source)
+        try:
+            yield
+        finally:
+            self.end(source)
+
+    def begin(self, source: str) -> None:
+        self._open[source] = time.time()
+
+    def end(self, source: str) -> None:
+        start = self._open.pop(source, None)
+        if start is not None:
+            self._src(source)["seconds"] += time.time() - start
+
+    @contextmanager
+    def stage(self, name: str):
+        """Time of a processing step of the pipeline (features, settlement, predictions...)."""
         start = time.time()
         try:
             yield
         finally:
-            self._src(source)["seconds"] += time.time() - start
+            self.stages[name] = self.stages.get(name, 0.0) + time.time() - start
 
     # -- output --------------------------------------------------------------------------------------------
     def to_dict(self) -> dict:
@@ -72,8 +99,23 @@ class RunDiagnostics:
         for source, d in self.data.items():
             out["sources"][source] = {"counts": dict(d["counts"]), "http": dict(d["http"]),
                                       "skipped": dict(d["skipped"]), "errors": list(d["errors"]),
-                                      "info": d["info"], "seconds": round(d["seconds"], 1)}
+                                      "info": d["info"], "seconds": round(d["seconds"], 1),
+                                      "leagues_updated": sorted(d.get("leagues_updated", ()))}
+        out["timing_seconds"] = self.timing()
         return out
+
+    def timing(self) -> dict:
+        """Seconds per source and per processing step, and the whole run."""
+        out = {s: round(self.data[s]["seconds"], 1) for s in SOURCES if s in self.data}
+        out.update({k: round(v, 1) for k, v in self.stages.items()})
+        out["total"] = round((datetime.now() - self.started).total_seconds(), 1)
+        return out
+
+    def timing_line(self) -> str:
+        def fmt(sec: float) -> str:
+            return f"{sec / 60:.1f} min" if sec >= 90 else f"{sec:.0f} s"
+        parts = [f"{LABELS.get(k, STAGE_LABELS.get(k, k))} {fmt(v)}" for k, v in self.timing().items()]
+        return "Timing: " + " · ".join(parts)
 
     def line(self, source: str) -> str:
         """One readable line: the source's requests, what came back and what was used."""
@@ -86,7 +128,11 @@ class RunDiagnostics:
         if "status" in info:
             parts.append(str(info["status"]))
         if c.get("requests") or c.get("cached"):
-            parts.append(f"{c.get('requests', 0)} requests" + (f" (+{c['cached']} cached)" if c.get("cached") else ""))
+            ok = d["http"].get("200", 0)
+            parts.append(f"{c.get('requests', 0)} requests" + (f" ({ok} answered OK)" if d["http"] else "")
+                         + (f" (+{c['cached']} cached)" if c.get("cached") else ""))
+        if c.get("billable") is not None and source == "oddspapi":
+            parts.append(f"{c.get('billable', 0)} billable")
         order = [("files", "files downloaded"), ("files_unchanged", "files unchanged"),
                  ("season_played", "played matches in the season files"), ("returned", "fixtures returned"), ("in_leagues", "in our leagues"), ("matched", "matched"),
                  ("new_fixtures", "new fixtures"), ("finished", "finished"), ("new_results", "new results"),
@@ -95,6 +141,12 @@ class RunDiagnostics:
                  ("credits", "credits spent"), ("settled_now", "predictions settled"),
                  ("voided_now", "voided (no result after the waiting time)")]
         parts += [f"{c[k]:,} {text}" for k, text in order if c.get(k)]
+        if c.get("settled_now"):
+            parts.append(f"on {c.get('settled_matches', 0)} matches: Main {c.get('settled_main', 0)}, "
+                         f"Risk {c.get('settled_risk', 0)}, market forecasts {c.get('settled_market', 0)}, "
+                         f"refunds {c.get('settled_push', 0)}")
+        if d.get("leagues_updated"):
+            parts.append(f"{len(d['leagues_updated'])} leagues updated")
         if d["skipped"]:
             parts.append("skipped: " + ", ".join(f"{n} {r}" for r, n in d["skipped"].most_common(4)))
         if d["http"] and set(d["http"]) - {"200"}:
@@ -105,6 +157,11 @@ class RunDiagnostics:
             parts.append("history checks: all passed")
         if info.get("waiting_for_a_result"):
             parts.append(f"{info['waiting_for_a_result']} past matches still waiting for a result")
+        if info.get("waiting_reasons"):
+            parts.append("waiting: " + ", ".join(f"{n} {r}" for r, n in info["waiting_reasons"].items()))
+        if info.get("shadow_rows") or info.get("shadow_errors"):
+            parts.append(f"{info.get('shadow_rows', 0)} research shadow rows"
+                         + (f" ({info['shadow_errors']} shadow errors)" if info.get("shadow_errors") else ""))
         if "left" in info:
             parts.append(f"{info['left']} left")
         if d["errors"]:
@@ -114,7 +171,8 @@ class RunDiagnostics:
         return f"{label}: " + " · ".join(parts or ["nothing"])
 
     def lines(self) -> list[str]:
-        return [self.line(s) for s in (*SOURCES, "predictions") if s in self.data or s in SOURCES]
+        return [self.line(s) for s in (*SOURCES, "predictions") if s in self.data or s in SOURCES] \
+            + [self.timing_line()]
 
     def save(self, storage) -> dict:
         """Write last_run.json and append the per-source lines to history.csv (storage = API storage)."""

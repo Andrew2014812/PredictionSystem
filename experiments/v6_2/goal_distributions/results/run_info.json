@@ -1,0 +1,84 @@
+{
+ "git_sha": "c5c686d703ab832d9b451d82f6427228123dda9b",
+ "environment": {
+  "python": "3.12.12",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "libraries": {
+   "numpy": "2.2.6",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "sklearn": "1.7.2",
+   "xgboost": "3.0.5",
+   "statsmodels": "0.15.0",
+   "matplotlib": "3.11.2",
+   "reportlab": "5.1.0"
+  },
+  "git_sha": "c5c686d703ab832d9b451d82f6427228123dda9b",
+  "n_jobs": 2,
+  "seed": 20261109,
+  "n_boot": 2000
+ },
+ "data_version": {
+  "features": {
+   "rows": 38284,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "markets": {
+   "rows": 528177,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "picks": {
+   "rows": 78753,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "snapshots": {
+   "rows": 9325,
+   "mtime": "2026-11-09 18:18:42"
+  },
+  "odds": {
+   "rows": 358520,
+   "mtime": "2026-11-09 18:18:42"
+  }
+ },
+ "seconds": 345.8,
+ "seasons": {
+  "select": [
+   2023,
+   2024
+  ],
+  "info": 2025,
+  "current": 2026
+ },
+ "variants": [
+  "P",
+  "P+R",
+  "DC",
+  "DC+R",
+  "BP",
+  "BP+R",
+  "NB",
+  "NB+R",
+  "CMP",
+  "CMP+R",
+  "FR",
+  "FR+R",
+  "FRCMP",
+  "FRCMP+R",
+  "MH1",
+  "MH1+R",
+  "MH2",
+  "MH2+R",
+  "HY",
+  "HY+R",
+  "XC",
+  "XC+R"
+ ],
+ "best_by_rule": "HY+R",
+ "matches": {
+  "2022": 7278,
+  "2023": 7247,
+  "2024": 7129,
+  "2025": 7094,
+  "2026": 2202
+ }
+}

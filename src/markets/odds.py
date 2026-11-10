@@ -40,8 +40,8 @@ class PricedSelection:
 
     @property
     def fair_odds(self) -> float | None:
-        """1 / p — used in technical analysis only, never shown as a price."""
-        return 1 / self.probability if self.probability > 0 else None
+        """Break-even price (1 − P(refund)) / p — technical analysis only, never shown as a price."""
+        return (1 - (self.push_probability or 0.0)) / self.probability if self.probability > 0 else None
 
     @property
     def ev(self) -> float | None:

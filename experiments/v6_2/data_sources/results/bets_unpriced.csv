@@ -1,0 +1,11 @@
+league,date,match_id,home_team,away_team,role,source,market,selection,probability,status,reason,recoverable
+SC0,2026-07-31,SC0-20260731-dundee-united-rangers,Dundee United,Rangers,main,backfill,TOTAL_3.5,UNDER,0.6602281702121179,WON,match not in the OddsPapi fixture list,no (OddsPapi has no such fixture)
+SP2,2026-10-03,SP2-20261003-sabadell-andorra,Sabadell,Andorra,main,live,1X2,H,0.5072129889247866,LOST,перенесённый матч: цена хранится под другой датой: SP2-20261004-sabadell-andorra,да — цена той же ставки есть под id дня игры
+SP2,2026-10-03,SP2-20261003-sabadell-andorra,Sabadell,Andorra,risk,live,EHANDICAP_-1,H,0.2650954477073805,LOST,перенесённый матч: цена хранится под другой датой: SP2-20261004-sabadell-andorra,да — цена той же ставки есть под id дня игры
+N1,2026-10-11,N1-20261011-excelsior-groningen,Excelsior,Groningen,main,live,HANDICAP_+1.5,H,0.7946951419371703,LOST,this line of the market not offered,no
+G1,2026-10-17,G1-20261017-atromitos-aek,Atromitos,AEK,main,live,TOTAL_1.5,OVER,0.785624710453365,VOID,VOID: результата нет (матч не состоялся),—
+G1,2026-10-17,G1-20261017-atromitos-aek,Atromitos,AEK,risk,live,TOTAL_3.5,OVER,0.3289671242237091,VOID,VOID: результата нет (матч не состоялся),—
+SC0,2026-10-31,SC0-20261031-dundee-united-hearts,Dundee United,Hearts,main,live,HANDICAP_+1.5,H,0.7209818717022088,UPCOMING,"дата прошла, результата нет ни из одного источника",—
+SC0,2026-10-31,SC0-20261031-dundee-united-hearts,Dundee United,Hearts,risk,live,1X2,H,0.2532856686924199,UPCOMING,"дата прошла, результата нет ни из одного источника",—
+E0,2026-11-22,E0-20261122-liverpool-man-united,Liverpool,Man United,main,live,TOTAL_3.5,UNDER,0.6643359842396785,UPCOMING,матч ещё не сыгран (цена ещё может прийти),—
+E0,2026-11-22,E0-20261122-liverpool-man-united,Liverpool,Man United,risk,live,1X2,D,0.26687538623809826,UPCOMING,матч ещё не сыгран (цена ещё может прийти),—

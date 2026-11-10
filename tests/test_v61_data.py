@@ -204,7 +204,8 @@ def test_diagnostics_lines_say_what_a_source_delivered(tmp_path):
     from src.storage import LocalStorage
     d = RunDiagnostics()
     d.add("api_football", "requests", 4)
-    d.http("api_football", 200)
+    for _ in range(4):
+        d.http("api_football", 200)
     d.add("api_football", "returned", 126)
     d.add("api_football", "in_leagues", 92)
     d.add("api_football", "matched", 90)
@@ -212,7 +213,8 @@ def test_diagnostics_lines_say_what_a_source_delivered(tmp_path):
     d.add("api_football", "new_results", 6)
     d.skip("api_football", "unknown team name", 2)
     line = d.line("api_football")
-    assert line.startswith("API-Football: 4 requests · 126 fixtures returned · 92 in our leagues · 90 matched")
+    assert line.startswith("API-Football: 4 requests (4 answered OK) · 126 fixtures returned · 92 in our leagues · "
+                           "90 matched")
     assert "21 finished" in line and "6 new results" in line and "2 unknown team name" in line
     d.error("api_football", "fixtures: {'access': 'Your account is suspended'}")
     assert "suspended" in d.line("api_football")
