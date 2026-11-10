@@ -19,3 +19,7 @@ run_at,source,line,n_requests,n_files_unchanged,n_season_played,n_new_results,n_
 2026-11-09T08:03:19,api_football,"API-Football: 3 requests · 1,446 fixtures returned · 61 in our leagues · 56 matched · 55 finished · 55 new results · skipped: 1385 not one of our leagues, 3 unknown team name, 2 status PST · 97 left · 12 s",3.0,,,55.0,,1446.0,61.0,56.0,55.0,,,,,,,
 2026-11-09T08:03:19,oddspapi,OddsPapi: 4 requests · 573 fixtures returned · 2 in our leagues · 2 matched · 2 matches asked · 2 with real prices · 102 new quotes · 23 updated quotes · skipped: 571 not one of our leagues · ? left,4.0,,,,,573.0,2.0,2.0,,,3.0,1.0,102.0,23.0,2.0,2.0
 2026-11-09T08:03:19,the_odds_api,The Odds API: off (stored prices still used) · 79 left,,,,,,,,,,,,,,,,
+2026-11-10T08:28:42,football_data,"Football-Data: 22 requests · 19 files downloaded · 2 files unchanged · 2,208 played matches in the season files · 158 new results · 27 s",22.0,2.0,2208.0,158.0,19.0,,,,,,,,,,,
+2026-11-10T08:28:42,api_football,"API-Football: 3 requests · 412 fixtures returned · 2 in our leagues · 1 matched · 1 finished · 1 new results · skipped: 410 not one of our leagues, 1 unknown team name · 97 left · 5 s",3.0,,,1.0,,412.0,2.0,1.0,1.0,,,,,,,
+2026-11-10T08:28:42,oddspapi,OddsPapi: 3 requests · 805 fixtures returned · 1 in our leagues · 1 matched · 1 matches asked · 1 with real prices · 56 new quotes · skipped: 804 not one of our leagues · ? left,3.0,,,,,805.0,1.0,1.0,,,2.0,1.0,56.0,0.0,1.0,1.0
+2026-11-10T08:28:42,the_odds_api,The Odds API: off (stored prices still used) · 79 left,,,,,,,,,,,,,,,,
