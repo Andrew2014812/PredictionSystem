@@ -3,7 +3,7 @@
   "E0": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -815,13 +815,103 @@
      "home_id": 39,
      "away_id": 48,
      "match_id": "E0-20261102-newcastle-everton"
+    },
+    {
+     "fixture_id": "id1000001772221378",
+     "kickoff_utc": "2026-11-06T20:00:00+00:00",
+     "home": "Everton FC",
+     "away": "Coventry City",
+     "home_id": 48,
+     "away_id": 11,
+     "match_id": "E0-20261106-everton-coventry"
+    },
+    {
+     "fixture_id": "id1000001772221384",
+     "kickoff_utc": "2026-11-07T12:30:00+00:00",
+     "home": "Leeds United",
+     "away": "Tottenham Hotspur",
+     "home_id": 34,
+     "away_id": 33,
+     "match_id": "E0-20261107-leeds-tottenham"
+    },
+    {
+     "fixture_id": "id1000001772221372",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Arsenal FC",
+     "away": "Hull City",
+     "home_id": 42,
+     "away_id": 96,
+     "match_id": "E0-20261107-arsenal-hull"
+    },
+    {
+     "fixture_id": "id1000001772221380",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Fulham FC",
+     "away": "Newcastle United",
+     "home_id": 43,
+     "away_id": 39,
+     "match_id": "E0-20261107-fulham-newcastle"
+    },
+    {
+     "fixture_id": "id1000001772221388",
+     "kickoff_utc": "2026-11-07T17:30:00+00:00",
+     "home": "Nottingham Forest",
+     "away": "Manchester City",
+     "home_id": 14,
+     "away_id": 17,
+     "match_id": "E0-20261107-nott-m-forest-man-city"
+    },
+    {
+     "fixture_id": "id1000001772221374",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "Brighton & Hove Albion",
+     "away": "Brentford FC",
+     "home_id": 30,
+     "away_id": 50,
+     "match_id": "E0-20261108-brighton-brentford"
+    },
+    {
+     "fixture_id": "id1000001772221376",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "Crystal Palace",
+     "away": "Liverpool FC",
+     "home_id": 7,
+     "away_id": 44,
+     "match_id": "E0-20261108-crystal-palace-liverpool"
+    },
+    {
+     "fixture_id": "id1000001772221382",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "Ipswich Town",
+     "away": "AFC Bournemouth",
+     "home_id": 32,
+     "away_id": 60,
+     "match_id": "E0-20261108-ipswich-bournemouth"
+    },
+    {
+     "fixture_id": "id1000001772221390",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "Sunderland AFC",
+     "away": "Chelsea FC",
+     "home_id": 41,
+     "away_id": 38,
+     "match_id": "E0-20261108-sunderland-chelsea"
+    },
+    {
+     "fixture_id": "id1000001772221386",
+     "kickoff_utc": "2026-11-08T16:30:00+00:00",
+     "home": "Manchester United",
+     "away": "Aston Villa",
+     "home_id": 35,
+     "away_id": 40,
+     "match_id": "E0-20261108-man-united-aston-villa"
     }
    ]
   },
   "E1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -2280,7 +2370,7 @@
      "away": "Sheffield United",
      "home_id": 21,
      "away_id": 15,
-     "match_id": null
+     "match_id": "E1-20261103-preston-sheffield-united"
     },
     {
      "fixture_id": "id1000001872339994",
@@ -2353,13 +2443,121 @@
      "home_id": 58,
      "away_id": 3,
      "match_id": "E1-20261104-bristol-city-wolves"
+    },
+    {
+     "fixture_id": "id1000001872340018",
+     "kickoff_utc": "2026-11-06T20:00:00+00:00",
+     "home": "Derby County",
+     "away": "Bolton Wanderers",
+     "home_id": 27,
+     "away_id": 5,
+     "match_id": "E1-20261106-derby-bolton"
+    },
+    {
+     "fixture_id": "id1000001872340012",
+     "kickoff_utc": "2026-11-07T12:30:00+00:00",
+     "home": "Bristol City",
+     "away": "Norwich City",
+     "home_id": 58,
+     "away_id": 263,
+     "match_id": "E1-20261107-bristol-city-norwich"
+    },
+    {
+     "fixture_id": "id1000001872340020",
+     "kickoff_utc": "2026-11-07T12:30:00+00:00",
+     "home": "Portsmouth FC",
+     "away": "Stoke City",
+     "home_id": 2,
+     "away_id": 29,
+     "match_id": "E1-20261107-portsmouth-stoke"
+    },
+    {
+     "fixture_id": "id1000001872340030",
+     "kickoff_utc": "2026-11-07T12:30:00+00:00",
+     "home": "Wrexham AFC",
+     "away": "Wolverhampton Wanderers",
+     "home_id": 64,
+     "away_id": 3,
+     "match_id": "E1-20261107-wrexham-wolves"
+    },
+    {
+     "fixture_id": "id1000001872340008",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Birmingham City",
+     "away": "Swansea City",
+     "home_id": 9,
+     "away_id": 74,
+     "match_id": "E1-20261107-birmingham-swansea"
+    },
+    {
+     "fixture_id": "id1000001872340010",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Blackburn Rovers",
+     "away": "West Ham United",
+     "home_id": 46,
+     "away_id": 37,
+     "match_id": "E1-20261107-blackburn-west-ham"
+    },
+    {
+     "fixture_id": "id1000001872340014",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Cardiff City",
+     "away": "Burnley FC",
+     "home_id": 61,
+     "away_id": 6,
+     "match_id": "E1-20261107-cardiff-burnley"
+    },
+    {
+     "fixture_id": "id1000001872340016",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Charlton Athletic",
+     "away": "Sheffield United",
+     "home_id": 47,
+     "away_id": 15,
+     "match_id": "E1-20261107-charlton-sheffield-united"
+    },
+    {
+     "fixture_id": "id1000001872340022",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Preston North End",
+     "away": "Southampton FC",
+     "home_id": 21,
+     "away_id": 45,
+     "match_id": "E1-20261107-preston-southampton"
+    },
+    {
+     "fixture_id": "id1000001872340024",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Queens Park Rangers",
+     "away": "Lincoln City",
+     "home_id": 1,
+     "away_id": 92,
+     "match_id": "E1-20261107-qpr-lincoln"
+    },
+    {
+     "fixture_id": "id1000001872340026",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Watford FC",
+     "away": "Middlesbrough FC",
+     "home_id": 24,
+     "away_id": 36,
+     "match_id": "E1-20261107-watford-middlesbrough"
+    },
+    {
+     "fixture_id": "id1000001872340028",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "West Bromwich Albion",
+     "away": "Millwall FC",
+     "home_id": 8,
+     "away_id": 25,
+     "match_id": "E1-20261107-west-brom-millwall"
     }
    ]
   },
   "E2": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -3971,14 +4169,14 @@
      "away": "Reading FC",
      "home_id": 95,
      "away_id": 28,
-     "match_id": null
+     "match_id": "E2-20261104-oxford-reading"
     }
    ]
   },
   "E3": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -5525,7 +5723,7 @@
   "SC0": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -6202,13 +6400,67 @@
      "home_id": 2363,
      "away_id": 2352,
      "match_id": "SC0-20261101-falkirk-celtic"
+    },
+    {
+     "fixture_id": "id1000003672201710",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Dundee United",
+     "away": "Motherwell FC",
+     "home_id": 2349,
+     "away_id": 2346,
+     "match_id": "SC0-20261107-dundee-united-motherwell"
+    },
+    {
+     "fixture_id": "id1000003672201712",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "St. Johnstone FC",
+     "away": "Dundee FC",
+     "home_id": 2348,
+     "away_id": 2357,
+     "match_id": "SC0-20261107-st-johnstone-dundee"
+    },
+    {
+     "fixture_id": "id1000003672201706",
+     "kickoff_utc": "2026-11-07T17:45:00+00:00",
+     "home": "Aberdeen FC",
+     "away": "Hibernian FC",
+     "home_id": 2355,
+     "away_id": 2354,
+     "match_id": "SC0-20261107-aberdeen-hibernian"
+    },
+    {
+     "fixture_id": "id1000003672201714",
+     "kickoff_utc": "2026-11-07T20:00:00+00:00",
+     "home": "St Mirren FC",
+     "away": "Glasgow Rangers",
+     "home_id": 2359,
+     "away_id": 2351,
+     "match_id": "SC0-20261107-st-mirren-rangers"
+    },
+    {
+     "fixture_id": "id1000003672201716",
+     "kickoff_utc": "2026-11-08T15:00:00+00:00",
+     "home": "Heart of Midlothian FC",
+     "away": "Falkirk FC",
+     "home_id": 2353,
+     "away_id": 2363,
+     "match_id": "SC0-20261108-hearts-falkirk"
+    },
+    {
+     "fixture_id": "id1000003672201708",
+     "kickoff_utc": "2026-11-08T16:00:00+00:00",
+     "home": "Celtic Glasgow",
+     "away": "Kilmarnock FC",
+     "home_id": 2352,
+     "away_id": 2347,
+     "match_id": "SC0-20261108-celtic-kilmarnock"
     }
    ]
   },
   "SC1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -6822,13 +7074,58 @@
      "home_id": 2358,
      "away_id": 2374,
      "match_id": "SC1-20261031-partick-morton"
+    },
+    {
+     "fixture_id": "id1000020672202728",
+     "kickoff_utc": "2026-11-06T19:30:00+00:00",
+     "home": "Raith Rovers FC",
+     "away": "Dunfermline Athletic FC",
+     "home_id": 2361,
+     "away_id": 2350,
+     "match_id": "SC1-20261106-raith-rvs-dunfermline"
+    },
+    {
+     "fixture_id": "id1000020672202720",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Arbroath FC",
+     "away": "Ayr United FC",
+     "home_id": 2366,
+     "away_id": 2364,
+     "match_id": "SC1-20261107-arbroath-ayr"
+    },
+    {
+     "fixture_id": "id1000020672202722",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Greenock Morton FC",
+     "away": "Stenhousemuir FC",
+     "home_id": 2374,
+     "away_id": 2370,
+     "match_id": "SC1-20261107-morton-stenhousemuir"
+    },
+    {
+     "fixture_id": "id1000020672202724",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Inverness Caledonian Thistle FC",
+     "away": "Livingston FC",
+     "home_id": 2362,
+     "away_id": 2356,
+     "match_id": "SC1-20261107-inverness-c-livingston"
+    },
+    {
+     "fixture_id": "id1000020672202726",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Queens Park FC",
+     "away": "Partick Thistle FC",
+     "home_id": 2379,
+     "away_id": 2358,
+     "match_id": "SC1-20261107-queens-park-partick"
     }
    ]
   },
   "SP1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -7480,15 +7777,6 @@
      "match_id": "SP1-20261009-malaga-espanol"
     },
     {
-     "fixture_id": "id1000000872478620",
-     "kickoff_utc": "2026-10-10T12:00:00+00:00",
-     "home": "Rayo Vallecano",
-     "away": "Athletic Bilbao",
-     "home_id": 2818,
-     "away_id": 2825,
-     "match_id": null
-    },
-    {
      "fixture_id": "id1000000872478606",
      "kickoff_utc": "2026-10-10T14:15:00+00:00",
      "home": "Deportivo Alaves",
@@ -7838,13 +8126,103 @@
      "home_id": 2832,
      "away_id": 2820,
      "match_id": "SP1-20261102-la-coruna-osasuna"
+    },
+    {
+     "fixture_id": "id1000000872478700",
+     "kickoff_utc": "2026-11-06T20:00:00+00:00",
+     "home": "Sevilla FC",
+     "away": "Deportivo Alaves",
+     "home_id": 2833,
+     "away_id": 2885,
+     "match_id": "SP1-20261106-sevilla-alaves"
+    },
+    {
+     "fixture_id": "id1000000872478694",
+     "kickoff_utc": "2026-11-07T13:00:00+00:00",
+     "home": "Malaga CF",
+     "away": "Racing Santander",
+     "home_id": 2830,
+     "away_id": 2835,
+     "match_id": "SP1-20261107-malaga-santander"
+    },
+    {
+     "fixture_id": "id1000000872478692",
+     "kickoff_utc": "2026-11-07T15:15:00+00:00",
+     "home": "Espanyol Barcelona",
+     "away": "RC Deportivo de A Coruna",
+     "home_id": 2814,
+     "away_id": 2832,
+     "match_id": "SP1-20261107-espanol-la-coruna"
+    },
+    {
+     "fixture_id": "id1000000872478696",
+     "kickoff_utc": "2026-11-07T17:30:00+00:00",
+     "home": "CA Osasuna",
+     "away": "Athletic Bilbao",
+     "home_id": 2820,
+     "away_id": 2825,
+     "match_id": "SP1-20261107-osasuna-ath-bilbao"
+    },
+    {
+     "fixture_id": "id1000000872478702",
+     "kickoff_utc": "2026-11-07T20:00:00+00:00",
+     "home": "Valencia CF",
+     "away": "Real Madrid",
+     "home_id": 2828,
+     "away_id": 2829,
+     "match_id": "SP1-20261107-valencia-real-madrid"
+    },
+    {
+     "fixture_id": "id1000000872478690",
+     "kickoff_utc": "2026-11-08T13:00:00+00:00",
+     "home": "Elche CF",
+     "away": "Real Betis Seville",
+     "home_id": 2846,
+     "away_id": 2816,
+     "match_id": "SP1-20261108-elche-betis"
+    },
+    {
+     "fixture_id": "id1000000872478698",
+     "kickoff_utc": "2026-11-08T15:15:00+00:00",
+     "home": "Real Sociedad San Sebastian",
+     "away": "Rayo Vallecano",
+     "home_id": 2824,
+     "away_id": 2818,
+     "match_id": "SP1-20261108-sociedad-vallecano"
+    },
+    {
+     "fixture_id": "id1000000872478688",
+     "kickoff_utc": "2026-11-08T17:30:00+00:00",
+     "home": "RC Celta de Vigo",
+     "away": "Levante UD",
+     "home_id": 2821,
+     "away_id": 2849,
+     "match_id": "SP1-20261108-celta-levante"
+    },
+    {
+     "fixture_id": "id1000000872478704",
+     "kickoff_utc": "2026-11-08T17:30:00+00:00",
+     "home": "Villarreal CF",
+     "away": "Getafe CF",
+     "home_id": 2819,
+     "away_id": 2859,
+     "match_id": "SP1-20261108-villarreal-getafe"
+    },
+    {
+     "fixture_id": "id1000000872478686",
+     "kickoff_utc": "2026-11-08T20:00:00+00:00",
+     "home": "Atletico Madrid",
+     "away": "FC Barcelona",
+     "home_id": 2836,
+     "away_id": 2817,
+     "match_id": "SP1-20261108-ath-madrid-barcelona"
     }
    ]
   },
   "SP2": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -9015,7 +9393,7 @@
      "away": "FC Andorra",
      "home_id": 2822,
      "away_id": 610334,
-     "match_id": null
+     "match_id": "SP2-20261102-tenerife-andorra"
     },
     {
      "fixture_id": "id1000005472477552",
@@ -9043,13 +9421,112 @@
      "home_id": 2826,
      "away_id": 4488,
      "match_id": "SP2-20261102-mallorca-cadiz"
+    },
+    {
+     "fixture_id": "id1000005472477566",
+     "kickoff_utc": "2026-11-06T19:30:00+00:00",
+     "home": "CD Castellon",
+     "away": "SD Eibar",
+     "home_id": 5067,
+     "away_id": 2839,
+     "match_id": null
+    },
+    {
+     "fixture_id": "id1000005472477562",
+     "kickoff_utc": "2026-11-07T13:00:00+00:00",
+     "home": "Burgos CF",
+     "away": "RC Celta Fortuna",
+     "home_id": 2854,
+     "away_id": 24336,
+     "match_id": "SP2-20261107-burgos-celta-b"
+    },
+    {
+     "fixture_id": "id1000005472477564",
+     "kickoff_utc": "2026-11-07T15:15:00+00:00",
+     "home": "Cadiz CF",
+     "away": "Real Oviedo",
+     "home_id": 4488,
+     "away_id": 2851,
+     "match_id": "SP2-20261107-cadiz-oviedo"
+    },
+    {
+     "fixture_id": "id1000005472477568",
+     "kickoff_utc": "2026-11-07T17:30:00+00:00",
+     "home": "Cordoba CF",
+     "away": "AD Ceuta",
+     "home_id": 2850,
+     "away_id": 2869,
+     "match_id": "SP2-20261107-cordoba-ceuta"
+    },
+    {
+     "fixture_id": "id1000005472477574",
+     "kickoff_utc": "2026-11-07T17:30:00+00:00",
+     "home": "CD Leganes",
+     "away": "Albacete Balompie",
+     "home_id": 2845,
+     "away_id": 2848,
+     "match_id": "SP2-20261107-leganes-albacete"
+    },
+    {
+     "fixture_id": "id1000005472477572",
+     "kickoff_utc": "2026-11-07T20:00:00+00:00",
+     "home": "Granada CF",
+     "away": "Tenerife CD",
+     "home_id": 33779,
+     "away_id": 2822,
+     "match_id": null
+    },
+    {
+     "fixture_id": "id1000005472477560",
+     "kickoff_utc": "2026-11-08T13:00:00+00:00",
+     "home": "FC Andorra",
+     "away": "RCD Mallorca",
+     "home_id": 610334,
+     "away_id": 2826,
+     "match_id": null
+    },
+    {
+     "fixture_id": "id1000005472477570",
+     "kickoff_utc": "2026-11-08T15:15:00+00:00",
+     "home": "Girona FC",
+     "away": "UD Almeria",
+     "home_id": 24264,
+     "away_id": 2858,
+     "match_id": "SP2-20261108-girona-almeria"
+    },
+    {
+     "fixture_id": "id1000005472477580",
+     "kickoff_utc": "2026-11-08T17:30:00+00:00",
+     "home": "Sporting Gijon",
+     "away": "Real Valladolid",
+     "home_id": 2852,
+     "away_id": 2831,
+     "match_id": "SP2-20261108-sp-gijon-valladolid"
+    },
+    {
+     "fixture_id": "id1000005472477576",
+     "kickoff_utc": "2026-11-09T19:30:00+00:00",
+     "home": "UD Las Palmas",
+     "away": "Club Deportivo Eldense",
+     "home_id": 6577,
+     "away_id": 47321,
+     "match_id": "SP2-20261109-las-palmas-eldense"
+    },
+    {
+     "fixture_id": "id1000005472477578",
+     "kickoff_utc": "2026-11-09T19:30:00+00:00",
+     "home": "CE Sabadell FC",
+     "away": "Real Sociedad San Sebastian B",
+     "home_id": 24335,
+     "away_id": 24360,
+     "match_id": null
     }
    ]
   },
   "I1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -9951,13 +10428,103 @@
      "home_id": 2686,
      "away_id": 2690,
      "match_id": "I1-20261102-atalanta-parma"
+    },
+    {
+     "fixture_id": "id1000002371945404",
+     "kickoff_utc": "2026-11-06T19:45:00+00:00",
+     "home": "Venezia FC",
+     "away": "Udinese Calcio",
+     "home_id": 2688,
+     "away_id": 2695,
+     "match_id": "I1-20261106-venezia-udinese"
+    },
+    {
+     "fixture_id": "id1000002371945386",
+     "kickoff_utc": "2026-11-07T14:00:00+00:00",
+     "home": "Cagliari Calcio",
+     "away": "Frosinone Calcio",
+     "home_id": 2719,
+     "away_id": 2801,
+     "match_id": "I1-20261107-cagliari-frosinone"
+    },
+    {
+     "fixture_id": "id1000002371945402",
+     "kickoff_utc": "2026-11-07T14:00:00+00:00",
+     "home": "Torino FC",
+     "away": "US Lecce",
+     "home_id": 2696,
+     "away_id": 2689,
+     "match_id": "I1-20261107-torino-lecce"
+    },
+    {
+     "fixture_id": "id1000002371945398",
+     "kickoff_utc": "2026-11-07T17:00:00+00:00",
+     "home": "Parma Calcio",
+     "away": "Bologna FC",
+     "home_id": 2690,
+     "away_id": 2685,
+     "match_id": "I1-20261107-parma-bologna"
+    },
+    {
+     "fixture_id": "id1000002371945400",
+     "kickoff_utc": "2026-11-07T19:45:00+00:00",
+     "home": "AS Roma",
+     "away": "Sassuolo Calcio",
+     "home_id": 2702,
+     "away_id": 2793,
+     "match_id": "I1-20261107-roma-sassuolo"
+    },
+    {
+     "fixture_id": "id1000002371945396",
+     "kickoff_utc": "2026-11-08T11:30:00+00:00",
+     "home": "SSC Napoli",
+     "away": "Lazio Rome",
+     "home_id": 2714,
+     "away_id": 2699,
+     "match_id": "I1-20261108-napoli-lazio"
+    },
+    {
+     "fixture_id": "id1000002371945390",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "Genoa CFC",
+     "away": "AC Milan",
+     "home_id": 2713,
+     "away_id": 2692,
+     "match_id": "I1-20261108-genoa-milan"
+    },
+    {
+     "fixture_id": "id1000002371945394",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "AC Monza",
+     "away": "Atalanta BC",
+     "home_id": 2729,
+     "away_id": 2686,
+     "match_id": "I1-20261108-monza-atalanta"
+    },
+    {
+     "fixture_id": "id1000002371945392",
+     "kickoff_utc": "2026-11-08T17:00:00+00:00",
+     "home": "Inter Milano",
+     "away": "Como 1907",
+     "home_id": 2697,
+     "away_id": 2704,
+     "match_id": "I1-20261108-inter-como"
+    },
+    {
+     "fixture_id": "id1000002371945388",
+     "kickoff_utc": "2026-11-08T19:45:00+00:00",
+     "home": "ACF Fiorentina",
+     "away": "Juventus Turin",
+     "home_id": 2693,
+     "away_id": 2687,
+     "match_id": "I1-20261108-fiorentina-juventus"
     }
    ]
   },
   "I2": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -10859,13 +11426,103 @@
      "home_id": 2715,
      "away_id": 2722,
      "match_id": "I2-20261101-palermo-vicenza"
+    },
+    {
+     "fixture_id": "id1000005373093052",
+     "kickoff_utc": "2026-11-06T19:30:00+00:00",
+     "home": "Ascoli Calcio 1898",
+     "away": "Palermo FC",
+     "home_id": 2707,
+     "away_id": 2715,
+     "match_id": "I2-20261106-ascoli-palermo"
+    },
+    {
+     "fixture_id": "id1000005373093058",
+     "kickoff_utc": "2026-11-07T14:00:00+00:00",
+     "home": "Cesena FC",
+     "away": "US Catanzaro",
+     "home_id": 2742,
+     "away_id": 2796,
+     "match_id": "I2-20261107-cesena-catanzaro"
+    },
+    {
+     "fixture_id": "id1000005373093062",
+     "kickoff_utc": "2026-11-07T14:00:00+00:00",
+     "home": "Juve Stabia",
+     "away": "SS Arezzo",
+     "home_id": 5324,
+     "away_id": 2731,
+     "match_id": "I2-20261107-juve-stabia-arezzo"
+    },
+    {
+     "fixture_id": "id1000005373093068",
+     "kickoff_utc": "2026-11-07T14:00:00+00:00",
+     "home": "Calcio Padova",
+     "away": "Empoli FC",
+     "home_id": 2741,
+     "away_id": 2705,
+     "match_id": "I2-20261107-padova-empoli"
+    },
+    {
+     "fixture_id": "id1000005373093070",
+     "kickoff_utc": "2026-11-07T14:00:00+00:00",
+     "home": "Pisa SC",
+     "away": "FC Sudtirol Bolzano",
+     "home_id": 2737,
+     "away_id": 2760,
+     "match_id": "I2-20261107-pisa-sudtirol"
+    },
+    {
+     "fixture_id": "id1000005373093066",
+     "kickoff_utc": "2026-11-07T16:15:00+00:00",
+     "home": "Mantova 1911",
+     "away": "Hellas Verona",
+     "home_id": 2770,
+     "away_id": 2701,
+     "match_id": "I2-20261107-mantova-verona"
+    },
+    {
+     "fixture_id": "id1000005373093054",
+     "kickoff_utc": "2026-11-07T18:30:00+00:00",
+     "home": "Benevento Calcio",
+     "away": "US Avellino",
+     "home_id": 2759,
+     "away_id": 2730,
+     "match_id": "I2-20261107-benevento-avellino"
+    },
+    {
+     "fixture_id": "id1000005373093060",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "Virtus Entella",
+     "away": "Modena FC",
+     "home_id": 43680,
+     "away_id": 2706,
+     "match_id": "I2-20261108-virtus-entella-modena"
+    },
+    {
+     "fixture_id": "id1000005373093056",
+     "kickoff_utc": "2026-11-08T16:15:00+00:00",
+     "home": "Carrarese Calcio",
+     "away": "Sampdoria Genoa",
+     "home_id": 2745,
+     "away_id": 2711,
+     "match_id": "I2-20261108-carrarese-sampdoria"
+    },
+    {
+     "fixture_id": "id1000005373093064",
+     "kickoff_utc": "2026-11-08T18:30:00+00:00",
+     "home": "L.R. Vicenza",
+     "away": "US Cremonese",
+     "home_id": 2722,
+     "away_id": 2761,
+     "match_id": "I2-20261108-vicenza-cremonese"
     }
    ]
   },
   "D1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -11515,13 +12172,94 @@
      "home_id": 2674,
      "away_id": 2676,
      "match_id": "D1-20261101-ein-frankfurt-hamburg"
+    },
+    {
+     "fixture_id": "id1000003572513304",
+     "kickoff_utc": "2026-11-06T19:30:00+00:00",
+     "home": "Hamburger SV",
+     "away": "Borussia Monchengladbach",
+     "home_id": 2676,
+     "away_id": 2527,
+     "match_id": "D1-20261106-hamburg-m-gladbach"
+    },
+    {
+     "fixture_id": "id1000003572513292",
+     "kickoff_utc": "2026-11-07T14:30:00+00:00",
+     "home": "Borussia Dortmund",
+     "away": "SV 07 Elversberg",
+     "home_id": 2673,
+     "away_id": 2598,
+     "match_id": "D1-20261107-dortmund-elversberg"
+    },
+    {
+     "fixture_id": "id1000003572513294",
+     "kickoff_utc": "2026-11-07T14:30:00+00:00",
+     "home": "RB Leipzig",
+     "away": "FC Augsburg",
+     "home_id": 36360,
+     "away_id": 2600,
+     "match_id": "D1-20261107-rb-leipzig-augsburg"
+    },
+    {
+     "fixture_id": "id1000003572513302",
+     "kickoff_utc": "2026-11-07T14:30:00+00:00",
+     "home": "FSV Mainz",
+     "away": "Bayern Munich",
+     "home_id": 2556,
+     "away_id": 2672,
+     "match_id": "D1-20261107-mainz-bayern-munich"
+    },
+    {
+     "fixture_id": "id1000003572513308",
+     "kickoff_utc": "2026-11-07T14:30:00+00:00",
+     "home": "SC Paderborn 07",
+     "away": "Eintracht Frankfurt",
+     "home_id": 2561,
+     "away_id": 2674,
+     "match_id": "D1-20261107-paderborn-ein-frankfurt"
+    },
+    {
+     "fixture_id": "id1000003572513296",
+     "kickoff_utc": "2026-11-07T17:30:00+00:00",
+     "home": "VfB Stuttgart",
+     "away": "Werder Bremen",
+     "home_id": 2677,
+     "away_id": 2534,
+     "match_id": "D1-20261107-stuttgart-werder-bremen"
+    },
+    {
+     "fixture_id": "id1000003572513306",
+     "kickoff_utc": "2026-11-08T14:30:00+00:00",
+     "home": "1. FC Cologne",
+     "away": "Bayer Leverkusen",
+     "home_id": 2671,
+     "away_id": 2681,
+     "match_id": "D1-20261108-fc-koln-leverkusen"
+    },
+    {
+     "fixture_id": "id1000003572513300",
+     "kickoff_utc": "2026-11-08T16:30:00+00:00",
+     "home": "SC Freiburg",
+     "away": "Union Berlin",
+     "home_id": 2538,
+     "away_id": 2547,
+     "match_id": "D1-20261108-freiburg-union-berlin"
+    },
+    {
+     "fixture_id": "id1000003572513298",
+     "kickoff_utc": "2026-11-08T18:30:00+00:00",
+     "home": "TSG Hoffenheim",
+     "away": "Schalke 04",
+     "home_id": 2569,
+     "away_id": 2530,
+     "match_id": "D1-20261108-hoffenheim-schalke-04"
     }
    ]
   },
   "D2": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -12333,13 +13071,94 @@
      "home_id": 2551,
      "away_id": 2573,
      "match_id": "D2-20261101-greuther-furth-holstein-kiel"
+    },
+    {
+     "fixture_id": "id1000004472513968",
+     "kickoff_utc": "2026-11-06T17:30:00+00:00",
+     "home": "Dynamo Dresden",
+     "away": "Greuther Furth",
+     "home_id": 2595,
+     "away_id": 2551,
+     "match_id": "D2-20261106-dresden-greuther-furth"
+    },
+    {
+     "fixture_id": "id1000004472513974",
+     "kickoff_utc": "2026-11-06T17:30:00+00:00",
+     "home": "Eintracht Braunschweig",
+     "away": "Energie Cottbus",
+     "home_id": 2557,
+     "away_id": 2532,
+     "match_id": "D2-20261106-braunschweig-cottbus"
+    },
+    {
+     "fixture_id": "id1000004472513964",
+     "kickoff_utc": "2026-11-07T12:00:00+00:00",
+     "home": "1 FC Nuremberg",
+     "away": "SV Darmstadt 98",
+     "home_id": 2523,
+     "away_id": 2576,
+     "match_id": "D2-20261107-nurnberg-darmstadt"
+    },
+    {
+     "fixture_id": "id1000004472513970",
+     "kickoff_utc": "2026-11-07T12:00:00+00:00",
+     "home": "Holstein Kiel",
+     "away": "Arminia Bielefeld",
+     "home_id": 2573,
+     "away_id": 2540,
+     "match_id": "D2-20261107-holstein-kiel-bielefeld"
+    },
+    {
+     "fixture_id": "id1000004472513976",
+     "kickoff_utc": "2026-11-07T12:00:00+00:00",
+     "home": "VfL 1899 Osnabruck",
+     "away": "1 FC Kaiserslautern",
+     "home_id": 2581,
+     "away_id": 2675,
+     "match_id": "D2-20261107-osnabruck-kaiserslautern"
+    },
+    {
+     "fixture_id": "id1000004472513962",
+     "kickoff_utc": "2026-11-07T19:30:00+00:00",
+     "home": "Hertha BSC",
+     "away": "VFL Wolfsburg",
+     "home_id": 2528,
+     "away_id": 2524,
+     "match_id": "D2-20261107-hertha-wolfsburg"
+    },
+    {
+     "fixture_id": "id1000004472513960",
+     "kickoff_utc": "2026-11-08T12:30:00+00:00",
+     "home": "1. FC Heidenheim",
+     "away": "Hannover 96",
+     "home_id": 5885,
+     "away_id": 2541,
+     "match_id": "D2-20261108-heidenheim-hannover"
+    },
+    {
+     "fixture_id": "id1000004472513966",
+     "kickoff_utc": "2026-11-08T12:30:00+00:00",
+     "home": "VfL Bochum",
+     "away": "Karlsruher SC",
+     "home_id": 2542,
+     "away_id": 2553,
+     "match_id": "D2-20261108-bochum-karlsruhe"
+    },
+    {
+     "fixture_id": "id1000004472513972",
+     "kickoff_utc": "2026-11-08T12:30:00+00:00",
+     "home": "1. FC Magdeburg",
+     "away": "FC St. Pauli",
+     "home_id": 2591,
+     "away_id": 2526,
+     "match_id": "D2-20261108-magdeburg-st-pauli"
     }
    ]
   },
   "F1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -13079,13 +13898,94 @@
      "home_id": 1656,
      "away_id": 1715,
      "match_id": "F1-20261102-lorient-brest"
+    },
+    {
+     "fixture_id": "id1000003472036290",
+     "kickoff_utc": "2026-11-06T19:45:00+00:00",
+     "home": "Toulouse FC",
+     "away": "Strasbourg Alsace",
+     "home_id": 1681,
+     "away_id": 1659,
+     "match_id": "F1-20261106-toulouse-strasbourg"
+    },
+    {
+     "fixture_id": "id1000003472036276",
+     "kickoff_utc": "2026-11-07T18:00:00+00:00",
+     "home": "AJ Auxerre",
+     "away": "Paris FC",
+     "home_id": 1646,
+     "away_id": 6070,
+     "match_id": "F1-20261107-auxerre-paris-fc"
+    },
+    {
+     "fixture_id": "id1000003472036286",
+     "kickoff_utc": "2026-11-07T20:05:00+00:00",
+     "home": "Paris Saint-Germain",
+     "away": "ESTAC Troyes",
+     "home_id": 1644,
+     "away_id": 1652,
+     "match_id": "F1-20261107-paris-sg-troyes"
+    },
+    {
+     "fixture_id": "id1000003472036288",
+     "kickoff_utc": "2026-11-08T14:00:00+00:00",
+     "home": "Stade Rennais FC",
+     "away": "Lille OSC",
+     "home_id": 1658,
+     "away_id": 1643,
+     "match_id": "F1-20261108-rennes-lille"
+    },
+    {
+     "fixture_id": "id1000003472036274",
+     "kickoff_utc": "2026-11-08T16:15:00+00:00",
+     "home": "Angers SCO",
+     "away": "OGC Nice",
+     "home_id": 1684,
+     "away_id": 1661,
+     "match_id": "F1-20261108-angers-nice"
+    },
+    {
+     "fixture_id": "id1000003472036278",
+     "kickoff_utc": "2026-11-08T16:15:00+00:00",
+     "home": "Stade Brest 29",
+     "away": "Olympique Lyon",
+     "home_id": 1715,
+     "away_id": 1649,
+     "match_id": "F1-20261108-brest-lyon"
+    },
+    {
+     "fixture_id": "id1000003472036280",
+     "kickoff_utc": "2026-11-08T16:15:00+00:00",
+     "home": "Le Havre AC",
+     "away": "FC Lorient",
+     "home_id": 1662,
+     "away_id": 1656,
+     "match_id": "F1-20261108-le-havre-lorient"
+    },
+    {
+     "fixture_id": "id1000003472036282",
+     "kickoff_utc": "2026-11-08T16:15:00+00:00",
+     "home": "Le Mans FC",
+     "away": "AS Monaco",
+     "home_id": 1672,
+     "away_id": 1653,
+     "match_id": "F1-20261108-le-mans-monaco"
+    },
+    {
+     "fixture_id": "id1000003472036284",
+     "kickoff_utc": "2026-11-08T19:45:00+00:00",
+     "home": "Racing Club De Lens",
+     "away": "Olympique Marseille",
+     "home_id": 1648,
+     "away_id": 1641,
+     "match_id": "F1-20261108-lens-marseille"
     }
    ]
   },
   "F2": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -14032,13 +14932,94 @@
      "home_id": 1682,
      "away_id": 1657,
      "match_id": "F2-20261102-reims-sochaux"
+    },
+    {
+     "fixture_id": "id1000018272037434",
+     "kickoff_utc": "2026-11-06T19:00:00+00:00",
+     "home": "US Boulogne",
+     "away": "FC Annecy",
+     "home_id": 1711,
+     "away_id": 234888,
+     "match_id": "F2-20261106-boulogne-annecy"
+    },
+    {
+     "fixture_id": "id1000018272037438",
+     "kickoff_utc": "2026-11-06T19:00:00+00:00",
+     "home": "Dijon FCO",
+     "away": "Red Star FC",
+     "home_id": 1686,
+     "away_id": 52874,
+     "match_id": "F2-20261106-dijon-red-star"
+    },
+    {
+     "fixture_id": "id1000018272037440",
+     "kickoff_utc": "2026-11-06T19:00:00+00:00",
+     "home": "USL Dunkerque",
+     "away": "EA Guingamp",
+     "home_id": 6918,
+     "away_id": 1654,
+     "match_id": "F2-20261106-dunkerque-guingamp"
+    },
+    {
+     "fixture_id": "id1000018272037442",
+     "kickoff_utc": "2026-11-06T19:00:00+00:00",
+     "home": "Grenoble Foot",
+     "away": "Stade Reims",
+     "home_id": 1671,
+     "away_id": 1682,
+     "match_id": "F2-20261106-grenoble-reims"
+    },
+    {
+     "fixture_id": "id1000018272037444",
+     "kickoff_utc": "2026-11-06T19:00:00+00:00",
+     "home": "Montpellier HSC",
+     "away": "FC Metz",
+     "home_id": 1642,
+     "away_id": 1651,
+     "match_id": "F2-20261106-montpellier-metz"
+    },
+    {
+     "fixture_id": "id1000018272037446",
+     "kickoff_utc": "2026-11-06T19:00:00+00:00",
+     "home": "Nancy-Lorraine",
+     "away": "Sochaux-Montbeliard",
+     "home_id": 1675,
+     "away_id": 1657,
+     "match_id": "F2-20261106-nancy-sochaux"
+    },
+    {
+     "fixture_id": "id1000018272037436",
+     "kickoff_utc": "2026-11-07T13:00:00+00:00",
+     "home": "Clermont Foot 63",
+     "away": "Rodez Aveyron Football",
+     "home_id": 1680,
+     "away_id": 6925,
+     "match_id": "F2-20261107-clermont-rodez"
+    },
+    {
+     "fixture_id": "id1000018272037448",
+     "kickoff_utc": "2026-11-07T19:00:00+00:00",
+     "home": "Pau FC",
+     "away": "FC Nantes",
+     "home_id": 1685,
+     "away_id": 1647,
+     "match_id": "F2-20261107-pau-fc-nantes"
+    },
+    {
+     "fixture_id": "id1000018272037450",
+     "kickoff_utc": "2026-11-07T19:00:00+00:00",
+     "home": "AS Saint-Etienne",
+     "away": "Stade Lavallois MFC",
+     "home_id": 1678,
+     "away_id": 1673,
+     "match_id": "F2-20261107-st-etienne-laval"
     }
    ]
   },
   "N1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -14366,15 +15347,6 @@
      "match_id": "N1-20260905-nijmegen-feyenoord"
     },
     {
-     "fixture_id": "id1000003772041108",
-     "kickoff_utc": "2026-09-05T16:45:00+00:00",
-     "home": "FC Utrecht",
-     "away": "Go Ahead Eagles",
-     "home_id": 2948,
-     "away_id": 2979,
-     "match_id": null
-    },
-    {
      "fixture_id": "id1000003772041110",
      "kickoff_utc": "2026-09-05T18:00:00+00:00",
      "home": "Ajax Amsterdam",
@@ -14427,6 +15399,15 @@
      "home_id": 2966,
      "away_id": 2957,
      "match_id": "N1-20260906-den-haag-for-sittard"
+    },
+    {
+     "fixture_id": "id1000003772041108",
+     "kickoff_utc": "2026-09-08T12:00:00+00:00",
+     "home": "FC Utrecht",
+     "away": "Go Ahead Eagles",
+     "home_id": 2948,
+     "away_id": 2979,
+     "match_id": "N1-20260908-utrecht-go-ahead-eagles"
     },
     {
      "fixture_id": "id1000003774382824",
@@ -14949,13 +15930,94 @@
      "home_id": 2951,
      "away_id": 2960,
      "match_id": "N1-20261101-groningen-sparta-rotterdam"
+    },
+    {
+     "fixture_id": "id1000003772041230",
+     "kickoff_utc": "2026-11-06T19:00:00+00:00",
+     "home": "Willem II Tilburg",
+     "away": "PEC Zwolle",
+     "home_id": 2961,
+     "away_id": 2971,
+     "match_id": "N1-20261106-willem-ii-zwolle"
+    },
+    {
+     "fixture_id": "id1000003772041232",
+     "kickoff_utc": "2026-11-07T15:30:00+00:00",
+     "home": "Fortuna Sittard",
+     "away": "SC Telstar",
+     "home_id": 2957,
+     "away_id": 2972,
+     "match_id": "N1-20261107-for-sittard-telstar"
+    },
+    {
+     "fixture_id": "id1000003772041238",
+     "kickoff_utc": "2026-11-07T17:45:00+00:00",
+     "home": "ADO Den Haag",
+     "away": "Sparta Rotterdam",
+     "home_id": 2966,
+     "away_id": 2960,
+     "match_id": "N1-20261107-den-haag-sparta-rotterdam"
+    },
+    {
+     "fixture_id": "id1000003772041234",
+     "kickoff_utc": "2026-11-07T20:00:00+00:00",
+     "home": "Excelsior Rotterdam",
+     "away": "Go Ahead Eagles",
+     "home_id": 2967,
+     "away_id": 2979,
+     "match_id": "N1-20261107-excelsior-go-ahead-eagles"
+    },
+    {
+     "fixture_id": "id1000003772041240",
+     "kickoff_utc": "2026-11-08T11:15:00+00:00",
+     "home": "SC Heerenveen",
+     "away": "Feyenoord Rotterdam",
+     "home_id": 2964,
+     "away_id": 2959,
+     "match_id": "N1-20261108-heerenveen-feyenoord"
+    },
+    {
+     "fixture_id": "id1000003772041242",
+     "kickoff_utc": "2026-11-08T13:30:00+00:00",
+     "home": "FC Twente Enschede",
+     "away": "Ajax Amsterdam",
+     "home_id": 2955,
+     "away_id": 2953,
+     "match_id": "N1-20261108-twente-ajax"
+    },
+    {
+     "fixture_id": "id1000003772041236",
+     "kickoff_utc": "2026-11-08T15:45:00+00:00",
+     "home": "SC Cambuur",
+     "away": "PSV Eindhoven",
+     "home_id": 2970,
+     "away_id": 2952,
+     "match_id": "N1-20261108-cambuur-psv-eindhoven"
+    },
+    {
+     "fixture_id": "id1000003772041246",
+     "kickoff_utc": "2026-11-08T15:45:00+00:00",
+     "home": "AZ Alkmaar",
+     "away": "FC Groningen",
+     "home_id": 2950,
+     "away_id": 2951,
+     "match_id": "N1-20261108-az-alkmaar-groningen"
+    },
+    {
+     "fixture_id": "id1000003772041244",
+     "kickoff_utc": "2026-11-08T19:00:00+00:00",
+     "home": "FC Utrecht",
+     "away": "NEC Nijmegen",
+     "home_id": 2948,
+     "away_id": 2962,
+     "match_id": "N1-20261108-utrecht-nijmegen"
     }
    ]
   },
   "B1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -15793,14 +16855,95 @@
      "away": "Yellow-Red KV Mechelen",
      "home_id": 4858,
      "away_id": 5044,
-     "match_id": null
+     "match_id": "B1-20261104-kortrijk-mechelen"
+    },
+    {
+     "fixture_id": "id1000003872366436",
+     "kickoff_utc": "2026-11-06T19:45:00+00:00",
+     "home": "Standard Liege",
+     "away": "SK Beveren",
+     "home_id": 2901,
+     "away_id": 4859,
+     "match_id": "B1-20261106-standard-beveren"
+    },
+    {
+     "fixture_id": "id1000003872366442",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "KVC Westerlo",
+     "away": "Royal Charleroi SC",
+     "home_id": 2893,
+     "away_id": 2898,
+     "match_id": "B1-20261107-westerlo-charleroi"
+    },
+    {
+     "fixture_id": "id1000003872366444",
+     "kickoff_utc": "2026-11-07T17:15:00+00:00",
+     "home": "Oud-Heverlee Leuven",
+     "away": "Yellow-Red KV Mechelen",
+     "home_id": 2918,
+     "away_id": 5044,
+     "match_id": "B1-20261107-oud-heverlee-leuven-mechelen"
+    },
+    {
+     "fixture_id": "id1000003872366440",
+     "kickoff_utc": "2026-11-07T19:45:00+00:00",
+     "home": "RAAL La Louviere",
+     "away": "Cercle Brugge",
+     "home_id": 752197,
+     "away_id": 2929,
+     "match_id": "B1-20261107-raal-la-louviere-cercle-brugge"
+    },
+    {
+     "fixture_id": "id1000003872366446",
+     "kickoff_utc": "2026-11-07T19:45:00+00:00",
+     "home": "Royal Antwerp FC",
+     "away": "Lommel SK",
+     "home_id": 2889,
+     "away_id": 5046,
+     "match_id": "B1-20261107-antwerp-lommel-sk"
+    },
+    {
+     "fixture_id": "id1000003872366432",
+     "kickoff_utc": "2026-11-08T12:30:00+00:00",
+     "home": "Club Brugge",
+     "away": "RSC Anderlecht",
+     "home_id": 2888,
+     "away_id": 2900,
+     "match_id": "B1-20261108-club-brugge-anderlecht"
+    },
+    {
+     "fixture_id": "id1000003872366438",
+     "kickoff_utc": "2026-11-08T15:00:00+00:00",
+     "home": "KAA Gent",
+     "away": "KV Kortrijk",
+     "home_id": 2903,
+     "away_id": 4858,
+     "match_id": "B1-20261108-gent-kortrijk"
+    },
+    {
+     "fixture_id": "id1000003872366434",
+     "kickoff_utc": "2026-11-08T17:30:00+00:00",
+     "home": "Union Saint-Gilloise",
+     "away": "KRC Genk",
+     "home_id": 4860,
+     "away_id": 2890,
+     "match_id": "B1-20261108-st-gilloise-genk"
+    },
+    {
+     "fixture_id": "id1000003872366448",
+     "kickoff_utc": "2026-11-08T18:15:00+00:00",
+     "home": "St. Truidense VV",
+     "away": "SV Zulte Waregem",
+     "home_id": 2895,
+     "away_id": 2933,
+     "match_id": "B1-20261108-st-truiden-waregem"
     }
    ]
   },
   "P1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -16621,13 +17764,94 @@
      "home_id": 3006,
      "away_id": 3012,
      "match_id": "P1-20261102-benfica-alverca"
+    },
+    {
+     "fixture_id": "id1000023872531006",
+     "kickoff_utc": "2026-11-06T20:45:00+00:00",
+     "home": "FC Famalicao",
+     "away": "FC Arouca",
+     "home_id": 49531,
+     "away_id": 25777,
+     "match_id": "P1-20261106-famalicao-arouca"
+    },
+    {
+     "fixture_id": "id1000023872531000",
+     "kickoff_utc": "2026-11-07T18:00:00+00:00",
+     "home": "FC Alverca SAD",
+     "away": "Casa Pia Lisbon",
+     "home_id": 3012,
+     "away_id": 36365,
+     "match_id": "P1-20261107-alverca-casa-pia"
+    },
+    {
+     "fixture_id": "id1000023872531014",
+     "kickoff_utc": "2026-11-07T20:30:00+00:00",
+     "home": "Sporting CP",
+     "away": "Moreirense FC",
+     "home_id": 3001,
+     "away_id": 3014,
+     "match_id": "P1-20261107-sp-lisbon-moreirense"
+    },
+    {
+     "fixture_id": "id1000023872531004",
+     "kickoff_utc": "2026-11-08T15:30:00+00:00",
+     "home": "Estoril Praia",
+     "away": "Maritimo Madeira",
+     "home_id": 4500,
+     "away_id": 3007,
+     "match_id": null
+    },
+    {
+     "fixture_id": "id1000023872531008",
+     "kickoff_utc": "2026-11-08T15:30:00+00:00",
+     "home": "Nacional da Madeira",
+     "away": "Academico de Viseu FC",
+     "home_id": 3013,
+     "away_id": 3022,
+     "match_id": "P1-20261108-nacional-academico-viseu"
+    },
+    {
+     "fixture_id": "id1000023872531012",
+     "kickoff_utc": "2026-11-08T15:30:00+00:00",
+     "home": "Santa Clara Azores",
+     "away": "Gil Vicente Barcelos",
+     "home_id": 3011,
+     "away_id": 3010,
+     "match_id": "P1-20261108-santa-clara-gil-vicente"
+    },
+    {
+     "fixture_id": "id1000023872531016",
+     "kickoff_utc": "2026-11-08T18:00:00+00:00",
+     "home": "Vitoria SC Guimaraes",
+     "away": "FC Porto",
+     "home_id": 3009,
+     "away_id": 3002,
+     "match_id": "P1-20261108-guimaraes-porto"
+    },
+    {
+     "fixture_id": "id1000023872531002",
+     "kickoff_utc": "2026-11-08T20:30:00+00:00",
+     "home": "Estrela Amadora",
+     "away": "SL Benfica",
+     "home_id": 744135,
+     "away_id": 3006,
+     "match_id": "P1-20261108-estrela-benfica"
+    },
+    {
+     "fixture_id": "id1000023872531010",
+     "kickoff_utc": "2026-11-08T20:30:00+00:00",
+     "home": "Rio Ave FC",
+     "away": "SC Braga",
+     "home_id": 3036,
+     "away_id": 2999,
+     "match_id": "P1-20261108-rio-ave-sp-braga"
     }
    ]
   },
   "G1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -17205,13 +18429,76 @@
      "home_id": 6345,
      "away_id": 326745,
      "match_id": "G1-20261102-kalamata-iraklis"
+    },
+    {
+     "fixture_id": "id1000018572936126",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Volos NPS",
+     "away": "AE Kifisia FC",
+     "home_id": 373128,
+     "away_id": 120224,
+     "match_id": "G1-20261107-volos-nfc-kifisia"
+    },
+    {
+     "fixture_id": "id1000018572936124",
+     "kickoff_utc": "2026-11-07T17:30:00+00:00",
+     "home": "Aris Thessaloniki",
+     "away": "Panaitolikos Agrinio",
+     "home_id": 3252,
+     "away_id": 7004,
+     "match_id": "G1-20261107-aris-panetolikos"
+    },
+    {
+     "fixture_id": "id1000018572936120",
+     "kickoff_utc": "2026-11-08T15:00:00+00:00",
+     "home": "Asteras Tripolis",
+     "away": "PAE PS Kalamata",
+     "home_id": 6342,
+     "away_id": 6345,
+     "match_id": "G1-20261108-asteras-tripolis-kalamata"
+    },
+    {
+     "fixture_id": "id1000018572936122",
+     "kickoff_utc": "2026-11-08T15:00:00+00:00",
+     "home": "AEK Athens",
+     "away": "APO Levadiakos FC",
+     "home_id": 3250,
+     "away_id": 5063,
+     "match_id": "G1-20261108-aek-levadeiakos"
+    },
+    {
+     "fixture_id": "id1000018572936132",
+     "kickoff_utc": "2026-11-08T15:30:00+00:00",
+     "home": "POT Iraklis",
+     "away": "Panathinaikos Athens",
+     "home_id": 326745,
+     "away_id": 3248,
+     "match_id": "G1-20261108-iraklis-panathinaikos"
+    },
+    {
+     "fixture_id": "id1000018572936128",
+     "kickoff_utc": "2026-11-08T16:30:00+00:00",
+     "home": "OFI Crete",
+     "away": "Atromitos Athinon",
+     "home_id": 3241,
+     "away_id": 5062,
+     "match_id": "G1-20261108-ofi-crete-atromitos"
+    },
+    {
+     "fixture_id": "id1000018572936130",
+     "kickoff_utc": "2026-11-08T19:00:00+00:00",
+     "home": "Olympiacos Piraeus",
+     "away": "PAOK Thessaloniki",
+     "home_id": 3245,
+     "away_id": 3251,
+     "match_id": "G1-20261108-olympiakos-paok"
     }
    ]
   },
   "SC2": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -17816,13 +19103,58 @@
      "home_id": 2385,
      "away_id": 2369,
      "match_id": "SC2-20261031-peterhead-alloa"
+    },
+    {
+     "fixture_id": "id1000020772203966",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Alloa Athletic FC",
+     "away": "Airdrieonians FC",
+     "home_id": 2369,
+     "away_id": 2367,
+     "match_id": "SC2-20261107-alloa-airdrie-utd"
+    },
+    {
+     "fixture_id": "id1000020772203968",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Cove Rangers FC",
+     "away": "Hamilton Academical FC",
+     "home_id": 8062,
+     "away_id": 2376,
+     "match_id": "SC2-20261107-cove-rangers-hamilton"
+    },
+    {
+     "fixture_id": "id1000020772203970",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Montrose FC",
+     "away": "East Fife FC",
+     "home_id": 2386,
+     "away_id": 2382,
+     "match_id": "SC2-20261107-montrose-east-fife"
+    },
+    {
+     "fixture_id": "id1000020772203972",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Queen of the South FC",
+     "away": "East Kilbride FC",
+     "home_id": 2368,
+     "away_id": 170622,
+     "match_id": "SC2-20261107-queen-of-sth-east-kilbride"
+    },
+    {
+     "fixture_id": "id1000020772203974",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Ross County FC",
+     "away": "Peterhead FC",
+     "home_id": 2365,
+     "away_id": 2385,
+     "match_id": "SC2-20261107-ross-county-peterhead"
     }
    ]
   },
   "SC3": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -18364,13 +19696,58 @@
      "home_id": 2393,
      "away_id": 23955,
      "match_id": "SC3-20261031-spartans-annan-athletic"
+    },
+    {
+     "fixture_id": "id1000020972204324",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Annan Athletic FC",
+     "away": "Kelty Hearts FC",
+     "home_id": 23955,
+     "away_id": 225156,
+     "match_id": "SC3-20261107-annan-athletic-kelty-hearts"
+    },
+    {
+     "fixture_id": "id1000020972204326",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Clyde FC",
+     "away": "Spartans FC",
+     "home_id": 2360,
+     "away_id": 2393,
+     "match_id": "SC3-20261107-clyde-spartans"
+    },
+    {
+     "fixture_id": "id1000020972204328",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Elgin City FC",
+     "away": "Dumbarton FC",
+     "home_id": 2380,
+     "away_id": 2377,
+     "match_id": "SC3-20261107-elgin-dumbarton"
+    },
+    {
+     "fixture_id": "id1000020972204330",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Forfar Athletic FC",
+     "away": "Edinburgh City FC",
+     "home_id": 2375,
+     "away_id": 26252,
+     "match_id": "SC3-20261107-forfar-edinburgh-city"
+    },
+    {
+     "fixture_id": "id1000020972204332",
+     "kickoff_utc": "2026-11-07T15:00:00+00:00",
+     "home": "Stranraer FC",
+     "away": "Stirling Albion FC",
+     "home_id": 2371,
+     "away_id": 2384,
+     "match_id": "SC3-20261107-stranraer-stirling"
     }
    ]
   },
   "T1": {
    "period": [
     "2026-08-01",
-    "2026-11-04"
+    "2026-11-10"
    ],
    "items": [
     {
@@ -19182,6 +20559,87 @@
      "home_id": 7802,
      "away_id": 6362,
      "match_id": "T1-20261102-genclerbirligi-alanyaspor"
+    },
+    {
+     "fixture_id": "id1000005272723304",
+     "kickoff_utc": "2026-11-06T17:00:00+00:00",
+     "home": "Gaziantep FK",
+     "away": "Kasimpasa Istanbul",
+     "home_id": 5138,
+     "away_id": 6063,
+     "match_id": "T1-20261106-gaziantep-kasimpasa"
+    },
+    {
+     "fixture_id": "id1000005272723306",
+     "kickoff_utc": "2026-11-07T10:30:00+00:00",
+     "home": "Eyupspor",
+     "away": "Kocaelispor",
+     "home_id": 7040,
+     "away_id": 3065,
+     "match_id": "T1-20261107-eyupspor-kocaelispor"
+    },
+    {
+     "fixture_id": "id1000005272723320",
+     "kickoff_utc": "2026-11-07T13:00:00+00:00",
+     "home": "Samsunspor",
+     "away": "Konyaspor",
+     "home_id": 3053,
+     "away_id": 3085,
+     "match_id": "T1-20261107-samsunspor-konyaspor"
+    },
+    {
+     "fixture_id": "id1000005272723312",
+     "kickoff_utc": "2026-11-07T16:00:00+00:00",
+     "home": "Goztepe Izmir",
+     "away": "Istanbul Basaksehir",
+     "home_id": 3054,
+     "away_id": 3086,
+     "match_id": "T1-20261107-goztep-buyuksehyr"
+    },
+    {
+     "fixture_id": "id1000005272723316",
+     "kickoff_utc": "2026-11-07T16:00:00+00:00",
+     "home": "Galatasaray Istanbul",
+     "away": "Amed Sportif Faaliyetler",
+     "home_id": 3061,
+     "away_id": 225940,
+     "match_id": "T1-20261107-galatasaray-amedspor"
+    },
+    {
+     "fixture_id": "id1000005272723310",
+     "kickoff_utc": "2026-11-08T10:30:00+00:00",
+     "home": "Caykur Rizespor",
+     "away": "Erzurumspor FK",
+     "home_id": 3064,
+     "away_id": 55603,
+     "match_id": "T1-20261108-rizespor-erzurumspor"
+    },
+    {
+     "fixture_id": "id1000005272723314",
+     "kickoff_utc": "2026-11-08T13:00:00+00:00",
+     "home": "Corum FK",
+     "away": "Fenerbahce Istanbul",
+     "home_id": 77629,
+     "away_id": 3052,
+     "match_id": "T1-20261108-corum-fenerbahce"
+    },
+    {
+     "fixture_id": "id1000005272723308",
+     "kickoff_utc": "2026-11-08T15:30:00+00:00",
+     "home": "Alanyaspor",
+     "away": "Trabzonspor",
+     "home_id": 6362,
+     "away_id": 3051,
+     "match_id": "T1-20261108-alanyaspor-trabzonspor"
+    },
+    {
+     "fixture_id": "id1000005272723318",
+     "kickoff_utc": "2026-11-08T18:00:00+00:00",
+     "home": "Besiktas Istanbul",
+     "away": "Genclerbirligi SK",
+     "home_id": 3050,
+     "away_id": 7802,
+     "match_id": "T1-20261108-besiktas-genclerbirligi"
     }
    ]
   }
