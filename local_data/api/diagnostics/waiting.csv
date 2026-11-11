@@ -1,0 +1,7 @@
+date,league,home_team,away_team,match_id,waiting_predictions,waiting_markets,reason,api_football_status,api_football_result,football_data_result,moved_to,void_after
+2026-10-24,SC1,Morton,Ayr,SC1-20261024-morton-ayr,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5",no result from any source yet,,False,False,,2026-11-14
+2026-10-24,SC2,Cove Rangers,East Kilbride,SC2-20261024-cove-rangers-east-kilbride,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5",no result from any source yet,,False,False,,2026-11-14
+2026-10-31,F1,Nice,Rennes,F1-20261031-nice-rennes,8,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, TOTAL_2.5, TOTAL_3.5",same pairing on 2026-10-30 (moved match),,False,False,2026-10-30,2026-11-21
+2026-10-31,SC0,Dundee United,Hearts,SC0-20261031-dundee-united-hearts,8,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+1.5, TOTAL_2.5",no result from any source yet,,False,False,,2026-11-21
+2026-11-06,SP2,Castellon,Eibar,SP2-20261106-castellon-eibar,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-2, TOTAL_1.5, TOTAL_2.5, TOTAL_3.5",no result from any source yet,,False,False,,2026-11-27
+2026-11-08,P1,Estoril,Maritimo,P1-20261108-estoril-maritimo,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5, TOTAL_3.5",no result from any source yet,,False,False,,2026-11-29

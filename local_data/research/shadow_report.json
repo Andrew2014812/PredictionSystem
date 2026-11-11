@@ -1,0 +1,101 @@
+{
+ "evaluated_at_uk": "2026-11-11 07:53:24.439097",
+ "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
+ "shadows": {
+  "maincal_ps_platt_monthly@v1": {
+   "n": 0,
+   "min_n": 600,
+   "unit": "рассчитанных показанных Main",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "main_calibration",
+   "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
+   "freeze_sha": "24039db5ed13051dc8a9a7bfa0a04ac61667ed17",
+   "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
+  },
+  "maincal_ps_group@v1": {
+   "n": 0,
+   "min_n": 600,
+   "unit": "рассчитанных показанных Main",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "main_calibration",
+   "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
+   "freeze_sha": "24039db5ed13051dc8a9a7bfa0a04ac61667ed17",
+   "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
+  },
+  "risk_stacked@v1": {
+   "n": 0,
+   "min_n": 2000,
+   "unit": "матчей с ценой у обоих Risk",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "risk",
+   "prereg": "experiments/v6_2/risk/results/preregistration.json",
+   "freeze_sha": "8525b600367c109d2ffa7c19a2ac74fc41fac838",
+   "criterion": "парный 95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109)"
+  },
+  "risk_market_probability@v1": {
+   "n": 0,
+   "min_n": 1000,
+   "unit": "рассчитанных Risk с полной книгой",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "risk",
+   "prereg": "experiments/v6_2/risk/results/preregistration.json",
+   "freeze_sha": "8525b600367c109d2ffa7c19a2ac74fc41fac838",
+   "criterion": "95 % ДИ gap(рынок) содержит 0 и парный ДИ |gap(рынок)| - |gap(модель)| < 0"
+  },
+  "bookmaker_h2_pool@v1": {
+   "markets": {
+    "ou25": {
+     "n": 0,
+     "min_n": 1500,
+     "unit": "матчей с ценами Bet365 открытия",
+     "information_fraction": 0.0,
+     "status": "no_forward_data",
+     "ready": false
+    },
+    "1x2": {
+     "n": 0,
+     "min_n": 1500,
+     "unit": "матчей с ценами Bet365 открытия",
+     "information_fraction": 0.0,
+     "status": "no_forward_data",
+     "ready": false
+    }
+   },
+   "n": 0,
+   "min_n": 1500,
+   "unit": "матчей с ценами Bet365 открытия",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "bookmaker",
+   "prereg": "experiments/v6_2/bookmaker/results/preregistration.json",
+   "freeze_sha": "7f5d360a8fcd9f1d5546d13812640e60bb4a3485",
+   "criterion": "верхняя граница 95 % парного ДИ < 0 для тотала 2.5; 1X2 — вторичный, Холм по двум рынкам"
+  },
+  "xg_x5@v1": {
+   "n": 0,
+   "min_n": 3000,
+   "unit": "сыгранных матчей лиг с xG",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "xg",
+   "prereg": "experiments/v6_2/xg/results/preregistration.json",
+   "freeze_sha": "7b2a73435bd0a21273a6b7aa6b6d4d59bd675cd8",
+   "criterion": "разность < 0 при одностороннем бутстреп-p < 0.05; ΔLL 1X2 < +0.002; ΔROI Main > -0.02; переоценка Main не больше, чем у B0"
+  }
+ },
+ "not_implemented": {
+  "xg_t1@v1": "нужна отдельная версия моделей XGBoost (переобучение на 2021/22–2025/26 с 9 признаками прокси-xG) и её загрузка в ежедневном прогоне; это не «дешёвая» тень без переобучения. Заглушка: запись не ведётся.",
+  "uncertainty_flag_u_1x2@v1": "нужны 8 бутстреп-моделей 1X2, обученных один раз на сезонах до 2026/27 и сохранённых рядом с моделями продакшна; после этого ежедневная цена — 8 прогнозов на матч. Модели в этом исследовании не сохранялись, запись не ведётся."
+ },
+ "families": {}
+}
