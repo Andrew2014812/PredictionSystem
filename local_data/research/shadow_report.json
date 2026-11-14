@@ -1,50 +1,67 @@
 {
- "evaluated_at_uk": "2026-11-13 08:11:27.588148",
+ "evaluated_at_uk": "2026-11-14 07:43:51.032422",
  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
  "shadows": {
   "maincal_ps_platt_monthly@v1": {
-   "n": 0,
+   "n": 1,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.0,
-   "status": "no_forward_data",
+   "information_fraction": 0.0017,
+   "status": "accumulating",
    "ready": false,
+   "point": {
+    "gap_shadow": 0.6669964491343553,
+    "gap_production": 0.7240906522
+   },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
    "freeze_sha": "24039db5ed13051dc8a9a7bfa0a04ac61667ed17",
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "maincal_ps_group@v1": {
-   "n": 0,
+   "n": 1,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.0,
-   "status": "no_forward_data",
+   "information_fraction": 0.0017,
+   "status": "accumulating",
    "ready": false,
+   "point": {
+    "gap_shadow": 0.5412804289286981,
+    "gap_production": 0.7240906522
+   },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
    "freeze_sha": "24039db5ed13051dc8a9a7bfa0a04ac61667ed17",
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "risk_stacked@v1": {
-   "n": 0,
+   "n": 1,
    "min_n": 2000,
    "unit": "матчей с ценой у обоих Risk",
-   "information_fraction": 0.0,
-   "status": "no_forward_data",
+   "information_fraction": 0.0005,
+   "status": "accumulating",
    "ready": false,
+   "point": {
+    "roi_shadow": -1.0,
+    "roi_production": -1.0,
+    "changed_picks": 1.0
+   },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
    "freeze_sha": "8525b600367c109d2ffa7c19a2ac74fc41fac838",
    "criterion": "парный 95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109)"
   },
   "risk_market_probability@v1": {
-   "n": 0,
+   "n": 1,
    "min_n": 1000,
    "unit": "рассчитанных Risk с полной книгой",
-   "information_fraction": 0.0,
-   "status": "no_forward_data",
+   "information_fraction": 0.001,
+   "status": "accumulating",
    "ready": false,
+   "point": {
+    "gap_market": 0.3082293131720198,
+    "gap_model": 0.4451606604
+   },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
    "freeze_sha": "8525b600367c109d2ffa7c19a2ac74fc41fac838",
@@ -81,12 +98,17 @@
    "criterion": "верхняя граница 95 % парного ДИ < 0 для тотала 2.5; 1X2 — вторичный, Холм по двум рынкам"
   },
   "xg_x5@v1": {
-   "n": 0,
+   "n": 1,
    "min_n": 3000,
    "unit": "сыгранных матчей лиг с xG",
-   "information_fraction": 0.0,
-   "status": "no_forward_data",
+   "information_fraction": 0.0003,
+   "status": "accumulating",
    "ready": false,
+   "point": {
+    "goals_dev_diff": -0.18141922929994525,
+    "logloss_1x2_diff": -0.06637107923399488,
+    "fallback_share": 0.0
+   },
    "family": "xg",
    "prereg": "experiments/v6_2/xg/results/preregistration.json",
    "freeze_sha": "7b2a73435bd0a21273a6b7aa6b6d4d59bd675cd8",
