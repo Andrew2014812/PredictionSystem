@@ -4,3 +4,43 @@ date,league,home_team,away_team,match_id,waiting_predictions,waiting_markets,rea
 2026-11-06,SP2,Castellon,Eibar,SP2-20261106-castellon-eibar,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-2, TOTAL_1.5, TOTAL_2.5, TOTAL_3.5",no result from any source yet,,False,False,,2026-11-27
 2026-11-08,P1,Estoril,Maritimo,P1-20261108-estoril-maritimo,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5, TOTAL_3.5",no result from any source yet,,False,False,,2026-11-29
 2026-11-13,SP2,Leganes,Burgos,SP2-20261113-leganes-burgos,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-04
+2026-11-14,E2,AFC Wimbledon,Blackpool,E2-20261114-afc-wimbledon-blackpool,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E2,Doncaster,Leyton Orient,E2-20261114-doncaster-leyton-orient,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-05
+2026-11-14,E2,Milton Keynes Dons,Burton,E2-20261114-milton-keynes-dons-burton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E2,Peterboro,Oxford,E2-20261114-peterboro-oxford,8,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-05
+2026-11-14,E2,Sheffield Weds,Plymouth,E2-20261114-sheffield-weds-plymouth,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E2,Stevenage,Mansfield,E2-20261114-stevenage-mansfield,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_1.5, TOTAL_2.5",postponed (API-Football PST),PST,False,False,,2026-12-05
+2026-11-14,E2,Stockport,Reading,E2-20261114-stockport-reading,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E2,Wigan,Barnsley,E2-20261114-wigan-barnsley,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E2,Wycombe,Huddersfield,E2-20261114-wycombe-huddersfield,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+1.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-05
+2026-11-14,E3,Bristol Rvs,Chesterfield,E3-20261114-bristol-rvs-chesterfield,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Colchester,Gillingham,E3-20261114-colchester-gillingham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Crewe,Newport County,E3-20261114-crewe-newport-county,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Exeter,Cheltenham,E3-20261114-exeter-cheltenham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Fleetwood Town,Tranmere,E3-20261114-fleetwood-town-tranmere,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Port Vale,Accrington,E3-20261114-port-vale-accrington,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Rochdale,York,E3-20261114-rochdale-york,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Rotherham,Crawley Town,E3-20261114-rotherham-crawley-town,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-05
+2026-11-14,E3,Salford,Northampton,E3-20261114-salford-northampton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Shrewsbury,Oldham,E3-20261114-shrewsbury-oldham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Swindon,Grimsby,E3-20261114-swindon-grimsby,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,E3,Walsall,Barnet,E3-20261114-walsall-barnet,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-0.5, TOTAL_2.5",postponed (API-Football PST),PST,False,False,,2026-12-05
+2026-11-14,SC1,Ayr,Raith Rvs,SC1-20261114-ayr-raith-rvs,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-0.5, TOTAL_1.5, TOTAL_2.5",no result from any source yet,,False,False,,2026-12-05
+2026-11-14,SC1,Livingston,Morton,SC1-20261114-livingston-morton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC1,Partick,Inverness C,SC1-20261114-partick-inverness-c,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC1,Stenhousemuir,Queens Park,SC1-20261114-stenhousemuir-queens-park,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC2,Airdrie Utd,Queen of Sth,SC2-20261114-airdrie-utd-queen-of-sth,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-1.5, TOTAL_1.5, TOTAL_2.5, TOTAL_3.5",no result from any source yet,,False,False,,2026-12-05
+2026-11-14,SC2,Cove Rangers,Montrose,SC2-20261114-cove-rangers-montrose,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC2,East Fife,Peterhead,SC2-20261114-east-fife-peterhead,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC2,East Kilbride,Alloa,SC2-20261114-east-kilbride-alloa,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC2,Hamilton,Ross County,SC2-20261114-hamilton-ross-county,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC3,Dumbarton,Annan Athletic,SC3-20261114-dumbarton-annan-athletic,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC3,Edinburgh City,Clyde,SC3-20261114-edinburgh-city-clyde,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC3,Forfar,Spartans,SC3-20261114-forfar-spartans,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC3,Kelty Hearts,Stranraer,SC3-20261114-kelty-hearts-stranraer,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SC3,Stirling,Elgin,SC3-20261114-stirling-elgin,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SP2,Almeria,Andorra,SP2-20261114-almeria-andorra,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SP2,Mallorca,Cordoba,SP2-20261114-mallorca-cordoba,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SP2,Oviedo,Girona,SP2-20261114-oviedo-girona,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SP2,Sociedad B,Sp Gijon,SP2-20261114-sociedad-b-sp-gijon,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
+2026-11-14,SP2,Valladolid,Castellon,SP2-20261114-valladolid-castellon,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-05
