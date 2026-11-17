@@ -1,56 +1,52 @@
 {
-  "started_at": "2026-11-16T08:03:03",
-  "finished_at": "2026-11-16T08:04:03",
+  "started_at": "2026-11-17T09:17:18",
+  "finished_at": "2026-11-17T09:19:31",
   "sources": {
     "api_football": {
       "counts": {
         "requests": 3,
-        "returned": 1100,
-        "in_leagues": 5,
-        "matched": 4,
-        "finished": 4,
-        "new_results": 4
+        "returned": 449,
+        "in_leagues": 1
       },
       "http": {
         "200": 3
       },
       "skipped": {
-        "not one of our leagues": 1095,
+        "not one of our leagues": 448,
         "unknown team name": 1
       },
       "errors": [],
       "info": {
         "days_asked": [
-          "2026-11-15",
           "2026-11-16",
-          "2026-11-17"
+          "2026-11-17",
+          "2026-11-18"
         ],
         "catch_up_days": [],
         "left": "97"
       },
-      "seconds": 1.1,
-      "leagues_updated": [
-        "SP2"
-      ]
+      "seconds": 0.9,
+      "leagues_updated": []
     },
     "oddspapi": {
       "counts": {
-        "requests": 3,
-        "free": 2,
+        "requests": 17,
+        "free": 16,
         "billable": 1,
-        "returned": 585,
-        "in_leagues": 1,
-        "matched": 1,
-        "matches_asked": 1,
-        "matches_priced": 1,
-        "quotes_new": 6,
-        "quotes_updated": 21
+        "returned": 1013,
+        "in_leagues": 15,
+        "matched": 15,
+        "matches_asked": 15,
+        "matches_priced": 15,
+        "quotes_new": 1280,
+        "quotes_updated": 0
       },
       "http": {
-        "200": 3
+        "200": 17
       },
       "skipped": {
-        "not one of our leagues": 584
+        "not one of our leagues": 997,
+        "already started": 1
       },
       "errors": [],
       "info": {
@@ -59,8 +55,17 @@
         "billable_this_run": 1,
         "quota_exhausted": false
       },
-      "seconds": 1.8,
+      "seconds": 78.5,
       "leagues_updated": [
+        "B1",
+        "D1",
+        "D2",
+        "E2",
+        "F1",
+        "F2",
+        "I2",
+        "SC1",
+        "SP1",
         "SP2"
       ]
     },
@@ -80,9 +85,10 @@
     "football_data": {
       "counts": {
         "requests": 22,
-        "files_unchanged": 21,
-        "season_played": 2210,
-        "new_results": 0
+        "files_unchanged": 15,
+        "season_played": 2250,
+        "new_results": 40,
+        "files": 6
       },
       "http": {
         "200": 22
@@ -148,10 +154,10 @@
             "xg": true
           },
           "E2": {
-            "rows": 158,
-            "played": 158,
-            "new_results": 0,
-            "last_date": "04/11/2026",
+            "rows": 163,
+            "played": 163,
+            "new_results": 5,
+            "last_date": "14/11/2026",
             "stats": {
               "goals": true,
               "half_time": true,
@@ -176,10 +182,10 @@
             "xg": true
           },
           "E3": {
-            "rows": 164,
-            "played": 164,
-            "new_results": 0,
-            "last_date": "03/11/2026",
+            "rows": 174,
+            "played": 174,
+            "new_results": 10,
+            "last_date": "14/11/2026",
             "stats": {
               "goals": true,
               "half_time": true,
@@ -232,10 +238,10 @@
             "xg": true
           },
           "SC1": {
-            "rows": 69,
-            "played": 69,
-            "new_results": 0,
-            "last_date": "07/11/2026",
+            "rows": 73,
+            "played": 73,
+            "new_results": 4,
+            "last_date": "14/11/2026",
             "stats": {
               "goals": true,
               "half_time": true,
@@ -260,10 +266,10 @@
             "xg": false
           },
           "SC2": {
-            "rows": 69,
-            "played": 69,
-            "new_results": 0,
-            "last_date": "07/11/2026",
+            "rows": 74,
+            "played": 74,
+            "new_results": 5,
+            "last_date": "14/11/2026",
             "stats": {
               "goals": true,
               "half_time": true,
@@ -288,10 +294,10 @@
             "xg": false
           },
           "SC3": {
-            "rows": 65,
-            "played": 65,
-            "new_results": 0,
-            "last_date": "07/11/2026",
+            "rows": 70,
+            "played": 70,
+            "new_results": 5,
+            "last_date": "14/11/2026",
             "stats": {
               "goals": true,
               "half_time": true,
@@ -344,10 +350,10 @@
             "xg": true
           },
           "SP2": {
-            "rows": 140,
-            "played": 140,
-            "new_results": 0,
-            "last_date": "09/11/2026",
+            "rows": 151,
+            "played": 151,
+            "new_results": 11,
+            "last_date": "16/11/2026",
             "stats": {
               "goals": true,
               "half_time": true,
@@ -681,32 +687,38 @@
           }
         }
       },
-      "seconds": 22.4,
-      "leagues_updated": []
+      "seconds": 23.2,
+      "leagues_updated": [
+        "E2",
+        "E3",
+        "SC1",
+        "SC2",
+        "SC3",
+        "SP2"
+      ]
     },
     "predictions": {
       "counts": {
-        "settled_now": 32,
+        "settled_now": 64,
         "voided_now": 0,
-        "settled_matches": 4,
-        "settled_main": 4,
-        "settled_risk": 4,
-        "settled_market": 24,
+        "settled_matches": 40,
+        "settled_main": 3,
+        "settled_risk": 3,
+        "settled_market": 58,
         "settled_push": 0
       },
       "http": {},
       "skipped": {},
       "errors": [],
       "info": {
-        "waiting_for_a_result": 12,
+        "waiting_for_a_result": 10,
         "waiting_reasons": {
-          "waiting for corner statistics": 33,
           "postponed / cancelled": 6,
-          "no result yet": 5,
+          "no result yet": 3,
           "moved": 1
         },
         "clubs_without_history": [],
-        "shadow_rows": 16,
+        "shadow_rows": 126,
         "shadow_errors": 0,
         "history_checks": "all passed"
       },
@@ -715,24 +727,24 @@
     }
   },
   "timing_seconds": {
-    "football_data": 22.4,
-    "api_football": 1.1,
-    "oddspapi": 1.8,
+    "football_data": 23.2,
+    "api_football": 0.9,
+    "oddspapi": 78.5,
     "the_odds_api": 0.0,
-    "features": 25.1,
-    "settlement": 2.6,
+    "features": 21.9,
+    "settlement": 2.2,
     "history_repair": 0.9,
-    "predictions": 0.8,
-    "shadow": 1.2,
+    "predictions": 0.7,
+    "shadow": 1.3,
     "checks": 0.5,
-    "total": 60.2
+    "total": 133.4
   },
   "lines": [
-    "Football-Data: 22 requests (22 answered OK) · 21 files unchanged · 2,210 played matches in the season files · 22 s",
-    "API-Football: 3 requests (3 answered OK) · 1,100 fixtures returned · 5 in our leagues · 4 matched · 4 finished · 4 new results · 1 leagues updated · skipped: 1095 not one of our leagues, 1 unknown team name · 97 left · 1 s",
-    "OddsPapi: 3 requests (3 answered OK) · 1 billable · 585 fixtures returned · 1 in our leagues · 1 matched · 1 matches asked · 1 with real prices · 6 new quotes · 21 updated quotes · 1 leagues updated · skipped: 584 not one of our leagues · ? left · 2 s",
+    "Football-Data: 22 requests (22 answered OK) · 6 files downloaded · 15 files unchanged · 2,250 played matches in the season files · 40 new results · 6 leagues updated · 23 s",
+    "API-Football: 3 requests (3 answered OK) · 449 fixtures returned · 1 in our leagues · skipped: 448 not one of our leagues, 1 unknown team name · 97 left",
+    "OddsPapi: 17 requests (17 answered OK) · 1 billable · 1,013 fixtures returned · 15 in our leagues · 15 matched · 15 matches asked · 15 with real prices · 1,280 new quotes · 10 leagues updated · skipped: 997 not one of our leagues, 1 already started · ? left · 79 s",
     "The Odds API: off (stored prices still used) · 79 left",
-    "Predictions: 32 predictions settled · on 4 matches: Main 4, Risk 4, market forecasts 24, refunds 0 · history checks: all passed · 12 past matches still waiting for a result · waiting: 33 waiting for corner statistics, 6 postponed / cancelled, 5 no result yet, 1 moved · 16 research shadow rows",
-    "Timing: Football-Data 22 s · API-Football 1 s · OddsPapi 2 s · The Odds API 0 s · features 25 s · settlement 3 s · history repair 1 s · Predictions 1 s · research shadows 1 s · checks 0 s · total 60 s"
+    "Predictions: 64 predictions settled · on 40 matches: Main 3, Risk 3, market forecasts 58, refunds 0 · history checks: all passed · 10 past matches still waiting for a result · waiting: 6 postponed / cancelled, 3 no result yet, 1 moved · 126 research shadow rows",
+    "Timing: Football-Data 23 s · API-Football 1 s · OddsPapi 78 s · The Odds API 0 s · features 22 s · settlement 2 s · history repair 1 s · Predictions 1 s · research shadows 1 s · checks 0 s · total 2.2 min"
   ]
 }

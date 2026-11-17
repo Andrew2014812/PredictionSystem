@@ -1,17 +1,17 @@
 {
- "evaluated_at_uk": "2026-11-16 08:04:01.457233",
+ "evaluated_at_uk": "2026-11-17 09:19:29.963067",
  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
  "shadows": {
   "maincal_ps_platt_monthly@v1": {
-   "n": 37,
+   "n": 40,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.0617,
+   "information_fraction": 0.0667,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_shadow": 0.08762227635251708,
-    "gap_production": 0.1458425241891892
+    "gap_shadow": 0.05624402216836122,
+    "gap_production": 0.11430132468249998
    },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
@@ -19,15 +19,15 @@
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "maincal_ps_group@v1": {
-   "n": 37,
+   "n": 40,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.0617,
+   "information_fraction": 0.0667,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_shadow": 0.0857357211280477,
-    "gap_production": 0.1458425241891892
+    "gap_shadow": 0.0527870661282961,
+    "gap_production": 0.11430132468249998
    },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
@@ -35,16 +35,16 @@
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "risk_stacked@v1": {
-   "n": 37,
+   "n": 40,
    "min_n": 2000,
    "unit": "матчей с ценой у обоих Risk",
-   "information_fraction": 0.0185,
+   "information_fraction": 0.02,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.1219999980926514,
-    "roi_production": -0.24189189189189186,
-    "changed_picks": 0.4594594594594595
+    "roi_shadow": -0.1913157877169157,
+    "roi_production": -0.29874999999999996,
+    "changed_picks": 0.45
    },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
@@ -52,15 +52,15 @@
    "criterion": "парный 95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109)"
   },
   "risk_market_probability@v1": {
-   "n": 37,
+   "n": 40,
    "min_n": 1000,
    "unit": "рассчитанных Risk с полной книгой",
-   "information_fraction": 0.037,
+   "information_fraction": 0.04,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_market": 0.04983415612015756,
-    "gap_model": 0.09076660436216215
+    "gap_market": 0.06390714703759645,
+    "gap_model": 0.105624407855
    },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
@@ -70,27 +70,35 @@
   "bookmaker_h2_pool@v1": {
    "markets": {
     "ou25": {
-     "n": 0,
+     "n": 39,
      "min_n": 1500,
      "unit": "матчей с ценами Bet365 открытия",
-     "information_fraction": 0.0,
-     "status": "no_forward_data",
-     "ready": false
+     "information_fraction": 0.026,
+     "status": "accumulating",
+     "ready": false,
+     "point": {
+      "ll_h2_minus_h0": -0.0005730561057166155,
+      "ll_model_minus_h0": 0.009838994388185633
+     }
     },
     "1x2": {
-     "n": 0,
+     "n": 39,
      "min_n": 1500,
      "unit": "матчей с ценами Bet365 открытия",
-     "information_fraction": 0.0,
-     "status": "no_forward_data",
-     "ready": false
+     "information_fraction": 0.026,
+     "status": "accumulating",
+     "ready": false,
+     "point": {
+      "ll_h2_minus_h0": 0.0026404776778452157,
+      "ll_model_minus_h0": 0.05307349912750824
+     }
     }
    },
-   "n": 0,
+   "n": 39,
    "min_n": 1500,
    "unit": "матчей с ценами Bet365 открытия",
-   "information_fraction": 0.0,
-   "status": "no_forward_data",
+   "information_fraction": 0.026,
+   "status": "accumulating",
    "ready": false,
    "family": "bookmaker",
    "prereg": "experiments/v6_2/bookmaker/results/preregistration.json",
@@ -98,15 +106,15 @@
    "criterion": "верхняя граница 95 % парного ДИ < 0 для тотала 2.5; 1X2 — вторичный, Холм по двум рынкам"
   },
   "xg_x5@v1": {
-   "n": 25,
+   "n": 26,
    "min_n": 3000,
    "unit": "сыгранных матчей лиг с xG",
-   "information_fraction": 0.0083,
+   "information_fraction": 0.0087,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "goals_dev_diff": -0.030868351073036253,
-    "logloss_1x2_diff": -0.010190570747032602,
+    "goals_dev_diff": -0.02887499777590447,
+    "logloss_1x2_diff": -0.010226386769810952,
     "fallback_share": 0.0
    },
    "family": "xg",
