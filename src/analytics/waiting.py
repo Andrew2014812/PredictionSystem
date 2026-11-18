@@ -6,6 +6,8 @@ passed this explains, per match, what every source knows and why the system stil
 * the score is known but a corners market waits for Football-Data's statistics (API-Football gives goals only);
 * API-Football reported the match as postponed, cancelled, abandoned...;
 * the same pairing is scheduled or played on another date (moved match);
+* the bookmakers stopped quoting the match more than a day before kick-off (v6.3: a sign of a postponement that
+  no source has confirmed yet — the result is never invented, the match is voided after VOID_AFTER_DAYS);
 * no source has a result yet.
 
 Nothing here changes data; the pipeline writes the table to ``api/diagnostics/waiting.csv``.
@@ -21,6 +23,8 @@ NOT_PLAYED = {"PST": "postponed", "CANC": "cancelled", "ABD": "abandoned", "SUSP
 STATISTICS = "result known, waiting for corner statistics (Football-Data)"
 SETTLES_NEXT = "result known, settled at the next run"
 NO_RESULT = "no result from any source yet"
+PRICES_STOPPED = "no result; bookmakers stopped quoting {h} h before kick-off (probably postponed)"
+STOP_HOURS = 24
 COLUMNS = ["date", "league", "home_team", "away_team", "match_id", "waiting_predictions", "waiting_markets",
            "reason", "api_football_status", "api_football_result", "football_data_result", "moved_to",
            "void_after"]
@@ -32,7 +36,9 @@ def _pairs(frame: pd.DataFrame) -> dict:
 
 def waiting_matches(picks: pd.DataFrame, features: pd.DataFrame, fd_results: pd.DataFrame | None = None,
                     live: pd.DataFrame | None = None, not_played: pd.DataFrame | None = None,
-                    today: pd.Timestamp | None = None) -> pd.DataFrame:
+                    today: pd.Timestamp | None = None, odds: pd.DataFrame | None = None) -> pd.DataFrame:
+    """``odds`` (optional, the stored price table): the last quote time per match, to recognise a match the
+    bookmakers took off before kick-off."""
     today = pd.Timestamp(today or pd.Timestamp.now()).normalize()
     if picks.empty:
         return pd.DataFrame(columns=COLUMNS)
@@ -50,6 +56,8 @@ def waiting_matches(picks: pd.DataFrame, features: pd.DataFrame, fd_results: pd.
         columns=["league", "date", "home_team", "away_team", "status"])
     statuses = statuses.assign(date=pd.to_datetime(statuses["date"]))
 
+    last_quote = (odds.groupby("match_id")["collected_at"].max() if odds is not None and not odds.empty
+                  else pd.Series(dtype="datetime64[ns]"))
     rows = []
     for match_id, g in pending.groupby("match_id"):
         first = g.iloc[0]
@@ -76,6 +84,10 @@ def waiting_matches(picks: pd.DataFrame, features: pd.DataFrame, fd_results: pd.
             reason = f"same pairing on {moved} (moved match)"
         else:
             reason = NO_RESULT
+            kickoff = pd.to_datetime(row.get("kickoff"), errors="coerce") if row is not None else pd.NaT
+            quoted = pd.to_datetime(last_quote.get(match_id), errors="coerce")
+            if pd.notna(kickoff) and pd.notna(quoted) and kickoff - quoted > pd.Timedelta(hours=STOP_HOURS):
+                reason = PRICES_STOPPED.format(h=int((kickoff - quoted).total_seconds() // 3600))
         rows.append({"date": str(date.date()), "league": first["league"], "home_team": first["home_team"],
                      "away_team": first["away_team"], "match_id": match_id,
                      "waiting_predictions": int(len(g)), "waiting_markets": ", ".join(markets),
@@ -92,6 +104,7 @@ def reason_counts(table: pd.DataFrame) -> dict[str, int]:
         return {}
     key = table["reason"].map(lambda r: "waiting for corner statistics" if r == STATISTICS
                               else "no result yet" if r == NO_RESULT
+                              else "no result, prices withdrawn" if "stopped quoting" in r
                               else "postponed / cancelled" if "API-Football" in r
                               else "moved" if "moved" in r else "settle next run")
     return key.value_counts().to_dict()
