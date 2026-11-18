@@ -141,13 +141,14 @@ def walk_forward(features: pd.DataFrame, matches: pd.DataFrame, fit_fn, cutoffs:
     key falls back to production's model). A match dated in [cutoff_i, cutoff_{i+1}) is predicted by the models
     of cutoff_i. Default cut-offs: the first day of every month of the season (monthly refit)."""
     cutoffs = sorted(cutoffs or month_starts(matches))
+    if matches["date"].min() < cutoffs[0]:
+        # a match before the first cut-off would be predicted by a model trained on data that includes it
+        raise ValueError(f"first cut-off {cutoffs[0].date()} is after the first match {matches['date'].min().date()}")
     prod = production_bundles()
     frames = []
     for i, cut in enumerate(cutoffs):
         end = cutoffs[i + 1] if i + 1 < len(cutoffs) else pd.Timestamp.max
         target = matches.loc[(matches["date"] >= cut) & (matches["date"] < end)]
-        if i == 0:
-            target = matches.loc[matches["date"] < end]
         if target.empty:
             continue
         train = features.loc[features["played"].astype(bool) & (features["date"] < cut)]
