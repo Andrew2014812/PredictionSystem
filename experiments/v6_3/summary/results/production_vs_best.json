@@ -1,0 +1,656 @@
+{
+ "criterion": "for the table 'Current Production vs Best Validated Experimental Candidate' the candidate is chosen among the preregistered B candidates of the studies and the 12 combinations by EVIDENCE, not by ROI: (1) ROI difference to Baseline B > 0 in both universes; (2) the smallest Holm-corrected p at close (Holm within the candidate's own family); (3) ties -> the smallest max(raw p close, raw p t09). If no candidate passes (1) the table says so and shows the candidate with the smallest Holm p.",
+ "n_pool": 37,
+ "n_positive_both": 27,
+ "best": {
+  "name": "mkt_uniform",
+  "source": "6. Quality vs Coverage",
+  "study_key": "quality",
+  "label": "равномерная смесь 1X2 с рынком (контроль)",
+  "holm_family": "10 вариантов, отдельно по вселенным",
+  "model_effect": "1X2 log loss -2.98·10⁻³ [-3.80; -2.15]",
+  "close": {
+   "roi": -0.0354895562052779,
+   "hit_rate": 0.676,
+   "avg_odds": 1.439753174781799,
+   "bets": 2249,
+   "profit": -79.81601190567017,
+   "d_roi": 0.0081542905249453,
+   "d_lo": 0.0008415441036224,
+   "d_hi": 0.0155503282584171,
+   "p": 0.027,
+   "p_holm": 0.27,
+   "roi_lo": -0.0651009064825337,
+   "roi_hi": -0.0057776978662401
+  },
+  "t09": {
+   "roi": -0.010794312980801,
+   "hit_rate": 0.673787271918113,
+   "avg_odds": 1.500106692314148,
+   "bets": 1687,
+   "profit": -18.21000599861145,
+   "d_roi": 0.0017036328770458,
+   "d_lo": -0.0079218322776557,
+   "d_hi": 0.0115738367408908,
+   "p": 0.718,
+   "p_holm": 1.0,
+   "roi_lo": -0.0428167588987957,
+   "roi_hi": 0.0226594410535452
+  },
+  "positive_both": true
+ },
+ "ranking": [
+  {
+   "name": "mkt_uniform",
+   "source": "6. Quality vs Coverage",
+   "label": "равномерная смесь 1X2 с рынком (контроль)",
+   "positive_both": true,
+   "p_holm_close": 0.27,
+   "p_close": 0.027,
+   "p_t09": 0.718,
+   "d_close": 0.0081542905249453,
+   "d_t09": 0.0017036328770458
+  },
+  {
+   "name": "K01",
+   "source": "Комбинации (этап 6)",
+   "label": "REL+EVW",
+   "positive_both": true,
+   "p_holm_close": 0.28800000000000003,
+   "p_close": 0.024,
+   "p_t09": 0.705,
+   "d_close": 0.023537574687922145,
+   "d_t09": 0.004741381838400439
+  },
+  {
+   "name": "K12",
+   "source": "Комбинации (этап 6)",
+   "label": "GOALS+CORNERS+REL+EVW",
+   "positive_both": true,
+   "p_holm_close": 0.363,
+   "p_close": 0.033,
+   "p_t09": 0.386,
+   "d_close": 0.022038686164170703,
+   "d_t09": 0.011954062836432055
+  },
+  {
+   "name": "bt:boost",
+   "source": "4. Profitability by Market",
+   "label": "надёжность HANDICAP ×1.15 (1.035)",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.13,
+   "p_t09": 0.234,
+   "d_close": 0.019364041412331,
+   "d_t09": 0.015541797127103
+  },
+  {
+   "name": "K08",
+   "source": "Комбинации (этап 6)",
+   "label": "C2+REL",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.187,
+   "p_t09": 0.282,
+   "d_close": 0.01788661706813339,
+   "d_t09": 0.01718300017104487
+  },
+  {
+   "name": "K11",
+   "source": "Комбинации (этап 6)",
+   "label": "GOALS+CORNERS",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.377,
+   "p_t09": 0.296,
+   "d_close": 0.005714094919753422,
+   "d_t09": 0.0111536615037797
+  },
+  {
+   "name": "beta|key|pooled",
+   "source": "2. Model Probability Calibration",
+   "label": "beta по ключам",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.406,
+   "p_t09": 0.305,
+   "d_close": 0.0060238417584012,
+   "d_t09": 0.0101111110415898
+  },
+  {
+   "name": "best_wf",
+   "source": "11. Corners Research",
+   "label": "Poisson GLM ежемесячно + NB",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.495,
+   "p_t09": 0.496,
+   "d_close": 0.0013365940074488,
+   "d_t09": 0.0034195224882413
+  },
+  {
+   "name": "histbin|group|pooled",
+   "source": "2. Model Probability Calibration",
+   "label": "histbin по группам",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.504,
+   "p_t09": 0.212,
+   "d_close": 0.0061965793387825,
+   "d_t09": 0.0144596405095029
+  },
+  {
+   "name": "bt:reliability",
+   "source": "1. Main Selection 3.0",
+   "label": "надёжность TOTAL 0.95",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.069,
+   "p_t09": 0.509,
+   "d_close": 0.0147505569267188,
+   "d_t09": 0.0067500246597534
+  },
+  {
+   "name": "bt:ev_weight",
+   "source": "1. Main Selection 3.0",
+   "label": "вес EV 1.0",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.314,
+   "p_t09": 0.515,
+   "d_close": 0.0076567371880653,
+   "d_t09": 0.0073739565962551
+  },
+  {
+   "name": "stacked",
+   "source": "10. Goal Model Improvements",
+   "label": "единая модель голов команды",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.33,
+   "p_t09": 0.554,
+   "d_close": 0.0059248551944988,
+   "d_t09": 0.0059409663430152
+  },
+  {
+   "name": "K10",
+   "source": "Комбинации (этап 6)",
+   "label": "V6+REL+EVW",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.569,
+   "p_t09": 0.298,
+   "d_close": 0.004833259758497674,
+   "d_t09": 0.012425999835525116
+  },
+  {
+   "name": "cons_blend_wf",
+   "source": "13. Market Consensus",
+   "label": "C2 смесь модели с консенсусом книг",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.586,
+   "p_t09": 0.587,
+   "d_close": 0.0070106701195743,
+   "d_t09": 0.0083790584236133
+  },
+  {
+   "name": "isotonic|group|pooled",
+   "source": "2. Model Probability Calibration",
+   "label": "isotonic по группам",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.327,
+   "p_t09": 0.59,
+   "d_close": 0.007236105063164,
+   "d_t09": 0.0055370993561863
+  },
+  {
+   "name": "K04",
+   "source": "Комбинации (этап 6)",
+   "label": "CAL+REL",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.318,
+   "p_t09": 0.613,
+   "d_close": 0.008697200054696208,
+   "d_t09": 0.00531511085357842
+  },
+  {
+   "name": "cons_market_only",
+   "source": "13. Market Consensus",
+   "label": "C1 консенсус вместо p",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.623,
+   "p_t09": 0.545,
+   "d_close": 0.0062740598849101,
+   "d_t09": 0.0105187288241392
+  },
+  {
+   "name": "K09",
+   "source": "Комбинации (этап 6)",
+   "label": "C2+EVW",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.724,
+   "p_t09": 0.449,
+   "d_close": 0.004907070291789703,
+   "d_t09": 0.012124869267704449
+  },
+  {
+   "name": "wf:cur2",
+   "source": "7. Recent Season Weighting",
+   "label": "ежемесячно, текущий сезон ×2 (B для 1X2)",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.105,
+   "p_t09": 0.755,
+   "d_close": 0.0119315252244711,
+   "d_t09": 0.00279449432579
+  },
+  {
+   "name": "K05",
+   "source": "Комбинации (этап 6)",
+   "label": "CAL+EVW",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.489,
+   "p_t09": 0.803,
+   "d_close": 0.005235034634537124,
+   "d_t09": 0.0029071126029403867
+  },
+  {
+   "name": "meta_lr_ev",
+   "source": "9. Meta-Selection Model",
+   "label": "логистическая метамодель, max EV",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.311,
+   "p_t09": 0.834,
+   "d_close": 0.0198158054504356,
+   "d_t09": 0.0039836065102298
+  },
+  {
+   "name": "K07",
+   "source": "Комбинации (этап 6)",
+   "label": "V6+EVW",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.839,
+   "p_t09": 0.122,
+   "d_close": 0.0011656188499573547,
+   "d_t09": 0.01875839257803159
+  },
+  {
+   "name": "wf:hl0",
+   "source": "7. Recent Season Weighting",
+   "label": "ежемесячно, без затухания (B для голов)",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.865,
+   "p_t09": 0.109,
+   "d_close": 0.0011300636462016,
+   "d_t09": 0.0136145610615042
+  },
+  {
+   "name": "K06",
+   "source": "Комбинации (этап 6)",
+   "label": "V6+REL",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.58,
+   "p_t09": 0.87,
+   "d_close": 0.005140730122557315,
+   "d_t09": 0.002141478859529483
+  },
+  {
+   "name": "temperature|group|pooled",
+   "source": "2. Model Probability Calibration",
+   "label": "temperature по группам",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.938,
+   "p_t09": 0.83,
+   "d_close": 0.0003392619522691,
+   "d_t09": 0.000828130919765
+  },
+  {
+   "name": "platt|group|pooled",
+   "source": "2. Model Probability Calibration",
+   "label": "platt по группам",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.947,
+   "p_t09": 0.428,
+   "d_close": 0.000299244257756,
+   "d_t09": 0.0029558588339193
+  },
+  {
+   "name": "best",
+   "source": "11. Corners Research",
+   "label": "Poisson GLM + NB, r по лигам",
+   "positive_both": true,
+   "p_holm_close": 1.0,
+   "p_close": 0.978,
+   "p_t09": 0.805,
+   "d_close": 9.159625186131588e-05,
+   "d_t09": 0.0012200002282511
+  },
+  {
+   "name": "floor_1.40",
+   "source": "1. Main Selection 3.0",
+   "label": "порог 1.40 + «не ставка»",
+   "positive_both": false,
+   "p_holm_close": 0.846,
+   "p_close": 0.047,
+   "p_t09": 0.404,
+   "d_close": 0.0269294340244692,
+   "d_t09": -0.0133698004614111
+  },
+  {
+   "name": "K02",
+   "source": "Комбинации (этап 6)",
+   "label": "REL+FLOOR",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.104,
+   "p_t09": 0.434,
+   "d_close": 0.024449896657497014,
+   "d_t09": -0.01298428566281567
+  },
+  {
+   "name": "best_per_task",
+   "source": "8. Alternative ML Algorithms",
+   "label": "лучший по задаче",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.472,
+   "p_t09": 0.635,
+   "d_close": 0.0054219652144524,
+   "d_t09": -0.0049207283194735
+  },
+  {
+   "name": "ens_xgb_best",
+   "source": "8. Alternative ML Algorithms",
+   "label": "ансамбль XGBoost + лучший альтернативный",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.108,
+   "p_t09": 0.673,
+   "d_close": 0.0134278418817431,
+   "d_t09": -0.0051415780360872
+  },
+  {
+   "name": "e2_pre",
+   "source": "12. Squad Strength Research",
+   "label": "предсезонная сила состава (стоимость игроков)",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.591,
+   "p_t09": 0.774,
+   "d_close": -0.0102935119346375,
+   "d_t09": 0.0057100708961595
+  },
+  {
+   "name": "mkt_both",
+   "source": "6. Quality vs Coverage",
+   "label": "смесь 1X2 с рынком по нехватке данных (сезон + история)",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.546,
+   "p_t09": 0.81,
+   "d_close": 0.0038105073569526,
+   "d_t09": -0.0021469287360742
+  },
+  {
+   "name": "mkt_season_0.75",
+   "source": "6. Quality vs Coverage",
+   "label": "смесь 1X2 с рынком по нехватке данных сезона (w 0.75)",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.614,
+   "p_t09": 0.815,
+   "d_close": 0.0031345073446608,
+   "d_t09": -0.0021687243629032
+  },
+  {
+   "name": "K03",
+   "source": "Комбинации (этап 6)",
+   "label": "EVW+FLOOR",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.137,
+   "p_t09": 0.83,
+   "d_close": 0.021763063828194696,
+   "d_t09": -0.0037621809573514884
+  },
+  {
+   "name": "ens",
+   "source": "11. Corners Research",
+   "label": "ансамбль (веса 2025/26) + NB",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.775,
+   "p_t09": 0.94,
+   "d_close": 0.0004722098871674,
+   "d_t09": -0.0001013484912462
+  },
+  {
+   "name": "blend_5050",
+   "source": "3. Market-Aware Main",
+   "label": "V6 смесь 50/50 модели и рынка",
+   "positive_both": false,
+   "p_holm_close": 1.0,
+   "p_close": 0.967,
+   "p_t09": 0.282,
+   "d_close": -0.0004974933135863,
+   "d_t09": 0.0147397407876062
+  }
+ ],
+ "baseline_b": {
+  "close": {
+   "summary": {
+    "matches": 2250,
+    "settled": 2250,
+    "won": 1504,
+    "push": 0,
+    "bets": 2249,
+    "priced_share": 0.9995555555555555,
+    "hit_rate": 0.6684444444444444,
+    "profit": -98.15501129627228,
+    "roi": -0.04364384673022333,
+    "avg_odds": 1.4440431594848633,
+    "avg_probability": 0.7255342602729797,
+    "neg_ev_share": 0.35793686082703424,
+    "mean_ev": 0.04408513382077217
+   },
+   "roi_ci": {
+    "roi": -0.04364384673022333,
+    "ci95": [
+     -0.07222574874692492,
+     -0.014454793458514753
+    ],
+    "bets": 2249
+   }
+  },
+  "t09": {
+   "summary": {
+    "matches": 2250,
+    "settled": 2247,
+    "won": 1506,
+    "push": 3,
+    "bets": 1701,
+    "priced_share": 0.7573333333333333,
+    "hit_rate": 0.6702269692923899,
+    "profit": -21.259005904197693,
+    "roi": -0.012497945857846969,
+    "avg_odds": 1.510794758796692,
+    "avg_probability": 0.6904365420341492,
+    "neg_ev_share": 0.47266313932980597,
+    "mean_ev": 0.02273249253630638
+   },
+   "roi_ci": {
+    "roi": -0.012497945857846969,
+    "ci95": [
+     -0.04668695510985576,
+     0.021672522949235457
+    ],
+    "bets": 1701
+   }
+  }
+ },
+ "baseline_a": {
+  "summary": {
+   "matches": 2250,
+   "settled": 2250,
+   "won": 1490,
+   "push": 0,
+   "bets": 2248,
+   "priced_share": 0.9991111111111111,
+   "hit_rate": 0.6622222222222223,
+   "profit": -98.31800000000001,
+   "roi": -0.04373576512455517,
+   "avg_odds": 1.4819034697508897,
+   "avg_probability": 0.7124233787253152,
+   "neg_ev_share": 0.37544483985765126,
+   "mean_ev": 0.04099771984959182
+  },
+  "roi_ci": {
+   "roi": -0.04373576512455516,
+   "ci95": [
+    -0.07450995058279375,
+    -0.014723935592892713
+   ],
+   "bets": 2248
+  }
+ },
+ "production_metrics": {
+  "1x2_log_loss": 1.0006590735087693,
+  "1x2_accuracy": 0.5026666666666667,
+  "1x2_brier": 0.5972535109268423,
+  "market_1x2_log_loss_close": 0.9869767948804524,
+  "goals_score_log_loss": 3.0004950740080027,
+  "goals_poisson_deviance": 1.1548009885246373,
+  "goals_mae": 0.9458927600913578,
+  "corners_mae": 2.7266968460083008,
+  "corners_r2": 0.039724644370973894,
+  "corners_poisson_deviance": 1.1951542737349776,
+  "n": 2250
+ },
+ "candidate_metrics": {
+  "1x2_log_loss": 0.9976794985217917,
+  "1x2_accuracy": null,
+  "1x2_brier": null,
+  "market_1x2_log_loss_close": 0.9869767948804524,
+  "goals_score_log_loss": 3.0004950740080027,
+  "goals_poisson_deviance": 1.1548009885246373,
+  "goals_mae": 0.9458927600913578,
+  "corners_mae": 2.7266968460083008,
+  "corners_r2": 0.039724644370973894,
+  "corners_poisson_deviance": 1.1951542737349776,
+  "n": 2250,
+  "d_1x2_log_loss": {
+   "diff": -0.0029795749869775813,
+   "ci95": [
+    -0.00379876020165959,
+    -0.002153174778049473
+   ],
+   "p": 0.0,
+   "n": 2250
+  },
+  "d_goals_deviance": {
+   "diff": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "p": 1.0,
+   "n": 2250
+  },
+  "d_corners_deviance": {
+   "diff": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "p": 1.0,
+   "n": 2250
+  },
+  "source": "смесь вероятностей 1X2 с рынком: меняется только 1X2 (Δ из quality/results/mitigations_2026.json)"
+ },
+ "best_rule_candidate": {
+  "name": "bt:boost",
+  "source": "4. Profitability by Market",
+  "study_key": "market_profitability",
+  "label": "надёжность HANDICAP ×1.15 (1.035)",
+  "holm_family": "14 кандидатов, отдельно по вселенным",
+  "model_effect": "—",
+  "close": {
+   "roi": -0.0242798053178922,
+   "hit_rate": 0.6742222222222222,
+   "avg_odds": 1.4612824711617205,
+   "bets": 2248,
+   "profit": -54.58100235462189,
+   "d_roi": 0.019364041412331,
+   "d_lo": -0.0066039389729882,
+   "d_hi": 0.045013203114316,
+   "p": 0.13,
+   "p_holm": 1.0,
+   "roi_lo": -0.0519318871742493,
+   "roi_hi": 0.0032655665000527
+  },
+  "t09": {
+   "roi": 0.003043851269256,
+   "hit_rate": 0.6815144766146993,
+   "avg_odds": 1.515686222695509,
+   "bets": 1619,
+   "profit": 4.927995204925537,
+   "d_roi": 0.015541797127103,
+   "d_lo": -0.0105792186089467,
+   "d_hi": 0.0410188852792998,
+   "p": 0.234,
+   "p_holm": 1.0,
+   "roi_lo": -0.0325716983974443,
+   "roi_hi": 0.0380702710318238
+  },
+  "positive_both": true
+ },
+ "best_combination": {
+  "name": "K01",
+  "source": "Комбинации (этап 6)",
+  "study_key": "combination",
+  "label": "REL+EVW",
+  "holm_family": "12 комбинаций, отдельно по вселенным",
+  "model_effect": "",
+  "close": {
+   "roi": -0.02010627204230119,
+   "hit_rate": 0.6742222222222222,
+   "avg_odds": 1.4713823884897839,
+   "bets": 2249,
+   "profit": -45.219005823135376,
+   "d_roi": 0.023537574687922145,
+   "d_lo": 0.0036112026850382488,
+   "d_hi": 0.04328621891963845,
+   "p": 0.024,
+   "p_holm": 0.28800000000000003,
+   "roi_lo": -0.04682799774374431,
+   "roi_hi": 0.007871384478081792
+  },
+  "t09": {
+   "roi": -0.00775656401944653,
+   "hit_rate": 0.6587973273942094,
+   "avg_odds": 1.5710965904159162,
+   "bets": 1791,
+   "profit": -13.892006158828735,
+   "d_roi": 0.004741381838400439,
+   "d_lo": -0.020950330479907704,
+   "d_hi": 0.027978203666662087,
+   "p": 0.705,
+   "p_holm": 1.0,
+   "roi_lo": -0.04239338182563259,
+   "roi_hi": 0.02812079913007117
+  },
+  "positive_both": true
+ }
+}

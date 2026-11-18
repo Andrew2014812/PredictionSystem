@@ -1,0 +1,6639 @@
+{
+ "plan_frozen_at": "2026-11-18T14:30:30+00:00",
+ "self_check_rule_equals_baseline_b": {
+  "close": 0.9995555555555555,
+  "t09": 1.0
+ },
+ "self_check_goals_rule_equals_engine": {
+  "close": 0.9995555555555555,
+  "t09": 1.0
+ },
+ "reproduction": [
+  {
+   "part": "REL",
+   "universe": "close",
+   "study_roi": -0.02889328980350452,
+   "here_roi": -0.02889328980350452,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "REL",
+   "universe": "t09",
+   "study_roi": -0.005747921198093514,
+   "here_roi": -0.005747921198093514,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "EVW",
+   "universe": "close",
+   "study_roi": -0.03598710954215803,
+   "here_roi": -0.03598710954215803,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "EVW",
+   "universe": "t09",
+   "study_roi": -0.005123989261591835,
+   "here_roi": -0.005123989261591835,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "FLOOR",
+   "universe": "close",
+   "study_roi": -0.016714412705754047,
+   "here_roi": -0.016714412705754047,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "FLOOR",
+   "universe": "t09",
+   "study_roi": -0.025867746319258155,
+   "here_roi": -0.025867746319258155,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "REL+EVW+FLOOR",
+   "universe": "close",
+   "study_roi": -0.02350889639498076,
+   "here_roi": -0.02350889639498076,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "REL+EVW+FLOOR",
+   "universe": "t09",
+   "study_roi": -0.01991854279455465,
+   "here_roi": -0.01991854279455465,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "CAL",
+   "universe": "close",
+   "study_roi": -0.04330458477795415,
+   "here_roi": -0.04330458477795415,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "V6",
+   "universe": "close",
+   "study_roi": -0.04414134004380968,
+   "here_roi": -0.04414134004380968,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "C2",
+   "universe": "close",
+   "study_roi": -0.03663317661064898,
+   "here_roi": -0.03663317661064898,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "CORNERS",
+   "universe": "close",
+   "study_roi": -0.04355225047836202,
+   "here_roi": -0.04355225047836202,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "GOALS",
+   "universe": "close",
+   "study_roi": -0.0377189915357244,
+   "here_roi": -0.03771899153572446,
+   "abs_diff": 5.551115123125783e-17
+  },
+  {
+   "part": "CAL",
+   "universe": "t09",
+   "study_roi": -0.011669814938081885,
+   "here_roi": -0.011669814938081885,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "V6",
+   "universe": "t09",
+   "study_roi": 0.0022417949297593256,
+   "here_roi": 0.0022417949297593256,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "C2",
+   "universe": "t09",
+   "study_roi": -0.004118887434233578,
+   "here_roi": -0.004118887434233578,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "CORNERS",
+   "universe": "t09",
+   "study_roi": -0.011277945629595864,
+   "here_roi": -0.011277945629595864,
+   "abs_diff": 0.0
+  },
+  {
+   "part": "GOALS",
+   "universe": "t09",
+   "study_roi": -0.0065569795148317,
+   "here_roi": -0.006556979514831721,
+   "abs_diff": 2.0816681711721685e-17
+  }
+ ],
+ "baseline_b": {
+  "close": {
+   "summary": {
+    "matches": 2250,
+    "settled": 2250,
+    "won": 1504,
+    "push": 0,
+    "bets": 2249,
+    "priced_share": 0.9995555555555555,
+    "hit_rate": 0.6684444444444444,
+    "profit": -98.15501129627228,
+    "roi": -0.04364384673022333,
+    "avg_odds": 1.4440431594848633,
+    "avg_probability": 0.7255342602729797,
+    "neg_ev_share": 0.35793686082703424,
+    "mean_ev": 0.04408513382077217
+   },
+   "roi_ci": {
+    "roi": -0.04364384673022333,
+    "ci95": [
+     -0.07222574874692492,
+     -0.014454793458514753
+    ],
+    "bets": 2249
+   }
+  },
+  "t09": {
+   "summary": {
+    "matches": 2250,
+    "settled": 2247,
+    "won": 1506,
+    "push": 3,
+    "bets": 1701,
+    "priced_share": 0.7573333333333333,
+    "hit_rate": 0.6702269692923899,
+    "profit": -21.259005904197693,
+    "roi": -0.012497945857846969,
+    "avg_odds": 1.510794758796692,
+    "avg_probability": 0.6904365420341492,
+    "neg_ev_share": 0.47266313932980597,
+    "mean_ev": 0.02273249253630638
+   },
+   "roi_ci": {
+    "roi": -0.012497945857846969,
+    "ci95": [
+     -0.04668695510985576,
+     0.021672522949235457
+    ],
+    "bets": 1701
+   }
+  }
+ },
+ "baseline_a": {
+  "summary": {
+   "matches": 2250,
+   "settled": 2250,
+   "won": 1490,
+   "push": 0,
+   "bets": 2248,
+   "priced_share": 0.9991111111111111,
+   "hit_rate": 0.6622222222222223,
+   "profit": -98.31800000000001,
+   "roi": -0.04373576512455517,
+   "avg_odds": 1.4819034697508897,
+   "avg_probability": 0.7124233787253152,
+   "neg_ev_share": 0.37544483985765126,
+   "mean_ev": 0.04099771984959182
+  },
+  "roi_ci": {
+   "roi": -0.04373576512455516,
+   "ci95": [
+    -0.07450995058279375,
+    -0.014723935592892713
+   ],
+   "bets": 2248
+  }
+ },
+ "table": [
+  {
+   "id": "S_REL",
+   "parts": "REL",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.02889328980350452,
+   "roi_lo": -0.05636037030617396,
+   "roi_hi": -0.0007092855251222476,
+   "hit_rate": 0.6768888888888889,
+   "avg_odds": 1.4497389899406925,
+   "profit": -64.98100876808167,
+   "d_roi": 0.014750556926718814,
+   "d_lo": -0.0010452756534122657,
+   "d_hi": 0.030651665459957317,
+   "p": 0.069,
+   "d_hit": 0.008444444444444444,
+   "changed_share": 0.17200000000000004,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_REL",
+   "parts": "REL",
+   "universe": "t09",
+   "bets": 1801,
+   "roi": -0.005747921198093514,
+   "roi_lo": -0.03821710873095921,
+   "roi_hi": 0.026258778733614534,
+   "hit_rate": 0.6769025367156208,
+   "avg_odds": 1.5098861706117865,
+   "profit": -10.352006077766418,
+   "d_roi": 0.006750024659753454,
+   "d_lo": -0.01195740702481241,
+   "d_hi": 0.02498816552146243,
+   "p": 0.509,
+   "d_hit": 0.006666666666666667,
+   "changed_share": 0.16355555555555557,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_EVW",
+   "parts": "EVW",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03598710954215803,
+   "roi_lo": -0.0650593190656444,
+   "roi_hi": -0.007844553297099035,
+   "hit_rate": 0.6644444444444444,
+   "avg_odds": 1.4675108879181797,
+   "profit": -80.93500936031342,
+   "d_roi": 0.007656737188065303,
+   "d_lo": -0.007263210330993681,
+   "d_hi": 0.022024799335342286,
+   "p": 0.314,
+   "d_hit": -0.004,
+   "changed_share": 0.128,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_EVW",
+   "parts": "EVW",
+   "universe": "t09",
+   "bets": 1726,
+   "roi": -0.005123989261591835,
+   "roi_lo": -0.04119399119407586,
+   "roi_hi": 0.030308227560734816,
+   "hit_rate": 0.6565701559020044,
+   "avg_odds": 1.5709849329425727,
+   "profit": -8.844005465507507,
+   "d_roi": 0.007373956596255134,
+   "d_lo": -0.013526626901433043,
+   "d_hi": 0.02868251902851535,
+   "p": 0.515,
+   "d_hit": -0.014222222222222223,
+   "changed_share": 0.14533333333333331,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_FLOOR",
+   "parts": "FLOOR",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.016714412705754047,
+   "roi_lo": -0.04884309250317313,
+   "roi_hi": 0.016608096264117085,
+   "hit_rate": 0.6183274021352313,
+   "avg_odds": 1.6072464415081031,
+   "profit": -37.573999762535095,
+   "d_roi": 0.026929434024469286,
+   "d_lo": 0.0003617268865425516,
+   "d_hi": 0.055330494661927396,
+   "p": 0.047,
+   "d_hit": -0.050666666666666665,
+   "changed_share": 0.5048888888888889,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_FLOOR",
+   "parts": "FLOOR",
+   "universe": "t09",
+   "bets": 2223,
+   "roi": -0.025867746319258155,
+   "roi_lo": -0.061160934599052065,
+   "roi_hi": 0.009453169339190024,
+   "hit_rate": 0.5784313725490197,
+   "avg_odds": 1.7237926231972869,
+   "profit": -57.50400006771088,
+   "d_roi": -0.013369800461411186,
+   "d_lo": -0.04510713426514432,
+   "d_hi": 0.018901552946350948,
+   "p": 0.404,
+   "d_hit": -0.09244444444444444,
+   "changed_share": 0.5568888888888889,
+   "months_better": 1,
+   "months_n": 4,
+   "not_bet_fallback": 21,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_CAL",
+   "parts": "CAL",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.04330458477795415,
+   "roi_lo": -0.07013213028185199,
+   "roi_hi": -0.01634905365853376,
+   "hit_rate": 0.668,
+   "avg_odds": 1.4456064847905459,
+   "profit": -97.3920111656189,
+   "d_roi": 0.0003392619522691806,
+   "d_lo": -0.00602205409877509,
+   "d_hi": 0.006351304147201797,
+   "p": 0.887,
+   "d_hit": -0.00044444444444444447,
+   "changed_share": 0.027555555555555555,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_CAL",
+   "parts": "CAL",
+   "universe": "t09",
+   "bets": 1696,
+   "roi": -0.011669814938081885,
+   "roi_lo": -0.046670998853132674,
+   "roi_hi": 0.023663282663693202,
+   "hit_rate": 0.6700801424755121,
+   "avg_odds": 1.5113826615489878,
+   "profit": -19.792006134986877,
+   "d_roi": 0.0008281309197650834,
+   "d_lo": -0.006163133151949388,
+   "d_hi": 0.007931639888086778,
+   "p": 0.812,
+   "d_hit": -0.00044444444444444447,
+   "changed_share": 0.022666666666666613,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_V6",
+   "parts": "V6",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.04414134004380968,
+   "roi_lo": -0.07067784009509617,
+   "roi_hi": -0.015787140553527416,
+   "hit_rate": 0.6857777777777778,
+   "avg_odds": 1.401014213403066,
+   "profit": -99.31801509857178,
+   "d_roi": -0.000497493313586346,
+   "d_lo": -0.018445554274203114,
+   "d_hi": 0.01875643468715475,
+   "p": 0.995,
+   "d_hit": 0.017333333333333333,
+   "changed_share": 0.21999999999999997,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_V6",
+   "parts": "V6",
+   "universe": "t09",
+   "bets": 1646,
+   "roi": 0.0022417949297593256,
+   "roi_lo": -0.029114732262362965,
+   "roi_hi": 0.0331687073191664,
+   "hit_rate": 0.7013333333333334,
+   "avg_odds": 1.4347509082728138,
+   "profit": 3.68999445438385,
+   "d_roi": 0.014739740787606294,
+   "d_lo": -0.012344704110302043,
+   "d_hi": 0.04065260514486593,
+   "p": 0.256,
+   "d_hit": 0.032,
+   "changed_share": 0.23911111111111116,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_C2",
+   "parts": "C2",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03663317661064898,
+   "roi_lo": -0.06332067823530003,
+   "roi_hi": -0.008975785445194642,
+   "hit_rate": 0.6871111111111111,
+   "avg_odds": 1.4083481461485527,
+   "profit": -82.38801419734955,
+   "d_roi": 0.007010670119574354,
+   "d_lo": -0.01775700555729099,
+   "d_hi": 0.033538949529208016,
+   "p": 0.595,
+   "d_hit": 0.018666666666666668,
+   "changed_share": 0.3542222222222222,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_C2",
+   "parts": "C2",
+   "universe": "t09",
+   "bets": 1758,
+   "roi": -0.004118887434233578,
+   "roi_lo": -0.035407900090111355,
+   "roi_hi": 0.02716433914629385,
+   "hit_rate": 0.6937777777777778,
+   "avg_odds": 1.4585415225929503,
+   "profit": -7.241004109382629,
+   "d_roi": 0.008379058423613391,
+   "d_lo": -0.0209565130594423,
+   "d_hi": 0.03795526087386626,
+   "p": 0.57,
+   "d_hit": 0.024444444444444446,
+   "changed_share": 0.3222222222222222,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_GOALS",
+   "parts": "GOALS",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03771899153572446,
+   "roi_lo": -0.0657011083267787,
+   "roi_hi": -0.008978461851161546,
+   "hit_rate": 0.6728888888888889,
+   "avg_odds": 1.44350199351686,
+   "profit": -84.8300119638443,
+   "d_roi": 0.005924855194498875,
+   "d_lo": -0.006807921390206551,
+   "d_hi": 0.018635880392087478,
+   "p": 0.348,
+   "d_hit": 0.0044444444444444444,
+   "changed_share": 0.10933333333333328,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_GOALS",
+   "parts": "GOALS",
+   "universe": "t09",
+   "bets": 1720,
+   "roi": -0.006556979514831721,
+   "roi_lo": -0.041157593365533575,
+   "roi_hi": 0.025448184998756358,
+   "hit_rate": 0.6724521584334668,
+   "avg_odds": 1.509273252722829,
+   "profit": -11.278004765510559,
+   "d_roi": 0.005940966343015248,
+   "d_lo": -0.013289956348007207,
+   "d_hi": 0.02400675516691727,
+   "p": 0.546,
+   "d_hit": 0.0022222222222222222,
+   "changed_share": 0.17066666666666663,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_CORNERS",
+   "parts": "CORNERS",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.04355225047836202,
+   "roi_lo": -0.0709973690788069,
+   "roi_hi": -0.016741909638206307,
+   "hit_rate": 0.6684444444444444,
+   "avg_odds": 1.4442378765426778,
+   "profit": -97.94901132583618,
+   "d_roi": 9.159625186131587e-05,
+   "d_lo": -0.0032611445493168265,
+   "d_hi": 0.003398649016454233,
+   "p": 0.955,
+   "d_hit": 0.0,
+   "changed_share": 0.007111111111111068,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "S_CORNERS",
+   "parts": "CORNERS",
+   "universe": "t09",
+   "bets": 1691,
+   "roi": -0.011277945629595864,
+   "roi_lo": -0.04664503491385528,
+   "roi_hi": 0.023423801772950937,
+   "hit_rate": 0.6706720071206053,
+   "avg_odds": 1.5104790026446477,
+   "profit": -19.071006059646606,
+   "d_roi": 0.0012200002282511044,
+   "d_lo": -0.007979569739726418,
+   "d_hi": 0.0103267083635754,
+   "p": 0.805,
+   "d_hit": 0.00044444444444444447,
+   "changed_share": 0.0417777777777778,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "R_combo_bt",
+   "parts": "REL+EVW+FLOOR",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.02350889639498076,
+   "roi_lo": -0.056116475196977336,
+   "roi_hi": 0.01060845198353259,
+   "hit_rate": 0.6098754448398577,
+   "avg_odds": 1.6273189500451513,
+   "profit": -52.84799909591675,
+   "d_roi": 0.020134950335242572,
+   "d_lo": -0.009105433909546077,
+   "d_hi": 0.05043820089811341,
+   "p": 0.182,
+   "d_hit": -0.059111111111111114,
+   "changed_share": 0.5728888888888889,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "replication of main_selection combo_bt (already reported by that study; not in the Holm family)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "R_combo_bt",
+   "parts": "REL+EVW+FLOOR",
+   "universe": "t09",
+   "bets": 2222,
+   "roi": -0.01991854279455465,
+   "roi_lo": -0.056084389512444384,
+   "roi_hi": 0.014690466801897296,
+   "hit_rate": 0.5715559518502006,
+   "avg_odds": 1.7602074701543546,
+   "profit": -44.25900208950043,
+   "d_roi": -0.00742059693670768,
+   "d_lo": -0.04236982173259036,
+   "d_hi": 0.026426550027838006,
+   "p": 0.661,
+   "d_hit": -0.09955555555555555,
+   "changed_share": 0.6093333333333333,
+   "months_better": 1,
+   "months_n": 4,
+   "not_bet_fallback": 21,
+   "role": "replication of main_selection combo_bt (already reported by that study; not in the Holm family)",
+   "p_holm": null,
+   "p_holm_joint": null
+  },
+  {
+   "id": "K01",
+   "parts": "REL+EVW",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.02010627204230119,
+   "roi_lo": -0.04682799774374431,
+   "roi_hi": 0.007871384478081792,
+   "hit_rate": 0.6742222222222222,
+   "avg_odds": 1.4713823884897839,
+   "profit": -45.219005823135376,
+   "d_roi": 0.023537574687922145,
+   "d_lo": 0.0036112026850382488,
+   "d_hi": 0.04328621891963845,
+   "p": 0.024,
+   "d_hit": 0.0057777777777777775,
+   "changed_share": 0.25511111111111107,
+   "months_better": 4,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 0.28800000000000003,
+   "p_holm_joint": 0.5760000000000001
+  },
+  {
+   "id": "K01",
+   "parts": "REL+EVW",
+   "universe": "t09",
+   "bets": 1791,
+   "roi": -0.00775656401944653,
+   "roi_lo": -0.04239338182563259,
+   "roi_hi": 0.02812079913007117,
+   "hit_rate": 0.6587973273942094,
+   "avg_odds": 1.5710965904159162,
+   "profit": -13.892006158828735,
+   "d_roi": 0.004741381838400439,
+   "d_lo": -0.020950330479907704,
+   "d_hi": 0.027978203666662087,
+   "p": 0.705,
+   "d_hit": -0.012,
+   "changed_share": 0.24044444444444446,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K02",
+   "parts": "REL+FLOOR",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.01919395007272632,
+   "roi_lo": -0.05069610765502121,
+   "roi_hi": 0.013271020707314448,
+   "hit_rate": 0.6187722419928826,
+   "avg_odds": 1.6031881671040933,
+   "profit": -43.14799976348877,
+   "d_roi": 0.024449896657497014,
+   "d_lo": -0.0034638396389205448,
+   "d_hi": 0.05542475372737321,
+   "p": 0.104,
+   "d_hit": -0.050222222222222224,
+   "changed_share": 0.5555555555555556,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K02",
+   "parts": "REL+FLOOR",
+   "universe": "t09",
+   "bets": 2223,
+   "roi": -0.02548223152066264,
+   "roi_lo": -0.060576484078821595,
+   "roi_hi": 0.008934263349418353,
+   "hit_rate": 0.5815508021390374,
+   "avg_odds": 1.715271255479865,
+   "profit": -56.647000670433044,
+   "d_roi": -0.01298428566281567,
+   "d_lo": -0.04706514282171457,
+   "d_hi": 0.02068436955873634,
+   "p": 0.434,
+   "d_hit": -0.08933333333333333,
+   "changed_share": 0.5928888888888889,
+   "months_better": 1,
+   "months_n": 4,
+   "not_bet_fallback": 21,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K03",
+   "parts": "EVW+FLOOR",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.021880782902028637,
+   "roi_lo": -0.05619095419523051,
+   "roi_hi": 0.012672101028542954,
+   "hit_rate": 0.6063167259786477,
+   "avg_odds": 1.633445284332669,
+   "profit": -49.187999963760376,
+   "d_roi": 0.021763063828194696,
+   "d_lo": -0.00733123332452717,
+   "d_hi": 0.05297706930890753,
+   "p": 0.137,
+   "d_hit": -0.06266666666666666,
+   "changed_share": 0.54,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K03",
+   "parts": "EVW+FLOOR",
+   "universe": "t09",
+   "bets": 2222,
+   "roi": -0.016260126815198457,
+   "roi_lo": -0.05286231391500683,
+   "roi_hi": 0.018017346889785124,
+   "hit_rate": 0.5720017833259028,
+   "avg_odds": 1.7653438341606855,
+   "profit": -36.13000178337097,
+   "d_roi": -0.0037621809573514884,
+   "d_lo": -0.037805970584517574,
+   "d_hi": 0.0300551005990249,
+   "p": 0.83,
+   "d_hit": -0.09911111111111111,
+   "changed_share": 0.5840000000000001,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 21,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K04",
+   "parts": "CAL+REL",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.034946646675527125,
+   "roi_lo": -0.06282917254964893,
+   "roi_hi": -0.007192803451750017,
+   "hit_rate": 0.6715555555555556,
+   "avg_odds": 1.4524722047358845,
+   "profit": -78.5950083732605,
+   "d_roi": 0.008697200054696208,
+   "d_lo": -0.007797533805492184,
+   "d_hi": 0.02574108537452501,
+   "p": 0.318,
+   "d_hit": 0.003111111111111111,
+   "changed_share": 0.1968888888888889,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K04",
+   "parts": "CAL+REL",
+   "universe": "t09",
+   "bets": 1794,
+   "roi": -0.0071828350042685484,
+   "roi_lo": -0.04021481320102857,
+   "roi_hi": 0.024839184808203917,
+   "hit_rate": 0.6745325022261799,
+   "avg_odds": 1.5132569641439677,
+   "profit": -12.886005997657776,
+   "d_roi": 0.00531511085357842,
+   "d_lo": -0.014410092552417673,
+   "d_hi": 0.023852968018346632,
+   "p": 0.613,
+   "d_hit": 0.004,
+   "changed_share": 0.1671111111111111,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K05",
+   "parts": "CAL+EVW",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.03840881209568621,
+   "roi_lo": -0.06653422125447474,
+   "roi_hi": -0.010460872332937252,
+   "hit_rate": 0.6620720320142286,
+   "avg_odds": 1.4688100473842587,
+   "profit": -86.3430095911026,
+   "d_roi": 0.005235034634537124,
+   "d_lo": -0.009871031437752881,
+   "d_hi": 0.01997743042700513,
+   "p": 0.489,
+   "d_hit": -0.006666666666666667,
+   "changed_share": 0.1444444444444445,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K05",
+   "parts": "CAL+EVW",
+   "universe": "t09",
+   "bets": 1723,
+   "roi": -0.009590833254906582,
+   "roi_lo": -0.045620879324542,
+   "roi_hi": 0.026265383313735575,
+   "hit_rate": 0.6562778272484416,
+   "avg_odds": 1.5695658702872481,
+   "profit": -16.52500569820404,
+   "d_roi": 0.0029071126029403867,
+   "d_lo": -0.017493807207623623,
+   "d_hi": 0.024269776865994942,
+   "p": 0.803,
+   "d_hit": -0.014222222222222223,
+   "changed_share": 0.15200000000000002,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K06",
+   "parts": "V6+REL",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.03850311660766602,
+   "roi_lo": -0.0644246611436208,
+   "roi_hi": -0.011807805395126375,
+   "hit_rate": 0.6884444444444444,
+   "avg_odds": 1.403130659368303,
+   "profit": -86.63201236724854,
+   "d_roi": 0.005140730122557315,
+   "d_lo": -0.013645766440058658,
+   "d_hi": 0.024191935638012765,
+   "p": 0.58,
+   "d_hit": 0.02,
+   "changed_share": 0.22311111111111115,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K06",
+   "parts": "V6+REL",
+   "universe": "t09",
+   "bets": 1787,
+   "roi": -0.010356466998317486,
+   "roi_lo": -0.04027481406267944,
+   "roi_hi": 0.019310721837704048,
+   "hit_rate": 0.6955555555555556,
+   "avg_odds": 1.4331656368871475,
+   "profit": -18.507006525993347,
+   "d_roi": 0.002141478859529483,
+   "d_lo": -0.024880043161388646,
+   "d_hi": 0.030287496278459575,
+   "p": 0.87,
+   "d_hit": 0.026222222222222223,
+   "changed_share": 0.28800000000000003,
+   "months_better": 1,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K07",
+   "parts": "V6+EVW",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.04247822788026598,
+   "roi_lo": -0.06829226102828978,
+   "roi_hi": -0.015174272833930141,
+   "hit_rate": 0.6808888888888889,
+   "avg_odds": 1.4149488810433282,
+   "profit": -95.57601273059845,
+   "d_roi": 0.0011656188499573547,
+   "d_lo": -0.012953067370255787,
+   "d_hi": 0.016191213263036845,
+   "p": 0.839,
+   "d_hit": 0.012444444444444444,
+   "changed_share": 0.13911111111111107,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K07",
+   "parts": "V6+EVW",
+   "universe": "t09",
+   "bets": 1555,
+   "roi": 0.0062604467201846205,
+   "roi_lo": -0.025998008715777548,
+   "roi_hi": 0.037977048184485517,
+   "hit_rate": 0.6998666073810582,
+   "avg_odds": 1.4460514433514267,
+   "profit": 9.734994649887085,
+   "d_roi": 0.01875839257803159,
+   "d_lo": -0.004867978797061496,
+   "d_hi": 0.04045423058935978,
+   "p": 0.122,
+   "d_hit": 0.030222222222222223,
+   "changed_share": 0.18088888888888888,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K08",
+   "parts": "C2+REL",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.025757229662089945,
+   "roi_lo": -0.05230057860389304,
+   "roi_hi": 0.0015384492033693959,
+   "hit_rate": 0.692,
+   "avg_odds": 1.414590034393694,
+   "profit": -57.92800951004028,
+   "d_roi": 0.01788661706813339,
+   "d_lo": -0.00904732129838731,
+   "d_hi": 0.046973545672618945,
+   "p": 0.187,
+   "d_hit": 0.023555555555555555,
+   "changed_share": 0.46977777777777774,
+   "months_better": 4,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K08",
+   "parts": "C2+REL",
+   "universe": "t09",
+   "bets": 1867,
+   "roi": 0.004685054313197899,
+   "roi_lo": -0.02695053035002359,
+   "roi_hi": 0.03431694022149046,
+   "hit_rate": 0.6982222222222222,
+   "avg_odds": 1.4606909461371325,
+   "profit": 8.746996402740479,
+   "d_roi": 0.01718300017104487,
+   "d_lo": -0.013919641640382206,
+   "d_hi": 0.0478270643479104,
+   "p": 0.282,
+   "d_hit": 0.028888888888888888,
+   "changed_share": 0.38622222222222224,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K09",
+   "parts": "C2+EVW",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03873677643843363,
+   "roi_lo": -0.06666617790239554,
+   "roi_hi": -0.011836835702101324,
+   "hit_rate": 0.6813333333333333,
+   "avg_odds": 1.4196007051378847,
+   "profit": -87.11901021003723,
+   "d_roi": 0.004907070291789703,
+   "d_lo": -0.023188548726436168,
+   "d_hi": 0.0331373116246746,
+   "p": 0.724,
+   "d_hit": 0.012888888888888889,
+   "changed_share": 0.4257777777777778,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K09",
+   "parts": "C2+EVW",
+   "universe": "t09",
+   "bets": 1753,
+   "roi": -0.00037307659014251934,
+   "roi_lo": -0.0333315484813867,
+   "roi_hi": 0.03266353132005985,
+   "hit_rate": 0.6893333333333334,
+   "avg_odds": 1.484478606337217,
+   "profit": -0.6540032625198364,
+   "d_roi": 0.012124869267704449,
+   "d_lo": -0.019403816728166767,
+   "d_hi": 0.043872029899733336,
+   "p": 0.449,
+   "d_hit": 0.02,
+   "changed_share": 0.3568888888888889,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K10",
+   "parts": "V6+REL+EVW",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03881058697172566,
+   "roi_lo": -0.0662925080981699,
+   "roi_hi": -0.010838198953334257,
+   "hit_rate": 0.6807469986660738,
+   "avg_odds": 1.419791456909909,
+   "profit": -87.28501009941101,
+   "d_roi": 0.004833259758497674,
+   "d_lo": -0.013279604080880879,
+   "d_hi": 0.02373884734158575,
+   "p": 0.569,
+   "d_hit": 0.012,
+   "changed_share": 0.2128888888888889,
+   "months_better": 2,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K10",
+   "parts": "V6+REL+EVW",
+   "universe": "t09",
+   "bets": 1668,
+   "roi": -7.194602232185199e-05,
+   "roi_lo": -0.031752035171643336,
+   "roi_hi": 0.032656905337131815,
+   "hit_rate": 0.6966192170818505,
+   "avg_odds": 1.4470557518285527,
+   "profit": -0.12000596523284912,
+   "d_roi": 0.012425999835525116,
+   "d_lo": -0.011310488168467378,
+   "d_hi": 0.036440127237139554,
+   "p": 0.298,
+   "d_hit": 0.02666666666666667,
+   "changed_share": 0.22844444444444445,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K11",
+   "parts": "GOALS+CORNERS",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03792975181046991,
+   "roi_lo": -0.06580415550833778,
+   "roi_hi": -0.009803401351457441,
+   "hit_rate": 0.6724444444444444,
+   "avg_odds": 1.4442934563765264,
+   "profit": -85.30401182174683,
+   "d_roi": 0.005714094919753422,
+   "d_lo": -0.007456989612844255,
+   "d_hi": 0.018582636848085445,
+   "p": 0.377,
+   "d_hit": 0.004,
+   "changed_share": 0.11244444444444446,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K11",
+   "parts": "GOALS+CORNERS",
+   "universe": "t09",
+   "bets": 1705,
+   "roi": -0.0013442843540672682,
+   "roi_lo": -0.033993258334636636,
+   "roi_hi": 0.030767955972659505,
+   "hit_rate": 0.6764574988874055,
+   "avg_odds": 1.508920817850622,
+   "profit": -2.2920048236846924,
+   "d_roi": 0.0111536615037797,
+   "d_lo": -0.009316230654443956,
+   "d_hi": 0.030534287410411982,
+   "p": 0.296,
+   "d_hit": 0.006222222222222222,
+   "changed_share": 0.19866666666666666,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  },
+  {
+   "id": "K12",
+   "parts": "GOALS+CORNERS+REL+EVW",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.02160516056605263,
+   "roi_lo": -0.05031426597466509,
+   "roi_hi": 0.0074211828321178635,
+   "hit_rate": 0.6728888888888889,
+   "avg_odds": 1.4700600224211249,
+   "profit": -48.59000611305237,
+   "d_roi": 0.022038686164170703,
+   "d_lo": 0.002218783029638155,
+   "d_hi": 0.04239993050697909,
+   "p": 0.033,
+   "d_hit": 0.0044444444444444444,
+   "changed_share": 0.2751111111111111,
+   "months_better": 4,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 0.363,
+   "p_holm_joint": 0.759
+  },
+  {
+   "id": "K12",
+   "parts": "GOALS+CORNERS+REL+EVW",
+   "universe": "t09",
+   "bets": 1789,
+   "roi": -0.0005438830214149129,
+   "roi_lo": -0.035286944764947176,
+   "roi_hi": 0.03577913206752642,
+   "hit_rate": 0.6645879732739421,
+   "avg_odds": 1.5653012814369862,
+   "profit": -0.9730067253112793,
+   "d_roi": 0.011954062836432055,
+   "d_lo": -0.014356472964930811,
+   "d_hi": 0.0380356289934053,
+   "p": 0.386,
+   "d_hit": -0.006222222222222222,
+   "changed_share": 0.32177777777777783,
+   "months_better": 3,
+   "months_n": 4,
+   "not_bet_fallback": 0,
+   "role": "combination",
+   "p_holm": 1.0,
+   "p_holm_joint": 1.0
+  }
+ ],
+ "keeps_gains": [
+  {
+   "id": "K01",
+   "parts": "REL+EVW",
+   "close": {
+    "d_roi": 0.023537574687922145,
+    "parts_d_roi": {
+     "REL": 0.014750556926718814,
+     "EVW": 0.007656737188065303
+    },
+    "best_part": "REL",
+    "sum_parts": 0.022407294114784117,
+    "vs_best_part": {
+     "diff": 0.00878701776120333,
+     "ci95": [
+      -0.003802267186264121,
+      0.02222069033914142
+     ],
+     "p": 0.185
+    },
+    "same_main_as_best_part": 0.8915555555555555
+   },
+   "t09": {
+    "d_roi": 0.004741381838400439,
+    "parts_d_roi": {
+     "REL": 0.006750024659753454,
+     "EVW": 0.007373956596255134
+    },
+    "best_part": "EVW",
+    "sum_parts": 0.014123981256008588,
+    "vs_best_part": {
+     "diff": -0.002632574757854695,
+     "ci95": [
+      -0.020318454293119338,
+      0.01467516720753831
+     ],
+     "p": 0.777
+    },
+    "same_main_as_best_part": 0.8604444444444445
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K02",
+   "parts": "REL+FLOOR",
+   "close": {
+    "d_roi": 0.024449896657497014,
+    "parts_d_roi": {
+     "REL": 0.014750556926718814,
+     "FLOOR": 0.026929434024469286
+    },
+    "best_part": "FLOOR",
+    "sum_parts": 0.0416799909511881,
+    "vs_best_part": {
+     "diff": -0.0024795373669722724,
+     "ci95": [
+      -0.018092986473811162,
+      0.013486415802398854
+     ],
+     "p": 0.747
+    },
+    "same_main_as_best_part": 0.8826666666666667
+   },
+   "t09": {
+    "d_roi": -0.01298428566281567,
+    "parts_d_roi": {
+     "REL": 0.006750024659753454,
+     "FLOOR": -0.013369800461411186
+    },
+    "best_part": "REL",
+    "sum_parts": -0.006619775801657732,
+    "vs_best_part": {
+     "diff": -0.019734310322569126,
+     "ci95": [
+      -0.04971497203239398,
+      0.011728794756709392
+     ],
+     "p": 0.218
+    },
+    "same_main_as_best_part": 0.46044444444444443
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K03",
+   "parts": "EVW+FLOOR",
+   "close": {
+    "d_roi": 0.021763063828194696,
+    "parts_d_roi": {
+     "EVW": 0.007656737188065303,
+     "FLOOR": 0.026929434024469286
+    },
+    "best_part": "FLOOR",
+    "sum_parts": 0.034586171212534586,
+    "vs_best_part": {
+     "diff": -0.00516637019627459,
+     "ci95": [
+      -0.020725987364907637,
+      0.01088945012652809
+     ],
+     "p": 0.514
+    },
+    "same_main_as_best_part": 0.8875555555555555
+   },
+   "t09": {
+    "d_roi": -0.0037621809573514884,
+    "parts_d_roi": {
+     "EVW": 0.007373956596255134,
+     "FLOOR": -0.013369800461411186
+    },
+    "best_part": "EVW",
+    "sum_parts": -0.0059958438651560525,
+    "vs_best_part": {
+     "diff": -0.011136137553606623,
+     "ci95": [
+      -0.04153884328950745,
+      0.018364203633595925
+     ],
+     "p": 0.459
+    },
+    "same_main_as_best_part": 0.4871111111111111
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K04",
+   "parts": "CAL+REL",
+   "close": {
+    "d_roi": 0.008697200054696208,
+    "parts_d_roi": {
+     "CAL": 0.0003392619522691806,
+     "REL": 0.014750556926718814
+    },
+    "best_part": "REL",
+    "sum_parts": 0.015089818878987995,
+    "vs_best_part": {
+     "diff": -0.006053356872022606,
+     "ci95": [
+      -0.013399572649619175,
+      0.0012678935343360103
+     ],
+     "p": 0.109
+    },
+    "same_main_as_best_part": 0.9608888888888889
+   },
+   "t09": {
+    "d_roi": 0.00531511085357842,
+    "parts_d_roi": {
+     "CAL": 0.0008281309197650834,
+     "REL": 0.006750024659753454
+    },
+    "best_part": "REL",
+    "sum_parts": 0.007578155579518538,
+    "vs_best_part": {
+     "diff": -0.0014349138061750342,
+     "ci95": [
+      -0.00936538184800282,
+      0.006811472028862537
+     ],
+     "p": 0.76
+    },
+    "same_main_as_best_part": 0.9693333333333334
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K05",
+   "parts": "CAL+EVW",
+   "close": {
+    "d_roi": 0.005235034634537124,
+    "parts_d_roi": {
+     "CAL": 0.0003392619522691806,
+     "EVW": 0.007656737188065303
+    },
+    "best_part": "EVW",
+    "sum_parts": 0.007995999140334484,
+    "vs_best_part": {
+     "diff": -0.0024217025535281794,
+     "ci95": [
+      -0.00852718505783506,
+      0.0037138842388185073
+     ],
+     "p": 0.444
+    },
+    "same_main_as_best_part": 0.9666666666666667
+   },
+   "t09": {
+    "d_roi": 0.0029071126029403867,
+    "parts_d_roi": {
+     "CAL": 0.0008281309197650834,
+     "EVW": 0.007373956596255134
+    },
+    "best_part": "EVW",
+    "sum_parts": 0.008202087516020216,
+    "vs_best_part": {
+     "diff": -0.004466843993314747,
+     "ci95": [
+      -0.013315639031856109,
+      0.004868776219394544
+     ],
+     "p": 0.317
+    },
+    "same_main_as_best_part": 0.9706666666666667
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K06",
+   "parts": "V6+REL",
+   "close": {
+    "d_roi": 0.005140730122557315,
+    "parts_d_roi": {
+     "V6": -0.000497493313586346,
+     "REL": 0.014750556926718814
+    },
+    "best_part": "REL",
+    "sum_parts": 0.014253063613132468,
+    "vs_best_part": {
+     "diff": -0.0096098268041615,
+     "ci95": [
+      -0.029405578168357496,
+      0.009253163921223715
+     ],
+     "p": 0.338
+    },
+    "same_main_as_best_part": 0.7711111111111111
+   },
+   "t09": {
+    "d_roi": 0.002141478859529483,
+    "parts_d_roi": {
+     "V6": 0.014739740787606294,
+     "REL": 0.006750024659753454
+    },
+    "best_part": "V6",
+    "sum_parts": 0.021489765447359747,
+    "vs_best_part": {
+     "diff": -0.012598261928076811,
+     "ci95": [
+      -0.03173541636355396,
+      0.007392208929475911
+     ],
+     "p": 0.209
+    },
+    "same_main_as_best_part": 0.8102222222222222
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K07",
+   "parts": "V6+EVW",
+   "close": {
+    "d_roi": 0.0011656188499573547,
+    "parts_d_roi": {
+     "V6": -0.000497493313586346,
+     "EVW": 0.007656737188065303
+    },
+    "best_part": "EVW",
+    "sum_parts": 0.007159243874478957,
+    "vs_best_part": {
+     "diff": -0.0064911183381079485,
+     "ci95": [
+      -0.025904969545806428,
+      0.014440817379879588
+     ],
+     "p": 0.553
+    },
+    "same_main_as_best_part": 0.7528888888888889
+   },
+   "t09": {
+    "d_roi": 0.01875839257803159,
+    "parts_d_roi": {
+     "V6": 0.014739740787606294,
+     "EVW": 0.007373956596255134
+    },
+    "best_part": "V6",
+    "sum_parts": 0.022113697383861427,
+    "vs_best_part": {
+     "diff": 0.0040186517904252945,
+     "ci95": [
+      -0.013083122538495431,
+      0.020226985396427442
+     ],
+     "p": 0.65
+    },
+    "same_main_as_best_part": 0.8911111111111111
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K08",
+   "parts": "C2+REL",
+   "close": {
+    "d_roi": 0.01788661706813339,
+    "parts_d_roi": {
+     "C2": 0.007010670119574354,
+     "REL": 0.014750556926718814
+    },
+    "best_part": "REL",
+    "sum_parts": 0.021761227046293168,
+    "vs_best_part": {
+     "diff": 0.003136060141414574,
+     "ci95": [
+      -0.02245598339146113,
+      0.030350275356754414
+     ],
+     "p": 0.811
+    },
+    "same_main_as_best_part": 0.5906666666666667
+   },
+   "t09": {
+    "d_roi": 0.01718300017104487,
+    "parts_d_roi": {
+     "C2": 0.008379058423613391,
+     "REL": 0.006750024659753454
+    },
+    "best_part": "C2",
+    "sum_parts": 0.015129083083366846,
+    "vs_best_part": {
+     "diff": 0.008803941747431477,
+     "ci95": [
+      -0.00898635835191794,
+      0.02714520446885495
+     ],
+     "p": 0.355
+    },
+    "same_main_as_best_part": 0.8346666666666667
+   },
+   "keeps_gains_both": true,
+   "additive_both": false
+  },
+  {
+   "id": "K09",
+   "parts": "C2+EVW",
+   "close": {
+    "d_roi": 0.004907070291789703,
+    "parts_d_roi": {
+     "C2": 0.007010670119574354,
+     "EVW": 0.007656737188065303
+    },
+    "best_part": "EVW",
+    "sum_parts": 0.014667407307639657,
+    "vs_best_part": {
+     "diff": -0.0027496668962756,
+     "ci95": [
+      -0.029804977317651107,
+      0.02531042936910938
+     ],
+     "p": 0.847
+    },
+    "same_main_as_best_part": 0.5751111111111111
+   },
+   "t09": {
+    "d_roi": 0.012124869267704449,
+    "parts_d_roi": {
+     "C2": 0.008379058423613391,
+     "EVW": 0.007373956596255134
+    },
+    "best_part": "C2",
+    "sum_parts": 0.015753015019868526,
+    "vs_best_part": {
+     "diff": 0.0037458108440910584,
+     "ci95": [
+      -0.012935275039760566,
+      0.019777287398959422
+     ],
+     "p": 0.654
+    },
+    "same_main_as_best_part": 0.8915555555555555
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K10",
+   "parts": "V6+REL+EVW",
+   "close": {
+    "d_roi": 0.004833259758497674,
+    "parts_d_roi": {
+     "V6": -0.000497493313586346,
+     "REL": 0.014750556926718814,
+     "EVW": 0.007656737188065303
+    },
+    "best_part": "REL",
+    "sum_parts": 0.02190980080119777,
+    "vs_best_part": {
+     "diff": -0.00991729716822114,
+     "ci95": [
+      -0.02546999165008321,
+      0.005075574504242293
+     ],
+     "p": 0.204
+    },
+    "same_main_as_best_part": 0.8555555555555555
+   },
+   "t09": {
+    "d_roi": 0.012425999835525116,
+    "parts_d_roi": {
+     "V6": 0.014739740787606294,
+     "REL": 0.006750024659753454,
+     "EVW": 0.007373956596255134
+    },
+    "best_part": "V6",
+    "sum_parts": 0.028863722043614884,
+    "vs_best_part": {
+     "diff": -0.0023137409520811777,
+     "ci95": [
+      -0.024931972507101673,
+      0.020297549266693155
+     ],
+     "p": 0.827
+    },
+    "same_main_as_best_part": 0.7764444444444445
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K11",
+   "parts": "GOALS+CORNERS",
+   "close": {
+    "d_roi": 0.005714094919753422,
+    "parts_d_roi": {
+     "GOALS": 0.005924855194498875,
+     "CORNERS": 9.159625186131587e-05
+    },
+    "best_part": "GOALS",
+    "sum_parts": 0.006016451446360191,
+    "vs_best_part": {
+     "diff": -0.0002107602747454529,
+     "ci95": [
+      -0.004046945680608955,
+      0.0037142063893970726
+     ],
+     "p": 0.882
+    },
+    "same_main_as_best_part": 0.9906666666666667
+   },
+   "t09": {
+    "d_roi": 0.0111536615037797,
+    "parts_d_roi": {
+     "GOALS": 0.005940966343015248,
+     "CORNERS": 0.0012200002282511044
+    },
+    "best_part": "GOALS",
+    "sum_parts": 0.007160966571266352,
+    "vs_best_part": {
+     "diff": 0.005212695160764453,
+     "ci95": [
+      -0.004312950212608021,
+      0.01481225342291867
+     ],
+     "p": 0.312
+    },
+    "same_main_as_best_part": 0.9586666666666667
+   },
+   "keeps_gains_both": false,
+   "additive_both": false
+  },
+  {
+   "id": "K12",
+   "parts": "GOALS+CORNERS+REL+EVW",
+   "close": {
+    "d_roi": 0.022038686164170703,
+    "parts_d_roi": {
+     "GOALS": 0.005924855194498875,
+     "CORNERS": 9.159625186131587e-05,
+     "REL": 0.014750556926718814,
+     "EVW": 0.007656737188065303
+    },
+    "best_part": "REL",
+    "sum_parts": 0.02842374556114431,
+    "vs_best_part": {
+     "diff": 0.007288129237451889,
+     "ci95": [
+      -0.009404444883248516,
+      0.02372056562809019
+     ],
+     "p": 0.417
+    },
+    "same_main_as_best_part": 0.8275555555555556
+   },
+   "t09": {
+    "d_roi": 0.011954062836432055,
+    "parts_d_roi": {
+     "GOALS": 0.005940966343015248,
+     "CORNERS": 0.0012200002282511044,
+     "REL": 0.006750024659753454,
+     "EVW": 0.007373956596255134
+    },
+    "best_part": "EVW",
+    "sum_parts": 0.02128494782727494,
+    "vs_best_part": {
+     "diff": 0.004580106240176922,
+     "ci95": [
+      -0.019028613894907752,
+      0.02674906274894385
+     ],
+     "p": 0.696
+    },
+    "same_main_as_best_part": 0.7351111111111112
+   },
+   "keeps_gains_both": true,
+   "additive_both": false
+  }
+ ],
+ "evidence_rank": [
+  {
+   "id": "K01",
+   "parts": "REL+EVW",
+   "d_close": 0.023537574687922145,
+   "d_t09": 0.004741381838400439,
+   "p_holm_close": 0.28800000000000003,
+   "p_close": 0.024,
+   "p_t09": 0.705
+  },
+  {
+   "id": "K12",
+   "parts": "GOALS+CORNERS+REL+EVW",
+   "d_close": 0.022038686164170703,
+   "d_t09": 0.011954062836432055,
+   "p_holm_close": 0.363,
+   "p_close": 0.033,
+   "p_t09": 0.386
+  },
+  {
+   "id": "K08",
+   "parts": "C2+REL",
+   "d_close": 0.01788661706813339,
+   "d_t09": 0.01718300017104487,
+   "p_holm_close": 1.0,
+   "p_close": 0.187,
+   "p_t09": 0.282
+  },
+  {
+   "id": "K11",
+   "parts": "GOALS+CORNERS",
+   "d_close": 0.005714094919753422,
+   "d_t09": 0.0111536615037797,
+   "p_holm_close": 1.0,
+   "p_close": 0.377,
+   "p_t09": 0.296
+  },
+  {
+   "id": "K10",
+   "parts": "V6+REL+EVW",
+   "d_close": 0.004833259758497674,
+   "d_t09": 0.012425999835525116,
+   "p_holm_close": 1.0,
+   "p_close": 0.569,
+   "p_t09": 0.298
+  },
+  {
+   "id": "K04",
+   "parts": "CAL+REL",
+   "d_close": 0.008697200054696208,
+   "d_t09": 0.00531511085357842,
+   "p_holm_close": 1.0,
+   "p_close": 0.318,
+   "p_t09": 0.613
+  },
+  {
+   "id": "K09",
+   "parts": "C2+EVW",
+   "d_close": 0.004907070291789703,
+   "d_t09": 0.012124869267704449,
+   "p_holm_close": 1.0,
+   "p_close": 0.724,
+   "p_t09": 0.449
+  },
+  {
+   "id": "K05",
+   "parts": "CAL+EVW",
+   "d_close": 0.005235034634537124,
+   "d_t09": 0.0029071126029403867,
+   "p_holm_close": 1.0,
+   "p_close": 0.489,
+   "p_t09": 0.803
+  },
+  {
+   "id": "K07",
+   "parts": "V6+EVW",
+   "d_close": 0.0011656188499573547,
+   "d_t09": 0.01875839257803159,
+   "p_holm_close": 1.0,
+   "p_close": 0.839,
+   "p_t09": 0.122
+  },
+  {
+   "id": "K06",
+   "parts": "V6+REL",
+   "d_close": 0.005140730122557315,
+   "d_t09": 0.002141478859529483,
+   "p_holm_close": 1.0,
+   "p_close": 0.58,
+   "p_t09": 0.87
+  }
+ ],
+ "best_by_evidence": "K01",
+ "details": {
+  "S_REL": {
+   "parts": [
+    "REL"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1523,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6768888888888889,
+     "profit": -64.98100876808167,
+     "roi": -0.02889328980350452,
+     "avg_odds": 1.4497389899406925,
+     "avg_probability": 0.7300665185716417,
+     "neg_ev_share": 0.2863494886616274,
+     "mean_ev": 0.05447336423932466
+    },
+    "roi_ci": {
+     "roi": -0.02889328980350452,
+     "ci95": [
+      -0.05636037030617396,
+      -0.0007092855251222476
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.014750556926718814,
+      "ci95": [
+       -0.0010452756534122657,
+       0.030651665459957317
+      ],
+      "p": 0.069
+     },
+     "hit_rate_diff": {
+      "diff": 0.008444444444444444,
+      "ci95": [
+       -0.0026666666666666666,
+       0.01911111111111111
+      ],
+      "p": 0.142,
+      "n": 2250
+     },
+     "same_main_share": 0.828
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.015468842459162642,
+      "ci95": [
+       -0.005985207130423389,
+       0.03794482856179521
+      ],
+      "p": 0.154
+     },
+     "hit_rate_diff": {
+      "diff": 0.015124555160142349,
+      "ci95": [
+       0.00044483985765124553,
+       0.030249110320284697
+      ],
+      "p": 0.047,
+      "n": 2248
+     },
+     "same_main_share": 0.6890569395017794
+    },
+    "changed_share": 0.17200000000000004,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 1068,
+     "TOTAL": 997,
+     "1X2": 102,
+     "DOUBLE_CHANCE": 37,
+     "CORNERS": 35,
+     "BTTS": 10
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.04885532109291999,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.02645421399301661
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.030692429072929153,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.01089091138406233
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.022958006289374486,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.016223096941399763
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": -0.001975087084379909,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.002918148380157362
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.0320124538170597,
+    "roi_odds_minus_2pct": -0.048315424007434445
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2247,
+     "won": 1521,
+     "push": 3,
+     "bets": 1801,
+     "priced_share": 0.8017777777777778,
+     "hit_rate": 0.6769025367156208,
+     "profit": -10.352006077766418,
+     "roi": -0.005747921198093514,
+     "avg_odds": 1.5098861706117865,
+     "avg_probability": 0.693026725310562,
+     "neg_ev_share": 0.4486396446418656,
+     "mean_ev": 0.02749668658355996
+    },
+    "roi_ci": {
+     "roi": -0.005747921198093514,
+     "ci95": [
+      -0.03821710873095921,
+      0.026258778733614534
+     ],
+     "bets": 1801
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.006750024659753454,
+      "ci95": [
+       -0.01195740702481241,
+       0.02498816552146243
+      ],
+      "p": 0.509
+     },
+     "hit_rate_diff": {
+      "diff": 0.006666666666666667,
+      "ci95": [
+       -0.004455555555555536,
+       0.017777777777777778
+      ],
+      "p": 0.274,
+      "n": 2250
+     },
+     "same_main_share": 0.8364444444444444
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.03830221488803221,
+      "ci95": [
+       0.005869769202511428,
+       0.07308874763854513
+      ],
+      "p": 0.019
+     },
+     "hit_rate_diff": {
+      "diff": 0.013790035587188613,
+      "ci95": [
+       -0.004893238434163701,
+       0.035142348754448396
+      ],
+      "p": 0.16,
+      "n": 2248
+     },
+     "same_main_share": 0.4314946619217082
+    },
+    "changed_share": 0.16355555555555557,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 775,
+     "HANDICAP": 493,
+     "1X2": 233,
+     "CORNERS": 191,
+     "DOUBLE_CHANCE": 101,
+     "BTTS": 8
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 421,
+      "roi": 0.02986934915574316,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.013526351290242423
+     },
+     {
+      "month": "2026-09",
+      "bets": 479,
+      "roi": -0.000592907684581016,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.01036845884475761
+     },
+     {
+      "month": "2026-10",
+      "bets": 625,
+      "roi": -0.03877600002288818,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.01456235912616928
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.005768118561178014,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.005800844762322146
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.009201558082385701,
+    "roi_odds_minus_2pct": -0.02563296277413163
+   }
+  },
+  "S_EVW": {
+   "parts": [
+    "EVW"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1495,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6644444444444444,
+     "profit": -80.93500936031342,
+     "roi": -0.03598710954215803,
+     "avg_odds": 1.4675108879181797,
+     "avg_probability": 0.7248945040967729,
+     "neg_ev_share": 0.28145842596709647,
+     "mean_ev": 0.05853224274869516
+    },
+    "roi_ci": {
+     "roi": -0.03598710954215803,
+     "ci95": [
+      -0.0650593190656444,
+      -0.007844553297099035
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.007656737188065303,
+      "ci95": [
+       -0.007263210330993681,
+       0.022024799335342286
+      ],
+      "p": 0.314
+     },
+     "hit_rate_diff": {
+      "diff": -0.004,
+      "ci95": [
+       -0.014222222222222223,
+       0.0057777777777777775
+      ],
+      "p": 0.427,
+      "n": 2250
+     },
+     "same_main_share": 0.872
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.008368708684248646,
+      "ci95": [
+       -0.012944340784353534,
+       0.030026281581727304
+      ],
+      "p": 0.41
+     },
+     "hit_rate_diff": {
+      "diff": 0.0026690391459074734,
+      "ci95": [
+       -0.011565836298932384,
+       0.016459074733096084
+      ],
+      "p": 0.699,
+      "n": 2248
+     },
+     "same_main_share": 0.7290925266903915
+    },
+    "changed_share": 0.128,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1170,
+     "HANDICAP": 926,
+     "1X2": 80,
+     "CORNERS": 41,
+     "DOUBLE_CHANCE": 28,
+     "BTTS": 4
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.05477656636919294,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.020532968716743663
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.037604551423679695,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.003978789033311787
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.030467192488392508,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.008713910742381741
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": -0.010647685078115225,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.011590746373892678
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.03929746967254612,
+    "roi_odds_minus_2pct": -0.05526736735131487
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2245,
+     "won": 1474,
+     "push": 5,
+     "bets": 1726,
+     "priced_share": 0.7693333333333333,
+     "hit_rate": 0.6565701559020044,
+     "profit": -8.844005465507507,
+     "roi": -0.005123989261591835,
+     "avg_odds": 1.5709849329425727,
+     "avg_probability": 0.6837996399880517,
+     "neg_ev_share": 0.3551564310544612,
+     "mean_ev": 0.04656389749518858
+    },
+    "roi_ci": {
+     "roi": -0.005123989261591835,
+     "ci95": [
+      -0.04119399119407586,
+      0.030308227560734816
+     ],
+     "bets": 1726
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.007373956596255134,
+      "ci95": [
+       -0.013526626901433043,
+       0.02868251902851535
+      ],
+      "p": 0.515
+     },
+     "hit_rate_diff": {
+      "diff": -0.014222222222222223,
+      "ci95": [
+       -0.024888888888888887,
+       -0.003111111111111111
+      ],
+      "p": 0.013,
+      "n": 2250
+     },
+     "same_main_share": 0.8546666666666667
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.03895052427490292,
+      "ci95": [
+       0.005953955364200416,
+       0.07525299418641644
+      ],
+      "p": 0.024
+     },
+     "hit_rate_diff": {
+      "diff": -0.0071174377224199285,
+      "ci95": [
+       -0.026245551601423486,
+       0.012900355871886121
+      ],
+      "p": 0.511,
+      "n": 2248
+     },
+     "same_main_share": 0.4817615658362989
+    },
+    "changed_share": 0.14533333333333331,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 918,
+     "HANDICAP": 452,
+     "1X2": 175,
+     "CORNERS": 108,
+     "DOUBLE_CHANCE": 71,
+     "BTTS": 2
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 397,
+      "roi": 0.04068009258817966,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.02433709472267892
+     },
+     {
+      "month": "2026-09",
+      "bets": 453,
+      "roi": 0.007377478723757577,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.0023980724364190175
+     },
+     {
+      "month": "2026-10",
+      "bets": 600,
+      "roi": -0.045761667887369795,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.007576691261687668
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": -0.00318478026251862,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.0031520540613744884
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.009573583738276194,
+    "roi_odds_minus_2pct": -0.02502150947635998
+   }
+  },
+  "S_FLOOR": {
+   "parts": [
+    "FLOOR"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2248,
+     "won": 1390,
+     "push": 2,
+     "bets": 2248,
+     "priced_share": 1.0,
+     "hit_rate": 0.6183274021352313,
+     "profit": -37.573999762535095,
+     "roi": -0.016714412705754047,
+     "avg_odds": 1.6072464415081031,
+     "avg_probability": 0.6668650514688144,
+     "neg_ev_share": 0.2580071174377224,
+     "mean_ev": 0.06426697907185328
+    },
+    "roi_ci": {
+     "roi": -0.016714412705754047,
+     "ci95": [
+      -0.04884309250317313,
+      0.016608096264117085
+     ],
+     "bets": 2248
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.026929434024469286,
+      "ci95": [
+       0.0003617268865425516,
+       0.055330494661927396
+      ],
+      "p": 0.047
+     },
+     "hit_rate_diff": {
+      "diff": -0.050666666666666665,
+      "ci95": [
+       -0.068,
+       -0.03198888888888895
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.4951111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.02765894934882676,
+      "ci95": [
+       -0.002390153853913314,
+       0.059574117253457334
+      ],
+      "p": 0.077
+     },
+     "hit_rate_diff": {
+      "diff": -0.04403914590747331,
+      "ci95": [
+       -0.06361209964412812,
+       -0.023565391459074794
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.41725978647686834
+    },
+    "changed_share": 0.5048888888888889,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 978,
+     "HANDICAP": 893,
+     "CORNERS": 171,
+     "1X2": 123,
+     "BTTS": 50,
+     "DOUBLE_CHANCE": 33
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": -0.006389395192510685,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.06892013989342592
+     },
+     {
+      "month": "2026-09",
+      "bets": 659,
+      "roi": -0.01967526440917089,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.021908076047820593
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.02083333474131707,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.01834776848945718
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.018707143834659032,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.019650205130436485
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.020048487387942248,
+    "roi_odds_minus_2pct": -0.03638012445163901
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2244,
+     "won": 1298,
+     "push": 6,
+     "bets": 2223,
+     "priced_share": 0.9982222222222222,
+     "hit_rate": 0.5784313725490197,
+     "profit": -57.50400006771088,
+     "roi": -0.025867746319258155,
+     "avg_odds": 1.7237926231972869,
+     "avg_probability": 0.6043440058508659,
+     "neg_ev_share": 0.42330184435447593,
+     "mean_ev": 0.029269758676772378
+    },
+    "roi_ci": {
+     "roi": -0.025867746319258155,
+     "ci95": [
+      -0.061160934599052065,
+      0.009453169339190024
+     ],
+     "bets": 2223
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": -0.013369800461411186,
+      "ci95": [
+       -0.04510713426514432,
+       0.018901552946350948
+      ],
+      "p": 0.404
+     },
+     "hit_rate_diff": {
+      "diff": -0.09244444444444444,
+      "ci95": [
+       -0.11333333333333333,
+       -0.07155555555555555
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.4431111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.018507228989998202,
+      "ci95": [
+       -0.01780111320376882,
+       0.05805326339040749
+      ],
+      "p": 0.345
+     },
+     "hit_rate_diff": {
+      "diff": -0.0849644128113879,
+      "ci95": [
+       -0.10765124555160142,
+       -0.06094306049822064
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.2326512455516014
+    },
+    "changed_share": 0.5568888888888889,
+    "not_bet_fallback": 21,
+    "groups_bets": {
+     "TOTAL": 1283,
+     "HANDICAP": 374,
+     "1X2": 265,
+     "CORNERS": 239,
+     "DOUBLE_CHANCE": 35,
+     "BTTS": 27
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 541,
+      "roi": 0.06724584146700593,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.050902843601505196
+     },
+     {
+      "month": "2026-09",
+      "bets": 649,
+      "roi": -0.04760554648694713,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.05738109764712372
+     },
+     {
+      "month": "2026-10",
+      "bets": 753,
+      "roi": -0.06982735824458311,
+      "roi_b": -0.05333835914905746,
+      "diff": -0.016488999095525647
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.03717142811843327,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.03713870191728914
+     }
+    ],
+    "months_better": 1,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.02934502927880538,
+    "roi_odds_minus_2pct": -0.04535039139287305
+   }
+  },
+  "S_CAL": {
+   "parts": [
+    "CAL"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1503,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.668,
+     "profit": -97.3920111656189,
+     "roi": -0.04330458477795415,
+     "avg_odds": 1.4456064847905459,
+     "avg_probability": 0.7278722785838591,
+     "neg_ev_share": 0.3370386838594931,
+     "mean_ev": 0.048672285862980544
+    },
+    "roi_ci": {
+     "roi": -0.04330458477795415,
+     "ci95": [
+      -0.07013213028185199,
+      -0.01634905365853376
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.0003392619522691806,
+      "ci95": [
+       -0.00602205409877509,
+       0.006351304147201797
+      ],
+      "p": 0.887
+     },
+     "hit_rate_diff": {
+      "diff": -0.00044444444444444447,
+      "ci95": [
+       -0.0044444444444444444,
+       0.0035555555555555557
+      ],
+      "p": 0.933,
+      "n": 2250
+     },
+     "same_main_share": 0.9724444444444444
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.0010447203418786077,
+      "ci95": [
+       -0.016334245491569217,
+       0.018597922371861565
+      ],
+      "p": 0.887
+     },
+     "hit_rate_diff": {
+      "diff": 0.006227758007117438,
+      "ci95": [
+       -0.005338078291814947,
+       0.01824955516014229
+      ],
+      "p": 0.292,
+      "n": 2248
+     },
+     "same_main_share": 0.8104982206405694
+    },
+    "changed_share": 0.027555555555555555,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1353,
+     "HANDICAP": 761,
+     "1X2": 79,
+     "BTTS": 26,
+     "DOUBLE_CHANCE": 17,
+     "CORNERS": 13
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.06984250209270379,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.005467032993232812
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.038993945988741785,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.0025893944682496978
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.044413386836765316,
+      "roi_b": -0.03918110323077425,
+      "diff": -0.005232283605991067
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.0011423491074097113,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.00019928781163225807
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.04647710578820079,
+    "roi_odds_minus_2pct": -0.06243849308239508
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2246,
+     "won": 1505,
+     "push": 4,
+     "bets": 1696,
+     "priced_share": 0.7555555555555555,
+     "hit_rate": 0.6700801424755121,
+     "profit": -19.792006134986877,
+     "roi": -0.011669814938081885,
+     "avg_odds": 1.5113826615489878,
+     "avg_probability": 0.6922164356602244,
+     "neg_ev_share": 0.45754716981132076,
+     "mean_ev": 0.02575535097719062
+    },
+    "roi_ci": {
+     "roi": -0.011669814938081885,
+     "ci95": [
+      -0.046670998853132674,
+      0.023663282663693202
+     ],
+     "bets": 1696
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.0008281309197650834,
+      "ci95": [
+       -0.006163133151949388,
+       0.007931639888086778
+      ],
+      "p": 0.812
+     },
+     "hit_rate_diff": {
+      "diff": -0.00044444444444444447,
+      "ci95": [
+       -0.0044444444444444444,
+       0.003111111111111111
+      ],
+      "p": 0.939,
+      "n": 2250
+     },
+     "same_main_share": 0.9773333333333334
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.03241104453694657,
+      "ci95": [
+       -0.0006151579197210044,
+       0.06676304552267796
+      ],
+      "p": 0.058
+     },
+     "hit_rate_diff": {
+      "diff": 0.0066725978647686835,
+      "ci95": [
+       -0.011576957295373645,
+       0.026256672597864707
+      ],
+      "p": 0.504,
+      "n": 2248
+     },
+     "same_main_share": 0.4959964412811388
+    },
+    "changed_share": 0.022666666666666613,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 987,
+     "HANDICAP": 356,
+     "1X2": 174,
+     "CORNERS": 90,
+     "DOUBLE_CHANCE": 73,
+     "BTTS": 16
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 376,
+      "roi": 0.01691488414368731,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.0005718862781865716
+     },
+     {
+      "month": "2026-09",
+      "bets": 448,
+      "roi": 0.016761156065123423,
+      "roi_b": 0.009775551160176595,
+      "diff": 0.006985604904946829
+     },
+     {
+      "month": "2026-10",
+      "bets": 597,
+      "roi": -0.05867169290731101,
+      "roi_b": -0.05333835914905746,
+      "diff": -0.005333333758253546
+     },
+     {
+      "month": "2026-11",
+      "bets": 275,
+      "roi": 0.004967273365367543,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.004999999566511675
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.01539622999305995,
+    "roi_odds_minus_2pct": -0.0314364186393203
+   }
+  },
+  "S_V6": {
+   "parts": [
+    "V6"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1543,
+     "push": 0,
+     "bets": 2250,
+     "priced_share": 1.0,
+     "hit_rate": 0.6857777777777778,
+     "profit": -99.31801509857178,
+     "roi": -0.04414134004380968,
+     "avg_odds": 1.401014213403066,
+     "avg_probability": 0.708762995754549,
+     "neg_ev_share": 0.6675555555555556,
+     "mean_ev": -0.009673590262989413
+    },
+    "roi_ci": {
+     "roi": -0.04414134004380968,
+     "ci95": [
+      -0.07067784009509617,
+      -0.015787140553527416
+     ],
+     "bets": 2250
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": -0.000497493313586346,
+      "ci95": [
+       -0.018445554274203114,
+       0.01875643468715475
+      ],
+      "p": 0.995
+     },
+     "hit_rate_diff": {
+      "diff": 0.017333333333333333,
+      "ci95": [
+       0.005333333333333333,
+       0.029777777777777778
+      ],
+      "p": 0.01,
+      "n": 2250
+     },
+     "same_main_share": 0.78
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.0002068418367742325,
+      "ci95": [
+       -0.022091425002211337,
+       0.023851437283943334
+      ],
+      "p": 0.973
+     },
+     "hit_rate_diff": {
+      "diff": 0.02402135231316726,
+      "ci95": [
+       0.009341637010676156,
+       0.0400355871886121
+      ],
+      "p": 0.001,
+      "n": 2248
+     },
+     "same_main_share": 0.6543594306049823
+    },
+    "changed_share": 0.21999999999999997,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1622,
+     "HANDICAP": 528,
+     "1X2": 76,
+     "DOUBLE_CHANCE": 12,
+     "CORNERS": 7,
+     "BTTS": 5
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": -0.08668922789571926,
+      "roi_b": -0.0753095350859366,
+      "diff": -0.011379692809782654
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.03619243412306814,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.005390906333923341
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.04430708766296467,
+      "roi_b": -0.03918110323077425,
+      "diff": -0.0051259844321904224
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.020462633027724948,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.019519571731947495
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.046185784551832414,
+    "roi_odds_minus_2pct": -0.06325851324293351
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1578,
+     "push": 0,
+     "bets": 1646,
+     "priced_share": 0.7315555555555555,
+     "hit_rate": 0.7013333333333334,
+     "profit": 3.68999445438385,
+     "roi": 0.0022417949297593256,
+     "avg_odds": 1.4347509082728138,
+     "avg_probability": 0.6901555631262062,
+     "neg_ev_share": 0.7879708383961118,
+     "mean_ev": -0.028571576113021732
+    },
+    "roi_ci": {
+     "roi": 0.0022417949297593256,
+     "ci95": [
+      -0.029114732262362965,
+      0.0331687073191664
+     ],
+     "bets": 1646
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.014739740787606294,
+      "ci95": [
+       -0.012344704110302043,
+       0.04065260514486593
+      ],
+      "p": 0.256
+     },
+     "hit_rate_diff": {
+      "diff": 0.032,
+      "ci95": [
+       0.016444444444444446,
+       0.04622222222222222
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.7608888888888888
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.04634883427871667,
+      "ci95": [
+       0.011493699987457015,
+       0.08259591493769558
+      ],
+      "p": 0.007
+     },
+     "hit_rate_diff": {
+      "diff": 0.03914590747330961,
+      "ci95": [
+       0.018683274021352312,
+       0.06094306049822064
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.43016014234875444
+    },
+    "changed_share": 0.23911111111111116,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1081,
+     "HANDICAP": 225,
+     "1X2": 189,
+     "CORNERS": 82,
+     "DOUBLE_CHANCE": 64,
+     "BTTS": 5
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 364,
+      "roi": 0.008376362559559581,
+      "roi_b": 0.01634299786550074,
+      "diff": -0.007966635305941158
+     },
+     {
+      "month": "2026-09",
+      "bets": 425,
+      "roi": -0.002590592608732336,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.012366143768908931
+     },
+     {
+      "month": "2026-10",
+      "bets": 581,
+      "roi": -0.011430292244417122,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.04190806690464034
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.030373188896455627,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.03040591509759976
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.0009356046939678355,
+    "roi_odds_minus_2pct": -0.017803040968835882
+   }
+  },
+  "S_C2": {
+   "parts": [
+    "C2"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1546,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6871111111111111,
+     "profit": -82.38801419734955,
+     "roi": -0.03663317661064898,
+     "avg_odds": 1.4083481461485527,
+     "avg_probability": 0.7084145573006302,
+     "neg_ev_share": 0.6860827034237439,
+     "mean_ev": -0.0048105539563308335
+    },
+    "roi_ci": {
+     "roi": -0.03663317661064898,
+     "ci95": [
+      -0.06332067823530003,
+      -0.008975785445194642
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.007010670119574354,
+      "ci95": [
+       -0.01775700555729099,
+       0.033538949529208016
+      ],
+      "p": 0.595
+     },
+     "hit_rate_diff": {
+      "diff": 0.018666666666666668,
+      "ci95": [
+       0.0017777777777777779,
+       0.0364555555555555
+      ],
+      "p": 0.033,
+      "n": 2250
+     },
+     "same_main_share": 0.6457777777777778
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.007722066567187616,
+      "ci95": [
+       -0.02080880763375872,
+       0.0374173531224136
+      ],
+      "p": 0.578
+     },
+     "hit_rate_diff": {
+      "diff": 0.025355871886120998,
+      "ci95": [
+       0.00577179715302493,
+       0.045373665480427046
+      ],
+      "p": 0.009,
+      "n": 2248
+     },
+     "same_main_share": 0.556049822064057
+    },
+    "changed_share": 0.3542222222222222,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1450,
+     "HANDICAP": 492,
+     "1X2": 153,
+     "BTTS": 95,
+     "DOUBLE_CHANCE": 48,
+     "CORNERS": 11
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.0753095350859366,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.0
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.03321364702600421,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.008369693430987271
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.04408399076286576,
+      "roi_b": -0.03918110323077425,
+      "diff": -0.004902887532091511
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.050690391309744946,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.04974733001396749
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.03977679596735987,
+    "roi_odds_minus_2pct": -0.055900513078436014
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1561,
+     "push": 0,
+     "bets": 1758,
+     "priced_share": 0.7813333333333333,
+     "hit_rate": 0.6937777777777778,
+     "profit": -7.241004109382629,
+     "roi": -0.004118887434233578,
+     "avg_odds": 1.4585415225929503,
+     "avg_probability": 0.6986924894832086,
+     "neg_ev_share": 0.5437997724687145,
+     "mean_ev": 0.004975372803852418
+    },
+    "roi_ci": {
+     "roi": -0.004118887434233578,
+     "ci95": [
+      -0.035407900090111355,
+      0.02716433914629385
+     ],
+     "bets": 1758
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.008379058423613391,
+      "ci95": [
+       -0.0209565130594423,
+       0.03795526087386626
+      ],
+      "p": 0.57
+     },
+     "hit_rate_diff": {
+      "diff": 0.024444444444444446,
+      "ci95": [
+       0.007544444444444464,
+       0.04133333333333333
+      ],
+      "p": 0.006,
+      "n": 2250
+     },
+     "same_main_share": 0.6777777777777778
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.039378886385891085,
+      "ci95": [
+       0.0009450083642253056,
+       0.07836505506108946
+      ],
+      "p": 0.046
+     },
+     "hit_rate_diff": {
+      "diff": 0.03113879003558719,
+      "ci95": [
+       0.008896797153024912,
+       0.0547153024911032
+      ],
+      "p": 0.007,
+      "n": 2248
+     },
+     "same_main_share": 0.34786476868327404
+    },
+    "changed_share": 0.3222222222222222,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1084,
+     "HANDICAP": 304,
+     "1X2": 193,
+     "CORNERS": 125,
+     "DOUBLE_CHANCE": 51,
+     "BTTS": 1
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 379,
+      "roi": 0.01634299786550074,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.0
+     },
+     {
+      "month": "2026-09",
+      "bets": 488,
+      "roi": -0.020391395590344412,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.030166946750521006
+     },
+     {
+      "month": "2026-10",
+      "bets": 615,
+      "roi": -0.023656909640242415,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.029681449508815048
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.04009058034938315,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.04012330655052728
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.007275883994140452,
+    "roi_odds_minus_2pct": -0.024036509685548945
+   }
+  },
+  "S_GOALS": {
+   "parts": [
+    "GOALS"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1514,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6728888888888889,
+     "profit": -84.8300119638443,
+     "roi": -0.03771899153572446,
+     "avg_odds": 1.44350199351686,
+     "avg_probability": 0.7242598947154151,
+     "neg_ev_share": 0.3614939973321476,
+     "mean_ev": 0.041884708122014044
+    },
+    "roi_ci": {
+     "roi": -0.03771899153572446,
+     "ci95": [
+      -0.0657011083267787,
+      -0.008978461851161546
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.005924855194498875,
+      "ci95": [
+       -0.006807921390206551,
+       0.018635880392087478
+      ],
+      "p": 0.348
+     },
+     "hit_rate_diff": {
+      "diff": 0.0044444444444444444,
+      "ci95": [
+       -0.0044444444444444444,
+       0.013333333333333334
+      ],
+      "p": 0.334,
+      "n": 2250
+     },
+     "same_main_share": 0.8906666666666667
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.006635285184679943,
+      "ci95": [
+       -0.012909151044207654,
+       0.027689868674846654
+      ],
+      "p": 0.513
+     },
+     "hit_rate_diff": {
+      "diff": 0.01112099644128114,
+      "ci95": [
+       -0.002224199288256228,
+       0.02491103202846975
+      ],
+      "p": 0.116,
+      "n": 2248
+     },
+     "same_main_share": 0.7419928825622776
+    },
+    "changed_share": 0.10933333333333328,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1390,
+     "HANDICAP": 730,
+     "1X2": 79,
+     "DOUBLE_CHANCE": 21,
+     "CORNERS": 19,
+     "BTTS": 10
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.06028023132911095,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.015029303756825652
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.035818189201932964,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.005765151255058519
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.04983595928807897,
+      "roi_b": -0.03918110323077425,
+      "diff": -0.01065485605730472
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.034512456201573706,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.03356939490579625
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.040891512545971086,
+    "roi_odds_minus_2pct": -0.056964611705009965
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2247,
+     "won": 1511,
+     "push": 3,
+     "bets": 1720,
+     "priced_share": 0.7657777777777778,
+     "hit_rate": 0.6724521584334668,
+     "profit": -11.278004765510559,
+     "roi": -0.006556979514831721,
+     "avg_odds": 1.509273252722829,
+     "avg_probability": 0.6896277558660316,
+     "neg_ev_share": 0.4686046511627907,
+     "mean_ev": 0.02151787029097263
+    },
+    "roi_ci": {
+     "roi": -0.006556979514831721,
+     "ci95": [
+      -0.041157593365533575,
+      0.025448184998756358
+     ],
+     "bets": 1720
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.005940966343015248,
+      "ci95": [
+       -0.013289956348007207,
+       0.02400675516691727
+      ],
+      "p": 0.546
+     },
+     "hit_rate_diff": {
+      "diff": 0.0022222222222222222,
+      "ci95": [
+       -0.010666666666666666,
+       0.014666666666666666
+      ],
+      "p": 0.798,
+      "n": 2250
+     },
+     "same_main_share": 0.8293333333333334
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.037518713456244177,
+      "ci95": [
+       0.003036710452047045,
+       0.07351946282528443
+      ],
+      "p": 0.037
+     },
+     "hit_rate_diff": {
+      "diff": 0.009341637010676156,
+      "ci95": [
+       -0.010676156583629894,
+       0.029815391459074674
+      ],
+      "p": 0.37,
+      "n": 2248
+     },
+     "same_main_share": 0.4666370106761566
+    },
+    "changed_share": 0.17066666666666663,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 981,
+     "HANDICAP": 363,
+     "1X2": 186,
+     "CORNERS": 113,
+     "DOUBLE_CHANCE": 71,
+     "BTTS": 6
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 392,
+      "roi": 0.01697958154337747,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.00063658367787673
+     },
+     {
+      "month": "2026-09",
+      "bets": 457,
+      "roi": -0.013501097910774616,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.02327664907095121
+     },
+     {
+      "month": "2026-10",
+      "bets": 595,
+      "roi": -0.03474453737755784,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.018593821771499625
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.032278988240421684,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.03231171444156582
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.010481398119482883,
+    "roi_odds_minus_2pct": -0.02642583992453512
+   }
+  },
+  "S_CORNERS": {
+   "parts": [
+    "CORNERS"
+   ],
+   "role": "single part (reproduces the owning study; needed to judge whether a combination keeps the gains of its parts)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1504,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6684444444444444,
+     "profit": -97.94901132583618,
+     "roi": -0.04355225047836202,
+     "avg_odds": 1.4442378765426778,
+     "avg_probability": 0.7252719371312764,
+     "neg_ev_share": 0.3597154290795909,
+     "mean_ev": 0.043872357311700326
+    },
+    "roi_ci": {
+     "roi": -0.04355225047836202,
+     "ci95": [
+      -0.0709973690788069,
+      -0.016741909638206307
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 9.159625186131587e-05,
+      "ci95": [
+       -0.0032611445493168265,
+       0.003398649016454233
+      ],
+      "p": 0.955
+     },
+     "hit_rate_diff": {
+      "diff": 0.0,
+      "ci95": [
+       -0.0022222222222222222,
+       0.0022222222222222222
+      ],
+      "p": 1.0,
+      "n": 2250
+     },
+     "same_main_share": 0.9928888888888889
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.0007968342002598744,
+      "ci95": [
+       -0.01560904127774155,
+       0.018036828159365487
+      ],
+      "p": 0.917
+     },
+     "hit_rate_diff": {
+      "diff": 0.0066725978647686835,
+      "ci95": [
+       -0.004448398576512456,
+       0.018238434163701068
+      ],
+      "p": 0.238,
+      "n": 2248
+     },
+     "same_main_share": 0.826067615658363
+    },
+    "changed_share": 0.007111111111111068,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1384,
+     "HANDICAP": 742,
+     "1X2": 81,
+     "DOUBLE_CHANCE": 22,
+     "CORNERS": 14,
+     "BTTS": 6
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.07820697101481232,
+      "roi_b": -0.0753095350859366,
+      "diff": -0.002897435928875716
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.036869704000877614,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.004713636456113869
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.03884383292961621,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.00033727030115803663
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": -0.004679714657657936,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.005622775953435389
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.04672477148860865,
+    "roi_odds_minus_2pct": -0.0626812054687948
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2247,
+     "won": 1507,
+     "push": 3,
+     "bets": 1691,
+     "priced_share": 0.7528888888888889,
+     "hit_rate": 0.6706720071206053,
+     "profit": -19.071006059646606,
+     "roi": -0.011277945629595864,
+     "avg_odds": 1.5104790026446477,
+     "avg_probability": 0.6905830834709489,
+     "neg_ev_share": 0.47959787108219987,
+     "mean_ev": 0.022229249393734392
+    },
+    "roi_ci": {
+     "roi": -0.011277945629595864,
+     "ci95": [
+      -0.04664503491385528,
+      0.023423801772950937
+     ],
+     "bets": 1691
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.0012200002282511044,
+      "ci95": [
+       -0.007979569739726418,
+       0.0103267083635754
+      ],
+      "p": 0.805
+     },
+     "hit_rate_diff": {
+      "diff": 0.00044444444444444447,
+      "ci95": [
+       -0.005333333333333333,
+       0.006222222222222222
+      ],
+      "p": 0.938,
+      "n": 2250
+     },
+     "same_main_share": 0.9582222222222222
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.032804870826250936,
+      "ci95": [
+       0.00043177786419178215,
+       0.06793235793543824
+      ],
+      "p": 0.048
+     },
+     "hit_rate_diff": {
+      "diff": 0.007562277580071174,
+      "ci95": [
+       -0.010242437722419909,
+       0.027580071174377226
+      ],
+      "p": 0.444,
+      "n": 2248
+     },
+     "same_main_share": 0.4991103202846975
+    },
+    "changed_share": 0.0417777777777778,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 997,
+     "HANDICAP": 349,
+     "1X2": 175,
+     "CORNERS": 88,
+     "DOUBLE_CHANCE": 76,
+     "BTTS": 6
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 369,
+      "roi": 0.02883196846256411,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.012488970597063373
+     },
+     {
+      "month": "2026-09",
+      "bets": 446,
+      "roi": -0.004654713275721255,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.01443026443589785
+     },
+     {
+      "month": "2026-10",
+      "bets": 600,
+      "roi": -0.04390833417574565,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.009430024973311815
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": -0.0046702891156293344,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.004637562914485202
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.014897105963113109,
+    "roi_odds_minus_2pct": -0.031052386717003968
+   }
+  },
+  "R_combo_bt": {
+   "parts": [
+    "REL",
+    "EVW",
+    "FLOOR"
+   ],
+   "role": "replication of main_selection combo_bt (already reported by that study; not in the Holm family)",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2248,
+     "won": 1371,
+     "push": 2,
+     "bets": 2248,
+     "priced_share": 1.0,
+     "hit_rate": 0.6098754448398577,
+     "profit": -52.84799909591675,
+     "roi": -0.02350889639498076,
+     "avg_odds": 1.6273189500451513,
+     "avg_probability": 0.6680334069205985,
+     "neg_ev_share": 0.1903914590747331,
+     "mean_ev": 0.07905876390041804
+    },
+    "roi_ci": {
+     "roi": -0.02350889639498076,
+     "ci95": [
+      -0.056116475196977336,
+      0.01060845198353259
+     ],
+     "bets": 2248
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.020134950335242572,
+      "ci95": [
+       -0.009105433909546077,
+       0.05043820089811341
+      ],
+      "p": 0.182
+     },
+     "hit_rate_diff": {
+      "diff": -0.059111111111111114,
+      "ci95": [
+       -0.0791111111111111,
+       -0.0395444444444445
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.4271111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.01999910995393381,
+      "ci95": [
+       -0.011126287724214638,
+       0.0531912683759435
+      ],
+      "p": 0.206
+     },
+     "hit_rate_diff": {
+      "diff": -0.052935943060498224,
+      "ci95": [
+       -0.07295373665480427,
+       -0.03202846975088968
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.36298932384341637
+    },
+    "changed_share": 0.5728888888888889,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 1107,
+     "TOTAL": 659,
+     "CORNERS": 236,
+     "1X2": 152,
+     "BTTS": 55,
+     "DOUBLE_CHANCE": 39
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": -0.0005667268467123809,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.07474280823922422
+     },
+     {
+      "month": "2026-09",
+      "bets": 659,
+      "roi": -0.037280727047840634,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.004302613409150849
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.02331364874451805,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.015867454486256198
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.03644642872469766,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.03738949002047511
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.026842971077168962,
+    "roi_odds_minus_2pct": -0.04303871846708116
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2243,
+     "won": 1282,
+     "push": 7,
+     "bets": 2222,
+     "priced_share": 0.9982222222222222,
+     "hit_rate": 0.5715559518502006,
+     "profit": -44.25900208950043,
+     "roi": -0.01991854279455465,
+     "avg_odds": 1.7602074701543546,
+     "avg_probability": 0.6026262595113557,
+     "neg_ev_share": 0.34338433843384336,
+     "mean_ev": 0.046549156076264024
+    },
+    "roi_ci": {
+     "roi": -0.01991854279455465,
+     "ci95": [
+      -0.056084389512444384,
+      0.014690466801897296
+     ],
+     "bets": 2222
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": -0.00742059693670768,
+      "ci95": [
+       -0.04236982173259036,
+       0.026426550027838006
+      ],
+      "p": 0.661
+     },
+     "hit_rate_diff": {
+      "diff": -0.09955555555555555,
+      "ci95": [
+       -0.12133333333333333,
+       -0.07910000000000006
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.39066666666666666
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.02446218729332267,
+      "ci95": [
+       -0.0126758919121813,
+       0.06379048180149538
+      ],
+      "p": 0.202
+     },
+     "hit_rate_diff": {
+      "diff": -0.09208185053380782,
+      "ci95": [
+       -0.11432384341637011,
+       -0.06717081850533808
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.2157473309608541
+    },
+    "changed_share": 0.6093333333333333,
+    "not_bet_fallback": 21,
+    "groups_bets": {
+     "TOTAL": 1032,
+     "HANDICAP": 517,
+     "1X2": 311,
+     "CORNERS": 283,
+     "DOUBLE_CHANCE": 45,
+     "BTTS": 34
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 541,
+      "roi": 0.07025323403300288,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.05391023616750214
+     },
+     {
+      "month": "2026-09",
+      "bets": 649,
+      "roi": -0.039089369296292864,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.04886492045646946
+     },
+     {
+      "month": "2026-10",
+      "bets": 752,
+      "roi": -0.05817819291606863,
+      "roi_b": -0.05333835914905746,
+      "diff": -0.004839833767011165
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.04695357126849038,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.04692084506734625
+     }
+    ],
+    "months_better": 1,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.023698920875278064,
+    "roi_odds_minus_2pct": -0.039520171938663626
+   }
+  },
+  "K01": {
+   "parts": [
+    "REL",
+    "EVW"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1517,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6742222222222222,
+     "profit": -45.219005823135376,
+     "roi": -0.02010627204230119,
+     "avg_odds": 1.4713823884897839,
+     "avg_probability": 0.72776380499204,
+     "neg_ev_share": 0.2272120942641174,
+     "mean_ev": 0.065335589400868
+    },
+    "roi_ci": {
+     "roi": -0.02010627204230119,
+     "ci95": [
+      -0.04682799774374431,
+      0.007871384478081792
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.023537574687922145,
+      "ci95": [
+       0.0036112026850382488,
+       0.04328621891963845
+      ],
+      "p": 0.024
+     },
+     "hit_rate_diff": {
+      "diff": 0.0057777777777777775,
+      "ci95": [
+       -0.007555555555555556,
+       0.01911111111111111
+      ],
+      "p": 0.405,
+      "n": 2250
+     },
+     "same_main_share": 0.7448888888888889
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.024263681330967846,
+      "ci95": [
+       0.0010190001066201844,
+       0.048845507153444004
+      ],
+      "p": 0.041
+     },
+     "hit_rate_diff": {
+      "diff": 0.012455516014234875,
+      "ci95": [
+       -0.003113879003558719,
+       0.028925711743772183
+      ],
+      "p": 0.128,
+      "n": 2248
+     },
+     "same_main_share": 0.6165480427046264
+    },
+    "changed_share": 0.25511111111111107,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 1200,
+     "TOTAL": 837,
+     "1X2": 95,
+     "CORNERS": 66,
+     "DOUBLE_CHANCE": 44,
+     "BTTS": 7
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.05432418349025014,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.020985351595686465
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.007587881882985433,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.03399545857400605
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.02389763800177987,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.015283465228994379
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.027259788479245005,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.026316727183467552
+     }
+    ],
+    "months_better": 4,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.023358828653595932,
+    "roi_odds_minus_2pct": -0.03970414660145519
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2245,
+     "won": 1479,
+     "push": 5,
+     "bets": 1791,
+     "priced_share": 0.7982222222222223,
+     "hit_rate": 0.6587973273942094,
+     "profit": -13.892006158828735,
+     "roi": -0.00775656401944653,
+     "avg_odds": 1.5710965904159162,
+     "avg_probability": 0.6860561776931142,
+     "neg_ev_share": 0.3411501954215522,
+     "mean_ev": 0.0494435241492946
+    },
+    "roi_ci": {
+     "roi": -0.00775656401944653,
+     "ci95": [
+      -0.04239338182563259,
+      0.02812079913007117
+     ],
+     "bets": 1791
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.004741381838400439,
+      "ci95": [
+       -0.020950330479907704,
+       0.027978203666662087
+      ],
+      "p": 0.705
+     },
+     "hit_rate_diff": {
+      "diff": -0.012,
+      "ci95": [
+       -0.025333333333333333,
+       0.0013333333333333333
+      ],
+      "p": 0.084,
+      "n": 2250
+     },
+     "same_main_share": 0.7595555555555555
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.03629553574256671,
+      "ci95": [
+       0.003866265799800945,
+       0.07288869661022211
+      ],
+      "p": 0.029
+     },
+     "hit_rate_diff": {
+      "diff": -0.004893238434163701,
+      "ci95": [
+       -0.02402135231316726,
+       0.016470195729537306
+      ],
+      "p": 0.665,
+      "n": 2248
+     },
+     "same_main_share": 0.42126334519572955
+    },
+    "changed_share": 0.24044444444444446,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 737,
+     "HANDICAP": 570,
+     "1X2": 223,
+     "CORNERS": 171,
+     "DOUBLE_CHANCE": 88,
+     "BTTS": 2
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 417,
+      "roi": 0.03385850365499227,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.01751550578949153
+     },
+     {
+      "month": "2026-09",
+      "bets": 482,
+      "roi": -0.009352702570159405,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.019128253730335998
+     },
+     {
+      "month": "2026-10",
+      "bets": 616,
+      "roi": -0.05311850719637685,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.00021985195268061503
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.03339855394501617,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.0334312801461603
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.012240092758357624,
+    "roi_odds_minus_2pct": -0.02760143273905762
+   }
+  },
+  "K02": {
+   "parts": [
+    "REL",
+    "FLOOR"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2248,
+     "won": 1391,
+     "push": 2,
+     "bets": 2248,
+     "priced_share": 1.0,
+     "hit_rate": 0.6187722419928826,
+     "profit": -43.14799976348877,
+     "roi": -0.01919395007272632,
+     "avg_odds": 1.6031881671040933,
+     "avg_probability": 0.6708708982450682,
+     "neg_ev_share": 0.24243772241992884,
+     "mean_ev": 0.06874058663312248
+    },
+    "roi_ci": {
+     "roi": -0.01919395007272632,
+     "ci95": [
+      -0.05069610765502121,
+      0.013271020707314448
+     ],
+     "bets": 2248
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.024449896657497014,
+      "ci95": [
+       -0.0034638396389205448,
+       0.05542475372737321
+      ],
+      "p": 0.104
+     },
+     "hit_rate_diff": {
+      "diff": -0.050222222222222224,
+      "ci95": [
+       -0.06888888888888889,
+       -0.030666666666666665
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.4444444444444444
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.02517720402337989,
+      "ci95": [
+       -0.005142298552089805,
+       0.05760297754391604
+      ],
+      "p": 0.107
+     },
+     "hit_rate_diff": {
+      "diff": -0.04359430604982206,
+      "ci95": [
+       -0.06316725978647687,
+       -0.023120551601423546
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.37277580071174377
+    },
+    "changed_share": 0.5555555555555556,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 1030,
+     "TOTAL": 714,
+     "CORNERS": 227,
+     "1X2": 159,
+     "BTTS": 81,
+     "DOUBLE_CHANCE": 37
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": -0.00046800629966219776,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.07484152878627441
+     },
+     {
+      "month": "2026-09",
+      "bets": 659,
+      "roi": -0.028975719747123662,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.01260762070986782
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.017116798972833188,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.02206430425794106
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.03840714352471488,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.039350204820492334
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.022528024754914524,
+    "roi_odds_minus_2pct": -0.038810071071271816
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2244,
+     "won": 1305,
+     "push": 6,
+     "bets": 2223,
+     "priced_share": 0.9982222222222222,
+     "hit_rate": 0.5815508021390374,
+     "profit": -56.647000670433044,
+     "roi": -0.02548223152066264,
+     "avg_odds": 1.715271255479865,
+     "avg_probability": 0.6082919375994201,
+     "neg_ev_share": 0.41340530814215026,
+     "mean_ev": 0.031218913279135146
+    },
+    "roi_ci": {
+     "roi": -0.02548223152066264,
+     "ci95": [
+      -0.060576484078821595,
+      0.008934263349418353
+     ],
+     "bets": 2223
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": -0.01298428566281567,
+      "ci95": [
+       -0.04706514282171457,
+       0.02068436955873634
+      ],
+      "p": 0.434
+     },
+     "hit_rate_diff": {
+      "diff": -0.08933333333333333,
+      "ci95": [
+       -0.11066666666666666,
+       -0.06888888888888889
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.4071111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.018893090942847295,
+      "ci95": [
+       -0.017750430216625028,
+       0.05891670249990566
+      ],
+      "p": 0.312
+     },
+     "hit_rate_diff": {
+      "diff": -0.08185053380782918,
+      "ci95": [
+       -0.1045373665480427,
+       -0.056494661921708184
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.2148576512455516
+    },
+    "changed_share": 0.5928888888888889,
+    "not_bet_fallback": 21,
+    "groups_bets": {
+     "TOTAL": 1036,
+     "HANDICAP": 464,
+     "1X2": 323,
+     "CORNERS": 309,
+     "BTTS": 48,
+     "DOUBLE_CHANCE": 43
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 541,
+      "roi": 0.04746395558834957,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.031120957722848834
+     },
+     {
+      "month": "2026-09",
+      "bets": 649,
+      "roi": -0.04102927584126477,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.050804827001441365
+     },
+     {
+      "month": "2026-10",
+      "bets": 753,
+      "roi": -0.05537317473574938,
+      "roi_b": -0.05333835914905746,
+      "diff": -0.0020348155866919196
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.05000357159546443,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.0499708453943203
+     }
+    ],
+    "months_better": 1,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.029004498692820107,
+    "roi_odds_minus_2pct": -0.044972586890249515
+   }
+  },
+  "K03": {
+   "parts": [
+    "EVW",
+    "FLOOR"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2248,
+     "won": 1363,
+     "push": 2,
+     "bets": 2248,
+     "priced_share": 1.0,
+     "hit_rate": 0.6063167259786477,
+     "profit": -49.187999963760376,
+     "roi": -0.021880782902028637,
+     "avg_odds": 1.633445284332669,
+     "avg_probability": 0.6647915970335228,
+     "neg_ev_share": 0.19884341637010677,
+     "mean_ev": 0.07696577065242285
+    },
+    "roi_ci": {
+     "roi": -0.021880782902028637,
+     "ci95": [
+      -0.05619095419523051,
+      0.012672101028542954
+     ],
+     "bets": 2248
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.021763063828194696,
+      "ci95": [
+       -0.00733123332452717,
+       0.05297706930890753
+      ],
+      "p": 0.137
+     },
+     "hit_rate_diff": {
+      "diff": -0.06266666666666666,
+      "ci95": [
+       -0.08089999999999997,
+       -0.042666666666666665
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.46
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.022487978644808383,
+      "ci95": [
+       -0.008437066943569875,
+       0.05478663781774952
+      ],
+      "p": 0.146
+     },
+     "hit_rate_diff": {
+      "diff": -0.05604982206405694,
+      "ci95": [
+       -0.07562277580071175,
+       -0.03557606761565843
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.39412811387900354
+    },
+    "changed_share": 0.54,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 986,
+     "TOTAL": 880,
+     "CORNERS": 190,
+     "1X2": 130,
+     "DOUBLE_CHANCE": 32,
+     "BTTS": 30
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": 0.0027623405404239077,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.0780718756263605
+     },
+     {
+      "month": "2026-09",
+      "bets": 659,
+      "roi": -0.033807283106269896,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.007776057350721587
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.021414698891126578,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.01776640433964767
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.043221428990364075,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.04416449028614153
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.025250444844948438,
+    "roi_odds_minus_2pct": -0.04144316724398808
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2243,
+     "won": 1283,
+     "push": 7,
+     "bets": 2222,
+     "priced_share": 0.9982222222222222,
+     "hit_rate": 0.5720017833259028,
+     "profit": -36.13000178337097,
+     "roi": -0.016260126815198457,
+     "avg_odds": 1.7653438341606855,
+     "avg_probability": 0.6001217722414436,
+     "neg_ev_share": 0.3505850585058506,
+     "mean_ev": 0.04462018820836209
+    },
+    "roi_ci": {
+     "roi": -0.016260126815198457,
+     "ci95": [
+      -0.05286231391500683,
+      0.018017346889785124
+     ],
+     "bets": 2222
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": -0.0037621809573514884,
+      "ci95": [
+       -0.037805970584517574,
+       0.0300551005990249
+      ],
+      "p": 0.83
+     },
+     "hit_rate_diff": {
+      "diff": -0.09911111111111111,
+      "ci95": [
+       -0.12,
+       -0.07866666666666666
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.416
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.028123899142930536,
+      "ci95": [
+       -0.009446031148324567,
+       0.06791509025156402
+      ],
+      "p": 0.134
+     },
+     "hit_rate_diff": {
+      "diff": -0.09163701067615658,
+      "ci95": [
+       -0.11432384341637011,
+       -0.06717081850533808
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.23176156583629892
+    },
+    "changed_share": 0.5840000000000001,
+    "not_bet_fallback": 21,
+    "groups_bets": {
+     "TOTAL": 1231,
+     "HANDICAP": 443,
+     "1X2": 262,
+     "CORNERS": 229,
+     "DOUBLE_CHANCE": 32,
+     "BTTS": 25
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 541,
+      "roi": 0.06381885313502962,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.04747585526952888
+     },
+     {
+      "month": "2026-09",
+      "bets": 649,
+      "roi": -0.03470878351267387,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.04448433467285046
+     },
+     {
+      "month": "2026-10",
+      "bets": 752,
+      "roi": -0.039385639606638156,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.013952719542419306
+     },
+     {
+      "month": "2026-11",
+      "bets": 280,
+      "roi": -0.06611428516251701,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.06608155896137288
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.020063007124687077,
+    "roi_odds_minus_2pct": -0.035934924278894484
+   }
+  },
+  "K04": {
+   "parts": [
+    "CAL",
+    "REL"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1511,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6715555555555556,
+     "profit": -78.5950083732605,
+     "roi": -0.034946646675527125,
+     "avg_odds": 1.4524722047358845,
+     "avg_probability": 0.7319406329520689,
+     "neg_ev_share": 0.2632281013783904,
+     "mean_ev": 0.05917748545397706
+    },
+    "roi_ci": {
+     "roi": -0.034946646675527125,
+     "ci95": [
+      -0.06282917254964893,
+      -0.007192803451750017
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.008697200054696208,
+      "ci95": [
+       -0.007797533805492184,
+       0.02574108537452501
+      ],
+      "p": 0.318
+     },
+     "hit_rate_diff": {
+      "diff": 0.003111111111111111,
+      "ci95": [
+       -0.008444444444444444,
+       0.014666666666666666
+      ],
+      "p": 0.637,
+      "n": 2250
+     },
+     "same_main_share": 0.8031111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.009410097641548563,
+      "ci95": [
+       -0.01184228890051504,
+       0.03294570116381344
+      ],
+      "p": 0.362
+     },
+     "hit_rate_diff": {
+      "diff": 0.009786476868327402,
+      "ci95": [
+       -0.004893238434163701,
+       0.025800711743772242
+      ],
+      "p": 0.198,
+      "n": 2248
+     },
+     "same_main_share": 0.6690391459074733
+    },
+    "changed_share": 0.1968888888888889,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 1086,
+     "TOTAL": 967,
+     "1X2": 100,
+     "BTTS": 43,
+     "DOUBLE_CHANCE": 30,
+     "CORNERS": 23
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.05104213385354905,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.024267401232387555
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.04099697452602964,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.0005863659309618408
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.0305616805559694,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.008619422674804849
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": -0.001352311453361104,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.002295372749138557
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.038065810689082304,
+    "roi_odds_minus_2pct": -0.054247713742016576
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2246,
+     "won": 1515,
+     "push": 4,
+     "bets": 1794,
+     "priced_share": 0.7991111111111111,
+     "hit_rate": 0.6745325022261799,
+     "profit": -12.886005997657776,
+     "roi": -0.0071828350042685484,
+     "avg_odds": 1.5132569641439677,
+     "avg_probability": 0.6936333628054482,
+     "neg_ev_share": 0.43032329988851725,
+     "mean_ev": 0.030530982477286014
+    },
+    "roi_ci": {
+     "roi": -0.0071828350042685484,
+     "ci95": [
+      -0.04021481320102857,
+      0.024839184808203917
+     ],
+     "bets": 1794
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.00531511085357842,
+      "ci95": [
+       -0.014410092552417673,
+       0.023852968018346632
+      ],
+      "p": 0.613
+     },
+     "hit_rate_diff": {
+      "diff": 0.004,
+      "ci95": [
+       -0.006677777777777759,
+       0.014666666666666666
+      ],
+      "p": 0.52,
+      "n": 2250
+     },
+     "same_main_share": 0.8328888888888889
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.036868657257013805,
+      "ci95": [
+       0.004102719826017185,
+       0.07085910890323992
+      ],
+      "p": 0.023
+     },
+     "hit_rate_diff": {
+      "diff": 0.01112099644128114,
+      "ci95": [
+       -0.008018238434163681,
+       0.032473309608540925
+      ],
+      "p": 0.265,
+      "n": 2248
+     },
+     "same_main_share": 0.43238434163701067
+    },
+    "changed_share": 0.1671111111111111,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 770,
+     "HANDICAP": 494,
+     "1X2": 236,
+     "CORNERS": 168,
+     "DOUBLE_CHANCE": 99,
+     "BTTS": 27
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 416,
+      "roi": 0.02999518267237223,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.013652184806871491
+     },
+     {
+      "month": "2026-09",
+      "bets": 475,
+      "roi": -0.005663163536473325,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.01543871469664992
+     },
+     {
+      "month": "2026-10",
+      "bets": 627,
+      "roi": -0.04108452949037202,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.01225382965868544
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.011181161887403847,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.011213888088547978
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.01064994761776366,
+    "roi_odds_minus_2pct": -0.02703917830418324
+   }
+  },
+  "K05": {
+   "parts": [
+    "CAL",
+    "EVW"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2249,
+     "won": 1489,
+     "push": 1,
+     "bets": 2248,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6620720320142286,
+     "profit": -86.3430095911026,
+     "roi": -0.03840881209568621,
+     "avg_odds": 1.4688100473842587,
+     "avg_probability": 0.7269509729789402,
+     "neg_ev_share": 0.26334519572953735,
+     "mean_ev": 0.06259732962925188
+    },
+    "roi_ci": {
+     "roi": -0.03840881209568621,
+     "ci95": [
+      -0.06653422125447474,
+      -0.010460872332937252
+     ],
+     "bets": 2248
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.005235034634537124,
+      "ci95": [
+       -0.009871031437752881,
+       0.01997743042700513
+      ],
+      "p": 0.489
+     },
+     "hit_rate_diff": {
+      "diff": -0.006666666666666667,
+      "ci95": [
+       -0.017333333333333333,
+       0.0035555555555555557
+      ],
+      "p": 0.197,
+      "n": 2250
+     },
+     "same_main_share": 0.8555555555555555
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.005945231704762868,
+      "ci95": [
+       -0.014962549336202597,
+       0.026693888602722288
+      ],
+      "p": 0.558
+     },
+     "hit_rate_diff": {
+      "diff": 0.0,
+      "ci95": [
+       -0.014679715302491103,
+       0.013790035587188613
+      ],
+      "p": 1.0,
+      "n": 2248
+     },
+     "same_main_share": 0.7139679715302492
+    },
+    "changed_share": 0.1444444444444445,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1148,
+     "HANDICAP": 943,
+     "1X2": 77,
+     "CORNERS": 31,
+     "BTTS": 29,
+     "DOUBLE_CHANCE": 20
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 545,
+      "roi": -0.05272661502208185,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.022582920063854754
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.042062126867698904,
+      "roi_b": -0.04158334045699148,
+      "diff": -0.00047878641070742134
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.031488190329293876,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.007692912901480373
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": -0.020825621496315953,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.021768682792093406
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.041720644806203466,
+    "roi_odds_minus_2pct": -0.057640635853772486
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2246,
+     "won": 1474,
+     "push": 4,
+     "bets": 1723,
+     "priced_share": 0.7675555555555555,
+     "hit_rate": 0.6562778272484416,
+     "profit": -16.52500569820404,
+     "roi": -0.009590833254906582,
+     "avg_odds": 1.5695658702872481,
+     "avg_probability": 0.6855106690287829,
+     "neg_ev_share": 0.3453279164248404,
+     "mean_ev": 0.04866856464968332
+    },
+    "roi_ci": {
+     "roi": -0.009590833254906582,
+     "ci95": [
+      -0.045620879324542,
+      0.026265383313735575
+     ],
+     "bets": 1723
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.0029071126029403867,
+      "ci95": [
+       -0.017493807207623623,
+       0.024269776865994942
+      ],
+      "p": 0.803
+     },
+     "hit_rate_diff": {
+      "diff": -0.014222222222222223,
+      "ci95": [
+       -0.024899999999999978,
+       -0.0026666666666666666
+      ],
+      "p": 0.016,
+      "n": 2250
+     },
+     "same_main_share": 0.848
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.03448209106855438,
+      "ci95": [
+       -1.720274492634529e-05,
+       0.07008537441333457
+      ],
+      "p": 0.051
+     },
+     "hit_rate_diff": {
+      "diff": -0.0071174377224199285,
+      "ci95": [
+       -0.025355871886120998,
+       0.012455516014234875
+      ],
+      "p": 0.504,
+      "n": 2248
+     },
+     "same_main_share": 0.48131672597864766
+    },
+    "changed_share": 0.15200000000000002,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 920,
+     "HANDICAP": 458,
+     "1X2": 170,
+     "CORNERS": 90,
+     "DOUBLE_CHANCE": 68,
+     "BTTS": 17
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 396,
+      "roi": 0.03138635525799761,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.015043357392496869
+     },
+     {
+      "month": "2026-09",
+      "bets": 449,
+      "roi": 0.016906454462251048,
+      "roi_b": 0.009775551160176595,
+      "diff": 0.007130903302074453
+     },
+     {
+      "month": "2026-10",
+      "bets": 602,
+      "roi": -0.05431395491888357,
+      "roi_b": -0.05333835914905746,
+      "diff": -0.0009755957698261083
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": -0.013942027437514153,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.013909301236370021
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.01404817513926944,
+    "roi_odds_minus_2pct": -0.02939901658980843
+   }
+  },
+  "K06": {
+   "parts": [
+    "V6",
+    "REL"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1549,
+     "push": 0,
+     "bets": 2250,
+     "priced_share": 1.0,
+     "hit_rate": 0.6884444444444444,
+     "profit": -86.63201236724854,
+     "roi": -0.03850311660766602,
+     "avg_odds": 1.403130659368303,
+     "avg_probability": 0.713199912629078,
+     "neg_ev_share": 0.5942222222222222,
+     "mean_ev": -0.0015961109724792004
+    },
+    "roi_ci": {
+     "roi": -0.03850311660766602,
+     "ci95": [
+      -0.0644246611436208,
+      -0.011807805395126375
+     ],
+     "bets": 2250
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.005140730122557315,
+      "ci95": [
+       -0.013645766440058658,
+       0.024191935638012765
+      ],
+      "p": 0.58
+     },
+     "hit_rate_diff": {
+      "diff": 0.02,
+      "ci95": [
+       0.007555555555555556,
+       0.03288888888888889
+      ],
+      "p": 0.001,
+      "n": 2250
+     },
+     "same_main_share": 0.7768888888888889
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.005850081485939372,
+      "ci95": [
+       -0.01805161874840698,
+       0.0298426314570098
+      ],
+      "p": 0.599
+     },
+     "hit_rate_diff": {
+      "diff": 0.026690391459074734,
+      "ci95": [
+       0.010676156583629894,
+       0.042704626334519574
+      ],
+      "p": 0.002,
+      "n": 2248
+     },
+     "same_main_share": 0.6472419928825622
+    },
+    "changed_share": 0.22311111111111115,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1137,
+     "HANDICAP": 910,
+     "1X2": 138,
+     "BTTS": 25,
+     "DOUBLE_CHANCE": 23,
+     "CORNERS": 17
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": -0.0668884958166091,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.008421039269327496
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.024963643695368912,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.01661969676162257
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.04005118211110433,
+      "roi_b": -0.03918110323077425,
+      "diff": -0.000870078880330083
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": -0.01085053219914012,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.011793593494917574
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.040380894449022084,
+    "roi_odds_minus_2pct": -0.05773305427551274
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1565,
+     "push": 0,
+     "bets": 1787,
+     "priced_share": 0.7942222222222223,
+     "hit_rate": 0.6955555555555556,
+     "profit": -18.507006525993347,
+     "roi": -0.010356466998317486,
+     "avg_odds": 1.4331656368871475,
+     "avg_probability": 0.6904366689738569,
+     "neg_ev_share": 0.7733631785114717,
+     "mean_ev": -0.026488725423736644
+    },
+    "roi_ci": {
+     "roi": -0.010356466998317486,
+     "ci95": [
+      -0.04027481406267944,
+      0.019310721837704048
+     ],
+     "bets": 1787
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.002141478859529483,
+      "ci95": [
+       -0.024880043161388646,
+       0.030287496278459575
+      ],
+      "p": 0.87
+     },
+     "hit_rate_diff": {
+      "diff": 0.026222222222222223,
+      "ci95": [
+       0.010666666666666666,
+       0.042222222222222223
+      ],
+      "p": 0.005,
+      "n": 2250
+     },
+     "same_main_share": 0.712
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.03369541854241283,
+      "ci95": [
+       0.0006504396848250538,
+       0.06880541219224315
+      ],
+      "p": 0.046
+     },
+     "hit_rate_diff": {
+      "diff": 0.03336298932384341,
+      "ci95": [
+       0.012455516014234875,
+       0.055604982206405695
+      ],
+      "p": 0.004,
+      "n": 2248
+     },
+     "same_main_share": 0.39234875444839856
+    },
+    "changed_share": 0.28800000000000003,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 828,
+     "HANDICAP": 352,
+     "1X2": 296,
+     "CORNERS": 192,
+     "DOUBLE_CHANCE": 97,
+     "BTTS": 22
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 408,
+      "roi": -0.001115206994262396,
+      "roi_b": 0.01634299786550074,
+      "diff": -0.017458204859763134
+     },
+     {
+      "month": "2026-09",
+      "bets": 482,
+      "roi": -0.016724072798653757,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.026499623958830352
+     },
+     {
+      "month": "2026-10",
+      "bets": 620,
+      "roi": -0.014120967349698466,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.039217391799359
+     },
+     {
+      "month": "2026-11",
+      "bets": 277,
+      "roi": -0.0044620910706502865,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": -0.0044293648695061544
+     }
+    ],
+    "months_better": 1,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.013311139484591237,
+    "roi_odds_minus_2pct": -0.03014933765835117
+   }
+  },
+  "K07": {
+   "parts": [
+    "V6",
+    "EVW"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1532,
+     "push": 0,
+     "bets": 2250,
+     "priced_share": 1.0,
+     "hit_rate": 0.6808888888888889,
+     "profit": -95.57601273059845,
+     "roi": -0.04247822788026598,
+     "avg_odds": 1.4149488810433282,
+     "avg_probability": 0.709478017193603,
+     "neg_ev_share": 0.6057777777777777,
+     "mean_ev": -0.00043098894407098874
+    },
+    "roi_ci": {
+     "roi": -0.04247822788026598,
+     "ci95": [
+      -0.06829226102828978,
+      -0.015174272833930141
+     ],
+     "bets": 2250
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.0011656188499573547,
+      "ci95": [
+       -0.012953067370255787,
+       0.016191213263036845
+      ],
+      "p": 0.839
+     },
+     "hit_rate_diff": {
+      "diff": 0.012444444444444444,
+      "ci95": [
+       0.003111111111111111,
+       0.022222222222222223
+      ],
+      "p": 0.01,
+      "n": 2250
+     },
+     "same_main_share": 0.8608888888888889
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.001871433637474107,
+      "ci95": [
+       -0.01884788398357733,
+       0.023667503956966204
+      ],
+      "p": 0.834
+     },
+     "hit_rate_diff": {
+      "diff": 0.01912811387900356,
+      "ci95": [
+       0.005782918149466192,
+       0.033807829181494664
+      ],
+      "p": 0.01,
+      "n": 2248
+     },
+     "same_main_share": 0.7175266903914591
+    },
+    "changed_share": 0.13911111111111107,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1439,
+     "HANDICAP": 703,
+     "1X2": 81,
+     "CORNERS": 12,
+     "DOUBLE_CHANCE": 11,
+     "BTTS": 4
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": -0.07182450965727923,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.003485025428657376
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.029672735748869,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.011910604708122483
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.05498162795865317,
+      "roi_b": -0.03918110323077425,
+      "diff": -0.01580052472787892
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.018476868863631823,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.01753380756785437
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.045244894610510934,
+    "roi_odds_minus_2pct": -0.06162866332266066
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2249,
+     "won": 1574,
+     "push": 1,
+     "bets": 1555,
+     "priced_share": 0.6915555555555556,
+     "hit_rate": 0.6998666073810582,
+     "profit": 9.734994649887085,
+     "roi": 0.0062604467201846205,
+     "avg_odds": 1.4460514433514267,
+     "avg_probability": 0.6926893493533796,
+     "neg_ev_share": 0.7260450160771704,
+     "mean_ev": -0.017847055193266376
+    },
+    "roi_ci": {
+     "roi": 0.0062604467201846205,
+     "ci95": [
+      -0.025998008715777548,
+      0.037977048184485517
+     ],
+     "bets": 1555
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.01875839257803159,
+      "ci95": [
+       -0.004867978797061496,
+       0.04045423058935978
+      ],
+      "p": 0.122
+     },
+     "hit_rate_diff": {
+      "diff": 0.030222222222222223,
+      "ci95": [
+       0.016,
+       0.043111111111111114
+      ],
+      "p": 0.0,
+      "n": 2250
+     },
+     "same_main_share": 0.8191111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.05040574978530297,
+      "ci95": [
+       0.01778722693385312,
+       0.08599116070091677
+      ],
+      "p": 0.005
+     },
+     "hit_rate_diff": {
+      "diff": 0.037366548042704624,
+      "ci95": [
+       0.018238434163701068,
+       0.05827402135231317
+      ],
+      "p": 0.0,
+      "n": 2248
+     },
+     "same_main_share": 0.4737544483985765
+    },
+    "changed_share": 0.18088888888888888,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 963,
+     "HANDICAP": 293,
+     "1X2": 176,
+     "CORNERS": 62,
+     "DOUBLE_CHANCE": 56,
+     "BTTS": 5
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 337,
+      "roi": 0.016908000414024828,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.0005650025485240892
+     },
+     {
+      "month": "2026-09",
+      "bets": 391,
+      "roi": 0.0069590739886779005,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.002816477171498694
+     },
+     {
+      "month": "2026-10",
+      "bets": 552,
+      "roi": -0.004706521397051604,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.04863183775200586
+     },
+     {
+      "month": "2026-11",
+      "bets": 275,
+      "roi": 0.014232728698036887,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.014265454899181018
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": 0.0026720224852730605,
+    "roi_odds_minus_2pct": -0.013864762214219117
+   }
+  },
+  "K08": {
+   "parts": [
+    "C2",
+    "REL"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1557,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.692,
+     "profit": -57.92800951004028,
+     "roi": -0.025757229662089945,
+     "avg_odds": 1.414590034393694,
+     "avg_probability": 0.712985662224296,
+     "neg_ev_share": 0.6269453090262339,
+     "mean_ev": 0.006085377104865649
+    },
+    "roi_ci": {
+     "roi": -0.025757229662089945,
+     "ci95": [
+      -0.05230057860389304,
+      0.0015384492033693959
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.01788661706813339,
+      "ci95": [
+       -0.00904732129838731,
+       0.046973545672618945
+      ],
+      "p": 0.187
+     },
+     "hit_rate_diff": {
+      "diff": 0.023555555555555555,
+      "ci95": [
+       0.004888888888888889,
+       0.04401111111111105
+      ],
+      "p": 0.019,
+      "n": 2250
+     },
+     "same_main_share": 0.5302222222222223
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.018607693931366194,
+      "ci95": [
+       -0.01228708949505803,
+       0.0490936126661853
+      ],
+      "p": 0.223
+     },
+     "hit_rate_diff": {
+      "diff": 0.030249110320284697,
+      "ci95": [
+       0.009341637010676156,
+       0.05115658362989324
+      ],
+      "p": 0.004,
+      "n": 2248
+     },
+     "same_main_share": 0.45907473309608543
+    },
+    "changed_share": 0.46977777777777774,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 891,
+     "HANDICAP": 883,
+     "1X2": 205,
+     "BTTS": 146,
+     "DOUBLE_CHANCE": 94,
+     "CORNERS": 30
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.04885532109291999,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.02645421399301661
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.025866675196271956,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.015716665260719527
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.024047243157083908,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.015133860073690341
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.014743774811143978,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.013800713515366525
+     }
+    ],
+    "months_better": 4,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.028900849018800835,
+    "roi_odds_minus_2pct": -0.045242085068848165
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1571,
+     "push": 0,
+     "bets": 1867,
+     "priced_share": 0.8297777777777777,
+     "hit_rate": 0.6982222222222222,
+     "profit": 8.746996402740479,
+     "roi": 0.004685054313197899,
+     "avg_odds": 1.4606909461371325,
+     "avg_probability": 0.6994901896503805,
+     "neg_ev_share": 0.5040171397964649,
+     "mean_ev": 0.00899574317698026
+    },
+    "roi_ci": {
+     "roi": 0.004685054313197899,
+     "ci95": [
+      -0.02695053035002359,
+      0.03431694022149046
+     ],
+     "bets": 1867
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.01718300017104487,
+      "ci95": [
+       -0.013919641640382206,
+       0.0478270643479104
+      ],
+      "p": 0.282
+     },
+     "hit_rate_diff": {
+      "diff": 0.028888888888888888,
+      "ci95": [
+       0.010222222222222223,
+       0.04623333333333327
+      ],
+      "p": 0.002,
+      "n": 2250
+     },
+     "same_main_share": 0.6137777777777778
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.048182828133322565,
+      "ci95": [
+       0.010737291879517712,
+       0.08658249895739106
+      ],
+      "p": 0.011
+     },
+     "hit_rate_diff": {
+      "diff": 0.03558718861209965,
+      "ci95": [
+       0.012455516014234875,
+       0.059163701067615655
+      ],
+      "p": 0.004,
+      "n": 2248
+     },
+     "same_main_share": 0.3127224199288256
+    },
+    "changed_share": 0.38622222222222224,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 830,
+     "HANDICAP": 470,
+     "1X2": 271,
+     "CORNERS": 210,
+     "DOUBLE_CHANCE": 82,
+     "BTTS": 4
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 421,
+      "roi": 0.02986934915574316,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.013526351290242423
+     },
+     {
+      "month": "2026-09",
+      "bets": 515,
+      "roi": -0.009784470021146015,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.01956002118132261
+     },
+     {
+      "month": "2026-10",
+      "bets": 655,
+      "roi": -0.0011541967173569075,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.052184162431700556
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.007126816372940506,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.007159542574084638
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": 0.0015516851953344033,
+    "roi_odds_minus_2pct": -0.015408646773066107
+   }
+  },
+  "K09": {
+   "parts": [
+    "C2",
+    "EVW"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1533,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6813333333333333,
+     "profit": -87.11901021003723,
+     "roi": -0.03873677643843363,
+     "avg_odds": 1.4196007051378847,
+     "avg_probability": 0.7113602489444825,
+     "neg_ev_share": 0.6278345931525122,
+     "mean_ev": 0.006634177947661269
+    },
+    "roi_ci": {
+     "roi": -0.03873677643843363,
+     "ci95": [
+      -0.06666617790239554,
+      -0.011836835702101324
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.004907070291789703,
+      "ci95": [
+       -0.023188548726436168,
+       0.0331373116246746
+      ],
+      "p": 0.724
+     },
+     "hit_rate_diff": {
+      "diff": 0.012888888888888889,
+      "ci95": [
+       -0.0057888888888888695,
+       0.032
+      ],
+      "p": 0.186,
+      "n": 2250
+     },
+     "same_main_share": 0.5742222222222222
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.005616594376405382,
+      "ci95": [
+       -0.02591199991379059,
+       0.03647312708729303
+      ],
+      "p": 0.706
+     },
+     "hit_rate_diff": {
+      "diff": 0.019572953736654804,
+      "ci95": [
+       -0.0008896797153024911,
+       0.04093638790035581
+      ],
+      "p": 0.062,
+      "n": 2248
+     },
+     "same_main_share": 0.4902135231316726
+    },
+    "changed_share": 0.4257777777777778,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1205,
+     "HANDICAP": 682,
+     "1X2": 149,
+     "BTTS": 116,
+     "DOUBLE_CHANCE": 64,
+     "CORNERS": 33
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.05477656636919294,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.020532968716743663
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.055563644206885136,
+      "roi_b": -0.04158334045699148,
+      "diff": -0.013980303749893654
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.034998688015725046,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.0041824152150492025
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.021814948299177177,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.020871887003399724
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.04188039579514452,
+    "roi_odds_minus_2pct": -0.05796204090966499
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1551,
+     "push": 0,
+     "bets": 1753,
+     "priced_share": 0.7791111111111111,
+     "hit_rate": 0.6893333333333334,
+     "profit": -0.6540032625198364,
+     "roi": -0.00037307659014251934,
+     "avg_odds": 1.484478606337217,
+     "avg_probability": 0.6977316498594529,
+     "neg_ev_share": 0.455219623502567,
+     "mean_ev": 0.018462072537850448
+    },
+    "roi_ci": {
+     "roi": -0.00037307659014251934,
+     "ci95": [
+      -0.0333315484813867,
+      0.03266353132005985
+     ],
+     "bets": 1753
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.012124869267704449,
+      "ci95": [
+       -0.019403816728166767,
+       0.043872029899733336
+      ],
+      "p": 0.449
+     },
+     "hit_rate_diff": {
+      "diff": 0.02,
+      "ci95": [
+       0.0022222222222222222,
+       0.037333333333333336
+      ],
+      "p": 0.035,
+      "n": 2250
+     },
+     "same_main_share": 0.6431111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.04312469722998215,
+      "ci95": [
+       0.005083979114558302,
+       0.08055039664186288
+      ],
+      "p": 0.027
+     },
+     "hit_rate_diff": {
+      "diff": 0.026690391459074734,
+      "ci95": [
+       0.00400355871886121,
+       0.0498220640569395
+      ],
+      "p": 0.013,
+      "n": 2248
+     },
+     "same_main_share": 0.34608540925266906
+    },
+    "changed_share": 0.3568888888888889,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 989,
+     "HANDICAP": 385,
+     "1X2": 183,
+     "CORNERS": 149,
+     "DOUBLE_CHANCE": 46,
+     "BTTS": 1
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 397,
+      "roi": 0.04068009258817966,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.02433709472267892
+     },
+     {
+      "month": "2026-09",
+      "bets": 486,
+      "roi": -0.0209897140907162,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.030765265250892796
+     },
+     {
+      "month": "2026-10",
+      "bets": 595,
+      "roi": -0.030926049456876867,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.022412309692180596
+     },
+     {
+      "month": "2026-11",
+      "bets": 275,
+      "roi": 0.04290181983600963,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.04293454603715376
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.004468912474441311,
+    "roi_odds_minus_2pct": -0.020365615058339673
+   }
+  },
+  "K10": {
+   "parts": [
+    "V6",
+    "REL",
+    "EVW"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2249,
+     "won": 1531,
+     "push": 1,
+     "bets": 2249,
+     "priced_share": 1.0,
+     "hit_rate": 0.6807469986660738,
+     "profit": -87.28501009941101,
+     "roi": -0.03881058697172566,
+     "avg_odds": 1.419791456909909,
+     "avg_probability": 0.7123323382253575,
+     "neg_ev_share": 0.5211204979991108,
+     "mean_ev": 0.007103295782289985
+    },
+    "roi_ci": {
+     "roi": -0.03881058697172566,
+     "ci95": [
+      -0.0662925080981699,
+      -0.010838198953334257
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.004833259758497674,
+      "ci95": [
+       -0.013279604080880879,
+       0.02373884734158575
+      ],
+      "p": 0.569
+     },
+     "hit_rate_diff": {
+      "diff": 0.012,
+      "ci95": [
+       -0.00044444444444444447,
+       0.024888888888888887
+      ],
+      "p": 0.055,
+      "n": 2250
+     },
+     "same_main_share": 0.7871111111111111
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.0055427181461544794,
+      "ci95": [
+       -0.01643012957692065,
+       0.028663649108240142
+      ],
+      "p": 0.6
+     },
+     "hit_rate_diff": {
+      "diff": 0.018683274021352312,
+      "ci95": [
+       0.0035587188612099642,
+       0.03469750889679715
+      ],
+      "p": 0.016,
+      "n": 2248
+     },
+     "same_main_share": 0.6539145907473309
+    },
+    "changed_share": 0.2128888888888889,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 1085,
+     "TOTAL": 987,
+     "1X2": 120,
+     "CORNERS": 25,
+     "DOUBLE_CHANCE": 23,
+     "BTTS": 9
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 547,
+      "roi": -0.0774277993486394,
+      "roi_b": -0.0753095350859366,
+      "diff": -0.0021182642627027987
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.03682121815103473,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.0047621223059567536
+     },
+     {
+      "month": "2026-10",
+      "bets": 761,
+      "roi": -0.0259290413536944,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.013252061877079849
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": -0.0031957274229925297,
+      "roi_b": 0.0009430612957774532,
+      "diff": -0.004138788718769983
+     }
+    ],
+    "months_better": 2,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.04153401960845309,
+    "roi_odds_minus_2pct": -0.05803437523229114
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2248,
+     "won": 1566,
+     "push": 2,
+     "bets": 1668,
+     "priced_share": 0.7422222222222222,
+     "hit_rate": 0.6966192170818505,
+     "profit": -0.12000596523284912,
+     "roi": -7.194602232185199e-05,
+     "avg_odds": 1.4470557518285527,
+     "avg_probability": 0.6940676041037177,
+     "neg_ev_share": 0.6966426858513189,
+     "mean_ev": -0.014507884536114915
+    },
+    "roi_ci": {
+     "roi": -7.194602232185199e-05,
+     "ci95": [
+      -0.031752035171643336,
+      0.032656905337131815
+     ],
+     "bets": 1668
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.012425999835525116,
+      "ci95": [
+       -0.011310488168467378,
+       0.036440127237139554
+      ],
+      "p": 0.298
+     },
+     "hit_rate_diff": {
+      "diff": 0.02666666666666667,
+      "ci95": [
+       0.012444444444444444,
+       0.04001111111111105
+      ],
+      "p": 0.001,
+      "n": 2250
+     },
+     "same_main_share": 0.7715555555555556
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.04402566466281642,
+      "ci95": [
+       0.012119850150935916,
+       0.07948468832307319
+      ],
+      "p": 0.01
+     },
+     "hit_rate_diff": {
+      "diff": 0.033807829181494664,
+      "ci95": [
+       0.014234875444839857,
+       0.056494661921708184
+      ],
+      "p": 0.001,
+      "n": 2248
+     },
+     "same_main_share": 0.41592526690391457
+    },
+    "changed_share": 0.22844444444444445,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 729,
+     "HANDICAP": 434,
+     "1X2": 252,
+     "CORNERS": 155,
+     "DOUBLE_CHANCE": 87,
+     "BTTS": 11
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 375,
+      "roi": -0.002829345703125,
+      "roi_b": 0.01634299786550074,
+      "diff": -0.019172343568625738
+     },
+     {
+      "month": "2026-09",
+      "bets": 434,
+      "roi": 0.01730414085124495,
+      "roi_b": 0.009775551160176595,
+      "diff": 0.007528589691068354
+     },
+     {
+      "month": "2026-10",
+      "bets": 583,
+      "roi": -0.017279587519925414,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.03605877162913205
+     },
+     {
+      "month": "2026-11",
+      "bets": 276,
+      "roi": 0.012699279232301575,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.012732005433445706
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.003417269574652473,
+    "roi_odds_minus_2pct": -0.020070507101875433
+   }
+  },
+  "K11": {
+   "parts": [
+    "GOALS",
+    "CORNERS"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1513,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6724444444444444,
+     "profit": -85.30401182174683,
+     "roi": -0.03792975181046991,
+     "avg_odds": 1.4442934563765264,
+     "avg_probability": 0.7238790254672728,
+     "neg_ev_share": 0.3619386393952868,
+     "mean_ev": 0.0418594252655488
+    },
+    "roi_ci": {
+     "roi": -0.03792975181046991,
+     "ci95": [
+      -0.06580415550833778,
+      -0.009803401351457441
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.005714094919753422,
+      "ci95": [
+       -0.007456989612844255,
+       0.018582636848085445
+      ],
+      "p": 0.377
+     },
+     "hit_rate_diff": {
+      "diff": 0.004,
+      "ci95": [
+       -0.004899999999999981,
+       0.012888888888888889
+      ],
+      "p": 0.395,
+      "n": 2250
+     },
+     "same_main_share": 0.8875555555555555
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.00642433731734459,
+      "ci95": [
+       -0.013332463804548115,
+       0.027647385659270274
+      ],
+      "p": 0.532
+     },
+     "hit_rate_diff": {
+      "diff": 0.010676156583629894,
+      "ci95": [
+       -0.0026690391459074734,
+       0.02491103202846975
+      ],
+      "p": 0.135,
+      "n": 2248
+     },
+     "same_main_share": 0.7388790035587188
+    },
+    "changed_share": 0.11244444444444446,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 1392,
+     "HANDICAP": 733,
+     "1X2": 80,
+     "DOUBLE_CHANCE": 21,
+     "CORNERS": 12,
+     "BTTS": 11
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.06281136680435348,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.012498168281583122
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.032775764934944385,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.008807575522047098
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.04942913505974717,
+      "roi_b": -0.03918110323077425,
+      "diff": -0.010248031828972923
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.029494662726052716,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.028551601430275263
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.041102272820716546,
+    "roi_odds_minus_2pct": -0.05717115677426056
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2247,
+     "won": 1520,
+     "push": 3,
+     "bets": 1705,
+     "priced_share": 0.7591111111111111,
+     "hit_rate": 0.6764574988874055,
+     "profit": -2.2920048236846924,
+     "roi": -0.0013442843540672682,
+     "avg_odds": 1.508920817850622,
+     "avg_probability": 0.6896489205047968,
+     "neg_ev_share": 0.4780058651026393,
+     "mean_ev": 0.020832442756496438
+    },
+    "roi_ci": {
+     "roi": -0.0013442843540672682,
+     "ci95": [
+      -0.033993258334636636,
+      0.030767955972659505
+     ],
+     "bets": 1705
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.0111536615037797,
+      "ci95": [
+       -0.009316230654443956,
+       0.030534287410411982
+      ],
+      "p": 0.296
+     },
+     "hit_rate_diff": {
+      "diff": 0.006222222222222222,
+      "ci95": [
+       -0.008011111111111092,
+       0.019122222222222162
+      ],
+      "p": 0.421,
+      "n": 2250
+     },
+     "same_main_share": 0.8013333333333333
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.042739555026882474,
+      "ci95": [
+       0.008715119109093542,
+       0.07848162354200588
+      ],
+      "p": 0.015
+     },
+     "hit_rate_diff": {
+      "diff": 0.013345195729537367,
+      "ci95": [
+       -0.0066725978647686835,
+       0.033807829181494664
+      ],
+      "p": 0.205,
+      "n": 2248
+     },
+     "same_main_share": 0.4697508896797153
+    },
+    "changed_share": 0.19866666666666666,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 989,
+     "HANDICAP": 367,
+     "1X2": 185,
+     "CORNERS": 83,
+     "DOUBLE_CHANCE": 74,
+     "BTTS": 7
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 378,
+      "roi": 0.03251057169424794,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.0161675738287472
+     },
+     {
+      "month": "2026-09",
+      "bets": 454,
+      "roi": -0.013832602994557519,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.023608154154734114
+     },
+     {
+      "month": "2026-10",
+      "bets": 596,
+      "roi": -0.027013422658779478,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.026324936490277985
+     },
+     {
+      "month": "2026-11",
+      "bets": 277,
+      "roi": 0.028155237328704945,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.028187963529849078
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.005303228635592195,
+    "roi_odds_minus_2pct": -0.021317398666985943
+   }
+  },
+  "K12": {
+   "parts": [
+    "GOALS",
+    "CORNERS",
+    "REL",
+    "EVW"
+   ],
+   "role": "combination",
+   "close": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2250,
+     "won": 1514,
+     "push": 0,
+     "bets": 2249,
+     "priced_share": 0.9995555555555555,
+     "hit_rate": 0.6728888888888889,
+     "profit": -48.59000611305237,
+     "roi": -0.02160516056605263,
+     "avg_odds": 1.4700600224211249,
+     "avg_probability": 0.7260303458578758,
+     "neg_ev_share": 0.2414406402845709,
+     "mean_ev": 0.06190261974658969
+    },
+    "roi_ci": {
+     "roi": -0.02160516056605263,
+     "ci95": [
+      -0.05031426597466509,
+      0.0074211828321178635
+     ],
+     "bets": 2249
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.022038686164170703,
+      "ci95": [
+       0.002218783029638155,
+       0.04239993050697909
+      ],
+      "p": 0.033
+     },
+     "hit_rate_diff": {
+      "diff": 0.0044444444444444444,
+      "ci95": [
+       -0.008888888888888889,
+       0.018233333333333275
+      ],
+      "p": 0.557,
+      "n": 2250
+     },
+     "same_main_share": 0.7248888888888889
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.02276345868302971,
+      "ci95": [
+       -0.0006361523728800931,
+       0.04818422715009531
+      ],
+      "p": 0.057
+     },
+     "hit_rate_diff": {
+      "diff": 0.01112099644128114,
+      "ci95": [
+       -0.004893238434163701,
+       0.02802491103202847
+      ],
+      "p": 0.194,
+      "n": 2248
+     },
+     "same_main_share": 0.6023131672597865
+    },
+    "changed_share": 0.2751111111111111,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "HANDICAP": 1206,
+     "TOTAL": 861,
+     "1X2": 93,
+     "DOUBLE_CHANCE": 43,
+     "CORNERS": 36,
+     "BTTS": 10
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 546,
+      "roi": -0.014915758873516823,
+      "roi_b": -0.0753095350859366,
+      "diff": 0.06039377621241978
+     },
+     {
+      "month": "2026-09",
+      "bets": 660,
+      "roi": -0.04147121526978233,
+      "roi_b": -0.04158334045699148,
+      "diff": 0.00011212518720915554
+     },
+     {
+      "month": "2026-10",
+      "bets": 762,
+      "roi": -0.02098425229390462,
+      "roi_b": -0.03918110323077425,
+      "diff": 0.018196850936869628
+     },
+     {
+      "month": "2026-11",
+      "bets": 281,
+      "roi": 0.010373667465834431,
+      "roi_b": 0.0009430612957774532,
+      "diff": 0.009430606170056978
+     }
+    ],
+    "months_better": 4,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.024835485095392604,
+    "roi_odds_minus_2pct": -0.04117305735473155
+   },
+   "t09": {
+    "summary": {
+     "matches": 2250,
+     "settled": 2245,
+     "won": 1492,
+     "push": 5,
+     "bets": 1789,
+     "priced_share": 0.7973333333333333,
+     "hit_rate": 0.6645879732739421,
+     "profit": -0.9730067253112793,
+     "roi": -0.0005438830214149129,
+     "avg_odds": 1.5653012814369862,
+     "avg_probability": 0.6847246595086023,
+     "neg_ev_share": 0.36668529904974845,
+     "mean_ev": 0.04420964325709976
+    },
+    "roi_ci": {
+     "roi": -0.0005438830214149129,
+     "ci95": [
+      -0.035286944764947176,
+      0.03577913206752642
+     ],
+     "bets": 1789
+    },
+    "vs_b": {
+     "matches": 2250,
+     "roi_diff": {
+      "diff": 0.011954062836432055,
+      "ci95": [
+       -0.014356472964930811,
+       0.0380356289934053
+      ],
+      "p": 0.386
+     },
+     "hit_rate_diff": {
+      "diff": -0.006222222222222222,
+      "ci95": [
+       -0.021777777777777778,
+       0.008888888888888889
+      ],
+      "p": 0.44,
+      "n": 2250
+     },
+     "same_main_share": 0.6782222222222222
+    },
+    "vs_a": {
+     "matches": 2248,
+     "roi_diff": {
+      "diff": 0.04351287072990583,
+      "ci95": [
+       0.010838576143183294,
+       0.0798205273933351
+      ],
+      "p": 0.005
+     },
+     "hit_rate_diff": {
+      "diff": 0.0008896797153024911,
+      "ci95": [
+       -0.019139234875444822,
+       0.02179715302491103
+      ],
+      "p": 0.929,
+      "n": 2248
+     },
+     "same_main_share": 0.4168149466192171
+    },
+    "changed_share": 0.32177777777777783,
+    "not_bet_fallback": 0,
+    "groups_bets": {
+     "TOTAL": 736,
+     "HANDICAP": 580,
+     "1X2": 232,
+     "CORNERS": 145,
+     "DOUBLE_CHANCE": 92,
+     "BTTS": 4
+    },
+    "months": [
+     {
+      "month": "2026-08",
+      "bets": 416,
+      "roi": 0.04247114320213978,
+      "roi_b": 0.01634299786550074,
+      "diff": 0.02612814533663904
+     },
+     {
+      "month": "2026-09",
+      "bets": 483,
+      "roi": -0.021666672412406336,
+      "roi_b": 0.009775551160176595,
+      "diff": -0.03144222357258293
+     },
+     {
+      "month": "2026-10",
+      "bets": 613,
+      "roi": -0.0264698212531807,
+      "roi_b": -0.05333835914905746,
+      "diff": 0.026868537895876763
+     },
+     {
+      "month": "2026-11",
+      "bets": 277,
+      "roi": 0.029061375111879423,
+      "roi_b": -3.2726201144131744e-05,
+      "diff": 0.029094101313023556
+     }
+    ],
+    "months_better": 3,
+    "months_n": 4,
+    "roi_without_top5_wins": -0.004976526993889592,
+    "roi_odds_minus_2pct": -0.020533005360986626
+   }
+  }
+ },
+ "n_combinations": 12
+}
