@@ -10,9 +10,10 @@ from src.analytics.teams import league_table
 from src.leagues import enabled_leagues, get_league
 from src.ui import data
 from src.ui.components import (PROFIT_HELP, date_text, empty_state, esc, form_chips, guard, html_table, kpi_row, match_url,
-                               num, page_header, pct, section, signed, team_url, tone)
+                               num, page_header, pct, section, signed, team_badge, team_url, tone)
+from src.ui.flags import flag
 from src.ui.i18n import t
-from src.ui.labels import group_title, league_label
+from src.ui.labels import country_label, group_title, league_label, league_name
 from src.ui.timefmt import with_local_time
 
 
@@ -22,11 +23,12 @@ def _table_html(table: pd.DataFrame, country: str) -> str:
             f"<th class='num'>{t('GA')}</th><th class='num'>{t('GD')}</th><th class='num'>{t('Pts')}</th>"
             f"<th>{t('Form')}</th></tr>")
     rows = "".join(
-        f"<tr><td>{r.Pos}</td><td><a href='{team_url(r.Team, country)}' target='_self'>{esc(r.Team)}</a></td>"
+        f"<tr><td class='tpos'>{r.Pos}</td><td><a class='tn' href='{team_url(r.Team, country)}' target='_self'>"
+        f"{team_badge(country, r.Team, 18)}<span>{esc(r.Team)}</span></a></td>"
         f"<td class='num'>{r.P}</td><td class='num'>{r.W}</td><td class='num'>{r.D}</td><td class='num'>{r.L}</td>"
         f"<td class='num'>{r.GF}</td><td class='num'>{r.GA}</td><td class='num'>{r.GD:+d}</td>"
         f"<td class='num'><b>{r.Pts}</b></td><td>{form_chips(r.Form)}</td></tr>" for r in table.itertuples())
-    return f"<div class='tablewrap'><table class='mkt'>{head}{rows}</table></div>"
+    return f"<div class='tablewrap'><table class='mkt lt'>{head}{rows}</table></div>"
 
 
 def _match_rows(matches: pd.DataFrame, played: bool) -> str:
@@ -56,6 +58,10 @@ def render() -> None:
     season = c[1].selectbox(t("Season"), seasons, format_func=config.season_label)
     lg = get_league(league)
     lf = features.loc[(features["league"] == league) & (features["season"] == season)]
+    n_teams = len(set(lf["home_team"]) | set(lf["away_team"]))
+    st.html(f"<div class='lg-head'>{flag(lg.country, country_label(lg.country), 36)}<div><div class='nm'>"
+            f"{esc(league_name(lg.code))}</div><div class='sub'>{esc(country_label(lg.country))} · "
+            f"{t('Season')} {config.season_label(season)} · {t('{n} teams', n=n_teams)}</div></div></div>")
 
     played = lf.loc[lf["played"].astype(bool)]
     goals = played["home_goals"] + played["away_goals"]
