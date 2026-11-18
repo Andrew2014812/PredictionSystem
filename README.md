@@ -381,6 +381,32 @@ British English to it; dates stay DD.MM.YYYY).
   insert the page styles into the first HTML, so even Streamlit's own start-up screen never shows). The hosting
   is not changed without the owner's decision.
 
+### Design v6.3 (v6.3)
+
+- **Design v6.3** (default): a deeper blue-graphite dark theme (#0d1722, surfaces #14212f / #1a2a3b) with a
+  teal-green accent and a warm gold for Risk instead of the near-monochrome v6.2 grey; the light theme is the v6.2
+  one. No rules under page and section titles (a short accent mark before section titles instead). Every text
+  colour keeps ≥ 4.5:1 on every surface. Rollback: `python scripts/use_design.py v6.2` (or `FP_DESIGN=v6.2`); the
+  older designs stay available.
+- **Flags** next to league names (Matches list and league headers, the country labels of the league menu, the
+  Leagues header, the team header): inline SVG (`src/ui/flags.py`), so they look the same on every system;
+  England and Scotland have their own flags.
+- **Main result on Matches**: a finished match shows a small plaque "✓ MAIN WON" / "✕ MAIN LOST" / "↺ MAIN REFUND"
+  from the same history as Prediction History (recorded predictions and current-season reconstructions alike);
+  nothing for an unplayed, voided or unpredicted match. Five variants were compared in both themes at 1920×1080 and
+  1366×768 (`reports/v6_3/design/README.md`, `python scripts/ui_main_mark_variants.py`).
+- **Why this prediction?**: factor values say who is ahead, by how much and in what unit ("Burgos +108 Elo
+  points", "Leganes expected result: 0.35 / 1", "Sunderland 20th · Chelsea 4th") — `src/explain/evidence.py`; the
+  numbers and the direction of influence are unchanged. The long note on older predictions is gone: a prediction
+  made before inputs were stored is explained only when its own model version, given the rebuilt pre-match row,
+  returns the stored prediction (`src/prediction/inputs.reproduces`; 884 of 936 such predictions); otherwise the
+  card keeps the stored outputs and the recent form and shows no factor shares.
+- **Leagues / Teams**: a league header with its flag, badges in the league table; a team header with badge, flag,
+  league, season, last five results and table position; Trends legends no longer cut ("Conceded") and hover values
+  with at most two decimals. **Analytics**: hit rate and ROI side by side on top, then cumulative profit and ROI by
+  market. **Model Analysis**: room for two-line feature names, a gap between labels and the confusion matrix.
+  Prediction History is unchanged. Before / after screenshots: `reports/v6_3/screenshots/`.
+
 ## ML research: alternative models (not used by the website)
 
 `experiments/model_comparison/` compares, under identical conditions, the current XGBoost, XGBoost with a larger
@@ -558,6 +584,26 @@ variable `ODDS_API_LEAGUES` (e.g. `T1`) would allow it for named leagues only.
   never turns a played match back into a fixture; a stale `team_id_conflicts.csv` is removed; three API-Football
   spellings (OFI, Vicenza Virtus, Real Sociedad II) are matched; an unpriced whole handicap line is judged at its
   break-even price with the refund, (1 − P(refund)) / P(win), instead of 1 / P(win).
+
+### Data checks and v6.3 research (v6.3)
+
+- **Checks after the daily update** (`src/analytics/data_checks.py`, run in the pipeline's `checks` step, examples in
+  `local_data/api/diagnostics/data_checks.json`; nothing is repaired or dropped): a match stored twice, home and away
+  swapped between rows, a played match without a score or an unplayed one with a score, a played match dated in the
+  future, a provider result the match table does not use, impossible statistics (negative counts, > 15 goals for a
+  side, > 35 corners, shots on target above shots, corners of one side only), impossible prices, a recorded
+  prediction generated after kick-off, a settled status that does not follow from the result, and a pre-match
+  feature that counts more matches than were played before. First run (18.11.2026): seven Football-Data matches with
+  more shots on target than shots (one in 2026/27, Fiorentina – Atalanta); nothing else.
+- **Waiting matches**: a match no source has a result for, whose prices stopped more than a day before kick-off, is
+  reported as probably postponed (`waiting.csv`); the result is never invented, the match is voided after 21 days.
+- **Research** — thirteen studies replay the whole season 2026/27 against the website's history (Baseline A) and
+  production replayed (Baseline B) at two decision moments (`experiments/v6_3/README.md`), with the summary
+  `reports/v6_3/FootPredict_v6.3_Research_Summary.pdf` and the index `reports/v6_3/README.md`. No research model or
+  rule reached the adoption level, so production models and the Main rule are unchanged; the promising candidates
+  are frozen (`experiments/v6_3/*/results/preregistration.json`). Four Main-rule candidates (TOTAL reliability 0.95,
+  HANDICAP 1.035, EV weight 1.0, a 1.40 odds floor) are recorded every day next to production as forward shadows
+  (`src/research`, `local_data/research/`); the website never reads them.
 
 ### Research reports (v6.1)
 
