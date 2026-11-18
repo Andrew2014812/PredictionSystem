@@ -331,8 +331,103 @@ def xg_x5(ctx: Context, doc: dict) -> pd.DataFrame:
     return X.shadow_rows(ctx, doc)
 
 
+# ------------------------------------------------------------------------------------------------ v6.3 Main rules
+def _with_reliability(overrides: dict):
+    """Temporarily change config.MARKET_RELIABILITY (the production rule reads it); restored afterwards."""
+    from contextlib import contextmanager
+
+    @contextmanager
+    def cm():
+        keep = dict(config.MARKET_RELIABILITY)
+        config.MARKET_RELIABILITY.update(overrides)
+        try:
+            yield
+        finally:
+            config.MARKET_RELIABILITY.clear()
+            config.MARKET_RELIABILITY.update(keep)
+    return cm()
+
+
+def _rule_rows(ctx: Context, choose, name: str) -> pd.DataFrame:
+    """One row per match: the Main a v6.3 rule variant would choose from the stored production selections and
+    prices at prediction time (``choose(sels) -> (PricedSelection | None, counted_as_bet, info)``), next to the
+    production Main (base)."""
+    rows = []
+    for mid, mk in ctx.markets.groupby("match_id", sort=False):
+        main = _pick(ctx.picks, mid, "main")
+        if main is None:
+            continue
+        sel, bet, info = choose(selections(mk))
+        if sel is None:
+            continue
+        odds = sel.odds if (bet and sel.has_odds) else np.nan
+        rows.append(_row(mid, "main", sel.market, sel.selection, sel.probability, main, odds, sel.bookmaker,
+                         sel.provider, sel.priced_at, {"rule": name, "counted_as_bet": bool(bet),
+                                                       "push": float(sel.push_probability or 0.0), **info}))
+    return _frame(rows)
+
+
+def main_reliability_total(ctx: Context, doc: dict) -> pd.DataFrame:
+    """v63_main_selection:bt:reliability — production rule with MARKET_RELIABILITY['TOTAL'] = 0.95."""
+    from ..markets.recommendation import main_prediction
+
+    def choose(sels):
+        with _with_reliability({"TOTAL": 0.95}):
+            rec = main_prediction(sels)
+        return (rec.pick if rec else None), True, {}
+    return _rule_rows(ctx, choose, "reliability_total_0.95")
+
+
+def main_reliability_handicap(ctx: Context, doc: dict) -> pd.DataFrame:
+    """v63_market_profitability:bt:boost — production rule with MARKET_RELIABILITY['HANDICAP'] = 1.035."""
+    from ..markets.recommendation import main_prediction
+
+    def choose(sels):
+        with _with_reliability({"HANDICAP": 1.035}):
+            rec = main_prediction(sels)
+        return (rec.pick if rec else None), True, {}
+    return _rule_rows(ctx, choose, "reliability_handicap_1.035")
+
+
+def main_ev_weight(ctx: Context, doc: dict) -> pd.DataFrame:
+    """v63_main_selection:bt:ev_weight — production rule with MAIN_EV_WEIGHT = 1.0."""
+    from ..markets.recommendation import main_params, main_prediction
+    params = main_params().with_(ev_weight=1.0)
+
+    def choose(sels):
+        rec = main_prediction(sels, params)
+        return (rec.pick if rec else None), True, {}
+    return _rule_rows(ctx, choose, "ev_weight_1.0")
+
+
+MIN_MAIN_ODDS = 1.40
+
+
+def main_floor_140(ctx: Context, doc: dict) -> pd.DataFrame:
+    """v63_main_selection:floor_1.40 — eligible = production band and groups AND real price >= 1.40, ranked by the
+    production score; none eligible -> production's statistical Main, recorded but NOT counted as a bet."""
+    from ..markets.recommendation import (EXCLUDED_GROUPS, Recommendation, main_params, main_prediction,
+                                          rule_score)
+    params = main_params()
+
+    def choose(sels):
+        ok = [s for s in sels if s.group not in EXCLUDED_GROUPS | {"EXACT_SCORE"}
+              and params.min_probability <= s.probability <= params.max_probability
+              and s.has_odds and s.odds >= MIN_MAIN_ODDS]
+        if ok:
+            best = max(ok, key=lambda s: (rule_score(s, params), s.has_odds, s.probability))
+            return best, True, {"fallback": False}
+        rec = main_prediction(sels)
+        return (rec.pick if rec else None), False, {"fallback": True}
+    _ = Recommendation
+    return _rule_rows(ctx, choose, "floor_1.40")
+
+
 COMPUTE = {"maincal_ps_platt_monthly": ps_platt_monthly, "maincal_ps_group": ps_group,
            "risk_stacked": risk_stacked, "risk_market_probability": risk_market_probability,
-           "bookmaker_h2_pool": bookmaker_h2, "xg_x5": xg_x5}
+           "bookmaker_h2_pool": bookmaker_h2, "xg_x5": xg_x5,
+           "v63_main_reliability_total": main_reliability_total,
+           "v63_main_reliability_handicap": main_reliability_handicap,
+           "v63_main_ev_weight": main_ev_weight, "v63_main_floor_140": main_floor_140}
 
 _ = config

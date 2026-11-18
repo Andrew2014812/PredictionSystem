@@ -290,9 +290,41 @@ def eval_xg(spec, log, results, now) -> dict:
     return out
 
 
+def eval_main_rule(spec, log, results, now) -> dict:
+    """v6.3 Main-rule shadows: paired ROI(shadow Main) − ROI(production Main) over the settled forward matches, unit
+    stake, each at its own price at prediction time (a choice without a price, or the floor rule's fallback, is not a
+    bet). ROI = Σ profit / bets; paired bootstrap by match."""
+    d = with_results(final_records(log, spec, "main"), results)
+    if not d.empty:
+        d = d.assign(st_new=_status(d), st_old=_status(d, "base_market", "base_selection"))
+        d = d.loc[d["st_new"].notna() & d["st_old"].notna()]
+    out = _status_block(len(d), spec, now, "рассчитанных матчей")
+    if d.empty:
+        return out
+    pn = np.nan_to_num(_profit(d["st_new"].to_numpy(), d["odds"]))
+    po = np.nan_to_num(_profit(d["st_old"].to_numpy(), d["base_odds"]))
+    bn = (np.isfinite(d["odds"]) & np.isin(d["st_new"], ["WON", "LOST"])).to_numpy(float)
+    bo = (np.isfinite(d["base_odds"]) & np.isin(d["st_old"], ["WON", "LOST"])).to_numpy(float)
+    roi = lambda p_, b_: float(p_.sum() / b_.sum()) if b_.sum() else float("nan")   # noqa: E731
+    out["point"] = {"roi_shadow": roi(pn, bn), "roi_production": roi(po, bo), "bets_shadow": int(bn.sum()),
+                    "bets_production": int(bo.sum()),
+                    "changed_picks": float(((d["market"] != d["base_market"]) |
+                                            (d["selection"] != d["base_selection"])).mean())}
+    if out["ready"]:
+        diffs = np.concatenate([pn[i].sum(1) / np.maximum(bn[i].sum(1), 1e-9)
+                                - po[i].sum(1) / np.maximum(bo[i].sum(1), 1e-9) for i in _boot(len(d))])
+        point = roi(pn, bn) - roi(po, bo)
+        ci = [float(np.quantile(diffs, .025)), float(np.quantile(diffs, .975))]
+        out["test"] = {"roi_diff": {"diff": point, "ci95": ci, "p": _p_two(diffs)}, "passed": bool(ci[0] > 0)}
+        out["p_for_holm"] = _p_two(diffs)
+    return out
+
+
 EVALUATORS = {"maincal_ps_platt_monthly": eval_main_calibration, "maincal_ps_group": eval_main_calibration,
               "risk_stacked": eval_risk_stacked, "risk_market_probability": eval_risk_market,
-              "bookmaker_h2_pool": eval_bookmaker, "xg_x5": eval_xg}
+              "bookmaker_h2_pool": eval_bookmaker, "xg_x5": eval_xg,
+              "v63_main_reliability_total": eval_main_rule, "v63_main_reliability_handicap": eval_main_rule,
+              "v63_main_ev_weight": eval_main_rule, "v63_main_floor_140": eval_main_rule}
 
 
 def _family_decisions(shadows: dict) -> dict:
@@ -304,6 +336,11 @@ def _family_decisions(shadows: dict) -> dict:
         first = next((k for k in ("maincal_ps_platt_monthly@v1", "maincal_ps_group@v1") if ok.get(k)), None)
         out["main_calibration"] = {"holm": h, "passed": ok,
                                    "decision": f"A (только показ): {first}" if first else "C"}
+    mr = {k: v for k, v in shadows.items() if v.get("family") == "v63_main_rule" and v.get("test")}
+    if mr:
+        h = holm({k: v["p_for_holm"] for k, v in mr.items()})
+        out["v63_main_rule"] = {"holm": h, "passed": {k: v["test"]["passed"] and h.get(k, 1) < 0.05
+                                                      for k, v in mr.items()}}
     rk = {k: v for k, v in shadows.items() if v.get("family") == "risk" and v.get("test")}
     if len(rk) == 2:
         h = holm({k: v["p_for_holm"] for k, v in rk.items()})
