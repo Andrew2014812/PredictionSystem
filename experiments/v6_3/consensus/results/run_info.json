@@ -1,0 +1,77 @@
+{
+ "study": "consensus",
+ "git_sha": "04b19bb427495d2df1dd9116f60d450cb1d76597",
+ "created": "2026-11-18T14:10:30",
+ "seconds": 60.6,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "universes": [
+   "close",
+   "t09"
+  ],
+  "fd_snapshot_by_universe": {
+   "close": "close",
+   "t09": "open"
+  },
+  "rules": [
+   "bet365",
+   "pinnacle",
+   "mean",
+   "median",
+   "logit_mean",
+   "inv_margin",
+   "fd_avg",
+   "fd_max",
+   "exchange"
+  ],
+  "select_seasons": [
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "fair_method": "power",
+  "gap_bins_h": [
+   "≤ 1 ч",
+   "1–6 ч",
+   "6–24 ч",
+   "> 24 ч"
+  ],
+  "n_boot": 2000
+ }
+}
