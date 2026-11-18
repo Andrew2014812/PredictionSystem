@@ -40,9 +40,14 @@ UK: dict[str, str] = {
     "Exact score {score}": "Точний рахунок {score}", "Over {line} corners": "Більше {line} кутових",
     "Under {line} corners": "Менше {line} кутових", "BTTS": "Обидві заб'ють",
     "Selection": "Варіант", "Probability": "Ймовірність", "Odds": "Коефіцієнт", "Expected Value": "Очікувана цінність",
-    "Expected Value estimates the model's theoretical advantage at the current odds: EV = model probability × odds − 1. "
-    "It is not a guaranteed profit.": "Очікувана цінність (EV) оцінює теоретичну перевагу моделі за поточним "
-    "коефіцієнтом: EV = ймовірність моделі × коефіцієнт − 1. Це не гарантований прибуток.",
+    "Expected value of a 1-unit bet at this real price if the model's probability is right: "
+    "EV = model probability × odds − 1 (a refunded stake on a whole handicap line is not counted as lost). "
+    "Above 0: the price is higher than the model's fair price; below 0: lower. It is an estimate, "
+    "not a guaranteed profit, and it is shown as it is, also when it is negative.": "Очікувана цінність ставки "
+    "в 1 одиницю за цим реальним коефіцієнтом, якщо ймовірність моделі правильна: EV = ймовірність моделі × "
+    "коефіцієнт − 1 (повернена ставка на цілій лінії фори не вважається програною). Понад 0: коефіцієнт вищий за "
+    "справедливий за моделлю; нижче 0: нижчий. Це оцінка, а не гарантований прибуток; її показано як є, також "
+    "коли вона від'ємна.",
     "Not available for this match.": "Для цього матчу недоступно.",
     # match details
     "Back to matches": "До матчів", "Match not found.": "Матч не знайдено.",

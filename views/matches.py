@@ -9,8 +9,9 @@ import streamlit as st
 from src.leagues import get_league, leagues_by_country
 from src.modelling.tasks import RESULT_CLASSES
 from src.ui import data
-from src.ui.components import (empty_state, esc, guard, match_url, odds_text, page_header, pct, prob_bar,
-                               team_badge)
+from src.ui.components import (empty_state, esc, guard, main_result_mark, match_url, odds_text, page_header, pct,
+                               prob_bar, team_badge)
+from src.ui.flags import flag
 from src.ui.i18n import t
 from src.ui.labels import country_label, league_name
 from src.ui.timefmt import today_local, with_local_time
@@ -65,7 +66,8 @@ def _league_list(selected: str) -> None:
     st.button(t("All leagues"), key="lg_all", width="stretch",
               type="primary" if selected == "all" else "secondary", on_click=_set, kwargs={"league": "all"})
     for country, leagues in leagues_by_country().items():
-        st.html(f'<div class="country-label">{esc(country_label(country))}</div>')
+        st.html(f'<div class="country-label">{flag(country, country_label(country), 16)}'
+                f'{esc(country_label(country))}</div>')
         for lg in leagues:
             st.button(league_name(lg.code), key=f"lg_{lg.code}", width="stretch",
                       type="primary" if selected == lg.code else "tertiary",
@@ -95,8 +97,9 @@ def _day_matches(day: date) -> pd.DataFrame:
     return rows.sort_values(["league", "time", "home_team"])
 
 
-def _card(r: pd.Series) -> str:
+def _card(r: pd.Series, main_status: str | None = None) -> str:
     played = bool(r["played"]) and r["home_goals"] == r["home_goals"]
+    mark = main_result_mark(main_status) if played else ""
     status = f'<span class="st ft">{t("FT")}</span>' if played else ""
     hg = int(r["home_goals"]) if played else ""
     ag = int(r["away_goals"]) if played else ""
@@ -111,7 +114,8 @@ def _card(r: pd.Series) -> str:
     has_pred = "p_home" in r and r["p_home"] == r["p_home"]
     if not has_pred:
         return (f'<a class="match-card" href="{match_url(r["match_id"])}" target="_self">'
-                f'<div class="mc-time">{esc(r["time"] or "—")}{status}</div>{teams}<div></div><div></div></a>')
+                f'<div class="mc-time">{esc(r["time"] or "—")}{status}</div>{teams}<div></div><div></div>'
+                f'<div>{mark}</div></a>')
     outcome = r.get("predicted_outcome")
     best = RESULT_CLASSES.index(outcome) if isinstance(outcome, str) else None
     probs = prob_bar(r["p_home"], r["p_draw"], r["p_away"], (r.get("h_odds"), r.get("d_odds"), r.get("a_odds")),
@@ -127,7 +131,7 @@ def _card(r: pd.Series) -> str:
              + "</div></div>")
     return (f'<a class="match-card" href="{match_url(r["match_id"])}" target="_self">'
             f'<div class="mc-time">{esc(r["time"] or "—")}{status}</div>{teams}'
-            f'<div class="mc-block">{probs}</div>{total}</a>')
+            f'<div class="mc-block">{probs}</div>{total}<div class="mc-res">{mark}</div></a>')
 
 
 def _summary_panel(day_rows: pd.DataFrame, day: date) -> None:
@@ -153,11 +157,12 @@ def render() -> None:
     with centre:
         if shown.empty:
             empty_state(t("No matches available for this date."), t("Pick another date or league."))
+        results = data.main_results()
         for league, group in shown.groupby("league", sort=False):
             lg = get_league(league)
-            st.html(f'<div class="league-head">{esc(league_name(lg.code))}'
-                    f'<span class="country">{esc(country_label(lg.country))}</span></div>'
-                    + "".join(_card(r) for _, r in group.iterrows()))
+            st.html(f'<div class="league-head">{flag(lg.country, country_label(lg.country))}'
+                    f'{esc(league_name(lg.code))}<span class="country">{esc(country_label(lg.country))}</span></div>'
+                    + "".join(_card(r, results.get(r["match_id"])) for _, r in group.iterrows()))
     with right:
         _summary_panel(shown, selected_day)
 
