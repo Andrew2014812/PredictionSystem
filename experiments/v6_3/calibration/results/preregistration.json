@@ -1,0 +1,512 @@
+{
+ "frozen_at": "2026-11-18T13:24:19+00:00",
+ "entries": [
+  {
+   "id": "v63_calibration_platt_group_pooled@v1",
+   "hypothesis": "The production Main rule applied to probabilities calibrated by this map (fitted only on matches settled before the predicted match's month) gives a higher Main ROI than the production rule on raw probabilities, with a smaller stated-probability gap.",
+   "exact_rule": {
+    "map": "platt",
+    "scope": "group",
+    "fit_source": "pooled",
+    "fit": "2025/26 backtest predictions plus every 2026/27 match settled before the 1st of the match's month",
+    "scale": "pc = p / (1 - P(push)); p' = pc' (1 - P(push))",
+    "main_rule": "src/markets/recommendation.main_prediction with unchanged parameters, band and EV on the calibrated probability"
+   },
+   "primary_metric": "paired ROI difference vs Baseline B (production rule, raw probabilities), unit stake, close prices; secondary: t09 prices, gap stated p - hit rate of the Main",
+   "evidence_2026_27": {
+    "close": {
+     "bets": 2249,
+     "roi": -0.043344602472467283,
+     "d_roi": 0.00029924425775604974,
+     "d_roi_ci": [
+      -0.006165377864572737,
+      0.006092100595441133
+     ],
+     "p": 0.947,
+     "holm_p": 1.0,
+     "gap": 0.06009945306449849,
+     "same_main": 0.9733333333333334
+    },
+    "t09": {
+     "bets": 1699,
+     "roi": -0.009542087023927578,
+     "d_roi": 0.0029558588339193906,
+     "d_roi_ci": [
+      -0.003960073615869779,
+      0.010019156598854518
+     ],
+     "p": 0.428,
+     "holm_p": 1.0,
+     "gap": 0.022574070431927398,
+     "same_main": 0.9764444444444444
+    }
+   },
+   "minimum_forward_sample": "1500 settled Main bets after frozen_at (about 3 months) before any decision",
+   "frozen_at": "2026-11-18T13:24:19+00:00"
+  },
+  {
+   "id": "v63_calibration_temperature_group_pooled@v1",
+   "hypothesis": "The production Main rule applied to probabilities calibrated by this map (fitted only on matches settled before the predicted match's month) gives a higher Main ROI than the production rule on raw probabilities, with a smaller stated-probability gap.",
+   "exact_rule": {
+    "map": "temperature",
+    "scope": "group",
+    "fit_source": "pooled",
+    "fit": "2025/26 backtest predictions plus every 2026/27 match settled before the 1st of the match's month",
+    "scale": "pc = p / (1 - P(push)); p' = pc' (1 - P(push))",
+    "main_rule": "src/markets/recommendation.main_prediction with unchanged parameters, band and EV on the calibrated probability"
+   },
+   "primary_metric": "paired ROI difference vs Baseline B (production rule, raw probabilities), unit stake, close prices; secondary: t09 prices, gap stated p - hit rate of the Main",
+   "evidence_2026_27": {
+    "close": {
+     "bets": 2249,
+     "roi": -0.04330458477795415,
+     "d_roi": 0.0003392619522691806,
+     "d_roi_ci": [
+      -0.006062925110274776,
+      0.006205024591952726
+     ],
+     "p": 0.938,
+     "holm_p": 1.0,
+     "gap": 0.06006091489990024,
+     "same_main": 0.9724444444444444
+    },
+    "t09": {
+     "bets": 1696,
+     "roi": -0.011669814938081885,
+     "d_roi": 0.0008281309197650834,
+     "d_roi_ci": [
+      -0.005903560986737439,
+      0.0075764563846527164
+     ],
+     "p": 0.83,
+     "holm_p": 1.0,
+     "gap": 0.023158269268809678,
+     "same_main": 0.9773333333333334
+    }
+   },
+   "minimum_forward_sample": "1500 settled Main bets after frozen_at (about 3 months) before any decision",
+   "frozen_at": "2026-11-18T13:24:19+00:00"
+  },
+  {
+   "id": "v63_calibration_isotonic_group_pooled@v1",
+   "hypothesis": "The production Main rule applied to probabilities calibrated by this map (fitted only on matches settled before the predicted match's month) gives a higher Main ROI than the production rule on raw probabilities, with a smaller stated-probability gap.",
+   "exact_rule": {
+    "map": "isotonic",
+    "scope": "group",
+    "fit_source": "pooled",
+    "fit": "2025/26 backtest predictions plus every 2026/27 match settled before the 1st of the match's month",
+    "scale": "pc = p / (1 - P(push)); p' = pc' (1 - P(push))",
+    "main_rule": "src/markets/recommendation.main_prediction with unchanged parameters, band and EV on the calibrated probability"
+   },
+   "primary_metric": "paired ROI difference vs Baseline B (production rule, raw probabilities), unit stake, close prices; secondary: t09 prices, gap stated p - hit rate of the Main",
+   "evidence_2026_27": {
+    "close": {
+     "bets": 2249,
+     "roi": -0.036407741667059276,
+     "d_roi": 0.007236105063164057,
+     "d_roi_ci": [
+      -0.005969550886394452,
+      0.020905623860993105
+     ],
+     "p": 0.327,
+     "holm_p": 1.0,
+     "gap": 0.062104484896937595,
+     "same_main": 0.864
+    },
+    "t09": {
+     "bets": 1660,
+     "roi": -0.006960846501660635,
+     "d_roi": 0.005537099356186334,
+     "d_roi_ci": [
+      -0.015202103965799782,
+      0.025847810344159648
+     ],
+     "p": 0.59,
+     "holm_p": 1.0,
+     "gap": 0.03753106380455289,
+     "same_main": 0.8075555555555556
+    }
+   },
+   "minimum_forward_sample": "1500 settled Main bets after frozen_at (about 3 months) before any decision",
+   "frozen_at": "2026-11-18T13:24:19+00:00"
+  },
+  {
+   "id": "v63_calibration_histbin_group_pooled@v1",
+   "hypothesis": "The production Main rule applied to probabilities calibrated by this map (fitted only on matches settled before the predicted match's month) gives a higher Main ROI than the production rule on raw probabilities, with a smaller stated-probability gap.",
+   "exact_rule": {
+    "map": "histbin",
+    "scope": "group",
+    "fit_source": "pooled",
+    "fit": "2025/26 backtest predictions plus every 2026/27 match settled before the 1st of the match's month",
+    "scale": "pc = p / (1 - P(push)); p' = pc' (1 - P(push))",
+    "main_rule": "src/markets/recommendation.main_prediction with unchanged parameters, band and EV on the calibrated probability"
+   },
+   "primary_metric": "paired ROI difference vs Baseline B (production rule, raw probabilities), unit stake, close prices; secondary: t09 prices, gap stated p - hit rate of the Main",
+   "evidence_2026_27": {
+    "close": {
+     "bets": 2247,
+     "roi": -0.03744726739144081,
+     "d_roi": 0.0061965793387825235,
+     "d_roi_ci": [
+      -0.011258544208093984,
+      0.023489651731444346
+     ],
+     "p": 0.504,
+     "holm_p": 1.0,
+     "gap": 0.06374934782402397,
+     "same_main": 0.7751111111111111
+    },
+    "t09": {
+     "bets": 1697,
+     "roi": 0.0019616946516559626,
+     "d_roi": 0.014459640509502932,
+     "d_roi_ci": [
+      -0.00713444308623744,
+      0.03618282573679356
+     ],
+     "p": 0.212,
+     "holm_p": 1.0,
+     "gap": 0.027209201600928306,
+     "same_main": 0.7942222222222223
+    }
+   },
+   "minimum_forward_sample": "1500 settled Main bets after frozen_at (about 3 months) before any decision",
+   "frozen_at": "2026-11-18T13:24:19+00:00"
+  },
+  {
+   "id": "v63_calibration_beta_key_pooled@v1",
+   "hypothesis": "The production Main rule applied to probabilities calibrated by this map (fitted only on matches settled before the predicted match's month) gives a higher Main ROI than the production rule on raw probabilities, with a smaller stated-probability gap.",
+   "exact_rule": {
+    "map": "beta",
+    "scope": "key",
+    "fit_source": "pooled",
+    "fit": "2025/26 backtest predictions plus every 2026/27 match settled before the 1st of the match's month",
+    "scale": "pc = p / (1 - P(push)); p' = pc' (1 - P(push))",
+    "main_rule": "src/markets/recommendation.main_prediction with unchanged parameters, band and EV on the calibrated probability"
+   },
+   "primary_metric": "paired ROI difference vs Baseline B (production rule, raw probabilities), unit stake, close prices; secondary: t09 prices, gap stated p - hit rate of the Main",
+   "evidence_2026_27": {
+    "close": {
+     "bets": 2250,
+     "roi": -0.0376200049718221,
+     "d_roi": 0.006023841758401233,
+     "d_roi_ci": [
+      -0.007616899334902017,
+      0.018897400050693087
+     ],
+     "p": 0.406,
+     "holm_p": 1.0,
+     "gap": 0.05534694886876517,
+     "same_main": 0.8795555555555555
+    },
+    "t09": {
+     "bets": 1701,
+     "roi": -0.002386834816257089,
+     "d_roi": 0.01011111104158988,
+     "d_roi_ci": [
+      -0.009263378730833273,
+      0.028086514645036895
+     ],
+     "p": 0.305,
+     "holm_p": 1.0,
+     "gap": 0.01456535210154066,
+     "same_main": 0.8324444444444444
+    }
+   },
+   "minimum_forward_sample": "1500 settled Main bets after frozen_at (about 3 months) before any decision",
+   "frozen_at": "2026-11-18T13:24:19+00:00"
+  }
+ ],
+ "decisions": {
+  "platt|group|pooled": {
+   "decision": "B",
+   "close": {
+    "bets": 2249,
+    "roi": -0.043344602472467283,
+    "d_roi": 0.00029924425775604974,
+    "d_roi_ci": [
+     -0.006165377864572737,
+     0.006092100595441133
+    ],
+    "p": 0.947,
+    "holm_p": 1.0,
+    "gap": 0.06009945306449849,
+    "same_main": 0.9733333333333334
+   },
+   "t09": {
+    "bets": 1699,
+    "roi": -0.009542087023927578,
+    "d_roi": 0.0029558588339193906,
+    "d_roi_ci": [
+     -0.003960073615869779,
+     0.010019156598854518
+    ],
+    "p": 0.428,
+    "holm_p": 1.0,
+    "gap": 0.022574070431927398,
+    "same_main": 0.9764444444444444
+   }
+  },
+  "temperature|group|pooled": {
+   "decision": "B",
+   "close": {
+    "bets": 2249,
+    "roi": -0.04330458477795415,
+    "d_roi": 0.0003392619522691806,
+    "d_roi_ci": [
+     -0.006062925110274776,
+     0.006205024591952726
+    ],
+    "p": 0.938,
+    "holm_p": 1.0,
+    "gap": 0.06006091489990024,
+    "same_main": 0.9724444444444444
+   },
+   "t09": {
+    "bets": 1696,
+    "roi": -0.011669814938081885,
+    "d_roi": 0.0008281309197650834,
+    "d_roi_ci": [
+     -0.005903560986737439,
+     0.0075764563846527164
+    ],
+    "p": 0.83,
+    "holm_p": 1.0,
+    "gap": 0.023158269268809678,
+    "same_main": 0.9773333333333334
+   }
+  },
+  "beta|group|pooled": {
+   "decision": "C",
+   "close": {
+    "bets": 2249,
+    "roi": -0.040316590100937605,
+    "d_roi": 0.0033272566292857284,
+    "d_roi_ci": [
+     -0.002910878156969881,
+     0.00935857441300297
+    ],
+    "p": 0.272,
+    "holm_p": 1.0,
+    "gap": 0.057704434811553254,
+    "same_main": 0.9711111111111111
+   },
+   "t09": {
+    "bets": 1697,
+    "roi": -0.012784917844908338,
+    "d_roi": -0.00028697198706136885,
+    "d_roi_ci": [
+     -0.007316116238523893,
+     0.006445269799851004
+    ],
+    "p": 0.917,
+    "holm_p": 1.0,
+    "gap": 0.023697910807531166,
+    "same_main": 0.9737777777777777
+   }
+  },
+  "isotonic|group|pooled": {
+   "decision": "B",
+   "close": {
+    "bets": 2249,
+    "roi": -0.036407741667059276,
+    "d_roi": 0.007236105063164057,
+    "d_roi_ci": [
+     -0.005969550886394452,
+     0.020905623860993105
+    ],
+    "p": 0.327,
+    "holm_p": 1.0,
+    "gap": 0.062104484896937595,
+    "same_main": 0.864
+   },
+   "t09": {
+    "bets": 1660,
+    "roi": -0.006960846501660635,
+    "d_roi": 0.005537099356186334,
+    "d_roi_ci": [
+     -0.015202103965799782,
+     0.025847810344159648
+    ],
+    "p": 0.59,
+    "holm_p": 1.0,
+    "gap": 0.03753106380455289,
+    "same_main": 0.8075555555555556
+   }
+  },
+  "histbin|group|pooled": {
+   "decision": "B",
+   "close": {
+    "bets": 2247,
+    "roi": -0.03744726739144081,
+    "d_roi": 0.0061965793387825235,
+    "d_roi_ci": [
+     -0.011258544208093984,
+     0.023489651731444346
+    ],
+    "p": 0.504,
+    "holm_p": 1.0,
+    "gap": 0.06374934782402397,
+    "same_main": 0.7751111111111111
+   },
+   "t09": {
+    "bets": 1697,
+    "roi": 0.0019616946516559626,
+    "d_roi": 0.014459640509502932,
+    "d_roi_ci": [
+     -0.00713444308623744,
+     0.03618282573679356
+    ],
+    "p": 0.212,
+    "holm_p": 1.0,
+    "gap": 0.027209201600928306,
+    "same_main": 0.7942222222222223
+   }
+  },
+  "beta|global|pooled": {
+   "decision": "C",
+   "close": {
+    "bets": 2249,
+    "roi": -0.04311739041467093,
+    "d_roi": 0.0005264563155524052,
+    "d_roi_ci": [
+     -0.0015838664915826589,
+     0.002662819014652859
+    ],
+    "p": 0.626,
+    "holm_p": 1.0,
+    "gap": 0.05998687699764038,
+    "same_main": 0.9955555555555555
+   },
+   "t09": {
+    "bets": 1706,
+    "roi": -0.014259089059594927,
+    "d_roi": -0.0017611432017479584,
+    "d_roi_ci": [
+     -0.005960569615554722,
+     0.002347908930043844
+    ],
+    "p": 0.406,
+    "holm_p": 1.0,
+    "gap": 0.02584972627130138,
+    "same_main": 0.992
+   }
+  },
+  "beta|key|pooled": {
+   "decision": "B",
+   "close": {
+    "bets": 2250,
+    "roi": -0.0376200049718221,
+    "d_roi": 0.006023841758401233,
+    "d_roi_ci": [
+     -0.007616899334902017,
+     0.018897400050693087
+    ],
+    "p": 0.406,
+    "holm_p": 1.0,
+    "gap": 0.05534694886876517,
+    "same_main": 0.8795555555555555
+   },
+   "t09": {
+    "bets": 1701,
+    "roi": -0.002386834816257089,
+    "d_roi": 0.01011111104158988,
+    "d_roi_ci": [
+     -0.009263378730833273,
+     0.028086514645036895
+    ],
+    "p": 0.305,
+    "holm_p": 1.0,
+    "gap": 0.01456535210154066,
+    "same_main": 0.8324444444444444
+   }
+  },
+  "temperature|key|backtest": {
+   "decision": "C",
+   "close": {
+    "bets": 2249,
+    "roi": -0.04264740400072626,
+    "d_roi": 0.000996442729497074,
+    "d_roi_ci": [
+     -0.0056427189347954924,
+     0.007340494845601915
+    ],
+    "p": 0.772,
+    "holm_p": 1.0,
+    "gap": 0.06035446166719243,
+    "same_main": 0.9666666666666667
+   },
+   "t09": {
+    "bets": 1696,
+    "roi": -0.01394634799293752,
+    "d_roi": -0.0014484021350905513,
+    "d_roi_ci": [
+     -0.009715998017608666,
+     0.006886311277838081
+    ],
+    "p": 0.689,
+    "holm_p": 1.0,
+    "gap": 0.024515902607822083,
+    "same_main": 0.9662222222222222
+   }
+  },
+  "temperature|key|expanding": {
+   "decision": "C",
+   "close": {
+    "bets": 2249,
+    "roi": -0.05305602975610417,
+    "d_roi": -0.009412183025880837,
+    "d_roi_ci": [
+     -0.01961763814966662,
+     0.0006182845411519754
+    ],
+    "p": 0.066,
+    "holm_p": 0.66,
+    "gap": 0.06379585496182373,
+    "same_main": 0.9
+   },
+   "t09": {
+    "bets": 1705,
+    "roi": -0.013942525323884578,
+    "d_roi": -0.0014445794660376092,
+    "d_roi_ci": [
+     -0.011391547149601737,
+     0.008419708188111184
+    ],
+    "p": 0.78,
+    "holm_p": 1.0,
+    "gap": 0.024202002134439727,
+    "same_main": 0.9453333333333334
+   }
+  },
+  "temperature|key|pooled": {
+   "decision": "C",
+   "close": {
+    "bets": 2249,
+    "roi": -0.0432663455227843,
+    "d_roi": 0.00037750120743903354,
+    "d_roi_ci": [
+     -0.006101580004010477,
+     0.006344592877006435
+    ],
+    "p": 0.947,
+    "holm_p": 1.0,
+    "gap": 0.06015864251538283,
+    "same_main": 0.9684444444444444
+   },
+   "t09": {
+    "bets": 1698,
+    "roi": -0.014171381721226992,
+    "d_roi": -0.0016734358633800229,
+    "d_roi_ci": [
+     -0.009262301645195925,
+     0.005815479628981215
+    ],
+    "p": 0.661,
+    "holm_p": 1.0,
+    "gap": 0.024575253129372664,
+    "same_main": 0.9693333333333334
+   }
+  }
+ }
+}
