@@ -3,7 +3,10 @@
 A design = colour palettes (dark, light), two font families and the heavy / title font weights. The
 stylesheet only uses ``var(--...)``, so a design is switched without touching the CSS:
 
-* ``"v6.1"`` (default): graphite-green dark theme, warmer light theme, IBM Plex Sans for headings and
+* ``"v6.3"`` (default): deep blue-graphite dark theme with a teal-green accent and gold Risk, the v6.2 light theme,
+  no rules under titles, flags next to league names; rollback: ``python scripts/use_design.py v6.2``;
+* ``"v6.2"``: neutral grey dark theme, opaque secondary text, rules under titles;
+* ``"v6.1"``: graphite-green dark theme, warmer light theme, IBM Plex Sans for headings and
   navigation, Source Sans 3 for text and tables, lighter headings (600–700 instead of 800);
 * ``"v6"``: the FootPredict v6 look (navy dark theme, Inter, weight 800), kept unchanged for a rollback.
 
@@ -127,6 +130,84 @@ table.mkt tbody tr:hover td { background: var(--surface-2); }
 .chip.D { background: var(--surface-2); color: var(--text-strong); box-shadow: inset 0 0 0 1px var(--border); }
 """
 
+# v6.3: a deeper blue-graphite dark theme instead of the near-monochrome v6.2 grey, a teal-green accent and a warm
+# gold for Risk; the light theme is the v6.2 one. Every text colour keeps >= 4.5:1 on bg / surface / surface-2.
+PALETTES_V63 = {
+    "dark": {
+        "bg": "#0d1722", "surface": "#14212f", "surface-2": "#1a2a3b", "border": "#2b3d50",
+        "border-soft": "#1f3042", "text": "#e4ebf2", "text-strong": "#f8fafc", "muted": "#a9b8c7",
+        "faint": "#98a8b9", "accent": "#3fcca4", "accent-fill": "#127a63", "accent-soft": "rgba(63,204,164,.12)",
+        "risk": "#f2b84b", "risk-soft": "rgba(242,184,75,.12)", "home": "#79aef0", "draw": "#a9b5c1",
+        "away": "#f39a66", "pos": "#4fd4a3", "neg": "#ff8a80", "track": "#233548",
+        "bar-pos": "rgba(79,212,163,.74)", "bar-neg": "rgba(255,138,128,.66)", "bar-hit": "#79aef0",
+        "search-bg": "rgba(169,184,199,.09)",
+        "header-grad": "linear-gradient(120deg, #14212f 0%, #13283a 55%, #12302d 100%)", "input": "#14212f",
+        "chip-text": "#0b1120", "pos-soft": "rgba(79,212,163,.13)", "neg-soft": "rgba(255,138,128,.13)",
+        "flag-ring": "rgba(255,255,255,.22)",
+    },
+    "light": {**PALETTES_V62["light"], "pos-soft": "rgba(18,112,91,.09)", "neg-soft": "rgba(179,52,42,.08)",
+              "flag-ring": "rgba(14,19,21,.18)",
+              "header-grad": "linear-gradient(120deg, #ffffff 0%, #f1f5f3 100%)"},
+}
+
+# v6.3 refinements on top of the v6.2 stylesheet.
+V63_CSS = V62_CSS + """
+/* no rules under page and section titles: a short accent mark before section titles instead */
+.page-title { border-bottom: none !important; padding-bottom: 0 !important; display: block; }
+.section-title { border-bottom: none !important; padding-bottom: 0 !important; }
+.section-title::before { content: ""; width: 4px; height: 1.05em; border-radius: 2px; background: var(--accent);
+  flex: none; }
+/* flags next to league names */
+img.flag { display: inline-block; flex: none; border-radius: 2px; box-shadow: 0 0 0 1px var(--flag-ring);
+  vertical-align: middle; object-fit: cover; }
+.league-head { gap: .5rem; }
+.league-head img.flag { margin-right: .05rem; }
+.country-label { display: flex; align-items: center; gap: .45rem; }
+/* the Main result of a finished match on Matches: a small coloured plaque, icon + text (variant E, see
+   reports/v6_3/design/README.md) */
+a.match-card { grid-template-columns: 56px minmax(135px, 1.3fr) minmax(230px, 2.2fr) minmax(92px, .9fr) minmax(64px, max-content); }
+.mres { justify-self: end; display: inline-flex; align-items: center; gap: .3rem; padding: 2px 8px 2px 6px;
+  border-radius: 999px; font-size: .68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  white-space: nowrap; border: 1px solid transparent; line-height: 1.5; }
+.mres .ic { width: 12px; height: 12px; flex: none; background: currentColor; -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
+.mres.WON { --ic: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20d%3D%22M2.2%206.4%204.8%209%209.8%203.2%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E"); }
+.mres.LOST { --ic: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20d%3D%22M3%203l6%206M9%203l-6%206%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.9%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E"); }
+.mres.PUSH { --ic: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20d%3D%22M9.6%206A3.6%203.6%200%201%201%206%202.4h2.2M7%20.9%208.6%202.4%207%203.9%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E"); }
+.mres .tx-short { display: none; }
+.mres.WON { color: var(--pos); background: var(--pos-soft); border-color: var(--pos); }
+.mres.LOST { color: var(--neg); background: var(--neg-soft); border-color: var(--neg); }
+.mres.PUSH { color: var(--muted); background: var(--surface-2); border-color: var(--border); }
+/* match header: a little more presence */
+.match-header { border-left: 4px solid var(--accent); }
+/* league page header */
+.lg-head { display: flex; align-items: center; gap: .8rem; margin: 0 0 1rem; padding: .9rem 1.1rem;
+  background: var(--header-grad); border: 1px solid var(--border); border-radius: 10px; }
+.lg-head img.flag { width: 36px; height: 24px; }
+.lg-head .nm { font-family: var(--font-head); font-size: 1.35rem; font-weight: var(--w-title); color: var(--text-strong); }
+.lg-head .sub { color: var(--muted); font-size: .86rem; }
+/* league table: position, badge + name, compact form */
+table.lt td.tpos { color: var(--muted); font-weight: 700; width: 2.2rem; }
+table.lt a.tn { display: inline-flex; align-items: center; gap: .45rem; border-bottom: none !important; }
+table.lt a.tn span { border-bottom: 1px solid transparent; }
+table.lt a.tn:hover span { border-bottom-color: var(--accent); }
+table.lt .chip { width: 19px; height: 19px; font-size: .64rem; border-radius: 5px; margin-right: 2px; }
+table.lt td { padding-top: 5px; padding-bottom: 5px; vertical-align: middle; }
+/* team page header */
+.tm-head { display: grid; grid-template-columns: auto 1fr auto; gap: 1.1rem; align-items: center; padding: 1rem 1.2rem;
+  margin-bottom: 1rem; background: var(--header-grad); border: 1px solid var(--border); border-radius: 12px; }
+.tm-head img.badge { width: 64px; height: 64px; }
+.tm-head .nm { font-family: var(--font-head); font-size: 1.6rem; font-weight: var(--w-title); color: var(--text-strong);
+  line-height: 1.15; overflow-wrap: anywhere; }
+.tm-head .meta { display: flex; align-items: center; gap: .5rem; color: var(--muted); font-size: .88rem; margin-top: .2rem; }
+.tm-head .tpos { text-align: right; }
+.tm-head .tpos .v { font-family: var(--font-head); font-size: 1.9rem; font-weight: var(--w-heavy); color: var(--text-strong);
+  line-height: 1; }
+/* long club names in the team search: the whole name, on two lines if needed */
+.st-key-team_search [data-baseweb="select"] > div > div:first-child { white-space: normal; overflow-wrap: anywhere; }
+[data-baseweb="popover"] [role="option"] { white-space: normal !important; overflow-wrap: anywhere; line-height: 1.3; }
+.tm-head .tpos .l { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+"""
+
 DESIGNS = {
     "v6": {"palettes": PALETTES_V6, "body": "'Inter', sans-serif", "head": "'Inter', sans-serif",
            "fonts": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
@@ -141,8 +222,13 @@ DESIGNS = {
              "fonts": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700"
                       "&family=Source+Sans+3:wght@400;500;600;700&display=swap",
              "w_heavy": 700, "w_title": 600, "size": "1.04rem", "widgets_dark": True, "extra_css": V62_CSS},
+    "v6.3": {"palettes": PALETTES_V63, "body": "'Source Sans 3', 'Source Sans Pro', sans-serif",
+             "head": "'IBM Plex Sans', sans-serif",
+             "fonts": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700"
+                      "&family=Source+Sans+3:wght@400;500;600;700&display=swap",
+             "w_heavy": 700, "w_title": 600, "size": "1.04rem", "widgets_dark": True, "extra_css": V63_CSS},
 }
-DEFAULT_DESIGN = "v6.2"
+DEFAULT_DESIGN = "v6.3"
 
 
 def design_name() -> str:
@@ -162,7 +248,7 @@ def design() -> dict:
 
 
 # the active design's palettes (kept as a name: tests and older code read PALETTES)
-PALETTES = PALETTES_V62
+PALETTES = PALETTES_V63
 
 def current_theme() -> str:
     return st.session_state.get("theme", "dark")
