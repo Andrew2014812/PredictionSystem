@@ -7,7 +7,7 @@ import pandas as pd
 import pytest
 from playwright.sync_api import expect
 
-from src.ui.theme import PALETTES_V62
+from src.ui.theme import PALETTES as ACTIVE, PALETTES_V62
 from tests.e2e.conftest import ROOT
 from tests.e2e.harness import App
 
@@ -69,7 +69,7 @@ def test_the_logo_opens_matches_inside_the_app(app, start):
         assert app.page.evaluate("window.__fpNoReload === 1"), "the page was reloaded"
         assert "date=" not in app.page.url and "league=" not in app.page.url
         assert "theme=light" in app.page.url
-        assert app.background() == _rgb(PALETTES_V62["light"]["bg"])
+        assert app.background() == _rgb(ACTIVE["light"]["bg"])
         assert "not found" not in app.page.locator("body").inner_text().lower()
 
 
@@ -95,18 +95,17 @@ def test_captions_are_not_drawn_half_transparent(app):
     assert float(caption.evaluate("e => getComputedStyle(e).opacity")) == 1.0
 
 
-def test_v62_colours_are_used(app):
-    app.open("")
-    assert app.background() == _rgb(PALETTES_V62["dark"]["bg"])             # neutral, less graphite than v6.1
+def test_v62_light_theme_is_kept(app):
+    # v6.3 keeps the v6.2 light theme (its dark theme is checked in test_v63.py)
     app.open("?theme=light")
-    assert app.background() == _rgb(PALETTES_V62["light"]["bg"])
+    assert app.background() == _rgb(PALETTES_V62["light"]["bg"]) == _rgb(ACTIVE["light"]["bg"])
 
 
 def test_league_table_clubs_read_as_names(app):
     app.open("leagues")
     link = app.page.locator("table.mkt a").first
     expect(link).to_be_visible()
-    assert link.evaluate("e => getComputedStyle(e).color") == _rgb(PALETTES_V62["dark"]["text-strong"])
+    assert link.evaluate("e => getComputedStyle(e).color") == _rgb(ACTIVE["dark"]["text-strong"])
 
 
 # -- charts -----------------------------------------------------------------------------------------------
@@ -160,11 +159,13 @@ def old_finished_match():
     return done.sort_values("date")["match_id"].iloc[-1]
 
 
-def test_an_older_prediction_says_it_is_explained_with_current_data(app, old_finished_match):
+def test_an_older_prediction_has_no_technical_note(app, old_finished_match):
+    # v6.3: the long "explained with the data available now" note is gone; an older prediction is explained only
+    # when its rebuilt inputs reproduce it (tests/e2e/test_v63.py)
     app.open(f"match?match_id={old_finished_match}")
-    note = app.page.locator(".why .why-note").first
-    expect(note).to_be_visible()
-    expect(note).to_contain_text("were not stored")
+    expect(app.page.locator(".why").first).to_be_visible()
+    expect(app.page.locator(".why .why-note")).to_have_count(0)
+    expect(app.page.get_by_text("were not stored")).to_have_count(0)
 
 
 # -- price timing ------------------------------------------------------------------------------------------
