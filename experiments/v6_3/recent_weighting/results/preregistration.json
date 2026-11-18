@@ -1,0 +1,183 @@
+{
+ "study": "v6.3 Recent Season Weighting",
+ "entries": [
+  {
+   "variant": "hl0",
+   "task_group": "goals",
+   "decision": "B",
+   "name": "ежемесячно, без затухания",
+   "frozen_at": "2026-11-18T15:23:04+01:00",
+   "hypothesis": "Retraining the goals model(s) on the 1st of every month with the weighting 'hl0' gives a lower dev_goals than the production model trained once before the season, and a Main ROI not lower than Baseline B.",
+   "exact_rule": {
+    "scheme": "hl0",
+    "selected_2025": {
+     "result": "win3",
+     "goals": "hl4",
+     "corners": "hl0"
+    },
+    "form": {
+     "k_result": 100.0,
+     "k_goals": 100.0,
+     "kc": 480.0,
+     "half_life_schemes": {
+      "result": "hl2",
+      "goals": "hl4",
+      "corners": "hl0"
+     }
+    },
+    "code": "experiments/v6_3/recent_weighting/fits.py (scheme_weights), form.py"
+   },
+   "primary_metric": "dev_goals paired with production (Baseline B) on forward matches",
+   "minimum_forward_sample": "2000 played matches (two monthly refits)",
+   "evidence_2026_27": {
+    "vs_B": {
+     "diff": -0.001030186134507976,
+     "ci95": [
+      -0.0037756035341332847,
+      0.0017771708558645097
+     ],
+     "p": 0.448,
+     "n": 2250
+    },
+    "vs_control": {
+     "diff": -0.0019824106304145465,
+     "ci95": [
+      -0.004656625038622617,
+      0.0007786777143064551
+     ],
+     "p": 0.133,
+     "n": 2250
+    },
+    "roi": [
+     {
+      "variant": "wf:hl0",
+      "universe": "close",
+      "bets": 2250,
+      "hit_rate": 0.6688888888888889,
+      "avg_odds": 1.4448645114898682,
+      "roi": -0.04251378308402167,
+      "roi_lo": -0.07158680568933486,
+      "roi_hi": -0.013453316371970711,
+      "d_roi": 0.0011300636462016622,
+      "d_lo": -0.012030557163326617,
+      "d_hi": 0.014375146848002203,
+      "p": 0.865,
+      "same_main": 0.8906666666666667,
+      "profit": -95.65601193904877,
+      "p_holm": 1.0,
+      "d_roi_vs_control": -0.001495102902056164,
+      "p_vs_control": 0.811
+     },
+     {
+      "variant": "wf:hl0",
+      "universe": "t09",
+      "bets": 1715,
+      "hit_rate": 0.67601246105919,
+      "avg_odds": 1.5102239847183228,
+      "roi": 0.0011166152036572337,
+      "roi_lo": -0.03240674923691067,
+      "roi_hi": 0.034503820508437984,
+      "d_roi": 0.013614561061504202,
+      "d_lo": -0.0031554124112436266,
+      "d_hi": 0.03186438383421037,
+      "p": 0.109,
+      "same_main": 0.8493333333333334,
+      "profit": 1.9149950742721558,
+      "p_holm": 1.0,
+      "d_roi_vs_control": 0.010542361258242712,
+      "p_vs_control": 0.199
+     }
+    ]
+   }
+  },
+  {
+   "variant": "cur2",
+   "task_group": "result",
+   "decision": "B",
+   "name": "ежемесячно, текущий сезон ×2",
+   "frozen_at": "2026-11-18T15:23:04+01:00",
+   "hypothesis": "Retraining the result model(s) on the 1st of every month with the weighting 'cur2' gives a lower ll than the production model trained once before the season, and a Main ROI not lower than Baseline B.",
+   "exact_rule": {
+    "scheme": "cur2",
+    "selected_2025": {
+     "result": "win3",
+     "goals": "hl4",
+     "corners": "hl0"
+    },
+    "form": {
+     "k_result": 100.0,
+     "k_goals": 100.0,
+     "kc": 480.0,
+     "half_life_schemes": {
+      "result": "hl2",
+      "goals": "hl4",
+      "corners": "hl0"
+     }
+    },
+    "code": "experiments/v6_3/recent_weighting/fits.py (scheme_weights), form.py"
+   },
+   "primary_metric": "ll paired with production (Baseline B) on forward matches",
+   "minimum_forward_sample": "2000 played matches (two monthly refits)",
+   "evidence_2026_27": {
+    "vs_B": {
+     "diff": -0.00016296571960845312,
+     "ci95": [
+      -0.0011650871026138191,
+      0.0008992501971069487
+     ],
+     "p": 0.775,
+     "n": 2250
+    },
+    "vs_control": {
+     "diff": -0.0003816469159212717,
+     "ci95": [
+      -0.0010395949892146152,
+      0.0002647136763292786
+     ],
+     "p": 0.284,
+     "n": 2250
+    },
+    "roi": [
+     {
+      "variant": "wf:cur2",
+      "universe": "close",
+      "bets": 2249,
+      "hit_rate": 0.6782222222222222,
+      "avg_odds": 1.4398261308670044,
+      "roi": -0.03171232150575223,
+      "roi_lo": -0.060366897133684025,
+      "roi_hi": -0.0030624436372754553,
+      "d_roi": 0.0119315252244711,
+      "d_lo": -0.002296571211814848,
+      "d_hi": 0.02700635270939724,
+      "p": 0.105,
+      "same_main": 0.8733333333333333,
+      "profit": -71.32101106643677,
+      "p_holm": 1.0,
+      "d_roi_vs_control": 0.009306358676213274,
+      "p_vs_control": 0.1
+     },
+     {
+      "variant": "wf:cur2",
+      "universe": "t09",
+      "bets": 1740,
+      "hit_rate": 0.6680017801513128,
+      "avg_odds": 1.5107171535491943,
+      "roi": -0.009703451532056961,
+      "roi_lo": -0.04190658281296256,
+      "roi_hi": 0.025298481951877495,
+      "d_roi": 0.0027944943257900076,
+      "d_lo": -0.016251057573111658,
+      "d_hi": 0.022477805224247176,
+      "p": 0.755,
+      "same_main": 0.832,
+      "profit": -16.884005665779114,
+      "p_holm": 1.0,
+      "d_roi_vs_control": -0.0002777054774714821,
+      "p_vs_control": 0.987
+     }
+    ]
+   }
+  }
+ ]
+}
