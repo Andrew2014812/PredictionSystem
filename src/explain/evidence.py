@@ -25,7 +25,7 @@ UNITS = {
         "meetings": "meetings", "goals_m": "goals/match", "corners_m": "corners/match", "places_higher": "places higher",
         "place_higher": "place higher", "level": "level", "expected": "expected result",
         "vs_usual": "vs opponents' usual", "vs_season": "vs season average", "above_exp": "points/game above expectation",
-        "of": "of", "pos": "{n}."
+        "of": "of", "pos": "ordinal"
     },
     "uk": {
         "elo": "очок Ело", "goals_g": "голу за гру", "gd_g": "різниці м'ячів за гру", "pts_g": "очка за гру",
@@ -34,7 +34,7 @@ UNITS = {
         "meetings": "зустрічей", "goals_m": "голу за матч", "corners_m": "кутового за матч",
         "places_higher": "позицій вище", "place_higher": "позицію вище", "level": "порівну",
         "expected": "очікуваний результат", "vs_usual": "відносно звичного для суперників",
-        "vs_season": "відносно сезону", "above_exp": "очка за гру понад очікування", "of": "з", "pos": "{n}."
+        "vs_season": "відносно сезону", "above_exp": "очка за гру понад очікування", "of": "з", "pos": "{n} місце"
     },
 }
 
@@ -90,7 +90,10 @@ def _value(v: float, unit: str | None, kind: str, d: int, u: dict) -> str:
     if kind == "pct":
         return f"{v * 100:.0f}%" if abs(v) <= 1.0 else f"{v:.0f}%"
     if kind == "pos":
-        return u["pos"].format(n=int(round(v)))
+        n = int(round(v))
+        if u["pos"] == "ordinal":
+            return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+        return u["pos"].format(n=n)
     text = f"{v:+.{d}f}" if kind == "signed" else _num(v, d)
     return text
 
