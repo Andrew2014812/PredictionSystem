@@ -28,3 +28,4 @@ experiments/v6_3/*/logs/
 reports/v6_2/*_pages/
 reports/v6_2/screenshots/*/server.log
 experiments/v6_3/.heavy*.lock
+experiments/v6_3/replay/build.log
