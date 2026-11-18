@@ -6,6 +6,7 @@
 #
 # The command runs under `timeout`, its output goes to <logfile>; the exit code is the command's.
 set -u
+export OMP_NUM_THREADS="${OMP_NUM_THREADS:-2}" OPENBLAS_NUM_THREADS="${OPENBLAS_NUM_THREADS:-2}" MKL_NUM_THREADS="${MKL_NUM_THREADS:-2}"
 limit="$1"; logfile="$2"; shift 2
 dir="$(cd "$(dirname "$0")" && pwd)"
 wait_max="${HEAVY_WAIT:-10800}"
