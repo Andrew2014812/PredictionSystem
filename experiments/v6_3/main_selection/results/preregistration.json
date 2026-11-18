@@ -1,0 +1,110 @@
+[
+ {
+  "id": "v63_main_selection:bt:reliability",
+  "decision": "B",
+  "hypothesis": "Totals are over-weighted in the Main ranking: lowering the reliability of TOTAL from 1.00 to 0.95 moves part of the Main to Asian handicaps / 1X2 and raises Main ROI.",
+  "rule": "production Main rule with config.MARKET_RELIABILITY['TOTAL'] = 0.95 (all other parameters as prod 2026-11-18); chosen on the 2025/26 backtest",
+  "production_change": "src/config.py MARKET_RELIABILITY['TOTAL']: 1.00 -> 0.95",
+  "primary_metric": "paired ROI difference vs the production Main on the same matches (unit stake, real price at decision time; close and T reported)",
+  "evidence_2026_27": {
+   "close": {
+    "bets": 2249,
+    "roi": -0.02889328980350452,
+    "roi_diff": 0.014750556926718814,
+    "diff_ci": [
+     -0.0010452756534122657,
+     0.030651665459957317
+    ],
+    "p": 0.069,
+    "p_holm": 1.0
+   },
+   "t09": {
+    "bets": 1801,
+    "roi": -0.005747921198093514,
+    "roi_diff": 0.006750024659753454,
+    "diff_ci": [
+     -0.01195740702481241,
+     0.02498816552146243
+    ],
+    "p": 0.509,
+    "p_holm": 1.0,
+    "common_diff": 0.008468414944317968
+   }
+  },
+  "minimum_forward_matches": 2596,
+  "success": "paired ROI difference > 0 with 95 % interval above 0 on matches settled after frozen_at, at close AND at T; no month with a difference below -5 p.p.",
+  "frozen_at": "2026-11-18T13:12:56+00:00"
+ },
+ {
+  "id": "v63_main_selection:bt:ev_weight",
+  "decision": "B",
+  "hypothesis": "A stronger EV term (MAIN_EV_WEIGHT 0.5 -> 1.0) raises Main ROI slightly; the only family whose 2025/26 choice is positive on 2025/26, close and T.",
+  "rule": "production Main rule with config.MAIN_EV_WEIGHT = 1.0",
+  "production_change": "src/config.py MAIN_EV_WEIGHT: 0.5 -> 1.0",
+  "primary_metric": "paired ROI difference vs the production Main on the same matches (unit stake, real price at decision time; close and T reported)",
+  "evidence_2026_27": {
+   "close": {
+    "bets": 2249,
+    "roi": -0.03598710954215803,
+    "roi_diff": 0.007656737188065303,
+    "diff_ci": [
+     -0.007263210330993681,
+     0.022024799335342286
+    ],
+    "p": 0.314,
+    "p_holm": 1.0
+   },
+   "t09": {
+    "bets": 1726,
+    "roi": -0.005123989261591835,
+    "roi_diff": 0.007373956596255134,
+    "diff_ci": [
+     -0.013526626901433043,
+     0.02868251902851535
+    ],
+    "p": 0.515,
+    "p_holm": 1.0,
+    "common_diff": 0.00796815696407956
+   }
+  },
+  "minimum_forward_matches": 8227,
+  "success": "paired ROI difference > 0 with 95 % interval above 0 on matches settled after frozen_at, at close AND at T; no month with a difference below -5 p.p.",
+  "frozen_at": "2026-11-18T13:12:56+00:00"
+ },
+ {
+  "id": "v63_main_selection:floor_1.40",
+  "decision": "B",
+  "hypothesis": "A hard minimum real price of 1.40 for Main (statistical Main kept but marked 'not a bet' when no selection is priced >= 1.40) raises Main ROI.",
+  "rule": "eligible = production band and group rules AND real price >= 1.40; rank by the production score; no eligible selection -> production's statistical Main, shown, settled, NOT counted in ROI",
+  "production_change": "src/markets/recommendation.py main_prediction: filter candidates by has_odds and odds >= MAIN_MIN_ODDS (new config 1.40); fallback Recommendation kind 'model' (not a bet) with a reason",
+  "primary_metric": "paired ROI difference vs the production Main on the same matches (unit stake, real price at decision time; close and T reported)",
+  "evidence_2026_27": {
+   "close": {
+    "bets": 2248,
+    "roi": -0.016714412705754047,
+    "roi_diff": 0.026929434024469286,
+    "diff_ci": [
+     0.0003617268865425516,
+     0.055330494661927396
+    ],
+    "p": 0.047,
+    "p_holm": 0.846
+   },
+   "t09": {
+    "bets": 2223,
+    "roi": -0.025867746319258155,
+    "roi_diff": -0.013369800461411186,
+    "diff_ci": [
+     -0.04510713426514432,
+     0.018901552946350948
+    ],
+    "p": 0.404,
+    "p_holm": 1.0,
+    "common_diff": 0.010778707170117688
+   }
+  },
+  "minimum_forward_matches": 2342,
+  "success": "paired ROI difference > 0 with 95 % interval above 0 on matches settled after frozen_at, at close AND at T; no month with a difference below -5 p.p.",
+  "frozen_at": "2026-11-18T13:12:56+00:00"
+ }
+]

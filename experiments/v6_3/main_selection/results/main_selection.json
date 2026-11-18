@@ -1,0 +1,3824 @@
+{
+ "self_check_rule_equals_baseline": {
+  "close": 0.9995555555555555,
+  "t09": 1.0,
+  "bt": 1.0
+ },
+ "universe_sizes": {
+  "bt": {
+   "matches": 7094,
+   "rows": 404358,
+   "rows_per_match": 57.0,
+   "eligible_per_match": 20.71243304200733,
+   "priced_eligible_per_match": 3.1819847758669297
+  },
+  "close": {
+   "matches": 2250,
+   "rows": 128250,
+   "rows_per_match": 57.0,
+   "eligible_per_match": 20.79288888888889,
+   "priced_eligible_per_match": 18.468
+  },
+  "t09": {
+   "matches": 2250,
+   "rows": 128250,
+   "rows_per_match": 57.0,
+   "eligible_per_match": 20.79288888888889,
+   "priced_eligible_per_match": 8.919555555555556
+  }
+ },
+ "n_variants_grid": 50,
+ "n_candidates": 22,
+ "families": {
+  "floor": [
+   "production",
+   "floor_1.30",
+   "floor_1.40",
+   "floor_1.50",
+   "floor_1.60"
+  ],
+  "price": [
+   "production",
+   "real_price_mandatory"
+  ],
+  "preference": [
+   "production",
+   "pref_1.50-2.50",
+   "pref_1.60-2.60",
+   "pref_1.40-3.00",
+   "pref_soft0.05",
+   "pref_soft0.30"
+  ],
+  "power": [
+   "production",
+   "power_0",
+   "power_0.25",
+   "power_0.5",
+   "power_0.75",
+   "power_1.5",
+   "power_2",
+   "power_3"
+  ],
+  "ev_weight": [
+   "production",
+   "evw_0",
+   "evw_0.25",
+   "evw_1",
+   "evw_2",
+   "evw_4"
+  ],
+  "calibrated": [
+   "production",
+   "cal_rule",
+   "cal_evw2",
+   "cal_max_ev"
+  ],
+  "reliability": [
+   "production",
+   "rel_flat",
+   "rel_total0.90",
+   "rel_total0.95",
+   "rel_1x2_1.10",
+   "rel_handicap1.0",
+   "rel_dc1.0",
+   "rel_btts1.0",
+   "rel_corners1.0",
+   "rel_corners0.70"
+  ],
+  "market_prob": [
+   "production",
+   "blend_75",
+   "blend_50",
+   "blend_25",
+   "blend_0",
+   "rel_x_market_p"
+  ],
+  "overestimation": [
+   "production",
+   "gap_corrected",
+   "winners_curse_0.5",
+   "winners_curse_1",
+   "winners_curse_2"
+  ],
+  "ranking": [
+   "production",
+   "max_ev",
+   "max_kelly",
+   "max_p_priced",
+   "max_market_p",
+   "max_edge",
+   "value_first_ev0",
+   "value_first_ev3"
+  ]
+ },
+ "a_priori": [
+  "floor_1.40",
+  "real_price_mandatory"
+ ],
+ "bt_choices": {
+  "floor": {
+   "chosen": "floor_1.40",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "floor_1.30",
+     "roi": -0.06209846838852063,
+     "bets": 7048
+    },
+    {
+     "rule": "floor_1.40",
+     "roi": -0.061699628300364774,
+     "bets": 6978
+    },
+    {
+     "rule": "floor_1.50",
+     "roi": -0.06394439818304655,
+     "bets": 6906
+    },
+    {
+     "rule": "floor_1.60",
+     "roi": -0.0673920752391981,
+     "bets": 6787
+    }
+   ]
+  },
+  "preference": {
+   "chosen": "pref_soft0.05",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "pref_1.50-2.50",
+     "roi": -0.062000283572779626,
+     "bets": 7074
+    },
+    {
+     "rule": "pref_1.60-2.60",
+     "roi": -0.06397708071512763,
+     "bets": 7068
+    },
+    {
+     "rule": "pref_1.40-3.00",
+     "roi": -0.06282826964509781,
+     "bets": 7075
+    },
+    {
+     "rule": "pref_soft0.05",
+     "roi": -0.06020362086897522,
+     "bets": 7072
+    },
+    {
+     "rule": "pref_soft0.30",
+     "roi": -0.06257385277495367,
+     "bets": 7075
+    }
+   ]
+  },
+  "power": {
+   "chosen": "power_0.5",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "power_0",
+     "roi": -0.05952771663733197,
+     "bets": 7072
+    },
+    {
+     "rule": "power_0.25",
+     "roi": -0.07053278820402815,
+     "bets": 7076
+    },
+    {
+     "rule": "power_0.5",
+     "roi": -0.0580760542538195,
+     "bets": 7074
+    },
+    {
+     "rule": "power_0.75",
+     "roi": -0.059218485942326274,
+     "bets": 7076
+    },
+    {
+     "rule": "power_1.5",
+     "roi": -0.06641312126187714,
+     "bets": 7073
+    },
+    {
+     "rule": "power_2",
+     "roi": -0.06453555860294238,
+     "bets": 7073
+    },
+    {
+     "rule": "power_3",
+     "roi": -0.06425865786656895,
+     "bets": 7075
+    }
+   ]
+  },
+  "ev_weight": {
+   "chosen": "evw_1",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "evw_0",
+     "roi": -0.058596243698067325,
+     "bets": 7081
+    },
+    {
+     "rule": "evw_0.25",
+     "roi": -0.063241487272348,
+     "bets": 7077
+    },
+    {
+     "rule": "evw_1",
+     "roi": -0.054652052165089435,
+     "bets": 7070
+    },
+    {
+     "rule": "evw_2",
+     "roi": -0.06344671351433881,
+     "bets": 7056
+    },
+    {
+     "rule": "evw_4",
+     "roi": -0.06373596860550336,
+     "bets": 7037
+    }
+   ]
+  },
+  "calibrated": {
+   "chosen": "cal_max_ev",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "cal_rule",
+     "roi": -0.06093003648751195,
+     "bets": 7075
+    },
+    {
+     "rule": "cal_evw2",
+     "roi": -0.0599773224662332,
+     "bets": 7055
+    },
+    {
+     "rule": "cal_max_ev",
+     "roi": -0.05733428945179573,
+     "bets": 6985
+    }
+   ]
+  },
+  "reliability": {
+   "chosen": "rel_total0.95",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "rel_flat",
+     "roi": -0.060939845259275656,
+     "bets": 7065
+    },
+    {
+     "rule": "rel_total0.90",
+     "roi": -0.062424286124458606,
+     "bets": 7066
+    },
+    {
+     "rule": "rel_total0.95",
+     "roi": -0.06075378392208349,
+     "bets": 7071
+    },
+    {
+     "rule": "rel_1x2_1.10",
+     "roi": -0.06389116694986188,
+     "bets": 7075
+    },
+    {
+     "rule": "rel_handicap1.0",
+     "roi": -0.060939845259275656,
+     "bets": 7065
+    },
+    {
+     "rule": "rel_dc1.0",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "rel_btts1.0",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "rel_corners1.0",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "rel_corners0.70",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    }
+   ]
+  },
+  "market_prob": {
+   "chosen": "blend_75",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "blend_75",
+     "roi": -0.060841927219875316,
+     "bets": 7079
+    },
+    {
+     "rule": "blend_50",
+     "roi": -0.06385201875586458,
+     "bets": 7082
+    },
+    {
+     "rule": "blend_25",
+     "roi": -0.06542360816288721,
+     "bets": 7082
+    },
+    {
+     "rule": "blend_0",
+     "roi": -0.06809375795123605,
+     "bets": 7082
+    },
+    {
+     "rule": "rel_x_market_p",
+     "roi": -0.06360491294707325,
+     "bets": 7082
+    }
+   ]
+  },
+  "overestimation": {
+   "chosen": "gap_corrected",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "gap_corrected",
+     "roi": -0.06033469916501131,
+     "bets": 7081
+    },
+    {
+     "rule": "winners_curse_0.5",
+     "roi": -0.06471586192028314,
+     "bets": 7074
+    },
+    {
+     "rule": "winners_curse_1",
+     "roi": -0.0651039172816644,
+     "bets": 7073
+    },
+    {
+     "rule": "winners_curse_2",
+     "roi": -0.06770144241625285,
+     "bets": 7074
+    }
+   ]
+  },
+  "ranking": {
+   "chosen": "max_kelly",
+   "members": [
+    {
+     "rule": "production",
+     "roi": -0.06214417071730004,
+     "bets": 7075
+    },
+    {
+     "rule": "max_ev",
+     "roi": -0.05583763059403615,
+     "bets": 6984
+    },
+    {
+     "rule": "max_kelly",
+     "roi": -0.05342873704044493,
+     "bets": 6988
+    },
+    {
+     "rule": "max_p_priced",
+     "roi": -0.059524954519834104,
+     "bets": 7073
+    },
+    {
+     "rule": "max_market_p",
+     "roi": -0.06540101604992236,
+     "bets": 7082
+    },
+    {
+     "rule": "max_edge",
+     "roi": -0.05570552316435157,
+     "bets": 7009
+    },
+    {
+     "rule": "value_first_ev0",
+     "roi": -0.05707036369475559,
+     "bets": 7035
+    },
+    {
+     "rule": "value_first_ev3",
+     "roi": -0.05572200236569893,
+     "bets": 7036
+    }
+   ]
+  }
+ },
+ "combo_bt_on_bt": {
+  "matches": 7094,
+  "settled": 7068,
+  "won": 3686,
+  "push": 26,
+  "bets": 6967,
+  "priced_share": 0.9970397519030166,
+  "hit_rate": 0.521505376344086,
+  "profit": -388.8200069665909,
+  "roi": -0.055808813975397,
+  "avg_odds": 1.852672597043429,
+  "avg_probability": 0.5607357364533713,
+  "neg_ev_share": 0.4341897516865222,
+  "mean_ev": 0.026882413394108042
+ },
+ "ew_choices": {
+  "floor": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "floor_1.40",
+     "history_roi": -0.061699628300364774
+    },
+    {
+     "month": "2026-09",
+     "chosen": "floor_1.40",
+     "history_roi": -0.05767907049172741
+    },
+    {
+     "month": "2026-10",
+     "chosen": "floor_1.50",
+     "history_roi": -0.0543825214166613
+    },
+    {
+     "month": "2026-11",
+     "chosen": "floor_1.40",
+     "history_roi": -0.05174111399159132
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "floor_1.40",
+     "history_roi": -0.061699628300364774
+    },
+    {
+     "month": "2026-09",
+     "chosen": "floor_1.40",
+     "history_roi": -0.05242186541379108
+    },
+    {
+     "month": "2026-10",
+     "chosen": "floor_1.40",
+     "history_roi": -0.052039177977022996
+    },
+    {
+     "month": "2026-11",
+     "chosen": "floor_1.40",
+     "history_roi": -0.05354063518377928
+    }
+   ]
+  },
+  "preference": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "pref_soft0.05",
+     "history_roi": -0.06020362086897522
+    },
+    {
+     "month": "2026-09",
+     "chosen": "pref_soft0.05",
+     "history_roi": -0.05889446159834998
+    },
+    {
+     "month": "2026-10",
+     "chosen": "pref_1.60-2.60",
+     "history_roi": -0.055016677430029
+    },
+    {
+     "month": "2026-11",
+     "chosen": "pref_soft0.05",
+     "history_roi": -0.052836394982527846
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "pref_soft0.05",
+     "history_roi": -0.06020362086897522
+    },
+    {
+     "month": "2026-09",
+     "chosen": "pref_1.60-2.60",
+     "history_roi": -0.05318320690251928
+    },
+    {
+     "month": "2026-10",
+     "chosen": "pref_1.60-2.60",
+     "history_roi": -0.05167331864094412
+    },
+    {
+     "month": "2026-11",
+     "chosen": "pref_1.50-2.50",
+     "history_roi": -0.05055034171451222
+    }
+   ]
+  },
+  "power": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "power_0.5",
+     "history_roi": -0.0580760542538195
+    },
+    {
+     "month": "2026-09",
+     "chosen": "power_0",
+     "history_roi": -0.056658967410087836
+    },
+    {
+     "month": "2026-10",
+     "chosen": "power_0.5",
+     "history_roi": -0.05758761241087345
+    },
+    {
+     "month": "2026-11",
+     "chosen": "power_3",
+     "history_roi": -0.055070264501674335
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "power_0.5",
+     "history_roi": -0.0580760542538195
+    },
+    {
+     "month": "2026-09",
+     "chosen": "power_0.5",
+     "history_roi": -0.052683907986688754
+    },
+    {
+     "month": "2026-10",
+     "chosen": "power_0.5",
+     "history_roi": -0.05261721828369834
+    },
+    {
+     "month": "2026-11",
+     "chosen": "power_0",
+     "history_roi": -0.04901296128780904
+    }
+   ]
+  },
+  "ev_weight": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "evw_1",
+     "history_roi": -0.054652052165089435
+    },
+    {
+     "month": "2026-09",
+     "chosen": "evw_1",
+     "history_roi": -0.054660978734868915
+    },
+    {
+     "month": "2026-10",
+     "chosen": "evw_1",
+     "history_roi": -0.05330075132725837
+    },
+    {
+     "month": "2026-11",
+     "chosen": "evw_1",
+     "history_roi": -0.051375638267376116
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "evw_1",
+     "history_roi": -0.054652052165089435
+    },
+    {
+     "month": "2026-09",
+     "chosen": "evw_1",
+     "history_roi": -0.04958350235029797
+    },
+    {
+     "month": "2026-10",
+     "chosen": "evw_1",
+     "history_roi": -0.046325506841895556
+    },
+    {
+     "month": "2026-11",
+     "chosen": "evw_1",
+     "history_roi": -0.04628579987326698
+    }
+   ]
+  },
+  "calibrated": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "cal_max_ev",
+     "history_roi": -0.05733428945179573
+    },
+    {
+     "month": "2026-09",
+     "chosen": "cal_max_ev",
+     "history_roi": -0.052347013627390464
+    },
+    {
+     "month": "2026-10",
+     "chosen": "cal_max_ev",
+     "history_roi": -0.05060760729701806
+    },
+    {
+     "month": "2026-11",
+     "chosen": "cal_max_ev",
+     "history_roi": -0.050469647919405315
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "cal_max_ev",
+     "history_roi": -0.05733428945179573
+    },
+    {
+     "month": "2026-09",
+     "chosen": "cal_max_ev",
+     "history_roi": -0.05128877250063063
+    },
+    {
+     "month": "2026-10",
+     "chosen": "cal_max_ev",
+     "history_roi": -0.051110582774567676
+    },
+    {
+     "month": "2026-11",
+     "chosen": "cal_evw2",
+     "history_roi": -0.04988922909495423
+    }
+   ]
+  },
+  "reliability": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "rel_total0.95",
+     "history_roi": -0.06075378392208349
+    },
+    {
+     "month": "2026-09",
+     "chosen": "rel_total0.95",
+     "history_roi": -0.05990088111195834
+    },
+    {
+     "month": "2026-10",
+     "chosen": "rel_flat",
+     "history_roi": -0.05632342072614749
+    },
+    {
+     "month": "2026-11",
+     "chosen": "rel_flat",
+     "history_roi": -0.05152064789493628
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "rel_total0.95",
+     "history_roi": -0.06075378392208349
+    },
+    {
+     "month": "2026-09",
+     "chosen": "rel_total0.95",
+     "history_roi": -0.05566137348084417
+    },
+    {
+     "month": "2026-10",
+     "chosen": "rel_flat",
+     "history_roi": -0.05100665511780877
+    },
+    {
+     "month": "2026-11",
+     "chosen": "rel_handicap1.0",
+     "history_roi": -0.049693970588504895
+    }
+   ]
+  },
+  "market_prob": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "blend_75",
+     "history_roi": -0.060841927219875316
+    },
+    {
+     "month": "2026-09",
+     "chosen": "blend_75",
+     "history_roi": -0.06232520447857824
+    },
+    {
+     "month": "2026-10",
+     "chosen": "blend_75",
+     "history_roi": -0.060121894098553945
+    },
+    {
+     "month": "2026-11",
+     "chosen": "blend_75",
+     "history_roi": -0.05782659317570171
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "blend_75",
+     "history_roi": -0.060841927219875316
+    },
+    {
+     "month": "2026-09",
+     "chosen": "blend_75",
+     "history_roi": -0.05684546159270953
+    },
+    {
+     "month": "2026-10",
+     "chosen": "blend_75",
+     "history_roi": -0.053209803788848625
+    },
+    {
+     "month": "2026-11",
+     "chosen": "blend_75",
+     "history_roi": -0.05232478734831072
+    }
+   ]
+  },
+  "overestimation": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "gap_corrected",
+     "history_roi": -0.06033469916501131
+    },
+    {
+     "month": "2026-09",
+     "chosen": "gap_corrected",
+     "history_roi": -0.06129727407668539
+    },
+    {
+     "month": "2026-10",
+     "chosen": "gap_corrected",
+     "history_roi": -0.06041536082740107
+    },
+    {
+     "month": "2026-11",
+     "chosen": "production",
+     "history_roi": -0.05950348549654799
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "gap_corrected",
+     "history_roi": -0.06033469916501131
+    },
+    {
+     "month": "2026-09",
+     "chosen": "gap_corrected",
+     "history_roi": -0.057050869329688475
+    },
+    {
+     "month": "2026-10",
+     "chosen": "production",
+     "history_roi": -0.05428605941444756
+    },
+    {
+     "month": "2026-11",
+     "chosen": "production",
+     "history_roi": -0.054219505237475686
+    }
+   ]
+  },
+  "ranking": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "max_kelly",
+     "history_roi": -0.05342873704044493
+    },
+    {
+     "month": "2026-09",
+     "chosen": "max_kelly",
+     "history_roi": -0.04914421361252628
+    },
+    {
+     "month": "2026-10",
+     "chosen": "max_kelly",
+     "history_roi": -0.04647080806460944
+    },
+    {
+     "month": "2026-11",
+     "chosen": "max_kelly",
+     "history_roi": -0.04428964310318489
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "max_kelly",
+     "history_roi": -0.05342873704044493
+    },
+    {
+     "month": "2026-09",
+     "chosen": "max_ev",
+     "history_roi": -0.049826290983269024
+    },
+    {
+     "month": "2026-10",
+     "chosen": "value_first_ev3",
+     "history_roi": -0.04752979051233058
+    },
+    {
+     "month": "2026-11",
+     "chosen": "value_first_ev3",
+     "history_roi": -0.04673431224853356
+    }
+   ]
+  },
+  "all": {
+   "close": [
+    {
+     "month": "2026-08",
+     "chosen": "max_kelly",
+     "history_roi": -0.05342873704044493
+    },
+    {
+     "month": "2026-09",
+     "chosen": "max_kelly",
+     "history_roi": -0.04914421361252628
+    },
+    {
+     "month": "2026-10",
+     "chosen": "max_kelly",
+     "history_roi": -0.04647080806460944
+    },
+    {
+     "month": "2026-11",
+     "chosen": "max_kelly",
+     "history_roi": -0.04428964310318489
+    }
+   ],
+   "t09": [
+    {
+     "month": "2026-08",
+     "chosen": "max_kelly",
+     "history_roi": -0.05342873704044493
+    },
+    {
+     "month": "2026-09",
+     "chosen": "evw_1",
+     "history_roi": -0.04958350235029797
+    },
+    {
+     "month": "2026-10",
+     "chosen": "evw_1",
+     "history_roi": -0.046325506841895556
+    },
+    {
+     "month": "2026-11",
+     "chosen": "evw_1",
+     "history_roi": -0.04628579987326698
+    }
+   ]
+  }
+ },
+ "candidates": [
+  {
+   "candidate": "floor_1.40",
+   "kind": "a priori (specification)",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.016714412705754047,
+   "roi_ci": [
+    -0.04884309250317313,
+    0.016608096264117085
+   ],
+   "hit_rate": 0.6183274021352313,
+   "profit": -37.573999762535095,
+   "avg_odds": 1.6072464415081031,
+   "neg_ev_share": 0.2580071174377224,
+   "roi_diff": 0.026929434024469286,
+   "diff_ci": [
+    0.0003617268865425516,
+    0.055330494661927396
+   ],
+   "p": 0.047,
+   "changed_share": 0.5044444444444445,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.050666666666666665,
+   "gap": 0.048537649333583066,
+   "common_matches": 2247,
+   "common_diff": 0.027717851138825838,
+   "common_p": 0.06,
+   "p_holm": 0.846
+  },
+  {
+   "candidate": "floor_1.40",
+   "kind": "a priori (specification)",
+   "universe": "t09",
+   "bets": 2223,
+   "roi": -0.025867746319258155,
+   "roi_ci": [
+    -0.061160934599052065,
+    0.009453169339190024
+   ],
+   "hit_rate": 0.5784313725490197,
+   "profit": -57.50400006771088,
+   "avg_odds": 1.7237926231972869,
+   "neg_ev_share": 0.42330184435447593,
+   "roi_diff": -0.013369800461411186,
+   "diff_ci": [
+    -0.04510713426514432,
+    0.018901552946350948
+   ],
+   "p": 0.404,
+   "changed_share": 0.5568888888888889,
+   "fallback": 21,
+   "fallback_not_bet": 21,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.09244444444444444,
+   "gap": 0.025912633301846233,
+   "common_matches": 1681,
+   "common_diff": 0.010778707170117688,
+   "common_p": 0.482,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "real_price_mandatory",
+   "kind": "a priori (specification)",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.04406889390945434,
+   "roi_ci": [
+    -0.07111951562960943,
+    -0.016978450071811684
+   ],
+   "hit_rate": 0.668,
+   "profit": -99.15501129627228,
+   "avg_odds": 1.4440813263787164,
+   "neg_ev_share": 0.3582222222222222,
+   "roi_diff": -0.0004250471792310098,
+   "diff_ci": [
+    -0.001289765577333263,
+    0.0
+   ],
+   "p": 0.772,
+   "changed_share": 0.0004444444444444695,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 0,
+   "months_n": 4,
+   "hit_diff": -0.00044444444444444447,
+   "gap": 0.0574905641343858,
+   "common_matches": 2249,
+   "common_diff": 0.0,
+   "common_p": 1.0,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "real_price_mandatory",
+   "kind": "a priori (specification)",
+   "universe": "t09",
+   "bets": 2247,
+   "roi": -0.033358258833925514,
+   "roi_ci": [
+    -0.06492482440086837,
+    -0.001834003211355042
+   ],
+   "hit_rate": 0.632398753894081,
+   "profit": -74.95600759983063,
+   "avg_odds": 1.5767676865306492,
+   "neg_ev_share": 0.5006675567423231,
+   "roi_diff": -0.020860312976078543,
+   "diff_ci": [
+    -0.04138544948586141,
+    -0.0008707531485486142
+   ],
+   "p": 0.039,
+   "changed_share": 0.2426666666666667,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 0,
+   "months_n": 4,
+   "hit_diff": -0.03777777777777778,
+   "gap": 0.02244644152836961,
+   "common_matches": 1701,
+   "common_diff": 0.0,
+   "common_p": 1.0,
+   "p_holm": 0.858
+  },
+  {
+   "candidate": "bt:floor",
+   "kind": "chosen on 2025/26 (floor_1.40)",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.016714412705754047,
+   "roi_ci": [
+    -0.04884309250317313,
+    0.016608096264117085
+   ],
+   "hit_rate": 0.6183274021352313,
+   "profit": -37.573999762535095,
+   "avg_odds": 1.6072464415081031,
+   "neg_ev_share": 0.2580071174377224,
+   "roi_diff": 0.026929434024469286,
+   "diff_ci": [
+    0.0003617268865425516,
+    0.055330494661927396
+   ],
+   "p": 0.047,
+   "changed_share": 0.5044444444444445,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.050666666666666665,
+   "gap": 0.048537649333583066,
+   "common_matches": 2247,
+   "common_diff": 0.027717851138825838,
+   "common_p": 0.06,
+   "p_holm": 0.846
+  },
+  {
+   "candidate": "bt:floor",
+   "kind": "chosen on 2025/26 (floor_1.40)",
+   "universe": "t09",
+   "bets": 2223,
+   "roi": -0.025867746319258155,
+   "roi_ci": [
+    -0.061160934599052065,
+    0.009453169339190024
+   ],
+   "hit_rate": 0.5784313725490197,
+   "profit": -57.50400006771088,
+   "avg_odds": 1.7237926231972869,
+   "neg_ev_share": 0.42330184435447593,
+   "roi_diff": -0.013369800461411186,
+   "diff_ci": [
+    -0.04510713426514432,
+    0.018901552946350948
+   ],
+   "p": 0.404,
+   "changed_share": 0.5568888888888889,
+   "fallback": 21,
+   "fallback_not_bet": 21,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.09244444444444444,
+   "gap": 0.025912633301846233,
+   "common_matches": 1681,
+   "common_diff": 0.010778707170117688,
+   "common_p": 0.482,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:floor",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2247,
+   "roi": -0.0323426787673923,
+   "roi_ci": [
+    -0.0647145839864384,
+    0.001901058509372046
+   ],
+   "hit_rate": 0.5932354250111259,
+   "profit": -72.6739991903305,
+   "avg_odds": 1.6482372054748127,
+   "neg_ev_share": 0.24432576769025366,
+   "roi_diff": 0.011301167962831031,
+   "diff_ci": [
+    -0.01865708916172739,
+    0.04261955227925882
+   ],
+   "p": 0.459,
+   "changed_share": 0.5991111111111111,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.076,
+   "gap": 0.05969262039550005,
+   "common_matches": 2246,
+   "common_diff": 0.01228228500668533,
+   "common_p": 0.413,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:floor",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 2223,
+   "roi": -0.025867746319258155,
+   "roi_ci": [
+    -0.061160934599052065,
+    0.009453169339190024
+   ],
+   "hit_rate": 0.5784313725490197,
+   "profit": -57.50400006771088,
+   "avg_odds": 1.7237926231972869,
+   "neg_ev_share": 0.42330184435447593,
+   "roi_diff": -0.013369800461411186,
+   "diff_ci": [
+    -0.04510713426514432,
+    0.018901552946350948
+   ],
+   "p": 0.404,
+   "changed_share": 0.5568888888888889,
+   "fallback": 21,
+   "fallback_not_bet": 21,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.09244444444444444,
+   "gap": 0.025912633301846233,
+   "common_matches": 1681,
+   "common_diff": 0.010778707170117688,
+   "common_p": 0.482,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:preference",
+   "kind": "chosen on 2025/26 (pref_soft0.05)",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.02426112276167208,
+   "roi_ci": [
+    -0.0546474636670284,
+    0.0076197844985903046
+   ],
+   "hit_rate": 0.6393952867941307,
+   "profit": -54.53900396823883,
+   "avg_odds": 1.5420298019550025,
+   "neg_ev_share": 0.28069395017793597,
+   "roi_diff": 0.019382723968551254,
+   "diff_ci": [
+    -0.00026994827945463857,
+    0.040668739839183086
+   ],
+   "p": 0.055,
+   "changed_share": 0.33111111111111113,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.029333333333333333,
+   "gap": 0.05027012425616029,
+   "common_matches": 2248,
+   "common_diff": 0.019546266605421313,
+   "common_p": 0.073,
+   "p_holm": 0.88
+  },
+  {
+   "candidate": "bt:preference",
+   "kind": "chosen on 2025/26 (pref_soft0.05)",
+   "universe": "t09",
+   "bets": 1704,
+   "roi": -0.013353874146098822,
+   "roi_ci": [
+    -0.051185120688931135,
+    0.024904438803176967
+   ],
+   "hit_rate": 0.6335707925200356,
+   "profit": -22.755001544952393,
+   "avg_odds": 1.6243386142690417,
+   "neg_ev_share": 0.3914319248826291,
+   "roi_diff": -0.0008559282882518535,
+   "diff_ci": [
+    -0.024779186814759255,
+    0.02200377303086883
+   ],
+   "p": 0.943,
+   "changed_share": 0.2617777777777778,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.03688888888888889,
+   "gap": 0.024926364129925105,
+   "common_matches": 1617,
+   "common_diff": 0.004922080054722529,
+   "common_p": 0.671,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:preference",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2247,
+   "roi": -0.04062972967498399,
+   "roi_ci": [
+    -0.07219329570483057,
+    -0.007441708686002813
+   ],
+   "hit_rate": 0.6120996441281139,
+   "profit": -91.29500257968903,
+   "avg_odds": 1.5876364025159257,
+   "neg_ev_share": 0.25500667556742324,
+   "roi_diff": 0.0030141170552393445,
+   "diff_ci": [
+    -0.022226000865700365,
+    0.029876731299467926
+   ],
+   "p": 0.813,
+   "changed_share": 0.44266666666666665,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.05688888888888889,
+   "gap": 0.062068616513997976,
+   "common_matches": 2247,
+   "common_diff": 0.0033769509396555167,
+   "common_p": 0.799,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:preference",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 2018,
+   "roi": -0.042974727595644024,
+   "roi_ci": [
+    -0.0809964090769374,
+    -0.005380544557417094
+   ],
+   "hit_rate": 0.5707925200356189,
+   "profit": -86.72300028800964,
+   "avg_odds": 1.731596135053455,
+   "neg_ev_share": 0.37561942517343905,
+   "roi_diff": -0.030476781737797054,
+   "diff_ci": [
+    -0.06523283942915341,
+    0.0011670609052013973
+   ],
+   "p": 0.067,
+   "changed_share": 0.528888888888889,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.09955555555555555,
+   "gap": 0.043834822871062995,
+   "common_matches": 1625,
+   "common_diff": -0.016128611491276666,
+   "common_p": 0.317,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:power",
+   "kind": "chosen on 2025/26 (power_0.5)",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.04024089336395264,
+   "roi_ci": [
+    -0.07061042536099751,
+    -0.010417516365316194
+   ],
+   "hit_rate": 0.6457777777777778,
+   "profit": -90.54201006889343,
+   "avg_odds": 1.5061088829570346,
+   "neg_ev_share": 0.3648888888888889,
+   "roi_diff": 0.0034029533662706946,
+   "diff_ci": [
+    -0.015183833103785169,
+    0.021148488304168118
+   ],
+   "p": 0.708,
+   "changed_share": 0.2128888888888889,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.02266666666666667,
+   "gap": 0.0543176921208699,
+   "common_matches": 2249,
+   "common_diff": 0.0038297026355619615,
+   "common_p": 0.672,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:power",
+   "kind": "chosen on 2025/26 (power_0.5)",
+   "universe": "t09",
+   "bets": 2234,
+   "roi": -0.029671443447857535,
+   "roi_ci": [
+    -0.06407479194643438,
+    0.004494467516457703
+   ],
+   "hit_rate": 0.5957257346393589,
+   "profit": -66.28600466251373,
+   "avg_odds": 1.6856714393159804,
+   "neg_ev_share": 0.4395702775290958,
+   "roi_diff": -0.017173497590010564,
+   "diff_ci": [
+    -0.04531668317667264,
+    0.0112951945031034
+   ],
+   "p": 0.225,
+   "changed_share": 0.3991111111111111,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.07466666666666667,
+   "gap": 0.02645687884978709,
+   "common_matches": 1699,
+   "common_diff": -0.004766920372063162,
+   "common_p": 0.668,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:power",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2242,
+   "roi": -0.05428903066718504,
+   "roi_ci": [
+    -0.08778900219362634,
+    -0.022453713215212206
+   ],
+   "hit_rate": 0.6048888888888889,
+   "profit": -121.71600675582886,
+   "avg_odds": 1.6278198004619657,
+   "neg_ev_share": 0.3389830508474576,
+   "roi_diff": -0.010645183936961705,
+   "diff_ci": [
+    -0.037527795946708534,
+    0.013335125977944328
+   ],
+   "p": 0.415,
+   "changed_share": 0.4164444444444444,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.06355555555555556,
+   "gap": 0.058797647913297,
+   "common_matches": 2241,
+   "common_diff": -0.009814812795544567,
+   "common_p": 0.444,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:power",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 2234,
+   "roi": -0.027657567547599224,
+   "roi_ci": [
+    -0.06399293923086781,
+    0.007426502741399277
+   ],
+   "hit_rate": 0.5756901157613535,
+   "profit": -61.78700590133667,
+   "avg_odds": 1.7494722446268334,
+   "neg_ev_share": 0.4377797672336616,
+   "roi_diff": -0.015159621689752255,
+   "diff_ci": [
+    -0.04639059630772474,
+    0.015630552757828688
+   ],
+   "p": 0.32,
+   "changed_share": 0.4835555555555555,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.09466666666666666,
+   "gap": 0.026143978534802104,
+   "common_matches": 1699,
+   "common_diff": -0.0036021182647938584,
+   "common_p": 0.804,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:ev_weight",
+   "kind": "chosen on 2025/26 (evw_1)",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03598710954215803,
+   "roi_ci": [
+    -0.0650593190656444,
+    -0.007844553297099035
+   ],
+   "hit_rate": 0.6644444444444444,
+   "profit": -80.93500936031342,
+   "avg_odds": 1.4675108879181797,
+   "neg_ev_share": 0.28145842596709647,
+   "roi_diff": 0.007656737188065303,
+   "diff_ci": [
+    -0.007263210330993681,
+    0.022024799335342286
+   ],
+   "p": 0.314,
+   "changed_share": 0.12755555555555553,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.004,
+   "gap": 0.060450059652328525,
+   "common_matches": 2249,
+   "common_diff": 0.007656737188065303,
+   "common_p": 0.326,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:ev_weight",
+   "kind": "chosen on 2025/26 (evw_1)",
+   "universe": "t09",
+   "bets": 1726,
+   "roi": -0.005123989261591835,
+   "roi_ci": [
+    -0.04119399119407586,
+    0.030308227560734816
+   ],
+   "hit_rate": 0.6565701559020044,
+   "profit": -8.844005465507507,
+   "avg_odds": 1.5709849329425727,
+   "neg_ev_share": 0.3551564310544612,
+   "roi_diff": 0.007373956596255134,
+   "diff_ci": [
+    -0.013526626901433043,
+    0.02868251902851535
+   ],
+   "p": 0.515,
+   "changed_share": 0.14533333333333331,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.014222222222222223,
+   "gap": 0.027229484086047306,
+   "common_matches": 1633,
+   "common_diff": 0.00796815696407956,
+   "common_p": 0.372,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:ev_weight",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.03598710954215803,
+   "roi_ci": [
+    -0.0650593190656444,
+    -0.007844553297099035
+   ],
+   "hit_rate": 0.6644444444444444,
+   "profit": -80.93500936031342,
+   "avg_odds": 1.4675108879181797,
+   "neg_ev_share": 0.28145842596709647,
+   "roi_diff": 0.007656737188065303,
+   "diff_ci": [
+    -0.007263210330993681,
+    0.022024799335342286
+   ],
+   "p": 0.314,
+   "changed_share": 0.12755555555555553,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.004,
+   "gap": 0.060450059652328525,
+   "common_matches": 2249,
+   "common_diff": 0.007656737188065303,
+   "common_p": 0.326,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:ev_weight",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 1726,
+   "roi": -0.005123989261591835,
+   "roi_ci": [
+    -0.04119399119407586,
+    0.030308227560734816
+   ],
+   "hit_rate": 0.6565701559020044,
+   "profit": -8.844005465507507,
+   "avg_odds": 1.5709849329425727,
+   "neg_ev_share": 0.3551564310544612,
+   "roi_diff": 0.007373956596255134,
+   "diff_ci": [
+    -0.013526626901433043,
+    0.02868251902851535
+   ],
+   "p": 0.515,
+   "changed_share": 0.14533333333333331,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.014222222222222223,
+   "gap": 0.027229484086047306,
+   "common_matches": 1633,
+   "common_diff": 0.00796815696407956,
+   "common_p": 0.372,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:calibrated",
+   "kind": "chosen on 2025/26 (cal_max_ev)",
+   "universe": "close",
+   "bets": 2216,
+   "roi": -0.027046482646938697,
+   "roi_ci": [
+    -0.07160370422585932,
+    0.01790751424449152
+   ],
+   "hit_rate": 0.4657039711191336,
+   "profit": -59.93500554561615,
+   "avg_odds": 2.2176705718793595,
+   "neg_ev_share": 0.03203971119133574,
+   "roi_diff": 0.016597364083284636,
+   "diff_ci": [
+    -0.02905666905049564,
+    0.0599602271645104
+   ],
+   "p": 0.466,
+   "changed_share": 0.9502222222222222,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.20977777777777779,
+   "gap": 0.06734960410569119,
+   "common_matches": 2215,
+   "common_diff": 0.02101670678528383,
+   "common_p": 0.38,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:calibrated",
+   "kind": "chosen on 2025/26 (cal_max_ev)",
+   "universe": "t09",
+   "bets": 2210,
+   "roi": -0.035792309396407186,
+   "roi_ci": [
+    -0.07848763926204089,
+    0.007760807980648028
+   ],
+   "hit_rate": 0.4846153846153846,
+   "profit": -79.10100376605988,
+   "avg_odds": 2.100259722789488,
+   "neg_ev_share": 0.13619909502262442,
+   "roi_diff": -0.023294363538560216,
+   "diff_ci": [
+    -0.06716907639560238,
+    0.021304294969172174
+   ],
+   "p": 0.317,
+   "changed_share": 0.8542222222222222,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.19333333333333333,
+   "gap": 0.04841900408537675,
+   "common_matches": 1674,
+   "common_diff": -0.005123654075563311,
+   "common_p": 0.864,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:calibrated",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2216,
+   "roi": -0.027046482646938697,
+   "roi_ci": [
+    -0.07160370422585932,
+    0.01790751424449152
+   ],
+   "hit_rate": 0.4657039711191336,
+   "profit": -59.93500554561615,
+   "avg_odds": 2.2176705718793595,
+   "neg_ev_share": 0.03203971119133574,
+   "roi_diff": 0.016597364083284636,
+   "diff_ci": [
+    -0.02905666905049564,
+    0.0599602271645104
+   ],
+   "p": 0.466,
+   "changed_share": 0.9502222222222222,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.20977777777777779,
+   "gap": 0.06734960410569119,
+   "common_matches": 2215,
+   "common_diff": 0.02101670678528383,
+   "common_p": 0.38,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:calibrated",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 2215,
+   "roi": -0.027535892878375257,
+   "roi_ci": [
+    -0.06852903550545317,
+    0.013090800185737205
+   ],
+   "hit_rate": 0.5137449301487156,
+   "profit": -60.992002725601196,
+   "avg_odds": 2.0166812600185318,
+   "neg_ev_share": 0.16613995485327313,
+   "roi_diff": -0.015037947020528289,
+   "diff_ci": [
+    -0.0572141514261544,
+    0.028245090957681025
+   ],
+   "p": 0.487,
+   "changed_share": 0.7671111111111111,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.16266666666666665,
+   "gap": 0.04299094490018607,
+   "common_matches": 1682,
+   "common_diff": 0.0049726539928195874,
+   "common_p": 0.811,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:reliability",
+   "kind": "chosen on 2025/26 (rel_total0.95)",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.02889328980350452,
+   "roi_ci": [
+    -0.05636037030617396,
+    -0.0007092855251222476
+   ],
+   "hit_rate": 0.6768888888888889,
+   "profit": -64.98100876808167,
+   "avg_odds": 1.4497389899406925,
+   "neg_ev_share": 0.2863494886616274,
+   "roi_diff": 0.014750556926718814,
+   "diff_ci": [
+    -0.0010452756534122657,
+    0.030651665459957317
+   ],
+   "p": 0.069,
+   "changed_share": 0.17155555555555557,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": 0.008444444444444444,
+   "gap": 0.05317762968275286,
+   "common_matches": 2249,
+   "common_diff": 0.014750556926718814,
+   "common_p": 0.076,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:reliability",
+   "kind": "chosen on 2025/26 (rel_total0.95)",
+   "universe": "t09",
+   "bets": 1801,
+   "roi": -0.005747921198093514,
+   "roi_ci": [
+    -0.03821710873095921,
+    0.026258778733614534
+   ],
+   "hit_rate": 0.6769025367156208,
+   "profit": -10.352006077766418,
+   "avg_odds": 1.5098861706117865,
+   "neg_ev_share": 0.4486396446418656,
+   "roi_diff": 0.006750024659753454,
+   "diff_ci": [
+    -0.01195740702481241,
+    0.02498816552146243
+   ],
+   "p": 0.509,
+   "changed_share": 0.16355555555555557,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": 0.006666666666666667,
+   "gap": 0.016124188594941136,
+   "common_matches": 1678,
+   "common_diff": 0.008468414944317968,
+   "common_p": 0.296,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:reliability",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.018738553809186733,
+   "roi_ci": [
+    -0.04641204743915134,
+    0.008557338027917348
+   ],
+   "hit_rate": 0.6817777777777778,
+   "profit": -42.14300751686096,
+   "avg_odds": 1.4523508180348594,
+   "neg_ev_share": 0.25477990217874613,
+   "roi_diff": 0.0249052929210366,
+   "diff_ci": [
+    0.005860004394144686,
+    0.04397436813877924
+   ],
+   "p": 0.015,
+   "changed_share": 0.2751111111111111,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 4,
+   "months_n": 4,
+   "hit_diff": 0.013333333333333334,
+   "gap": 0.04928344273567198,
+   "common_matches": 2249,
+   "common_diff": 0.0249052929210366,
+   "common_p": 0.005,
+   "p_holm": 0.32999999999999996
+  },
+  {
+   "candidate": "ew:reliability",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 1795,
+   "roi": -0.0039782760535110005,
+   "roi_ci": [
+    -0.038430770759015666,
+    0.02921999645207782
+   ],
+   "hit_rate": 0.6791277258566978,
+   "profit": -7.141005516052246,
+   "avg_odds": 1.505359327892739,
+   "neg_ev_share": 0.43175487465181056,
+   "roi_diff": 0.008519669804335968,
+   "diff_ci": [
+    -0.014695623549105757,
+    0.03088098842022489
+   ],
+   "p": 0.493,
+   "changed_share": 0.2853333333333333,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": 0.008888888888888889,
+   "gap": 0.017277276603497538,
+   "common_matches": 1651,
+   "common_diff": 0.013096911339670293,
+   "common_p": 0.207,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:market_prob",
+   "kind": "chosen on 2025/26 (blend_75)",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.03881956089867486,
+   "roi_ci": [
+    -0.06486253794299231,
+    -0.010872972153292772
+   ],
+   "hit_rate": 0.6773333333333333,
+   "profit": -87.34401202201843,
+   "avg_odds": 1.4295871036847432,
+   "neg_ev_share": 0.40755555555555556,
+   "roi_diff": 0.0048242858315484735,
+   "diff_ci": [
+    -0.006124862914460056,
+    0.016662978717339547
+   ],
+   "p": 0.401,
+   "changed_share": 0.08266666666666667,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": 0.008888888888888889,
+   "gap": 0.04775243282318109,
+   "common_matches": 2249,
+   "common_diff": 0.005251667085039505,
+   "common_p": 0.404,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:market_prob",
+   "kind": "chosen on 2025/26 (blend_75)",
+   "universe": "t09",
+   "bets": 1620,
+   "roi": -0.00416605273882548,
+   "roi_ci": [
+    -0.03830024342154211,
+    0.028494133340365702
+   ],
+   "hit_rate": 0.6886120996441281,
+   "profit": -6.749005436897278,
+   "avg_odds": 1.4712518483768275,
+   "neg_ev_share": 0.5438271604938272,
+   "roi_diff": 0.008331893119021489,
+   "diff_ci": [
+    -0.009893731741710028,
+    0.02577818960502896
+   ],
+   "p": 0.34,
+   "changed_share": 0.10711111111111116,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 4,
+   "months_n": 4,
+   "hit_diff": 0.018666666666666668,
+   "gap": 0.006531523825647145,
+   "common_matches": 1605,
+   "common_diff": -0.00453582537879825,
+   "common_p": 0.544,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:market_prob",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.03881956089867486,
+   "roi_ci": [
+    -0.06486253794299231,
+    -0.010872972153292772
+   ],
+   "hit_rate": 0.6773333333333333,
+   "profit": -87.34401202201843,
+   "avg_odds": 1.4295871036847432,
+   "neg_ev_share": 0.40755555555555556,
+   "roi_diff": 0.0048242858315484735,
+   "diff_ci": [
+    -0.006124862914460056,
+    0.016662978717339547
+   ],
+   "p": 0.401,
+   "changed_share": 0.08266666666666667,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": 0.008888888888888889,
+   "gap": 0.04775243282318109,
+   "common_matches": 2249,
+   "common_diff": 0.005251667085039505,
+   "common_p": 0.404,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:market_prob",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 1620,
+   "roi": -0.00416605273882548,
+   "roi_ci": [
+    -0.03830024342154211,
+    0.028494133340365702
+   ],
+   "hit_rate": 0.6886120996441281,
+   "profit": -6.749005436897278,
+   "avg_odds": 1.4712518483768275,
+   "neg_ev_share": 0.5438271604938272,
+   "roi_diff": 0.008331893119021489,
+   "diff_ci": [
+    -0.009893731741710028,
+    0.02577818960502896
+   ],
+   "p": 0.34,
+   "changed_share": 0.10711111111111116,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 4,
+   "months_n": 4,
+   "hit_diff": 0.018666666666666668,
+   "gap": 0.006531523825647145,
+   "common_matches": 1605,
+   "common_diff": -0.00453582537879825,
+   "common_p": 0.544,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:overestimation",
+   "kind": "chosen on 2025/26 (gap_corrected)",
+   "universe": "close",
+   "bets": 2241,
+   "roi": -0.05278447795690888,
+   "roi_ci": [
+    -0.0811723286732847,
+    -0.023123883344830024
+   ],
+   "hit_rate": 0.6631111111111111,
+   "profit": -118.2900151014328,
+   "avg_odds": 1.4450740651433247,
+   "neg_ev_share": 0.501561802766622,
+   "roi_diff": -0.009140631226685549,
+   "diff_ci": [
+    -0.02847910062821624,
+    0.011698354781422242
+   ],
+   "p": 0.363,
+   "changed_share": 0.33511111111111114,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 2,
+   "months_n": 4,
+   "hit_diff": -0.005333333333333333,
+   "gap": 0.04507154671351121,
+   "common_matches": 2241,
+   "common_diff": -0.008780010679586295,
+   "common_p": 0.396,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:overestimation",
+   "kind": "chosen on 2025/26 (gap_corrected)",
+   "universe": "t09",
+   "bets": 1400,
+   "roi": -0.015293575099536352,
+   "roi_ci": [
+    -0.05061409502075701,
+    0.021065585532216827
+   ],
+   "hit_rate": 0.7088888888888889,
+   "profit": -21.41100513935089,
+   "avg_odds": 1.4770149960688181,
+   "neg_ev_share": 0.5571428571428572,
+   "roi_diff": -0.002795629241689383,
+   "diff_ci": [
+    -0.026738693707501017,
+    0.021601741964930418
+   ],
+   "p": 0.799,
+   "changed_share": 0.49511111111111106,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": 0.03955555555555555,
+   "gap": 0.0033575407399071278,
+   "common_matches": 1398,
+   "common_diff": -0.010025035072976087,
+   "common_p": 0.323,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:overestimation",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2242,
+   "roi": -0.05331178178327834,
+   "roi_ci": [
+    -0.08191402329637645,
+    -0.024819122555212854
+   ],
+   "hit_rate": 0.6622222222222223,
+   "profit": -119.52501475811005,
+   "avg_odds": 1.4455646657709773,
+   "neg_ev_share": 0.4790365744870651,
+   "roi_diff": -0.009667935053055007,
+   "diff_ci": [
+    -0.028294520169502468,
+    0.008872868993501128
+   ],
+   "p": 0.32,
+   "changed_share": 0.28755555555555556,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.006222222222222222,
+   "gap": 0.048193137566248545,
+   "common_matches": 2242,
+   "common_diff": -0.009739519867059059,
+   "common_p": 0.305,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:overestimation",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 1477,
+   "roi": -0.01819634792686881,
+   "roi_ci": [
+    -0.05411545598438886,
+    0.01823236853318975
+   ],
+   "hit_rate": 0.6967541129390841,
+   "profit": -26.87600588798523,
+   "avg_odds": 1.485619495103871,
+   "neg_ev_share": 0.4949221394719025,
+   "roi_diff": -0.00569840206902184,
+   "diff_ci": [
+    -0.023778617464603666,
+    0.012245506245351069
+   ],
+   "p": 0.54,
+   "changed_share": 0.2844444444444445,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": 0.02711111111111111,
+   "gap": 0.011149449473542572,
+   "common_matches": 1477,
+   "common_diff": -0.007928909767941196,
+   "common_p": 0.147,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "bt:ranking",
+   "kind": "chosen on 2025/26 (max_kelly)",
+   "universe": "close",
+   "bets": 2081,
+   "roi": -0.005351275735494897,
+   "roi_ci": [
+    -0.03845018217860358,
+    0.027622830085209594
+   ],
+   "hit_rate": 0.6472849591542528,
+   "profit": -11.13600480556488,
+   "avg_odds": 1.603564628496129,
+   "neg_ev_share": 0.03459875060067275,
+   "roi_diff": 0.038292570994728437,
+   "diff_ci": [
+    0.003913147458685451,
+    0.07236015753827026
+   ],
+   "p": 0.029,
+   "changed_share": 0.7777777777777778,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 4,
+   "months_n": 4,
+   "hit_diff": -0.06977777777777777,
+   "gap": 0.015712294081321798,
+   "common_matches": 2080,
+   "common_diff": 0.02785096403497916,
+   "common_p": 0.122,
+   "p_holm": 0.609
+  },
+  {
+   "candidate": "bt:ranking",
+   "kind": "chosen on 2025/26 (max_kelly)",
+   "universe": "t09",
+   "bets": 2184,
+   "roi": -0.03396978232013437,
+   "roi_ci": [
+    -0.07336911897795512,
+    0.0050644130859096225
+   ],
+   "hit_rate": 0.5439560439560439,
+   "profit": -74.19000458717346,
+   "avg_odds": 1.8969537497330935,
+   "neg_ev_share": 0.14056776556776557,
+   "roi_diff": -0.021471836462287397,
+   "diff_ci": [
+    -0.06484219223698054,
+    0.018775556066027148
+   ],
+   "p": 0.295,
+   "changed_share": 0.7631111111111111,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 0,
+   "months_n": 4,
+   "hit_diff": -0.14133333333333334,
+   "gap": 0.03564122739510667,
+   "common_matches": 1646,
+   "common_diff": 0.0002029175312232281,
+   "common_p": 0.998,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:ranking",
+   "kind": "expanding window",
+   "universe": "close",
+   "bets": 2081,
+   "roi": -0.005351275735494897,
+   "roi_ci": [
+    -0.03845018217860358,
+    0.027622830085209594
+   ],
+   "hit_rate": 0.6472849591542528,
+   "profit": -11.13600480556488,
+   "avg_odds": 1.603564628496129,
+   "neg_ev_share": 0.03459875060067275,
+   "roi_diff": 0.038292570994728437,
+   "diff_ci": [
+    0.003913147458685451,
+    0.07236015753827026
+   ],
+   "p": 0.029,
+   "changed_share": 0.7777777777777778,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 4,
+   "months_n": 4,
+   "hit_diff": -0.06977777777777777,
+   "gap": 0.015712294081321798,
+   "common_matches": 2080,
+   "common_diff": 0.02785096403497916,
+   "common_p": 0.122,
+   "p_holm": 0.609
+  },
+  {
+   "candidate": "ew:ranking",
+   "kind": "expanding window",
+   "universe": "t09",
+   "bets": 2158,
+   "roi": -0.03913021380421848,
+   "roi_ci": [
+    -0.0771741542961151,
+    0.0012938850112112223
+   ],
+   "hit_rate": 0.5423576871358136,
+   "profit": -84.44300138950348,
+   "avg_odds": 1.902875344437289,
+   "neg_ev_share": 0.16589434661723818,
+   "roi_diff": -0.02663226794637151,
+   "diff_ci": [
+    -0.06611987511900119,
+    0.01132965115263626
+   ],
+   "p": 0.162,
+   "changed_share": 0.6115555555555556,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.13155555555555556,
+   "gap": 0.04630205407905663,
+   "common_matches": 1688,
+   "common_diff": -0.015739925805991296,
+   "common_p": 0.428,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "combo_bt",
+   "kind": "combination of the 2025/26 choices (floor 1.40 + EV weight 1 + TOTAL 0.95)",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.02350889639498076,
+   "roi_ci": [
+    -0.056116475196977336,
+    0.01060845198353259
+   ],
+   "hit_rate": 0.6098754448398577,
+   "profit": -52.84799909591675,
+   "avg_odds": 1.6273189500451513,
+   "neg_ev_share": 0.1903914590747331,
+   "roi_diff": 0.020134950335242572,
+   "diff_ci": [
+    -0.009105433909546077,
+    0.05043820089811341
+   ],
+   "p": 0.182,
+   "changed_share": 0.5724444444444444,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 3,
+   "months_n": 4,
+   "hit_diff": -0.059111111111111114,
+   "gap": 0.058157962080740866,
+   "common_matches": 2247,
+   "common_diff": 0.020016916868789602,
+   "common_p": 0.201,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "combo_bt",
+   "kind": "combination of the 2025/26 choices (floor 1.40 + EV weight 1 + TOTAL 0.95)",
+   "universe": "t09",
+   "bets": 2222,
+   "roi": -0.01991854279455465,
+   "roi_ci": [
+    -0.056084389512444384,
+    0.014690466801897296
+   ],
+   "hit_rate": 0.5715559518502006,
+   "profit": -44.25900208950043,
+   "avg_odds": 1.7602074701543546,
+   "neg_ev_share": 0.34338433843384336,
+   "roi_diff": -0.00742059693670768,
+   "diff_ci": [
+    -0.04236982173259036,
+    0.026426550027838006
+   ],
+   "p": 0.661,
+   "changed_share": 0.6093333333333333,
+   "fallback": 21,
+   "fallback_not_bet": 21,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.09955555555555555,
+   "gap": 0.03107030766115515,
+   "common_matches": 1680,
+   "common_diff": 0.001835717473711286,
+   "common_p": 0.928,
+   "p_holm": 1.0
+  },
+  {
+   "candidate": "ew:all",
+   "kind": "expanding window over the whole grid",
+   "universe": "close",
+   "bets": 2081,
+   "roi": -0.005351275735494897,
+   "roi_ci": [
+    -0.03845018217860358,
+    0.027622830085209594
+   ],
+   "hit_rate": 0.6472849591542528,
+   "profit": -11.13600480556488,
+   "avg_odds": 1.603564628496129,
+   "neg_ev_share": 0.03459875060067275,
+   "roi_diff": 0.038292570994728437,
+   "diff_ci": [
+    0.003913147458685451,
+    0.07236015753827026
+   ],
+   "p": 0.029,
+   "changed_share": 0.7777777777777778,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 4,
+   "months_n": 4,
+   "hit_diff": -0.06977777777777777,
+   "gap": 0.015712294081321798,
+   "common_matches": 2080,
+   "common_diff": 0.02785096403497916,
+   "common_p": 0.122,
+   "p_holm": 0.609
+  },
+  {
+   "candidate": "ew:all",
+   "kind": "expanding window over the whole grid",
+   "universe": "t09",
+   "bets": 1870,
+   "roi": -0.01861337085458684,
+   "roi_ci": [
+    -0.05773758151735469,
+    0.018123562136044002
+   ],
+   "hit_rate": 0.6279589102277803,
+   "profit": -34.80700349807739,
+   "avg_odds": 1.6746283393492674,
+   "neg_ev_share": 0.2978609625668449,
+   "roi_diff": -0.006115424996739871,
+   "diff_ci": [
+    -0.035459191480045296,
+    0.022306635425711076
+   ],
+   "p": 0.65,
+   "changed_share": 0.2897777777777778,
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "months_better": 1,
+   "months_n": 4,
+   "hit_diff": -0.044444444444444446,
+   "gap": 0.028587622547213587,
+   "common_matches": 1640,
+   "common_diff": 0.0007573188078112709,
+   "common_p": 0.966,
+   "p_holm": 1.0
+  }
+ ],
+ "best_on_close_among_candidates": "bt:ranking",
+ "baselines": {
+  "close": {
+   "summary": {
+    "matches": 2250,
+    "settled": 2250,
+    "won": 1504,
+    "push": 0,
+    "bets": 2249,
+    "priced_share": 0.9995555555555555,
+    "hit_rate": 0.6684444444444444,
+    "profit": -98.15501129627228,
+    "roi": -0.04364384673022333,
+    "avg_odds": 1.4440431233351365,
+    "avg_probability": 0.7255342626041836,
+    "neg_ev_share": 0.35793686082703424,
+    "mean_ev": 0.04408513025174708
+   },
+   "roi_ci": {
+    "roi": -0.04364384673022333,
+    "ci95": [
+     -0.07069349057836605,
+     -0.01660173922154363
+    ],
+    "bets": 2249
+   },
+   "sensitivity": {
+    "roi_odds_minus_2pct": -0.06277096979561889,
+    "roi_odds_minus_5pct": -0.0914616543937122,
+    "roi_without_top5_wins": -0.04681636774046997,
+    "roi_without_top10_wins": -0.0492218812342059,
+    "largest_win": 1.625,
+    "share_profit_odds_ge_2": 0.011116051578479324
+   },
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "unpriced_main": 1,
+   "groups": {
+    "TOTAL": 0.6147,
+    "HANDICAP": 0.3307,
+    "1X2": 0.0356,
+    "DOUBLE_CHANCE": 0.0098,
+    "CORNERS": 0.0067,
+    "BTTS": 0.0027
+   },
+   "groups_bets": {
+    "TOTAL": 1382,
+    "HANDICAP": 744,
+    "1X2": 80,
+    "DOUBLE_CHANCE": 22,
+    "CORNERS": 15,
+    "BTTS": 6
+   },
+   "vs_b": {
+    "matches": 2250,
+    "roi_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "hit_rate_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0,
+     "n": 2250
+    },
+    "same_main_share": 1.0
+   },
+   "changed_share": 0.0,
+   "vs_b_common_bets": {
+    "matches": 2249,
+    "roi_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "hit_rate_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0,
+     "n": 2249
+    },
+    "same_main_share": 1.0
+   },
+   "gap": 0.057089818159739236,
+   "months": [
+    {
+     "month": "2026-08",
+     "bets": 546,
+     "roi": -0.0753095350859366,
+     "roi_b": -0.0753095350859366,
+     "diff": 0.0
+    },
+    {
+     "month": "2026-09",
+     "bets": 660,
+     "roi": -0.04158334045699148,
+     "roi_b": -0.04158334045699148,
+     "diff": 0.0
+    },
+    {
+     "month": "2026-10",
+     "bets": 762,
+     "roi": -0.03918110323077425,
+     "roi_b": -0.03918110323077425,
+     "diff": 0.0
+    },
+    {
+     "month": "2026-11",
+     "bets": 281,
+     "roi": 0.0009430612957774532,
+     "roi_b": 0.0009430612957774532,
+     "diff": 0.0
+    }
+   ],
+   "months_better": 0,
+   "months_n": 4,
+   "vs_a": {
+    "matches": 2248,
+    "roi_diff": {
+     "diff": 0.0007051564208045633,
+     "ci95": [
+      -0.01552611830270969,
+      0.017253037153490185
+     ],
+     "p": 0.948
+    },
+    "hit_rate_diff": {
+     "diff": 0.0066725978647686835,
+     "ci95": [
+      -0.004448398576512456,
+      0.018238434163701068
+     ],
+     "p": 0.237,
+     "n": 2248
+    },
+    "same_main_share": 0.8322953736654805
+   },
+   "leagues": [
+    {
+     "league": "B1",
+     "matches": 99,
+     "bets": 99,
+     "hit_rate": 0.6868686868686869,
+     "roi": -0.006646468181802769,
+     "profit": -0.6580003499984741,
+     "avg_odds": 1.4541212067459568,
+     "small": false
+    },
+    {
+     "league": "D1",
+     "matches": 81,
+     "bets": 81,
+     "hit_rate": 0.5555555555555556,
+     "roi": -0.14991357885761025,
+     "profit": -12.14299988746643,
+     "avg_odds": 1.5631604930500926,
+     "small": false
+    },
+    {
+     "league": "D2",
+     "matches": 99,
+     "bets": 99,
+     "hit_rate": 0.6868686868686869,
+     "roi": 0.006010097686690513,
+     "profit": 0.5949996709823608,
+     "avg_odds": 1.4783939351939193,
+     "small": false
+    },
+    {
+     "league": "E0",
+     "matches": 100,
+     "bets": 100,
+     "hit_rate": 0.65,
+     "roi": -0.041600003242492675,
+     "profit": -4.160000324249268,
+     "avg_odds": 1.470259996652603,
+     "small": false
+    },
+    {
+     "league": "E1",
+     "matches": 180,
+     "bets": 180,
+     "hit_rate": 0.6222222222222222,
+     "roi": -0.11215000616179573,
+     "profit": -20.18700110912323,
+     "avg_odds": 1.4304499897691938,
+     "small": false
+    },
+    {
+     "league": "E2",
+     "matches": 163,
+     "bets": 163,
+     "hit_rate": 0.6687116564417178,
+     "roi": -0.051361971106265954,
+     "profit": -8.37200129032135,
+     "avg_odds": 1.4332883350688255,
+     "small": false
+    },
+    {
+     "league": "E3",
+     "matches": 174,
+     "bets": 174,
+     "hit_rate": 0.6609195402298851,
+     "roi": -0.08388506407025216,
+     "profit": -14.596001148223877,
+     "avg_odds": 1.3881896467044437,
+     "small": false
+    },
+    {
+     "league": "F1",
+     "matches": 90,
+     "bets": 90,
+     "hit_rate": 0.6555555555555556,
+     "roi": -0.047577783796522354,
+     "profit": -4.282000541687012,
+     "avg_odds": 1.4630888806449043,
+     "small": false
+    },
+    {
+     "league": "F2",
+     "matches": 108,
+     "bets": 108,
+     "hit_rate": 0.6111111111111112,
+     "roi": -0.16854630686618663,
+     "profit": -18.203001141548157,
+     "avg_odds": 1.3768888711929321,
+     "small": false
+    },
+    {
+     "league": "G1",
+     "matches": 69,
+     "bets": 69,
+     "hit_rate": 0.7391304347826086,
+     "roi": 0.05497100906095643,
+     "profit": 3.7929996252059937,
+     "avg_odds": 1.4362173840619517,
+     "small": false
+    },
+    {
+     "league": "I1",
+     "matches": 110,
+     "bets": 110,
+     "hit_rate": 0.7181818181818181,
+     "roi": 0.034281818433241414,
+     "profit": 3.771000027656555,
+     "avg_odds": 1.4749999978325583,
+     "small": false
+    },
+    {
+     "league": "I2",
+     "matches": 110,
+     "bets": 110,
+     "hit_rate": 0.7454545454545455,
+     "roi": 0.02053635662252253,
+     "profit": 2.258999228477478,
+     "avg_odds": 1.389272717996077,
+     "small": false
+    },
+    {
+     "league": "N1",
+     "matches": 108,
+     "bets": 108,
+     "hit_rate": 0.6018518518518519,
+     "roi": -0.08238888449139065,
+     "profit": -8.89799952507019,
+     "avg_odds": 1.5467037050812333,
+     "small": false
+    },
+    {
+     "league": "P1",
+     "matches": 98,
+     "bets": 98,
+     "hit_rate": 0.6836734693877551,
+     "roi": -0.021571439139697016,
+     "profit": -2.1140010356903076,
+     "avg_odds": 1.4307959055414006,
+     "small": false
+    },
+    {
+     "league": "SC0",
+     "matches": 75,
+     "bets": 74,
+     "hit_rate": 0.7066666666666667,
+     "roi": 0.014770269393920898,
+     "profit": 1.0929999351501465,
+     "avg_odds": 1.4585810786968954,
+     "small": false
+    },
+    {
+     "league": "SC1",
+     "matches": 73,
+     "bets": 73,
+     "hit_rate": 0.7397260273972602,
+     "roi": 0.04994519279427724,
+     "profit": 3.6459990739822388,
+     "avg_odds": 1.442041081924961,
+     "small": false
+    },
+    {
+     "league": "SC2",
+     "matches": 74,
+     "bets": 74,
+     "hit_rate": 0.6891891891891891,
+     "roi": -0.02704054761577297,
+     "profit": -2.0010005235671997,
+     "avg_odds": 1.4263513426522951,
+     "small": false
+    },
+    {
+     "league": "SC3",
+     "matches": 70,
+     "bets": 70,
+     "hit_rate": 0.6285714285714286,
+     "roi": -0.08902857644217355,
+     "profit": -6.232000350952148,
+     "avg_odds": 1.4385999952043806,
+     "small": false
+    },
+    {
+     "league": "SP1",
+     "matches": 119,
+     "bets": 119,
+     "hit_rate": 0.680672268907563,
+     "roi": -0.010302519597927062,
+     "profit": -1.2259998321533203,
+     "avg_odds": 1.4809663886783504,
+     "small": false
+    },
+    {
+     "league": "SP2",
+     "matches": 151,
+     "bets": 151,
+     "hit_rate": 0.6754966887417219,
+     "roi": -0.0551920576600839,
+     "profit": -8.334000706672668,
+     "avg_odds": 1.4018940333499024,
+     "small": false
+    },
+    {
+     "league": "T1",
+     "matches": 99,
+     "bets": 99,
+     "hit_rate": 0.6868686868686869,
+     "roi": -0.019252536272761796,
+     "profit": -1.906001091003418,
+     "avg_odds": 1.4328282710277673,
+     "small": false
+    }
+   ]
+  },
+  "t09": {
+   "summary": {
+    "matches": 2250,
+    "settled": 2247,
+    "won": 1506,
+    "push": 3,
+    "bets": 1701,
+    "priced_share": 0.7573333333333333,
+    "hit_rate": 0.6702269692923899,
+    "profit": -21.259005904197693,
+    "roi": -0.012497945857846969,
+    "avg_odds": 1.5107948229917003,
+    "avg_probability": 0.6904364811562409,
+    "neg_ev_share": 0.47266313932980597,
+    "mean_ev": 0.022732489330500094
+   },
+   "roi_ci": {
+    "roi": -0.012497945857846969,
+    "ci95": [
+     -0.04684092121120082,
+     0.0227572636354713
+    ],
+    "bets": 1701
+   },
+   "sensitivity": {
+    "roi_odds_minus_2pct": -0.03224798694069004,
+    "roi_odds_minus_5pct": -0.061873048564954666,
+    "roi_without_top5_wins": -0.01609582952861573,
+    "roi_without_top10_wins": -0.019317463592246727,
+    "largest_win": 1.3199999332427979,
+    "share_profit_odds_ge_2": 0.04997060552616108
+   },
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "unpriced_main": 546,
+   "groups": {
+    "TOTAL": 0.6787,
+    "HANDICAP": 0.1569,
+    "1X2": 0.0791,
+    "CORNERS": 0.0498,
+    "DOUBLE_CHANCE": 0.0324,
+    "BTTS": 0.0031
+   },
+   "groups_bets": {
+    "TOTAL": 989,
+    "HANDICAP": 346,
+    "1X2": 178,
+    "CORNERS": 109,
+    "DOUBLE_CHANCE": 73,
+    "BTTS": 6
+   },
+   "vs_b": {
+    "matches": 2250,
+    "roi_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "hit_rate_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0,
+     "n": 2250
+    },
+    "same_main_share": 1.0
+   },
+   "changed_share": 0.0,
+   "vs_b_common_bets": {
+    "matches": 1701,
+    "roi_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "hit_rate_diff": {
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0,
+     "n": 1701
+    },
+    "same_main_share": 1.0
+   },
+   "gap": 0.020209511863851004,
+   "months": [
+    {
+     "month": "2026-08",
+     "bets": 379,
+     "roi": 0.01634299786550074,
+     "roi_b": 0.01634299786550074,
+     "diff": 0.0
+    },
+    {
+     "month": "2026-09",
+     "bets": 450,
+     "roi": 0.009775551160176595,
+     "roi_b": 0.009775551160176595,
+     "diff": 0.0
+    },
+    {
+     "month": "2026-10",
+     "bets": 597,
+     "roi": -0.05333835914905746,
+     "roi_b": -0.05333835914905746,
+     "diff": 0.0
+    },
+    {
+     "month": "2026-11",
+     "bets": 275,
+     "roi": -3.2726201144131744e-05,
+     "roi_b": -3.2726201144131744e-05,
+     "diff": 0.0
+    }
+   ],
+   "months_better": 0,
+   "months_n": 4,
+   "vs_a": {
+    "matches": 2248,
+    "roi_diff": {
+     "diff": 0.03158071152353779,
+     "ci95": [
+      -0.002265073346687341,
+      0.0665107229775774
+     ],
+     "p": 0.066
+    },
+    "hit_rate_diff": {
+     "diff": 0.0071174377224199285,
+     "ci95": [
+      -0.01112099644128114,
+      0.027135231316725978
+     ],
+     "p": 0.473,
+     "n": 2248
+    },
+    "same_main_share": 0.4968861209964413
+   },
+   "leagues": [
+    {
+     "league": "B1",
+     "matches": 99,
+     "bets": 82,
+     "hit_rate": 0.696969696969697,
+     "roi": 0.08971950484485161,
+     "profit": 7.356999397277832,
+     "avg_odds": 1.5270487738818657,
+     "small": false
+    },
+    {
+     "league": "D1",
+     "matches": 81,
+     "bets": 74,
+     "hit_rate": 0.5925925925925926,
+     "roi": -0.09185134720157932,
+     "profit": -6.79699969291687,
+     "avg_odds": 1.52906757109874,
+     "small": false
+    },
+    {
+     "league": "D2",
+     "matches": 99,
+     "bets": 83,
+     "hit_rate": 0.6565656565656566,
+     "roi": -0.0459759077393865,
+     "profit": -3.8160003423690796,
+     "avg_odds": 1.4827228842011417,
+     "small": false
+    },
+    {
+     "league": "E0",
+     "matches": 100,
+     "bets": 74,
+     "hit_rate": 0.67,
+     "roi": 0.058216210958119984,
+     "profit": 4.307999610900879,
+     "avg_odds": 1.550027025712503,
+     "small": false
+    },
+    {
+     "league": "E1",
+     "matches": 180,
+     "bets": 135,
+     "hit_rate": 0.6815642458100558,
+     "roi": -0.04488889641231961,
+     "profit": -6.060001015663147,
+     "avg_odds": 1.471362954598886,
+     "small": false
+    },
+    {
+     "league": "E2",
+     "matches": 163,
+     "bets": 123,
+     "hit_rate": 0.6809815950920245,
+     "roi": -0.06565854316804468,
+     "profit": -8.076000809669495,
+     "avg_odds": 1.4827560893888396,
+     "small": false
+    },
+    {
+     "league": "E3",
+     "matches": 174,
+     "bets": 138,
+     "hit_rate": 0.6781609195402298,
+     "roi": -0.05763043873551963,
+     "profit": -7.953000545501709,
+     "avg_odds": 1.4733623136644778,
+     "small": false
+    },
+    {
+     "league": "F1",
+     "matches": 90,
+     "bets": 60,
+     "hit_rate": 0.6444444444444445,
+     "roi": 0.07045000195503234,
+     "profit": 4.227000117301941,
+     "avg_odds": 1.5636000017325082,
+     "small": false
+    },
+    {
+     "league": "F2",
+     "matches": 108,
+     "bets": 67,
+     "hit_rate": 0.6018518518518519,
+     "roi": -0.1260597100898401,
+     "profit": -8.446000576019287,
+     "avg_odds": 1.484671630076508,
+     "small": false
+    },
+    {
+     "league": "G1",
+     "matches": 69,
+     "bets": 49,
+     "hit_rate": 0.782608695652174,
+     "roi": 0.13036734960517105,
+     "profit": 6.388000130653381,
+     "avg_odds": 1.5074081688511127,
+     "small": false
+    },
+    {
+     "league": "I1",
+     "matches": 110,
+     "bets": 85,
+     "hit_rate": 0.6818181818181818,
+     "roi": 0.044329411843243766,
+     "profit": 3.76800000667572,
+     "avg_odds": 1.5536352956996244,
+     "small": false
+    },
+    {
+     "league": "I2",
+     "matches": 110,
+     "bets": 71,
+     "hit_rate": 0.7,
+     "roi": -0.08187324396321471,
+     "profit": -5.813000321388245,
+     "avg_odds": 1.4747746427294235,
+     "small": false
+    },
+    {
+     "league": "N1",
+     "matches": 108,
+     "bets": 98,
+     "hit_rate": 0.6851851851851852,
+     "roi": 0.04348979677472796,
+     "profit": 4.26200008392334,
+     "avg_odds": 1.4973469425220878,
+     "small": false
+    },
+    {
+     "league": "P1",
+     "matches": 98,
+     "bets": 68,
+     "hit_rate": 0.7244897959183674,
+     "roi": 0.08548529007855583,
+     "profit": 5.812999725341797,
+     "avg_odds": 1.4963382342282463,
+     "small": false
+    },
+    {
+     "league": "SC0",
+     "matches": 75,
+     "bets": 64,
+     "hit_rate": 0.6533333333333333,
+     "roi": -0.11867187358438969,
+     "profit": -7.59499990940094,
+     "avg_odds": 1.4821250028908253,
+     "small": false
+    },
+    {
+     "league": "SC1",
+     "matches": 73,
+     "bets": 68,
+     "hit_rate": 0.7123287671232876,
+     "roi": 0.09969117010340971,
+     "profit": 6.77899956703186,
+     "avg_odds": 1.5910735235494726,
+     "small": false
+    },
+    {
+     "league": "SC2",
+     "matches": 74,
+     "bets": 62,
+     "hit_rate": 0.581081081081081,
+     "roi": -0.22551613661550707,
+     "profit": -13.982000470161438,
+     "avg_odds": 1.5321935415267944,
+     "small": false
+    },
+    {
+     "league": "SC3",
+     "matches": 70,
+     "bets": 59,
+     "hit_rate": 0.6857142857142857,
+     "roi": 0.05791524709281275,
+     "profit": 3.416999578475952,
+     "avg_odds": 1.4618982945458363,
+     "small": false
+    },
+    {
+     "league": "SP1",
+     "matches": 119,
+     "bets": 70,
+     "hit_rate": 0.6495726495726496,
+     "roi": 0.02488571746008737,
+     "profit": 1.7420002222061157,
+     "avg_odds": 1.5486714346068247,
+     "small": false
+    },
+    {
+     "league": "SP2",
+     "matches": 151,
+     "bets": 100,
+     "hit_rate": 0.6158940397350994,
+     "roi": -0.09646000504493714,
+     "profit": -9.646000504493713,
+     "avg_odds": 1.5462399911880493,
+     "small": false
+    },
+    {
+     "league": "T1",
+     "matches": 99,
+     "bets": 71,
+     "hit_rate": 0.7171717171717171,
+     "roi": 0.12484506821968186,
+     "profit": 8.863999843597412,
+     "avg_odds": 1.544352110003082,
+     "small": false
+    }
+   ]
+  },
+  "a": {
+   "summary": {
+    "matches": 2250,
+    "settled": 2250,
+    "won": 1490,
+    "push": 0,
+    "bets": 2248,
+    "priced_share": 0.9991111111111111,
+    "hit_rate": 0.6622222222222223,
+    "profit": -98.31800000000001,
+    "roi": -0.04373576512455517,
+    "avg_odds": 1.4819034697508897,
+    "avg_probability": 0.7124233787253152,
+    "neg_ev_share": 0.37544483985765126,
+    "mean_ev": 0.04099771984959182
+   },
+   "roi_ci": {
+    "roi": -0.04373576512455516,
+    "ci95": [
+     -0.07450995058279375,
+     -0.014723935592892713
+    ],
+    "bets": 2248
+   },
+   "sensitivity": {
+    "roi_odds_minus_2pct": -0.06286104982206409,
+    "roi_odds_minus_5pct": -0.09154897686832746,
+    "roi_without_top5_wins": -0.04756138790035582,
+    "roi_without_top10_wins": -0.05089991103202847,
+    "largest_win": 1.75,
+    "share_profit_odds_ge_2": 0.05604982206405694
+   },
+   "fallback": 0,
+   "fallback_not_bet": 0,
+   "unpriced_main": 2,
+   "groups": {
+    "TOTAL": 0.6382,
+    "HANDICAP": 0.2782,
+    "1X2": 0.052,
+    "DOUBLE_CHANCE": 0.0173,
+    "CORNERS": 0.0111,
+    "BTTS": 0.0031
+   },
+   "groups_bets": {
+    "TOTAL": 1435,
+    "HANDICAP": 625,
+    "1X2": 117,
+    "DOUBLE_CHANCE": 39,
+    "CORNERS": 25,
+    "BTTS": 7
+   },
+   "leagues": [
+    {
+     "league": "B1",
+     "matches": 99,
+     "bets": 99,
+     "hit_rate": 0.6868686868686869,
+     "roi": -0.010454545454545465,
+     "profit": -1.035000000000001,
+     "avg_odds": 1.45720202020202,
+     "small": false
+    },
+    {
+     "league": "D1",
+     "matches": 81,
+     "bets": 81,
+     "hit_rate": 0.5679012345679012,
+     "roi": -0.14383950617283953,
+     "profit": -11.651000000000002,
+     "avg_odds": 1.5438641975308642,
+     "small": false
+    },
+    {
+     "league": "D2",
+     "matches": 99,
+     "bets": 99,
+     "hit_rate": 0.7070707070707071,
+     "roi": 0.030191919191919183,
+     "profit": 2.988999999999999,
+     "avg_odds": 1.4823838383838384,
+     "small": false
+    },
+    {
+     "league": "E0",
+     "matches": 100,
+     "bets": 100,
+     "hit_rate": 0.66,
+     "roi": -0.015089999999999987,
+     "profit": -1.5089999999999988,
+     "avg_odds": 1.5402500000000003,
+     "small": false
+    },
+    {
+     "league": "E1",
+     "matches": 180,
+     "bets": 180,
+     "hit_rate": 0.6388888888888888,
+     "roi": -0.08751666666666666,
+     "profit": -15.752999999999998,
+     "avg_odds": 1.4414611111111113,
+     "small": false
+    },
+    {
+     "league": "E2",
+     "matches": 163,
+     "bets": 163,
+     "hit_rate": 0.6625766871165644,
+     "roi": -0.04795092024539877,
+     "profit": -7.816,
+     "avg_odds": 1.4824601226993865,
+     "small": false
+    },
+    {
+     "league": "E3",
+     "matches": 174,
+     "bets": 174,
+     "hit_rate": 0.6724137931034483,
+     "roi": -0.04562643678160918,
+     "profit": -7.938999999999997,
+     "avg_odds": 1.464287356321839,
+     "small": false
+    },
+    {
+     "league": "F1",
+     "matches": 90,
+     "bets": 90,
+     "hit_rate": 0.6666666666666666,
+     "roi": -0.02898888888888889,
+     "profit": -2.609,
+     "avg_odds": 1.4869777777777775,
+     "small": false
+    },
+    {
+     "league": "F2",
+     "matches": 108,
+     "bets": 108,
+     "hit_rate": 0.6018518518518519,
+     "roi": -0.16280555555555556,
+     "profit": -17.583000000000002,
+     "avg_odds": 1.4287592592592597,
+     "small": false
+    },
+    {
+     "league": "G1",
+     "matches": 69,
+     "bets": 69,
+     "hit_rate": 0.7246376811594203,
+     "roi": 0.037536231884057955,
+     "profit": 2.589999999999999,
+     "avg_odds": 1.4834057971014492,
+     "small": false
+    },
+    {
+     "league": "I1",
+     "matches": 110,
+     "bets": 110,
+     "hit_rate": 0.7272727272727273,
+     "roi": 0.0688090909090909,
+     "profit": 7.568999999999999,
+     "avg_odds": 1.4984000000000002,
+     "small": false
+    },
+    {
+     "league": "I2",
+     "matches": 110,
+     "bets": 110,
+     "hit_rate": 0.7727272727272727,
+     "roi": 0.07374545454545454,
+     "profit": 8.112,
+     "avg_odds": 1.422027272727273,
+     "small": false
+    },
+    {
+     "league": "N1",
+     "matches": 108,
+     "bets": 107,
+     "hit_rate": 0.5925925925925926,
+     "roi": -0.08957943925233645,
+     "profit": -9.585,
+     "avg_odds": 1.587766355140187,
+     "small": false
+    },
+    {
+     "league": "P1",
+     "matches": 98,
+     "bets": 98,
+     "hit_rate": 0.7040816326530612,
+     "roi": 0.013918367346938795,
+     "profit": 1.3640000000000019,
+     "avg_odds": 1.439387755102041,
+     "small": false
+    },
+    {
+     "league": "SC0",
+     "matches": 75,
+     "bets": 74,
+     "hit_rate": 0.68,
+     "roi": -0.027229729729729736,
+     "profit": -2.0150000000000006,
+     "avg_odds": 1.4994189189189187,
+     "small": false
+    },
+    {
+     "league": "SC1",
+     "matches": 73,
+     "bets": 73,
+     "hit_rate": 0.684931506849315,
+     "roi": 0.009780821917808222,
+     "profit": 0.7140000000000002,
+     "avg_odds": 1.5271917808219178,
+     "small": false
+    },
+    {
+     "league": "SC2",
+     "matches": 74,
+     "bets": 74,
+     "hit_rate": 0.6216216216216216,
+     "roi": -0.09483783783783785,
+     "profit": -7.018000000000001,
+     "avg_odds": 1.5284324324324323,
+     "small": false
+    },
+    {
+     "league": "SC3",
+     "matches": 70,
+     "bets": 70,
+     "hit_rate": 0.6142857142857143,
+     "roi": -0.0795857142857143,
+     "profit": -5.5710000000000015,
+     "avg_odds": 1.5294714285714286,
+     "small": false
+    },
+    {
+     "league": "SP1",
+     "matches": 119,
+     "bets": 119,
+     "hit_rate": 0.6386554621848739,
+     "roi": -0.06871428571428571,
+     "profit": -8.177,
+     "avg_odds": 1.48009243697479,
+     "small": false
+    },
+    {
+     "league": "SP2",
+     "matches": 151,
+     "bets": 151,
+     "hit_rate": 0.6357615894039735,
+     "roi": -0.10826490066225165,
+     "profit": -16.348,
+     "avg_odds": 1.4556225165562913,
+     "small": false
+    },
+    {
+     "league": "T1",
+     "matches": 99,
+     "bets": 99,
+     "hit_rate": 0.6565656565656566,
+     "roi": -0.07118181818181817,
+     "profit": -7.046999999999999,
+     "avg_odds": 1.4556161616161616,
+     "small": false
+    }
+   ]
+  }
+ },
+ "floors": [
+  {
+   "rule": "production",
+   "universe": "close",
+   "bets": 2249,
+   "roi": -0.04364384673022333,
+   "hit_rate": 0.6684444444444444,
+   "avg_odds": 1.4440431233351365,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "production",
+   "universe": "t09",
+   "bets": 1701,
+   "roi": -0.012497945857846969,
+   "hit_rate": 0.6702269692923899,
+   "avg_odds": 1.5107948229917003,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "production",
+   "universe": "bt",
+   "bets": 7075,
+   "roi": -0.06214417071730004,
+   "hit_rate": 0.5390150980668831,
+   "avg_odds": 1.7769823294899068,
+   "fallback": 12,
+   "fallback_won": 9,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 12,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.30",
+   "universe": "close",
+   "bets": 2250,
+   "roi": -0.03122844706641303,
+   "hit_rate": 0.6662222222222223,
+   "avg_odds": 1.4696564410527546,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.30",
+   "universe": "t09",
+   "bets": 2237,
+   "roi": -0.029200716534522053,
+   "hit_rate": 0.6194926568758344,
+   "avg_odds": 1.6154224396178272,
+   "fallback": 10,
+   "fallback_won": 6,
+   "fallback_avg_price": 1.274999976158142,
+   "fallback_unpriced": 4,
+   "fallback_profit_if_bet": -0.940000057220459
+  },
+  {
+   "rule": "floor_1.30",
+   "universe": "bt",
+   "bets": 7048,
+   "roi": -0.06209846838852063,
+   "hit_rate": 0.5368331922099915,
+   "avg_odds": 1.782827750406525,
+   "fallback": 38,
+   "fallback_won": 24,
+   "fallback_avg_price": 1.276470562990974,
+   "fallback_unpriced": 21,
+   "fallback_profit_if_bet": -1.7200002670288086
+  },
+  {
+   "rule": "floor_1.40",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.016714412705754047,
+   "hit_rate": 0.6183274021352313,
+   "avg_odds": 1.6072464415081031,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.40",
+   "universe": "t09",
+   "bets": 2223,
+   "roi": -0.025867746319258155,
+   "hit_rate": 0.5784313725490197,
+   "avg_odds": 1.7237926231972869,
+   "fallback": 21,
+   "fallback_won": 13,
+   "fallback_avg_price": 1.3270588131511913,
+   "fallback_unpriced": 4,
+   "fallback_profit_if_bet": -2.5500000715255737
+  },
+  {
+   "rule": "floor_1.40",
+   "universe": "bt",
+   "bets": 6978,
+   "roi": -0.061699628300364774,
+   "hit_rate": 0.530583415736686,
+   "avg_odds": 1.8057451968925597,
+   "fallback": 101,
+   "fallback_won": 67,
+   "fallback_avg_price": 1.3394999951124191,
+   "fallback_unpriced": 21,
+   "fallback_profit_if_bet": -6.539999961853027
+  },
+  {
+   "rule": "floor_1.50",
+   "universe": "close",
+   "bets": 2247,
+   "roi": -0.03681174924652684,
+   "hit_rate": 0.5656430796617713,
+   "avg_odds": 1.7192354244182095,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.50",
+   "universe": "t09",
+   "bets": 2215,
+   "roi": -0.03963747282867776,
+   "hit_rate": 0.5459001782531194,
+   "avg_odds": 1.7952744913962302,
+   "fallback": 29,
+   "fallback_won": 18,
+   "fallback_avg_price": 1.3668000030517578,
+   "fallback_unpriced": 4,
+   "fallback_profit_if_bet": -3.259999990463257
+  },
+  {
+   "rule": "floor_1.50",
+   "universe": "bt",
+   "bets": 6906,
+   "roi": -0.06394439818304655,
+   "hit_rate": 0.5212660731948566,
+   "avg_odds": 1.8363596830304518,
+   "fallback": 171,
+   "fallback_won": 112,
+   "fallback_avg_price": 1.38460001150767,
+   "fallback_unpriced": 21,
+   "fallback_profit_if_bet": -12.029998540878296
+  },
+  {
+   "rule": "floor_1.60",
+   "universe": "close",
+   "bets": 2247,
+   "roi": -0.0498727193980096,
+   "hit_rate": 0.5238095238095238,
+   "avg_odds": 1.8314815312955557,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.60",
+   "universe": "t09",
+   "bets": 2200,
+   "roi": -0.04805136501789093,
+   "hit_rate": 0.5158411423471665,
+   "avg_odds": 1.887804998755455,
+   "fallback": 41,
+   "fallback_won": 27,
+   "fallback_avg_price": 1.3923783817806759,
+   "fallback_unpriced": 4,
+   "fallback_profit_if_bet": -2.281999945640564
+  },
+  {
+   "rule": "floor_1.60",
+   "universe": "bt",
+   "bets": 6787,
+   "roi": -0.0673920752391981,
+   "hit_rate": 0.5033243740274438,
+   "avg_odds": 1.9070384515935443,
+   "fallback": 282,
+   "fallback_won": 187,
+   "fallback_avg_price": 1.435862077607049,
+   "fallback_unpriced": 21,
+   "fallback_profit_if_bet": -9.939998149871826
+  },
+  {
+   "rule": "floor_1.40_silent",
+   "universe": "close",
+   "bets": 2248,
+   "roi": -0.016714412705754047,
+   "hit_rate": 0.6183274021352313,
+   "avg_odds": 1.6072464415081031,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.40_silent",
+   "universe": "t09",
+   "bets": 2240,
+   "roi": -0.026809821490730558,
+   "hit_rate": 0.5784313725490197,
+   "avg_odds": 1.72078169696033,
+   "fallback": 21,
+   "fallback_won": 13,
+   "fallback_avg_price": 1.3270588131511913,
+   "fallback_unpriced": 4,
+   "fallback_profit_if_bet": -2.5500000715255737
+  },
+  {
+   "rule": "floor_1.40_silent",
+   "universe": "bt",
+   "bets": 7058,
+   "roi": -0.061926892355029524,
+   "hit_rate": 0.530583415736686,
+   "avg_odds": 1.8004604680540204,
+   "fallback": 101,
+   "fallback_won": 67,
+   "fallback_avg_price": 1.3394999951124191,
+   "fallback_unpriced": 21,
+   "fallback_profit_if_bet": -6.539999961853027
+  },
+  {
+   "rule": "floor_1.40_effective",
+   "universe": "close",
+   "bets": 2247,
+   "roi": -0.01627681342346911,
+   "hit_rate": 0.6187722419928826,
+   "avg_odds": 1.607280819109402,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.40_effective",
+   "universe": "t09",
+   "bets": 1853,
+   "roi": 0.0006427417493677114,
+   "hit_rate": 0.6106904231625835,
+   "avg_odds": 1.6987603894453465,
+   "fallback": 0,
+   "fallback_won": 0,
+   "fallback_avg_price": null,
+   "fallback_unpriced": 0,
+   "fallback_profit_if_bet": 0.0
+  },
+  {
+   "rule": "floor_1.40_effective",
+   "universe": "bt",
+   "bets": 6978,
+   "roi": -0.061699628300364774,
+   "hit_rate": 0.530583415736686,
+   "avg_odds": 1.8057451968925597,
+   "fallback": 101,
+   "fallback_won": 67,
+   "fallback_avg_price": 1.3394999951124191,
+   "fallback_unpriced": 21,
+   "fallback_profit_if_bet": -6.539999961853027
+  }
+ ],
+ "odds_bands": [
+  {
+   "universe": "close",
+   "band": "[1.0, 1.3)",
+   "bets": 237,
+   "roi": -0.1055021321220237,
+   "hit_rate": 0.6919831223628692,
+   "avg_p": 0.763165738512192,
+   "avg_ev": -0.013481249138189343
+  },
+  {
+   "universe": "close",
+   "band": "[1.3, 1.4)",
+   "bets": 897,
+   "roi": -0.02381382990574491,
+   "hit_rate": 0.7201783723522854,
+   "avg_p": 0.7429979181741525,
+   "avg_ev": 0.0075070834765715655
+  },
+  {
+   "universe": "close",
+   "band": "[1.4, 1.5)",
+   "bets": 536,
+   "roi": -0.024970149148755998,
+   "hit_rate": 0.6772388059701493,
+   "avg_p": 0.7182031377260365,
+   "avg_ev": 0.03517694489455453
+  },
+  {
+   "universe": "close",
+   "band": "[1.5, 1.6)",
+   "bets": 302,
+   "roi": -0.1246821205347579,
+   "hit_rate": 0.5695364238410596,
+   "avg_p": 0.7027456292648189,
+   "avg_ev": 0.08159792070103751
+  },
+  {
+   "universe": "close",
+   "band": "[1.6, 1.8)",
+   "bets": 214,
+   "roi": -0.017602804108200785,
+   "hit_rate": 0.5841121495327103,
+   "avg_p": 0.6809502486313614,
+   "avg_ev": 0.1451291238019629
+  },
+  {
+   "universe": "close",
+   "band": "[1.8, 2.0)",
+   "bets": 38,
+   "roi": 0.0386842175533897,
+   "hit_rate": 0.5526315789473685,
+   "avg_p": 0.6720132576791864,
+   "avg_ev": 0.25550978247590506
+  },
+  {
+   "universe": "close",
+   "band": "[2.0, 2.5)",
+   "bets": 21,
+   "roi": 0.019999980926513672,
+   "hit_rate": 0.47619047619047616,
+   "avg_p": 0.6319660516012282,
+   "avg_ev": 0.39650032715292194
+  },
+  {
+   "universe": "close",
+   "band": "[2.5, 100.0)",
+   "bets": 4,
+   "roi": 0.28125,
+   "hit_rate": 0.5,
+   "avg_p": 0.6838110238313675,
+   "avg_ev": 0.7544336225837469
+  },
+  {
+   "universe": "t09",
+   "band": "[1.0, 1.3)",
+   "bets": 193,
+   "roi": -0.010943023651992718,
+   "hit_rate": 0.7668393782383419,
+   "avg_p": 0.759087501721061,
+   "avg_ev": -0.020769962093866532
+  },
+  {
+   "universe": "t09",
+   "band": "[1.3, 1.4)",
+   "bets": 535,
+   "roi": 0.016364481070331324,
+   "hit_rate": 0.7495327102803738,
+   "avg_p": 0.7245880416620557,
+   "avg_ev": -0.016469404373309564
+  },
+  {
+   "universe": "t09",
+   "band": "[1.4, 1.5)",
+   "bets": 301,
+   "roi": -0.018152821103599778,
+   "hit_rate": 0.6810631229235881,
+   "avg_p": 0.6905254577085426,
+   "avg_ev": -0.005007658745602968
+  },
+  {
+   "universe": "t09",
+   "band": "[1.5, 1.6)",
+   "bets": 214,
+   "roi": -0.005579438164969471,
+   "hit_rate": 0.6495327102803738,
+   "avg_p": 0.6643057774717562,
+   "avg_ev": 0.01869664557827218
+  },
+  {
+   "universe": "t09",
+   "band": "[1.6, 1.8)",
+   "bets": 252,
+   "roi": 0.019964281528715103,
+   "hit_rate": 0.6031746031746031,
+   "avg_p": 0.619066082059391,
+   "avg_ev": 0.04726160400605162
+  },
+  {
+   "universe": "t09",
+   "band": "[1.8, 2.0)",
+   "bets": 121,
+   "roi": -0.11090908267281273,
+   "hit_rate": 0.47107438016528924,
+   "avg_p": 0.6065196389994345,
+   "avg_ev": 0.15593356351557217
+  },
+  {
+   "universe": "t09",
+   "band": "[2.0, 2.5)",
+   "bets": 83,
+   "roi": -0.13078314137746053,
+   "hit_rate": 0.42168674698795183,
+   "avg_p": 0.577639507241996,
+   "avg_ev": 0.21159303571418828
+  },
+  {
+   "universe": "t09",
+   "band": "[2.5, 100.0)",
+   "bets": 2,
+   "roi": -1.0,
+   "hit_rate": 0.0,
+   "avg_p": 0.5152706801891327,
+   "avg_ev": 0.32690707225344795
+  },
+  {
+   "universe": "bt",
+   "band": "[1.0, 1.3)",
+   "bets": 99,
+   "roi": -0.08424244504986388,
+   "hit_rate": 0.7171717171717171,
+   "avg_p": 0.7393043854019858,
+   "avg_ev": -0.05397652415169462
+  },
+  {
+   "universe": "bt",
+   "band": "[1.3, 1.4)",
+   "bets": 329,
+   "roi": -0.03155014688845464,
+   "hit_rate": 0.7082066869300911,
+   "avg_p": 0.6791882165297186,
+   "avg_ev": -0.0709801375043828
+  },
+  {
+   "universe": "bt",
+   "band": "[1.4, 1.5)",
+   "bets": 387,
+   "roi": -0.022377247342151574,
+   "hit_rate": 0.6744186046511628,
+   "avg_p": 0.6445984051825157,
+   "avg_ev": -0.06514926798472719
+  },
+  {
+   "universe": "bt",
+   "band": "[1.5, 1.6)",
+   "bets": 793,
+   "roi": -0.040580072890013495,
+   "hit_rate": 0.6242118537200504,
+   "avg_p": 0.6034343398985316,
+   "avg_ev": -0.0729439640878585
+  },
+  {
+   "universe": "bt",
+   "band": "[1.6, 1.8)",
+   "bets": 2512,
+   "roi": -0.08342357046285252,
+   "hit_rate": 0.5406050955414012,
+   "avg_p": 0.5700421570118066,
+   "avg_ev": -0.031667503029607906
+  },
+  {
+   "universe": "bt",
+   "band": "[1.8, 2.0)",
+   "bets": 1558,
+   "roi": -0.06060333322346287,
+   "hit_rate": 0.4961489088575096,
+   "avg_p": 0.5522141082066474,
+   "avg_ev": 0.04796330294089587
+  },
+  {
+   "universe": "bt",
+   "band": "[2.0, 2.5)",
+   "bets": 1321,
+   "roi": -0.061498874069433336,
+   "hit_rate": 0.44511733535200604,
+   "avg_p": 0.5227890865853301,
+   "avg_ev": 0.10745052031156545
+  },
+  {
+   "universe": "bt",
+   "band": "[2.5, 100.0)",
+   "bets": 76,
+   "roi": 0.06723684072494507,
+   "hit_rate": 0.42105263157894735,
+   "avg_p": 0.49625885917952184,
+   "avg_ev": 0.2648512130969391
+  }
+ ]
+}
