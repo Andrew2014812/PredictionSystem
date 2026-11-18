@@ -33,6 +33,7 @@ import numpy as np
 import pandas as pd
 
 from ..features.names import feature_label
+from . import evidence as EVD
 from ..markets.markets import market_group, market_line
 
 _SIDE = re.compile(r"^(?P<side>[ha])_(?P<rest>.+)$")
@@ -113,11 +114,14 @@ def card_factors(explanation: pd.DataFrame, home: str, away: str, lang: str = "e
         if g.key == "league":
             from ..ui.labels import league_name
             evidence = league_name(str(values[first]))
+        elif g.key == "elo_exp_home":
+            evidence = EVD.expected_result(values[first], home, lang)
+        elif EVD.is_difference(g.key):
+            evidence = EVD.difference(g.key, values[first], home, away, lang)
         elif "h" in sides or "a" in sides:
-            evidence = " · ".join(f"{team}: {_fmt(sides[s], values[sides[s]])}"
-                                  for s, team in (("h", home), ("a", away)) if s in sides)
+            evidence = EVD.pair(g.key, {s: values[f] for s, f in sides.items() if s}, home, away, lang)
         else:
-            evidence = _fmt(first, values[first])
+            evidence = EVD.single(first, values[first], lang)
         out.append(CardFactor(g.key, name, evidence, float(g.share), g.contribution > 0))
     # the card answers "why this selection": the most influential factors FOR it (at least three, then
     # only those with a real part of the influence), then the strongest factor against it when it matters
