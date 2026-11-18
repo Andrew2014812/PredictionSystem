@@ -1,0 +1,51 @@
+{
+ "study": "v6.3 Goal Model Improvements",
+ "entries": [
+  {
+   "variant": "stacked",
+   "name": "Единая модель голов команды",
+   "frozen_at": "2026-11-18T14:56:25+01:00",
+   "code": "experiments/v6_3/goals/evaluate.py",
+   "hypothesis": "Единая модель голов команды gives a lower exact-score log loss than production (Poisson + reconciliation with the 1X2 classifier) without worse totals / BTTS / handicap probabilities and without a lower Main ROI.",
+   "exact_rule": {
+    "model": "one XGBoost count:poisson model of a team's goals (experiments/v6_3/goals/base.py, stage_stacked): two rows per match (home team vs away team with is_home = 1, away team vs home team with is_home = 0); features = production home_goals ∪ away_goals sets mapped to team (t_) / opponent (o_), diff_* and elo_diff negated and elo_exp_home = 1 − x for the away row; production away_goals hyper-parameters (449 trees), recency half-life 2 years, trained once on every season before the predicted one",
+    "matrix": "production: independent Poisson + reconciliation with the production 1X2 classifier",
+    "refit": "once before each season (like production)"
+   },
+   "primary_metric": "exact-score log loss, paired with production on the same forward matches",
+   "secondary": [
+    "totals / BTTS / handicap log loss",
+    "Main ROI vs Baseline B (close and t09)"
+   ],
+   "minimum_forward_sample": "1500 played matches (about 7 weeks of the 21 leagues)",
+   "evidence_2026_27": {
+    "d_score_ll": {
+     "diff": -0.0030379477102372558,
+     "ci95": [
+      -0.005664971934267638,
+      -0.00047397480357683214
+     ],
+     "p": 0.014,
+     "n": 2250
+    },
+    "selection_pooled": {
+     "diff": -0.0011704846443176258,
+     "ci95": [
+      -0.002106622639682292,
+      -0.00015638466892045315
+     ],
+     "p": 0.023,
+     "n": 14223
+    },
+    "d_roi_close": {
+     "diff": 0.005924855194498875,
+     "ci95": [
+      -0.006310393557229427,
+      0.01846660899781114
+     ],
+     "p": 0.33
+    }
+   }
+  }
+ ]
+}

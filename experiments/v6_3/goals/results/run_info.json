@@ -1,0 +1,74 @@
+{
+ "study": "goals",
+ "git_sha": "a09cd09f4c68177a016e1ea99749458baa28a4de",
+ "created": "2026-11-18T14:56:26",
+ "seconds": 309.8,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "selection_seasons": [
+   2023,
+   2024,
+   2025
+  ],
+  "evaluated_season": 2026,
+  "params": {
+   "rho": 0.0059599626343280815,
+   "rho_raw": -0.04510661538476162,
+   "size": 1998.6958869457476,
+   "alpha": 0.7332193478860379,
+   "rho_by_season": {
+    "2023": {
+     "after_reconcile": -0.0077715363203518725,
+     "raw_pipeline": -0.055094195166651865
+    },
+    "2024": {
+     "after_reconcile": 0.02373555647631888,
+     "raw_pipeline": -0.027389706278365247
+    },
+    "2025": {
+     "after_reconcile": 4.5324033068972055e-05,
+     "raw_pipeline": -0.053712804008534405
+    }
+   },
+   "w": 0.40924821956211316,
+   "w_ha": 0.37839821796776413,
+   "combo_matrix": "partial",
+   "combo_lambda": "blend"
+  },
+  "production_version": "prod_20261012"
+ }
+}
