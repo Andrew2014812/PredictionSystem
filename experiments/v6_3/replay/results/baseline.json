@@ -1,0 +1,211 @@
+{
+ "coverage": {
+  "season_matches": 2390,
+  "played": 2250,
+  "not_played": 140,
+  "played_with_1x2_price_at_T": 2250,
+  "played_with_corners": 2250,
+  "first_date": "2026-07-31",
+  "last_played": "2026-11-16"
+ },
+ "baseline_a": {
+  "production_summary": {
+   "predictions": 2389,
+   "settled": 2250,
+   "won": 1490,
+   "lost": 760,
+   "bets": 2248,
+   "pending": 136,
+   "void": 3,
+   "push": 0,
+   "hit_rate": 0.6622222222222223,
+   "profit": -98.31800000000001,
+   "roi": -4.373576512455517,
+   "avg_odds": 1.4819034697508897,
+   "avg_probability": 0.7124233787253152,
+   "longest_win_streak": 22,
+   "longest_loss_streak": 9
+  },
+  "summary": {
+   "matches": 2389,
+   "settled": 2250,
+   "won": 1490,
+   "push": 0,
+   "bets": 2248,
+   "priced_share": 0.9974884889074926,
+   "hit_rate": 0.6622222222222223,
+   "profit": -98.31800000000001,
+   "roi": -0.04373576512455517,
+   "avg_odds": 1.4819034697508897,
+   "avg_probability": 0.7124233787253152,
+   "neg_ev_share": 0.37544483985765126,
+   "mean_ev": 0.04099771984959182
+  },
+  "roi_ci": {
+   "roi": -0.04373576512455516,
+   "ci95": [
+    -0.07450995058279375,
+    -0.014723935592892713
+   ],
+   "bets": 2248
+  }
+ },
+ "t09": {
+  "summary": {
+   "matches": 2250,
+   "settled": 2247,
+   "won": 1506,
+   "push": 3,
+   "bets": 1701,
+   "priced_share": 0.7573333333333333,
+   "hit_rate": 0.6702269692923899,
+   "profit": -21.259005904197693,
+   "roi": -0.012497945857846969,
+   "avg_odds": 1.510794758796692,
+   "avg_probability": 0.6904365420341492,
+   "neg_ev_share": 0.47266313932980597,
+   "mean_ev": 0.02273249253630638
+  },
+  "roi_ci": {
+   "roi": -0.012497945857846969,
+   "ci95": [
+    -0.04668695510985576,
+    0.021672522949235457
+   ],
+   "bets": 1701
+  },
+  "vs_baseline_a": {
+   "matches": 2248,
+   "roi_diff": {
+    "diff": 0.03158071152353779,
+    "ci95": [
+     -0.0021061885566236887,
+     0.06359609543093563
+    ],
+    "p": 0.064
+   },
+   "hit_rate_diff": {
+    "diff": 0.0071174377224199285,
+    "ci95": [
+     -0.012911476868327382,
+     0.026701512455515955
+    ],
+    "p": 0.482,
+    "n": 2248
+   },
+   "same_main_share": 0.4968861209964413
+  },
+  "rows": 2390,
+  "played": 2250,
+  "priced": 1704,
+  "status": {
+   "WON": 1506,
+   "LOST": 741,
+   "PUSH": 3
+  },
+  "groups": {
+   "TOTAL": 1527,
+   "HANDICAP": 353,
+   "1X2": 178,
+   "CORNERS": 112,
+   "DOUBLE_CHANCE": 73,
+   "BTTS": 7
+  },
+  "unpriced_groups": {
+   "TOTAL": 538,
+   "HANDICAP": 4,
+   "CORNERS": 3,
+   "BTTS": 1
+  },
+  "candidates": 136230,
+  "providers": {
+   "oddspapi": 123562,
+   "football_data": 8614,
+   "the_odds_api": 1247
+  },
+  "self_check_rule_equals_engine": 1.0,
+  "self_check_matches": 239
+ },
+ "close": {
+  "summary": {
+   "matches": 2250,
+   "settled": 2250,
+   "won": 1504,
+   "push": 0,
+   "bets": 2249,
+   "priced_share": 0.9995555555555555,
+   "hit_rate": 0.6684444444444444,
+   "profit": -98.15501129627228,
+   "roi": -0.04364384673022333,
+   "avg_odds": 1.4440431594848633,
+   "avg_probability": 0.7255342602729797,
+   "neg_ev_share": 0.35793686082703424,
+   "mean_ev": 0.04408513382077217
+  },
+  "roi_ci": {
+   "roi": -0.04364384673022333,
+   "ci95": [
+    -0.07222574874692492,
+    -0.014454793458514753
+   ],
+   "bets": 2249
+  },
+  "vs_baseline_a": {
+   "matches": 2248,
+   "roi_diff": {
+    "diff": 0.0007051564208045633,
+    "ci95": [
+     -0.015887109694915108,
+     0.016992619411889648
+    ],
+    "p": 0.961
+   },
+   "hit_rate_diff": {
+    "diff": 0.0066725978647686835,
+    "ci95": [
+     -0.004448398576512456,
+     0.017348754448398576
+    ],
+    "p": 0.263,
+    "n": 2248
+   },
+   "same_main_share": 0.8327402135231317
+  },
+  "rows": 2390,
+  "played": 2250,
+  "priced": 2249,
+  "status": {
+   "WON": 1504,
+   "LOST": 746
+  },
+  "groups": {
+   "TOTAL": 1383,
+   "HANDICAP": 745,
+   "1X2": 80,
+   "DOUBLE_CHANCE": 21,
+   "CORNERS": 15,
+   "BTTS": 6
+  },
+  "unpriced_groups": {
+   "TOTAL": 1
+  },
+  "candidates": 136230,
+  "providers": {
+   "oddspapi": 245583,
+   "football_data": 752,
+   "the_odds_api": 11
+  },
+  "self_check_rule_equals_engine": 0.99581589958159,
+  "self_check_matches": 239
+ },
+ "self_check_outputs": {
+  "replay_p_home_equals_stored_live(±0.005)": 0.8538116591928251,
+  "live_matches_compared": 1115
+ },
+ "archive_depth": {
+  "selections_x_books": 246931,
+  "median_quotes": 1.0,
+  "mean_quotes": 1.5311281289105054,
+  "share_first_quote_after_T": 0.4949439317056182
+ }
+}
