@@ -94,7 +94,7 @@ def test_global_team_search_from_the_header(app, predicted_day):
     expect(first).to_contain_text("Arsenal")                                    # the club starting with it first
     app.page.keyboard.press("Enter")
     app.wait()
-    expect(app.page.locator(".mh-team")).to_contain_text("Arsenal")
+    expect(app.page.locator(".mh-team, .tm-head .nm")).to_contain_text("Arsenal")    # v6.2 / v6.3 header
     assert "teams" in app.page.url
 
 
@@ -279,7 +279,7 @@ def test_leagues_show_kick_off_times_like_matches(browser, base_url):
 def test_team_period_controls_the_match_list(app):
     app.open("teams")
     app.select("Search team", "Arsenal — Premier League (England)")
-    expect(app.page.locator(".mh-team")).to_have_text("Arsenal")
+    expect(app.page.locator(".mh-team, .tm-head .nm")).to_have_text("Arsenal")       # v6.2 / v6.3 header
     app.option("Last 5").click()
     app.wait()
     five = app.page.locator(".card .rm .chip.W, .card .rm .chip.D, .card .rm .chip.L").count()
@@ -440,8 +440,8 @@ def test_analytics_highlights_follow_the_filters(app):
 def test_team_statistics_are_grouped_and_all_matches_paginated(app):
     app.open("teams")
     app.select("Search team", "Arsenal — Premier League (England)")
-    expect(app.page.locator(".mh-team img.badge")).to_be_visible()             # club badge (or neutral shield)
-    heights = {round(b["height"]) for b in (k.bounding_box() for k in app.page.locator(".kpi").all()[:4])}
+    expect(app.page.locator(".mh-team img.badge, .tm-head img.badge")).to_be_visible()   # badge (or shield)
+    heights = {round(b["height"]) for b in (k.bounding_box() for k in app.page.locator(".kpi").all()[:3])}
     assert len(heights) == 1, heights                                         # equal KPI cards
     for group in ("Results", "Attack", "Defence", "Corners"):
         expect(app.page.locator(".st-group").filter(has_text=group).first).to_be_visible()
