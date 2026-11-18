@@ -190,8 +190,8 @@ def render() -> None:
     section(t("Matches"))
     upcoming = features.loc[~features["played"].astype(bool) & (features["country"] == country)
                             & ((features["home_team"] == team) | (features["away_team"] == team))]
-    rows = [f"<a class='rm' href='{match_url(m.match_id)}' target='_self'><span class='chip' "
-            f"style='background:var(--track)'>·</span><span class='d'>{date_text(m.date, '%d.%m.%y')}</span>"
+    rows = [f"<a class='rm' href='{match_url(m.match_id)}' target='_self'><span class='chip up' "
+            f"title='{t('Upcoming')}'>·</span><span class='d'>{date_text(m.date, '%d.%m.%y')}</span>"
             f"<span class='v'>{t('H') if m.home_team == team else t('A')}</span>"
             f"<span>{esc(m.away_team if m.home_team == team else m.home_team)}</span><span class='s'>{m.time or ''}</span></a>"
             for m in with_local_time(upcoming.sort_values("date")).assign(

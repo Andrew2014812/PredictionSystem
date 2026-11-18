@@ -452,6 +452,7 @@ a.match-card:hover { border-color: var(--accent); background: var(--surface-2); 
 /* chips --------------------------------------------------------------------- */
 .chip { display: inline-flex; width: 22px; height: 22px; border-radius: 6px; align-items: center; justify-content: center;
   font-size: .72rem; font-weight: var(--w-heavy); color: #0b1120; margin-right: 3px; }
+.chip.up { background: var(--track); color: var(--text-strong); }
 .chip.W { background: var(--pos); } .chip.D { background: var(--draw); } .chip.L { background: var(--neg); }
 .status { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .68rem; font-weight: 700;
   border: 1px solid currentColor; }
