@@ -1,0 +1,38 @@
+[
+ {
+  "id": "v63_market_profitability:bt:boost",
+  "decision": "B",
+  "hypothesis": "Asian handicaps are under-weighted in the Main ranking (their flat candidate ROI is the best of all market groups in 2025/26 and 2026/27): raising the HANDICAP reliability by 15 % (0.90 -> 1.035) moves Main from totals to handicaps and raises Main ROI.",
+  "rule": "production Main rule with config.MARKET_RELIABILITY['HANDICAP'] = 1.035 (= 0.90 x 1.15); chosen on the 2025/26 backtest and by the expanding window in every month",
+  "production_change": "src/config.py MARKET_RELIABILITY['HANDICAP']: 0.90 -> 1.035 (same direction as study 1 B candidate TOTAL 1.00 -> 0.95; test one of them, not both at once)",
+  "primary_metric": "paired ROI difference vs the production Main on the same matches (unit stake, real price at decision time; close and T reported)",
+  "evidence_2026_27": {
+   "close": {
+    "bets": 2248,
+    "roi": -0.024279805317892297,
+    "roi_diff": 0.019364041412331036,
+    "diff_ci": [
+     -0.006603938972988256,
+     0.04501320311431601
+    ],
+    "p": 0.13,
+    "p_holm": 1.0
+   },
+   "t09": {
+    "bets": 1619,
+    "roi": 0.003043851269256045,
+    "roi_diff": 0.015541797127103013,
+    "diff_ci": [
+     -0.010579218608946712,
+     0.04101888527929989
+    ],
+    "p": 0.234,
+    "p_holm": 1.0,
+    "common_diff": 0.008153002826993584
+   }
+  },
+  "minimum_forward_matches": 3993,
+  "success": "paired ROI difference > 0 with 95 % interval above 0 on matches settled after frozen_at, at close AND at T",
+  "frozen_at": "2026-11-18T13:08:08+00:00"
+ }
+]

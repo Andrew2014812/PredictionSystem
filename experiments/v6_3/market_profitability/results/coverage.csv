@@ -1,0 +1,7 @@
+method,universe,season_matches,played,processed,main_with_real_price,bets,not_bet_no_price,not_bet_fallback,push,unknown_result,without_enough_statistics
+baseline_b,close,2390,2250,2250,2249,2249,1,0,0,0,0
+baseline_b,t09,2390,2250,2250,1704,1701,546,0,3,0,0
+eb_cand_group_kEB_b3,close,2390,2250,2250,2249,2249,1,0,0,0,0
+eb_cand_group_kEB_b3,t09,2390,2250,2250,1704,1701,546,0,3,0,0
+bt:boost,close,2390,2250,2250,2248,2248,2,0,0,0,0
+bt:boost,t09,2390,2250,2250,1624,1619,626,0,5,0,0
