@@ -106,3 +106,28 @@ def test_a_match_the_bookmakers_stopped_quoting_is_reported_as_probably_postpone
     recent = odds.assign(collected_at=pd.Timestamp("2026-11-08 09:00"))
     table = waiting_matches(picks, feats.drop(index=[0, 1]), today=pd.Timestamp("2026-11-12"), odds=recent)
     assert table["reason"].iloc[0] == "no result from any source yet"
+
+
+def test_lineups_pilot_counts_line_ups_and_player_statistics_and_stays_in_budget():
+    import importlib.util
+    from pathlib import Path
+    path = Path(__file__).resolve().parents[1] / "scripts" / "api_football_lineups_pilot.py"
+    spec = importlib.util.spec_from_file_location("pilot", path)
+    pilot = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(pilot)
+    live = pd.DataFrame({"provider": ["api_football", "api_football", "oddspapi", "api_football"],
+                         "played": [True, True, True, False], "date": pd.to_datetime(["2026-11-18"] * 4),
+                         "provider_fixture_id": ["11", "12", "id99", "13"]})
+    from datetime import date
+    assert pilot.fixture_ids(live, date(2026, 11, 18)) == [11, 12]
+    assert [len(b) for b in pilot.batches(list(range(45)))] == [20, 20, 5]
+    player = {"statistics": [{"games": {"minutes": 90, "rating": "7.1", "position": "M"}}]}
+    item = {"league": {"id": 39}, "lineups": [{"formation": "4-3-3", "startXI": [{}] * 11},
+                                              {"formation": "4-4-2", "startXI": [{}] * 11}],
+            "players": [{"players": [player]}, {"players": [player, {"statistics": [{"games": {}}]}]}]}
+    s = pilot.summarise([item, {"league": {"id": 39}}])
+    assert s["fixtures"] == 2 and s["with_lineups_both"] == 1 and s["with_players_both"] == 1
+    assert (s["players"], s["players_with_rating"], s["players_with_minutes"]) == (3, 2, 2)
+    assert s["start_xi_sizes"] == {"11": 2} and s["leagues"] == {"39": 2}
+    text = (Path(__file__).resolve().parents[1] / ".github/workflows/lineups-pilot.yml").read_text()
+    assert "workflow_dispatch" in text and "schedule" not in text and "contents: read" in text
