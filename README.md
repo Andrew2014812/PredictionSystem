@@ -585,6 +585,25 @@ variable `ODDS_API_LEAGUES` (e.g. `T1`) would allow it for named leagues only.
   spellings (OFI, Vicenza Virtus, Real Sociedad II) are matched; an unpriced whole handicap line is judged at its
   break-even price with the refund, (1 − P(refund)) / P(win), instead of 1 / P(win).
 
+### Hosting without the Streamlit wrapper (v6.3)
+
+The branding flash on a full page load comes from Streamlit Community Cloud's wrapper page and cannot be removed
+there (see v6.2 above). The repository now has a `Dockerfile` that serves the same app directly: built and checked on
+18.11.2026 — health check OK, the pages load with their data, no "Hosted / Built with Streamlit" text at any moment
+of the load, `.env` is not in the image (`.dockerignore`). Image ≈ 2.7 GB; the app uses ≈ 630 MB of memory after
+every page has been opened, so a host needs about 1 GB:
+
+- **Hugging Face Spaces** (Docker space, free CPU tier with 16 GB): create a Docker Space, push this repository to it
+  (the Space needs `sdk: docker` and `app_port: 8501` in the README header of the Space); it sleeps after 48 h without
+  visitors. The daily data still lands in GitHub; mirror `main` to the Space (a push or a sync action).
+- **Google Cloud Run**: `gcloud run deploy footpredict --source . --memory 1Gi --allow-unauthenticated`; scales to zero
+  (a cold start of a few seconds), needs a billing account (the free tier covers a small diploma site).
+- **A small VPS** (≈ 1–2 GB RAM, a few euros a month): `docker build -t footpredict . && docker run -d -p 80:8501
+  --restart unless-stopped footpredict`, plus a cron `git pull && docker build && docker restart` after the daily
+  update. Render's free and starter plans (512 MB) are too small for this app.
+
+Moving the site needs the owner's account on the chosen host; Streamlit Cloud keeps working meanwhile.
+
 ### Data checks and v6.3 research (v6.3)
 
 - **Checks after the daily update** (`src/analytics/data_checks.py`, run in the pipeline's `checks` step, examples in
