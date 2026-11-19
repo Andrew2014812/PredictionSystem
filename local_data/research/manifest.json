@@ -226,6 +226,230 @@
    "extra": {},
    "key": "uncertainty_flag_u_1x2@v1",
    "first_registered_at": "2026-11-11 07:53:24.439097"
+  },
+  "v63_main_reliability_total@v1": {
+   "id": "v63_main_reliability_total",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
+   "prereg_sha256": "e62797ad1597163dfc396489c5437ae66c82749814316ad2223a990d5f1be8df",
+   "freeze_sha": "2bd1e2c77c1bff873ed5332be3c0f3c8aba994ac",
+   "frozen_at_utc": "2026-11-18T13:15:58Z",
+   "hypothesis": "v63_main_selection:bt:reliability",
+   "items": [
+    "main"
+   ],
+   "description": "Правило Main продакшна с MARKET_RELIABILITY['TOTAL'] = 0.95 (вместо 1.00)",
+   "baseline": "Main продакшна (те же сохранённые вероятности и цены момента прогноза)",
+   "metric": "парная разность ROI теневого Main и Main продакшна (ставка 1, цена момента прогноза)",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule",
+   "min_n": 2596,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:15:58Z"
+   },
+   "family": "v63_main_rule",
+   "implemented": true,
+   "not_implemented_reason": "",
+   "extra": {},
+   "key": "v63_main_reliability_total@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
+  },
+  "v63_main_reliability_handicap@v1": {
+   "id": "v63_main_reliability_handicap",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/market_profitability/results/preregistration.json",
+   "prereg_sha256": "f36b2817ee8aa5c81cb035c49823b4913974afe59282879a4850a0af8e847d51",
+   "freeze_sha": "0a872ace3c6d6426ef5d9f5e323796a7b5d067a6",
+   "frozen_at_utc": "2026-11-18T13:15:58Z",
+   "hypothesis": "v63_market_profitability:bt:boost",
+   "items": [
+    "main"
+   ],
+   "description": "Правило Main продакшна с MARKET_RELIABILITY['HANDICAP'] = 1.035 (вместо 0.90); тот же эффект, что у TOTAL 0.95, — решение по одной из двух",
+   "baseline": "Main продакшна (те же сохранённые вероятности и цены момента прогноза)",
+   "metric": "парная разность ROI теневого Main и Main продакшна (ставка 1, цена момента прогноза)",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule",
+   "min_n": 3993,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:15:58Z"
+   },
+   "family": "v63_main_rule",
+   "implemented": true,
+   "not_implemented_reason": "",
+   "extra": {},
+   "key": "v63_main_reliability_handicap@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
+  },
+  "v63_main_ev_weight@v1": {
+   "id": "v63_main_ev_weight",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
+   "prereg_sha256": "e62797ad1597163dfc396489c5437ae66c82749814316ad2223a990d5f1be8df",
+   "freeze_sha": "2bd1e2c77c1bff873ed5332be3c0f3c8aba994ac",
+   "frozen_at_utc": "2026-11-18T13:15:58Z",
+   "hypothesis": "v63_main_selection:bt:ev_weight",
+   "items": [
+    "main"
+   ],
+   "description": "Правило Main продакшна с MAIN_EV_WEIGHT = 1.0 (вместо 0.5)",
+   "baseline": "Main продакшна (те же сохранённые вероятности и цены момента прогноза)",
+   "metric": "парная разность ROI теневого Main и Main продакшна (ставка 1, цена момента прогноза)",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule",
+   "min_n": 8227,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:15:58Z"
+   },
+   "family": "v63_main_rule",
+   "implemented": true,
+   "not_implemented_reason": "",
+   "extra": {},
+   "key": "v63_main_ev_weight@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
+  },
+  "v63_main_floor_140@v1": {
+   "id": "v63_main_floor_140",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
+   "prereg_sha256": "e62797ad1597163dfc396489c5437ae66c82749814316ad2223a990d5f1be8df",
+   "freeze_sha": "2bd1e2c77c1bff873ed5332be3c0f3c8aba994ac",
+   "frozen_at_utc": "2026-11-18T13:15:58Z",
+   "hypothesis": "v63_main_selection:floor_1.40",
+   "items": [
+    "main"
+   ],
+   "description": "Main только среди кандидатов с реальной ценой ≥ 1.40 (по оценке продакшна); если таких нет — статистический Main продакшна, который не считается ставкой",
+   "baseline": "Main продакшна (те же сохранённые вероятности и цены момента прогноза)",
+   "metric": "парная разность ROI теневого Main и Main продакшна (ставка 1, цена момента прогноза)",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule",
+   "min_n": 2342,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:15:58Z"
+   },
+   "family": "v63_main_rule",
+   "implemented": true,
+   "not_implemented_reason": "",
+   "extra": {},
+   "key": "v63_main_floor_140@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
+  },
+  "v63_market_blend_v6@v1": {
+   "id": "v63_market_blend_v6",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/market_aware/results/preregistration.json",
+   "prereg_sha256": "01fbd6be20319098c7905f4819a98bb20776a85912c8af46eb9f97fe6dbea87e",
+   "freeze_sha": "0485c7754be5494af10f8e665737e4749374871a",
+   "frozen_at_utc": "2026-11-18T13:16:03Z",
+   "hypothesis": "v63-market-aware-V6",
+   "items": [
+    "main"
+   ],
+   "description": "Правило Main на смеси 50/50 логарифмов вероятностей модели и рынка",
+   "baseline": "Baseline B",
+   "metric": "парная разность ROI",
+   "criterion": "см. предрегистрацию",
+   "min_n": 1000,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:16:03Z"
+   },
+   "family": "v63_market",
+   "implemented": false,
+   "not_implemented_reason": "нужна полная книга одного букмекера на момент прогноза для каждого рынка; в сохранённых ценах селекции одного рынка могут быть от разных букмекеров. нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки.",
+   "extra": {},
+   "key": "v63_market_blend_v6@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
+  },
+  "v63_consensus_c2@v1": {
+   "id": "v63_consensus_c2",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/consensus/results/preregistration.json",
+   "prereg_sha256": "28f7dfd5789f8a9b31f7b352ede37cb9de7b41261cee4585016c330bcc51d9fd",
+   "freeze_sha": "d9352574221603bfb7c50528e539176775a63abe",
+   "frozen_at_utc": "2026-11-18T13:16:03Z",
+   "hypothesis": "v63-consensus-C2",
+   "items": [
+    "main"
+   ],
+   "description": "Правило Main на смеси модели и консенсуса нескольких букмекеров",
+   "baseline": "Baseline B",
+   "metric": "парная разность ROI",
+   "criterion": "см. предрегистрацию",
+   "min_n": 1000,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:16:03Z"
+   },
+   "family": "v63_market",
+   "implemented": false,
+   "not_implemented_reason": "нужны цены нескольких букмекеров на момент прогноза и ежемесячная подгонка весов. нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки.",
+   "extra": {},
+   "key": "v63_consensus_c2@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
+  },
+  "v63_calibration_temperature_group@v1": {
+   "id": "v63_calibration_temperature_group",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/calibration/results/preregistration.json",
+   "prereg_sha256": "28b6d2b410fc81e203b3ea52232775cefdb7babe8527b69fbfaa53f97ff78a77",
+   "freeze_sha": "5c610f43b5c2d532f95213028dece51bba93d6bc",
+   "frozen_at_utc": "2026-11-18T13:47:20Z",
+   "hypothesis": "v63_calibration_temperature_group_pooled@v1",
+   "items": [
+    "main"
+   ],
+   "description": "Правило Main на вероятностях после температурной калибровки по группам рынков",
+   "baseline": "Baseline B",
+   "metric": "парная разность ROI",
+   "criterion": "см. предрегистрацию",
+   "min_n": 1500,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:47:20Z"
+   },
+   "family": "v63_calibration",
+   "implemented": false,
+   "not_implemented_reason": "нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки.",
+   "extra": {},
+   "key": "v63_calibration_temperature_group@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
+  },
+  "v63_meta_lr_ev@v1": {
+   "id": "v63_meta_lr_ev",
+   "version": 1,
+   "created": "2026-11-18",
+   "prereg": "experiments/v6_3/meta_selection/results/preregistration.json",
+   "prereg_sha256": "71da781da47bb3b2207187e6baa49640666319371eac94d03edf36225c5c55b9",
+   "freeze_sha": "a09cd09f4c68177a016e1ea99749458baa28a4de",
+   "frozen_at_utc": "2026-11-18T13:47:20Z",
+   "hypothesis": "v63_meta_selection_meta_lr_ev@v1",
+   "items": [
+    "main"
+   ],
+   "description": "Метамодель (логистическая регрессия) выбирает Main с максимальным EV",
+   "baseline": "Baseline B",
+   "metric": "парная разность ROI",
+   "criterion": "см. предрегистрацию",
+   "min_n": 1500,
+   "forward_rule": {
+    "kind": "kickoff_after_utc",
+    "utc": "2026-11-18T13:47:20Z"
+   },
+   "family": "v63_meta",
+   "implemented": false,
+   "not_implemented_reason": "нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки.",
+   "extra": {},
+   "key": "v63_meta_lr_ev@v1",
+   "first_registered_at": "2026-11-19 19:22:59.120765"
   }
  },
  "runs": [
@@ -367,6 +591,21 @@
    "results_appended": 0,
    "errors": {},
    "seconds": 4.86
+  },
+  {
+   "run_id": "20261119T192259.120794Z",
+   "now_uk": "2026-11-19 19:22:59.120765",
+   "code_sha": "056fc834a53b3fe980983ac384bd1379fb8425de",
+   "upcoming_matches": 172,
+   "rows_appended": 706,
+   "rows_total": 3422,
+   "chain_head": "f4100f6f0ee3acbefcbddd4597d155932dd079c6e6578293b801b08c4d80e93b",
+   "files": {
+    "shadow_predictions/20261119T192259.120794Z.parquet": "49a13525285a9789a1789cd046359f0e2b2bfe5089e87b845d39666a2fed8081"
+   },
+   "results_appended": 0,
+   "errors": {},
+   "seconds": 6.24
   }
  ],
  "decisions": {}

@@ -1,5 +1,5 @@
 {
- "evaluated_at_uk": "2026-11-19 09:09:35.577455",
+ "evaluated_at_uk": "2026-11-19 19:22:59.120765",
  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
  "shadows": {
   "maincal_ps_platt_monthly@v1": {
@@ -77,8 +77,8 @@
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": -0.0005730561057166269,
-      "ll_model_minus_h0": 0.00983899438818563
+      "ll_h2_minus_h0": -0.0005730561057166155,
+      "ll_model_minus_h0": 0.009838994388185633
      }
     },
     "1x2": {
@@ -89,7 +89,7 @@
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": 0.002640477677845222,
+      "ll_h2_minus_h0": 0.0026404776778452157,
       "ll_model_minus_h0": 0.05307349912750824
      }
     }
@@ -121,11 +121,63 @@
    "prereg": "experiments/v6_2/xg/results/preregistration.json",
    "freeze_sha": "7b2a73435bd0a21273a6b7aa6b6d4d59bd675cd8",
    "criterion": "разность < 0 при одностороннем бутстреп-p < 0.05; ΔLL 1X2 < +0.002; ΔROI Main > -0.02; переоценка Main не больше, чем у B0"
+  },
+  "v63_main_reliability_total@v1": {
+   "n": 0,
+   "min_n": 2596,
+   "unit": "рассчитанных матчей",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "v63_main_rule",
+   "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
+   "freeze_sha": "2bd1e2c77c1bff873ed5332be3c0f3c8aba994ac",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
+  },
+  "v63_main_reliability_handicap@v1": {
+   "n": 0,
+   "min_n": 3993,
+   "unit": "рассчитанных матчей",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "v63_main_rule",
+   "prereg": "experiments/v6_3/market_profitability/results/preregistration.json",
+   "freeze_sha": "0a872ace3c6d6426ef5d9f5e323796a7b5d067a6",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
+  },
+  "v63_main_ev_weight@v1": {
+   "n": 0,
+   "min_n": 8227,
+   "unit": "рассчитанных матчей",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "v63_main_rule",
+   "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
+   "freeze_sha": "2bd1e2c77c1bff873ed5332be3c0f3c8aba994ac",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
+  },
+  "v63_main_floor_140@v1": {
+   "n": 0,
+   "min_n": 2342,
+   "unit": "рассчитанных матчей",
+   "information_fraction": 0.0,
+   "status": "no_forward_data",
+   "ready": false,
+   "family": "v63_main_rule",
+   "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
+   "freeze_sha": "2bd1e2c77c1bff873ed5332be3c0f3c8aba994ac",
+   "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
   }
  },
  "not_implemented": {
   "xg_t1@v1": "нужна отдельная версия моделей XGBoost (переобучение на 2021/22–2025/26 с 9 признаками прокси-xG) и её загрузка в ежедневном прогоне; это не «дешёвая» тень без переобучения. Заглушка: запись не ведётся.",
-  "uncertainty_flag_u_1x2@v1": "нужны 8 бутстреп-моделей 1X2, обученных один раз на сезонах до 2026/27 и сохранённых рядом с моделями продакшна; после этого ежедневная цена — 8 прогнозов на матч. Модели в этом исследовании не сохранялись, запись не ведётся."
+  "uncertainty_flag_u_1x2@v1": "нужны 8 бутстреп-моделей 1X2, обученных один раз на сезонах до 2026/27 и сохранённых рядом с моделями продакшна; после этого ежедневная цена — 8 прогнозов на матч. Модели в этом исследовании не сохранялись, запись не ведётся.",
+  "v63_market_blend_v6@v1": "нужна полная книга одного букмекера на момент прогноза для каждого рынка; в сохранённых ценах селекции одного рынка могут быть от разных букмекеров. нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки.",
+  "v63_consensus_c2@v1": "нужны цены нескольких букмекеров на момент прогноза и ежемесячная подгонка весов. нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки.",
+  "v63_calibration_temperature_group@v1": "нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки.",
+  "v63_meta_lr_ev@v1": "нужна ежемесячная переподгонка параметров (или отдельные модели) в ежедневном прогоне; в v6.3 записываются только правила выбора Main без обучения. Гипотеза заморожена, проверка — повторным воспроизведением исследования на матчах после заморозки."
  },
  "families": {}
 }

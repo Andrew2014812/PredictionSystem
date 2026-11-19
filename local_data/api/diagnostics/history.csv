@@ -59,3 +59,6 @@ run_at,source,line,n_requests,n_files_unchanged,n_season_played,n_new_results,n_
 2026-11-19T08:52:38,api_football,"API-Football: 3 requests (3 answered OK) · 99 left · errors: fixtures: {'access': 'Your account is suspended, check on https://dashboard.api-football.com.'}",3.0,,,,,0.0,,,,,,,,,,
 2026-11-19T08:52:38,oddspapi,"OddsPapi: 172 requests (172 answered OK) · 1 billable · 3,118 fixtures returned · 170 in our leagues · 170 matched · 170 matches asked · 170 with real prices · 4,380 new quotes · 1,523 updated quotes · 20 leagues updated · skipped: 2946 not one of our leagues, 2 already started · ? left · 15.5 min",172.0,,,,,3118.0,170.0,170.0,,,171.0,1.0,4380.0,1523.0,170.0,170.0
 2026-11-19T08:52:38,the_odds_api,The Odds API: off (stored prices still used) · 79 left,,,,,,,,,,,,,,,,
+2026-11-19T19:21:31,football_data,"Football-Data: 22 requests (22 answered OK) · 21 files unchanged · 2,250 played matches in the season files · 29 s",22.0,21.0,2250.0,0.0,,,,,,,,,,,,
+2026-11-19T19:21:31,api_football,"API-Football: 3 requests (3 answered OK) · 664 fixtures returned · 17 in our leagues · 16 matched · 2 new fixtures · 1 leagues updated · skipped: 647 not one of our leagues, 1 unknown team name · 97 left",3.0,,,,,664.0,17.0,16.0,,2.0,,,,,,
+2026-11-19T19:21:31,the_odds_api,The Odds API: off (stored prices still used) · 79 left,,,,,,,,,,,,,,,,
