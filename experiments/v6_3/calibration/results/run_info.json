@@ -1,0 +1,80 @@
+{
+ "study": "v6_3/calibration",
+ "git_sha": "d9352574221603bfb7c50528e539176775a63abe",
+ "created": "2026-11-18T14:23:19",
+ "seconds": 201.8,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "band": [
+   0.4,
+   0.85
+  ],
+  "min_fit": 300,
+  "methods": [
+   "raw",
+   "platt",
+   "temperature",
+   "beta",
+   "isotonic",
+   "histbin"
+  ],
+  "scopes": [
+   "global",
+   "group",
+   "key"
+  ],
+  "sources": [
+   "backtest",
+   "expanding",
+   "pooled"
+  ],
+  "k_subsets": [
+   1,
+   2,
+   3,
+   4,
+   6,
+   8,
+   12,
+   16,
+   99
+  ],
+  "reps": 20,
+  "primary_chosen_on": "2025/26 backtest walk-forward (months Sep-May)",
+  "fit_rule": "maps for month M of 2026/27 use backtest 2025/26 and/or 2026/27 matches before the 1st of M"
+ }
+}

@@ -1,0 +1,51 @@
+# Pilot of the v6.3 Squad Strength study: does API-Football return line-ups and player statistics of yesterday's
+# finished matches? Manual only; spends at most `max_requests` of the 100 daily requests; commits nothing — the
+# answers and a coverage summary are kept as a workflow artifact (scripts/api_football_lineups_pilot.py).
+name: Line-ups pilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "Day of the finished matches, YYYY-MM-DD (empty = yesterday, UK time)"
+        type: string
+        default: ""
+      max_requests:
+        description: "Most API-Football requests to spend (20 matches each)"
+        type: number
+        default: 6
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Ask API-Football for line-ups
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          python scripts/api_football_lineups_pilot.py --out pilot_out --day "${{ inputs.day }}" \
+            --max-requests "${{ inputs.max_requests }}" | tee pilot.log
+          { echo '### Line-ups pilot'; echo '```'; cat pilot_out/summary.json; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lineups-pilot
+          path: pilot_out/
+          retention-days: 30

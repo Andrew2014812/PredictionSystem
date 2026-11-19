@@ -22,7 +22,7 @@ from playwright.sync_api import sync_playwright
 
 MATCH_FINISHED = "E0-20261025-man-united-brighton"     # overridden by --match
 PAGES = [("matches", "?date={day}"), ("match", "match?match_id={match}"), ("history", "history"),
-         ("leagues", "leagues"), ("teams", "teams"), ("analytics", "analytics"), ("models", "models")]
+         ("leagues", "leagues?league=E0"), ("teams", "teams?team=Wolves&country=England"), ("analytics", "analytics"), ("models", "models")]
 SIZES = {"1920x1080": (1920, 1080, 1.0), "1920x1080@125": (1536, 864, 1.25), "1366x768": (1366, 768, 1.0),
          "1366x768@125": (1093, 614, 1.25)}
 

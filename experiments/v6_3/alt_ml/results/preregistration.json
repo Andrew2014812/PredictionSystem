@@ -1,0 +1,94 @@
+{
+ "ens_xgb_best": {
+  "hypothesis": "Outputs of 'ens_xgb_best' give a lower loss than production on the task(s) where they were better in 2026/27 and a Main ROI not lower than production's on future matches.",
+  "rule": {
+   "variant": "ens_xgb_best",
+   "configs": {
+    "xgb": {
+     "result": "xgb:prod (production)",
+     "home_goals": "xgb:prod (production)",
+     "away_goals": "xgb:prod (production)",
+     "corners": "xgb:prod (production)"
+    },
+    "glm": {
+     "result": "glm:c0.01",
+     "home_goals": "glm:c0.01",
+     "away_goals": "glm:c0.01",
+     "corners": "glm:c0.01"
+    }
+   },
+   "best_per_task": null,
+   "ensemble_members": [
+    "xgb",
+    "glm"
+   ],
+   "ensemble": "unweighted mean of outputs",
+   "refit": "fitted on all seasons before"
+  },
+  "primary_metric": "paired loss difference vs production on the improved task(s) (1X2 log loss / Poisson deviance); secondary: paired Main ROI difference (close)",
+  "minimum_forward_sample": "1000 played matches (about 2.5 months of the 21 leagues)",
+  "frozen_at": "2026-11-18T14:55:57"
+ },
+ "best_per_task": {
+  "hypothesis": "Outputs of 'best_per_task' give a lower loss than production on the task(s) where they were better in 2026/27 and a Main ROI not lower than production's on future matches.",
+  "rule": {
+   "variant": "best_per_task",
+   "configs": {
+    "catboost": {
+     "result": "catboost:d4_l3",
+     "home_goals": "catboost:d6_l10",
+     "away_goals": "catboost:d4_l3",
+     "corners": "catboost:d4_l3"
+    },
+    "et": {
+     "result": "et:leaf50_f05",
+     "home_goals": "et:leaf50_f05",
+     "away_goals": "et:leaf50_f05",
+     "corners": "et:leaf50_f05"
+    },
+    "glm": {
+     "result": "glm:c0.01",
+     "home_goals": "glm:c0.01",
+     "away_goals": "glm:c0.01",
+     "corners": "glm:c0.01"
+    },
+    "hgb": {
+     "result": "hgb:l15_m100",
+     "home_goals": "hgb:l15_m100",
+     "away_goals": "hgb:l15_m100",
+     "corners": "hgb:l15_m100"
+    },
+    "lgbm": {
+     "result": "lgbm:l7_m300",
+     "home_goals": "lgbm:l7_m300",
+     "away_goals": "lgbm:l7_m300",
+     "corners": "lgbm:l7_m300"
+    },
+    "rf": {
+     "result": "rf:leaf50_f033",
+     "home_goals": "rf:leaf50_f033",
+     "away_goals": "rf:leaf50_f033",
+     "corners": "rf:leaf150_fsqrt"
+    },
+    "xgb": {
+     "result": "xgb:prod (production)",
+     "home_goals": "xgb:prod (production)",
+     "away_goals": "xgb:prod (production)",
+     "corners": "xgb:prod (production)"
+    }
+   },
+   "best_per_task": {
+    "result": "ens_all",
+    "home_goals": "ens_xgb_best",
+    "away_goals": "ens_xgb_best",
+    "corners": "ens_xgb_best"
+   },
+   "ensemble_members": null,
+   "ensemble": "unweighted mean of outputs",
+   "refit": "fitted on all seasons before"
+  },
+  "primary_metric": "paired loss difference vs production on the improved task(s) (1X2 log loss / Poisson deviance); secondary: paired Main ROI difference (close)",
+  "minimum_forward_sample": "1000 played matches (about 2.5 months of the 21 leagues)",
+  "frozen_at": "2026-11-18T14:55:57"
+ }
+}

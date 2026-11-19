@@ -1,0 +1,64 @@
+{
+ "study": "market_profitability",
+ "git_sha": "04b19bb427495d2df1dd9116f60d450cb1d76597",
+ "created": "2026-11-18T14:02:19",
+ "seconds": 196.2,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "history": "expanding by day (bets settled on earlier days), seeded with the 2025/26 backtest",
+  "cells": [
+   "group",
+   "market",
+   "group_odds"
+  ],
+  "odds_bands": [
+   1.0,
+   1.4,
+   1.7,
+   2.2,
+   1000.0
+  ],
+  "shrinkage": "empirical Bayes k = s2 / tau2 or fixed k = 200",
+  "betas": [
+   3,
+   10
+  ],
+  "exclusion": "n >= 100 and ROI + 1.96 se < pooled ROI",
+  "n_boot": 2000,
+  "seed": 20261118
+ }
+}

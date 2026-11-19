@@ -1,0 +1,28 @@
+{
+ "stability": {
+  "away_goals": {
+   "spearman": 0.7176470588235294,
+   "both_positive": 11,
+   "sign_flip": 4,
+   "groups": 16
+  },
+  "corners": {
+   "spearman": 0.745054945054945,
+   "both_positive": 9,
+   "sign_flip": 3,
+   "groups": 14
+  },
+  "home_goals": {
+   "spearman": 0.4892857142857142,
+   "both_positive": 9,
+   "sign_flip": 6,
+   "groups": 15
+  },
+  "result": {
+   "spearman": 0.8725490196078433,
+   "both_positive": 13,
+   "sign_flip": 2,
+   "groups": 17
+  }
+ }
+}

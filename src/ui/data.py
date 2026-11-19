@@ -62,6 +62,22 @@ def picks() -> pd.DataFrame:
     return df
 
 
+@st.cache_resource(show_spinner=False)
+def _main_results(_mtime_key: float) -> dict[str, str]:
+    from ..analytics.performance import unified_history
+    p = picks()
+    if p.empty:
+        return {}
+    main = unified_history(p).loc[lambda d: (d["role"] == "main") & d["status"].isin(["WON", "LOST", "PUSH"])]
+    return dict(zip(main["match_id"], main["status"]))
+
+
+def main_results() -> dict[str, str]:
+    """match_id -> WON / LOST / PUSH of the Main prediction of the website's history (recorded before kick-off
+    when it exists, otherwise the current-season reconstruction — the same one Prediction History counts)."""
+    return _main_results(_mtime(predictions_storage.path(store.PICKS)))
+
+
 def prediction_inputs() -> pd.DataFrame:
     """Model inputs stored with each prediction (src/prediction/inputs.py); empty for older predictions."""
     from src.prediction.inputs import INPUTS

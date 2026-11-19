@@ -1,0 +1,11 @@
+method,universe,season_matches,played,processed,main_with_real_price,bets,not_bet_no_price,not_bet_fallback,push,unknown_result,without_enough_statistics
+baseline_b,close,2390,2250,2250,2249,2249,1,0,0,0,0
+baseline_b,t09,2390,2250,2250,1704,1701,546,0,3,0,0
+floor_1.40,close,2390,2250,2250,2250,2248,0,0,2,0,0
+floor_1.40,t09,2390,2250,2250,2246,2223,4,21,6,0,0
+real_price_mandatory,close,2390,2250,2250,2250,2250,0,0,0,0,0
+real_price_mandatory,t09,2390,2250,2250,2250,2247,0,0,3,0,0
+ew:all,close,2390,2250,2250,2250,2081,0,0,169,0,0
+ew:all,t09,2390,2250,2250,1881,1870,369,0,11,0,0
+bt:ranking,close,2390,2250,2250,2250,2081,0,0,169,0,0
+bt:ranking,t09,2390,2250,2250,2250,2184,0,0,66,0,0

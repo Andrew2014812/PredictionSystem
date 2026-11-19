@@ -1,0 +1,64 @@
+{
+ "study": "v6_3/meta_selection",
+ "git_sha": "44e87eea5de1b208cfd0354d882b12600fbd81f3",
+ "created": "2026-11-18T14:44:02",
+ "seconds": 292.3,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "band": [
+   0.4,
+   0.85
+  ],
+  "primary": "meta_lr_ev",
+  "lr": "StandardScaler + LogisticRegression(C=0.1)",
+  "gbm": "XGBoost depth 3, 300 trees, lr 0.03, subsample 0.8, colsample 0.8, n_jobs 2",
+  "training": "2025/26 backtest pool + 2026/27 pool of the universe settled before the 1st of the month",
+  "fractions": [
+   0.05,
+   0.1,
+   0.25,
+   0.5,
+   1.0
+  ],
+  "n_perm": {
+   "meta_lr_ev": 20,
+   "meta_gbm_ev": 8,
+   "meta_gbm_ret": 8
+  },
+  "n_random": 300
+ }
+}

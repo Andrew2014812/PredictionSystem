@@ -78,13 +78,28 @@ def record_waiting(picks: pd.DataFrame, features: pd.DataFrame) -> None:
     """Every past match with unsettled predictions and why it waits (api/diagnostics/waiting.csv)."""
     from src.analytics.waiting import reason_counts, waiting_matches
     from src.data.dataset import load_results
-    from src.providers.collect import load_live_matches, load_not_played
+    from src.providers.collect import load_api_odds, load_live_matches, load_not_played
+    odds = load_api_odds()
     table = waiting_matches(picks, features, load_results([config.current_season()]), load_live_matches(),
-                            load_not_played())
+                            load_not_played(), odds=odds[["match_id", "collected_at"]] if not odds.empty else None)
     api_storage.write_csv("diagnostics/waiting.csv", table)
     counts = reason_counts(table)
     no_result = int(len(table)) - counts.get("waiting for corner statistics", 0)
     diag.info("predictions", waiting_for_a_result=no_result, waiting_reasons=counts)
+
+
+def record_data_checks(features: pd.DataFrame) -> dict[str, list]:
+    """v6.3 data checks (src/analytics/data_checks.py); the examples go to diagnostics/data_checks.json, the
+    run only reports them (nothing is repaired or dropped here)."""
+    from src.analytics.data_checks import check_all
+    from src.providers.collect import load_api_odds, load_live_matches
+    try:
+        issues = check_all(features, store.load_picks(), load_api_odds(), load_live_matches())
+    except Exception as exc:                                  # noqa: BLE001 - a check must never stop the run
+        issues = {"data checks failed to run": [repr(exc)]}
+    api_storage.write_json("diagnostics/data_checks.json",
+                           {"checked_at": datetime.now().isoformat(timespec="seconds"), "issues": issues})
+    return issues
 
 
 def main() -> None:
@@ -138,6 +153,10 @@ def main() -> None:
         issues = check_history(store.load_picks(), features)
     summary["history_checks"] = {k: len(v) for k, v in issues.items()} or "all passed"
     diag.info("predictions", history_checks=summary["history_checks"])
+    with diag.stage("checks"):
+        data_issues = record_data_checks(features)
+    summary["data_checks"] = {k: len(v) for k, v in data_issues.items()} or "all passed"
+    diag.info("predictions", data_checks=summary["data_checks"])
     summary["picks"] = picks["status"].value_counts().to_dict() if not picks.empty else {}
     summary["updated_at"] = datetime.now().isoformat(timespec="seconds")
     LocalStorage(config.DATA_DIR).write_json("data_status.json", {

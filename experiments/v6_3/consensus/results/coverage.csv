@@ -1,0 +1,15 @@
+universe,method,season_matches,played,processed,bets_real_price,no_price,push,main_with_consensus,without_statistics,not_played_excluded
+close,baseline_b,2390,2250,2390,2249,1,0,,0,140
+close,cons_market_only,2390,2250,2390,2250,0,0,2247.0,0,140
+close,single_market_only,2390,2250,2390,2249,1,0,2246.0,0,140
+close,cons_blend_wf,2390,2250,2390,2249,1,0,2246.0,0,140
+close,single_blend_wf,2390,2250,2390,2248,2,0,2245.0,0,140
+close,dispersion_filter,2390,2250,2390,2249,1,0,2245.0,0,140
+close,best_price,2390,2250,2390,2250,0,0,2246.0,0,140
+t09,baseline_b,2390,2250,2390,1701,546,3,,0,140
+t09,cons_market_only,2390,2250,2390,1780,470,0,1771.0,0,140
+t09,single_market_only,2390,2250,2390,1785,465,0,1774.0,0,140
+t09,cons_blend_wf,2390,2250,2390,1758,492,0,1752.0,0,140
+t09,single_blend_wf,2390,2250,2390,1756,494,0,1750.0,0,140
+t09,dispersion_filter,2390,2250,2390,1684,563,3,1679.0,0,140
+t09,best_price,2390,2250,2390,1721,526,3,1716.0,0,140

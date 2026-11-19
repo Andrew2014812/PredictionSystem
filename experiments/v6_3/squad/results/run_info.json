@@ -1,0 +1,81 @@
+{
+ "study": "squad",
+ "git_sha": "d9352574221603bfb7c50528e539176775a63abe",
+ "created": "2026-11-18T14:26:42",
+ "seconds": 46.5,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "player_source": "dcaribou/transfermarkt-datasets (CC0), frozen 2026-07-06",
+  "window_games": 10,
+  "xi": 11,
+  "bench": 7,
+  "per90_prior_minutes": 900,
+  "impact_prior_starts": 10,
+  "cutoff": "match date − 1 day",
+  "preseason_date": "1 July of the season",
+  "e1_tests": [
+   2024,
+   2025
+  ],
+  "e2_fit_cutoff": "2026-07-01",
+  "variants_tried": {
+   "e1": [
+    "dyn",
+    "pre",
+    "sa"
+   ],
+   "e2": [
+    "b0r",
+    "pre",
+    "sa"
+   ],
+   "sa_grid": 3
+  }
+ },
+ "data_player_source": {
+  "tm_files": [
+   "appearances.parquet",
+   "clubs.parquet",
+   "competitions.parquet",
+   "games.parquet",
+   "lineups.parquet",
+   "players.parquet",
+   "transfers.parquet",
+   "valuations.parquet"
+  ]
+ }
+}

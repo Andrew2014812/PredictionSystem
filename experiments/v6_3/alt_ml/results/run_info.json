@@ -1,0 +1,143 @@
+{
+ "study": "alt_ml",
+ "git_sha": "a09cd09f4c68177a016e1ea99749458baa28a4de",
+ "created": "2026-11-18T14:55:57",
+ "seconds": 300.5,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "grid": {
+   "xgb": [
+    {
+     "cfg": "prod"
+    },
+    {
+     "cfg": "prod_es"
+    }
+   ],
+   "lgbm": [
+    {
+     "cfg": "l15_m100",
+     "num_leaves": 15,
+     "min_child_samples": 100
+    },
+    {
+     "cfg": "l31_m200",
+     "num_leaves": 31,
+     "min_child_samples": 200
+    },
+    {
+     "cfg": "l7_m300",
+     "num_leaves": 7,
+     "min_child_samples": 300
+    }
+   ],
+   "catboost": [
+    {
+     "cfg": "d4_l3",
+     "depth": 4,
+     "l2": 3.0
+    },
+    {
+     "cfg": "d6_l10",
+     "depth": 6,
+     "l2": 10.0
+    }
+   ],
+   "hgb": [
+    {
+     "cfg": "l15_m100",
+     "max_leaf_nodes": 15,
+     "min_samples_leaf": 100
+    },
+    {
+     "cfg": "l31_m300",
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 300
+    }
+   ],
+   "rf": [
+    {
+     "cfg": "leaf50_f033",
+     "min_samples_leaf": 50,
+     "max_features": 0.33
+    },
+    {
+     "cfg": "leaf150_fsqrt",
+     "min_samples_leaf": 150,
+     "max_features": "sqrt"
+    }
+   ],
+   "et": [
+    {
+     "cfg": "leaf50_f05",
+     "min_samples_leaf": 50,
+     "max_features": 0.5
+    },
+    {
+     "cfg": "leaf150_fsqrt",
+     "min_samples_leaf": 150,
+     "max_features": "sqrt"
+    }
+   ],
+   "glm": [
+    {
+     "cfg": "c0.01",
+     "C": 0.01
+    },
+    {
+     "cfg": "c0.1",
+     "C": 0.1
+    },
+    {
+     "cfg": "c1",
+     "C": 1.0
+    }
+   ]
+  },
+  "train_tuning": "2021/22-2024/25",
+  "validation": "2025/26",
+  "fit_2026": "2021/22-2025/26",
+  "walk_forward": "monthly cut-offs, expanding window",
+  "threads": 2
+ },
+ "libraries_extra": {
+  "lightgbm": "4.7.0",
+  "catboost": "1.2.10"
+ },
+ "bootstrap": 2000,
+ "seed": 20261118
+}

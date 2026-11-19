@@ -1,0 +1,52 @@
+{
+ "study": "summary",
+ "git_sha": "98a5c96f216c94c71da6808df6b929cc60a469b9",
+ "created": "2026-11-18T15:44:20",
+ "seconds": 23.7,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "steps": [
+   "plan (frozen, not rewritten)",
+   "overview",
+   "combine",
+   "key_table"
+  ],
+  "inputs": "experiments/v6_3/*/results, replay/cache, calibration/goals/corners/consensus caches",
+  "n_boot": 2000,
+  "seed": 20261118
+ }
+}

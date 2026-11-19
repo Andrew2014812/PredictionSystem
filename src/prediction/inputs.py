@@ -82,3 +82,31 @@ def explanation_row(current: pd.Series | None, stored: pd.Series | None) -> tupl
     for col, value in values.items():
         row[col] = value
     return row, True
+
+
+REPRODUCE_TOLERANCE = 0.005
+
+
+def reproduces(row: pd.Series | None, snapshot: pd.Series | None, bundles: dict,
+               tolerance: float = REPRODUCE_TOLERANCE) -> bool:
+    """True when the prediction's own model version, given ``row``, returns the stored prediction (1X2
+    probabilities within ``tolerance``, expected goals within 2 × ``tolerance``). The features of a past match are
+    rebuilt from the matches before it, so for most predictions made before the inputs were stored the current row
+    IS the original input; when it is not (a data correction since), an explanation of ``row`` would explain a
+    different number and must not be shown as the explanation of the stored prediction."""
+    if row is None or snapshot is None or not bundles or "result" not in bundles:
+        return False
+    try:
+        frame = pd.DataFrame([row])
+        p = bundles["result"].predict(frame)[0]
+        stored = np.array([snapshot.get("p_home"), snapshot.get("p_draw"), snapshot.get("p_away")], dtype=float)
+        if not np.all(np.isfinite(stored)) or np.max(np.abs(p - stored)) > tolerance:
+            return False
+        for name, col in (("home_goals", "xg_home"), ("away_goals", "xg_away")):
+            value = snapshot.get(col)
+            if name in bundles and value is not None and value == value:
+                if abs(float(bundles[name].predict(frame)[0]) - float(value)) > 2 * tolerance:
+                    return False
+        return True
+    except Exception:                                   # noqa: BLE001 - an incompatible row is "not reproduced"
+        return False

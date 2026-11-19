@@ -1,0 +1,141 @@
+[
+ {
+  "variant": "best",
+  "description": "Poisson GLM + NB, r по лигам (выбор на 2025/26)",
+  "hypothesis": "The corner distribution of this variant gives a lower log score of total corners and a lower mean log loss of over/under 8.5/9.5/10.5 than production (XGBoost + NB r=71.1), without lowering Main ROI.",
+  "rule": {
+   "mean": "glm",
+   "distribution": "nb_league",
+   "params": {
+    "r": 68.09950853937106,
+    "by_league": {
+     "B1": 124.0479413303404,
+     "D1": 49.20743605487139,
+     "D2": 59.29352049426431,
+     "E0": 126.18322275224224,
+     "E1": 75.94548472453597,
+     "E2": 50.06388517439101,
+     "E3": 266.7108607531412,
+     "F1": 46.17168154447214,
+     "F2": 757.6569140140798,
+     "G1": 76.68292501937259,
+     "I1": 72.3893437673655,
+     "I2": 87.38749536892536,
+     "N1": 159.0155298664024,
+     "P1": 71.09373062156031,
+     "SC0": 530.3838874889092,
+     "SC1": 53.64273354894879,
+     "SC2": 43.55626374051242,
+     "SC3": 110.42327179001165,
+     "SP1": 60.29115496218265,
+     "SP2": 46.460422048867606,
+     "T1": 55.500252028844265
+    }
+   },
+   "refit": "once, on 2021/22-2025/26",
+   "calibration": "none (not better on 2025/26)"
+  },
+  "primary_metric": "paired mean log score of total corners vs production (lower is better)",
+  "secondary": [
+   "mean line log loss 8.5/9.5/10.5",
+   "Main ROI paired vs Baseline B (close and t09)"
+  ],
+  "minimum_forward_sample": "1500 played matches with corner statistics (≈ 3 months)",
+  "frozen_at": "2026-11-18T14:54:41"
+ },
+ {
+  "variant": "best_wf",
+  "description": "Poisson GLM, ежемесячное переобучение + NB, r по лигам",
+  "hypothesis": "The corner distribution of this variant gives a lower log score of total corners and a lower mean log loss of over/under 8.5/9.5/10.5 than production (XGBoost + NB r=71.1), without lowering Main ROI.",
+  "rule": {
+   "mean": "glm",
+   "distribution": "nb_league",
+   "params": {
+    "r": 68.09950853937106,
+    "by_league": {
+     "B1": 124.0479413303404,
+     "D1": 49.20743605487139,
+     "D2": 59.29352049426431,
+     "E0": 126.18322275224224,
+     "E1": 75.94548472453597,
+     "E2": 50.06388517439101,
+     "E3": 266.7108607531412,
+     "F1": 46.17168154447214,
+     "F2": 757.6569140140798,
+     "G1": 76.68292501937259,
+     "I1": 72.3893437673655,
+     "I2": 87.38749536892536,
+     "N1": 159.0155298664024,
+     "P1": 71.09373062156031,
+     "SC0": 530.3838874889092,
+     "SC1": 53.64273354894879,
+     "SC2": 43.55626374051242,
+     "SC3": 110.42327179001165,
+     "SP1": 60.29115496218265,
+     "SP2": 46.460422048867606,
+     "T1": 55.500252028844265
+    }
+   },
+   "refit": "monthly, on all matches before the 1st of the month",
+   "calibration": "none (not better on 2025/26)"
+  },
+  "primary_metric": "paired mean log score of total corners vs production (lower is better)",
+  "secondary": [
+   "mean line log loss 8.5/9.5/10.5",
+   "Main ROI paired vs Baseline B (close and t09)"
+  ],
+  "minimum_forward_sample": "1500 played matches with corner statistics (≈ 3 months)",
+  "frozen_at": "2026-11-18T14:54:41"
+ },
+ {
+  "variant": "ens",
+  "description": "Ансамбль (веса 2025/26) + NB, r по лигам",
+  "hypothesis": "The corner distribution of this variant gives a lower log score of total corners and a lower mean log loss of over/under 8.5/9.5/10.5 than production (XGBoost + NB r=71.1), without lowering Main ROI.",
+  "rule": {
+   "mean": "convex ensemble",
+   "weights": {
+    "xgb_mkt": 0.1943179753134141,
+    "lgbm_mkt": 0.07655369461027732,
+    "cat_mkt": 2.61378709083811e-58,
+    "xgb_ha": 3.7594994218610763e-31,
+    "rating": 1.4035026128305787e-141,
+    "glm": 0.7291283300763086
+   },
+   "distribution": "nb_league",
+   "params": {
+    "r": 67.04173205833283,
+    "by_league": {
+     "B1": 118.57704771794988,
+     "D1": 49.09730293665113,
+     "D2": 59.66323696997985,
+     "E0": 111.07125521761019,
+     "E1": 74.10912312036268,
+     "E2": 48.87933711422435,
+     "E3": 244.12441455543606,
+     "F1": 45.30576363133586,
+     "F2": 751.7977069614774,
+     "G1": 77.10859347500117,
+     "I1": 68.855194882376,
+     "I2": 87.4982212280934,
+     "N1": 161.59406836218733,
+     "P1": 70.97257096293141,
+     "SC0": 531.5219917736193,
+     "SC1": 53.163672888281155,
+     "SC2": 43.26451315284337,
+     "SC3": 105.92234233614583,
+     "SP1": 58.520903891775845,
+     "SP2": 46.25921001460959,
+     "T1": 54.79129231888371
+    }
+   },
+   "fit": "2021/22-2025/26, weights and params on 2025/26"
+  },
+  "primary_metric": "paired mean log score of total corners vs production (lower is better)",
+  "secondary": [
+   "mean line log loss 8.5/9.5/10.5",
+   "Main ROI paired vs Baseline B (close and t09)"
+  ],
+  "minimum_forward_sample": "1500 played matches with corner statistics (≈ 3 months)",
+  "frozen_at": "2026-11-18T14:54:41"
+ }
+]

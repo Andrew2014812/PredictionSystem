@@ -1,0 +1,32 @@
+{
+ "entries": [
+  {
+   "id": "v63-consensus-C2",
+   "hypothesis": "Blending the model with a multi-book consensus (instead of one book) raises Main ROI versus Baseline B without lowering the hit rate.",
+   "rule": "Production Main rule on p = softmax(a + b_q log q_cons + b_p log p_model) per market group, a, b fitted each month on all settled earlier matches of the season (>= 300 rows, else the model probability); q_cons = median of the de-margined (power) named books of the Football-Data snapshot for 1X2 / double chance, Football-Data average for total 2.5 and the Asian line, median of >= 2 stored books, else the single book (bet365).",
+   "primary_metric": "paired ROI difference vs Baseline B at the closing universe (bootstrap by match)",
+   "secondary": [
+    "the same at the T universe",
+    "ROI difference vs the single-book blend (V1)",
+    "hit rate"
+   ],
+   "minimum_forward_sample": "1000 settled bets (about 2 months of the 21 leagues)",
+   "decision": "B (promising, not adopted)",
+   "frozen_at": "2026-11-18T14:01:45"
+  },
+  {
+   "id": "v63-consensus-C1",
+   "hypothesis": "Using the multi-book consensus probability instead of the model probability in the production Main rule does not lower Main ROI versus Baseline B and beats the single-book market version.",
+   "rule": "Production Main rule on p = q_cons (as in v63-consensus-C2, handicap on the win scale with the model's refund probability); candidates without any complete book keep the model probability.",
+   "primary_metric": "paired ROI difference vs Baseline B at the closing universe (bootstrap by match)",
+   "secondary": [
+    "the same at the T universe",
+    "ROI difference vs the single-book market version (V3)"
+   ],
+   "minimum_forward_sample": "1000 settled bets",
+   "decision": "B (promising, not adopted)",
+   "frozen_at": "2026-11-18T14:10:30"
+  }
+ ],
+ "note": "B candidates frozen for a forward check on matches played after frozen_at; production is not changed."
+}

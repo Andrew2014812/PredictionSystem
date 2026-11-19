@@ -1,0 +1,19 @@
+{
+ "entries": [
+  {
+   "id": "v63-market-aware-V6",
+   "hypothesis": "A fixed half-and-half logit blend of the model and the single-book market probability improves Main ROI versus Baseline B (no fitted weight, so it can be tested forward without re-tuning).",
+   "rule": "Production Main rule on p = softmax(0.5 log q + 0.5 log p_model) per market (handicap on the no-refund scale, double chance from the blended 1X2); q = power de-margining of the first complete book among bet365 (OddsPapi), Football-Data Bet365, Pinnacle, William Hill at the decision moment; candidates without a complete book keep the model probability.",
+   "primary_metric": "paired ROI difference vs Baseline B at the T universe (bootstrap by match)",
+   "secondary": [
+    "the same at the closing universe",
+    "hit rate",
+    "share of Main with a market probability"
+   ],
+   "minimum_forward_sample": "1000 settled bets",
+   "decision": "B (exploratory; chosen after seeing 2026/27, so only a forward result counts)",
+   "frozen_at": "2026-11-18T13:59:52"
+  }
+ ],
+ "note": "B candidates frozen for a forward check on matches played after frozen_at; production is not changed."
+}

@@ -1,0 +1,47 @@
+{
+ "mkt_season_0.75": {
+  "hypothesis": "Variant mkt_season_0.75 lowers the 1X2 log loss (or goal / corner deviance) versus production and does not lower Main ROI; the gain concentrates in sparse-data matches.",
+  "rule": {
+   "family": "mkt_season",
+   "w": 0.75,
+   "s_season": "clip((10 - min(h_season_games, a_season_games))/10, 0, 1)",
+   "s_hist": "clip((10 - min(h_form10_n, a_form10_n))/10, 0, 1)",
+   "q": "de-margined (proportional) 1X2 price at the decision moment",
+   "low_data_threshold": 0.5
+  },
+  "primary_metric": "paired 1X2 log loss difference on all matches (prior: goal deviance); secondary: paired Main ROI difference (close)",
+  "minimum_forward_sample": "600 played matches including >= 150 low-data matches (start of 2027/28)",
+  "frozen_at": "2026-11-18T14:58:34"
+ },
+ "mkt_both": {
+  "hypothesis": "Variant mkt_both lowers the 1X2 log loss (or goal / corner deviance) versus production and does not lower Main ROI; the gain concentrates in sparse-data matches.",
+  "rule": {
+   "family": "mkt_both",
+   "w": [
+    0.75,
+    1.0
+   ],
+   "s_season": "clip((10 - min(h_season_games, a_season_games))/10, 0, 1)",
+   "s_hist": "clip((10 - min(h_form10_n, a_form10_n))/10, 0, 1)",
+   "q": "de-margined (proportional) 1X2 price at the decision moment",
+   "low_data_threshold": 0.5
+  },
+  "primary_metric": "paired 1X2 log loss difference on all matches (prior: goal deviance); secondary: paired Main ROI difference (close)",
+  "minimum_forward_sample": "600 played matches including >= 150 low-data matches (start of 2027/28)",
+  "frozen_at": "2026-11-18T14:58:34"
+ },
+ "mkt_uniform": {
+  "hypothesis": "Variant mkt_uniform lowers the 1X2 log loss (or goal / corner deviance) versus production and does not lower Main ROI; the gain concentrates in sparse-data matches.",
+  "rule": {
+   "family": "mkt_uniform",
+   "w": 0.11238662729381986,
+   "s_season": "clip((10 - min(h_season_games, a_season_games))/10, 0, 1)",
+   "s_hist": "clip((10 - min(h_form10_n, a_form10_n))/10, 0, 1)",
+   "q": "de-margined (proportional) 1X2 price at the decision moment",
+   "low_data_threshold": 0.5
+  },
+  "primary_metric": "paired 1X2 log loss difference on all matches (prior: goal deviance); secondary: paired Main ROI difference (close)",
+  "minimum_forward_sample": "600 played matches including >= 150 low-data matches (start of 2027/28)",
+  "frozen_at": "2026-11-18T14:58:34"
+ }
+}

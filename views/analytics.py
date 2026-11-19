@@ -127,8 +127,8 @@ def _hbar(df: pd.DataFrame, label_fn, value: str, count: str, title: str, kind: 
 
 
 def _charts(df: pd.DataFrame) -> None:
-    """The six charts: cumulative profit, ROI and hit rate over the last N bets, ROI by market, ROI by
-    league (full width) and hit rate by market. Sample sizes are in the hover; small samples are faded."""
+    """The six charts: hit rate and ROI over the last N bets (top row), cumulative profit and ROI by market,
+    ROI by league (full width) and hit rate by market. Sample sizes are in the hover; small samples are faded."""
     head = st.columns([3, 2])
     with head[0]:
         section(t("Charts"))
@@ -146,11 +146,11 @@ def _charts(df: pd.DataFrame) -> None:
     if bets.empty:
         row1[0].caption(t("No predictions with odds in this selection."))
     else:
+        # v6.3: hit rate and ROI side by side on top, then cumulative profit next to ROI by market
         with row1[0]:
-            fig = go.Figure(go.Scatter(x=bets["date"], y=bets["cumulative_profit"], mode="lines",
-                                       line=dict(color=c["accent"], width=2.5)))
-            fig.add_hline(y=0, line_dash="dot", line_color=c["faint"])
-            fig.update_layout(title=t("Cumulative profit (units)"))
+            fig = go.Figure(go.Scatter(x=bets["date"], y=bets["rolling_hit_rate"], mode="lines",
+                                       line=dict(color=c["bar-hit"], width=2.5)))
+            fig.update_layout(title=t("Hit rate, {over}", over=over), yaxis_tickformat=".0%")
             plotly(fig, height=330)
         with row1[1]:
             fig = go.Figure(go.Scatter(x=bets["date"], y=bets["rolling_roi"], mode="lines",
@@ -159,9 +159,10 @@ def _charts(df: pd.DataFrame) -> None:
             fig.update_layout(title=t("ROI (%), {over}", over=over))
             plotly(fig, height=330)
         with row2[0]:
-            fig = go.Figure(go.Scatter(x=bets["date"], y=bets["rolling_hit_rate"], mode="lines",
-                                       line=dict(color=c["bar-hit"], width=2.5)))
-            fig.update_layout(title=t("Hit rate, {over}", over=over), yaxis_tickformat=".0%")
+            fig = go.Figure(go.Scatter(x=bets["date"], y=bets["cumulative_profit"], mode="lines",
+                                       line=dict(color=c["accent"], width=2.5)))
+            fig.add_hline(y=0, line_dash="dot", line_color=c["faint"])
+            fig.update_layout(title=t("Cumulative profit (units)"))
             plotly(fig, height=330)
     mk = group_summary(df, "group")
     with row2[1]:

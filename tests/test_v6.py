@@ -44,7 +44,7 @@ def test_card_pairs_home_and_away_values_and_shares_add_up_to_their_part():
     f = card_factors(expl, "Stuttgart", "Gladbach")
     by = {x.key: x for x in f}
     pair = by["corners_for_form10"]
-    assert pair.evidence == "Stuttgart: 6.10 · Gladbach: 5.00" and pair.supports
+    assert pair.evidence == "Stuttgart 6.10 · Gladbach 5.00" and pair.supports
     assert abs(pair.share - 0.40 / 1.00) < 1e-9                    # share of the total |SHAP| = 1.00
     assert f[0].key == "corners_for_form10"                        # the biggest supporting factor first
     assert by["rest_days"].supports is False and by["rest_days"].share >= 0.10   # a big factor against is shown

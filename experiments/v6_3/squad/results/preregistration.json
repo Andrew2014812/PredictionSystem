@@ -1,0 +1,56 @@
+[
+ {
+  "id": "squad_e1_dyn",
+  "study": "squad",
+  "frozen_at": "2026-11-18T14:26:42",
+  "hypothesis": "Squad-strength features from line-ups and dated market values improve the production models (1X2 log loss) and Main ROI on the leagues covered by the player source.",
+  "rule": "production feature set + dynamic sq_* features (last 10 club games before the match)",
+  "primary_metric": "paired 1X2 log loss vs Baseline B on covered leagues; secondary Main ROI (close)",
+  "minimum_forward_sample": {
+   "matches": 3000,
+   "basis": "80 % power for the 2025/26 log-loss effect (paired sd), at least 3000 covered matches"
+  },
+  "decision": {
+   "decision": "B",
+   "evidence": "значимое (Холм) улучшение log loss 1X2 на ранних сезонах",
+   "reason": "нет поддерживаемого источника составов текущего сезона (датасет заморожен 06.07.2026); Main ROI 2026/27 не улучшается"
+  },
+  "blocker": "needs a maintained player source for the forward season (the open dataset stopped on 2026-07-06); see API-Football pilot plan"
+ },
+ {
+  "id": "squad_e1_pre",
+  "study": "squad",
+  "frozen_at": "2026-11-18T14:26:42",
+  "hypothesis": "Squad-strength features from line-ups and dated market values improve the production models (1X2 log loss) and Main ROI on the leagues covered by the player source.",
+  "rule": "production feature set + pre-season pre_* features (squad on 1 July)",
+  "primary_metric": "paired 1X2 log loss vs Baseline B on covered leagues; secondary Main ROI (close)",
+  "minimum_forward_sample": {
+   "matches": 3000,
+   "basis": "80 % power for the 2025/26 log-loss effect (paired sd), at least 3000 covered matches"
+  },
+  "decision": {
+   "decision": "B",
+   "evidence": "значимое (Холм) улучшение log loss 1X2 на ранних сезонах",
+   "reason": "Main ROI 2026/27 не улучшается; источник стоимости игроков заморожен и лицензионно спорен"
+  },
+  "blocker": "needs a maintained player source for the forward season (the open dataset stopped on 2026-07-06); see API-Football pilot plan"
+ },
+ {
+  "id": "squad_e2_pre",
+  "study": "squad",
+  "frozen_at": "2026-11-18T14:26:42",
+  "hypothesis": "Squad-strength features from line-ups and dated market values improve the production models (1X2 log loss) and Main ROI on the leagues covered by the player source.",
+  "rule": "production feature set + pre-season pre_* features, fitted on seasons before 1 July",
+  "primary_metric": "paired 1X2 log loss vs Baseline B on covered leagues; secondary Main ROI (close)",
+  "minimum_forward_sample": {
+   "matches": 3000,
+   "basis": "80 % power for the 2025/26 log-loss effect (paired sd), at least 3000 covered matches"
+  },
+  "decision": {
+   "decision": "B",
+   "evidence": "лучше log loss 1X2 (Холм) на 2026/27",
+   "reason": "ΔROI close -1.0 п.п., t09 +0.6 п.п. — не значимо"
+  },
+  "blocker": "needs a maintained player source for the forward season (the open dataset stopped on 2026-07-06); see API-Football pilot plan"
+ }
+]

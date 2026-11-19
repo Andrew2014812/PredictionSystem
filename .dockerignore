@@ -1,0 +1,19 @@
+# keys and local tools never go into the image
+.env
+.env.*
+!.env.example
+.git
+.github
+.idea
+.claude
+.devcontainer
+.venv
+.pytest_cache
+**/__pycache__
+.playwright-mcp
+# research, reports and tests are not needed to serve the website
+experiments
+reports
+tests
+requirements-dev.txt
+requirements-research.txt

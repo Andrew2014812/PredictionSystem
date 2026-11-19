@@ -1,0 +1,84 @@
+{
+ "study": "corners",
+ "git_sha": "a09cd09f4c68177a016e1ea99749458baa28a4de",
+ "created": "2026-11-18T14:54:41",
+ "seconds": 456.1,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "select_season": "2025/26 (fit 2021/22-2024/25)",
+  "eval_season": "2026/27 (fit 2021/22-2025/26)",
+  "walk_forward_cutoffs": [
+   "2026-08-01",
+   "2026-09-01",
+   "2026-10-01",
+   "2026-11-01"
+  ],
+  "lines": [
+   8.5,
+   9.5,
+   10.5
+  ],
+  "trees": {
+   "xgb_stats:total_corners": 430,
+   "xgb_mkt:total_corners": 429,
+   "lgbm_mkt:total_corners": 290,
+   "cat_mkt:total_corners": 198,
+   "xgb_ha:home_corners": 685,
+   "xgb_ha:away_corners": 542
+  },
+  "rating_params": {
+   "eta": 0.035,
+   "keep": 0.8,
+   "side_dev_2324_2425": 1.5082392574539263,
+   "total_dev_2324_2425": 1.180699695961327
+  },
+  "production_nb_size": 71.08005748615068,
+  "wf_models": [
+   "cat_mkt",
+   "lgbm_mkt",
+   "xgb_ha",
+   "xgb_mkt",
+   "xgb_prod"
+  ]
+ },
+ "variants_tried": {
+  "mean_models": 12,
+  "distributions": 39,
+  "calibrations": 2,
+  "main_variants": 6
+ }
+}

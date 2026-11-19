@@ -1,0 +1,29 @@
+universe,item,n
+close,matches of the season (corner leagues),2390
+close,played,2250
+close,played with corner statistics,2250
+close,processed by every method (corner mean + distribution),2390
+close,played with a real corner price (any line),2235
+close,"played with < 3 earlier matches of a team (weak statistics, still predicted)",41
+close,Main prod: settled / bets / no price (not a bet) / push,2250 / 2249 / 1 / 0
+close,Main prod_dist: settled / bets / no price (not a bet) / push,2250 / 2249 / 1 / 0
+close,Main best: settled / bets / no price (not a bet) / push,2250 / 2249 / 1 / 0
+close,Main best_wf: settled / bets / no price (not a bet) / push,2250 / 2249 / 1 / 0
+close,Main ens: settled / bets / no price (not a bet) / push,2250 / 2249 / 1 / 0
+close,Main rating: settled / bets / no price (not a bet) / push,2250 / 2249 / 1 / 0
+close,Main no_corners: settled / bets / no price (not a bet) / push,2250 / 2249 / 1 / 0
+close,Baseline B: settled / bets / no price,2250 / 2249 / 1
+t09,matches of the season (corner leagues),2390
+t09,played,2250
+t09,played with corner statistics,2250
+t09,processed by every method (corner mean + distribution),2390
+t09,played with a real corner price (any line),1324
+t09,"played with < 3 earlier matches of a team (weak statistics, still predicted)",41
+t09,Main prod: settled / bets / no price (not a bet) / push,2250 / 1701 / 546 / 3
+t09,Main prod_dist: settled / bets / no price (not a bet) / push,2250 / 1700 / 547 / 3
+t09,Main best: settled / bets / no price (not a bet) / push,2250 / 1691 / 556 / 3
+t09,Main best_wf: settled / bets / no price (not a bet) / push,2250 / 1696 / 551 / 3
+t09,Main ens: settled / bets / no price (not a bet) / push,2250 / 1692 / 555 / 3
+t09,Main rating: settled / bets / no price (not a bet) / push,2250 / 1760 / 487 / 3
+t09,Main no_corners: settled / bets / no price (not a bet) / push,2250 / 1639 / 607 / 4
+t09,Baseline B: settled / bets / no price,2250 / 1701 / 546

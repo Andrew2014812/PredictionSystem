@@ -18,6 +18,11 @@ UK: dict[str, str] = {
     "England": "Англія", "Scotland": "Шотландія", "Spain": "Іспанія", "Italy": "Італія", "Germany": "Німеччина",
     "France": "Франція", "Netherlands": "Нідерланди", "Belgium": "Бельгія", "Portugal": "Португалія",
     "Turkey": "Туреччина", "Greece": "Греція",
+    "{n} teams": "{n} команд",
+    # v6.3: the Main result on Matches
+    "Main won": "Основний виграв", "Main lost": "Основний програв", "Main refund": "Основний: повернення",
+    "Main prediction won": "Основний прогноз виграв", "Main prediction lost": "Основний прогноз програв",
+    "Main prediction refunded (push): the stake is returned": "Основний прогноз: повернення ставки (push)",
     "W": "В", "D": "Н", "L": "П", "H": "Д", "A": "Г", "P": "І", "GF": "ЗМ", "GA": "ПМ", "GD": "РМ", "Pts": "О",
     "W-D-L": "В-Н-П",
     # matches page
@@ -35,9 +40,14 @@ UK: dict[str, str] = {
     "Exact score {score}": "Точний рахунок {score}", "Over {line} corners": "Більше {line} кутових",
     "Under {line} corners": "Менше {line} кутових", "BTTS": "Обидві заб'ють",
     "Selection": "Варіант", "Probability": "Ймовірність", "Odds": "Коефіцієнт", "Expected Value": "Очікувана цінність",
-    "Expected Value estimates the model's theoretical advantage at the current odds: EV = model probability × odds − 1. "
-    "It is not a guaranteed profit.": "Очікувана цінність (EV) оцінює теоретичну перевагу моделі за поточним "
-    "коефіцієнтом: EV = ймовірність моделі × коефіцієнт − 1. Це не гарантований прибуток.",
+    "Expected value of a 1-unit bet at this real price if the model's probability is right: "
+    "EV = model probability × odds − 1 (a refunded stake on a whole handicap line is not counted as lost). "
+    "Above 0: the price is higher than the model's fair price; below 0: lower. It is an estimate, "
+    "not a guaranteed profit, and it is shown as it is, also when it is negative.": "Очікувана цінність ставки "
+    "в 1 одиницю за цим реальним коефіцієнтом, якщо ймовірність моделі правильна: EV = ймовірність моделі × "
+    "коефіцієнт − 1 (повернена ставка на цілій лінії фори не вважається програною). Понад 0: коефіцієнт вищий за "
+    "справедливий за моделлю; нижче 0: нижчий. Це оцінка, а не гарантований прибуток; її показано як є, також "
+    "коли вона від'ємна.",
     "Not available for this match.": "Для цього матчу недоступно.",
     # match details
     "Back to matches": "До матчів", "Match not found.": "Матч не знайдено.",
@@ -85,7 +95,7 @@ UK: dict[str, str] = {
     "pre-match price of a test-season prediction (made after the season)": "передматчева ціна прогнозу тестового сезону (зроблено після сезону)",
     "Counting only prices that were on offer when the prediction was made: ROI {roi} on {n} bets. The other {m} bets use closing prices published afterwards or belong to predictions made after the match.": "Лише ціни, доступні на момент прогнозу: ROI {roi} на {n} ставках. Інші {m} ставок мають ціни закриття, опубліковані пізніше, або належать прогнозам, зробленим після матчу.",
     "PUSH means a refunded prediction (e.g. a handicap that ended level). It stays in the history, but is not counted in the hit rate or ROI.": "PUSH — прогноз із поверненням ставки (наприклад, фора, що зіграла внічию). Він лишається в історії, але не враховується у відсотку влучань і ROI.",
-    "Explained with the team data available now: the model inputs of this prediction were not stored (predictions made before 10.11.2026).": "Пояснено за поточними даними команд: вхідні дані моделі для цього прогнозу не збережено (прогнози до 10.11.2026).", "Home / Away": "Удома / на виїзді", "Head-to-head": "Особисті зустрічі",
+    "Home / Away": "Удома / на виїзді", "Head-to-head": "Особисті зустрічі",
     "Rest days": "Дні відпочинку",
     "This page could not be displayed right now. Please try again later.":
         "Не вдалося показати сторінку. Спробуйте пізніше.",

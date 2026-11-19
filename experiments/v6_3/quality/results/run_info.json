@@ -1,0 +1,78 @@
+{
+ "study": "quality",
+ "git_sha": "e889203302eaf8430c679c1723c614d5ac4169a8",
+ "created": "2026-11-18T14:58:34",
+ "seconds": 451.5,
+ "python": "3.12.12",
+ "libraries": {
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "xgboost": "3.0.5",
+  "sklearn": "1.7.2"
+ },
+ "data": {
+  "features": {
+   "path": "local_data/processed/features.parquet",
+   "bytes": 17833657,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "odds": {
+   "path": "local_data/odds/odds.parquet",
+   "bytes": 2668510,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "picks": {
+   "path": "local_data/predictions/picks.parquet",
+   "bytes": 2789775,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "markets": {
+   "path": "local_data/predictions/markets.parquet",
+   "bytes": 4389152,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "snapshots": {
+   "path": "local_data/predictions/snapshots.parquet",
+   "bytes": 669135,
+   "mtime": "2026-11-18T12:25:03"
+  },
+  "data_commit": "ae88eec 2026-11-18 Update data and predictions (daily)"
+ },
+ "params": {
+  "history_seasons": [
+   2024,
+   2025
+  ],
+  "grid": {
+   "mkt_season": [
+    0.25,
+    0.5,
+    0.75
+   ],
+   "mkt_hist": [
+    0.5,
+    1.0
+   ],
+   "prior": [
+    0.25,
+    0.5
+   ]
+  },
+  "lowdata_threshold": 0.5,
+  "primary": "mkt_both",
+  "chosen": {
+   "mkt_season": 0.75,
+   "mkt_hist": 1.0,
+   "prior": 0.25,
+   "uniform_w": 0.11238662729381986,
+   "history_baseline": {
+    "log_loss": 1.013690509612814,
+    "roi": -0.053154060770483576,
+    "bets": 7140,
+    "hit": 0.6412133155042579
+   }
+  }
+ },
+ "bootstrap": 2000,
+ "seed": 20261118
+}

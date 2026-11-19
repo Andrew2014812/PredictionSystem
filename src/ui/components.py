@@ -73,8 +73,10 @@ def tip(text: str) -> str:
     return f'<span class="tip" title="{esc(text)}">i</span>'
 
 
-EV_HELP = ("Expected Value estimates the model's theoretical advantage at the current odds: "
-           "EV = model probability × odds − 1. It is not a guaranteed profit.")
+EV_HELP = ("Expected value of a 1-unit bet at this real price if the model's probability is right: "
+           "EV = model probability × odds − 1 (a refunded stake on a whole handicap line is not counted as lost). "
+           "Above 0: the price is higher than the model's fair price; below 0: lower. It is an estimate, "
+           "not a guaranteed profit, and it is shown as it is, also when it is negative.")
 
 
 # ---------------------------------------------------------------------------
@@ -310,6 +312,13 @@ def label_margin(fig, px_per_char: float = 7.2, pad: int = 18) -> int:
     return int(longest * px_per_char + pad)
 
 
+def row_height(fig, one_line: int = 30, two_lines: int = 42) -> int:
+    """Height (px) per bar of a horizontal bar chart: two-line labels need more room, or they overlap the next
+    row (v6.3: SHAP chart on Model Analysis)."""
+    labels = [str(v) for tr in fig.data for v in (tr.y if tr.y is not None else [])]
+    return two_lines if any("<br>" in x for x in labels) else one_line
+
+
 def wrap_label(text: str, width: int = 30) -> str:
     """A long axis label on two lines (at a word break) instead of shortened."""
     if len(text) <= width:
@@ -351,6 +360,23 @@ def period_filter(col, key: str, first_date, default: str = "All time"):
 # Neutral shield shown when no badge is known or the image cannot be loaded.
 SHIELD_SVG = ("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>"
               "<path d='M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z' fill='%2394a3b8' opacity='.55'/></svg>")
+
+
+MAIN_MARK_ICONS = {"WON", "LOST", "PUSH"}       # icons are CSS masks (st.html removes inline SVG)
+MAIN_MARK_TEXT = {"WON": ("Main won", "Main"), "LOST": ("Main lost", "Main"), "PUSH": ("Main refund", "Main")}
+MAIN_MARK_TIP = {"WON": "Main prediction won", "LOST": "Main prediction lost",
+                 "PUSH": "Main prediction refunded (push): the stake is returned"}
+
+
+def main_result_mark(status: str | None) -> str:
+    """The result of a finished match's Main prediction (WON / LOST / PUSH = refund) as a small plaque; nothing for
+    any other status (not settled yet, void, no prediction). It is about the Main prediction, not the match."""
+    if status not in MAIN_MARK_ICONS:
+        return ""
+    long, short = MAIN_MARK_TEXT[status]
+    tip = t(MAIN_MARK_TIP[status])
+    return (f'<span class="mres {status}" title="{esc(tip)}" aria-label="{esc(tip)}"><i class="ic"></i>'
+            f'<span class="tx-short">{esc(t(short))}</span><span class="tx-long">{esc(t(long))}</span></span>')
 
 
 def team_badge(country: str, team: str, size: int = 24) -> str:

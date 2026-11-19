@@ -22,5 +22,13 @@ experiments/v6_1/*/cache/
 experiments/v6_research/cache/
 reports/v6_1/*_pages/
 experiments/v6_2/*/cache/
+# v6.3 research caches and logs (rebuilt by the scripts)
+experiments/v6_3/*/cache/
+experiments/v6_3/*/logs/
 reports/v6_2/*_pages/
 reports/v6_2/screenshots/*/server.log
+experiments/v6_3/.heavy*.lock
+experiments/v6_3/replay/build.log
+# derived from third-party player data whose licence is unclear: kept local
+experiments/v6_3/squad/results/preseason_features.csv
+reports/v6_3/*_pages/

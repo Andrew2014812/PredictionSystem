@@ -1,0 +1,70 @@
+{
+ "E0": {
+  "teams": 27,
+  "mapped": 27,
+  "weak": [],
+  "unmapped": []
+ },
+ "SP1": {
+  "teams": 26,
+  "mapped": 26,
+  "weak": [],
+  "unmapped": []
+ },
+ "I1": {
+  "teams": 27,
+  "mapped": 27,
+  "weak": [],
+  "unmapped": []
+ },
+ "D1": {
+  "teams": 25,
+  "mapped": 25,
+  "weak": [],
+  "unmapped": []
+ },
+ "F1": {
+  "teams": 25,
+  "mapped": 25,
+  "weak": [],
+  "unmapped": []
+ },
+ "N1": {
+  "teams": 24,
+  "mapped": 24,
+  "weak": [],
+  "unmapped": []
+ },
+ "P1": {
+  "teams": 26,
+  "mapped": 26,
+  "weak": [],
+  "unmapped": []
+ },
+ "B1": {
+  "teams": 22,
+  "mapped": 22,
+  "weak": [],
+  "unmapped": []
+ },
+ "T1": {
+  "teams": 29,
+  "mapped": 29,
+  "weak": [],
+  "unmapped": []
+ },
+ "G1": {
+  "teams": 19,
+  "mapped": 19,
+  "weak": [],
+  "unmapped": []
+ },
+ "SC0": {
+  "teams": 14,
+  "mapped": 14,
+  "weak": [],
+  "unmapped": []
+ },
+ "duplicate_clubs": [],
+ "seconds": 937.4
+}

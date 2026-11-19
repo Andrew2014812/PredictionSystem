@@ -143,7 +143,7 @@ def test_card_factors_use_net_contributions_and_relative_influence():
     # the factors FOR the selection by influence, then the strongest one against it (≥ 10 %)
     assert [x.key for x in f] == ["form_corners_sum", "corners_for_form10", "elo_diff", "rest_days"]
     assert [x.supports for x in f] == [True, True, True, False]
-    assert f[1].evidence == "Stuttgart: 6.10 · Gladbach: 5.00"
+    assert f[1].evidence == "Stuttgart 6.10 · Gladbach 5.00"
     assert sum(x.share for x in f) <= 1.0 + 1e-9                                          # shares need not add to 100 %
     small = expl.assign(contribution=[0.030, -0.010, 0.025, -0.005, -0.003, 0.0, 0.002])
     assert all(x.supports for x in card_factors(small, "S", "G"))                        # a small "against" is not shown
