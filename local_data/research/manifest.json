@@ -637,6 +637,22 @@
    "results_appended": 14,
    "errors": {},
    "seconds": 6.64
+  },
+  {
+   "run_id": "20261122T081337.334221Z",
+   "now_uk": "2026-11-22 08:13:37.334193",
+   "code_sha": "35fe50e99c7df9c69e7dd268934f21e76bcce8f2",
+   "upcoming_matches": 82,
+   "rows_appended": 958,
+   "rows_total": 6852,
+   "chain_head": "c21f9eb174284be17908deb93049a45c7181598c938f3d2aa03aa4d4eb8f3ec4",
+   "files": {
+    "shadow_results/20261122T081337.334221Z.parquet": "55a8428b25e9cf53fad9ad392f384a9708b74b51ad8715e51f0a7dce2f7ae6ef",
+    "shadow_predictions/20261122T081337.334221Z.parquet": "0895259fb81f30a03e56250bf6f702e4a52ad803ba476720a0703debcd1c9172"
+   },
+   "results_appended": 108,
+   "errors": {},
+   "seconds": 4.15
   }
  ],
  "decisions": {}

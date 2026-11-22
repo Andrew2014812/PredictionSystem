@@ -1,17 +1,17 @@
 {
- "evaluated_at_uk": "2026-11-21 08:39:18.033030",
+ "evaluated_at_uk": "2026-11-22 08:13:37.334193",
  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
  "shadows": {
   "maincal_ps_platt_monthly@v1": {
-   "n": 54,
+   "n": 162,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.09,
+   "information_fraction": 0.27,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_shadow": 0.02668391365097233,
-    "gap_production": 0.08465623195555555
+    "gap_shadow": 0.001462077050056467,
+    "gap_production": 0.06020747420925925
    },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
@@ -19,15 +19,15 @@
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "maincal_ps_group@v1": {
-   "n": 54,
+   "n": 162,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.09,
+   "information_fraction": 0.27,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_shadow": 0.02371245500223083,
-    "gap_production": 0.08465623195555555
+    "gap_shadow": 0.004458917750352494,
+    "gap_production": 0.06020747420925925
    },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
@@ -35,16 +35,16 @@
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "risk_stacked@v1": {
-   "n": 54,
+   "n": 157,
    "min_n": 2000,
    "unit": "матчей с ценой у обоих Risk",
-   "information_fraction": 0.027,
+   "information_fraction": 0.0785,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.09288461483441865,
-    "roi_production": -0.19018518518518515,
-    "changed_picks": 0.5
+    "roi_shadow": -0.19673333594004314,
+    "roi_production": -0.21509554140127385,
+    "changed_picks": 0.42038216560509556
    },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
@@ -52,15 +52,15 @@
    "criterion": "парный 95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109)"
   },
   "risk_market_probability@v1": {
-   "n": 54,
+   "n": 155,
    "min_n": 1000,
    "unit": "рассчитанных Risk с полной книгой",
-   "information_fraction": 0.054,
+   "information_fraction": 0.155,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_market": 0.029297370555905592,
-    "gap_model": 0.07049837713518518
+    "gap_market": 0.037224865504698466,
+    "gap_model": 0.07620819753419356
    },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
@@ -106,15 +106,15 @@
    "criterion": "верхняя граница 95 % парного ДИ < 0 для тотала 2.5; 1X2 — вторичный, Холм по двум рынкам"
   },
   "xg_x5@v1": {
-   "n": 40,
+   "n": 137,
    "min_n": 3000,
    "unit": "сыгранных матчей лиг с xG",
-   "information_fraction": 0.0133,
+   "information_fraction": 0.0457,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "goals_dev_diff": -0.007827148654254306,
-    "logloss_1x2_diff": -0.0034295738304970457,
+    "goals_dev_diff": -0.0026805248640634524,
+    "logloss_1x2_diff": -0.0034197897427977113,
     "fallback_share": 0.0
    },
    "family": "xg",
@@ -123,18 +123,18 @@
    "criterion": "разность < 0 при одностороннем бутстреп-p < 0.05; ΔLL 1X2 < +0.002; ΔROI Main > -0.02; переоценка Main не больше, чем у B0"
   },
   "v63_main_reliability_total@v1": {
-   "n": 14,
+   "n": 121,
    "min_n": 2596,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0054,
+   "information_fraction": 0.0466,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": 0.14657143184116908,
-    "roi_production": 0.054571428571428555,
-    "bets_shadow": 14,
-    "bets_production": 14,
-    "changed_picks": 0.07142857142857142
+    "roi_shadow": -0.057834708986203534,
+    "roi_production": -0.038669421487603294,
+    "bets_shadow": 121,
+    "bets_production": 121,
+    "changed_picks": 0.18181818181818182
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
@@ -142,18 +142,18 @@
    "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
   },
   "v63_main_reliability_handicap@v1": {
-   "n": 14,
+   "n": 122,
    "min_n": 3993,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0035,
+   "information_fraction": 0.0306,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": 0.23971429892948695,
-    "roi_production": 0.054571428571428555,
-    "bets_shadow": 14,
-    "bets_production": 14,
-    "changed_picks": 0.5714285714285714
+    "roi_shadow": 0.002049182282119501,
+    "roi_production": -0.04654918032786883,
+    "bets_shadow": 122,
+    "bets_production": 122,
+    "changed_picks": 0.639344262295082
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/market_profitability/results/preregistration.json",
@@ -161,18 +161,18 @@
    "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
   },
   "v63_main_ev_weight@v1": {
-   "n": 14,
+   "n": 120,
    "min_n": 8227,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0017,
+   "information_fraction": 0.0146,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": 0.14657143184116908,
-    "roi_production": 0.054571428571428555,
-    "bets_shadow": 14,
-    "bets_production": 14,
-    "changed_picks": 0.07142857142857142
+    "roi_shadow": 0.0033750017484029133,
+    "roi_production": -0.043074999999999974,
+    "bets_shadow": 120,
+    "bets_production": 120,
+    "changed_picks": 0.08333333333333333
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
@@ -180,18 +180,18 @@
    "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
   },
   "v63_main_floor_140@v1": {
-   "n": 12,
+   "n": 110,
    "min_n": 2342,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0051,
+   "information_fraction": 0.047,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.14891666173934937,
-    "roi_production": 0.1225,
-    "bets_shadow": 12,
-    "bets_production": 12,
-    "changed_picks": 0.5833333333333334
+    "roi_shadow": 0.01769090999256481,
+    "roi_production": -0.03975454545454543,
+    "bets_shadow": 110,
+    "bets_production": 110,
+    "changed_picks": 0.4727272727272727
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
