@@ -24,3 +24,114 @@ date,league,home_team,away_team,match_id,waiting_predictions,waiting_markets,rea
 2026-11-20,SC1,Inverness C,Ayr,SC1-20261120-inverness-c-ayr,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_1.5, TOTAL_2.5, TOTAL_3.5",no result from any source yet,,False,False,,2026-12-11
 2026-11-20,SP1,Ath Bilbao,Espanol,SP1-20261120-ath-bilbao-espanol,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-11
 2026-11-20,SP2,Andorra,Leganes,SP2-20261120-andorra-leganes,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-11
+2026-11-21,B1,Charleroi,St Truiden,B1-20261121-charleroi-st-truiden,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,B1,Genk,RAAL La Louviere,B1-20261121-genk-raal-la-louviere,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,B1,Mechelen,Club Brugge,B1-20261121-mechelen-club-brugge,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,B1,Waregem,Antwerp,B1-20261121-waregem-antwerp,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D1,Ein Frankfurt,Hoffenheim,D1-20261121-ein-frankfurt-hoffenheim,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D1,Elversberg,Freiburg,D1-20261121-elversberg-freiburg,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D1,Leverkusen,Paderborn,D1-20261121-leverkusen-paderborn,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D1,M'gladbach,Dortmund,D1-20261121-m-gladbach-dortmund,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D1,Schalke 04,Stuttgart,D1-20261121-schalke-04-stuttgart,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D1,Union Berlin,RB Leipzig,D1-20261121-union-berlin-rb-leipzig,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D2,Hannover,Greuther Furth,D2-20261121-hannover-greuther-furth,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D2,Nurnberg,Braunschweig,D2-20261121-nurnberg-braunschweig,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D2,St Pauli,Bochum,D2-20261121-st-pauli-bochum,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,D2,Wolfsburg,Holstein Kiel,D2-20261121-wolfsburg-holstein-kiel,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E0,Aston Villa,Sunderland,E0-20261121-aston-villa-sunderland,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E0,Bournemouth,Nott'm Forest,E0-20261121-bournemouth-nott-m-forest,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E0,Chelsea,Leeds,E0-20261121-chelsea-leeds,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E0,Coventry,Crystal Palace,E0-20261121-coventry-crystal-palace,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E0,Man City,Fulham,E0-20261121-man-city-fulham,2,"CORNERS_8.5, CORNERS_9.5","result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E0,Newcastle,Arsenal,E0-20261121-newcastle-arsenal,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E0,Tottenham,Ipswich,E0-20261121-tottenham-ipswich,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Bolton,Portsmouth,E1-20261121-bolton-portsmouth,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Lincoln,Wrexham,E1-20261121-lincoln-wrexham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Middlesbrough,Bristol City,E1-20261121-middlesbrough-bristol-city,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Millwall,QPR,E1-20261121-millwall-qpr,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Norwich,Cardiff,E1-20261121-norwich-cardiff,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Sheffield United,Watford,E1-20261121-sheffield-united-watford,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Southampton,Derby,E1-20261121-southampton-derby,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Stoke,Birmingham,E1-20261121-stoke-birmingham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Swansea,West Brom,E1-20261121-swansea-west-brom,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,West Ham,Preston,E1-20261121-west-ham-preston,2,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E1,Wolves,Charlton,E1-20261121-wolves-charlton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Blackpool,Wigan,E2-20261121-blackpool-wigan,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Bradford,Doncaster,E2-20261121-bradford-doncaster,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Burton,Luton,E2-20261121-burton-luton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Cambridge,Stockport,E2-20261121-cambridge-stockport,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Huddersfield,Leicester,E2-20261121-huddersfield-leicester,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Leyton Orient,AFC Wimbledon,E2-20261121-leyton-orient-afc-wimbledon,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Mansfield,Milton Keynes Dons,E2-20261121-mansfield-milton-keynes-dons,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Notts County,Stevenage,E2-20261121-notts-county-stevenage,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Oxford,Wycombe,E2-20261121-oxford-wycombe,2,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Plymouth,Peterboro,E2-20261121-plymouth-peterboro,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E2,Reading,Bromley,E2-20261121-reading-bromley,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Accrington,Salford,E3-20261121-accrington-salford,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Barnet,Port Vale,E3-20261121-barnet-port-vale,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Cheltenham,Bristol Rvs,E3-20261121-cheltenham-bristol-rvs,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Chesterfield,Shrewsbury,E3-20261121-chesterfield-shrewsbury,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Crawley Town,Fleetwood Town,E3-20261121-crawley-town-fleetwood-town,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Gillingham,Crewe,E3-20261121-gillingham-crewe,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Grimsby,Rotherham,E3-20261121-grimsby-rotherham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Newport County,Swindon,E3-20261121-newport-county-swindon,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Northampton,Rochdale,E3-20261121-northampton-rochdale,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Oldham,Exeter,E3-20261121-oldham-exeter,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,Tranmere,Colchester,E3-20261121-tranmere-colchester,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,E3,York,Walsall,E3-20261121-york-walsall,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,F1,Lens,Toulouse,F1-20261121-lens-toulouse,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,F1,Lille,Lyon,F1-20261121-lille-lyon,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,F1,Monaco,Auxerre,F1-20261121-monaco-auxerre,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,F1,Nice,Paris SG,F1-20261121-nice-paris-sg,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,F1,Strasbourg,Brest,F1-20261121-strasbourg-brest,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,F2,Laval,Montpellier,F2-20261121-laval-montpellier,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,F2,Reims,St Etienne,F2-20261121-reims-st-etienne,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,G1,Kalamata,AEK,G1-20261121-kalamata-aek,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I1,Como,Cagliari,I1-20261121-como-cagliari,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I1,Lazio,Lecce,I1-20261121-lazio-lecce,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I1,Napoli,Torino,I1-20261121-napoli-torino,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I1,Parma,Roma,I1-20261121-parma-roma,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I2,Ascoli,Vicenza,I2-20261121-ascoli-vicenza,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I2,Carrarese,Virtus Entella,I2-20261121-carrarese-virtus-entella,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I2,Catanzaro,Palermo,I2-20261121-catanzaro-palermo,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I2,Empoli,Pisa,I2-20261121-empoli-pisa,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I2,Modena,Juve Stabia,I2-20261121-modena-juve-stabia,2,"CORNERS_10.5, CORNERS_9.5","result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I2,Sampdoria,Benevento,I2-20261121-sampdoria-benevento,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,I2,Sudtirol,Cremonese,I2-20261121-sudtirol-cremonese,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,N1,Feyenoord,Excelsior,N1-20261121-feyenoord-excelsior,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,N1,Groningen,Heerenveen,N1-20261121-groningen-heerenveen,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,N1,Nijmegen,PSV Eindhoven,N1-20261121-nijmegen-psv-eindhoven,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,N1,Telstar,Zwolle,N1-20261121-telstar-zwolle,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,N1,Utrecht,Cambuur,N1-20261121-utrecht-cambuur,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC0,Celtic,St Mirren,SC0-20261121-celtic-st-mirren,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC0,Dundee,Hearts,SC0-20261121-dundee-hearts,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC0,Falkirk,St Johnstone,SC0-20261121-falkirk-st-johnstone,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC0,Hibernian,Dundee United,SC0-20261121-hibernian-dundee-united,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC0,Kilmarnock,Aberdeen,SC0-20261121-kilmarnock-aberdeen,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC0,Motherwell,Rangers,SC0-20261121-motherwell-rangers,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC1,Arbroath,Stenhousemuir,SC1-20261121-arbroath-stenhousemuir,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC1,Dunfermline,Morton,SC1-20261121-dunfermline-morton,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-0.5, HANDICAP_-2.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-12
+2026-11-21,SC1,Queens Park,Livingston,SC1-20261121-queens-park-livingston,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC1,Raith Rvs,Partick,SC1-20261121-raith-rvs-partick,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC2,East Fife,Airdrie Utd,SC2-20261121-east-fife-airdrie-utd,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5, TOTAL_3.5",no result; bookmakers stopped quoting 46 h before kick-off (probably postponed),,False,False,,2026-12-12
+2026-11-21,SC2,Montrose,Alloa,SC2-20261121-montrose-alloa,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC2,Peterhead,East Kilbride,SC2-20261121-peterhead-east-kilbride,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC2,Queen of Sth,Hamilton,SC2-20261121-queen-of-sth-hamilton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC2,Ross County,Cove Rangers,SC2-20261121-ross-county-cove-rangers,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC3,Annan Athletic,Forfar,SC3-20261121-annan-athletic-forfar,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC3,Clyde,Stirling,SC3-20261121-clyde-stirling,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC3,Edinburgh City,Kelty Hearts,SC3-20261121-edinburgh-city-kelty-hearts,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SC3,Spartans,Dumbarton,SC3-20261121-spartans-dumbarton,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-1.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-12
+2026-11-21,SC3,Stranraer,Elgin,SC3-20261121-stranraer-elgin,2,"CORNERS_8.5, CORNERS_9.5","result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP1,Alaves,La Coruna,SP1-20261121-alaves-la-coruna,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP1,Real Madrid,Celta,SP1-20261121-real-madrid-celta,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP1,Sevilla,Betis,SP1-20261121-sevilla-betis,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP1,Vallecano,Valencia,SP1-20261121-vallecano-valencia,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP2,Castellon,Eldense,SP2-20261121-castellon-eldense,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP2,Sabadell,Granada,SP2-20261121-sabadell-granada,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP2,Sociedad B,Cadiz,SP2-20261121-sociedad-b-cadiz,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,SP2,Tenerife,Mallorca,SP2-20261121-tenerife-mallorca,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,T1,Amedspor,Rizespor,T1-20261121-amedspor-rizespor,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,T1,Galatasaray,Samsunspor,T1-20261121-galatasaray-samsunspor,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,T1,Genclerbirligi,Gaziantep,T1-20261121-genclerbirligi-gaziantep,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
+2026-11-21,T1,Kocaelispor,Fenerbahce,T1-20261121-kocaelispor-fenerbahce,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-12
