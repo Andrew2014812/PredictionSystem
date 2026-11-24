@@ -1,17 +1,17 @@
 {
- "evaluated_at_uk": "2026-11-23 09:16:33.490188",
+ "evaluated_at_uk": "2026-11-24 10:44:51.080174",
  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
  "shadows": {
   "maincal_ps_platt_monthly@v1": {
-   "n": 204,
+   "n": 216,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.34,
+   "information_fraction": 0.36,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_shadow": -0.0030282825627548785,
-    "gap_production": 0.05572681024558823
+    "gap_shadow": 0.0012906747805418698,
+    "gap_production": 0.05995214908888889
    },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
@@ -19,15 +19,15 @@
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "maincal_ps_group@v1": {
-   "n": 204,
+   "n": 216,
    "min_n": 600,
    "unit": "рассчитанных показанных Main",
-   "information_fraction": 0.34,
+   "information_fraction": 0.36,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_shadow": -0.00491646803104006,
-    "gap_production": 0.05572681024558823
+    "gap_shadow": 0.0013667008065211303,
+    "gap_production": 0.05995214908888889
    },
    "family": "main_calibration",
    "prereg": "experiments/v6_2/main_calibration/results/preregistration.json",
@@ -35,16 +35,16 @@
    "criterion": "C1: 95 % ДИ gap(p') содержит 0; C2: парный ДИ |gap(p')| - |gap(pc)| < 0; C3: Холм по H1, H2"
   },
   "risk_stacked@v1": {
-   "n": 199,
+   "n": 216,
    "min_n": 2000,
    "unit": "матчей с ценой у обоих Risk",
-   "information_fraction": 0.0995,
+   "information_fraction": 0.108,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.2018518556867327,
-    "roi_production": -0.23869346733668342,
-    "changed_picks": 0.457286432160804
+    "roi_shadow": -0.19112195415031621,
+    "roi_production": -0.24722222222222226,
+    "changed_picks": 0.4444444444444444
    },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
@@ -52,15 +52,15 @@
    "criterion": "парный 95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109)"
   },
   "risk_market_probability@v1": {
-   "n": 196,
+   "n": 213,
    "min_n": 1000,
    "unit": "рассчитанных Risk с полной книгой",
-   "information_fraction": 0.196,
+   "information_fraction": 0.213,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "gap_market": 0.04198462717789088,
-    "gap_model": 0.08089382600459186
+    "gap_market": 0.04660343910715814,
+    "gap_model": 0.08682210526197183
    },
    "family": "risk",
    "prereg": "experiments/v6_2/risk/results/preregistration.json",
@@ -70,34 +70,34 @@
   "bookmaker_h2_pool@v1": {
    "markets": {
     "ou25": {
-     "n": 39,
+     "n": 215,
      "min_n": 1500,
      "unit": "матчей с ценами Bet365 открытия",
-     "information_fraction": 0.026,
+     "information_fraction": 0.1433,
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": -0.0005730561057166269,
-      "ll_model_minus_h0": 0.00983899438818563
+      "ll_h2_minus_h0": -0.00010373500564547674,
+      "ll_model_minus_h0": -0.0004557041799419011
      }
     },
     "1x2": {
-     "n": 39,
+     "n": 215,
      "min_n": 1500,
      "unit": "матчей с ценами Bet365 открытия",
-     "information_fraction": 0.026,
+     "information_fraction": 0.1433,
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": 0.002640477677845222,
-      "ll_model_minus_h0": 0.05307349912750824
+      "ll_h2_minus_h0": 0.0015662776094032764,
+      "ll_model_minus_h0": 0.014766174332230923
      }
     }
    },
-   "n": 39,
+   "n": 215,
    "min_n": 1500,
    "unit": "матчей с ценами Bet365 открытия",
-   "information_fraction": 0.026,
+   "information_fraction": 0.1433,
    "status": "accumulating",
    "ready": false,
    "family": "bookmaker",
@@ -106,15 +106,15 @@
    "criterion": "верхняя граница 95 % парного ДИ < 0 для тотала 2.5; 1X2 — вторичный, Холм по двум рынкам"
   },
   "xg_x5@v1": {
-   "n": 180,
+   "n": 189,
    "min_n": 3000,
    "unit": "сыгранных матчей лиг с xG",
-   "information_fraction": 0.06,
+   "information_fraction": 0.063,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "goals_dev_diff": -0.004010174351342876,
-    "logloss_1x2_diff": -0.002430039952805835,
+    "goals_dev_diff": -0.005319387711620787,
+    "logloss_1x2_diff": -0.002164669440066118,
     "fallback_share": 0.0
    },
    "family": "xg",
@@ -123,18 +123,18 @@
    "criterion": "разность < 0 при одностороннем бутстреп-p < 0.05; ΔLL 1X2 < +0.002; ΔROI Main > -0.02; переоценка Main не больше, чем у B0"
   },
   "v63_main_reliability_total@v1": {
-   "n": 163,
+   "n": 176,
    "min_n": 2596,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0628,
+   "information_fraction": 0.0678,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.05477300743383864,
-    "roi_production": -0.03996319018404906,
-    "bets_shadow": 163,
-    "bets_production": 163,
-    "changed_picks": 0.19631901840490798
+    "roi_shadow": -0.058744318105957725,
+    "roi_production": -0.05392613636363634,
+    "bets_shadow": 176,
+    "bets_production": 176,
+    "changed_picks": 0.20454545454545456
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
@@ -142,18 +142,18 @@
    "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
   },
   "v63_main_reliability_handicap@v1": {
-   "n": 164,
+   "n": 176,
    "min_n": 3993,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0411,
+   "information_fraction": 0.0441,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.02508536780752787,
-    "roi_production": -0.045817073170731686,
-    "bets_shadow": 164,
-    "bets_production": 164,
-    "changed_picks": 0.6219512195121951
+    "roi_shadow": -0.0453885725566319,
+    "roi_production": -0.05392613636363634,
+    "bets_shadow": 175,
+    "bets_production": 176,
+    "changed_picks": 0.6363636363636364
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/market_profitability/results/preregistration.json",
@@ -161,18 +161,18 @@
    "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
   },
   "v63_main_ev_weight@v1": {
-   "n": 162,
+   "n": 176,
    "min_n": 8227,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0197,
+   "information_fraction": 0.0214,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.006537037867086905,
-    "roi_production": -0.04323456790123455,
-    "bets_shadow": 162,
-    "bets_production": 162,
-    "changed_picks": 0.1111111111111111
+    "roi_shadow": -0.016204544766382736,
+    "roi_production": -0.05392613636363634,
+    "bets_shadow": 176,
+    "bets_production": 176,
+    "changed_picks": 0.13068181818181818
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
@@ -180,18 +180,18 @@
    "criterion": "95 % ДИ разности ROI > 0 (бутстреп по матчам, 2000, seed 20261109); Холм по семье v63_main_rule"
   },
   "v63_main_floor_140@v1": {
-   "n": 152,
+   "n": 176,
    "min_n": 2342,
    "unit": "рассчитанных матчей",
-   "information_fraction": 0.0649,
+   "information_fraction": 0.0751,
    "status": "accumulating",
    "ready": false,
    "point": {
-    "roi_shadow": -0.036217104447515386,
-    "roi_production": -0.040842105263157874,
-    "bets_shadow": 152,
-    "bets_production": 152,
-    "changed_picks": 0.46710526315789475
+    "roi_shadow": -0.06798863478682259,
+    "roi_production": -0.05392613636363634,
+    "bets_shadow": 176,
+    "bets_production": 176,
+    "changed_picks": 0.5113636363636364
    },
    "family": "v63_main_rule",
    "prereg": "experiments/v6_3/main_selection/results/preregistration.json",
