@@ -81,3 +81,7 @@ run_at,source,line,n_requests,n_files_unchanged,n_season_played,n_new_results,n_
 2026-11-24T10:43:45,football_data,"Football-Data: 22 requests (22 answered OK) · 20 files downloaded · 1 files unchanged · 2,426 played matches in the season files · 176 new results · 20 leagues updated · 29 s",22.0,1.0,2426.0,176.0,20.0,,,,,,,,,,,
 2026-11-24T10:43:45,api_football,API-Football: 3 requests (3 answered OK) · 609 fixtures returned · 38 in our leagues · 38 matched · 8 finished · 8 new results · 7 leagues updated · skipped: 571 not one of our leagues · 97 left,3.0,,,8.0,,609.0,38.0,38.0,8.0,,,,,,,
 2026-11-24T10:43:45,the_odds_api,The Odds API: off (stored prices still used) · 79 left,,,,,,,,,,,,,,,,
+2026-11-24T11:03:13,football_data,"Football-Data: 22 requests (22 answered OK) · 21 files unchanged · 2,426 played matches in the season files · 27 s",22.0,21.0,2426.0,0.0,,,,,,,,,,,,
+2026-11-24T11:03:13,api_football,API-Football: 3 requests (3 answered OK) · 609 fixtures returned · 38 in our leagues · 38 matched · 8 finished · skipped: 571 not one of our leagues · 94 left · 1 s,3.0,,,,,609.0,38.0,38.0,8.0,,,,,,,
+2026-11-24T11:03:13,oddspapi,"OddsPapi: 47 requests (2 answered OK) · 1 billable · 1,247 fixtures returned · 45 in our leagues · 45 matched · 45 matches asked · skipped: 1202 not one of our leagues · HTTP 200×2, 403×45 · ? left · errors: historical-odds HTTP 403 · 4.1 min",47.0,,,,,1247.0,45.0,45.0,,,46.0,1.0,,,45.0,0.0
+2026-11-24T11:03:13,the_odds_api,The Odds API: off (stored prices still used) · 79 left,,,,,,,,,,,,,,,,
