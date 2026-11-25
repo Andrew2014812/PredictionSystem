@@ -10,9 +10,9 @@
   "language_name",
   "subscriptions"
  ],
- "checked_at": "2026-11-24T11:03:15",
+ "checked_at": "2026-11-25T09:55:13",
  "month": "2026-11",
- "month_credits": 105,
+ "month_credits": 106,
  "requests": {
   "fixtures|17|2026-08-01|2026-10-22": {
    "at": "2026-10-23T16:03:33",
@@ -804,6 +804,12 @@
    "at": "2026-11-24T11:03:15",
    "cost": 1,
    "items": 1247,
+   "status": "200"
+  },
+  "fixtures|all|2026-11-25|2026-11-29": {
+   "at": "2026-11-25T09:55:13",
+   "cost": 1,
+   "items": 2201,
    "status": "200"
   },
   "historical|id1000000872478446": {

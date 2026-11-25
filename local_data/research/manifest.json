@@ -700,6 +700,22 @@
    "results_appended": 0,
    "errors": {},
    "seconds": 1.82
+  },
+  {
+   "run_id": "20261125T100619.288297Z",
+   "now_uk": "2026-11-25 10:06:19.288265",
+   "code_sha": "dd4d7436eae2013d269302c80ed89b636b4daafc",
+   "upcoming_matches": 111,
+   "rows_appended": 1176,
+   "rows_total": 8778,
+   "chain_head": "dc15638a212dabf1ac9ad7c1c6d7c34a9451034d7201a1f6594c6937866d6e53",
+   "files": {
+    "shadow_results/20261125T100619.288297Z.parquet": "5b1b3f85b251bfdcb28133a70cbf5bd735861906436708536de9552acd073812",
+    "shadow_predictions/20261125T100619.288297Z.parquet": "5637b90af88a20478d3e8b37bb9cddbebb9bcb08b2f999f8bea2ea96d4f0e2d1"
+   },
+   "results_appended": 22,
+   "errors": {},
+   "seconds": 2.51
   }
  ],
  "decisions": {}
