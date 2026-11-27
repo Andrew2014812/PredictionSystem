@@ -9,25 +9,3 @@ date,league,home_team,away_team,match_id,waiting_predictions,waiting_markets,rea
 2026-11-14,E3,Walsall,Barnet,E3-20261114-walsall-barnet,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-0.5, TOTAL_2.5",postponed (API-Football PST),PST,False,False,,2026-12-05
 2026-11-21,SC1,Dunfermline,Morton,SC1-20261121-dunfermline-morton,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-0.5, HANDICAP_-2.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-12
 2026-11-21,SC3,Spartans,Dumbarton,SC3-20261121-spartans-dumbarton,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-1.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-12
-2026-11-24,E1,Bristol City,Wrexham,E1-20261124-bristol-city-wrexham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E1,Cardiff,Preston,E1-20261124-cardiff-preston,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E1,Charlton,Lincoln,E1-20261124-charlton-lincoln,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E1,Middlesbrough,Swansea,E1-20261124-middlesbrough-swansea,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E1,Norwich,QPR,E1-20261124-norwich-qpr,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E1,Portsmouth,West Ham,E1-20261124-portsmouth-west-ham,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E1,Sheffield United,Southampton,E1-20261124-sheffield-united-southampton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E1,Wolves,Derby,E1-20261124-wolves-derby,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E2,Blackpool,Leicester,E2-20261124-blackpool-leicester,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E2,Bradford,Barnsley,E2-20261124-bradford-barnsley,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E2,Bromley,Wycombe,E2-20261124-bromley-wycombe,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E2,Stevenage,Sheffield Weds,E2-20261124-stevenage-sheffield-weds,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,E3,Crawley Town,Barnet,E3-20261124-crawley-town-barnet,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",PST,True,False,,2026-12-15
-2026-11-24,E3,Port Vale,Northampton,E3-20261124-port-vale-northampton,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,I2,Benevento,Empoli,I2-20261124-benevento-empoli,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,I2,Cesena,Ascoli,I2-20261124-cesena-ascoli,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,I2,Juve Stabia,Catanzaro,I2-20261124-juve-stabia-catanzaro,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,I2,Palermo,Sudtirol,I2-20261124-palermo-sudtirol,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,I2,Vicenza,Carrarese,I2-20261124-vicenza-carrarese,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,I2,Virtus Entella,Verona,I2-20261124-virtus-entella-verona,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,SC0,Hibernian,Dundee,SC0-20261124-hibernian-dundee,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15
-2026-11-24,SC0,Rangers,Aberdeen,SC0-20261124-rangers-aberdeen,1,CORNERS_9.5,"result known, waiting for corner statistics (Football-Data)",,True,False,,2026-12-15

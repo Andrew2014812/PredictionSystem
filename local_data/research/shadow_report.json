@@ -1,5 +1,5 @@
 {
- "evaluated_at_uk": "2026-11-26 09:54:03.317615",
+ "evaluated_at_uk": "2026-11-27 10:00:46.626489",
  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
  "shadows": {
   "maincal_ps_platt_monthly@v1": {
@@ -70,34 +70,34 @@
   "bookmaker_h2_pool@v1": {
    "markets": {
     "ou25": {
-     "n": 215,
+     "n": 245,
      "min_n": 1500,
      "unit": "матчей с ценами Bet365 открытия",
-     "information_fraction": 0.1433,
+     "information_fraction": 0.1633,
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": -0.00010373500564547674,
-      "ll_model_minus_h0": -0.0004557041799419011
+      "ll_h2_minus_h0": 2.0931762488385693e-05,
+      "ll_model_minus_h0": 0.001388602242015219
      }
     },
     "1x2": {
-     "n": 215,
+     "n": 245,
      "min_n": 1500,
      "unit": "матчей с ценами Bet365 открытия",
-     "information_fraction": 0.1433,
+     "information_fraction": 0.1633,
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": 0.0015662776094032764,
-      "ll_model_minus_h0": 0.014766174332230923
+      "ll_h2_minus_h0": 0.0011924794992932025,
+      "ll_model_minus_h0": 0.01080256555556488
      }
     }
    },
-   "n": 215,
+   "n": 245,
    "min_n": 1500,
    "unit": "матчей с ценами Bet365 открытия",
-   "information_fraction": 0.1433,
+   "information_fraction": 0.1633,
    "status": "accumulating",
    "ready": false,
    "family": "bookmaker",
