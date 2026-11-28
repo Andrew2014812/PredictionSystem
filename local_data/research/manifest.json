@@ -763,6 +763,21 @@
    "results_appended": 0,
    "errors": {},
    "seconds": 6.69
+  },
+  {
+   "run_id": "20261128T110659.443070Z",
+   "now_uk": "2026-11-28 11:06:59.443043",
+   "code_sha": "8587c568003fa688f6c9c2cd029b2a0d92c74486",
+   "upcoming_matches": 174,
+   "rows_appended": 2,
+   "rows_total": 11651,
+   "chain_head": "40c6c15f1c405a40e3032c022b96544ae4b28cb9745ba2f6f484bebd501db810",
+   "files": {
+    "shadow_predictions/20261128T110659.443070Z.parquet": "96f7c6f228828398b10642dd190ac6a4907d6459dafb6e0568837a35492a2013"
+   },
+   "results_appended": 0,
+   "errors": {},
+   "seconds": 7.64
   }
  ],
  "decisions": {}

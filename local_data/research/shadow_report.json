@@ -1,5 +1,5 @@
 {
- "evaluated_at_uk": "2026-11-28 09:14:33.199227",
+ "evaluated_at_uk": "2026-11-28 11:06:59.443043",
  "policy": "no conclusion before the preregistered N; one evaluation, then frozen",
  "shadows": {
   "maincal_ps_platt_monthly@v1": {
@@ -77,8 +77,8 @@
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": 2.093176248838354e-05,
-      "ll_model_minus_h0": 0.0013886022420152135
+      "ll_h2_minus_h0": 2.0931762488385693e-05,
+      "ll_model_minus_h0": 0.001388602242015219
      }
     },
     "1x2": {
@@ -89,8 +89,8 @@
      "status": "accumulating",
      "ready": false,
      "point": {
-      "ll_h2_minus_h0": 0.0011924794992931947,
-      "ll_model_minus_h0": 0.010802565555564879
+      "ll_h2_minus_h0": 0.0011924794992932025,
+      "ll_model_minus_h0": 0.01080256555556488
      }
     }
    },
