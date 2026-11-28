@@ -1,5 +1,4 @@
 date,league,home_team,away_team,match_id,waiting_predictions,waiting_markets,reason,api_football_status,api_football_result,football_data_result,moved_to,void_after
-2026-11-06,SP2,Castellon,Eibar,SP2-20261106-castellon-eibar,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-2, TOTAL_1.5, TOTAL_2.5, TOTAL_3.5",no result; bookmakers stopped quoting 35 h before kick-off (probably postponed),,False,False,,2026-11-27
 2026-11-08,P1,Estoril,Maritimo,P1-20261108-estoril-maritimo,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5, TOTAL_3.5",no result; bookmakers stopped quoting 34 h before kick-off (probably postponed),,False,False,,2026-11-29
 2026-11-14,E2,Doncaster,Leyton Orient,E2-20261114-doncaster-leyton-orient,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_+0.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-05
 2026-11-14,E2,Peterboro,Oxford,E2-20261114-peterboro-oxford,8,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-05
@@ -9,3 +8,4 @@ date,league,home_team,away_team,match_id,waiting_predictions,waiting_markets,rea
 2026-11-14,E3,Walsall,Barnet,E3-20261114-walsall-barnet,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-0.5, TOTAL_2.5",postponed (API-Football PST),PST,False,False,,2026-12-05
 2026-11-21,SC1,Dunfermline,Morton,SC1-20261121-dunfermline-morton,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-0.5, HANDICAP_-2.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-12
 2026-11-21,SC3,Spartans,Dumbarton,SC3-20261121-spartans-dumbarton,9,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, HANDICAP_-1.5, TOTAL_2.5, TOTAL_3.5",postponed (API-Football PST),PST,False,False,,2026-12-12
+2026-11-26,E2,Doncaster,Huddersfield,E2-20261126-doncaster-huddersfield,8,"1X2, BTTS, CORNERS_9.5, DOUBLE_CHANCE, EXACT_SCORE, TOTAL_2.5",no result from any source yet,,False,False,,2026-12-17
